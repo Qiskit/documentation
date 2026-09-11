@@ -14,7 +14,7 @@ python_api_name: QkCircuit
 typedef struct QkCircuit QkCircuit
 ```
 
-The fundamental element of quantum computing is the *quantum circuit*. This is a computational routine that can be run, one shot at a time, on a quantum processing unit (QPU). A circuit will act on a predefined amount of quantum data (in Qiskit, we only directly support qubits) with unitary operations (gates), measurements and resets. In addition, a quantum circuit can contain operations on classical data, including real-time computations and control-flow constructs, which are executed by the controllers of the QPU. The `QkCircuit` struct exposes a low level interface to Qiskit’s quantum circuit data structure and exposes only what is defined in the inner data model of Qiskit. Therefore it is missing some functionality that is available in the higher level Python [`QuantumCircuit`](/docs/api/qiskit-c/dev/qiskit-circuit-quantum-circuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") class.
+The fundamental element of quantum computing is the *quantum circuit*. This is a computational routine that can be run, one shot at a time, on a quantum processing unit (QPU). A circuit will act on a predefined amount of quantum data (in Qiskit, we only directly support qubits) with unitary operations (gates), measurements and resets. In addition, a quantum circuit can contain operations on classical data, including real-time computations and control-flow constructs, which are executed by the controllers of the QPU. The `QkCircuit` struct exposes a low level interface to Qiskit’s quantum circuit data structure and exposes only what is defined in the inner data model of Qiskit. Therefore it is missing some functionality that is available in the higher level Python [`QuantumCircuit`](/docs/api/qiskit/dev/qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") class.
 
 Below is an example of a quantum circuit that makes a three-qubit Greenberger–Horne–Zeilinger (GHZ) state defined as:
 
@@ -37,7 +37,7 @@ qk_circuit_gate(qc, QkGate_CX, (uint32_t[]){0, 2}, NULL);
 qk_circuit_free(qc);
 ```
 
-The circuit C API currently only supports creating circuits that contain operations defined in Qiskit’s internal Rust data model. Generally this includes only gates in the standard gate library, standard non-unitary operations (currently [`Barrier`](/docs/api/qiskit-c/dev/circuit#qiskit.circuit.Barrier "qiskit.circuit.Barrier"), [`Measure`](/docs/api/qiskit-c/dev/circuit#qiskit.circuit.Measure "qiskit.circuit.Measure"), [`Reset`](/docs/api/qiskit-c/dev/circuit#qiskit.circuit.Reset "qiskit.circuit.Reset"), and [`Delay`](/docs/api/qiskit-c/dev/circuit#qiskit.circuit.Delay "qiskit.circuit.Delay")) and [`UnitaryGate`](/docs/api/qiskit-c/dev/qiskit-circuit-library-unitary-gate#qiskit.circuit.library.UnitaryGate "qiskit.circuit.library.UnitaryGate"). This functionality will be expanded over time as the Rust data model is expanded to natively support more functionality.
+The circuit C API currently only supports creating circuits that contain operations defined in Qiskit’s internal Rust data model. Generally this includes only gates in the standard gate library, standard non-unitary operations (currently [`Barrier`](/docs/api/qiskit/dev/circuit#qiskit.circuit.Barrier "qiskit.circuit.Barrier"), [`Measure`](/docs/api/qiskit/dev/circuit#qiskit.circuit.Measure "qiskit.circuit.Measure"), [`Reset`](/docs/api/qiskit/dev/circuit#qiskit.circuit.Reset "qiskit.circuit.Reset"), and [`Delay`](/docs/api/qiskit/dev/circuit#qiskit.circuit.Delay "qiskit.circuit.Delay")) and [`UnitaryGate`](/docs/api/qiskit/dev/qiskit.circuit.library.UnitaryGate#qiskit.circuit.library.UnitaryGate "qiskit.circuit.library.UnitaryGate"). This functionality will be expanded over time as the Rust data model is expanded to natively support more functionality.
 
 ## Data Types
 
@@ -148,6 +148,12 @@ The circuit C API currently only supports creating circuits that contain operati
 
   <Attribute id="fold">
     Sets the line length for wrapping the rendered text. Use 0 to auto-detect console width. Use `SIZE_MAX` to effectively skip wrapping altogether.
+  </Attribute>
+
+  #### size\_t barrier\_label\_len
+
+  <Attribute id="barrier_label_len">
+    Sets the number of characters to display for barrier labels. If this number is exceeded, the label is truncated at that number and ‘…’ is appended. Use 0 to apply the default of 16 characters.
   </Attribute>
 </Class>
 
@@ -1392,7 +1398,7 @@ The circuit C API currently only supports creating circuits that contain operati
   qk_circuit_measure(circuit, 0, 0);
   qk_circuit_measure(circuit, 1, 0);
 
-  QkCircuitDrawerConfig config = {false, true, 0};
+  QkCircuitDrawerConfig config = {false, true, 0, 16};
 
   char *circ_str = qk_circuit_draw(circuit, &config);
 
@@ -1419,6 +1425,7 @@ The circuit C API currently only supports creating circuits that contain operati
       *   `bundle_cregs = true`
       *   `merge_wires = true`
       *   `fold = 0`
+      *   `barrier_label_len = 16`
 
   **Returns**
 

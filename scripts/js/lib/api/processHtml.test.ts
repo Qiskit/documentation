@@ -549,7 +549,7 @@ test.describe("processMembersAndSetMeta()", () => {
     await processMembersAndSetMeta(doc.$, doc.$main, meta, {
       isCApi: false,
       isRoot: false,
-      isIbmQuantumSchemasPage: false,
+      fileName: "",
     });
     doc.expectHtml(`      <h1>Circuit Converters</h1>
 <h3 data-header-type="method-header">circuit_to_dag</h3><div><function id="qiskit.converters.circuit_to_dag" isdedicatedpage="undefined" github="../_modules/qiskit/converters/circuit_to_dag.html#circuit_to_dag" signature="qiskit.converters.circuit_to_dag(circuit, copy_operations=True, *, qubit_order=None, clbit_order=None)¶" modifiers="" extrasignatures="[]">
@@ -601,7 +601,7 @@ backends may not have this attribute.</p>
     await processMembersAndSetMeta(doc.$, doc.$main, meta, {
       isCApi: false,
       isRoot: false,
-      isIbmQuantumSchemasPage: false,
+      fileName: "",
     });
     doc.expectHtml(`<h1>least_busy</h1>
 <div><function id="qiskit_ibm_provider.least_busy" isdedicatedpage="true" github="../_modules/qiskit_ibm_provider.html#least_busy" signature="least_busy(backends)¶" modifiers="" extrasignatures="[]">
@@ -665,7 +665,7 @@ particular error, which subclasses both <a class="reference internal" href="#qis
     await processMembersAndSetMeta(doc.$, doc.$main, meta, {
       isCApi: false,
       isRoot: false,
-      isIbmQuantumSchemasPage: false,
+      fileName: "",
     });
     doc.expectHtml(`<span class="target" id="module-qiskit.exceptions"><span id="qiskit-exceptions"></span></span><section id="top-level-exceptions-qiskit-exceptions">
 <h1>Top-level exceptions (<a class="reference internal" href="#module-qiskit.exceptions" title="qiskit.exceptions"><code class="xref py py-mod docutils literal notranslate"><span class="pre">qiskit.exceptions</span></code></a>)<a class="headerlink" href="#top-level-exceptions-qiskit-exceptions" title="Permalink to this heading">¶</a></h1>
@@ -715,7 +715,7 @@ marked as builtins since they are not actually present in any include file this 
     await processMembersAndSetMeta(doc.$, doc.$main, meta, {
       isCApi: false,
       isRoot: false,
-      isIbmQuantumSchemasPage: false,
+      fileName: "",
     });
     doc.expectHtml(`
 <h3 data-header-type="attribute-header">qiskit.qasm2.LEGACY_CUSTOM_INSTRUCTIONS¶</h3><div><attribute id="qiskit.qasm2.LEGACY_CUSTOM_INSTRUCTIONS" isdedicatedpage="undefined" github="undefined" signature="" modifiers="" extrasignatures="[]">
@@ -759,7 +759,7 @@ marked as builtins since they are not actually present in any include file this 
     await processMembersAndSetMeta(doc.$, doc.$main, meta, {
       isCApi: true,
       isRoot: false,
-      isIbmQuantumSchemasPage: false,
+      fileName: "",
     });
     doc.expectHtml(`<h3 data-header-type=\"method-header\">qk_obs_identity</h3><div><function id=\"qk_obs_identity\" isdedicatedpage=\"undefined\" github=\"undefined\" signature=\"QkSparseObservable *qk_obs_identity(uint32_t num_qubits)¶\" modifiers=\"\" extrasignatures=\"[]\">
   
@@ -783,6 +783,22 @@ marked as builtins since they are not actually present in any include file this 
     expect(meta).toEqual({
       apiType: "function",
       apiName: "qk_obs_identity",
+    });
+  });
+
+  test("pydoc page without module-* anchor becomes syntheticModule", async () => {
+    const html = `<h1>Transpiler Pass Plugins</h1><p>Some content.</p>`;
+    const meta: Metadata = {};
+    const doc = CheerioDoc.load(html);
+    await processMembersAndSetMeta(doc.$, doc.$main, meta, {
+      isCApi: false,
+      isRoot: false,
+      fileName: "pydoc/qiskit_fermions.transpiler.passes.plugins.html",
+    });
+    expect(meta).toEqual({
+      apiType: "syntheticModule",
+      apiName: "Transpiler Pass Plugins",
+      untranslatable: true,
     });
   });
 });

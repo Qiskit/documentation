@@ -1,0 +1,42 @@
+---
+title: transfer_vertex_to_fermion (latest version)
+description: API reference for qiskit_fermions.mappers.library.transfer_vertex_to_fermion in the latest version of qiskit-fermions
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit_fermions.mappers.library.transfer_vertex_to_fermion
+---
+
+<span id="transfer-vertex-to-fermion" />
+
+# transfer\_vertex\_to\_fermion
+
+<Function id="qiskit_fermions.mappers.library.transfer_vertex_to_fermion" isDedicatedPage={true} signature="transfer_vertex_to_fermion(inter_op)">
+  Map a [`TransferVertexOperator`](operators-transfer-vertex-operator "qiskit_fermions.operators.TransferVertexOperator") to a [`FermionOperator`](operators-fermion-operator "qiskit_fermions.operators.FermionOperator").
+
+  **Parameters**
+
+  **inter\_op** – the transfer-vertex operator to map.
+
+  **Returns**
+
+  The mapped fermionic operator.
+
+  ## Definition
+
+  This function decomposes the transfer-vertex operators in terms of the fermionic action operators as defined [here](operators-transfer-vertex-operator#transfervertexoperator-definition).
+
+  ## Usage
+
+  ```pycon
+  >>> from qiskit_fermions.mappers.library import transfer_vertex_to_fermion
+  >>> from qiskit_fermions.operators import TransferVertexOperator
+  >>> inter_op = TransferVertexOperator.from_dict({((0, 0),): 1, ((1, 2),): 2, ((2, 1),): -2})
+  >>> fer_op = transfer_vertex_to_fermion(inter_op)
+  >>> print(format(fer_op.normal_ordered().simplify()))
+    1.000000e0 +0.000000e0j * ()
+   -2.000000e0 +0.000000e0j * (-2 -1)
+   -2.000000e0 +0.000000e0j * (+0 -0)
+    2.000000e0 -0.000000e0j * (+2 +1)
+  ```
+</Function>
+

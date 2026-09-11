@@ -86,7 +86,7 @@ async function determineFilePaths(
 
   const extraFiles = pkg.isCApi()
     ? [`${C_API_BASE_PATH}/**.html`, "apidocs/**.html"]
-    : ["apidocs/**.html", "apidoc/**.html", "stubs/**.html"];
+    : ["apidocs/**.html", "apidoc/**.html", "stubs/**.html", "pydoc/**.html"];
   const files = await globby(
     [...extraFiles, "release_notes.html", "release-notes.html"],
     {

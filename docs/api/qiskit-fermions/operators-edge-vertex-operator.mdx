@@ -1,0 +1,926 @@
+---
+title: EdgeVertexOperator (latest version)
+description: API reference for qiskit_fermions.operators.EdgeVertexOperator in the latest version of qiskit-fermions
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_fermions.operators.EdgeVertexOperator
+---
+
+# EdgeVertexOperator
+
+<Class id="qiskit_fermions.operators.EdgeVertexOperator" isDedicatedPage={true} signature="EdgeVertexOperator(coeffs, left_indices, right_indices, boundaries)" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
+
+  An edge-vertex operator.
+
+  <span id="edgevertexoperator-definition" />
+
+  ## Definition
+
+  This operator is defined in terms of the edge-vertex ($E_{jk}$, $V_j$) operators:
+
+$$
+\begin{align}
+V_j    &= -i \gamma_{2j-1} \gamma_{2j}
+= -(a_j a_j - a_j a^\dagger_j + a^\dagger_j a_j - a^\dagger_j a^\dagger_j)
+= 1 - 2 a^\dagger_j a_j \, , \nonumber \\
+E_{jk} &= -i \gamma_{2j-1} \gamma_{2k-1}
+= -i (a_j a_k + a_j a^\dagger_k + a^\dagger_j a_k + a^\dagger_j a^\dagger_k)
+= -E_{kj} \nonumber
+\end{align}
+$$
+
+  which fulfill the following mixed fermionic-bosonic commutation relations for $j \neq k \neq l \neq m$:   <span id="id1" />[\[1\]](#id2)
+
+$$
+\begin{align}
+\left\{ E_{jk}, V_k \right\} &= 0 \nonumber \\
+\left\{ E_{jk}, E_{kl} \right\} &= 0 \nonumber \\
+\left[ V_k, V_l \right] &= 0 \nonumber \\
+\left[ E_{jk}, V_l \right] &= 0 \nonumber \\
+\left[ E_{jk}, E_{lm} \right] &= 0 \nonumber \, .
+\end{align}
+$$
+
+  In summary, edge and vertex operators commute, unless they share *exactly one* index, in which case they anticommute.
+
+  <Admonition title="Note" type="note">
+    The relations above are stated for $j \neq k \neq l \neq m$, so they do not cover two edge operators spanning the *same* pair of modes. Those commute: since $E_{kj} = -E_{jk}$, such a pair is collinear, and every operator commutes with itself. This is why the condition is “exactly one” shared index rather than “at least one”.
+  </Admonition>
+
+  A simple example can be represented visually like so:
+
+  ![A visual depication of an edge-vertex operator.](/docs/images/api/qiskit-fermions/qiskit_fermions-operators-EdgeVertexOperator-1.avif)
+
+  We can abuse the notation a little bit and define $V_j = E_{jj}$ which reflects how the internal data structure of this operator works. This makes the definition of the entire operator the following:
+
+$$
+\text{\texttt{EdgeVertexOperator}} = \sum_i c_i \bigotimes_{lr} E_{lr} \, ,
+$$
+
+  where $lr$ indexing the involved operator terms and $c_i$ is the (complex) coefficient making up the linear combination of products. The indices $l$ and $r$ can take any value between 0 and the number of fermionic modes acted upon by the operator minus 1.
+
+  We will refer to $E_{lr}$ as generalized edge operators.
+
+  <span id="edgevertexoperator-implementation" />
+
+  ## Implementation
+
+  This class stores the terms and coefficients in multiple sparse vectors, akin to the [compressed sparse row format](https://en.wikipedia.org/wiki/Sparse_matrix#Compressed_sparse_row_\(CSR,_CRS_or_Yale_format\)) commonly used for sparse matrices. More concretely, a single operator contains 4 arrays:
+
+  |                 |                                                                                   |
+  | --------------- | --------------------------------------------------------------------------------- |
+  | `coeffs`        | A vector of complex coefficients consisting of two 64-bit floating point numbers. |
+  | `left_indices`  | A vector of 32-bit integers storing the left fermionic mode indices ($l$ above).  |
+  | `right_indices` | A vector of 32-bit integers storing the right fermionic mode indices ($r$ above). |
+  | `boundaries`    | A vector of integers indicating the boundaries in `actions` and `modes`.          |
+
+  Fermionic modes indexed by `left_indices` and `right_indices` are considered spinless.
+
+  <Admonition title="Note" type="note">
+    You can access **read-only copies** of these internal arrays via their respective methods: [`get_coeffs()`](#qiskit_fermions.operators.EdgeVertexOperator.get_coeffs "qiskit_fermions.operators.EdgeVertexOperator.get_coeffs"), [`get_left_indices()`](#qiskit_fermions.operators.EdgeVertexOperator.get_left_indices "qiskit_fermions.operators.EdgeVertexOperator.get_left_indices"), [`get_right_indices()`](#qiskit_fermions.operators.EdgeVertexOperator.get_right_indices "qiskit_fermions.operators.EdgeVertexOperator.get_right_indices"), and [`get_boundaries()`](#qiskit_fermions.operators.EdgeVertexOperator.get_boundaries "qiskit_fermions.operators.EdgeVertexOperator.get_boundaries").
+  </Admonition>
+
+  This data structure allows for very efficient construction and manipulation of operators. However, it implies that duplicate terms might be contained in an operator at any moment. These must be resolved manually through the use of [`simplify()`](#qiskit_fermions.operators.EdgeVertexOperator.simplify "qiskit_fermions.operators.EdgeVertexOperator.simplify").
+
+  ### Construction
+
+  An operator can be constructed directly by providing the arrays outlined above:
+
+  ```pycon
+  >>> from qiskit_fermions.operators import EdgeVertexOperator
+  >>> coeffs = [1.0, 2.0, -3.0, 4.0j, -0.5j]
+  >>> left_indices = [0, 3, 0, 2, 3, 0]
+  >>> right_indices = [1, 4, 1, 2, 3, 1]
+  >>> boundaries = [0, 0, 1, 2, 4, 6]
+  >>> op = EdgeVertexOperator(coeffs, left_indices, right_indices, boundaries)
+  >>> print(format(op))
+    1.000000e0 +0.000000e0j * ()
+    2.000000e0 +0.000000e0j * (E(0,1))
+    0.000000e0 +4.000000e0j * (E(0,1) V(2))
+   -0.000000e0-5.000000e-1j * (V(3) E(0,1))
+   -3.000000e0 +0.000000e0j * (E(3,4))
+  ```
+
+  For convenience, it is possible to construct an operator from a Python dictionary like so:
+
+  ```pycon
+  >>> op = EdgeVertexOperator.from_dict(
+  ...     {
+  ...         (): 1.0,
+  ...         ((0, 1),): 2.0,
+  ...         ((3, 4),): -3.0,
+  ...         ((0, 1), (2, 2)): 4.0j,
+  ...         ((3, 3), (0, 1)): -0.5j,
+  ...     }
+  ... )
+  >>> print(format(op))
+    1.000000e0 +0.000000e0j * ()
+    2.000000e0 +0.000000e0j * (E(0,1))
+    0.000000e0 +4.000000e0j * (E(0,1) V(2))
+   -0.000000e0-5.000000e-1j * (V(3) E(0,1))
+   -3.000000e0 +0.000000e0j * (E(3,4))
+  ```
+
+  In addition, the following construction and quick helper methods are available:
+
+  |                                                                                                                                                                               |                                                                                                                                                                                                                                                      |
+  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | [`zero`](#qiskit_fermions.operators.EdgeVertexOperator.zero "qiskit_fermions.operators.EdgeVertexOperator.zero")()                                                            | Constructs the additive identity operator.                                                                                                                                                                                                           |
+  | [`one`](#qiskit_fermions.operators.EdgeVertexOperator.one "qiskit_fermions.operators.EdgeVertexOperator.one")()                                                               | Constructs the multiplicative identity operator.                                                                                                                                                                                                     |
+  | [`from_terms`](#qiskit_fermions.operators.EdgeVertexOperator.from_terms "qiskit_fermions.operators.EdgeVertexOperator.from_terms")(terms)                                     | Constructs a new operator from an iterator of terms (see also [`iter_terms()`](#qiskit_fermions.operators.EdgeVertexOperator.iter_terms "qiskit_fermions.operators.EdgeVertexOperator.iter_terms")).                                                 |
+  | [`from_terms_with_groups`](#qiskit_fermions.operators.EdgeVertexOperator.from_terms_with_groups "qiskit_fermions.operators.EdgeVertexOperator.from_terms_with_groups")(terms) | Constructs a new operator from an iterator of terms with groups (see also [`iter_terms_with_groups()`](#qiskit_fermions.operators.EdgeVertexOperator.iter_terms_with_groups "qiskit_fermions.operators.EdgeVertexOperator.iter_terms_with_groups")). |
+
+  ### Formatting
+
+  In the examples above, the constructed operators have been printed using the output from [`format()`](https://docs.python.org/3/library/functions.html#format), which results in a human-readable form of the operator.
+
+  ```pycon
+  >>> print(format(op))
+    1.000000e0 +0.000000e0j * ()
+    2.000000e0 +0.000000e0j * (E(0,1))
+    0.000000e0 +4.000000e0j * (E(0,1) V(2))
+   -0.000000e0-5.000000e-1j * (V(3) E(0,1))
+   -3.000000e0 +0.000000e0j * (E(3,4))
+  ```
+
+  <Admonition title="Note" type="note">
+    The printing order of `format(op)` gets explicitly sorted before printing. As such, it does not reflect the order of the terms inside the operator.
+  </Admonition>
+
+  An alternative form can be obtained from the [`repr()`](https://docs.python.org/3/library/functions.html#repr) function, which results in a Python-interpretable representation. In other words, this output can readily be copied and pasted into a Python shell:
+
+  ```pycon
+  >>> print(repr(op))
+  EdgeVertexOperator.from_dict({...})
+  ```
+
+  Finally, for large operators both of these outputs might be very long and undesirable. Then, a very simple form with minimal information can be obtained from the `str()` function:
+
+  ```pycon
+  >>> print(str(op))
+  <EdgeVertexOperator with 5 terms>
+  ```
+
+  ### Iteration
+
+  Since the underlying data structure is implemented in Rust and has a non-trivial layout, it cannot be iterated over directly:
+
+  ```pycon
+  >>> list(iter(op))
+  Traceback (most recent call last):
+    ...
+  TypeError: 'qiskit_fermions.operators.edge_vertex_operator.EdgeVertexOperator' object is not iterable
+  ```
+
+  Instead, this class provides custom iterators to fulfill this purpose:
+
+  ```pycon
+  >>> list(sorted(op.iter_terms()))
+  [([], (1+0j)), ([(0, 1)], (2+0j)), ([(0, 1), (2, 2)], 4j), ([(3, 3), (0, 1)], (-0-0.5j)), ([(3, 4)], (-3+0j))]
+  ```
+
+  <Admonition title="See also" type="note">
+    **[`iter_terms()`](#qiskit_fermions.operators.EdgeVertexOperator.iter_terms "qiskit_fermions.operators.EdgeVertexOperator.iter_terms")**
+
+    For more relevant implementation details.
+  </Admonition>
+
+  The table below lists all available iterators:
+
+  |                                                                                                                                                                          |                                                                          |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+  | [`iter_terms`](#qiskit_fermions.operators.EdgeVertexOperator.iter_terms "qiskit_fermions.operators.EdgeVertexOperator.iter_terms")()                                     | An iterator over the operator's terms.                                   |
+  | [`iter_terms_with_groups`](#qiskit_fermions.operators.EdgeVertexOperator.iter_terms_with_groups "qiskit_fermions.operators.EdgeVertexOperator.iter_terms_with_groups")() | An iterator over the operator's terms with their associated group index. |
+
+  ### Arithmetics
+
+  The following arithmetic operations are supported:
+
+  <span id="addition-subtraction" />
+
+  #### Addition/Subtraction
+
+  ```pycon
+  >>> op = EdgeVertexOperator.one()
+  >>> (op + op).simplify()
+  EdgeVertexOperator.from_dict({(): 2+0j})
+  >>> (op - op).simplify()
+  EdgeVertexOperator.from_dict({})
+  >>> op += op
+  >>> op.simplify()
+  EdgeVertexOperator.from_dict({(): 2+0j})
+  >>> op -= op
+  >>> op.simplify()
+  EdgeVertexOperator.from_dict({})
+  ```
+
+  <span id="scalar-multiplication-divison" />
+
+  #### Scalar Multiplication/Divison
+
+  ```pycon
+  >>> op = EdgeVertexOperator.one()
+  >>> (2 * op).simplify()
+  EdgeVertexOperator.from_dict({(): 2+0j})
+  >>> (op / 2).simplify()
+  EdgeVertexOperator.from_dict({(): 0.5+0j})
+  >>> op *= 2
+  >>> op.simplify()
+  EdgeVertexOperator.from_dict({(): 2+0j})
+  >>> op /= 2
+  >>> op.simplify()
+  EdgeVertexOperator.from_dict({(): 1+0j})
+  ```
+
+  #### Operator Composition
+
+  <Admonition title="Note" type="note">
+    Operator composition corresponds to left-multiplication: `c = a & b` corresponds to $C = B A$. In other words, the composition of two operators returns a resulting operator that performs “first `a` and then `b`”.
+  </Admonition>
+
+  ```pycon
+  >>> op1 = EdgeVertexOperator.from_dict({(): 2.0, ((0, 1),): 3.0})
+  >>> op2 = EdgeVertexOperator.from_dict({(): 1.5, ((2, 2),): 4.0})
+  >>> comp = (op1 & op2).simplify()
+  >>> print(format(comp))
+    3.000000e0 +0.000000e0j * ()
+    4.500000e0 +0.000000e0j * (E(0,1))
+    8.000000e0 +0.000000e0j * (V(2))
+    1.200000e1 +0.000000e0j * (V(2) E(0,1))
+  >>> op2 &= op1
+  >>> print(format(op2.simplify()))
+    3.000000e0 +0.000000e0j * ()
+    4.500000e0 +0.000000e0j * (E(0,1))
+    1.200000e1 +0.000000e0j * (E(0,1) V(2))
+    8.000000e0 +0.000000e0j * (V(2))
+  >>> squared = (op1 ** 2).simplify()
+  >>> print(format(squared))
+    4.000000e0 +0.000000e0j * ()
+    1.200000e1 +0.000000e0j * (E(0,1))
+    9.000000e0 +0.000000e0j * (E(0,1) E(0,1))
+  ```
+
+  <Admonition title="Note" type="note">
+    For convenience, the right-multiplication is implemented by `c = a @ b` (resulting in $C = A B$).
+  </Admonition>
+
+  ```pycon
+  >>> (op1 @ op2).equiv(op2 & op1)
+  True
+  ```
+
+  #### Other Operations
+
+  In addition to the magic methods that correspond to the arithmetic operations outlined above, the following methods are available:
+
+  |                                                                                                                                                                      |                                                                              |
+  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+  | [`adjoint`](#qiskit_fermions.operators.EdgeVertexOperator.adjoint "qiskit_fermions.operators.EdgeVertexOperator.adjoint")()                                          | Returns the Hermitian conjugate (or adjoint) of this operator.               |
+  | [`ichop`](#qiskit_fermions.operators.EdgeVertexOperator.ichop "qiskit_fermions.operators.EdgeVertexOperator.ichop")(\[atol])                                         | Removes terms whose coefficient magnitude lies below the provided threshold. |
+  | [`simplify`](#qiskit_fermions.operators.EdgeVertexOperator.simplify "qiskit_fermions.operators.EdgeVertexOperator.simplify")(\[atol])                                | Returns an equivalent but simplified operator.                               |
+  | [`normal_ordered`](#qiskit_fermions.operators.EdgeVertexOperator.normal_ordered "qiskit_fermions.operators.EdgeVertexOperator.normal_ordered")(\[ascending, reduce]) | Returns an equivalent operator with normal ordered terms.                    |
+  | [`relabel_modes`](#qiskit_fermions.operators.EdgeVertexOperator.relabel_modes "qiskit_fermions.operators.EdgeVertexOperator.relabel_modes")(permutation)             | Returns a new operator with relabeled modes.                                 |
+
+  #### Properties
+
+  Finally, various methods exist to check certain properties of an operator:
+
+  |                                                                                                                                                   |                                             |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
+  | [`is_hermitian`](#qiskit_fermions.operators.EdgeVertexOperator.is_hermitian "qiskit_fermions.operators.EdgeVertexOperator.is_hermitian")(\[atol]) | Returns whether this operator is Hermitian. |
+
+  <span id="id2" />
+
+  \[[1](#id1)]
+
+  Gandon et al., [arXiv:2512.11418](https://arxiv.org/abs/2512.11418v2).
+
+  ## Attributes
+
+  ##### groups
+
+  <Attribute id="qiskit_fermions.operators.EdgeVertexOperator.groups">
+    An optional vector of group indices for each term.
+
+    For more information refer to the `grouping` module.
+  </Attribute>
+
+  ## Methods
+
+  ##### adjoint
+
+  <Function id="qiskit_fermions.operators.EdgeVertexOperator.adjoint" signature="adjoint()">
+    Returns the Hermitian conjugate (or adjoint) of this operator.
+
+    Two things happen to every term:
+
+    *   the coefficients are complex conjugated
+    *   the generators within each term are reversed in order
+
+    The reversal is required because $(AB)^\dagger = B^\dagger A^\dagger$. While the individual vertex and edge generators *are* Hermitian, they **anticommute when they share an index** (see [the definition above](#edgevertexoperator-definition)), so the reversed product is not equal to the original one and the order cannot simply be dropped.
+
+    Note that this does not make the operator self-adjoint in general: an operator with complex coefficients differs from its adjoint (as the doctest below illustrates).
+
+    ```pycon
+    >>> from qiskit_fermions.operators import EdgeVertexOperator
+    >>> op = EdgeVertexOperator.from_dict({(): -1.0j, ((0, 0), (0, 1)): 1.0})
+    >>> adj = op.adjoint()
+    >>> print(format(adj))
+     -0.000000e0 +1.000000e0j * ()
+      1.000000e0 -0.000000e0j * (E(0,1) V(0))
+    ```
+  </Function>
+
+  ##### equiv
+
+  <Function id="qiskit_fermions.operators.EdgeVertexOperator.equiv" signature="equiv(other, atol=1e-08)">
+    Checks this operator for equivalence with another operator.
+
+    Equivalence in this context means approximate equality up to the specified absolute tolerance. To be more precise, this method returns `True`, when all the absolute values of the coefficients in the difference `other - self` are below the specified threshold `atol`.
+
+    <Admonition title="Note" type="note">
+      This is the mathematical comparison you almost always want. It differs from the `==` operator, which tests exact equality of the *stored* terms (their coefficients, indices, and internal term boundaries) with no tolerance and no simplification. Two mathematically equal operators can therefore compare unequal under `==` if they are stored differently – for example an unsimplified `a + a` versus `2 * a`, or terms held in a different order. Use `equiv` to compare operators up to numerical tolerance.
+    </Admonition>
+
+    ```pycon
+    >>> from qiskit_fermions.operators import EdgeVertexOperator
+    >>> op = EdgeVertexOperator.from_dict({(): 1e-7})
+    >>> zero = EdgeVertexOperator.zero()
+    >>> op.equiv(zero)
+    False
+    >>> op.equiv(zero, 1e-6)
+    True
+    >>> op.equiv(zero, 1e-9)
+    False
+    ```
+
+    **Parameters**
+
+    *   **other** – the other operator to compare with.
+    *   **atol** – the absolute tolerance for the comparison. This value defaults to `1e-8`.
+  </Function>
+
+  ##### from\_dict
+
+  <Function id="qiskit_fermions.operators.EdgeVertexOperator.from_dict" signature="from_dict(data)" modifiers="classmethod">
+    Constructs a new operator from a dictionary.
+
+    ```pycon
+    >>> from qiskit_fermions.operators import EdgeVertexOperator
+    >>> op = EdgeVertexOperator.from_dict(
+    ...     {
+    ...         (): 1.0-1.0j,
+    ...         ((0, 0),): 2.0,
+    ...         ((0, 1),): 2.0j,
+    ...     }
+    ... )
+    >>> print(format(op))
+      1.000000e0 -1.000000e0j * ()
+      2.000000e0 +0.000000e0j * (V(0))
+      0.000000e0 +2.000000e0j * (E(0,1))
+    ```
+
+    **Parameters**
+
+    **data** – a dictionary mapping tuples of terms to complex coefficients. Each key is a tuple of `(int, int)` pairs indicating the indices of the generalized edge operator, $E_{lr}$ (if $l = r$ then this corresponds to the vertex operator $V_l$).
+
+    **Returns**
+
+    A new operator.
+  </Function>
+
+  ##### from\_terms
+
+  <Function id="qiskit_fermions.operators.EdgeVertexOperator.from_terms" signature="from_terms(terms)" modifiers="classmethod">
+    Constructs a new operator from an iterator of terms (see also [`iter_terms()`](#qiskit_fermions.operators.EdgeVertexOperator.iter_terms "qiskit_fermions.operators.EdgeVertexOperator.iter_terms")).
+
+    ```pycon
+    >>> from qiskit_fermions.operators import EdgeVertexOperator
+    >>> op = EdgeVertexOperator.from_dict({(): 2.0, ((0, 0),): 1.0, ((0, 1),): -1.0j})
+    >>> op.equiv(EdgeVertexOperator.from_terms(op.iter_terms()))
+    True
+    ```
+
+    **Parameters**
+
+    **terms** – an iterator of terms as produced by [`iter_terms()`](#qiskit_fermions.operators.EdgeVertexOperator.iter_terms "qiskit_fermions.operators.EdgeVertexOperator.iter_terms").
+
+    **Returns**
+
+    A new operator.
+  </Function>
+
+  ##### from\_terms\_with\_groups
+
+  <Function id="qiskit_fermions.operators.EdgeVertexOperator.from_terms_with_groups" signature="from_terms_with_groups(terms)" modifiers="classmethod">
+    Constructs a new operator from an iterator of terms with groups (see also [`iter_terms_with_groups()`](#qiskit_fermions.operators.EdgeVertexOperator.iter_terms_with_groups "qiskit_fermions.operators.EdgeVertexOperator.iter_terms_with_groups")).
+
+    ```pycon
+    >>> from qiskit_fermions.operators import EdgeVertexOperator
+    >>> op = EdgeVertexOperator([2.0, 1.0, -1.0j], [0, 0], [0, 1], [0, 0, 1, 2])
+    >>> op.groups = [0, 1, 1]
+    >>> reconstructed = EdgeVertexOperator.from_terms_with_groups(op.iter_terms_with_groups())
+    >>> op.equiv(reconstructed) and op.groups == reconstructed.groups
+    True
+    ```
+
+    **Parameters**
+
+    **terms** – an iterator of terms as produced by [`iter_terms_with_groups()`](#qiskit_fermions.operators.EdgeVertexOperator.iter_terms_with_groups "qiskit_fermions.operators.EdgeVertexOperator.iter_terms_with_groups").
+
+    **Returns**
+
+    A new operator.
+  </Function>
+
+  ##### get\_boundaries
+
+  <Function id="qiskit_fermions.operators.EdgeVertexOperator.get_boundaries" signature="get_boundaries()">
+    Returns a read-only list of the indices indicating the boundaries between operator terms.
+
+    <Admonition title="Note" type="note">
+      This method returns a **copy** of the internal data.
+    </Admonition>
+
+    <Admonition title="See also" type="note">
+      The explanation of the internal data structure, [here](#edgevertexoperator-implementation).
+    </Admonition>
+
+    ```pycon
+    >>> from qiskit_fermions.operators import EdgeVertexOperator
+    >>> op = EdgeVertexOperator.one()
+    >>> op += EdgeVertexOperator.from_dict({((0, 1),): 1.0})
+    >>> op.get_boundaries()
+    [0, 0, 1]
+    ```
+
+    **Returns**
+
+    A list of the operator’s terms boundaries.
+  </Function>
+
+  ##### get\_coeffs
+
+  <Function id="qiskit_fermions.operators.EdgeVertexOperator.get_coeffs" signature="get_coeffs()">
+    Returns a read-only list of the operator’s coefficients.
+
+    <Admonition title="Note" type="note">
+      This method returns a **copy** of the internal data.
+    </Admonition>
+
+    <Admonition title="See also" type="note">
+      The explanation of the internal data structure, [here](#edgevertexoperator-implementation).
+    </Admonition>
+
+    ```pycon
+    >>> from qiskit_fermions.operators import EdgeVertexOperator
+    >>> op = EdgeVertexOperator.one()
+    >>> op += -1j * EdgeVertexOperator.one()
+    >>> op.get_coeffs()
+    [(1+0j), -1j]
+    ```
+
+    **Returns**
+
+    A list of the operator’s coefficients.
+  </Function>
+
+  ##### get\_left\_indices
+
+  <Function id="qiskit_fermions.operators.EdgeVertexOperator.get_left_indices" signature="get_left_indices()">
+    Returns a read-only list of the left indices of all generalized edge operator terms.
+
+    <Admonition title="Note" type="note">
+      This method returns a **copy** of the internal data.
+    </Admonition>
+
+    <Admonition title="See also" type="note">
+      The explanation of the internal data structure, [here](#edgevertexoperator-implementation).
+    </Admonition>
+
+    ```pycon
+    >>> from qiskit_fermions.operators import EdgeVertexOperator
+    >>> op = EdgeVertexOperator.from_dict({((0, 0),): 1.0})
+    >>> op += EdgeVertexOperator.from_dict({((0, 1),): 1.0})
+    >>> op.get_left_indices()
+    [0, 0]
+    ```
+
+    **Returns**
+
+    A list of the left indices of all generalized edge operator terms.
+  </Function>
+
+  ##### get\_right\_indices
+
+  <Function id="qiskit_fermions.operators.EdgeVertexOperator.get_right_indices" signature="get_right_indices()">
+    Returns a read-only list of the right indices of all generalized edge operator terms.
+
+    <Admonition title="Note" type="note">
+      This method returns a **copy** of the internal data.
+    </Admonition>
+
+    <Admonition title="See also" type="note">
+      The explanation of the internal data structure, [here](#edgevertexoperator-implementation).
+    </Admonition>
+
+    ```pycon
+    >>> from qiskit_fermions.operators import EdgeVertexOperator
+    >>> op = EdgeVertexOperator.from_dict({((0, 0),): 1.0})
+    >>> op += EdgeVertexOperator.from_dict({((0, 1),): 1.0})
+    >>> op.get_right_indices()
+    [0, 1]
+    ```
+
+    **Returns**
+
+    A list of the right indices of all generalized edge operator terms.
+  </Function>
+
+  ##### get\_support
+
+  <Function id="qiskit_fermions.operators.EdgeVertexOperator.get_support" signature="get_support()">
+    Returns the set of mode indices which this operator acts upon.
+
+    ```pycon
+    >>> from qiskit_fermions.operators import EdgeVertexOperator
+    >>> op = EdgeVertexOperator.from_dict(
+    ...     {
+    ...         ((0, 1), (3, 4)): 1,
+    ...         ((7, 7),): 1,
+    ...     }
+    ... )
+    >>> assert op.get_support() == {0, 1, 3, 4, 7}
+    ```
+
+    **Returns**
+
+    The set of mode indices which this operator acts upon.
+  </Function>
+
+  ##### group\_weights
+
+  <Function id="qiskit_fermions.operators.EdgeVertexOperator.group_weights" signature="group_weights()">
+    Returns the mean absolute coefficient magnitude of each group.
+
+    The `i`-th entry is the sum of `abs(coeff)` over the terms in group `i`, divided by the number of terms in that group. If [`groups`](#qiskit_fermions.operators.EdgeVertexOperator.groups "qiskit_fermions.operators.EdgeVertexOperator.groups") is `None`, this function also returns `None`.
+
+    This is the sampling weight of a randomized product formula (e.g. qDRIFT) that draws whole groups rather than individual terms. Computing it natively is considerably cheaper than reducing [`get_coeffs()`](#qiskit_fermions.operators.EdgeVertexOperator.get_coeffs "qiskit_fermions.operators.EdgeVertexOperator.get_coeffs") and [`groups`](#qiskit_fermions.operators.EdgeVertexOperator.groups "qiskit_fermions.operators.EdgeVertexOperator.groups") in NumPy, because those two accessors each copy one value per *ungrouped* term out of the operator only for it to be aggregated back down to one value per group, whereas this returns just the [`num_groups()`](#qiskit_fermions.operators.EdgeVertexOperator.num_groups "qiskit_fermions.operators.EdgeVertexOperator.num_groups") reduced values.
+
+    <Admonition title="Note" type="note">
+      A group index that no term carries weighs `0.0`, which keeps it out of the sample.
+    </Admonition>
+
+    ```pycon
+    >>> from qiskit_fermions.operators import EdgeVertexOperator
+    >>> op = EdgeVertexOperator(
+    ...     [1.0, 2.0, -1.0],
+    ...     [0, 1, 2, 3],
+    ...     [1, 0, 3, 2],
+    ...     [0, 1, 3, 4],
+    ... )
+    >>> print(op.group_weights())
+    None
+    >>> op.groups = [0, 1, 0]
+    >>> op.group_weights()
+    [1.0, 2.0]
+    ```
+
+    **Returns**
+
+    The mean absolute coefficient magnitude of each group index.
+  </Function>
+
+  ##### has\_groups
+
+  <Function id="qiskit_fermions.operators.EdgeVertexOperator.has_groups" signature="has_groups()">
+    Returns whether this operator tracks group indices.
+
+    This is equivalent to (but cheaper than) checking `op.groups is not None`, because it does not copy the group indices out of the operator in order to inspect them.
+
+    <Admonition title="Note" type="note">
+      This returns `True` even when [`groups`](#qiskit_fermions.operators.EdgeVertexOperator.groups "qiskit_fermions.operators.EdgeVertexOperator.groups") is an empty list, which is the state of a grouped operator that holds no terms.
+    </Admonition>
+
+    ```pycon
+    >>> from qiskit_fermions.operators import EdgeVertexOperator
+    >>> op = EdgeVertexOperator(
+    ...     [1.0, 2.0, -1.0],
+    ...     [0, 1, 2, 3],
+    ...     [1, 0, 3, 2],
+    ...     [0, 1, 3, 4],
+    ... )
+    >>> op.has_groups()
+    False
+    >>> op.groups = [0, 1, 0]
+    >>> op.has_groups()
+    True
+    ```
+
+    **Returns**
+
+    Whether [`groups`](#qiskit_fermions.operators.EdgeVertexOperator.groups "qiskit_fermions.operators.EdgeVertexOperator.groups") is set on this operator.
+  </Function>
+
+  ##### ichop
+
+  <Function id="qiskit_fermions.operators.EdgeVertexOperator.ichop" signature="ichop(atol=1e-08)">
+    Removes terms whose coefficient magnitude lies below the provided threshold.
+
+    This method modifies the operator *in place* and returns `None`.
+
+    <Admonition title="Caution" type="note">
+      This method truncates coefficients greedily! If the acted upon operator may contain separate coefficients for duplicate terms consider calling [`simplify()`](#qiskit_fermions.operators.EdgeVertexOperator.simplify "qiskit_fermions.operators.EdgeVertexOperator.simplify") instead!
+    </Admonition>
+
+    ```pycon
+    >>> from qiskit_fermions.operators import EdgeVertexOperator
+    >>> op = EdgeVertexOperator.from_dict({(): 1e-4, ((1, 0),): 1e-6, ((0, 1),): 1e-10})
+    >>> print(format(op))
+      1.000000e-4 +0.000000e0j * ()
+     1.000000e-10 +0.000000e0j * (E(0,1))
+      1.000000e-6 +0.000000e0j * (E(1,0))
+    >>> op.ichop()
+    >>> print(format(op))
+      1.000000e-4 +0.000000e0j * ()
+      1.000000e-6 +0.000000e0j * (E(1,0))
+    >>> op.ichop(1e-5)
+    >>> print(format(op))
+      1.000000e-4 +0.000000e0j * ()
+    ```
+
+    **Parameters**
+
+    **atol** – the absolute tolerance for the cutoff. This value defaults to `1e-8`.
+  </Function>
+
+  ##### is\_hermitian
+
+  <Function id="qiskit_fermions.operators.EdgeVertexOperator.is_hermitian" signature="is_hermitian(atol=1e-08)">
+    Returns whether this operator is Hermitian.
+
+    <Admonition title="Note" type="note">
+      This check is implemented using [`equiv()`](#qiskit_fermions.operators.EdgeVertexOperator.equiv "qiskit_fermions.operators.EdgeVertexOperator.equiv") on the fully reduced [`normal_ordered()`](#qiskit_fermions.operators.EdgeVertexOperator.normal_ordered "qiskit_fermions.operators.EdgeVertexOperator.normal_ordered") difference of `self` and its [`adjoint()`](#qiskit_fermions.operators.EdgeVertexOperator.adjoint "qiskit_fermions.operators.EdgeVertexOperator.adjoint") and [`zero()`](#qiskit_fermions.operators.EdgeVertexOperator.zero "qiskit_fermions.operators.EdgeVertexOperator.zero"). Because that normal form contracts every reducible pair of adjacent generators — including *fusing* two edge operators that share a single mode via $E_{ab} E_{bc} = -i E_{ac}$ — a term that only cancels against its adjoint after such a contraction is still recognized as zero.
+    </Admonition>
+
+    **Parameters**
+
+    **atol** – The numerical accuracy upto which coefficients are considered equal. This value defaults to `1e-8`.
+
+    **Returns**
+
+    Whether this operator is Hermitian.
+  </Function>
+
+  ##### iter\_terms
+
+  <Function id="qiskit_fermions.operators.EdgeVertexOperator.iter_terms" signature="iter_terms()">
+    An iterator over the operator’s terms.
+
+    <Admonition title="Warning" type="caution">
+      Mutating the iteration items does **not** affect the underlying operator data.
+    </Admonition>
+
+    ```pycon
+    >>> from qiskit_fermions.operators import EdgeVertexOperator
+    >>> op = EdgeVertexOperator.from_dict({(): 2.0, ((0, 0),): 1.0, ((0, 1),): -1.0j})
+    >>> list(sorted(op.iter_terms()))
+    [([], (2+0j)), ([(0, 0)], (1+0j)), ([(0, 1)], (-0-1j))]
+    ```
+  </Function>
+
+  ##### iter\_terms\_with\_groups
+
+  <Function id="qiskit_fermions.operators.EdgeVertexOperator.iter_terms_with_groups" signature="iter_terms_with_groups()">
+    An iterator over the operator’s terms with their associated group index.
+
+    <Admonition title="Warning" type="caution">
+      Mutating the iteration items does **not** affect the underlying operator data.
+    </Admonition>
+
+    ```pycon
+    >>> from qiskit_fermions.operators import EdgeVertexOperator
+    >>> op = EdgeVertexOperator([2.0, 1.0, -1.0j], [0, 0], [0, 1], [0, 0, 1, 2])
+    >>> op.groups = [0, 1, 1]
+    >>> list(op.iter_terms_with_groups())
+    [([], (2+0j), 0), ([(0, 0)], (1+0j), 1), ([(0, 1)], (-0-1j), 1)]
+    ```
+  </Function>
+
+  ##### normal\_ordered
+
+  <Function id="qiskit_fermions.operators.EdgeVertexOperator.normal_ordered" signature="normal_ordered(ascending=True, reduce=True)">
+    Returns an equivalent operator with normal ordered terms.
+
+    The normal order of an operator term is defined such that all vertex operators appear before all edge operators. Within each group, the acted-upon modes are ordered lexicographically.
+
+    <Admonition title="Note" type="note">
+      When a term is being reordered, the mixed commutation and anti-commutation relations have to be taken into account. See [here](#edgevertexoperator-definition) for the detailed definitions.
+    </Admonition>
+
+    ```pycon
+    >>> from qiskit_fermions.operators import EdgeVertexOperator
+    >>> op = EdgeVertexOperator.from_dict({((0, 1), (1, 0), (1, 2), (0, 0), (2, 2)): 1})
+    >>> print(format(op.normal_ordered(reduce=False).simplify()))
+     -1.000000e0 -0.000000e0j * (V(0) V(2) E(0,1) E(1,0) E(1,2))
+    >>> print(format(op.normal_ordered().simplify()))
+      1.000000e0 +0.000000e0j * (V(0) V(2) E(1,2))
+    ```
+
+    **Parameters**
+
+    *   **ascending** – the orientation convention for edge operators. Since $E_{kj} = -E_{jk}$, every edge operator has two representations; `True` selects $j < k$ and `False` selects $j > k$, absorbing the sign into the coefficient. Vertex operators are unaffected. This value defaults to `True`.
+    *   **reduce** – whether to contract adjacent generators that combine into a scalar or into a single generator. See the example above. This value defaults to `True`.
+
+    **Returns**
+
+    An equivalent but normal-ordered operator.
+  </Function>
+
+  ##### num\_groups
+
+  <Function id="qiskit_fermions.operators.EdgeVertexOperator.num_groups" signature="num_groups()">
+    Returns the number of groups.
+
+    If [`groups`](#qiskit_fermions.operators.EdgeVertexOperator.groups "qiskit_fermions.operators.EdgeVertexOperator.groups") is `None`, this function also returns `None`. Otherwise, it will return the number of groups which is defined to be the largest occurring group index plus 1 (which may therefore be used as the index for the next group).
+
+    ```pycon
+    >>> from qiskit_fermions.operators import EdgeVertexOperator
+    >>> op = EdgeVertexOperator(
+    ...     [1.0, 2.0, -1.0],
+    ...     [0, 1, 2, 3],
+    ...     [1, 0, 3, 2],
+    ...     [0, 1, 3, 4],
+    ... )
+    >>> op.groups = [0, 1, 0]
+    >>> op.num_groups()
+    2
+    ```
+
+    **Returns**
+
+    The largest group index in [`groups`](#qiskit_fermions.operators.EdgeVertexOperator.groups "qiskit_fermions.operators.EdgeVertexOperator.groups") plus 1.
+  </Function>
+
+  ##### one
+
+  <Function id="qiskit_fermions.operators.EdgeVertexOperator.one" signature="one()" modifiers="classmethod">
+    Constructs the multiplicative identity operator.
+
+    Composing the operator that is constructed by this method with another one has no effect.
+
+    ```pycon
+    >>> from qiskit_fermions.operators import EdgeVertexOperator
+    >>> op = EdgeVertexOperator.from_dict({(): 2.0})
+    >>> one = EdgeVertexOperator.one()
+    >>> op & one == op
+    True
+    ```
+  </Function>
+
+  ##### relabel\_modes
+
+  <Function id="qiskit_fermions.operators.EdgeVertexOperator.relabel_modes" signature="relabel_modes(permutation)">
+    Returns a new operator with relabeled modes.
+
+    ```pycon
+    >>> from qiskit_fermions.operators import EdgeVertexOperator
+    >>> op = EdgeVertexOperator.from_dict({
+    ...     ((0, 1), (2, 3)): 1,
+    ...     ((1, 2), (3, 0)): 1,
+    ... })
+    >>> permutation = [4, 2, 5, 3]
+    >>> relabeled = op.relabel_modes(permutation)
+    >>> print(format(relabeled))
+      1.000000e0 +0.000000e0j * (E(2,5) E(3,4))
+      1.000000e0 +0.000000e0j * (E(4,2) E(5,3))
+    ```
+
+    **Parameters**
+
+    **permutation** – the index permutation list. Mode `i` is relabeled to `permutation[i]`, so the list must contain no duplicate entries and must be long enough to index every mode the operator acts upon (its length must exceed the operator’s largest mode index).
+
+    **Returns**
+
+    A new operator with its modes relabeled.
+
+    **Raises**
+
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – if `permutation` contains duplicate entries, or is too short to relabel some mode the operator acts upon.
+  </Function>
+
+  ##### simplify
+
+  <Function id="qiskit_fermions.operators.EdgeVertexOperator.simplify" signature="simplify(atol=1e-08)">
+    Returns an equivalent but simplified operator.
+
+    The simplification process first sums all coefficients that belong to equal terms and then only retains those whose total coefficient exceeds the specified tolerance (just like [`ichop()`](#qiskit_fermions.operators.EdgeVertexOperator.ichop "qiskit_fermions.operators.EdgeVertexOperator.ichop")).
+
+    When an operator has been arithmetically manipulated or constructed in a way that does not guarantee unique terms, this method should be called before applying any method that filters numerically small coefficients to avoid loss of information. See the example below which showcases how [`ichop()`](#qiskit_fermions.operators.EdgeVertexOperator.ichop "qiskit_fermions.operators.EdgeVertexOperator.ichop") can truncate terms that sum to a total coefficient magnitude which should not be truncated:
+
+    ```pycon
+    >>> from qiskit_fermions.operators import EdgeVertexOperator
+    >>> coeffs = [1e-5] * int(1e5)
+    >>> boundaries = [0] + [0] * int(1e5)
+    >>> op = EdgeVertexOperator(coeffs, [], [], boundaries)
+    >>> canon = op.simplify(1e-4)
+    >>> assert canon.equiv(op.one(), 1e-6)
+    >>> op.ichop(1e-4)
+    >>> assert op.equiv(op.zero(), 1e-6)
+    ```
+
+    **Parameters**
+
+    **atol** – the absolute tolerance for the cutoff. This value defaults to `1e-8`.
+
+    **Returns**
+
+    An equivalent but simplified operator.
+  </Function>
+
+  ##### split\_out\_groups
+
+  <Function id="qiskit_fermions.operators.EdgeVertexOperator.split_out_groups" signature="split_out_groups(group_indices=None)">
+    Splits this operator into an optional list of new operators based on [`groups`](#qiskit_fermions.operators.EdgeVertexOperator.groups "qiskit_fermions.operators.EdgeVertexOperator.groups").
+
+    If [`groups`](#qiskit_fermions.operators.EdgeVertexOperator.groups "qiskit_fermions.operators.EdgeVertexOperator.groups") is `None`, this function also returns `None`. Otherwise, if `group_indices` is `None` (the default), it returns a list of one new operator for every group index in [`groups`](#qiskit_fermions.operators.EdgeVertexOperator.groups "qiskit_fermions.operators.EdgeVertexOperator.groups"), in index order. If `group_indices` is given, only the requested indices are built, in the given order: this avoids the cost of constructing operators for groups that are never used, which is especially beneficial when only a small number of groups out of a much larger total are needed, e.g. when subsampling groups for a randomized product formula. A duplicate index in `group_indices` is returned once per occurrence.
+
+    ```pycon
+    >>> from qiskit_fermions.operators import EdgeVertexOperator
+    >>> op = EdgeVertexOperator(
+    ...     [1.0, 2.0, -1.0],
+    ...     [0, 1, 2, 3],
+    ...     [1, 0, 3, 2],
+    ...     [0, 1, 3, 4],
+    ... )
+    >>> print(op.split_out_groups())
+    None
+    >>> op.groups = [0, 1, 0]
+    >>> groups = op.split_out_groups()
+    >>> for g in groups:
+    ...     print(list(sorted(g.iter_terms())))
+    [([(0, 1)], (1+0j)), ([(3, 2)], (-1+0j))]
+    [([(1, 0), (2, 3)], (2+0j))]
+    >>> groups = op.split_out_groups(group_indices=[1])
+    >>> for g in groups:
+    ...     print(list(sorted(g.iter_terms())))
+    [([(1, 0), (2, 3)], (2+0j))]
+    ```
+
+    **Parameters**
+
+    **group\_indices** – the group indices for which to build operators, in the desired output order. When omitted, every group is built, in index order.
+
+    **Returns**
+
+    An optional vector of one new operator for each requested group index.
+  </Function>
+
+  ##### zero
+
+  <Function id="qiskit_fermions.operators.EdgeVertexOperator.zero" signature="zero()" modifiers="classmethod">
+    Constructs the additive identity operator.
+
+    Adding the operator that is constructed by this method to another one has no effect.
+
+    ```pycon
+    >>> from qiskit_fermions.operators import EdgeVertexOperator
+    >>> op = EdgeVertexOperator.from_dict({(): 2.0})
+    >>> zero = EdgeVertexOperator.zero()
+    >>> op + zero == op
+    True
+    ```
+  </Function>
+
+  **Protocol Methods**
+
+  ##### \_anti\_commutator\_
+
+  <Function id="qiskit_fermions.operators.EdgeVertexOperator._anti_commutator_" signature="_anti_commutator_(op_a, op_b)" modifiers="static" />
+
+  ##### \_commutator\_
+
+  <Function id="qiskit_fermions.operators.EdgeVertexOperator._commutator_" signature="_commutator_(op_a, op_b)" modifiers="static" />
+
+  ##### \_double\_commutator\_
+
+  <Function id="qiskit_fermions.operators.EdgeVertexOperator._double_commutator_" signature="_double_commutator_(op_a, op_b, op_c, sign)" modifiers="static" />
+
+  ##### \_fermion\_operator\_
+
+  <Function id="qiskit_fermions.operators.EdgeVertexOperator._fermion_operator_" signature="_fermion_operator_()">
+    Converts this operator into a [`FermionOperator`](operators-fermion-operator "qiskit_fermions.operators.FermionOperator").
+
+    This implements the [`SupportsFermionOperator`](protocols-supports-fermion-operator "qiskit_fermions.protocols.SupportsFermionOperator") protocol by delegating to [`edge_vertex_to_fermion()`](mappers-library-edge-vertex-to-fermion "qiskit_fermions.mappers.library.edge_vertex_to_fermion").
+  </Function>
+
+  ##### \_majorana\_operator\_
+
+  <Function id="qiskit_fermions.operators.EdgeVertexOperator._majorana_operator_" signature="_majorana_operator_()">
+    Converts this operator into a [`MajoranaOperator`](operators-majorana-operator "qiskit_fermions.operators.MajoranaOperator").
+
+    This implements the [`SupportsMajoranaOperator`](protocols-supports-majorana-operator "qiskit_fermions.protocols.SupportsMajoranaOperator") protocol by delegating to [`edge_vertex_to_majorana()`](mappers-library-edge-vertex-to-majorana "qiskit_fermions.mappers.library.edge_vertex_to_majorana").
+  </Function>
+</Class>
+

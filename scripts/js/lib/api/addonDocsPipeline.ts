@@ -144,16 +144,28 @@ async function determineFilePaths(
 ): Promise<[string[], string, ObjectsInv]> {
   const objectsInv = await ObjectsInv.fromFile(htmlPath, pkg.language);
 
+  // for any package-level ignores
+  let pkgIgnores: string[] = [];
+
+  // qiskit fermions usees install-c or install-py instead of the root install.
+  // We do include the root install in the toc so it should be skipped
+  if (pkg.name === "qiskit-fermions") {
+    pkgIgnores = [...pkgIgnores, "install.html"];
+  }
+
   const allFiles = await globby(["**"], {
     cwd: htmlPath,
     ignore: [
       "apidocs/**",
       "apidoc/**",
       "stubs/**",
+      "pydoc/**",
+      "cdoc/**",
       "tutorials/**",
       "release-notes.html",
       "release_notes.html",
       ...SPHINX_INTERNALS,
+      ...pkgIgnores,
     ],
   });
 

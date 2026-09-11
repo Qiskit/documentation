@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
 # [`QuantumCircuit`](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") class
 
-<Class id="qiskit.circuit.QuantumCircuit" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L111-L7874" signature="qiskit.circuit.QuantumCircuit(*regs, name=None, global_phase=0, metadata=None, inputs=(), captures=(), declarations=())" modifiers="class">
+<Class id="qiskit.circuit.QuantumCircuit" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L111-L7876" signature="qiskit.circuit.QuantumCircuit(*regs, name=None, global_phase=0, metadata=None, inputs=(), captures=(), declarations=())" modifiers="class">
   Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
 
   Core Qiskit representation of a quantum circuit.
@@ -3519,7 +3519,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### break\_loop
 
-  <Function id="qiskit.circuit.QuantumCircuit.break_loop" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L7622-L7649" signature="break_loop()">
+  <Function id="qiskit.circuit.QuantumCircuit.break_loop" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L7624-L7651" signature="break_loop()">
     Apply [`BreakLoopOp`](/docs/api/qiskit/dev/qiskit.circuit.BreakLoopOp "qiskit.circuit.BreakLoopOp").
 
     <Admonition title="Warning" type="caution">
@@ -3541,7 +3541,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### continue\_loop
 
-  <Function id="qiskit.circuit.QuantumCircuit.continue_loop" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L7651-L7678" signature="continue_loop()">
+  <Function id="qiskit.circuit.QuantumCircuit.continue_loop" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L7653-L7680" signature="continue_loop()">
     Apply [`ContinueLoopOp`](/docs/api/qiskit/dev/qiskit.circuit.ContinueLoopOp "qiskit.circuit.ContinueLoopOp").
 
     <Admonition title="Warning" type="caution">
@@ -3563,7 +3563,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### for\_loop
 
-  <Function id="qiskit.circuit.QuantumCircuit.for_loop" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L7297-L7370" signature="for_loop(indexset: Iterable[int], loop_parameter: Parameter | Var | None, body: None, qubits: None, clbits: None, *, label: str | None) → ForLoopContext" extraSignatures={["for_loop(indexset: Iterable[int], loop_parameter: Parameter | Var | None, body: QuantumCircuit, qubits: Sequence[Qubit | QuantumRegister | int | slice | Sequence[Qubit | int]], clbits: Sequence[Clbit | ClassicalRegister | int | slice | Sequence[Clbit | int]], *, label: str | None) → InstructionSet"]}>
+  <Function id="qiskit.circuit.QuantumCircuit.for_loop" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L7296-L7369" signature="for_loop(indexset: Iterable[int], loop_parameter: Parameter | Var | None = None, body: None = None, qubits: None = None, clbits: None = None, *, label: str | None = None) → ForLoopContext" extraSignatures={["for_loop(indexset: Iterable[int], loop_parameter: Parameter | Var | None, body: QuantumCircuit, qubits: Sequence[Qubit | QuantumRegister | int | slice | Sequence[Qubit | int]], clbits: Sequence[Clbit | ClassicalRegister | int | slice | Sequence[Clbit | int]], *, label: str | None = None) → InstructionSet"]}>
     Create a `for` loop on this circuit.
 
     There are two forms for calling this function. If called with all its arguments (with the possible exception of `label`), it will create a [`ForLoopOp`](/docs/api/qiskit/dev/qiskit.circuit.ForLoopOp "qiskit.circuit.ForLoopOp") with the given `body`. If `body` (and `qubits` and `clbits`) are *not* passed, then this acts as a context manager, which, when entered, provides a loop variable (unless one is given, in which case it will be reused) and will automatically build a [`ForLoopOp`](/docs/api/qiskit/dev/qiskit.circuit.ForLoopOp "qiskit.circuit.ForLoopOp") when the scope finishes. In this form, you do not need to keep track of the qubits or clbits you are using, because the scope will handle it for you.
@@ -3615,7 +3615,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### if\_else
 
-  <Function id="qiskit.circuit.QuantumCircuit.if_else" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L7474-L7529" signature="if_else(condition, true_body, false_body, qubits, clbits, label=None)">
+  <Function id="qiskit.circuit.QuantumCircuit.if_else" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L7474-L7530" signature="if_else(condition, true_body, false_body, qubits, clbits, label=None)">
     Apply [`IfElseOp`](/docs/api/qiskit/dev/qiskit.circuit.IfElseOp "qiskit.circuit.IfElseOp").
 
     <Admonition title="Note" type="note">
@@ -3637,7 +3637,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
     **Parameters**
 
-    *   **condition** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*ClassicalRegister*](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")*,* [*int*](https://docs.python.org/3/library/functions.html#int)*] |* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*Clbit*](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")*,* [*int*](https://docs.python.org/3/library/functions.html#int)*] |* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*Clbit*](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")*,* [*bool*](https://docs.python.org/3/library/functions.html#bool)*]*) – A condition to be evaluated in real time at circuit execution, which, if true, will trigger the evaluation of `true_body`. Can be specified as either a tuple of a `ClassicalRegister` to be tested for equality with a given `int`, or as a tuple of a `Clbit` to be compared to either a `bool` or an `int`.
+    *   **condition** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*ClassicalRegister*](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")*,* [*int*](https://docs.python.org/3/library/functions.html#int)*] |* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*Clbit*](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")*,* [*int*](https://docs.python.org/3/library/functions.html#int)*] |* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*Clbit*](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")*,* [*bool*](https://docs.python.org/3/library/functions.html#bool)*] |* [*Expr*](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit._accelerate.circuit.classical.expr.Expr")) – A condition to be evaluated in real time at circuit execution which, if true, will trigger the evaluation of `true_body`. Either an [`Expr`](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") of `Bool()` type, or the legacy two-tuple equality form `(register_or_bit, value)`.
     *   **true\_body** ([*QuantumCircuit*](#qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – The circuit body to be run if `condition` is true.
     *   **false\_body** ([*QuantumCircuit*](#qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – The circuit to be run if `condition` is false.
     *   **qubits** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")  *|*[*QuantumRegister*](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int)  *|*[*slice*](https://docs.python.org/3/library/functions.html#slice)  *|*[*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")  *|*[*int*](https://docs.python.org/3/library/functions.html#int)*]]*) – The circuit qubits over which the if/else should be run.
@@ -3659,7 +3659,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### if\_test
 
-  <Function id="qiskit.circuit.QuantumCircuit.if_test" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L7386-L7472" signature="if_test(condition: tuple[ClassicalRegister | Clbit, int]) → IfContext" extraSignatures={["if_test(condition: tuple[ClassicalRegister | Clbit, int], true_body: QuantumCircuit, qubits: Sequence[Qubit | QuantumRegister | int | slice | Sequence[Qubit | int]], clbits: Sequence[Clbit | ClassicalRegister | int | slice | Sequence[Clbit | int]], *, label: str | None = None) → InstructionSet"]}>
+  <Function id="qiskit.circuit.QuantumCircuit.if_test" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L7387-L7472" signature="if_test(condition: tuple[ClassicalRegister | Clbit, int] | Expr) → IfContext" extraSignatures={["if_test(condition: tuple[ClassicalRegister | Clbit, int] | Expr, true_body: QuantumCircuit, qubits: Sequence[Qubit | QuantumRegister | int | slice | Sequence[Qubit | int]], clbits: Sequence[Clbit | ClassicalRegister | int | slice | Sequence[Clbit | int]], *, label: str | None = None) → InstructionSet"]}>
     Create an `if` statement on this circuit.
 
     There are two forms for calling this function. If called with all its arguments (with the possible exception of `label`), it will create a [`IfElseOp`](/docs/api/qiskit/dev/qiskit.circuit.IfElseOp "qiskit.circuit.IfElseOp") with the given `true_body`, and there will be no branch for the `false` condition (see also the [`if_else()`](#qiskit.circuit.QuantumCircuit.if_else "qiskit.circuit.QuantumCircuit.if_else") method). However, if `true_body` (and `qubits` and `clbits`) are *not* passed, then this acts as a context manager, which can be used to build `if` statements. The return value of the `with` statement is a chainable context manager, which can be used to create subsequent `else` blocks. In this form, you do not need to keep track of the qubits or clbits you are using, because the scope will handle it for you.
@@ -3687,7 +3687,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
     **Parameters**
 
-    *   **condition** (*Tuple\[Union\[*[*ClassicalRegister*](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")*,* [*Clbit*](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")*],* [*int*](https://docs.python.org/3/library/functions.html#int)*]*) – A condition to be evaluated in real time during circuit execution, which, if true, will trigger the evaluation of `true_body`. Can be specified as either a tuple of a `ClassicalRegister` to be tested for equality with a given `int`, or as a tuple of a `Clbit` to be compared to either a `bool` or an `int`.
+    *   **condition** ([*expr.Expr*](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") *| Tuple\[Union\[*[*ClassicalRegister*](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")*,* [*Clbit*](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")*],* [*int*](https://docs.python.org/3/library/functions.html#int)*]*) – A condition to be evaluated in real time during circuit execution which, if true, will trigger the evaluation of `true_body`. Either an [`Expr`](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") of `Bool()` type, or the legacy two-tuple equality form `(register_or_bit, value)`.
     *   **true\_body** (*Optional\[*[*QuantumCircuit*](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – The circuit body to be run if `condition` is true.
     *   **qubits** (*Optional\[Sequence\[QubitSpecifier]]*) – The circuit qubits over which the if/else should be run.
     *   **clbits** (*Optional\[Sequence\[ClbitSpecifier]]*) – The circuit clbits over which the if/else should be run.
@@ -3713,7 +3713,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### switch
 
-  <Function id="qiskit.circuit.QuantumCircuit.switch" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L7553-L7620" signature="switch(target: Clbit | ClassicalRegister | int | slice | Sequence[Clbit | int], cases: None, qubits: None, clbits: None, *, label: str | None) → SwitchContext" extraSignatures={["switch(target: Clbit | ClassicalRegister | int | slice | Sequence[Clbit | int], cases: Iterable[tuple[Any, QuantumCircuit]], qubits: Sequence[Qubit | QuantumRegister | int | slice | Sequence[Qubit | int]], clbits: Sequence[Clbit | ClassicalRegister | int | slice | Sequence[Clbit | int]], *, label: str | None) → InstructionSet"]}>
+  <Function id="qiskit.circuit.QuantumCircuit.switch" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L7554-L7622" signature="switch(target: Clbit | ClassicalRegister | int | slice | Sequence[Clbit | int] | Expr, cases: None = None, qubits: None = None, clbits: None = None, *, label: str | None = None) → SwitchContext" extraSignatures={["switch(target: Clbit | ClassicalRegister | int | slice | Sequence[Clbit | int] | Expr, cases: Iterable[tuple[Any, QuantumCircuit]], qubits: Sequence[Qubit | QuantumRegister | int | slice | Sequence[Qubit | int]], clbits: Sequence[Clbit | ClassicalRegister | int | slice | Sequence[Clbit | int]], *, label: str | None = None) → InstructionSet"]}>
     Create a `switch`/`case` structure on this circuit.
 
     There are two forms for calling this function. If called with all its arguments (with the possible exception of `label`), it will create a [`SwitchCaseOp`](/docs/api/qiskit/dev/qiskit.circuit.SwitchCaseOp "qiskit.circuit.SwitchCaseOp") with the given case structure. If `cases` (and `qubits` and `clbits`) are *not* passed, then this acts as a context manager, which will automatically build a [`SwitchCaseOp`](/docs/api/qiskit/dev/qiskit.circuit.SwitchCaseOp "qiskit.circuit.SwitchCaseOp") when the scope finishes. In this form, you do not need to keep track of the qubits or clbits you are using, because the scope will handle it for you.
@@ -3739,7 +3739,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
     **Parameters**
 
-    *   **target** (*Union\[*[*ClassicalRegister*](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")*,* [*Clbit*](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")*]*) – The classical value to switch one. This must be integer-like.
+    *   **target** ([*expr.Expr*](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") *| Union\[*[*ClassicalRegister*](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")*,* [*Clbit*](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")*]*) – The classical value to switch on. Either an [`Expr`](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") of `Uint(n)` or `Bool()` type, or a [`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") or [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit").
     *   **cases** (*Iterable\[Tuple\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*,* [*QuantumCircuit*](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]]*) – A sequence of case specifiers. Each tuple defines one case body (the second item). The first item of the tuple can be either a single integer value, the special value [`CASE_DEFAULT`](circuit#qiskit.circuit.CASE_DEFAULT "qiskit.circuit.CASE_DEFAULT"), or a tuple of several integer values. Each of the integer values will be tried in turn; control will then pass to the body corresponding to the first match. [`CASE_DEFAULT`](circuit#qiskit.circuit.CASE_DEFAULT "qiskit.circuit.CASE_DEFAULT") matches all possible values. Omit in context-manager form.
     *   **qubits** (*Sequence\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – The circuit qubits over which all case bodies execute. Omit in context-manager form.
     *   **clbits** (*Sequence\[*[*Clbit*](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")*]*) – The circuit clbits over which all case bodies execute. Omit in context-manager form.
@@ -3760,7 +3760,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### while\_loop
 
-  <Function id="qiskit.circuit.QuantumCircuit.while_loop" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L7210-L7271" signature="while_loop(condition: tuple[ClassicalRegister | Clbit, int] | Expr, body: None, qubits: None, clbits: None, *, label: str | None) → WhileLoopContext" extraSignatures={["while_loop(condition: tuple[ClassicalRegister | Clbit, int] | Expr, body: QuantumCircuit, qubits: Sequence[Qubit | QuantumRegister | int | slice | Sequence[Qubit | int]], clbits: Sequence[Clbit | ClassicalRegister | int | slice | Sequence[Clbit | int]], *, label: str | None) → InstructionSet"]}>
+  <Function id="qiskit.circuit.QuantumCircuit.while_loop" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L7210-L7270" signature="while_loop(condition: tuple[ClassicalRegister | Clbit, int] | Expr, body: None = None, qubits: None = None, clbits: None = None, *, label: str | None = None) → WhileLoopContext" extraSignatures={["while_loop(condition: tuple[ClassicalRegister | Clbit, int] | Expr, body: QuantumCircuit, qubits: Sequence[Qubit | QuantumRegister | int | slice | Sequence[Qubit | int]], clbits: Sequence[Clbit | ClassicalRegister | int | slice | Sequence[Clbit | int]], *, label: str | None = None) → InstructionSet"]}>
     Create a `while` loop on this circuit.
 
     There are two forms for calling this function. If called with all its arguments (with the possible exception of `label`), it will create a `WhileLoopOp` with the given `body`. If `body` (and `qubits` and `clbits`) are *not* passed, then this acts as a context manager, which will automatically build a `WhileLoopOp` when the scope finishes. In this form, you do not need to keep track of the qubits or clbits you are using, because the scope will handle it for you.
@@ -3780,7 +3780,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
     **Parameters**
 
-    *   **condition** (*Tuple\[Union\[*[*ClassicalRegister*](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")*,* [*Clbit*](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")*],* [*int*](https://docs.python.org/3/library/functions.html#int)*]*) – An equality condition to be checked prior to executing `body`. The left-hand side of the condition must be a [`ClassicalRegister`](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") or a [`Clbit`](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit"), and the right-hand side must be an integer or boolean.
+    *   **condition** ([*expr.Expr*](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") *| Tuple\[Union\[*[*ClassicalRegister*](circuit#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")*,* [*Clbit*](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")*],* [*int*](https://docs.python.org/3/library/functions.html#int)*]*) – A condition to be checked prior to executing `body`. Either an [`Expr`](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") of `Bool()` type, or the legacy two-tuple equality form `(register_or_bit, value)`.
     *   **body** (*Optional\[*[*QuantumCircuit*](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – The loop body to be repeatedly executed. Omit this to use the context-manager mode.
     *   **qubits** (*Optional\[Sequence\[*[*Qubit*](circuit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]]*) – The circuit qubits over which the loop body should be run. Omit this to use the context-manager mode.
     *   **clbits** (*Optional\[Sequence\[*[*Clbit*](circuit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")*]]*) – The circuit clbits over which the loop body should be run. Omit this to use the context-manager mode.
@@ -4263,7 +4263,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### estimate\_duration
 
-  <Function id="qiskit.circuit.QuantumCircuit.estimate_duration" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L7780-L7837" signature="estimate_duration(target, unit='s')">
+  <Function id="qiskit.circuit.QuantumCircuit.estimate_duration" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L7782-L7839" signature="estimate_duration(target, unit='s')">
     Estimate the duration of a scheduled circuit
 
     This method computes the estimate of the circuit duration by finding the longest duration path in the circuit based on the durations provided by a given target. This method only works for simple circuits that have no control flow or other classical feed-forward operations.
@@ -4288,7 +4288,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### qubit\_duration
 
-  <Function id="qiskit.circuit.QuantumCircuit.qubit_duration" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L7681-L7691" signature="qubit_duration(*qubits)">
+  <Function id="qiskit.circuit.QuantumCircuit.qubit_duration" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L7683-L7693" signature="qubit_duration(*qubits)">
     Return the duration between the start and stop time of the first and last instructions, excluding delays, over the supplied qubits. Its time unit is `self.unit`.
 
     **Parameters**
@@ -4306,7 +4306,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### qubit\_start\_time
 
-  <Function id="qiskit.circuit.QuantumCircuit.qubit_start_time" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L7693-L7733" signature="qubit_start_time(*qubits)">
+  <Function id="qiskit.circuit.QuantumCircuit.qubit_start_time" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L7695-L7735" signature="qubit_start_time(*qubits)">
     Return the start time of the first instruction, excluding delays, over the supplied qubits. Its time unit is `self.unit`.
 
     Return 0 if there are no instructions over qubits
@@ -4331,7 +4331,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   #### qubit\_stop\_time
 
-  <Function id="qiskit.circuit.QuantumCircuit.qubit_stop_time" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L7735-L7778" signature="qubit_stop_time(*qubits)">
+  <Function id="qiskit.circuit.QuantumCircuit.qubit_stop_time" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L7737-L7780" signature="qubit_stop_time(*qubits)">
     Return the stop time of the last instruction, excluding delays, over the supplied qubits. Its time unit is `self.unit`.
 
     Return 0 if there are no instructions over qubits
@@ -4398,7 +4398,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
   ### estimate\_fidelity
 
-  <Function id="qiskit.circuit.QuantumCircuit.estimate_fidelity" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L7839-L7874" signature="estimate_fidelity(target)">
+  <Function id="qiskit.circuit.QuantumCircuit.estimate_fidelity" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/quantumcircuit.py#L7841-L7876" signature="estimate_fidelity(target)">
     Estimate the fidelity of a physical circuit.
 
     This function will compute the product of the error rates for each gate in the circuit to estimate the fidelity of the circuit:

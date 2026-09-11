@@ -1,0 +1,83 @@
+---
+title: SupportsCommutators (latest version)
+description: API reference for qiskit_fermions.protocols.SupportsCommutators in the latest version of qiskit-fermions
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_fermions.protocols.SupportsCommutators
+---
+
+# SupportsCommutators
+
+<Class id="qiskit_fermions.protocols.SupportsCommutators" isDedicatedPage={true} signature="SupportsCommutators(*args, **kwargs)" modifiers="class">
+  Bases: [`Protocol`](https://docs.python.org/3/library/typing.html#typing.Protocol)
+
+  A Protocol indicating support for efficient commutator generation.
+
+  Implementation of this protocol requires the three methods below. See [`commutator()`](operators-library-commutator "qiskit_fermions.operators.library.commutator"), [`anti_commutator()`](operators-library-anti-commutator "qiskit_fermions.operators.library.anti_commutator"), and [`double_commutator()`](operators-library-double-commutator "qiskit_fermions.operators.library.double_commutator") for the type-agnostic helper functions dispatching to these methods.
+
+  ```pycon
+  >>> from qiskit_fermions.operators import FermionOperator
+  >>> cre_0 = FermionOperator.from_dict({((True, 0),): 1.0})
+  >>> ann_0 = FermionOperator.from_dict({((False, 0),): 1.0})
+  >>> comm = FermionOperator._commutator_(cre_0, ann_0)
+  >>> print(format(comm.normal_ordered().simplify()))
+   -1.000000e0 +0.000000e0j * ()
+    2.000000e0 +0.000000e0j * (+0 -0)
+  ```
+
+  **Protocol Methods**
+
+  ### \_anti\_commutator\_
+
+  <Function id="qiskit_fermions.protocols.SupportsCommutators._anti_commutator_" signature="_anti_commutator_(op_a, op_b)" modifiers="static">
+    Computes the anti-commutator of two operator instances.
+
+    See [`anti_commutator()`](operators-library-anti-commutator "qiskit_fermions.operators.library.anti_commutator") for more details.
+
+    **Parameters**
+
+    *   **op\_a** (*T*)
+    *   **op\_b** (*T*)
+
+    **Return type**
+
+    *T*
+  </Function>
+
+  ### \_commutator\_
+
+  <Function id="qiskit_fermions.protocols.SupportsCommutators._commutator_" signature="_commutator_(op_a, op_b)" modifiers="static">
+    Computes the commutator of two operator instances.
+
+    See [`commutator()`](operators-library-commutator "qiskit_fermions.operators.library.commutator") for more details.
+
+    **Parameters**
+
+    *   **op\_a** (*T*)
+    *   **op\_b** (*T*)
+
+    **Return type**
+
+    *T*
+  </Function>
+
+  ### \_double\_commutator\_
+
+  <Function id="qiskit_fermions.protocols.SupportsCommutators._double_commutator_" signature="_double_commutator_(op_a, op_b, op_c, sign)" modifiers="static">
+    Computes the double-commutator of three operator instances.
+
+    See [`double_commutator()`](operators-library-double-commutator "qiskit_fermions.operators.library.double_commutator") for more details.
+
+    **Parameters**
+
+    *   **op\_a** (*T*)
+    *   **op\_b** (*T*)
+    *   **op\_c** (*T*)
+    *   **sign** ([*bool*](https://docs.python.org/3/library/functions.html#bool))
+
+    **Return type**
+
+    *T*
+  </Function>
+</Class>
+
