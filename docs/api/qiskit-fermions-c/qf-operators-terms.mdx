@@ -14,9 +14,9 @@ The C API provides various functions to operate on the individual terms of an op
 
 ## Grouping
 
-Refer to [Group operator terms: use the operator structure](/docs/addons/qiskit-fermions/guides/grouping#grouping-explanation) for a detailed explanation of this module’s functionality.
+Refer to [Group operator terms: use the operator structure](guides/grouping#grouping-explanation) for a detailed explanation of this module’s functionality.
 
-### Members
+### Assignment
 
 Rather than always relying on the user to provide the group indices themselves, the C API provides a collection of functions which determine the grouping information automatically.
 
@@ -24,11 +24,13 @@ Rather than always relying on the user to provide the group indices themselves, 
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
 | [`qf_ferm_op_group_terms_by_electronic_structure()`](qf-operators-terms-grouping#qf_ferm_op_group_terms_by_electronic_structure "qf_ferm_op_group_terms_by_electronic_structure") | Groups the terms of an operator by their electronic structure. |
 
+### Analysis
+
+Group indices carry no intrinsic meaning: they only say which terms belong together, never why. Accordingly, no function reports whether a grouping is “correct”. The C API instead provides a collection of functions that each answer one narrow, stated question about an existing grouping, so that an assumption a downstream consumer makes can be checked up front rather than being paid for on every call. Since these work with generic operator representations, they are documented on the [grouping functions](qf-operators-terms-grouping) page.
+
 ## Filtering
 
 The C API provides a collection of functions for removing terms from an operator that do not contribute meaningfully to a downstream computation.
-
-<span id="id1" />
 
 ### Members
 
@@ -38,14 +40,22 @@ The C API provides a collection of functions for removing terms from an operator
 
 ## Ordering
 
-The C API provides functions to reorder the terms of an operator into a canonical, coefficient-independent order.
+The C API provides functions to reorder the terms of an operator, either into a canonical, coefficient-independent order or by group index.
 
-<span id="id2" />
+Group indices are a per-term tag that says nothing about where those terms sit, so the terms of one group are in general scattered throughout an operator. Ordering by group gathers each into one contiguous run, which is what lets `qf_op_type_split_out_groups` locate a requested group by binary search instead of scanning every term.
+
+<span id="id1" />
 
 ### Members
 
-|                                                                                                                       |                                                         |
-| --------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
-| [`qf_ferm_op_canonical_order()`](qf-operators-terms-ordering#qf_ferm_op_canonical_order "qf_ferm_op_canonical_order") | Reorders the terms of a fermionic operator canonically. |
-| [`qf_maj_op_canonical_order()`](qf-operators-terms-ordering#qf_maj_op_canonical_order "qf_maj_op_canonical_order")    | Reorders the terms of a Majorana operator canonically.  |
+|                                                                                                                                   |                                                                  |
+| --------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| [`qf_ferm_op_canonical_order()`](qf-operators-terms-ordering#qf_ferm_op_canonical_order "qf_ferm_op_canonical_order")             | Reorders the terms of a fermionic operator canonically.          |
+| [`qf_maj_op_canonical_order()`](qf-operators-terms-ordering#qf_maj_op_canonical_order "qf_maj_op_canonical_order")                | Reorders the terms of a Majorana operator canonically.           |
+| [`qf_edge_op_canonical_order()`](qf-operators-terms-ordering#qf_edge_op_canonical_order "qf_edge_op_canonical_order")             | Reorders the terms of an edge-vertex operator canonically.       |
+| [`qf_transfer_op_canonical_order()`](qf-operators-terms-ordering#qf_transfer_op_canonical_order "qf_transfer_op_canonical_order") | Reorders the terms of a transfer-vertex operator canonically.    |
+| [`qf_ferm_op_group_order()`](qf-operators-terms-ordering#qf_ferm_op_group_order "qf_ferm_op_group_order")                         | Reorders the terms of a fermionic operator by group index.       |
+| [`qf_maj_op_group_order()`](qf-operators-terms-ordering#qf_maj_op_group_order "qf_maj_op_group_order")                            | Reorders the terms of a Majorana operator by group index.        |
+| [`qf_edge_op_group_order()`](qf-operators-terms-ordering#qf_edge_op_group_order "qf_edge_op_group_order")                         | Reorders the terms of an edge-vertex operator by group index.    |
+| [`qf_transfer_op_group_order()`](qf-operators-terms-ordering#qf_transfer_op_group_order "qf_transfer_op_group_order")             | Reorders the terms of a transfer-vertex operator by group index. |
 
