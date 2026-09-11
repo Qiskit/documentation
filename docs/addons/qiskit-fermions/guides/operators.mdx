@@ -78,23 +78,27 @@ The following examples show how these arrays are organized. First is a direct co
 ```c
 #include <qiskit_fermions.h>
 
-// Construct first operator: 1.0 * c_0 a_1
-QkComplex67 coeff1[1] = {{1.0, 0.0}};
+// Construct first operator: 1.0 * +0 -1
+QkComplex64 coeff1[1] = {{1.0, 0.0}};
+bool actions1[2] = {true, false};
 uint32_t modes1[2] = {0, 1};
 uint32_t boundaries1[2] = {0, 2};
-QfFermionOperator *op1 = qf_ferm_op_new(1, 2, coeff1, modes1, boundaries1);
+QfFermionOperator *op1 = qf_ferm_op_new(1, 2, coeff1, actions1, modes1, boundaries1);
 
-// Construct second operator: 1.0 * c_2 a_3
-QkComplex67 coeff2[1] = {{1.0, 0.0}};
+// Construct second operator: 1.0 * +2 -3
+QkComplex64 coeff2[1] = {{1.0, 0.0}};
+bool actions2[2] = {true, false};
 uint32_t modes2[2] = {2, 3};
 uint32_t boundaries2[2] = {0, 2};
-QfFermionOperator *op2 = qf_ferm_op_new(1, 2, coeff2, modes2, boundaries2);
+QfFermionOperator *op2 = qf_ferm_op_new(1, 2, coeff2, actions2, modes2, boundaries2);
 
-// Add operators
-qf_ferm_op_add_assign(op1, op2);
+// Combine the sparse operators. There is no in-place add in the C API, so
+// the sum is a new operator that the caller owns.
+QfFermionOperator *sum = qf_ferm_op_add(op1, op2);
 
 qf_ferm_op_free(op1);
 qf_ferm_op_free(op2);
+qf_ferm_op_free(sum);
 ```
 
 ### Convenient construction methods
@@ -127,7 +131,7 @@ For Python developers, several convenient construction methods are available tha
   Individual operator implementations might support additional construction methods suited to their specific use case. Check the API documentation for your operator type to see all available construction options.
 </Admonition>
 
-<span id="term-iteration-and-reconstruction" />
+<span id="id1" />
 
 ## Term iteration and reconstruction
 
@@ -212,7 +216,7 @@ For detailed guidance on how to group operator terms in your workflows, see the 
 #include <qiskit_fermions.h>
 
 // Create operator with 3 terms
-QkComplex67 coeffs[3] = {{1.0, 0.0}, {1.0, 0.0}, {1.0, 0.0}};
+QkComplex64 coeffs[3] = {{1.0, 0.0}, {1.0, 0.0}, {1.0, 0.0}};
 uint32_t modes[4] = {0, 1, 2, 3};
 uint32_t boundaries[4] = {0, 1, 2, 4};
 QfMajoranaOperator *op = qf_maj_op_new(3, 4, coeffs, modes, boundaries);
@@ -245,13 +249,8 @@ The protocol includes arithmetic operations (such as addition, multiplication, a
 ...     (cre(1), ann(0)): 1.0
 ... })
 >>>
->>> # Check if the operator is Hermitian by verifying H - H† = 0
->>> adjoint = op.adjoint()
->>> difference = op - adjoint
->>> difference = difference.normal_ordered()
->>> difference = difference.simplify(atol=1e-10)
->>> is_hermitian = difference.equiv(FermionOperator.zero(), atol=1e-10)
->>> print(f"Operator is Hermitian: {is_hermitian}")
+>>> # Check if the operator is Hermitian
+>>> print(f"Operator is Hermitian: {op.is_hermitian(atol=1e-10)}")
 Operator is Hermitian: True
 ```
 
@@ -261,35 +260,38 @@ Operator is Hermitian: True
 #include <qiskit_fermions.h>
 
 // Construct a Hermitian operator: H = +0 -1 + +1 -0
-QkComplex67 coeffs[2] = {{1.0, 0.0}, {1.0, 0.0}};
+QkComplex64 coeffs[2] = {{1.0, 0.0}, {1.0, 0.0}};
+bool actions[4] = {true, false, true, false};
 uint32_t modes[4] = {0, 1, 1, 0};
 uint32_t boundaries[3] = {0, 2, 4};
-QfFermionOperator *op = qf_ferm_op_new(2, 4, coeffs, modes, boundaries);
+QfFermionOperator *op = qf_ferm_op_new(2, 4, coeffs, actions, modes, boundaries);
 
-// Check if Hermitian: compute H - H†, normal-order, and simplify
-QfFermionOperator *adjoint = qf_ferm_op_adjoint(op);
-QfFermionOperator *difference = qf_ferm_op_sub(op, adjoint);
-QfFermionOperator *normal_ordered = qf_ferm_op_normal_ordered(difference);
-qf_ferm_op_ichop(normal_ordered, 1e-10);
-
-QfFermionOperator *zero = qf_ferm_op_zero();
-bool is_hermitian = qf_ferm_op_equiv(normal_ordered, zero, 1e-10);
+// Check if the operator is Hermitian
+bool is_hermitian = qf_ferm_op_is_hermitian(op, 1e-10);
 printf("Operator is Hermitian: %s\n", is_hermitian ? "true" : "false");
 
 // Clean up
 qf_ferm_op_free(op);
-qf_ferm_op_free(adjoint);
-qf_ferm_op_free(difference);
-qf_ferm_op_free(normal_ordered);
-qf_ferm_op_free(zero);
 ```
 
+<Admonition title="Note" type="note">
+  [`is_hermitian()`](/docs/api/qiskit-fermions/operators-operator-trait#qiskit_fermions.operators.OperatorTrait.is_hermitian "qiskit_fermions.operators.OperatorTrait.is_hermitian") verifies that $H - H^\dagger = 0$ by reducing that difference to a normal form and comparing it against [`zero()`](/docs/api/qiskit-fermions/operators-operator-trait#qiskit_fermions.operators.OperatorTrait.zero "qiskit_fermions.operators.OperatorTrait.zero"). Spelled out in terms of the other protocol operations, it performs the following:
+
+  ```python
+  >>> difference = (op - op.adjoint()).normal_ordered().simplify(atol=1e-10)
+  >>> difference.equiv(FermionOperator.zero(), atol=1e-10)
+  True
+  ```
+
+  The strength of this check depends on the operator type, because it depends on how completely that type’s normal form contracts adjacent generators. A `True` result is always reliable, but for some types a `False` result is conservative: see [`is_hermitian()`](/docs/api/qiskit-fermions/operators-operator-trait#qiskit_fermions.operators.OperatorTrait.is_hermitian "qiskit_fermions.operators.OperatorTrait.is_hermitian") for details.
+</Admonition>
+
 <Admonition title="Important" type="danger">
-  The example uses `atol=1e-10` in both `simplify()` and `equiv()`. The `atol` (absolute tolerance) parameter specifies a threshold. Coefficients with magnitude smaller than `atol` are treated as zero and discarded. This is essential for numerical stability when comparing operators, since floating-point arithmetic can introduce small rounding errors that would otherwise prevent equivalent operators from being recognized as such.
+  The example uses `atol=1e-10`. The `atol` (absolute tolerance) parameter specifies a threshold. Coefficients with magnitude smaller than `atol` are treated as zero and discarded. This is essential for numerical stability when comparing operators, since floating-point arithmetic can introduce small rounding errors that would otherwise prevent equivalent operators from being recognized as such.
 </Admonition>
 
 <Admonition title="Hint" type="note">
-  While the [`OperatorTrait`](/docs/api/qiskit-fermions/operators-operator-trait#qiskit_fermions.operators.OperatorTrait "qiskit_fermions.operators.OperatorTrait") protocol provides a common interface, individual operator implementations might offer additional convenience methods not part of the protocol. For example, some operators provide an `is_hermitian()` method that implements this check. Always consult the API documentation for your operator type to discover all available functionality.
+  While the [`OperatorTrait`](/docs/api/qiskit-fermions/operators-operator-trait#qiskit_fermions.operators.OperatorTrait "qiskit_fermions.operators.OperatorTrait") protocol provides a common interface, individual operator implementations might offer additional convenience methods not part of the protocol. For example, [`FermionOperator`](/docs/api/qiskit-fermions/operators-fermion-operator#qiskit_fermions.operators.FermionOperator "qiskit_fermions.operators.FermionOperator") and [`MajoranaOperator`](/docs/api/qiskit-fermions/operators-majorana-operator#qiskit_fermions.operators.MajoranaOperator "qiskit_fermions.operators.MajoranaOperator") provide a `max_rank()` method that reports the length of their longest term. Always consult the API documentation for your operator type to discover all available functionality.
 </Admonition>
 
 <span id="operator-term-ordering" />
@@ -331,23 +333,25 @@ True
 #include <stdbool.h>
 
 // Two different representations of the same operator
-QkComplex67 coeff1[1] = {{1.0, 0.0}};
+QkComplex64 coeff1[1] = {{1.0, 0.0}};
+bool actions1[2] = {false, true};
 uint32_t modes1[2] = {0, 0};
-uint32_t boundaries1[3] = {0, 2};
-QfFermionOperator *op1 = qf_ferm_op_new(1, 2, coeff1, modes1, boundaries1);
+uint32_t boundaries1[2] = {0, 2};
+QfFermionOperator *op1 = qf_ferm_op_new(1, 2, coeff1, actions1, modes1, boundaries1);
 
-QkComplex67 coeff2[2] = {{1.0, 0.0}, {-1.0, 0.0}};
+QkComplex64 coeff2[2] = {{1.0, 0.0}, {-1.0, 0.0}};
+bool actions2[2] = {true, false};
 uint32_t modes2[2] = {0, 0};
 uint32_t boundaries2[3] = {0, 0, 2};
-QfFermionOperator *op2 = qf_ferm_op_new(2, 2, coeff2, modes2, boundaries2);
+QfFermionOperator *op2 = qf_ferm_op_new(2, 2, coeff2, actions2, modes2, boundaries2);
 
 // Direct comparison fails due to different forms
 bool equiv_before = qf_ferm_op_equiv(op1, op2, 1e-10);
 printf("Equivalent before normal ordering: %s\n", equiv_before ? "true" : "false");
 
 // Normal-order both and compare again
-QfFermionOperator *op1_normal = qf_ferm_op_normal_ordered(op1);
-QfFermionOperator *op2_normal = qf_ferm_op_normal_ordered(op2);
+QfFermionOperator *op1_normal = qf_ferm_op_normal_ordered(op1, NULL);
+QfFermionOperator *op2_normal = qf_ferm_op_normal_ordered(op2, NULL);
 bool equiv_after = qf_ferm_op_equiv(op1_normal, op2_normal, 1e-10);
 printf("Equivalent after normal ordering: %s\n", equiv_after ? "true" : "false");
 
