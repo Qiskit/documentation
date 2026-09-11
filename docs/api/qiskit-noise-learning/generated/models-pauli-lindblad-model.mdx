@@ -1,0 +1,194 @@
+---
+title: PauliLindbladModel (latest version)
+description: API reference for qiskit_noise_learning.models.PauliLindbladModel in the latest version of qiskit-noise-learning
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_noise_learning.models.PauliLindbladModel
+---
+
+<span id="qiskit-noise-learning-models-paulilindbladmodel" />
+
+# qiskit\_noise\_learning.models.PauliLindbladModel
+
+<Class id="qiskit_noise_learning.models.PauliLindbladModel" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/models/pauli_lindblad_model.py" signature="qiskit_noise_learning.models.PauliLindbladModel(gate_set: GateSet, generators: dict[str, QubitSparsePauliList], noise_site: dict[str, str] | None = None)" modifiers="class">
+  Bases: [`LinearMap`](math-linear-map "qiskit_noise_learning.math.linear_map.LinearMap")\[[`GeneratorIndex`](models-generator-index "qiskit_noise_learning.models.pauli_lindblad_model.GeneratorIndex"), [`FidelityIndex`](sequences-fidelity-index "qiskit_noise_learning.sequences.fidelity_index.FidelityIndex")]
+
+  A linear mapping from Pauli-Lindblad generator rates to log fidelities.
+
+  This model class assumes that every gate in the gate set is either a unitary, a pure preparation (all qubits are prepared and the unitary part is trivial), or a pure measurement (all qubits are measured and the unitary part is trivial). It is further assumed that at least one preparation and at least one measurement gate are present.
+
+  The noise model for each gate in this case is a Pauli channel, parameterized in terms of the rates of a Pauli-Lindblad decomposition $\exp(\sum_{P \in \mathcal{P}_n} r_P L(P))$, where the $r_P$ are the rates, and $L(P) = P \cdot P - \cdot$. In the case of unitary gates, the noise can be modelled as either occuring before or after the ideal unitary.
+
+  **Parameters**
+
+  *   **gate\_set** – The gate set whose fidelities are being modelled. To be converted to a `ModelGateSet`.
+  *   **generators** – A dictionary mapping gate name to the set of Pauli-Lindblad generators for the noise model of that gate. The generators for each gate must be unique.
+  *   **noise\_site** – A dictionary specifying, for each gate name, whether the noise model occurs before or after the gate, indicated with strings `"before"` and `"after"`. Any unspecified values for the gate set will be populated with default values: `"before"` for unitary gates and pure measurement gates, and `"after"` for pure preparation. An error will be raised if a value for pure measurement or preparation is specified that differs from the default.
+
+  **Raises**
+
+  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If the gate set is not of the required form, or if `noise_model_before_gate` has any invalid values.
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit_noise_learning.models.PauliLindbladModel.__init__" signature="__init__(gate_set: GateSet, generators: dict[str, QubitSparsePauliList], noise_site: dict[str, str] | None = None)" />
+
+  ## Methods
+
+  |                                                                                                                                                                                                   |                                                                       |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+  | [`__init__`](#qiskit_noise_learning.models.PauliLindbladModel.__init__ "qiskit_noise_learning.models.PauliLindbladModel.__init__")(gate\_set, generators\[, noise\_site])                         |                                                                       |
+  | `compose`(outer)                                                                                                                                                                                  | Post-compose: self maps I->O, outer maps O->C, result maps I->C.      |
+  | [`k_local`](#qiskit_noise_learning.models.PauliLindbladModel.k_local "qiskit_noise_learning.models.PauliLindbladModel.k_local")(gate\_set\[, k, gate\_k, paulis, ...])                            | Construct a k-local model.                                            |
+  | [`k_partition_local`](#qiskit_noise_learning.models.PauliLindbladModel.k_partition_local "qiskit_noise_learning.models.PauliLindbladModel.k_partition_local")(gate\_set\[, k, gate\_k, ...])      | Construct a k-local model according to qubit partitions.              |
+  | `left_multiply`(matrix)                                                                                                                                                                           | Multiply on the left by an explicit matrix.                           |
+  | `pre_compose`(inner)                                                                                                                                                                              | Pre-compose: inner maps A->I, self maps I->O, result maps A->O.       |
+  | `projected_output`(output\_indices, vector)                                                                                                                                                       | Compute a projection of the map applied to a vector.                  |
+  | [`rows`](#qiskit_noise_learning.models.PauliLindbladModel.rows "qiskit_noise_learning.models.PauliLindbladModel.rows")(output\_indices)                                                           | Construct the sub-matrix whose rows are the given fidelity indices.   |
+  | [`to_pauli_lindblad_maps`](#qiskit_noise_learning.models.PauliLindbladModel.to_pauli_lindblad_maps "qiskit_noise_learning.models.PauliLindbladModel.to_pauli_lindblad_maps")(model\_data\[, ...]) | Return a dictionary of `PauliLindbladMap` for each gate in the model. |
+
+  ## Attributes
+
+  |                                                                                                                                          |                                                          |
+  | ---------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
+  | [`gate_set`](#qiskit_noise_learning.models.PauliLindbladModel.gate_set "qiskit_noise_learning.models.PauliLindbladModel.gate_set")       | The gate set whose fidelities are being modelled.        |
+  | [`generators`](#qiskit_noise_learning.models.PauliLindbladModel.generators "qiskit_noise_learning.models.PauliLindbladModel.generators") | The generators for the noise model.                      |
+  | `input_space`                                                                                                                            | The input space.                                         |
+  | [`meas_names`](#qiskit_noise_learning.models.PauliLindbladModel.meas_names "qiskit_noise_learning.models.PauliLindbladModel.meas_names") | The names of the measurements in this model.             |
+  | [`noise_site`](#qiskit_noise_learning.models.PauliLindbladModel.noise_site "qiskit_noise_learning.models.PauliLindbladModel.noise_site") | Whether each noise map occurs before or after each gate. |
+  | `output_space`                                                                                                                           | The output space.                                        |
+  | [`prep_names`](#qiskit_noise_learning.models.PauliLindbladModel.prep_names "qiskit_noise_learning.models.PauliLindbladModel.prep_names") | The names of the preparation in this model.              |
+
+  ### gate\_set
+
+  <Attribute id="qiskit_noise_learning.models.PauliLindbladModel.gate_set">
+    Type: [`ModelGateSet`](gate-sets-model-gate-set "qiskit_noise_learning.gate_sets.model_gate_set.ModelGateSet")
+
+    The gate set whose fidelities are being modelled.
+  </Attribute>
+
+  ### generators
+
+  <Attribute id="qiskit_noise_learning.models.PauliLindbladModel.generators">
+    Type: [`dict`](https://docs.python.org/3/library/stdtypes.html#dict)\[[`str`](https://docs.python.org/3/library/stdtypes.html#str), [`QubitSparsePauliList`](/docs/api/qiskit/qiskit.quantum_info.QubitSparsePauliList)]
+
+    The generators for the noise model.
+  </Attribute>
+
+  ### meas\_names
+
+  <Attribute id="qiskit_noise_learning.models.PauliLindbladModel.meas_names">
+    Type: [`set`](https://docs.python.org/3/library/stdtypes.html#set)\[[`str`](https://docs.python.org/3/library/stdtypes.html#str)]
+
+    The names of the measurements in this model.
+  </Attribute>
+
+  ### noise\_site
+
+  <Attribute id="qiskit_noise_learning.models.PauliLindbladModel.noise_site">
+    Type: [`dict`](https://docs.python.org/3/library/stdtypes.html#dict)\[[`str`](https://docs.python.org/3/library/stdtypes.html#str), [`str`](https://docs.python.org/3/library/stdtypes.html#str)]
+
+    Whether each noise map occurs before or after each gate.
+  </Attribute>
+
+  ### prep\_names
+
+  <Attribute id="qiskit_noise_learning.models.PauliLindbladModel.prep_names">
+    Type: [`set`](https://docs.python.org/3/library/stdtypes.html#set)\[[`str`](https://docs.python.org/3/library/stdtypes.html#str)]
+
+    The names of the preparation in this model.
+  </Attribute>
+
+  ### rows
+
+  <Function id="qiskit_noise_learning.models.PauliLindbladModel.rows" signature="rows(output_indices: Iterable[FidelityIndex]) → IndexedMatrix[FidelityIndex, GeneratorIndex]">
+    Construct the sub-matrix whose rows are the given fidelity indices.
+
+    **Parameters**
+
+    **output\_indices** – The fidelity indices labelling the desired rows.
+
+    **Returns**
+
+    An [`IndexedMatrix`](math-indexed-matrix "qiskit_noise_learning.math.IndexedMatrix") indexed by the (non-zero) requested fidelity indices and by the generator indices appearing in those rows.
+
+    **Raises**
+
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If any fidelity index labels a gate that is not in the model.
+  </Function>
+
+  ### k\_partition\_local
+
+  <Function id="qiskit_noise_learning.models.PauliLindbladModel.k_partition_local" signature="k_partition_local(gate_set: GateSet, k: int = 2, gate_k: dict[str, int] | None = None, qubit_partitions: dict[str, list[set[int]]] | None = None, local_paulis: dict[str, list[QubitSparsePauliList]] | None = None, noise_site: dict[str, Literal['before', 'after']] | None = None) → Self" modifiers="static">
+    Construct a k-local model according to qubit partitions.
+
+    Note that the default partition for this method (described below) results in differing default behaviour for this method as compared to [`PauliLindbladModel.k_local()`](#qiskit_noise_learning.models.PauliLindbladModel.k_local "qiskit_noise_learning.models.PauliLindbladModel.k_local").
+
+    This method defines k-locality in terms of partitions of a set of $n$-qubits, generalizing the usual notion beyond single qubits. A partition is a collection of disjoint sets of qubit indices that covers $\{0, ..., n - 1\}$. Two qubit indices $i, j$ are neighbours if either edge $(i, j)$ or $(j, i)$ is in the coupling map, which is drawn from `gate_set` or defaults to the complete coupling map. Given a partition $P$, two distinct qubit index sets $B_0, B_1 \in P$ are neighbours if there exists indices $i \in B_0$ and $j \in B_1$ that are neighbours. Similarly, distinct $B_0, B_1 \in P$ are next-nearest neighbours if there exists a distinct $B_2 \in P$ which is neighbours with both $B_0$ and $B_1$, and so on.
+
+    For a given gate, the $k$-local model is built recursively starting with $1$-local terms defined in the argument `local_paulis`, with $1$-local terms for subsets of size `m` given by `local_paulis[m]`. $2$-local terms are built via tensor product of $1$-local terms between pairs of neighbouring subsets. Generally, $k$-local terms are built from the tensor product of $(k - 1)$-local terms and $1$-local terms on sets of $k$ connected sets.
+
+    If no `qubit_partition` is supplied, the partition of singletons is assumed. If no `local_paulis` is supplied, the set of all possible Paulis on the given number of qubits is assumed.
+
+    **Parameters**
+
+    *   **gate\_set** – The gate set being modelled. Must contain only Clifford, pure preparation, and pure measurement layers. To be converted to a `ModelGateSet`. The coupling map is drawn from `gate_set.model_gate_set.coupling_map`, or if it is `None`, defaults to the complete coupling map.
+    *   **k** – The default degree of locality of the model. Applies to all gates not specified in `gate_k`. Defaults to `2`.
+    *   **gate\_k** – A dictionary mapping gate names to per-gate locality values that override `k` for the specified gates.
+    *   **qubit\_partitions** – A dictionary indicating a qubit partition for each gate. Any unspecified partitions will be populated with a default in which qubits are grouped together if they are connected by unitary gate operations.
+    *   **local\_paulis** – A dictionary indicating the 1-local Paulis to use each qubit partition for each gate. I.e. `len(local_paulis[gate_name])` must equal the maximum partition size in `qubit_partitions[gate_name]`, and `local_paulis[gate_name][k].num_qubits` must equal `k`. For Clifford gates, `local_paulis[gate_name][k]` defaults to all possible non-identity Paulis on `k` qubits, and for measurement and preparation, it defaults to all Paulis consisting of $\{I, X\}$ on `k` qubits.
+    *   **noise\_site** – Dictionary indicating whether to model gate noise as `"before"` or `"after"` the gate.
+
+    **Returns**
+
+    A new [`PauliLindbladModel`](#qiskit_noise_learning.models.PauliLindbladModel "qiskit_noise_learning.models.PauliLindbladModel") instance.
+
+    **Raises**
+
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If any `k` value exceeds `len(gate_set.qubit_subset)`.
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If `gate_k` contains names not in the gate set.
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – Name not in `gate_set` is used in any other dictionary.
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – Any partition is ill-formed.
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – `local_paulis` does not satisfy the assumed form.
+  </Function>
+
+  ### k\_local
+
+  <Function id="qiskit_noise_learning.models.PauliLindbladModel.k_local" signature="k_local(gate_set: GateSet, k: int = 2, gate_k: dict[str, int] | None = None, paulis: dict[str, QubitSparsePauliList] | None = None, noise_site: dict[str, Literal['before', 'after']] | None = None) → Self" modifiers="static">
+    Construct a k-local model.
+
+    This is equivalent to calling [`PauliLindbladModel.k_partition_local()`](#qiskit_noise_learning.models.PauliLindbladModel.k_partition_local "qiskit_noise_learning.models.PauliLindbladModel.k_partition_local") with each partition specified as partition of singletons for each gate.
+
+    **Parameters**
+
+    *   **gate\_set** – The gate set being modelled. Must contain only Clifford, pure preparation, and pure measurement layers. To be converted to a `ModelGateSet`.
+    *   **k** – The default degree of locality of the model. Applies to all gates not specified in `gate_k`. Defaults to `2`.
+    *   **gate\_k** – A dictionary mapping gate names to per-gate locality values that override `k` for the specified gates.
+    *   **paulis** – A dictionary indicating the single-qubit Paulis to use in the k-local model for each gate. For Clifford gates, defaults to all single qubit Paulis, and for measurement and preparation, defaults to $\{I, X\}$.
+    *   **noise\_site** – Dictionary indicating whether to model gate noise as `"before"` or `"after"` the gate.
+
+    **Returns**
+
+    A new `PauliFidelityModel` instance.
+  </Function>
+
+  ### to\_pauli\_lindblad\_maps
+
+  <Function id="qiskit_noise_learning.models.PauliLindbladModel.to_pauli_lindblad_maps" signature="to_pauli_lindblad_maps(model_data: ModelData, include_spam: bool = False) → dict[str, PauliLindbladMap]">
+    Return a dictionary of `PauliLindbladMap` for each gate in the model.
+
+    **Parameters**
+
+    *   **model\_fit** – The fitted model parameters and covariance.
+    *   **include\_spam** – Whether to include SPAM gates in the output.
+
+    **Returns**
+
+    A dictionary from gate names to corresponding noise maps.
+
+    **Raises**
+
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If `model_data` does not contain the correct parameters.
+  </Function>
+</Class>
+

@@ -1,0 +1,89 @@
+---
+title: LinearSystemData (latest version)
+description: API reference for qiskit_noise_learning.analysis.LinearSystemData in the latest version of qiskit-noise-learning
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_noise_learning.analysis.LinearSystemData
+---
+
+<span id="qiskit-noise-learning-analysis-linearsystemdata" />
+
+# qiskit\_noise\_learning.analysis.LinearSystemData
+
+<Class id="qiskit_noise_learning.analysis.LinearSystemData" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/analysis/model_solve.py" signature="qiskit_noise_learning.analysis.LinearSystemData(A: ndarray, b: ndarray, sigma_b: ndarray, row_diagnostics: Mapping[str, ndarray], row_index_map: Mapping[RowIndex, int], column_index_map: Mapping[ColumnIndex, int], time_lb: datetime64, time_ub: datetime64)" modifiers="class">
+  Bases: [`Generic`](https://docs.python.org/3/library/typing.html#typing.Generic)\[`RowIndex`, `ColumnIndex`]
+
+  The linear system to solve and metadata in raw format.
+
+  A linear system `A @ x = b` with axis labels and metadata.
+
+  The row and column labels are of arbitrary hashable types: this class carries no assumptions about what a row or column denotes. In the systems built by [`from_fit()`](#qiskit_noise_learning.analysis.LinearSystemData.from_fit "qiskit_noise_learning.analysis.LinearSystemData.from_fit") the rows are [`Path`](sequences-path "qiskit_noise_learning.sequences.Path") objects and the columns are the fidelity model’s parameter labels.
+
+  The index maps are the authoritative record of how labels correspond to positions in `A`. Anything that needs to align a label-keyed quantity with the arrays should index through `row_index_map` or `column_index_map` rather than rebuilding the correspondence from [`row_labels`](#qiskit_noise_learning.analysis.LinearSystemData.row_labels "qiskit_noise_learning.analysis.LinearSystemData.row_labels") or [`column_labels`](#qiskit_noise_learning.analysis.LinearSystemData.column_labels "qiskit_noise_learning.analysis.LinearSystemData.column_labels").
+
+  **Parameters**
+
+  *   **A** – The matrix with shape `(m, n)`.
+  *   **b** – The target vector length `m`.
+  *   **sigma\_b** – Statistical `1`-sigma uncertainty on `b` per row, with length `m`.
+  *   **row\_diagnostics** – Named per-row quantities recorded by the stages that produced `b`, each an array of length `m` holding `nan` for rows the quantity is undefined for. Keys are the metadata names used upstream; see [`from_fit()`](#qiskit_noise_learning.analysis.LinearSystemData.from_fit "qiskit_noise_learning.analysis.LinearSystemData.from_fit").
+  *   **row\_index\_map** – A mapping from row labels to their integer row position in `A`.
+  *   **column\_index\_map** – A mapping from column labels to their integer column position in `A`.
+  *   **time\_lb** – Earliest time bound across the rows.
+  *   **time\_ub** – Latest time bound across the rows.
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit_noise_learning.analysis.LinearSystemData.__init__" signature="__init__(A: ndarray, b: ndarray, sigma_b: ndarray, row_diagnostics: Mapping[str, ndarray], row_index_map: Mapping[RowIndex, int], column_index_map: Mapping[ColumnIndex, int], time_lb: datetime64, time_ub: datetime64) → None" />
+
+  ## Methods
+
+  |                                                                                                                                                                           |                                                                                                   |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit_noise_learning.analysis.LinearSystemData.__init__ "qiskit_noise_learning.analysis.LinearSystemData.__init__")(A, b, sigma\_b, row\_diagnostics, ...) |                                                                                                   |
+  | [`from_fit`](#qiskit_noise_learning.analysis.LinearSystemData.from_fit "qiskit_noise_learning.analysis.LinearSystemData.from_fit")(fit)                                   | Build the linear system arrays from a [`Fit`](analysis-fit "qiskit_noise_learning.analysis.Fit"). |
+
+  ## Attributes
+
+  |                                                                                                                                                   |                                                         |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
+  | [`column_labels`](#qiskit_noise_learning.analysis.LinearSystemData.column_labels "qiskit_noise_learning.analysis.LinearSystemData.column_labels") | Column labels, ordered by their column position in `A`. |
+  | [`row_labels`](#qiskit_noise_learning.analysis.LinearSystemData.row_labels "qiskit_noise_learning.analysis.LinearSystemData.row_labels")          | Row labels, ordered by their row position in `A`.       |
+  | `A`                                                                                                                                               |                                                         |
+  | `b`                                                                                                                                               |                                                         |
+  | `sigma_b`                                                                                                                                         |                                                         |
+  | `row_diagnostics`                                                                                                                                 |                                                         |
+  | `row_index_map`                                                                                                                                   |                                                         |
+  | `column_index_map`                                                                                                                                |                                                         |
+  | `time_lb`                                                                                                                                         |                                                         |
+  | `time_ub`                                                                                                                                         |                                                         |
+
+  ### row\_labels
+
+  <Attribute id="qiskit_noise_learning.analysis.LinearSystemData.row_labels">
+    Type: [`list`](https://docs.python.org/3/library/stdtypes.html#list)\[`RowIndex`]
+
+    Row labels, ordered by their row position in `A`.
+  </Attribute>
+
+  ### column\_labels
+
+  <Attribute id="qiskit_noise_learning.analysis.LinearSystemData.column_labels">
+    Type: [`list`](https://docs.python.org/3/library/stdtypes.html#list)\[`ColumnIndex`]
+
+    Column labels, ordered by their column position in `A`.
+  </Attribute>
+
+  ### from\_fit
+
+  <Function id="qiskit_noise_learning.analysis.LinearSystemData.from_fit" signature="from_fit(fit: Fit) → LinearSystemData[Path, Hashable]" modifiers="classmethod">
+    Build the linear system arrays from a [`Fit`](analysis-fit "qiskit_noise_learning.analysis.Fit").
+
+    Rows are the [`Path`](sequences-path "qiskit_noise_learning.sequences.Path") objects of the [`AggregatedObservableData`](data-aggregated-observable-data "qiskit_noise_learning.data.AggregatedObservableData"), columns are the fidelity model’s parameter labels, and `row_diagnostics` holds every real-valued per-observable metadata entry under the name the producing stage used — for instance `"reduced_chi_squared"` from [`CurveFitObservables`](analysis-curve-fit-observables "qiskit_noise_learning.analysis.CurveFitObservables").
+
+    **Warns**
+
+    **UserWarning** – If any row’s uncertainty is non-positive or non-finite, giving those rows’ positions in [`row_labels`](#qiskit_noise_learning.analysis.LinearSystemData.row_labels "qiskit_noise_learning.analysis.LinearSystemData.row_labels"). Such a row carries no usable statistical weight, and how it is treated is up to the solver.
+  </Function>
+</Class>
+

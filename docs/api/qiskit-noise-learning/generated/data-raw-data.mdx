@@ -1,0 +1,121 @@
+---
+title: RawData (latest version)
+description: API reference for qiskit_noise_learning.data.RawData in the latest version of qiskit-noise-learning
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_noise_learning.data.RawData
+---
+
+<span id="qiskit-noise-learning-data-rawdata" />
+
+# qiskit\_noise\_learning.data.RawData
+
+<Class id="qiskit_noise_learning.data.RawData" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/data/raw_data.py" signature="qiskit_noise_learning.data.RawData(datatree: DataTree)" modifiers="class">
+  Bases: [`LeveledData`](data-leveled-data "qiskit_noise_learning.data.leveled_data.LeveledData")
+
+  Raw experimental outcome data associated with instruction sequences and classical registers.
+
+  This class is a wrapper around a 1-layer deep XArray `DataTree` with arbitrary string keys. Each leaf dataset contains:
+
+  *   Data variables:
+
+      > *   `data`: The raw boolean data with dimensions `("randomization", "shot", "bit")`.
+      > *   `data_mask`: A boolean mask with dimensions `("randomization", "shot")`. Handles potential raggedness in the `"shot"` dimension across different randomizations.
+      > *   `measurement_flips`: A boolean array of measurement flips with dimensions `("randomization", "bit")`.
+      > *   `time_lbs`: Lower bound on data acquisition times, with dimensions `("randomization",)`, of type `"datetime64[us]"`.
+      > *   `time_ubs`: Upper bound on data acquisition times, with dimensions `("randomization",)`, of type `"datetime64[us]"`.
+
+  *   Coordinates:
+
+      > *   `unbound_instruction_sequence`: The unbound instruction sequence for the data, along dimension `("randomization",)`, of type `InstructionSequence`.
+      > *   `fragment_depth`: Integer array of fragment depths along dimension `("randomization",)`.
+
+  *   Attrs:
+
+      > *   `creg_names`: Ordered list of classical register names.
+      > *   `measurement_map`: Dictionary mapping creg names to arrays of measured qubit indices.
+      > *   `creg_bit_boundaries`: Dictionary mapping creg names to `(start_idx, end_idx)` tuples indicating the slice of the `"bit"` dimension for that register.
+
+  Datasets are grouped by creg metadata: two datasets with the same `creg_names` and `measurement_map` are merged along the `"randomization"` dimension.
+
+  **Parameters**
+
+  **datatree** – A datatree in the above format.
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit_noise_learning.data.RawData.__init__" signature="__init__(datatree: DataTree)" />
+
+  ## Methods
+
+  |                                                                                                                                                       |                                                 |
+  | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
+  | [`__init__`](#qiskit_noise_learning.data.RawData.__init__ "qiskit_noise_learning.data.RawData.__init__")(datatree)                                    |                                                 |
+  | [`filter_time`](#qiskit_noise_learning.data.RawData.filter_time "qiskit_noise_learning.data.RawData.filter_time")(lb, ub)                             | Filter to data gathered within the time bounds. |
+  | [`from_arrays`](#qiskit_noise_learning.data.RawData.from_arrays "qiskit_noise_learning.data.RawData.from_arrays")(creg\_names, measurement\_map, ...) | Instantiate from data specified as arrays.      |
+  | [`merge`](#qiskit_noise_learning.data.RawData.merge "qiskit_noise_learning.data.RawData.merge")(other)                                                | Merge with another raw data set.                |
+
+  ## Attributes
+
+  |                                                                                                          |                |
+  | -------------------------------------------------------------------------------------------------------- | -------------- |
+  | [`datatree`](#qiskit_noise_learning.data.RawData.datatree "qiskit_noise_learning.data.RawData.datatree") | The data tree. |
+
+  ### datatree
+
+  <Attribute id="qiskit_noise_learning.data.RawData.datatree">
+    Type: `DataTree`
+
+    The data tree.
+  </Attribute>
+
+  ### from\_arrays
+
+  <Function id="qiskit_noise_learning.data.RawData.from_arrays" signature="from_arrays(creg_names: list[str], measurement_map: dict[str, ndarray], instruction_sequences: list[InstructionSequence], data: list[ndarray[bool]], measurement_flips: list[ndarray[bool]], time_lbs: list[ndarray[datetime64]], time_ubs: list[ndarray[datetime64]])" modifiers="classmethod">
+    Instantiate from data specified as arrays.
+
+    All instruction sequences must share the same creg structure (same `creg_names` and `measurement_map`). The resulting `RawData` contains a single-leaf datatree.
+
+    **Parameters**
+
+    *   **creg\_names** – Ordered list of classical register names.
+    *   **measurement\_map** – Dictionary mapping creg names to arrays of measured physical qubit indices.
+    *   **instruction\_sequences** – The list of instruction sequences used to generate the experiments.
+    *   **data** – A list of outcome data for each instruction sequence for all classical registers. The data has dimensions `("randomization", "shot", "bit")`. Bits are ordered according to `creg_names` order, with each creg’s bits contiguous.
+    *   **measurement\_flips** – A list of measurement flips to be applied to the data for each instruction sequence. Dimensions are `("randomization", "bit")`.
+    *   **time\_lbs** – A lower bound on the data collection time for each randomization for a given instruction sequence. The dimensions are `("randomization",)`.
+    *   **time\_ubs** – An upper bound on the data collection time for each randomization for a given instruction sequence. The dimensions are `("randomization",)`.
+  </Function>
+
+  ### merge
+
+  <Function id="qiskit_noise_learning.data.RawData.merge" signature="merge(other: Self) → Self">
+    Merge with another raw data set.
+
+    Datasets with matching creg metadata (`creg_names` and `measurement_map`) are concatenated along the `"randomization"` dimension. Potential raggedness of the `"shot"` dimension is handled via the `"data_mask"` data variable.
+
+    **Parameters**
+
+    **other** – The other raw dataset.
+
+    **Returns**
+
+    The merged data.
+  </Function>
+
+  ### filter\_time
+
+  <Function id="qiskit_noise_learning.data.RawData.filter_time" signature="filter_time(lb: datetime64, ub: datetime64) → Self">
+    Filter to data gathered within the time bounds.
+
+    **Parameters**
+
+    *   **lb** – The time lower bound (inclusive).
+    *   **ub** – The time upper bound (inclusive).
+
+    **Returns**
+
+    The time filtered version of self.
+  </Function>
+</Class>
+

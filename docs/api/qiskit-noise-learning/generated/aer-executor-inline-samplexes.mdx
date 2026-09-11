@@ -1,0 +1,28 @@
+---
+title: inline_samplexes (latest version)
+description: API reference for qiskit_noise_learning.aer_executor.inline_samplexes in the latest version of qiskit-noise-learning
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit_noise_learning.aer_executor.inline_samplexes
+---
+
+<span id="qiskit-noise-learning-aer-executor-inline-samplexes" />
+
+# qiskit\_noise\_learning.aer\_executor.inline\_samplexes
+
+<Function id="qiskit_noise_learning.aer_executor.inline_samplexes" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/aer_executor/inline.py" signature="qiskit_noise_learning.aer_executor.inline_samplexes(program: QuantumProgram, omit: list[int] | None = None, rng: Generator | None = None) → QuantumProgram">
+  Return a new `QuantumProgram` with `SamplexItem`s resolved in-place.
+
+  Each `SamplexItem` whose index is not in `omit` is replaced by a `CircuitItem` via `inline_samplex_item()`. The passthrough data produced by sampling (e.g. `measurement_flips.*` arrays) is stored in the returned program’s `passthrough_data` under the key `"inlined"`, keyed by the original item index (as a string). Any existing `passthrough_data` on the input program is preserved alongside the new `"inlined"` entry.
+
+  **Parameters**
+
+  *   **program** – The quantum program to process.
+  *   **omit** – Indices of items to leave as `SamplexItem`s. All other `SamplexItem`s are inlined. `CircuitItem`s are always left unchanged regardless of this list.
+  *   **rng** – Random number generator passed to `inline_samplex_item()`. If `None`, `np.random.default_rng()` is used.
+
+  **Returns**
+
+  A new `QuantumProgram` with the same shots, noise maps, and measurement level as the input, but with the selected `SamplexItem`s replaced by `CircuitItem`s.
+</Function>
+

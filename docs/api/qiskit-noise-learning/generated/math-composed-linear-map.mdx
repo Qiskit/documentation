@@ -1,0 +1,81 @@
+---
+title: ComposedLinearMap (latest version)
+description: API reference for qiskit_noise_learning.math.ComposedLinearMap in the latest version of qiskit-noise-learning
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_noise_learning.math.ComposedLinearMap
+---
+
+<span id="qiskit-noise-learning-math-composedlinearmap" />
+
+# qiskit\_noise\_learning.math.ComposedLinearMap
+
+<Class id="qiskit_noise_learning.math.ComposedLinearMap" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/math/linear_map.py" signature="qiskit_noise_learning.math.ComposedLinearMap(maps: list[LinearMap])" modifiers="class">
+  Bases: [`LinearMap`](math-linear-map "qiskit_noise_learning.math.linear_map.LinearMap")\[`InputIndex`, `OutputIndex`]
+
+  A linear map formed by composing a chain of maps.
+
+  Maps are stored in application order: `maps[0]` is applied first (innermost), `maps[-1]` is applied last (outermost).
+
+  **Parameters**
+
+  **maps** – The ordered sequence of maps to compose.
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit_noise_learning.math.ComposedLinearMap.__init__" signature="__init__(maps: list[LinearMap])" />
+
+  ## Methods
+
+  |                                                                                                                                              |                                                                   |
+  | -------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+  | [`__init__`](#qiskit_noise_learning.math.ComposedLinearMap.__init__ "qiskit_noise_learning.math.ComposedLinearMap.__init__")(maps)           |                                                                   |
+  | [`compose`](#qiskit_noise_learning.math.ComposedLinearMap.compose "qiskit_noise_learning.math.ComposedLinearMap.compose")(outer)             | Post-compose: self maps I->O, outer maps O->C, result maps I->C.  |
+  | `left_multiply`(matrix)                                                                                                                      | Multiply on the left by an explicit matrix.                       |
+  | [`pre_compose`](#qiskit_noise_learning.math.ComposedLinearMap.pre_compose "qiskit_noise_learning.math.ComposedLinearMap.pre_compose")(inner) | Pre-compose: inner maps A->I, self maps I->O, result maps A->O.   |
+  | `projected_output`(output\_indices, vector)                                                                                                  | Compute a projection of the map applied to a vector.              |
+  | [`rows`](#qiskit_noise_learning.math.ComposedLinearMap.rows "qiskit_noise_learning.math.ComposedLinearMap.rows")(output\_indices)            | Construct the sub-matrix whose rows are the given output indices. |
+
+  ## Attributes
+
+  |                                                                                                                  |                                                |
+  | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+  | `input_space`                                                                                                    | The input space.                               |
+  | [`maps`](#qiskit_noise_learning.math.ComposedLinearMap.maps "qiskit_noise_learning.math.ComposedLinearMap.maps") | The ordered list of maps in application order. |
+  | `output_space`                                                                                                   | The output space.                              |
+
+  ### maps
+
+  <Attribute id="qiskit_noise_learning.math.ComposedLinearMap.maps">
+    Type: [`list`](https://docs.python.org/3/library/stdtypes.html#list)\[[`LinearMap`](math-linear-map "qiskit_noise_learning.math.linear_map.LinearMap")]
+
+    The ordered list of maps in application order.
+  </Attribute>
+
+  ### rows
+
+  <Function id="qiskit_noise_learning.math.ComposedLinearMap.rows" signature="rows(output_indices: Iterable[OutputIndex]) → IndexedMatrix[OutputIndex, InputIndex]">
+    Construct the sub-matrix whose rows are the given output indices.
+
+    **Parameters**
+
+    **output\_indices** – The labels for the desired rows of the matrix.
+
+    **Returns**
+
+    [`IndexedMatrix`](math-indexed-matrix "qiskit_noise_learning.math.IndexedMatrix")
+  </Function>
+
+  ### compose
+
+  <Function id="qiskit_noise_learning.math.ComposedLinearMap.compose" signature="compose(outer: LinearMap[OutputIndex, OtherOutput]) → ComposedLinearMap">
+    Post-compose: self maps I->O, outer maps O->C, result maps I->C.
+  </Function>
+
+  ### pre\_compose
+
+  <Function id="qiskit_noise_learning.math.ComposedLinearMap.pre_compose" signature="pre_compose(inner: LinearMap[OtherInput, InputIndex]) → ComposedLinearMap">
+    Pre-compose: inner maps A->I, self maps I->O, result maps A->O.
+  </Function>
+</Class>
+
