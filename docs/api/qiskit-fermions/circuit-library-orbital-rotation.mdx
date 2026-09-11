@@ -80,10 +80,7 @@ $$
 
     In the spinful case the embedded matrix must be block-diagonal across the alpha/beta split. A rotation with nonzero alpha/beta off-diagonal blocks mixes the spin sectors, which does not conserve the individual alpha/beta electron counts and hence maps amplitude out of the fixed `(n_alpha, n_beta)` sector – an operation the fixed-sector state vector cannot represent. Such a rotation is rejected with a [`ValueError`](https://docs.python.org/3/library/exceptions.html#ValueError).
 
-    The embedded matrix is then applied in one of two ways:
-
-    *   **Fast path** (only when `ffsim` is installed): the embedded matrix is applied via [`ffsim.apply_orbital_rotation()`](https://qiskit-community.github.io/ffsim/api/stubs/ffsim.apply_orbital_rotation.html#ffsim.apply_orbital_rotation "(in ffsim)")’s Givens-rotation kernel. Under the spinful block-spin convention (modes `0..norb` are alpha orbitals, modes `norb..2*norb` are beta orbitals) the two diagonal blocks are the per-spin rotations passed to ffsim as `(mat_a, mat_b)`.
-    *   **General path**: otherwise (i.e. when `ffsim` is unavailable) the rotation is applied as the evolution $\exp(G)$ under its generator $G = \sum_{ij} \log(U)_{ij} a^\dagger_i a_j$, where $U$ is the embedded matrix. $G$ is turned into a `scipy` `LinearOperator` via [`linear_operator()`](linalg-linear-operator "qiskit_fermions.linalg.linear_operator") (backed by the native FCI matrix-vector kernel) and applied via [`scipy.sparse.linalg.expm_multiply()`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.linalg.expm_multiply.html#scipy.sparse.linalg.expm_multiply "(in SciPy v1.18.0)"). This mirrors [`Evolution._apply_unitary_placed_()`](circuit-library-evolution#_apply_unitary_placed_ "qiskit_fermions.circuit.library.Evolution._apply_unitary_placed_").
+    The embedded matrix is then applied via [`ffsim.apply_orbital_rotation()`](https://qiskit-community.github.io/ffsim/api/stubs/ffsim.apply_orbital_rotation.html#ffsim.apply_orbital_rotation "(in ffsim)")’s Givens-rotation kernel. Under the spinful block-spin convention (modes `0..norb` are alpha orbitals, modes `norb..2*norb` are beta orbitals) the two diagonal blocks are the per-spin rotations passed to ffsim as `(mat_a, mat_b)`.
 
     **Parameters**
 
@@ -99,7 +96,8 @@ $$
 
     **Raises**
 
-    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – if `nelec` is a spinful pair and the (placed) rotation mixes the alpha and beta spin sectors.
+    *   **MissingOptionalLibraryError** – if ffsim is not installed.
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – if `nelec` is a spinful pair and the (placed) rotation mixes the alpha and beta spin sectors.
 
     **Return type**
 

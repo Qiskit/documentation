@@ -1,0 +1,82 @@
+---
+title: FermionicLieTrotter (latest version)
+description: API reference for qiskit_fermions.circuit.library.synthesis.FermionicLieTrotter in the latest version of qiskit-fermions
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_fermions.circuit.library.synthesis.FermionicLieTrotter
+---
+
+# FermionicLieTrotter
+
+<Class id="qiskit_fermions.circuit.library.synthesis.FermionicLieTrotter" isDedicatedPage={true} signature="FermionicLieTrotter(reps=1)" modifiers="class">
+  Bases: [`FermionicSuzukiTrotter`](circuit-library-synthesis-fermionic-suzuki-trotter "qiskit_fermions.circuit.library.synthesis.suzuki_trotter.FermionicSuzukiTrotter")
+
+  The first-order Lie-Trotter product formula, applied in fermionic space.
+
+  Given an [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") gate with the evolution time $t$, this synthesizes the approximation
+
+$$
+e^{-i t \sum_j H_j} \approx \prod_j e^{-i t H_j},
+$$
+
+  emitting one [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") gate per factor $H_j$, each evolving for the whole time $t$ – or, with [`reps`](#qiskit_fermions.circuit.library.synthesis.FermionicLieTrotter.reps "qiskit_fermions.circuit.library.synthesis.FermionicLieTrotter.reps") repetitions, for $t/\texttt{reps}$ apiece across that many sweeps.
+
+  The operator is split into the $H_j$, and each factor narrowed to the modes it actually touches, exactly as described for [`FermionicSuzukiTrotter`](circuit-library-synthesis-fermionic-suzuki-trotter "qiskit_fermions.circuit.library.synthesis.FermionicSuzukiTrotter").
+
+  First order is the degenerate case of the Suzuki recursion, so this is implemented as a [`FermionicSuzukiTrotter`](circuit-library-synthesis-fermionic-suzuki-trotter "qiskit_fermions.circuit.library.synthesis.FermionicSuzukiTrotter") with the order fixed to `1`; the two are interchangeable at equal [`reps`](#qiskit_fermions.circuit.library.synthesis.FermionicLieTrotter.reps "qiskit_fermions.circuit.library.synthesis.FermionicLieTrotter.reps"). It keeps a name of its own because it is the default synthesis of an [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") gate, and because a plain first-order product formula is more recognizable under that name than as an argument to a higher-order one.
+
+  <Admonition title="Note" type="note">
+    This product formula is exact only when the factors mutually commute. Grouping an operator so that each group collects mutually commuting terms therefore both shortens the circuit and reduces the Trotter error. Where the factors do not commute, an even [`order`](circuit-library-synthesis-fermionic-suzuki-trotter#order "qiskit_fermions.circuit.library.synthesis.FermionicSuzukiTrotter.order") reduces the error further at the same grouping.
+
+    Note also that applying it at all is optional: leaving the gate undecomposed and letting the fermion-to-qubit stage handle the whole operator incurs no Trotter error at this level. See [`synthesis`](/docs/api/qiskit-fermions/circuit-library-synthesis#module-qiskit_fermions.circuit.library.synthesis "qiskit_fermions.circuit.library.synthesis").
+  </Admonition>
+
+  The Hermiticity requirement on the individual factors, described in the [`FermionicSuzukiTrotter`](circuit-library-synthesis-fermionic-suzuki-trotter "qiskit_fermions.circuit.library.synthesis.FermionicSuzukiTrotter") documentation, applies here too.
+
+  Initializing an instance of this synthesis method can be done with the argument below.
+
+  **Parameters**
+
+  **reps** ([*int*](https://docs.python.org/3/library/functions.html#int)) – the number of times to repeat the formula, each repetition evolving for `time / reps`.
+
+  **Raises**
+
+  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – if `reps` is not positive.
+
+  ## Attributes
+
+  ### order
+
+  <Attribute id="qiskit_fermions.circuit.library.synthesis.FermionicLieTrotter.order">
+    The order of the product formula.
+  </Attribute>
+
+  ### reps
+
+  <Attribute id="qiskit_fermions.circuit.library.synthesis.FermionicLieTrotter.reps">
+    The number of times the product formula is repeated.
+  </Attribute>
+
+  **Inherited Methods**
+
+  ### synthesize
+
+  <Function id="qiskit_fermions.circuit.library.synthesis.FermionicLieTrotter.synthesize" signature="synthesize(gate)">
+    Synthesizes the gate into the ordered factors of the product formula.
+
+    See the class documentation for the formula this implements.
+
+    **Parameters**
+
+    **gate** ([*Evolution*](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution")) – the gate to synthesize.
+
+    **Returns**
+
+    A [`FermionicCircuit`](circuit-fermionic-circuit "qiskit_fermions.circuit.FermionicCircuit") holding one narrowed [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") gate per factor of the formula. A factor may appear more than once, at different evolution times.
+
+    **Return type**
+
+    [FermionicCircuit](circuit-fermionic-circuit "qiskit_fermions.circuit.FermionicCircuit")
+  </Function>
+</Class>
+

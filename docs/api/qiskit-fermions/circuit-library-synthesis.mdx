@@ -1,0 +1,30 @@
+---
+title: synthesis (latest version)
+description: API reference for qiskit_fermions.circuit.library.synthesis in the latest version of qiskit-fermions
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit_fermions.circuit.library.synthesis
+---
+
+<span id="module-qiskit_fermions.circuit.library.synthesis" />
+
+# Fermionic Synthesis
+
+This module provides the synthesis methods with which an [`Evolution`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution "qiskit_fermions.circuit.library.Evolution") gate is broken down into a [`FermionicCircuit`](/docs/api/qiskit-fermions/circuit-fermionic-circuit#qiskit_fermions.circuit.FermionicCircuit "qiskit_fermions.circuit.FermionicCircuit") of smaller fermionic gates. Pass one to the gate’s `synthesis` argument to choose how its time evolution gets decomposed:
+
+```python
+Evolution(num_modes, operator, time=1.0, synthesis=FermionicLieTrotter())
+```
+
+Both sides of this rewrite live in fermionic space, so these methods can exploit the [`groups`](/docs/api/qiskit-fermions/operators-operator-trait#qiskit_fermions.operators.OperatorTrait.groups "qiskit_fermions.operators.OperatorTrait.groups") of the evolved operator (see [Group operator terms: use the operator structure](guides/grouping#grouping-explanation)) – unlike the fermion-to-qubit synthesis that follows, which only sees the mapped operator, where the grouping is no longer available.
+
+<Admonition title="Important" type="danger">
+  This fermion-to-fermion step is **optional**. An [`Evolution`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution "qiskit_fermions.circuit.library.Evolution") gate can be handed straight to the fermion-to-qubit stage regardless of how many terms its operator holds; decomposing it in fermionic space first is a choice, taken to obtain cheaper factors or to expose structure that the later stage can exploit.
+</Admonition>
+
+|                                                                                                                                                                                                                                                                    |                                                                                                                                                                                                                     |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`FermionicEvolutionSynthesis`](/docs/api/qiskit-fermions/circuit-library-synthesis-fermionic-evolution-synthesis#qiskit_fermions.circuit.library.synthesis.FermionicEvolutionSynthesis "qiskit_fermions.circuit.library.synthesis.FermionicEvolutionSynthesis")() | The interface for fermion-to-fermion synthesis of an [`Evolution`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution "qiskit_fermions.circuit.library.Evolution") gate. |
+| [`FermionicLieTrotter`](/docs/api/qiskit-fermions/circuit-library-synthesis-fermionic-lie-trotter#qiskit_fermions.circuit.library.synthesis.FermionicLieTrotter "qiskit_fermions.circuit.library.synthesis.FermionicLieTrotter")(\[reps])                          | The first-order Lie-Trotter product formula, applied in fermionic space.                                                                                                                                            |
+| [`FermionicSuzukiTrotter`](/docs/api/qiskit-fermions/circuit-library-synthesis-fermionic-suzuki-trotter#qiskit_fermions.circuit.library.synthesis.FermionicSuzukiTrotter "qiskit_fermions.circuit.library.synthesis.FermionicSuzukiTrotter")(\[order, reps])       | The higher-order Suzuki-Trotter product formula, applied in fermionic space.                                                                                                                                        |
+

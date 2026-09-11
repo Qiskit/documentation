@@ -1,0 +1,78 @@
+---
+title: transfer_vertex_jordan_wigner (latest version)
+description: API reference for qiskit_fermions.mappers.library.transfer_vertex_jordan_wigner in the latest version of qiskit-fermions
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit_fermions.mappers.library.transfer_vertex_jordan_wigner
+---
+
+<span id="transfer-vertex-jordan-wigner" />
+
+# transfer\_vertex\_jordan\_wigner
+
+<Function id="qiskit_fermions.mappers.library.transfer_vertex_jordan_wigner" isDedicatedPage={true} signature="transfer_vertex_jordan_wigner(op, num_qubits)">
+  Map a [`TransferVertexOperator`](operators-transfer-vertex-operator "qiskit_fermions.operators.TransferVertexOperator") to a [`SparseObservable`](/docs/api/qiskit/qiskit.quantum_info.SparseObservable) under the Jordan-Wigner transformation.   <span id="id1" />[\[1\]](#id3)
+
+  Fermionic mode $j$ is mapped to qubit $j$ of the resulting [`SparseObservable`](/docs/api/qiskit/qiskit.quantum_info.SparseObservable), following Qiskit’s little-endian qubit ordering.
+
+  **Parameters**
+
+  *   **op** – the transfer-vertex operator to map.
+  *   **num\_qubits** – the number of qubits for the resulting qubit operator. This must be strictly greater than the largest mode index in `op` (any additional qubits are padded with the identity).
+
+  **Returns**
+
+  The mapped qubit operator. The result is not guaranteed to be fully simplified; call [`simplify()`](/docs/api/qiskit/qiskit.quantum_info.SparseObservable#simplify) to combine any remaining duplicate terms. Duplicates are merged as the result is assembled, to bound the memory required, so the exact number of terms returned may vary with the number of threads used. This does not affect the operator that the result represents.
+
+  **Raises**
+
+  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – if `num_qubits` is too small to hold the operator’s support, i.e. if it is not larger than the largest mode index acted upon by `op`.
+
+  ## Definition
+
+  Writing $l_\text{min}$ and $l_\text{max}$ for the smaller and larger of the two indices, the generalized transfer operators map onto single Pauli strings,
+
+$$
+\begin{align}
+V_l = T_{ll} &\rightarrow \sigma^Z_l \, , \nonumber \\
+T_{lr} &\rightarrow -\frac{1}{2} \, \sigma^P_{l_\text{min}}
+\left( \bigotimes_{l_\text{min} \lt k \lt l_\text{max}} \sigma^Z_k \right)
+\sigma^P_{l_\text{max}} \nonumber
+\end{align}
+$$
+
+  where $P = X$ for $l \lt r$ and $P = Y$ otherwise.
+
+  <Admonition title="Note" type="note">
+    The index order works the opposite way round to [`edge_vertex_jordan_wigner()`](mappers-library-edge-vertex-jordan-wigner "qiskit_fermions.mappers.library.edge_vertex_jordan_wigner"): the coefficient is $-1/2$ for **both** orientations and it is the Pauli letters that swap. $T_{lr}$ and $T_{rl}$ are genuinely different operators, with no antisymmetry relating them.
+  </Admonition>
+
+  <Admonition title="Note" type="note">
+    As for [`edge_vertex_jordan_wigner()`](mappers-library-edge-vertex-jordan-wigner "qiskit_fermions.mappers.library.edge_vertex_jordan_wigner"), these Pauli strings differ from Eq. (10) of     <span id="id2" />[\[2\]](#id4) by a single-qubit basis choice; the convention used here is the one consistent with [`transfer_vertex_to_fermion()`](mappers-library-transfer-vertex-to-fermion "qiskit_fermions.mappers.library.transfer_vertex_to_fermion").
+  </Admonition>
+
+  Mapping directly also avoids an intermediate blowup: each fermionic action maps onto a *two*-term sum, so routing a term built from $L$ transfer operators through a [`FermionOperator`](operators-fermion-operator "qiskit_fermions.operators.FermionOperator") inflates a single Pauli string into up to $4^L$ terms. The saving grows with the length of the terms; for single-operator terms the two routes cost about the same.
+
+  ## Usage
+
+  ```pycon
+  >>> from qiskit_fermions.mappers.library import transfer_vertex_jordan_wigner
+  >>> from qiskit_fermions.operators import TransferVertexOperator
+  >>> top = TransferVertexOperator.from_dict({((0, 1),): 1.0, ((1, 0),): 1.0})
+  >>> transfer_vertex_jordan_wigner(top, 2).simplify()
+  <SparseObservable with 2 terms on 2 qubits: (-0.5+0j)(X_1 X_0) + (-0.5+0j)(Y_1 Y_0)>
+  ```
+
+  <span id="id3" />
+
+  \[[1](#id1)]
+
+  P. Jordan and E. Wigner, Über das Paulische Äquivalenzverbot, Zeitschrift für Physik 47, No. 9. (1928), pp. 631–651, [doi:10.1007/BF01331938](https://link.springer.com/article/10.1007/BF01331938).
+
+  <span id="id4" />
+
+  \[[2](#id2)]
+
+  L. Gandon et al., Fermionic quantum simulation with flow sets, [arXiv:2512.11418](https://arxiv.org/abs/2512.11418).
+</Function>
+
