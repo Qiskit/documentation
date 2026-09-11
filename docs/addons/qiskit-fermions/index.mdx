@@ -15,18 +15,22 @@ description: "Documentation for the latest version of Qiskit Fermions"
 
 Additionally, `qiskit-fermions` integrates with other tools of the ecosystem, such as:
 
-*   [ffsim](https://qiskit-community.github.io/ffsim/) for efficient simulation of fermionic circuits
+*   [ffsim](https://qiskit-community.github.io/ffsim/) for the high-level ansatz operators and efficient simulation of fermionic circuits (see [Relationship to ffsim](#relationship-to-ffsim))
 
 ## Get started
 
-Several guides exist to help you get started with this package. For an overview of its breadth of features, visit the [1D Fermi-Hubbard guide](guides/1-d-fermi-hubbard).
+![Schematic description of Qiskit Fermions](/docs/images/addons/qiskit-fermions/overview.svg)
+
+The schematic description in the image above provides a glimpse of the breadth of features and general workflow that this package provides. You can work in the fermionic regime with both, operator and circuit representation, before you define a fermion-to-qubit encoding that plugs into the multi-representation transpiler pipeline of Qiskit.
+
+All of these features are explained in [several guides](guides/overview) to help you get started. For an overview working through exactly the pipeline shown above, start with the [1D Fermi-Hubbard guide](guides/1-d-fermi-hubbard).
 
 ## Use case examples
 
 Components of this package have been used in research related to the following papers:
 
-*   The qDRIFT randomized circuit compilation in <span id="id1" />[\[1\]](#id3).
-*   The fermion-to-qubit synthesis during the transpilation process in <span id="id2" />[\[2\]](#id4).
+*   The qDRIFT randomized circuit compilation in <span id="id1" />[\[1\]](#id4).
+*   The fermion-to-qubit synthesis during the transpilation process in <span id="id2" />[\[2\]](#id5).
 
 ## Technical discussion
 
@@ -35,6 +39,16 @@ Components of this package have been used in research related to the following p
 This package is deliberately designed to align with Qiskit: it builds on a core implemented in Rust and provides first-party language bindings to Python and C. Its API intends to draw parallels to Qiskit in order to seamlessly integrate into the workflows of users with experience in programming Qiskit.
 
 A core principle to the design of `qiskit-fermions` was the decoupling of its fermionic circuit representation from its qubitized form. To be more precise: the fermionic circuits are meaningful by themselves and do not require a mapping to qubit space to be interpretable. Furthermore, the fermionic circuit representation cannot make any assumptions about its fermion-to-qubit encoding applied later on. Consequently, while Jordan-Wigner retains a dominant position and role, it is not assumed to be the \_default\_ fermion-to-qubit encoding.
+
+### Relationship to ffsim
+
+[ffsim](https://qiskit-community.github.io/ffsim/) and `qiskit-fermions` divide the work rather than overlap. ffsim owns the high-level ansatz operators and their fast simulation: it constructs a UCJ or UCCSD operator from coupled-cluster amplitudes or a parameter vector, and simulates fermionic states in a compact fixed-particle-number space. `qiskit-fermions` owns the circuit side: it expresses that operator as a [`FermionicCircuit`](/docs/api/qiskit-fermions/circuit-fermionic-circuit#qiskit_fermions.circuit.FermionicCircuit "qiskit_fermions.circuit.FermionicCircuit") on fermionic modes and transpiles it into a qubit circuit through *any* fermion-to-qubit encoding.
+
+That last point is the reason to bring an ffsim operator here. ffsim’s own Qiskit gates are specific to the Jordan-Wigner transformation, so lowering an ansatz through a different encoding (a local encoding trading qubits for shallower circuits, for instance) is what this package adds. Conversely, this package does not reimplement the ansatz math, so [`UCJ`](/docs/api/qiskit-fermions/circuit-library-ucj#qiskit_fermions.circuit.library.UCJ "qiskit_fermions.circuit.library.UCJ") and [`UCC`](/docs/api/qiskit-fermions/circuit-library-ucc#qiskit_fermions.circuit.library.UCC "qiskit_fermions.circuit.library.UCC") take an ffsim operator directly as their input.
+
+On the simulation side, ffsim is the backend. This package’s gates and operators implement the protocol methods ffsim’s simulation functions consume (`_apply_unitary_`, `_linear_operator_` and `_trace_`; see [`qiskit_fermions.protocols`](/docs/api/qiskit-fermions/protocols#module-qiskit_fermions.protocols "qiskit_fermions.protocols")), so ffsim’s tools work on them natively, with no conversion step. Because ffsim depends on PySCF, which does not support Windows, simulating on Windows means going through the [Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/) for now. Building operators, mapping them and transpiling the resulting circuits need none of this and work everywhere.
+
+For the full picture, read the [ffsim relationship guide](guides/ffsim#ffsim-relationship-explanation).
 
 ### Known issues
 
@@ -66,13 +80,13 @@ This package follows [semantic versioning](https://semver.org/). Breaking change
 
 ## References
 
-<span id="id3" />
+<span id="id4" />
 
 \[[1](#id1)]
 
 Samuele Piccinelli, et al., [Quantum chemistry with provable convergence via randomized sample-based Krylov quantum diagonalization](https://arxiv.org/abs/2508.02578v2), arXiv:2508.02578 \[quant-ph].
 
-<span id="id4" />
+<span id="id5" />
 
 \[[2](#id2)]
 

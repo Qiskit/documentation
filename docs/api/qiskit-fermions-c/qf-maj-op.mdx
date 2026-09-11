@@ -300,6 +300,79 @@ The following functions exist to check certain properties of an operator.
   *   **boundaries\_len** – A pointer to the integer into which to write the length of the output array.
 </Function>
 
+### qf\_maj\_op\_num\_support
+
+<Function id="qf_maj_op_num_support" signature="uint32_t qf_maj_op_num_support(const QfMajoranaOperator *op)">
+  Gets the size of the support of an operator.
+
+  Use this to size the output buffer of [`qf_maj_op_get_support()`](#qf_maj_op_get_support "qf_maj_op_get_support"), which does not report a length of its own.
+
+  <span id="id7" />
+
+  #### Example
+
+  ```c
+  1uint32_t modes[3] = {2, 0, 2};
+  2QkComplex64 coeffs[2] = {{1.0, 0.0}, {1.0, 0.0}};
+  3uint32_t boundaries[3] = {0, 2, 3};
+  4QfMajoranaOperator *op = qf_maj_op_new(2, 3, coeffs, modes, boundaries);
+  5
+  6uint32_t num_support = qf_maj_op_num_support(op);
+  7
+  8assert(num_support == 2);
+  ```
+
+  **Parameters**
+
+  *   **op** – A pointer to the Majorana operator whose support size to get.
+
+  **Returns**
+
+  The number of distinct mode indices acted upon by the operator.
+</Function>
+
+### qf\_maj\_op\_get\_support
+
+<Function id="qf_maj_op_get_support" signature="void qf_maj_op_get_support(const QfMajoranaOperator *op, uint32_t *support_out)">
+  Gets the support of an operator, i.e. the Majorana mode indices acted upon by the operator.
+
+  The indices are written in **ascending** order, and every index appears exactly once no matter how many terms act upon it.
+
+  <span id="id8" />
+
+  #### Example
+
+  ```c
+   1uint32_t modes[3] = {2, 0, 2};
+   2QkComplex64 coeffs[2] = {{1.0, 0.0}, {1.0, 0.0}};
+   3uint32_t boundaries[3] = {0, 2, 3};
+   4QfMajoranaOperator *op = qf_maj_op_new(2, 3, coeffs, modes, boundaries);
+   5
+   6uint32_t num_support = qf_maj_op_num_support(op);
+   7uint32_t *support_out = malloc(num_support * sizeof(uint32_t));
+   8
+   9qf_maj_op_get_support(op, support_out);
+  10
+  11assert(support_out[0] == 0);
+  12assert(support_out[1] == 2);
+  13
+  14free(support_out);
+  ```
+
+  <Admonition title="Note" type="note">
+    Unlike the other getters, this does not hand out a pointer into the operator: the support is computed on demand rather than stored, so the caller provides the output buffer. Query its required length with [`qf_maj_op_num_support()`](#qf_maj_op_num_support "qf_maj_op_num_support") first.
+  </Admonition>
+
+  <Admonition title="Note" type="note">
+    These are the *Majorana* mode indices, not the fermionic ones: they are not divided by two. A Majorana operator on fermionic mode `j` therefore reports the indices `2 * j` and/or `2 * j + 1`.
+  </Admonition>
+
+  **Parameters**
+
+  *   **op** – A pointer to the Majorana operator whose support to get.
+  *   **support\_out** – A pointer to the integer array into which to write the support. It must be sized to at least :c:func:`qf_maj_op_num_support` elements.
+</Function>
+
 ### qf\_maj\_op\_zero
 
 <Function id="qf_maj_op_zero" signature="QfMajoranaOperator *qf_maj_op_zero(void)">
@@ -307,7 +380,7 @@ The following functions exist to check certain properties of an operator.
 
   Adding the operator that is constructed by this method to another one has no effect.
 
-  <span id="id7" />
+  <span id="id9" />
 
   #### Example
 
@@ -331,7 +404,7 @@ The following functions exist to check certain properties of an operator.
 
   Composing the operator that is constructed by this method with another one has no effect.
 
-  <span id="id8" />
+  <span id="id10" />
 
   #### Example
 
@@ -354,10 +427,10 @@ The following functions exist to check certain properties of an operator.
   Checks whether this operator tracks group indices.
 
   <Admonition title="See also" type="note">
-    The explanation on [Group operator terms: use the operator structure](/docs/addons/qiskit-fermions/guides/grouping#grouping-explanation).
+    The explanation on [Group operator terms: use the operator structure](guides/grouping#grouping-explanation).
   </Admonition>
 
-  <span id="id9" />
+  <span id="id11" />
 
   #### Example
 
@@ -382,10 +455,10 @@ The following functions exist to check certain properties of an operator.
   Gets the number of groups from an operator.
 
   <Admonition title="See also" type="note">
-    The explanation on [Group operator terms: use the operator structure](/docs/addons/qiskit-fermions/guides/grouping#grouping-explanation).
+    The explanation on [Group operator terms: use the operator structure](guides/grouping#grouping-explanation).
   </Admonition>
 
-  <span id="id10" />
+  <span id="id12" />
 
   #### Example
 
@@ -408,59 +481,16 @@ The following functions exist to check certain properties of an operator.
   The number of group indices from the operator’s `groups` attribute.
 </Function>
 
-### qf\_maj\_op\_group\_weights
-
-<Function id="qf_maj_op_group_weights" signature="void qf_maj_op_group_weights(const QfMajoranaOperator *op, double *weights_out)">
-  Gets the mean absolute coefficient magnitude of each group.
-
-  The `i`-th entry is the sum of `abs(coeff)` over the terms in group `i`, divided by the number of terms in that group. This is the sampling weight of a randomized product formula (e.g. qDRIFT) that draws whole groups rather than individual terms, and is computed in a single pass over the operator rather than by reducing [`qf_maj_op_get_coeffs()`](#qf_maj_op_get_coeffs "qf_maj_op_get_coeffs") and [`qf_maj_op_get_groups()`](#qf_maj_op_get_groups "qf_maj_op_get_groups") (one value per *ungrouped* term each) on the caller’s side.
-
-  <Admonition title="See also" type="note">
-    The explanation on [Group operator terms: use the operator structure](/docs/addons/qiskit-fermions/guides/grouping#grouping-explanation).
-  </Admonition>
-
-  <span id="id11" />
-
-  #### Example
-
-  ```c
-   1uint64_t num_terms = 4;
-   2uint64_t num_modes = 8;
-   3uint32_t modes[8] = {0, 1, 2, 3, 1, 0, 3, 2};
-   4QkComplex64 coeffs[4] = {{1.0, 0.0}, {2.0, 0.0}, {-1.0, 0.0}, {-2.0, 0.0}};
-   5uint32_t boundaries[5] = {0, 2, 4, 6, 8};
-   6QfMajoranaOperator *op = qf_maj_op_new(num_terms, num_modes, coeffs, modes, boundaries);
-   7
-   8uint32_t groups_in[4] = {0, 1, 0, 1};
-   9qf_maj_op_set_groups(op, groups_in, num_terms);
-  10
-  11double weights[2];
-  12qf_maj_op_group_weights(op, weights);
-  13
-  14assert(weights[0] == 1.0);
-  15assert(weights[1] == 2.0);
-  ```
-
-  <Admonition title="Note" type="note">
-    A group index that no term carries weighs `0.0`, which keeps it out of the sample.
-  </Admonition>
-
-  **Parameters**
-
-  *   **op** – A pointer to the Majorana operator whose group weights to compute.
-  *   **weights\_out** – A pointer to the array of doubles into which to write the weights. Must be sized to :c:func:`qf_maj_op_num_groups`.
-</Function>
-
 ### qf\_maj\_op\_get\_groups
 
 <Function id="qf_maj_op_get_groups" signature="void qf_maj_op_get_groups(const QfMajoranaOperator *op, uint32_t **groups_out, uint64_t *groups_len)">
   Gets the group indices for all operator terms.
 
   <Admonition title="See also" type="note">
-    The explanation on [Group operator terms: use the operator structure](/docs/addons/qiskit-fermions/guides/grouping#grouping-explanation).
+    The explanation on [Group operator terms: use the operator structure](guides/grouping#grouping-explanation).
   </Admonition>
 
-  <span id="id12" />
+  <span id="id13" />
 
   #### Example
 
@@ -481,14 +511,16 @@ The following functions exist to check certain properties of an operator.
 
 ### qf\_maj\_op\_set\_groups
 
-<Function id="qf_maj_op_set_groups" signature="void qf_maj_op_set_groups(QfMajoranaOperator *op, const uint32_t *groups_in, uint64_t groups_len)">
+<Function id="qf_maj_op_set_groups" signature="QfExitCode qf_maj_op_set_groups(QfMajoranaOperator *op, const uint32_t *groups_in, uint64_t groups_len)">
   Sets the `groups` attribute of the provided operator.
 
+  The length is validated here because nothing downstream re-checks it: too few indices would silently drop the trailing terms wherever terms are iterated together with their groups, and too many would make [`qf_maj_op_num_groups()`](#qf_maj_op_num_groups "qf_maj_op_num_groups") report groups that no term carries.
+
   <Admonition title="See also" type="note">
-    The explanation on [Group operator terms: use the operator structure](/docs/addons/qiskit-fermions/guides/grouping#grouping-explanation).
+    The explanation on [Group operator terms: use the operator structure](guides/grouping#grouping-explanation).
   </Admonition>
 
-  <span id="id13" />
+  <span id="id14" />
 
   #### Example
 
@@ -505,6 +537,13 @@ The following functions exist to check certain properties of an operator.
   *   **op** – A pointer to the majorana operator whose `groups` attribute to write.
   *   **groups\_in** – A pointer to the `groups` integer array to write into the operator.
   *   **groups\_len** – The number of terms in the `groups_in` array.
+
+  **Returns**
+
+  An exit code.
+
+  *   `QfExitCode_Success` upon success
+  *   `QfExitCode_ValueError` if `groups_len` differs from the number of terms in the operator
 </Function>
 
 ### qf\_maj\_op\_del\_groups
@@ -513,10 +552,10 @@ The following functions exist to check certain properties of an operator.
   Deletes the `groups` attribute from the provided operator.
 
   <Admonition title="See also" type="note">
-    The explanation on [Group operator terms: use the operator structure](/docs/addons/qiskit-fermions/guides/grouping#grouping-explanation).
+    The explanation on [Group operator terms: use the operator structure](guides/grouping#grouping-explanation).
   </Admonition>
 
-  <span id="id14" />
+  <span id="id15" />
 
   #### Example
 
@@ -539,10 +578,10 @@ The following functions exist to check certain properties of an operator.
   A duplicate index in `group_indices` is written once per occurrence in `group_ops_out`. Requesting only a small number of groups out of a much larger total is significantly cheaper than requesting all of them, since terms belonging to a group that is not requested are skipped rather than appended anywhere.
 
   <Admonition title="See also" type="note">
-    The explanation on [Group operator terms: use the operator structure](/docs/addons/qiskit-fermions/guides/grouping#grouping-explanation).
+    The explanation on [Group operator terms: use the operator structure](guides/grouping#grouping-explanation).
   </Admonition>
 
-  <span id="id15" />
+  <span id="id16" />
 
   #### Example
 
@@ -586,7 +625,7 @@ The following functions exist to check certain properties of an operator.
     This function resets the operator’s `groups` attribute to `NULL`.
   </Admonition>
 
-  <span id="id16" />
+  <span id="id17" />
 
   #### Example
 
@@ -615,7 +654,7 @@ The following functions exist to check certain properties of an operator.
 <Function id="qf_maj_op_add" signature="QfMajoranaOperator *qf_maj_op_add(const QfMajoranaOperator *left, const QfMajoranaOperator *right)">
   Adds two operators together.
 
-  <span id="id17" />
+  <span id="id18" />
 
   #### Example
 
@@ -638,12 +677,142 @@ The following functions exist to check certain properties of an operator.
   A pointer to the resulting operator.
 </Function>
 
+### qf\_maj\_op\_scaled\_add
+
+<Function id="qf_maj_op_scaled_add" signature="QfMajoranaOperator *qf_maj_op_scaled_add(const QfMajoranaOperator *left, const QfMajoranaOperator *right, const QkComplex64 *factor)">
+  Adds two operators together, scaling the coefficients of the right one.
+
+  This fuses the scaling into the addition, which avoids building a fully scaled copy of `right` just to append it. Passing a factor of `-1` therefore subtracts, which is why no separate subtraction function is provided.
+
+  <span id="id19" />
+
+  #### Example
+
+  ```c
+  1QfMajoranaOperator *one = qf_maj_op_one();
+  2QfMajoranaOperator *other = qf_maj_op_one();
+  3
+  4// Subtracting via a factor of -1 leaves the two terms cancelling each other out.
+  5QkComplex64 factor = {-1.0, 0.0};
+  6QfMajoranaOperator *result = qf_maj_op_scaled_add(one, other, &factor);
+  7
+  8QfMajoranaOperator *simplified = qf_maj_op_simplify(result, 1e-10);
+  9assert(qf_maj_op_len(simplified) == 0);
+  ```
+
+  <Admonition title="Note" type="note">
+    Like [`qf_maj_op_add()`](#qf_maj_op_add "qf_maj_op_add"), this appends the terms of `right` without combining them with those of `left`, so the result tracks no group indices. Call [`qf_maj_op_simplify()`](#qf_maj_op_simplify "qf_maj_op_simplify") to collect equal terms afterwards.
+  </Admonition>
+
+  **Parameters**
+
+  *   **left** – A pointer to the left operator.
+  *   **right** – A pointer to the right operator.
+  *   **factor** – A pointer to the factor to scale the right operator’s coefficients with.
+
+  **Returns**
+
+  A pointer to the resulting operator, `left + factor * right`.
+</Function>
+
+### qf\_maj\_op\_add\_inplace
+
+<Function id="qf_maj_op_add_inplace" signature="void qf_maj_op_add_inplace(QfMajoranaOperator *left, const QfMajoranaOperator *right)">
+  Adds an operator into another one, in place.
+
+  The in-place counterpart of [`qf_maj_op_add()`](#qf_maj_op_add "qf_maj_op_add"), which saves copying `left` into a freshly allocated result.
+
+  <Admonition title="Caution" type="note">
+    This function resets the operator’s `groups` attribute to `NULL`.
+  </Admonition>
+
+  <span id="id20" />
+
+  #### Example
+
+  ```c
+  1QfMajoranaOperator *left = qf_maj_op_one();
+  2QfMajoranaOperator *right = qf_maj_op_one();
+  3
+  4qf_maj_op_add_inplace(left, right);
+  5
+  6assert(qf_maj_op_len(left) == 2);
+  ```
+
+  **Parameters**
+
+  *   **left** – A pointer to the operator to add into.
+  *   **right** – A pointer to the operator to add.
+</Function>
+
+### qf\_maj\_op\_scaled\_add\_inplace
+
+<Function id="qf_maj_op_scaled_add_inplace" signature="void qf_maj_op_scaled_add_inplace(QfMajoranaOperator *left, const QfMajoranaOperator *right, const QkComplex64 *factor)">
+  Adds an operator into another one in place, scaling the coefficients of the right one.
+
+  The in-place counterpart of [`qf_maj_op_scaled_add()`](#qf_maj_op_scaled_add "qf_maj_op_scaled_add"), computing `left + factor * right` without allocating a result. As there, a factor of `-1` subtracts.
+
+  <Admonition title="Caution" type="note">
+    This function resets the operator’s `groups` attribute to `NULL`.
+  </Admonition>
+
+  <span id="id21" />
+
+  #### Example
+
+  ```c
+  1QfMajoranaOperator *left = qf_maj_op_one();
+  2QfMajoranaOperator *right = qf_maj_op_one();
+  3
+  4// Subtract, leaving two terms that cancel each other out.
+  5QkComplex64 factor = {-1.0, 0.0};
+  6qf_maj_op_scaled_add_inplace(left, right, &factor);
+  7
+  8QfMajoranaOperator *simplified = qf_maj_op_simplify(left, 1e-10);
+  9assert(qf_maj_op_len(simplified) == 0);
+  ```
+
+  **Parameters**
+
+  *   **left** – A pointer to the operator to add into.
+  *   **right** – A pointer to the operator to add.
+  *   **factor** – A pointer to the factor to scale the right operator’s coefficients with.
+</Function>
+
+### qf\_maj\_op\_mul\_inplace
+
+<Function id="qf_maj_op_mul_inplace" signature="void qf_maj_op_mul_inplace(QfMajoranaOperator *op, const QkComplex64 *scalar)">
+  Multiplies an operator by a scalar, in place.
+
+  The in-place counterpart of [`qf_maj_op_mul()`](#qf_maj_op_mul "qf_maj_op_mul"), which saves copying the operator into a freshly allocated result.
+
+  <span id="id22" />
+
+  #### Example
+
+  ```c
+  1QfMajoranaOperator *op = qf_maj_op_one();
+  2QkComplex64 scalar = {2.0, 0.0};
+  3
+  4qf_maj_op_mul_inplace(op, &scalar);
+  ```
+
+  <Admonition title="Note" type="note">
+    Unlike the two in-place additions above, this **preserves** the `groups` attribute: scaling the coefficients leaves the number of terms, and hence the one-index-per-term invariant, untouched.
+  </Admonition>
+
+  **Parameters**
+
+  *   **op** – A pointer to the operator to scale.
+  *   **scalar** – A pointer to the scalar.
+</Function>
+
 ### qf\_maj\_op\_mul
 
 <Function id="qf_maj_op_mul" signature="QfMajoranaOperator *qf_maj_op_mul(const QfMajoranaOperator *op, const QkComplex64 *scalar)">
   Multiplies an operator by a scalar.
 
-  <span id="id18" />
+  <span id="id23" />
 
   #### Example
 
@@ -674,7 +843,7 @@ The following functions exist to check certain properties of an operator.
 <Function id="qf_maj_op_compose" signature="QfMajoranaOperator *qf_maj_op_compose(const QfMajoranaOperator *left, const QfMajoranaOperator *right)">
   Composes two operators with each other.
 
-  <span id="id19" />
+  <span id="id24" />
 
   #### Example
 
@@ -687,6 +856,10 @@ The following functions exist to check certain properties of an operator.
   6assert(qf_maj_op_equal(result, zero));
   ```
 
+  <Admonition title="Note" type="note">
+    The composition of two operators tracks no groups, even when both operands do.
+  </Admonition>
+
   **Parameters**
 
   *   **left** – A pointer to the left operator.
@@ -694,7 +867,7 @@ The following functions exist to check certain properties of an operator.
 
   **Returns**
 
-  A pointer to the resulting operator.
+  A pointer to `left.compose(right)`, which equals the operator `result = right @ left` in terms of the matrix multiplication `@`. In other words, `right` is applied first. To obtain `left @ right`, swap the arguments.
 </Function>
 
 ### qf\_maj\_op\_adjoint
@@ -707,7 +880,7 @@ The following functions exist to check certain properties of an operator.
   *   the actions in each term reverse their order
   *   the coefficients are complex conjugated
 
-  <span id="id20" />
+  <span id="id25" />
 
   #### Example
 
@@ -744,7 +917,7 @@ The following functions exist to check certain properties of an operator.
     This functions truncates coefficients greedily! If the acted upon operator might contain separate coefficients for duplicate terms consider calling [`qf_maj_op_simplify()`](#qf_maj_op_simplify "qf_maj_op_simplify") instead!
   </Admonition>
 
-  <span id="id21" />
+  <span id="id26" />
 
   #### Example
 
@@ -819,7 +992,7 @@ The following functions exist to check certain properties of an operator.
 
   The normal order of an operator term is defined such that all actions are ordered lexicographically. Whether they ascend or descend depends on the value of the `ascending` parameter.
 
-  <span id="id22" />
+  <span id="id27" />
 
   #### Example
 
@@ -855,7 +1028,7 @@ The following functions exist to check certain properties of an operator.
 <Function id="qf_maj_op_is_hermitian" signature="bool qf_maj_op_is_hermitian(const QfMajoranaOperator *op, double atol)">
   Checks whether an operator is Hermitian.
 
-  <span id="id23" />
+  <span id="id28" />
 
   #### Example
 
@@ -891,7 +1064,7 @@ The following functions exist to check certain properties of an operator.
 <Function id="qf_maj_op_max_rank" signature="uint32_t qf_maj_op_max_rank(const QfMajoranaOperator *op)">
   Checks the maximum rank of an operator.
 
-  <span id="id24" />
+  <span id="id29" />
 
   #### Example
 
@@ -922,7 +1095,7 @@ The following functions exist to check certain properties of an operator.
 <Function id="qf_maj_op_is_even" signature="bool qf_maj_op_is_even(const QfMajoranaOperator *op)">
   Checks whether an operator is even.
 
-  <span id="id25" />
+  <span id="id30" />
 
   #### Example
 
@@ -958,7 +1131,7 @@ The following functions exist to check certain properties of an operator.
 <Function id="qf_maj_op_equal" signature="bool qf_maj_op_equal(const QfMajoranaOperator *left, const QfMajoranaOperator *right)">
   Compare two operators for equality.
 
-  <span id="id26" />
+  <span id="id31" />
 
   #### Example
 
@@ -987,7 +1160,7 @@ The following functions exist to check certain properties of an operator.
 
   Equivalence in this context means approximate equality up to the specified absolute tolerance. To be more precise, this method returns `True`, when all the absolute values of the coefficients in the difference `other - self` are below the specified threshold `atol`.
 
-  <span id="id27" />
+  <span id="id32" />
 
   #### Example
 
@@ -1019,7 +1192,7 @@ The following functions exist to check certain properties of an operator.
 <Function id="qf_maj_op_len" signature="size_t qf_maj_op_len(const QfMajoranaOperator *op)">
   Returns the length (or number of terms) of the provided operator.
 
-  <span id="id28" />
+  <span id="id33" />
 
   #### Example
 
@@ -1046,7 +1219,7 @@ The following functions exist to check certain properties of an operator.
 <Function id="qf_maj_op_relabel_modes" signature="QfExitCode qf_maj_op_relabel_modes(QfMajoranaOperator *op, uint64_t num_modes, const uint32_t *permutation)">
   Relabels the modes of the provided operator.
 
-  <span id="id29" />
+  <span id="id34" />
 
   #### Example
 

@@ -12,20 +12,98 @@ python_api_name: Mapper Library
 
 The C API provides efficient implementations of commonly used operator representation mapper routines.
 
-|                                                                                      |                                                                                                                                                               |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`qf_ferm_op_jordan_wigner()`](#qf_ferm_op_jordan_wigner "qf_ferm_op_jordan_wigner") | Map a [`QfFermionOperator`](qf-ferm-op#qffermionoperator "QfFermionOperator") to a [QkObs](/docs/api/qiskit-c/qk-obs) under the Jordan-Wigner transformation. |
-| [`qf_fermion_to_majorana()`](#qf_fermion_to_majorana "qf_fermion_to_majorana")       | Map a [`QfFermionOperator`](qf-ferm-op#qffermionoperator "QfFermionOperator") to a [`QfMajoranaOperator`](qf-maj-op#qfmajoranaoperator "QfMajoranaOperator"). |
-| [`qf_majorana_to_fermion()`](#qf_majorana_to_fermion "qf_majorana_to_fermion")       | Map a [`QfMajoranaOperator`](qf-maj-op#qfmajoranaoperator "QfMajoranaOperator") to a [`QfFermionOperator`](qf-ferm-op#qffermionoperator "QfFermionOperator"). |
+|                                                                                                                 |                                                                                                                                                                                               |
+| --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`qf_ferm_op_jordan_wigner()`](#qf_ferm_op_jordan_wigner "qf_ferm_op_jordan_wigner")                            | Map a [`QfFermionOperator`](qf-ferm-op#qffermionoperator "QfFermionOperator") to a [QkObs](/docs/api/qiskit-c/qk-obs) under the Jordan-Wigner transformation.                                 |
+| [`qf_maj_op_jordan_wigner()`](#qf_maj_op_jordan_wigner "qf_maj_op_jordan_wigner")                               | Map a [`QfMajoranaOperator`](qf-maj-op#qfmajoranaoperator "QfMajoranaOperator") to a [QkObs](/docs/api/qiskit-c/qk-obs) under the Jordan-Wigner transformation.                               |
+| [`qf_edge_op_jordan_wigner()`](#qf_edge_op_jordan_wigner "qf_edge_op_jordan_wigner")                            | Map a [`QfEdgeVertexOperator`](qf-edge-op#qfedgevertexoperator "QfEdgeVertexOperator") to a [QkObs](/docs/api/qiskit-c/qk-obs) under the Jordan-Wigner transformation.                        |
+| [`qf_transfer_op_jordan_wigner()`](#qf_transfer_op_jordan_wigner "qf_transfer_op_jordan_wigner")                | Map a [`QfTransferVertexOperator`](qf-transfer-op#qftransfervertexoperator "QfTransferVertexOperator") to a [QkObs](/docs/api/qiskit-c/qk-obs) under the Jordan-Wigner transformation.        |
+| [`qf_fermion_to_majorana()`](#qf_fermion_to_majorana "qf_fermion_to_majorana")                                  | Map a [`QfFermionOperator`](qf-ferm-op#qffermionoperator "QfFermionOperator") to a [`QfMajoranaOperator`](qf-maj-op#qfmajoranaoperator "QfMajoranaOperator").                                 |
+| [`qf_majorana_to_fermion()`](#qf_majorana_to_fermion "qf_majorana_to_fermion")                                  | Map a [`QfMajoranaOperator`](qf-maj-op#qfmajoranaoperator "QfMajoranaOperator") to a [`QfFermionOperator`](qf-ferm-op#qffermionoperator "QfFermionOperator").                                 |
+| [`qf_edge_vertex_to_fermion()`](#qf_edge_vertex_to_fermion "qf_edge_vertex_to_fermion")                         | Map a [`QfEdgeVertexOperator`](qf-edge-op#qfedgevertexoperator "QfEdgeVertexOperator") to a [`QfFermionOperator`](qf-ferm-op#qffermionoperator "QfFermionOperator").                          |
+| [`qf_edge_vertex_to_majorana()`](#qf_edge_vertex_to_majorana "qf_edge_vertex_to_majorana")                      | Map a [`QfEdgeVertexOperator`](qf-edge-op#qfedgevertexoperator "QfEdgeVertexOperator") to a [`QfMajoranaOperator`](qf-maj-op#qfmajoranaoperator "QfMajoranaOperator").                        |
+| [`qf_transfer_vertex_to_fermion()`](#qf_transfer_vertex_to_fermion "qf_transfer_vertex_to_fermion")             | Map a [`QfTransferVertexOperator`](qf-transfer-op#qftransfervertexoperator "QfTransferVertexOperator") to a [`QfFermionOperator`](qf-ferm-op#qffermionoperator "QfFermionOperator").          |
+| [`qf_transfer_vertex_to_majorana()`](#qf_transfer_vertex_to_majorana "qf_transfer_vertex_to_majorana")          | Map a [`QfTransferVertexOperator`](qf-transfer-op#qftransfervertexoperator "QfTransferVertexOperator") to a [`QfMajoranaOperator`](qf-maj-op#qfmajoranaoperator "QfMajoranaOperator").        |
+| [`qf_transfer_vertex_to_edge_vertex()`](#qf_transfer_vertex_to_edge_vertex "qf_transfer_vertex_to_edge_vertex") | Map a [`QfTransferVertexOperator`](qf-transfer-op#qftransfervertexoperator "QfTransferVertexOperator") to a [`QfEdgeVertexOperator`](qf-edge-op#qfedgevertexoperator "QfEdgeVertexOperator"). |
 
 ***
+
+### qf\_edge\_vertex\_to\_fermion
+
+<Function id="qf_edge_vertex_to_fermion" signature="QfFermionOperator *qf_edge_vertex_to_fermion(const QfEdgeVertexOperator *edge_op)">
+  Map a `QfEdgeVertexOperator` to a `QfFermionOperator`.
+
+  #### Definition
+
+  This function decomposes the edge and vertex operators in terms of the fermionic creation and annihilation operators, as defined [here](qf-edge-op#qf-edge-op-definition).
+
+  #### Example
+
+  ```c
+  1// define some kind of edge-vertex operator
+  2QfEdgeVertexOperator *edge_op = qf_edge_op_one();
+  3
+  4// and map it to a fermionic operator
+  5QfFermionOperator *fer_op = qf_edge_vertex_to_fermion(edge_op);
+  ```
+
+  <Admonition title="Note" type="note">
+    The mapped operator is not simplified. Because each generator expands into a sum of fermionic terms, the result generally contains duplicate terms; call [`qf_ferm_op_normal_ordered()`](qf-ferm-op#qf_ferm_op_normal_ordered "qf_ferm_op_normal_ordered") followed by [`qf_ferm_op_simplify()`](qf-ferm-op#qf_ferm_op_simplify "qf_ferm_op_simplify") to reduce it.
+  </Admonition>
+
+  **Parameters**
+
+  *   **edge\_op** – A pointer to the edge-vertex operator to be mapped.
+
+  **Returns**
+
+  A pointer to the mapped fermionic operator.
+</Function>
+
+### qf\_edge\_vertex\_to\_majorana
+
+<Function id="qf_edge_vertex_to_majorana" signature="QfMajoranaOperator *qf_edge_vertex_to_majorana(const QfEdgeVertexOperator *edge_op)">
+  Map a `QfEdgeVertexOperator` to a `QfMajoranaOperator`.
+
+  <span id="id1" />
+
+  #### Definition
+
+  This function decomposes the edge and vertex operators in terms of the Majorana operators, as defined [here](qf-edge-op#qf-edge-op-definition).
+
+  <span id="id2" />
+
+  #### Example
+
+  ```c
+  1// define some kind of edge-vertex operator
+  2QfEdgeVertexOperator *edge_op = qf_edge_op_one();
+  3
+  4// and map it to a Majorana operator
+  5QfMajoranaOperator *maj_op = qf_edge_vertex_to_majorana(edge_op);
+  ```
+
+  <Admonition title="Note" type="note">
+    The mapped operator is not simplified; see [`qf_maj_op_normal_ordered()`](qf-maj-op#qf_maj_op_normal_ordered "qf_maj_op_normal_ordered") and [`qf_maj_op_simplify()`](qf-maj-op#qf_maj_op_simplify "qf_maj_op_simplify").
+  </Admonition>
+
+  **Parameters**
+
+  *   **edge\_op** – A pointer to the edge-vertex operator to be mapped.
+
+  **Returns**
+
+  A pointer to the mapped Majorana operator.
+</Function>
 
 ### qf\_ferm\_op\_jordan\_wigner
 
 <Function id="qf_ferm_op_jordan_wigner" signature="QfExitCode qf_ferm_op_jordan_wigner(const QfFermionOperator *op, uint32_t num_qubits, QkObs **out)">
   Applies the Jordan-Wigner transformation to an operator.
 
-  Map a [`QfFermionOperator`](qf-ferm-op#qffermionoperator "QfFermionOperator") to a [QkObs](/docs/api/qiskit-c/qk-obs) under the Jordan-Wigner transformation.   <span id="id1" />[\[1\]](#id2)
+  Map a [`QfFermionOperator`](qf-ferm-op#qffermionoperator "QfFermionOperator") to a [QkObs](/docs/api/qiskit-c/qk-obs) under the Jordan-Wigner transformation. [\[JW-ferm\]](#jw-ferm)
+
+  <span id="id4" />
 
   #### Definition
 
@@ -40,11 +118,19 @@ $$
 
   This mapping preserves the fermionic anti-commutation relations by introducing a chain of $\sigma^Z$ operators on all qubits preceding the acted-upon index $j$.
 
-  <span id="id2" />
-
-  \[[1](#id1)]
+  \[[JW-ferm](#id3)]
 
   P. Jordan and E. Wigner, Über das Paulische Äquivalenzverbot, Zeitschrift für Physik 47, No. 9. (1928), pp. 631–651, [doi:10.1007/BF01331938](https://link.springer.com/article/10.1007/BF01331938).
+
+  #### Memory usage
+
+  The result is not guaranteed to be fully simplified: duplicate terms are merged as it is assembled, to bound the memory required, but some may remain. Call `qk_obs_canonicalize` if you need them all combined. The exact number of terms returned may therefore vary with the number of threads used, which does not affect the operator that the result represents.
+
+  This mapping is parallelized for speed, and that choice costs memory. Each worker thread accumulates into an observable of its own, and the terms are handed to whichever thread is free rather than partitioned by which Pauli strings they produce, so every thread ends up holding roughly a full copy of the mapped operator. Peak memory therefore grows with the number of threads: expect on the order of the mapped operator’s size *times* the thread count, plus the input operator.
+
+  If memory matters more than wall-clock time, reduce the thread count through rayon’s `RAYON_NUM_THREADS` environment variable – peak memory falls roughly in proportion, and the mapping takes correspondingly longer – or map the operator in batches and add the partial results together yourself, which bounds the peak by the batch size at the cost of repeating the merging work.
+
+  <span id="id5" />
 
   #### Example
 
@@ -70,12 +156,212 @@ $$
   An exit code. This is `>0` if an error occurred. In particular, a `QfExitCode_ValueError` is returned if `num_qubits` is too small to hold the operator’s support.
 </Function>
 
+### qf\_maj\_op\_jordan\_wigner
+
+<Function id="qf_maj_op_jordan_wigner" signature="QfExitCode qf_maj_op_jordan_wigner(const QfMajoranaOperator *op, uint32_t num_qubits, QkObs **out)">
+  Applies the Jordan-Wigner transformation to a Majorana operator.
+
+  Map a [`QfMajoranaOperator`](qf-maj-op#qfmajoranaoperator "QfMajoranaOperator") to a [QkObs](/docs/api/qiskit-c/qk-obs) under the Jordan-Wigner transformation. [\[JW-maj\]](#jw-maj)
+
+  <span id="id7" />
+
+  #### Definition
+
+  With the [`QfMajoranaOperator`](qf-maj-op#qfmajoranaoperator "QfMajoranaOperator") convention that even indices carry $\gamma_j = a^\dagger_j + a_j$ and odd ones $\gamma'_j = i(a^\dagger_j - a_j)$, the Majorana index $m$ acts on the fermionic mode $\lfloor m/2 \rfloor$ and maps onto a single Pauli string,
+
+$$
+\gamma_j \rightarrow \bigotimes_{k\lt j} \sigma^Z_k \otimes \sigma^X_j ~~\text{and}~~
+\gamma'_j \rightarrow \bigotimes_{k\lt j} \sigma^Z_k \otimes \sigma^Y_j \, .
+$$
+
+  This also avoids an intermediate blowup relative to converting to a [`QfFermionOperator`](qf-ferm-op#qffermionoperator "QfFermionOperator") first: each fermionic action maps onto a *two*-term sum, so that route inflates a single Pauli string into up to $4^L$ terms for a term built from $L$ Majorana operators. The saving grows with the length of the terms; for single-operator terms the two routes cost about the same.
+
+  \[[JW-maj](#id6)]
+
+  P. Jordan and E. Wigner, Über das Paulische Äquivalenzverbot, Zeitschrift für Physik 47, No. 9. (1928), pp. 631–651, [doi:10.1007/BF01331938](https://link.springer.com/article/10.1007/BF01331938).
+
+  <span id="id9" />
+
+  #### Memory usage
+
+  See [`qf_ferm_op_jordan_wigner()`](#qf_ferm_op_jordan_wigner "qf_ferm_op_jordan_wigner"); the same parallelization and merging behaviour applies.
+
+  <span id="id10" />
+
+  #### Example
+
+  ```c
+  1// define some kind of Majorana operator
+  2QfMajoranaOperator *hamil = qf_maj_op_one();
+  3
+  4// and map it to a qubit operator
+  5QkObs *result;
+  6QfExitCode exit = qf_maj_op_jordan_wigner(hamil, 4, &result);
+  7
+  8assert(exit == QfExitCode_Success);
+  ```
+
+  **Parameters**
+
+  *   **op** – A pointer to the Majorana operator to be mapped.
+  *   **num\_qubits** – The number of qubits of the resulting operator. Note that this is counted in *fermionic* modes, so it must be strictly greater than the largest Majorana index acted upon by `op` divided by two.
+  *   **out** – A pointer to where the created qubit operator will be written on success. It is left untouched if the transformation fails.
+
+  **Returns**
+
+  An exit code. This is `>0` if an error occurred. In particular, a `QfExitCode_ValueError` is returned if `num_qubits` is too small to hold the operator’s support.
+</Function>
+
+### qf\_edge\_op\_jordan\_wigner
+
+<Function id="qf_edge_op_jordan_wigner" signature="QfExitCode qf_edge_op_jordan_wigner(const QfEdgeVertexOperator *op, uint32_t num_qubits, QkObs **out)">
+  Applies the Jordan-Wigner transformation to an edge-vertex operator.
+
+  Map a [`QfEdgeVertexOperator`](qf-edge-op#qfedgevertexoperator "QfEdgeVertexOperator") to a [QkObs](/docs/api/qiskit-c/qk-obs) under the Jordan-Wigner transformation. [\[JW-edge\]](#jw-edge)
+
+  <span id="id12" />
+
+  #### Definition
+
+  Writing $l_\text{min}$ and $l_\text{max}$ for the smaller and larger of the two indices, the generalized edge operators map onto single Pauli strings,
+
+$$
+\begin{align}
+V_l = E_{ll} &\rightarrow \sigma^Z_l \, , \nonumber \\
+E_{lr} &\rightarrow \mp \, \sigma^Y_{l_\text{min}}
+\left( \bigotimes_{l_\text{min} \lt k \lt l_\text{max}} \sigma^Z_k \right)
+\sigma^X_{l_\text{max}} \nonumber
+\end{align}
+$$
+
+  where the sign is negative for $l \lt r$ and positive otherwise. The $\sigma^Z$ chains of the two underlying Majorana operators cancel below the lower index, which is why the $\sigma^Z$ string spans only the modes strictly *between* the two endpoints.
+
+  \[[JW-edge](#id11)]
+
+  P. Jordan and E. Wigner, Über das Paulische Äquivalenzverbot, Zeitschrift für Physik 47, No. 9. (1928), pp. 631–651, [doi:10.1007/BF01331938](https://link.springer.com/article/10.1007/BF01331938).
+
+  \[[Gandon-edge](#id13)]
+
+  L. Gandon et al., Fermionic quantum simulation with flow sets, [arXiv:2512.11418](https://arxiv.org/abs/2512.11418).
+
+  <span id="id15" />
+
+  #### Memory usage
+
+  See [`qf_ferm_op_jordan_wigner()`](#qf_ferm_op_jordan_wigner "qf_ferm_op_jordan_wigner"); the same parallelization and merging behaviour applies.
+
+  <span id="id16" />
+
+  #### Example
+
+  ```c
+  1// define some kind of edge-vertex operator
+  2QfEdgeVertexOperator *hamil = qf_edge_op_one();
+  3
+  4// and map it to a qubit operator
+  5QkObs *result;
+  6QfExitCode exit = qf_edge_op_jordan_wigner(hamil, 4, &result);
+  7
+  8assert(exit == QfExitCode_Success);
+  ```
+
+  <Admonition title="Note" type="note">
+    Reversing the two indices leaves the Pauli string unchanged and flips only the sign, which is the antisymmetry $E_{lr} = -E_{rl}$. Contrast [`qf_transfer_op_jordan_wigner()`](#qf_transfer_op_jordan_wigner "qf_transfer_op_jordan_wigner"), where the coefficient is the same for both orientations and the Pauli letters change instead.
+  </Admonition>
+
+  <Admonition title="Note" type="note">
+    These Pauli strings differ from those in Eq. (10) of [\[Gandon-edge\]](#gandon-edge) by an exchange of $\sigma^X$ and $\sigma^Y$ on the two endpoints. This is a single-qubit basis choice – both conventions satisfy every defining relation of the algebra – and the one used here is the one consistent with [`qf_edge_vertex_to_fermion()`](#qf_edge_vertex_to_fermion "qf_edge_vertex_to_fermion"), so that mapping an operator directly agrees with converting it to a [`QfFermionOperator`](qf-ferm-op#qffermionoperator "QfFermionOperator") first.
+  </Admonition>
+
+  **Parameters**
+
+  *   **op** – A pointer to the edge-vertex operator to be mapped.
+  *   **num\_qubits** – The number of qubits of the resulting operator. This must be strictly greater than the largest mode index acted upon by `op`.
+  *   **out** – A pointer to where the created qubit operator will be written on success. It is left untouched if the transformation fails.
+
+  **Returns**
+
+  An exit code. This is `>0` if an error occurred. In particular, a `QfExitCode_ValueError` is returned if `num_qubits` is too small to hold the operator’s support.
+</Function>
+
+### qf\_transfer\_op\_jordan\_wigner
+
+<Function id="qf_transfer_op_jordan_wigner" signature="QfExitCode qf_transfer_op_jordan_wigner(const QfTransferVertexOperator *op, uint32_t num_qubits, QkObs **out)">
+  Applies the Jordan-Wigner transformation to a transfer-vertex operator.
+
+  Map a [`QfTransferVertexOperator`](qf-transfer-op#qftransfervertexoperator "QfTransferVertexOperator") to a [QkObs](/docs/api/qiskit-c/qk-obs) under the Jordan-Wigner transformation. [\[JW-transfer\]](#jw-transfer)
+
+  <span id="id18" />
+
+  #### Definition
+
+  Writing $l_\text{min}$ and $l_\text{max}$ for the smaller and larger of the two indices, the generalized transfer operators map onto single Pauli strings,
+
+$$
+\begin{align}
+V_l = T_{ll} &\rightarrow \sigma^Z_l \, , \nonumber \\
+T_{lr} &\rightarrow -\frac{1}{2} \, \sigma^P_{l_\text{min}}
+\left( \bigotimes_{l_\text{min} \lt k \lt l_\text{max}} \sigma^Z_k \right)
+\sigma^P_{l_\text{max}} \nonumber
+\end{align}
+$$
+
+  where $P = X$ for $l \lt r$ and $P = Y$ otherwise.
+
+  \[[JW-transfer](#id17)]
+
+  P. Jordan and E. Wigner, Über das Paulische Äquivalenzverbot, Zeitschrift für Physik 47, No. 9. (1928), pp. 631–651, [doi:10.1007/BF01331938](https://link.springer.com/article/10.1007/BF01331938).
+
+  \[[Gandon-transfer](#id19)]
+
+  L. Gandon et al., Fermionic quantum simulation with flow sets, [arXiv:2512.11418](https://arxiv.org/abs/2512.11418).
+
+  <span id="id22" />
+
+  #### Memory usage
+
+  See [`qf_ferm_op_jordan_wigner()`](#qf_ferm_op_jordan_wigner "qf_ferm_op_jordan_wigner"); the same parallelization and merging behaviour applies.
+
+  <span id="id23" />
+
+  #### Example
+
+  ```c
+  1// define some kind of transfer-vertex operator
+  2QfTransferVertexOperator *hamil = qf_transfer_op_one();
+  3
+  4// and map it to a qubit operator
+  5QkObs *result;
+  6QfExitCode exit = qf_transfer_op_jordan_wigner(hamil, 4, &result);
+  7
+  8assert(exit == QfExitCode_Success);
+  ```
+
+  <Admonition title="Note" type="note">
+    The index order works the opposite way round to [`qf_edge_op_jordan_wigner()`](#qf_edge_op_jordan_wigner "qf_edge_op_jordan_wigner"): the coefficient is $-1/2$ for **both** orientations and it is the Pauli letters that swap. $T_{lr}$ and $T_{rl}$ are genuinely different operators, with no antisymmetry relating them.
+  </Admonition>
+
+  <Admonition title="Note" type="note">
+    As for [`qf_edge_op_jordan_wigner()`](#qf_edge_op_jordan_wigner "qf_edge_op_jordan_wigner"), these Pauli strings differ from Eq. (10) of [\[Gandon-transfer\]](#gandon-transfer) by a single-qubit basis choice; the convention used here is the one consistent with [`qf_transfer_vertex_to_fermion()`](#qf_transfer_vertex_to_fermion "qf_transfer_vertex_to_fermion").
+  </Admonition>
+
+  **Parameters**
+
+  *   **op** – A pointer to the transfer-vertex operator to be mapped.
+  *   **num\_qubits** – The number of qubits of the resulting operator. This must be strictly greater than the largest mode index acted upon by `op`.
+  *   **out** – A pointer to where the created qubit operator will be written on success. It is left untouched if the transformation fails.
+
+  **Returns**
+
+  An exit code. This is `>0` if an error occurred. In particular, a `QfExitCode_ValueError` is returned if `num_qubits` is too small to hold the operator’s support.
+</Function>
+
 ### qf\_fermion\_to\_majorana
 
 <Function id="qf_fermion_to_majorana" signature="QfMajoranaOperator *qf_fermion_to_majorana(const QfFermionOperator *fer_op)">
   Map a `QfFermionOperator` to a `QfMajoranaOperator`.
 
-  <span id="id3" />
+  <span id="id24" />
 
   #### Definition
 
@@ -88,7 +374,7 @@ $$
 
   where $a^\dagger_j$ ($a_j$) is the fermionic creation (annihilation) operator acting on the $j$-th spin-less fermionic mode, and $\gamma_j$/$\gamma'_j$ are the two Majorana fermion operators. In the case of the [`QfMajoranaOperator`](qf-maj-op#qfmajoranaoperator "QfMajoranaOperator") these will be stored on the even and odd Majorana modes, respectively.
 
-  <span id="id4" />
+  <span id="id25" />
 
   #### Example
 
@@ -114,7 +400,7 @@ $$
 <Function id="qf_majorana_to_fermion" signature="QfFermionOperator *qf_majorana_to_fermion(const QfMajoranaOperator *maj_op)">
   Map a `QfMajoranaOperator` to a `QfFermionOperator`.
 
-  <span id="id5" />
+  <span id="id26" />
 
   #### Definition
 
@@ -127,7 +413,7 @@ $$
 
   where $\gamma_j$/$\gamma'_j$ are the two Majorana fermion operators (stored on the even and odd modes, respectively), and $a^\dagger_j$ ($a_j$) is the fermionic creation (annihilation) operator acting on the $j$-th spin-less fermionic mode.
 
-  <span id="id6" />
+  <span id="id27" />
 
   #### Example
 
@@ -146,5 +432,113 @@ $$
   **Returns**
 
   A pointer to the mapped fermion operator.
+</Function>
+
+### qf\_transfer\_vertex\_to\_fermion
+
+<Function id="qf_transfer_vertex_to_fermion" signature="QfFermionOperator *qf_transfer_vertex_to_fermion(const QfTransferVertexOperator *transfer_op)">
+  Map a `QfTransferVertexOperator` to a `QfFermionOperator`.
+
+  <span id="id28" />
+
+  #### Definition
+
+  This function decomposes the transfer and vertex operators in terms of the fermionic creation and annihilation operators, as defined [here](qf-transfer-op#qf-transfer-op-definition).
+
+  <span id="id29" />
+
+  #### Example
+
+  ```c
+  1// define some kind of transfer-vertex operator
+  2QfTransferVertexOperator *transfer_op = qf_transfer_op_one();
+  3
+  4// and map it to a fermionic operator
+  5QfFermionOperator *fer_op = qf_transfer_vertex_to_fermion(transfer_op);
+  ```
+
+  <Admonition title="Note" type="note">
+    The mapped operator is not simplified. Because each generator expands into a sum of fermionic terms, the result generally contains duplicate terms; call [`qf_ferm_op_normal_ordered()`](qf-ferm-op#qf_ferm_op_normal_ordered "qf_ferm_op_normal_ordered") followed by [`qf_ferm_op_simplify()`](qf-ferm-op#qf_ferm_op_simplify "qf_ferm_op_simplify") to reduce it.
+  </Admonition>
+
+  **Parameters**
+
+  *   **transfer\_op** – A pointer to the transfer-vertex operator to be mapped.
+
+  **Returns**
+
+  A pointer to the mapped fermionic operator.
+</Function>
+
+### qf\_transfer\_vertex\_to\_majorana
+
+<Function id="qf_transfer_vertex_to_majorana" signature="QfMajoranaOperator *qf_transfer_vertex_to_majorana(const QfTransferVertexOperator *transfer_op)">
+  Map a `QfTransferVertexOperator` to a `QfMajoranaOperator`.
+
+  <span id="id30" />
+
+  #### Definition
+
+  This function decomposes the transfer and vertex operators in terms of the Majorana operators, as defined [here](qf-transfer-op#qf-transfer-op-definition).
+
+  <span id="id31" />
+
+  #### Example
+
+  ```c
+  1// define some kind of transfer-vertex operator
+  2QfTransferVertexOperator *transfer_op = qf_transfer_op_one();
+  3
+  4// and map it to a Majorana operator
+  5QfMajoranaOperator *maj_op = qf_transfer_vertex_to_majorana(transfer_op);
+  ```
+
+  <Admonition title="Note" type="note">
+    The mapped operator is not simplified; see [`qf_maj_op_normal_ordered()`](qf-maj-op#qf_maj_op_normal_ordered "qf_maj_op_normal_ordered") and [`qf_maj_op_simplify()`](qf-maj-op#qf_maj_op_simplify "qf_maj_op_simplify").
+  </Admonition>
+
+  **Parameters**
+
+  *   **transfer\_op** – A pointer to the transfer-vertex operator to be mapped.
+
+  **Returns**
+
+  A pointer to the mapped Majorana operator.
+</Function>
+
+### qf\_transfer\_vertex\_to\_edge\_vertex
+
+<Function id="qf_transfer_vertex_to_edge_vertex" signature="QfEdgeVertexOperator *qf_transfer_vertex_to_edge_vertex(const QfTransferVertexOperator *transfer_op)">
+  Map a `QfTransferVertexOperator` to a `QfEdgeVertexOperator`.
+
+  <span id="id32" />
+
+  #### Definition
+
+  This function rewrites each transfer operator in terms of the edge and vertex operators. A vertex operator maps to itself, whereas a transfer operator $T_{jk}$ becomes a length-two product of an edge and a vertex operator.
+
+  <span id="id33" />
+
+  #### Example
+
+  ```c
+  1// define some kind of transfer-vertex operator
+  2QfTransferVertexOperator *transfer_op = qf_transfer_op_one();
+  3
+  4// and map it to an edge-vertex operator
+  5QfEdgeVertexOperator *edge_op = qf_transfer_vertex_to_edge_vertex(transfer_op);
+  ```
+
+  <Admonition title="Note" type="note">
+    This is the one mapper that stays within the interaction-operator representations, so it is the natural route to compare the two: mapping a transfer operator to an edge-vertex operator and then on to a fermionic one agrees with mapping it to a fermionic operator directly.
+  </Admonition>
+
+  **Parameters**
+
+  *   **transfer\_op** – A pointer to the transfer-vertex operator to be mapped.
+
+  **Returns**
+
+  A pointer to the mapped edge-vertex operator.
 </Function>
 

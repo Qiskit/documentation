@@ -791,39 +791,6 @@ $$
     The set of mode indices which this operator acts upon.
   </Function>
 
-  ##### group\_weights
-
-  <Function id="qiskit_fermions.operators.FermionOperator.group_weights" signature="group_weights()">
-    Returns the mean absolute coefficient magnitude of each group.
-
-    The `i`-th entry is the sum of `abs(coeff)` over the terms in group `i`, divided by the number of terms in that group. If [`groups`](#qiskit_fermions.operators.FermionOperator.groups "qiskit_fermions.operators.FermionOperator.groups") is `None`, this function also returns `None`.
-
-    This is the sampling weight of a randomized product formula (e.g. qDRIFT) that draws whole groups rather than individual terms. Computing it natively is considerably cheaper than reducing [`get_coeffs()`](#qiskit_fermions.operators.FermionOperator.get_coeffs "qiskit_fermions.operators.FermionOperator.get_coeffs") and [`groups`](#qiskit_fermions.operators.FermionOperator.groups "qiskit_fermions.operators.FermionOperator.groups") in NumPy, because those two accessors each copy one value per *ungrouped* term out of the operator only for it to be aggregated back down to one value per group, whereas this returns just the [`num_groups()`](#qiskit_fermions.operators.FermionOperator.num_groups "qiskit_fermions.operators.FermionOperator.num_groups") reduced values.
-
-    <Admonition title="Note" type="note">
-      A group index that no term carries weighs `0.0`, which keeps it out of the sample.
-    </Admonition>
-
-    ```pycon
-    >>> from qiskit_fermions.operators import FermionOperator
-    >>> op = FermionOperator(
-    ...     [1.0, 2.0, -1.0, -2.0],
-    ...     [True, False, True, False, True, False, True, False],
-    ...     [0, 1, 2, 3, 1, 0, 3, 2],
-    ...     [0, 2, 4, 6, 8],
-    ... )
-    >>> print(op.group_weights())
-    None
-    >>> op.groups = [0, 1, 0, 1]
-    >>> op.group_weights()
-    [1.0, 2.0]
-    ```
-
-    **Returns**
-
-    The mean absolute coefficient magnitude of each group index.
-  </Function>
-
   ##### has\_groups
 
   <Function id="qiskit_fermions.operators.FermionOperator.has_groups" signature="has_groups()">
@@ -1189,26 +1156,20 @@ $$
 
   <Function id="qiskit_fermions.operators.FermionOperator._double_commutator_" signature="_double_commutator_(op_a, op_b, op_c, sign)" modifiers="static" />
 
-  ##### \_fci\_linear\_operator\_
-
-  <Function id="qiskit_fermions.operators.FermionOperator._fci_linear_operator_" signature="_fci_linear_operator_(norb, nelec)" />
-
   ##### \_linear\_operator\_
 
   <Function id="qiskit_fermions.operators.FermionOperator._linear_operator_" signature="_linear_operator_(norb, nelec)">
     Returns a SciPy `LinearOperator` for this operator on the `(norb, nelec)` FCI sector.
 
-    This implements the `SupportsLinearOperator` protocol, so an operator carrying a native FCI kernel can be passed directly to [`scipy.sparse.linalg.expm_multiply()`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.linalg.expm_multiply.html#scipy.sparse.linalg.expm_multiply "(in SciPy v1.18.0)") or to [`ffsim.linear_operator()`](https://qiskit-community.github.io/ffsim/api/stubs/ffsim.linear_operator.html#ffsim.linear_operator "(in ffsim)"). It depends only on the internal `_SupportsFciLinearOperator` contract – the `_fci_linear_operator_` carrier – rather than on any concrete operator type, and wraps that native matrix-vector kernel in a genuine [`scipy.sparse.linalg.LinearOperator`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.linalg.LinearOperator.html#scipy.sparse.linalg.LinearOperator "(in SciPy v1.18.0)"); [`expm_multiply()`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.linalg.expm_multiply.html#scipy.sparse.linalg.expm_multiply "(in SciPy v1.18.0)") requires the adjoint action, so both `matvec` and `rmatvec` are supplied.
+    This implements [`ffsim.SupportsLinearOperator`](https://qiskit-community.github.io/ffsim/api/stubs/ffsim.SupportsLinearOperator.html#ffsim.SupportsLinearOperator "(in ffsim)") by converting to an [`ffsim.FermionOperator`](https://qiskit-community.github.io/ffsim/api/stubs/ffsim.FermionOperator.html#ffsim.FermionOperator "(in ffsim)") and handing that to [`ffsim.linear_operator()`](https://qiskit-community.github.io/ffsim/api/stubs/ffsim.linear_operator.html#ffsim.linear_operator "(in ffsim)"): simulation is ffsim’s concern, and this package owns the mapper-agnostic circuit rather than a second simulation backend.
 
-    The native kernel requires a contiguous one-dimensional `complex128` vector, whereas SciPy’s machinery may feed a [`LinearOperator`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.linalg.LinearOperator.html#scipy.sparse.linalg.LinearOperator "(in SciPy v1.18.0)") real probe vectors (from its one-norm estimator) or non-contiguous `(dim, 1)` column slices. The `matvec`/`rmatvec` wrappers coerce the input with `numpy.ascontiguousarray(v, complex128).reshape(-1)`; the numpy handles are bound once here (per operator) rather than re-resolved on every matvec inside the [`expm_multiply()`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.linalg.expm_multiply.html#scipy.sparse.linalg.expm_multiply "(in SciPy v1.18.0)") loop.
-
-    This is attached to the operator classes as `_linear_operator_` at import time (see [`qiskit_fermions.operators`](/docs/api/qiskit-fermions/operators#module-qiskit_fermions.operators "qiskit_fermions.operators")): the native operator classes are compiled types whose instances cannot themselves subclass SciPy’s [`LinearOperator`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.linalg.LinearOperator.html#scipy.sparse.linalg.LinearOperator "(in SciPy v1.18.0)"), so the protocol method is provided in Python.
+    ffsim rejects an operator that does not conserve both particle number and the z-component of spin, since such an operator has no action on a fixed sector, and silently ignores a term acting on an orbital outside `[0, norb)`.
 
     **Parameters**
 
     *   **norb** ([*int*](https://docs.python.org/3/library/functions.html#int)) – the number of spatial orbitals.
     *   **nelec** ([*int*](https://docs.python.org/3/library/functions.html#int)  *|*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*]*) – the electron count – an integer for a spinless sector, or an `(n_alpha, n_beta)` pair for a spinful one.
-    *   **self** (*\_SupportsFciLinearOperator*)
+    *   **self** ([*FermionOperator*](#qiskit_fermions.operators.FermionOperator "qiskit_fermions.operators.FermionOperator"))
 
     **Returns**
 
@@ -1216,7 +1177,7 @@ $$
 
     **Return type**
 
-    [*LinearOperator*](https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.linalg.LinearOperator.html#scipy.sparse.linalg.LinearOperator "(in SciPy v1.18.0)")
+    [scipy.sparse.linalg.LinearOperator](https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.linalg.LinearOperator.html#scipy.sparse.linalg.LinearOperator "(in SciPy v1.18.0)")
   </Function>
 
   ##### \_majorana\_operator\_
@@ -1225,6 +1186,28 @@ $$
     Converts this operator into a [`MajoranaOperator`](operators-majorana-operator "qiskit_fermions.operators.MajoranaOperator").
 
     This implements the [`SupportsMajoranaOperator`](protocols-supports-majorana-operator "qiskit_fermions.protocols.SupportsMajoranaOperator") protocol by delegating to [`fermion_to_majorana()`](mappers-library-fermion-to-majorana "qiskit_fermions.mappers.library.fermion_to_majorana").
+  </Function>
+
+  ##### \_trace\_
+
+  <Function id="qiskit_fermions.operators.FermionOperator._trace_" signature="_trace_(norb, nelec)">
+    Returns the trace of this operator on the `(norb, nelec)` FCI sector.
+
+    This implements [`ffsim.SupportsTrace`](https://qiskit-community.github.io/ffsim/api/stubs/ffsim.SupportsTrace.html#ffsim.SupportsTrace "(in ffsim)") via [`ffsim.trace()`](https://qiskit-community.github.io/ffsim/api/stubs/ffsim.trace.html#ffsim.trace "(in ffsim)"), mirroring `_linear_operator_`.
+
+    **Parameters**
+
+    *   **norb** ([*int*](https://docs.python.org/3/library/functions.html#int)) – the number of spatial orbitals.
+    *   **nelec** ([*int*](https://docs.python.org/3/library/functions.html#int)  *|*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*]*) – the electron count – an integer for a spinless sector, or an `(n_alpha, n_beta)` pair for a spinful one.
+    *   **self** ([*FermionOperator*](#qiskit_fermions.operators.FermionOperator "qiskit_fermions.operators.FermionOperator"))
+
+    **Returns**
+
+    The trace of this operator on the requested sector.
+
+    **Return type**
+
+    [complex](https://docs.python.org/3/library/functions.html#complex)
   </Function>
 </Class>
 

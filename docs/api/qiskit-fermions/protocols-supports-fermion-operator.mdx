@@ -11,9 +11,13 @@ python_api_name: qiskit_fermions.protocols.SupportsFermionOperator
 <Class id="qiskit_fermions.protocols.SupportsFermionOperator" isDedicatedPage={true} signature="SupportsFermionOperator(*args, **kwargs)" modifiers="class">
   Bases: [`Protocol`](https://docs.python.org/3/library/typing.html#typing.Protocol)
 
-  An equivalent of the [`ffsim.SupportsFermionOperator`](https://qiskit-community.github.io/ffsim/api/stubs/ffsim.SupportsFermionOperator.html#ffsim.SupportsFermionOperator "(in ffsim)") protocol.
+  This package’s operator-conversion contract, converting an operator to a [`FermionOperator`](operators-fermion-operator "qiskit_fermions.operators.FermionOperator").
 
   See [`fermion_operator()`](mappers-library-fermion-operator "qiskit_fermions.mappers.library.fermion_operator") for the type-agnostic helper function dispatching to the method below.
+
+  <Admonition title="Caution" type="note">
+    Despite the shared method name, this is *not* the same contract as [`ffsim.SupportsFermionOperator`](https://qiskit-community.github.io/ffsim/api/stubs/ffsim.SupportsFermionOperator.html#ffsim.SupportsFermionOperator "(in ffsim)"): this one returns a [`FermionOperator`](operators-fermion-operator "qiskit_fermions.operators.FermionOperator"), whereas ffsim’s returns an [`ffsim.FermionOperator`](https://qiskit-community.github.io/ffsim/api/stubs/ffsim.FermionOperator.html#ffsim.FermionOperator "(in ffsim)"). The two types are unrelated. Since [`ffsim.fermion_operator()`](https://qiskit-community.github.io/ffsim/api/stubs/ffsim.fermion_operator.html#ffsim.fermion_operator "(in ffsim)") dispatches purely on the method name, calling it on an operator of this package returns *this* package’s type rather than ffsim’s; use [`fermion_operator()`](mappers-library-fermion-operator "qiskit_fermions.mappers.library.fermion_operator") when that is what you mean.
+  </Admonition>
 
   ```pycon
   >>> from qiskit_fermions.operators import MajoranaOperator
