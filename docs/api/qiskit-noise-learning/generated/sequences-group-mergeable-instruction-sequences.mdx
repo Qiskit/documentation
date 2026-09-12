@@ -1,0 +1,47 @@
+---
+title: group_mergeable_instruction_sequences (latest version)
+description: API reference for qiskit_noise_learning.sequences.group_mergeable_instruction_sequences in the latest version of qiskit-noise-learning
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit_noise_learning.sequences.group_mergeable_instruction_sequences
+---
+
+<span id="qiskit-noise-learning-sequences-group-mergeable-instruction-sequences" />
+
+# qiskit\_noise\_learning.sequences.group\_mergeable\_instruction\_sequences
+
+<Function id="qiskit_noise_learning.sequences.group_mergeable_instruction_sequences" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/sequences/group_mergeable_instruction_sequences.py" signature="qiskit_noise_learning.sequences.group_mergeable_instruction_sequences(sequences: Sequence[InstructionSequence], grouping_strategies: Sequence[GroupingStrategy] | None = None) → list[list[int]]">
+  Group the positions of instruction sequences that can be merged with each other.
+
+  The returned groups partition the positions of `sequences`: every position appears in exactly one group, and the sequences within a group can all be merged together, in any order, into a single sequence via [`merge()`](sequences-instruction-sequence#merge "qiskit_noise_learning.sequences.InstructionSequence.merge").
+
+  In terms of strategy, the list of sequences is first partitioned into sets according to [`structure_key`](sequences-instruction-sequence#structure_key "qiskit_noise_learning.sequences.InstructionSequence.structure_key"). Each set is then further partitioned into the returned groups via a family of greedy algorithms. A single member of this family is specified by a grouping strategy, which pairs an order to visit the instruction sequences in with a strategy for choosing which group to merge each one into. Every grouping strategy in `grouping_strategies` is applied to every set, and the fewest groups found for a set are the ones returned for it, ties going to the earlier strategy. Because the sets are treated independently, supplying an additional grouping strategy can only decrease the total number of groups returned.
+
+  A sequence is called more constrained if it specifies more Pauli mappings. The first entry of a grouping strategy, the order to visit the instruction sequences in, is one of:
+
+  *   `"most-constrained-first"`: ordered from most-constrained to least-constrained.
+  *   `"least-constrained-first"`: ordered from least-constrained to most-constrained.
+  *   `"qubitwise-lexicographic"`: ordered so that sequences agreeing on the Pauli mappings they specify, qubit by qubit from the first onwards, are considered consecutively. Which of two differing sequences comes first follows a fixed but arbitrary convention, making this one of many possible orderings that place sequences specifying similar mappings near each other.
+  *   `"input"`: the order in which they were given.
+
+  The second entry selects which of the groups a sequence can join it is merged into:
+
+  *   `"first"`: the group created earliest.
+  *   `"most-constrained"`: the group that already admits the fewest complete permutations, which leaves the more flexible groups intact for later sequences.
+  *   `"least-impacted"`: the group whose admissible complete permutations the instruction sequence rules out the fewest of.
+
+  **Parameters**
+
+  *   **sequences** – The instruction sequences to group.
+  *   **grouping\_strategies** – The grouping strategies to take the fewest groups found by any of. If `None`, an empirically determined default set of strategies is used.
+
+  **Returns**
+
+  The groups of positions of mergeable sequences.
+
+  **Raises**
+
+  *   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError) – If any sequence contains an instruction that is neither a gate application nor a partial Pauli permutation.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If `grouping_strategies` is empty, or if any of its entries is not a pairing of a documented instruction sequence order with a documented merging strategy.
+</Function>
+

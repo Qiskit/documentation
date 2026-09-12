@@ -1,0 +1,56 @@
+---
+title: CurveFitObservables (latest version)
+description: API reference for qiskit_noise_learning.analysis.CurveFitObservables in the latest version of qiskit-noise-learning
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_noise_learning.analysis.CurveFitObservables
+---
+
+<span id="qiskit-noise-learning-analysis-curvefitobservables" />
+
+# qiskit\_noise\_learning.analysis.CurveFitObservables
+
+<Class id="qiskit_noise_learning.analysis.CurveFitObservables" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/analysis/curve_fit_observables.py" signature="qiskit_noise_learning.analysis.CurveFitObservables" modifiers="class">
+  Bases: [`AnalysisStage`](analysis-analysis-stage "qiskit_noise_learning.analysis.analysis_pipeline.AnalysisStage")
+
+  Fit observable data to exponential decays of the form `a * f**fragment_depth`, and average any remaining observables over randomizations.
+
+  This stage will curve fit data for any unbound paths in `fit.paths`. If `fit.paths is None`, any path in the data with multiple fragment depths will be curve fit. In both cases, any remaining paths will be averaged.
+
+  Each curve-fit row carries the following per-row metadata, which the averaged rows do not have:
+
+  *   `"spam_fidelity"`, `"spam_fidelity_std"`: the fitted prefactor $a$ and its `1`-sigma uncertainty.
+  *   `"chi_squared"`: the raw chi-squared of the fit.
+  *   `"reduced_chi_squared"`: the raw chi-squared divided by the degrees of freedom, that is the number of fragment depths minus the two fit parameters, or `nan` if there are none.
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit_noise_learning.analysis.CurveFitObservables.__init__" signature="__init__()" />
+
+  ## Methods
+
+  |                                                                                                                                            |                                                                                                                             |
+  | ------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit_noise_learning.analysis.CurveFitObservables.__init__ "qiskit_noise_learning.analysis.CurveFitObservables.__init__")() |                                                                                                                             |
+  | `run`(fit)                                                                                                                                 | Run this stage, returning a new [`Fit`](analysis-fit "qiskit_noise_learning.analysis.Fit") with the output level populated. |
+
+  ## Attributes
+
+  |                                                                                                                                                      |                                   |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------- |
+  | [`input_level`](#qiskit_noise_learning.analysis.CurveFitObservables.input_level "qiskit_noise_learning.analysis.CurveFitObservables.input_level")    | The data level this stage reads.  |
+  | [`output_level`](#qiskit_noise_learning.analysis.CurveFitObservables.output_level "qiskit_noise_learning.analysis.CurveFitObservables.output_level") | The data level this stage writes. |
+
+  ### input\_level
+
+  <Attribute id="qiskit_noise_learning.analysis.CurveFitObservables.input_level">
+    The data level this stage reads.
+  </Attribute>
+
+  ### output\_level
+
+  <Attribute id="qiskit_noise_learning.analysis.CurveFitObservables.output_level">
+    The data level this stage writes.
+  </Attribute>
+</Class>
+

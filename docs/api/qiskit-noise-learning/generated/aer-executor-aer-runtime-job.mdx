@@ -1,0 +1,71 @@
+---
+title: AerRuntimeJob (latest version)
+description: API reference for qiskit_noise_learning.aer_executor.AerRuntimeJob in the latest version of qiskit-noise-learning
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_noise_learning.aer_executor.AerRuntimeJob
+---
+
+<span id="qiskit-noise-learning-aer-executor-aerruntimejob" />
+
+# qiskit\_noise\_learning.aer\_executor.AerRuntimeJob
+
+<Class id="qiskit_noise_learning.aer_executor.AerRuntimeJob" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/aer_executor/aer_executor.py" signature="qiskit_noise_learning.aer_executor.AerRuntimeJob(qasm_simulator: AerSimulator, program: QuantumProgram, noise_dict: dict[str, PauliLindbladMap] | None = None, angle_decimals: int = 5, warn_absent: bool = True, seed: int | None = None)" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
+
+  Job object returned by [`AerExecutor.run()`](aer-executor-aer-executor#run "qiskit_noise_learning.aer_executor.AerExecutor.run").
+
+  The program is executed eagerly on construction; the result is available immediately when [`result()`](#qiskit_noise_learning.aer_executor.AerRuntimeJob.result "qiskit_noise_learning.aer_executor.AerRuntimeJob.result") is called.
+
+  **Parameters**
+
+  *   **qasm\_simulator** – The Aer simulator to run on.
+  *   **program** – The quantum program to execute.
+  *   **noise\_dict** – A map from barrier label refs to Pauli-Lindblad noise maps.
+  *   **angle\_decimals** – Rounding precision for gate angles (in units of π/2).
+  *   **warn\_absent** – If `True` (default), warn when a tagged barrier has no entry in `noise_dict`.
+  *   **seed** – Root seed for this job’s randomness. If `None`, one is drawn nondeterministically; either way the value used is available as [`seed`](#qiskit_noise_learning.aer_executor.AerRuntimeJob.seed "qiskit_noise_learning.aer_executor.AerRuntimeJob.seed").
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit_noise_learning.aer_executor.AerRuntimeJob.__init__" signature="__init__(qasm_simulator: AerSimulator, program: QuantumProgram, noise_dict: dict[str, PauliLindbladMap] | None = None, angle_decimals: int = 5, warn_absent: bool = True, seed: int | None = None)" />
+
+  ## Methods
+
+  |                                                                                                                                                                        |                                             |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
+  | [`__init__`](#qiskit_noise_learning.aer_executor.AerRuntimeJob.__init__ "qiskit_noise_learning.aer_executor.AerRuntimeJob.__init__")(qasm\_simulator, program\[, ...]) |                                             |
+  | [`job_id`](#qiskit_noise_learning.aer_executor.AerRuntimeJob.job_id "qiskit_noise_learning.aer_executor.AerRuntimeJob.job_id")()                                       | Return the unique job ID.                   |
+  | [`result`](#qiskit_noise_learning.aer_executor.AerRuntimeJob.result "qiskit_noise_learning.aer_executor.AerRuntimeJob.result")(\*\_, \*\*\_\_)                         | Return the result of the program execution. |
+
+  ## Attributes
+
+  |                                                                                                                          |                                                       |
+  | ------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------- |
+  | [`seed`](#qiskit_noise_learning.aer_executor.AerRuntimeJob.seed "qiskit_noise_learning.aer_executor.AerRuntimeJob.seed") | The root seed this job's randomness was derived from. |
+
+  ### job\_id
+
+  <Function id="qiskit_noise_learning.aer_executor.AerRuntimeJob.job_id" signature="job_id() → str">
+    Return the unique job ID.
+  </Function>
+
+  ### seed
+
+  <Attribute id="qiskit_noise_learning.aer_executor.AerRuntimeJob.seed">
+    Type: [`int`](https://docs.python.org/3/library/functions.html#int)
+
+    The root seed this job’s randomness was derived from.
+
+    Constructing another job with this seed and the same program reproduces this job’s result, including when the job itself was created without a seed.
+
+    For a job created by [`AerExecutor.run()`](aer-executor-aer-executor#run "qiskit_noise_learning.aer_executor.AerExecutor.run") this is the seed that the executor drew for this particular run, which is not its [`AerExecutor.root_seed`](aer-executor-aer-executor#root_seed "qiskit_noise_learning.aer_executor.AerExecutor.root_seed") — the two are not interchangeable.
+  </Attribute>
+
+  ### result
+
+  <Function id="qiskit_noise_learning.aer_executor.AerRuntimeJob.result" signature="result(*_, **__) → QuantumProgramResult">
+    Return the result of the program execution.
+  </Function>
+</Class>
+

@@ -1,0 +1,82 @@
+---
+title: ModelData (latest version)
+description: API reference for qiskit_noise_learning.data.ModelData in the latest version of qiskit-noise-learning
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_noise_learning.data.ModelData
+---
+
+<span id="qiskit-noise-learning-data-modeldata" />
+
+# qiskit\_noise\_learning.data.ModelData
+
+<Class id="qiskit_noise_learning.data.ModelData" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/data/model_data.py" signature="qiskit_noise_learning.data.ModelData(dataset: Dataset)" modifiers="class">
+  Bases: [`LeveledData`](data-leveled-data "qiskit_noise_learning.data.leveled_data.LeveledData"), [`Generic`](https://docs.python.org/3/library/typing.html#typing.Generic)\[`ParameterIndex`]
+
+  Results from fitting, backed by an xarray Dataset.
+
+  The dataset has data variables:
+
+  *   `parameter_values`: 1D array with dimension `parameter_index`.
+  *   `covariance`: 2D array with dimensions `(parameter_row_index, parameter_col_index)`.
+
+  The `parameter_index`, `parameter_row_index`, and `parameter_col_index` coordinates all share the same parameter labels. Additional fit metadata is stored in dataset attrs.
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit_noise_learning.data.ModelData.__init__" signature="__init__(dataset: Dataset)" />
+
+  ## Methods
+
+  |                                                                                                                                                             |                                                                   |
+  | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+  | [`__init__`](#qiskit_noise_learning.data.ModelData.__init__ "qiskit_noise_learning.data.ModelData.__init__")(dataset)                                       |                                                                   |
+  | [`filter_time`](#qiskit_noise_learning.data.ModelData.filter_time "qiskit_noise_learning.data.ModelData.filter_time")(lb, ub)                               | Filter to data gathered within the time bounds.                   |
+  | [`from_arrays`](#qiskit_noise_learning.data.ModelData.from_arrays "qiskit_noise_learning.data.ModelData.from_arrays")(parameter\_indices, ...\[, metadata]) | Instantiate from data specified as arrays in standard containers. |
+
+  ## Attributes
+
+  |                                                                                                              |                                              |
+  | ------------------------------------------------------------------------------------------------------------ | -------------------------------------------- |
+  | `dataset`                                                                                                    |                                              |
+  | [`metadata`](#qiskit_noise_learning.data.ModelData.metadata "qiskit_noise_learning.data.ModelData.metadata") | Metadata describing the model parameter fit. |
+
+  ### from\_arrays
+
+  <Function id="qiskit_noise_learning.data.ModelData.from_arrays" signature="from_arrays(parameter_indices: list[ParameterIndex], parameter_values: ndarray[float64], covariance: ndarray[float64], time_lbs: ndarray[datetime64], time_ubs: ndarray[datetime64], metadata: dict[str, Any] | None = None) → Self" modifiers="classmethod">
+    Instantiate from data specified as arrays in standard containers.
+
+    **Parameters**
+
+    *   **parameter\_indices** – A list of `ParameterIndex` instances.
+    *   **parameter\_values** – A 1d array of floats indicating parameter values.
+    *   **covariance** – A 2d array of floats indicating the covariances of the parameter values.
+    *   **time\_lbs** – A 1d array of data acquisition time lower bounds for each parameter estimate.
+    *   **time\_ubs** – A 1d array of data acquisition time upper bounds for each parameter estimate.
+    *   **metadata** – Any metadata to attach to the dataset.
+  </Function>
+
+  ### metadata
+
+  <Attribute id="qiskit_noise_learning.data.ModelData.metadata">
+    Type: [`dict`](https://docs.python.org/3/library/stdtypes.html#dict)\[[`str`](https://docs.python.org/3/library/stdtypes.html#str), [`Any`](https://docs.python.org/3/library/typing.html#typing.Any)]
+
+    Metadata describing the model parameter fit.
+  </Attribute>
+
+  ### filter\_time
+
+  <Function id="qiskit_noise_learning.data.ModelData.filter_time" signature="filter_time(lb: datetime64, ub: datetime64) → Self">
+    Filter to data gathered within the time bounds.
+
+    **Parameters**
+
+    *   **lb** – The time lower bound (inclusive).
+    *   **ub** – The time upper bound (inclusive).
+
+    **Returns**
+
+    The time filtered version of self.
+  </Function>
+</Class>
+

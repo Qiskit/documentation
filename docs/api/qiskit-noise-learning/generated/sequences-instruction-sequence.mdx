@@ -1,0 +1,134 @@
+---
+title: InstructionSequence (latest version)
+description: API reference for qiskit_noise_learning.sequences.InstructionSequence in the latest version of qiskit-noise-learning
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_noise_learning.sequences.InstructionSequence
+---
+
+<span id="qiskit-noise-learning-sequences-instructionsequence" />
+
+# qiskit\_noise\_learning.sequences.InstructionSequence
+
+<Class id="qiskit_noise_learning.sequences.InstructionSequence" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/sequences/instruction_sequence.py" signature="qiskit_noise_learning.sequences.InstructionSequence(start_fragment: Iterable[T], repeatable_fragment: Iterable[T], end_fragment: Iterable[T], fragment_depth: int | None = None)" modifiers="class">
+  Bases: `BaseSequence`\[`Instruction`]
+
+  A sequence of instructions.
+
+  **Parameters**
+
+  *   **start\_fragment** – The start of the sequence.
+  *   **repeatable\_fragment** – The repeatable middle of the sequence.
+  *   **end\_fragment** – The end of the sequence.
+  *   **fragment\_depth** – The number of repetitions of the repeatable fragment.
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit_noise_learning.sequences.InstructionSequence.__init__" signature="__init__(start_fragment: Iterable[T], repeatable_fragment: Iterable[T], end_fragment: Iterable[T], fragment_depth: int | None = None)" />
+
+  ## Methods
+
+  |                                                                                                                                                                                      |                                                                                                              |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+  | [`__init__`](#qiskit_noise_learning.sequences.InstructionSequence.__init__ "qiskit_noise_learning.sequences.InstructionSequence.__init__")(start\_fragment, ...\[, fragment\_depth]) |                                                                                                              |
+  | `bind_at`(fragment\_depth)                                                                                                                                                           | Return a new instance with the same fragments bound to the fragment depth.                                   |
+  | [`complete`](#qiskit_noise_learning.sequences.InstructionSequence.complete "qiskit_noise_learning.sequences.InstructionSequence.complete")()                                         | Return a new instance whose data is the same as `self` except that all contained instructions are completed. |
+  | [`is_mergeable_with`](#qiskit_noise_learning.sequences.InstructionSequence.is_mergeable_with "qiskit_noise_learning.sequences.InstructionSequence.is_mergeable_with")(other)         | Check if this instruction sequence is mergeable with another instruction sequence.                           |
+  | [`merge`](#qiskit_noise_learning.sequences.InstructionSequence.merge "qiskit_noise_learning.sequences.InstructionSequence.merge")(other)                                             | Merge this instruction sequence with another instruction sequence.                                           |
+  | `unbind`()                                                                                                                                                                           | Return a new instance with the same fragments but fragment depth set to `None`.                              |
+
+  ## Attributes
+
+  |                                                                                                                                                           |                                                                           |
+  | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+  | `end_fragment`                                                                                                                                            | The ending fragment.                                                      |
+  | `fragment_depth`                                                                                                                                          | The number of repetitions of the repeatable fragment.                     |
+  | [`gate_key`](#qiskit_noise_learning.sequences.InstructionSequence.gate_key "qiskit_noise_learning.sequences.InstructionSequence.gate_key")                | A hashable summary of the gate applications in this instruction sequence. |
+  | [`is_complete`](#qiskit_noise_learning.sequences.InstructionSequence.is_complete "qiskit_noise_learning.sequences.InstructionSequence.is_complete")       | Whether all contained instructions are completely specified.              |
+  | `is_unbound`                                                                                                                                              | Whether the sequence is unbound.                                          |
+  | `repeatable_fragment`                                                                                                                                     | The repeatable fragment.                                                  |
+  | `start_fragment`                                                                                                                                          | The starting fragment.                                                    |
+  | [`structure_key`](#qiskit_noise_learning.sequences.InstructionSequence.structure_key "qiskit_noise_learning.sequences.InstructionSequence.structure_key") | A hashable summary of the instruction structure of this sequence.         |
+
+  ### is\_complete
+
+  <Attribute id="qiskit_noise_learning.sequences.InstructionSequence.is_complete">
+    Type: [`bool`](https://docs.python.org/3/library/functions.html#bool)
+
+    Whether all contained instructions are completely specified.
+  </Attribute>
+
+  ### complete
+
+  <Function id="qiskit_noise_learning.sequences.InstructionSequence.complete" signature="complete() → Self">
+    Return a new instance whose data is the same as `self` except that all contained instructions are completed.
+
+    **Returns**
+
+    A new [`InstructionSequence`](#qiskit_noise_learning.sequences.InstructionSequence "qiskit_noise_learning.sequences.InstructionSequence") instance.
+  </Function>
+
+  ### gate\_key
+
+  <Attribute id="qiskit_noise_learning.sequences.InstructionSequence.gate_key">
+    Type: [`Hashable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Hashable)
+
+    A hashable summary of the gate applications in this instruction sequence.
+
+    Two instruction sequences have equal gate keys exactly when they have the same fragment depth and each of their fragments applies the same gates in the same order, however else they differ; every instruction that is not a gate application is ignored. The value itself is opaque, with only equality and hashability guaranteed.
+  </Attribute>
+
+  ### structure\_key
+
+  <Attribute id="qiskit_noise_learning.sequences.InstructionSequence.structure_key">
+    Type: [`Hashable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Hashable)
+
+    A hashable summary of the instruction structure of this sequence.
+
+    This key comes with the following guarantees:
+
+    *   If two instruction sequences have different keys, they are not mergeable.
+    *   If two instruction sequences have the same key, they have the same fragment depth, and their fragments contain the same sequence of instruction types on the same qubits.
+
+    **Raises**
+
+    [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError) – If this instruction sequence contains an object that is not an instruction.
+  </Attribute>
+
+  ### is\_mergeable\_with
+
+  <Function id="qiskit_noise_learning.sequences.InstructionSequence.is_mergeable_with" signature="is_mergeable_with(other: Self) → bool">
+    Check if this instruction sequence is mergeable with another instruction sequence.
+
+    Two instruction sequences are mergeable if they have compatible fragment depths and their fragments are element-wise mergeable.
+
+    **Parameters**
+
+    **other** – The other [`InstructionSequence`](#qiskit_noise_learning.sequences.InstructionSequence "qiskit_noise_learning.sequences.InstructionSequence").
+
+    **Returns**
+
+    Whether this instance is mergeable with another.
+  </Function>
+
+  ### merge
+
+  <Function id="qiskit_noise_learning.sequences.InstructionSequence.merge" signature="merge(other: Self) → Self">
+    Merge this instruction sequence with another instruction sequence.
+
+    Assuming this instance is mergeable with `other`, the returned merged sequence is constructed by merging each corresponding fragment element-wise.
+
+    **Parameters**
+
+    **other** – The instruction sequence to merge this with.
+
+    **Returns**
+
+    The merged sequence of self and other.
+
+    **Raises**
+
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If the sequences are not mergeable.
+  </Function>
+</Class>
+

@@ -1,0 +1,63 @@
+---
+title: ZeroPostSelect (latest version)
+description: API reference for qiskit_noise_learning.analysis.ZeroPostSelect in the latest version of qiskit-noise-learning
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_noise_learning.analysis.ZeroPostSelect
+---
+
+<span id="qiskit-noise-learning-analysis-zeropostselect" />
+
+# qiskit\_noise\_learning.analysis.ZeroPostSelect
+
+<Class id="qiskit_noise_learning.analysis.ZeroPostSelect" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/analysis/zero_post_select.py" signature="qiskit_noise_learning.analysis.ZeroPostSelect(creg_identifier: Callable[[list[str]], Iterator[str]] | None = None, mode: Literal['node', 'edge'] = 'edge')" modifiers="class">
+  Bases: [`AnalysisStage`](analysis-analysis-stage "qiskit_noise_learning.analysis.analysis_pipeline.AnalysisStage")
+
+  Apply a mask to raw data based on whether bit values are all False.
+
+  This post-selection stage identifies cregs and masks shots whose bit patterns indicate failure. It can be configured to operate in one of two modes:
+
+  *   `"node"`: Shots are discarded if any bit in the identified creg is True.
+
+  *   **`"edge"`: Shots are discarded if there exists a pair of neighbouring qubits in the**
+
+      coupling map for which both bits are True.
+
+  **Parameters**
+
+  *   **creg\_identifier** – A callable that, given a list of present creg names, returns an iterator over creg names to post-select on. Defaults to identifying cregs with naming pattern `"*_ps"`.
+  *   **mode** – Post-selection mode; either `"node"` or `"edge"`.
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit_noise_learning.analysis.ZeroPostSelect.__init__" signature="__init__(creg_identifier: Callable[[list[str]], Iterator[str]] | None = None, mode: Literal['node', 'edge'] = 'edge')" />
+
+  ## Methods
+
+  |                                                                                                                                                           |                                                                                                                             |
+  | --------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit_noise_learning.analysis.ZeroPostSelect.__init__ "qiskit_noise_learning.analysis.ZeroPostSelect.__init__")(\[creg\_identifier, mode]) |                                                                                                                             |
+  | `run`(fit)                                                                                                                                                | Run this stage, returning a new [`Fit`](analysis-fit "qiskit_noise_learning.analysis.Fit") with the output level populated. |
+
+  ## Attributes
+
+  |                                                                                                                                            |                                   |
+  | ------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------- |
+  | `creg_identifier`                                                                                                                          |                                   |
+  | [`input_level`](#qiskit_noise_learning.analysis.ZeroPostSelect.input_level "qiskit_noise_learning.analysis.ZeroPostSelect.input_level")    | The data level this stage reads.  |
+  | `mode`                                                                                                                                     |                                   |
+  | [`output_level`](#qiskit_noise_learning.analysis.ZeroPostSelect.output_level "qiskit_noise_learning.analysis.ZeroPostSelect.output_level") | The data level this stage writes. |
+
+  ### input\_level
+
+  <Attribute id="qiskit_noise_learning.analysis.ZeroPostSelect.input_level">
+    The data level this stage reads.
+  </Attribute>
+
+  ### output\_level
+
+  <Attribute id="qiskit_noise_learning.analysis.ZeroPostSelect.output_level">
+    The data level this stage writes.
+  </Attribute>
+</Class>
+

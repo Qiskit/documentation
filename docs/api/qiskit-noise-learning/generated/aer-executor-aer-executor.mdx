@@ -1,0 +1,81 @@
+---
+title: AerExecutor (latest version)
+description: API reference for qiskit_noise_learning.aer_executor.AerExecutor in the latest version of qiskit-noise-learning
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_noise_learning.aer_executor.AerExecutor
+---
+
+<span id="qiskit-noise-learning-aer-executor-aerexecutor" />
+
+# qiskit\_noise\_learning.aer\_executor.AerExecutor
+
+<Class id="qiskit_noise_learning.aer_executor.AerExecutor" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/aer_executor/aer_executor.py" signature="qiskit_noise_learning.aer_executor.AerExecutor(qasm_simulator: AerSimulator, noise_dict: dict[str, PauliLindbladMap] | None = None, angle_decimals: int = 5, warn_absent: bool = True, root_seed: int | None = None)" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
+
+  Local Aer-based executor mimicking the IBM Runtime executor interface.
+
+  Runs a `QuantumProgram` eagerly on construction of the returned job — the result is available immediately when [`AerRuntimeJob.result()`](aer-executor-aer-runtime-job#result "qiskit_noise_learning.aer_executor.AerRuntimeJob.result") is called.
+
+  **Noise injection**
+
+  When `noise_dict` is provided, Pauli-Lindblad noise is injected into circuits at tagged barriers via `InsertNoisePass`. Samplomatic inserts three barriers around each boxed gate — left (`L`), middle (`M`), and right (`R`) — with labels of the form `<pos><idx>@tag=<tag>` (e.g. `R0@tag=r0`). By default, noise is injected at the `R` (right) barriers, i.e. *after* the gate. Use `noise_after=False` on `InsertNoisePass` to target `M` barriers instead (noise *before* the gate).
+
+  The `noise_dict` format is:
+
+  *   **Keys** — layer name tags (strings, e.g. `"r0"`, `"my_tag"`). Each key must match the `ref` of a `Tag` annotation used when building the `QuantumProgram`. A warning is emitted (if `warn_absent=True`) when a tagged barrier’s tag is absent from the dict; the barrier is left as-is (no noise inserted for that layer).
+  *   **Values** — [`PauliLindbladMap`](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap) instances describing the Pauli-Lindblad noise channel for that gate. The map’s `num_qubits` must equal the number of qubits on the corresponding barrier in the circuit.
+  *   **Qubit indexing** — indices inside the map are *local* to the barrier’s qubit set, independent of global circuit qubit numbering. Local index `i` refers to the `i`-th qubit of the barrier in *ascending physical-qubit order*, so a device-wide map can be converted with [`PauliLindbladMap.keep_qubits(sorted(qubits))`](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap#keep_qubits).
+
+  **Parameters**
+
+  *   **qasm\_simulator** – The Aer simulator to run programs on.
+  *   **noise\_dict** – A map from barrier label refs to Pauli-Lindblad noise maps. Pass `None` (default) to run without noise injection.
+  *   **angle\_decimals** – Gate angles are rounded to the nearest multiple of π/2 at this decimal precision before simulation. This prevents floating-point drift from preventing Clifford-method simulation when angles are nominally Clifford.
+  *   **warn\_absent** – If `True` (default), emit a warning when a tagged barrier’s tag is not found in `noise_dict`. Set to `False` when partial coverage of tags is intentional.
+  *   **root\_seed** – Root seed for random number generation, covering both the sampling of shots and the sampling of twirls. Rather than being used directly, it seeds a sequence that each call to [`run()`](#qiskit_noise_learning.aer_executor.AerExecutor.run "qiskit_noise_learning.aer_executor.AerExecutor.run") draws the next seed from, so that runs are independently random. With the default of `None` a root seed is drawn nondeterministically; it is available as [`root_seed`](#qiskit_noise_learning.aer_executor.AerExecutor.root_seed "qiskit_noise_learning.aer_executor.AerExecutor.root_seed") either way.
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit_noise_learning.aer_executor.AerExecutor.__init__" signature="__init__(qasm_simulator: AerSimulator, noise_dict: dict[str, PauliLindbladMap] | None = None, angle_decimals: int = 5, warn_absent: bool = True, root_seed: int | None = None)" />
+
+  ## Methods
+
+  |                                                                                                                                                                        |                                                   |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- |
+  | [`__init__`](#qiskit_noise_learning.aer_executor.AerExecutor.__init__ "qiskit_noise_learning.aer_executor.AerExecutor.__init__")(qasm\_simulator\[, noise\_dict, ...]) |                                                   |
+  | [`run`](#qiskit_noise_learning.aer_executor.AerExecutor.run "qiskit_noise_learning.aer_executor.AerExecutor.run")(program)                                             | Run a quantum program and return a completed job. |
+
+  ## Attributes
+
+  |                                                                                                                                     |                                                      |
+  | ----------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
+  | [`root_seed`](#qiskit_noise_learning.aer_executor.AerExecutor.root_seed "qiskit_noise_learning.aer_executor.AerExecutor.root_seed") | The root seed each run's randomness is derived from. |
+
+  ### root\_seed
+
+  <Attribute id="qiskit_noise_learning.aer_executor.AerExecutor.root_seed">
+    Type: [`int`](https://docs.python.org/3/library/functions.html#int)
+
+    The root seed each run’s randomness is derived from.
+
+    Passing this to a new executor reproduces this executor’s whole sequence of runs. It is not the seed of any individual run: to reproduce a single run, use the seed of the job that produced it, [`AerRuntimeJob.seed`](aer-executor-aer-runtime-job#seed "qiskit_noise_learning.aer_executor.AerRuntimeJob.seed").
+  </Attribute>
+
+  ### run
+
+  <Function id="qiskit_noise_learning.aer_executor.AerExecutor.run" signature="run(program: QuantumProgram) → AerRuntimeJob">
+    Run a quantum program and return a completed job.
+
+    Each call draws a fresh seed from the executor’s root seed, so successive runs are independently random even when the executor is seeded.
+
+    **Parameters**
+
+    **program** – The quantum program to execute.
+
+    **Returns**
+
+    A job whose result is immediately available.
+  </Function>
+</Class>
+

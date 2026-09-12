@@ -1,0 +1,109 @@
+---
+title: AggregatedObservableData (latest version)
+description: API reference for qiskit_noise_learning.data.AggregatedObservableData in the latest version of qiskit-noise-learning
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_noise_learning.data.AggregatedObservableData
+---
+
+<span id="qiskit-noise-learning-data-aggregatedobservabledata" />
+
+# qiskit\_noise\_learning.data.AggregatedObservableData
+
+<Class id="qiskit_noise_learning.data.AggregatedObservableData" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/data/aggregated_observable_data.py" signature="qiskit_noise_learning.data.AggregatedObservableData(dataset: Dataset)" modifiers="class">
+  Bases: [`LeveledData`](data-leveled-data "qiskit_noise_learning.data.leveled_data.LeveledData")
+
+  Per-path estimates obtained by aggregating [`ObservableData`](data-observable-data "qiskit_noise_learning.data.ObservableData").
+
+  This class holds a single estimate per observable, obtained by collapsing the per-randomization structure of [`ObservableData`](data-observable-data "qiskit_noise_learning.data.ObservableData"). Each observable estimate is labelled by an unbound path and a corresponding fragment depth. A non-negative fragment depth corresponds to labelling by a bound path with that depth, and a fragment depth of `-1` signals that the estimate corresponds to a genuinely unbound path. For a non-negative fragment depth, the estimate value corresponds to the product of all fidelities in the path, and the estimate for a fragment depth of `-1` corresponds to the product of the fidelities in the repeatable fragment.
+
+  *   Data variables:
+
+      > *   `estimate_values`: A 1d float array of per-observable estimates, with dimensions `("observable",)`.
+      > *   `estimate_std`: A 1d array of standard deviations for the estimates, with dimensions `("observable",)`.
+      > *   `time_lbs`: A lower bound on the data collection for each observable, with dimensions `("observable",)`.
+      > *   `time_ubs`: An upper bound on the data collection for each observable, with dimensions `("observable",)`.
+      > *   `metadata`: A 1d object array of any additional per-observable data, with dimensions `("observable",)`.
+
+  *   Coordinates:
+
+      > *   `unbound_path`: A 1d array of unbound [`Path`](sequences-path "qiskit_noise_learning.sequences.Path") instances labelling each observable, with dimensions `("observable",)`.
+      > *   `fragment_depth`: A 1d array of type `int` specifying the fragment depth associated to the observable. A value of `-1` indicates an estimate of only the `repeatable_fragment` of the path.
+
+  **Parameters**
+
+  **dataset** – A `Dataset` with the above formatting.
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit_noise_learning.data.AggregatedObservableData.__init__" signature="__init__(dataset: Dataset)" />
+
+  ## Methods
+
+  |                                                                                                                                                                                            |                                                                   |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------- |
+  | [`__init__`](#qiskit_noise_learning.data.AggregatedObservableData.__init__ "qiskit_noise_learning.data.AggregatedObservableData.__init__")(dataset)                                        |                                                                   |
+  | [`filter_time`](#qiskit_noise_learning.data.AggregatedObservableData.filter_time "qiskit_noise_learning.data.AggregatedObservableData.filter_time")(lb, ub)                                | Filter to data gathered within the time bounds.                   |
+  | [`from_arrays`](#qiskit_noise_learning.data.AggregatedObservableData.from_arrays "qiskit_noise_learning.data.AggregatedObservableData.from_arrays")(unbound\_paths, fragment\_depths, ...) | Instantiate from data specified as arrays in standard containers. |
+  | [`merge`](#qiskit_noise_learning.data.AggregatedObservableData.merge "qiskit_noise_learning.data.AggregatedObservableData.merge")(other)                                                   | Merge the data from self and other into a single instance.        |
+
+  ## Attributes
+
+  |                                                                                                                                         |                                     |
+  | --------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
+  | [`dataset`](#qiskit_noise_learning.data.AggregatedObservableData.dataset "qiskit_noise_learning.data.AggregatedObservableData.dataset") | The aggregated observable data set. |
+
+  ### dataset
+
+  <Attribute id="qiskit_noise_learning.data.AggregatedObservableData.dataset">
+    Type: `Dataset`
+
+    The aggregated observable data set.
+  </Attribute>
+
+  ### from\_arrays
+
+  <Function id="qiskit_noise_learning.data.AggregatedObservableData.from_arrays" signature="from_arrays(unbound_paths: list[Path], fragment_depths: list[int], estimate_values: ndarray[float], estimate_std: ndarray[float], time_lbs: ndarray[datetime64], time_ubs: ndarray[datetime64], metadata: ndarray[object] | None = None) → Self" modifiers="classmethod">
+    Instantiate from data specified as arrays in standard containers.
+
+    **Parameters**
+
+    *   **unbound\_paths** – A list of unbound paths (with `fragment_depth=None`).
+    *   **fragment\_depths** – A list of fragment depths, with `-1` indicating the corresponding estimate is in reference to only the repeatable fragment of the corresponding path.
+    *   **estimate\_values** – A 1d array of per-observable estimates.
+    *   **estimate\_std** – A 1d array of standard deviations.
+    *   **time\_lbs** – A 1d array of time lower bounds.
+    *   **time\_ubs** – A 1d array of time upper bounds.
+    *   **metadata** – Any additional data associated with a given observable.
+  </Function>
+
+  ### merge
+
+  <Function id="qiskit_noise_learning.data.AggregatedObservableData.merge" signature="merge(other: Self) → Self">
+    Merge the data from self and other into a single instance.
+
+    **Parameters**
+
+    **other** – The other data.
+
+    **Returns**
+
+    A new instance containing both data sets.
+  </Function>
+
+  ### filter\_time
+
+  <Function id="qiskit_noise_learning.data.AggregatedObservableData.filter_time" signature="filter_time(lb: datetime64, ub: datetime64) → Self">
+    Filter to data gathered within the time bounds.
+
+    **Parameters**
+
+    *   **lb** – The time lower bound (inclusive).
+    *   **ub** – The time upper bound (inclusive).
+
+    **Returns**
+
+    The time filtered version of self.
+  </Function>
+</Class>
+
