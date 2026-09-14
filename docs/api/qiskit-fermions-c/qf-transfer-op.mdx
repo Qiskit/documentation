@@ -1,0 +1,1287 @@
+---
+title: QfTransferVertexOperator (latest version)
+description: API reference for QfTransferVertexOperator in the latest version of qiskit-fermions-c
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: QfTransferVertexOperator
+---
+
+# QfTransferVertexOperator
+
+### QfTransferVertexOperator
+
+<Class id="QfTransferVertexOperator" signature="struct QfTransferVertexOperator" />
+
+A transfer-vertex operator.
+
+<Admonition title="Note" type="note">
+  This is an opaque data structure to the C API whose internals are implemented entirely in Rust. The remainder of this page describes the design and related functions to work with this struct.
+</Admonition>
+
+***
+
+<span id="qf-transfer-op-definition" />
+
+## Definition
+
+This operator is defined in terms of the transfer-vertex ($T_{jk}$, $V_j$) operators:
+
+$$
+\begin{align}
+V_j    &= -i \gamma_{2j-1} \gamma_{2j}
+        = 1 - 2 a^\dagger_j a_j \, , \nonumber \\
+T_{jk} &= \frac{i}{2} V_j E_{jk}
+        = \frac{i}{2} \gamma_{2j} \gamma_{2k-1} \, , \nonumber \\
+T_{kj} &= \frac{i}{2} E_{jk} V_k
+        = -\frac{i}{2} \gamma_{2j-1} \gamma_{2k} \nonumber
+\end{align}
+$$
+
+where $E_{jk}$ is an edge operator of the [`QfEdgeVertexOperator`](qf-edge-op#qfedgevertexoperator "QfEdgeVertexOperator") and these individual terms fulfill the following mixed fermionic-bosonic commutation relations for $j \lt k \lt l \lt m$: <span id="id1" />[\[1\]](#id2)
+
+$$
+\begin{align}
+\left\{ T_{jk}, V_k \right\} &= 0 \nonumber \\
+\left\{ T_{jk}, T_{lk} \right\} &= 0 \nonumber \\
+\left[ V_k, V_l \right] &= 0 \nonumber \\
+\left[ T_{jk}, V_l \right] &= 0 \nonumber \\
+\left[ T_{jk}, T_{lm} \right] &= 0 \nonumber \\
+\left[ T_{jk}, T_{kj} \right] &= 0 \nonumber \\
+\left[ T_{jk}, T_{km} \right] &= 0 \nonumber \, .
+\end{align}
+$$
+
+<Admonition title="Caution" type="note">
+  Unlike the edge operators, where $E_{kj} = -E_{jk}$ makes the two orientations two representations of a single operator, $T_{jk}$ and $T_{kj}$ are *different* operators. The order of the two index arrays is therefore significant, and there is no orientation convention to normalize — which is why [`qf_transfer_op_normal_ordered()`](#qf_transfer_op_normal_ordered "qf_transfer_op_normal_ordered") takes no `ascending` parameter where [`qf_edge_op_normal_ordered()`](qf-edge-op#qf_edge_op_normal_ordered "qf_edge_op_normal_ordered") does.
+</Admonition>
+
+We can abuse the notation a little bit and define $V_j = T_{jj}$ which reflects how the internal data structure of this operator works. This makes the definition of the entire operator the following:
+
+$$
+\text{\texttt{TransferVertexOperator}} = \sum_i c_i \bigotimes_{lr} T_{lr} \, ,
+$$
+
+where $lr$ indexes the involved operator terms and $c_i$ is the (complex) coefficient making up the linear combination of products. The indices $l$ and $r$ can take any value between 0 and the number of fermionic modes acted upon by the operator minus 1.
+
+We will refer to $T_{lr}$ as generalized transfer operators.
+
+***
+
+<span id="qf-transfer-op-implementation" />
+
+## Implementation
+
+This struct stores the terms and coefficients in multiple sparse vectors, akin to the [compressed sparse row format](https://en.wikipedia.org/wiki/Sparse_matrix#Compressed_sparse_row_\(CSR,_CRS_or_Yale_format\)) commonly used for sparse matrices. More concretely, a single operator contains 4 arrays:
+
+|                 |                                                                                   |
+| --------------- | --------------------------------------------------------------------------------- |
+| `coeffs`        | A vector of complex coefficients consisting of two 64-bit floating point numbers. |
+| `left_indices`  | A vector of 32-bit integers storing the left fermionic mode indices ($l$).        |
+| `right_indices` | A vector of 32-bit integers storing the right fermionic mode indices ($r$).       |
+| `boundaries`    | A vector of integers indicating the boundaries between terms.                     |
+
+Fermionic modes indexed by `left_indices` and `right_indices` are considered spinless. The two index arrays always have the same length, since every generator is identified by exactly one `(left, right)` pair; this is why the constructor takes a single `num_indices` length for both.
+
+<Admonition title="Note" type="note">
+  You can access **read-only borrows** of these internal arrays via their respective functions:
+
+  *   [`qf_transfer_op_get_coeffs()`](#qf_transfer_op_get_coeffs "qf_transfer_op_get_coeffs")
+  *   [`qf_transfer_op_get_left_indices()`](#qf_transfer_op_get_left_indices "qf_transfer_op_get_left_indices")
+  *   [`qf_transfer_op_get_right_indices()`](#qf_transfer_op_get_right_indices "qf_transfer_op_get_right_indices")
+  *   [`qf_transfer_op_get_boundaries()`](#qf_transfer_op_get_boundaries "qf_transfer_op_get_boundaries")
+
+  The returned pointers stay valid only until the operator is modified or freed, and must not be freed by the caller.
+</Admonition>
+
+This data structure allows for very efficient construction and manipulation of operators. However, it implies that duplicate terms might be contained in an operator at any moment. These must be resolved manually through the use of [`qf_transfer_op_simplify()`](#qf_transfer_op_simplify "qf_transfer_op_simplify").
+
+### Construction
+
+A new operator can be constructed directly by specifying the corresponding arrays outlined above. Alternatively, an empty [`QfTransferVertexOperator`](#qftransfervertexoperator "QfTransferVertexOperator") can be initialized with [`qf_transfer_op_zero()`](#qf_transfer_op_zero "qf_transfer_op_zero") and terms can be added iteratively via [`qf_transfer_op_add_term()`](#qf_transfer_op_add_term "qf_transfer_op_add_term").
+
+|                                                                                   |                                                        |
+| --------------------------------------------------------------------------------- | ------------------------------------------------------ |
+| [`qf_transfer_op_new()`](#qf_transfer_op_new "qf_transfer_op_new")                | Constructs a new operator from the provided arrays.    |
+| [`qf_transfer_op_zero()`](#qf_transfer_op_zero "qf_transfer_op_zero")             | Constructs the additive identity operator.             |
+| [`qf_transfer_op_one()`](#qf_transfer_op_one "qf_transfer_op_one")                | Constructs the multiplicative identity operator.       |
+| [`qf_transfer_op_add_term()`](#qf_transfer_op_add_term "qf_transfer_op_add_term") | Adds a term to an existing `QfTransferVertexOperator`. |
+
+<Admonition title="Note" type="note">
+  A [`QfTransferVertexOperator`](#qftransfervertexoperator "QfTransferVertexOperator") can be freed with [`qf_transfer_op_free()`](#qf_transfer_op_free "qf_transfer_op_free").
+</Admonition>
+
+### Arithmetics
+
+The following functions provide arithmetic manipulation:
+
+|                                                                                |                                           |
+| ------------------------------------------------------------------------------ | ----------------------------------------- |
+| [`qf_transfer_op_add()`](#qf_transfer_op_add "qf_transfer_op_add")             | Adds two operators together.              |
+| [`qf_transfer_op_mul()`](#qf_transfer_op_mul "qf_transfer_op_mul")             | Multiplies an operator by a scalar.       |
+| [`qf_transfer_op_compose()`](#qf_transfer_op_compose "qf_transfer_op_compose") | Composes two operators with each other.   |
+| [`qf_transfer_op_adjoint()`](#qf_transfer_op_adjoint "qf_transfer_op_adjoint") | Returns the Hermitian conjugate operator. |
+
+### Manipulation
+
+The following functions provide operator manipulation logic:
+
+|                                                                                                     |                                                           |
+| --------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
+| [`qf_transfer_op_ichop()`](#qf_transfer_op_ichop "qf_transfer_op_ichop")                            | Removes terms with small coefficient magnitudes.          |
+| [`qf_transfer_op_simplify()`](#qf_transfer_op_simplify "qf_transfer_op_simplify")                   | Returns an equivalent but simplified operator.            |
+| [`qf_transfer_op_normal_ordered()`](#qf_transfer_op_normal_ordered "qf_transfer_op_normal_ordered") | Returns an equivalent operator with normal ordered terms. |
+| [`qf_transfer_op_relabel_modes()`](#qf_transfer_op_relabel_modes "qf_transfer_op_relabel_modes")    | Relabels the modes of an operator.                        |
+
+### Properties
+
+The following functions exist to check certain properties of an operator.
+
+|                                                                                               |                                               |
+| --------------------------------------------------------------------------------------------- | --------------------------------------------- |
+| [`qf_transfer_op_is_hermitian()`](#qf_transfer_op_is_hermitian "qf_transfer_op_is_hermitian") | Returns whether an operator is Hermitian.     |
+| [`qf_transfer_op_len()`](#qf_transfer_op_len "qf_transfer_op_len")                            | Returns the number of terms in this operator. |
+
+### Mapping
+
+The following functions map this operator into another representation:
+
+|                                                                                                                                   |                                                                                             |
+| --------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| [`qf_transfer_vertex_to_fermion()`](qf-mappers-library#qf_transfer_vertex_to_fermion "qf_transfer_vertex_to_fermion")             | Maps to a [`QfFermionOperator`](qf-ferm-op#qffermionoperator "QfFermionOperator").          |
+| [`qf_transfer_vertex_to_majorana()`](qf-mappers-library#qf_transfer_vertex_to_majorana "qf_transfer_vertex_to_majorana")          | Maps to a [`QfMajoranaOperator`](qf-maj-op#qfmajoranaoperator "QfMajoranaOperator").        |
+| [`qf_transfer_vertex_to_edge_vertex()`](qf-mappers-library#qf_transfer_vertex_to_edge_vertex "qf_transfer_vertex_to_edge_vertex") | Maps to a [`QfEdgeVertexOperator`](qf-edge-op#qfedgevertexoperator "QfEdgeVertexOperator"). |
+
+***
+
+<span id="id2" />
+
+\[[1](#id1)]
+
+[https://arxiv.org/abs/2512.11418](https://arxiv.org/abs/2512.11418)
+
+## Members
+
+### qf\_transfer\_op\_new
+
+<Function id="qf_transfer_op_new" signature="QfTransferVertexOperator *qf_transfer_op_new(uint64_t num_terms, uint64_t num_indices, const QkComplex64 *coeffs, const uint32_t *left_indices, const uint32_t *right_indices, const uint32_t *boundaries)">
+  Constructs a new operator.
+
+  Any of the pointer arguments can be `NULL` if and only if their corresponding length is zero.
+
+  A generator with equal indices is a vertex operator, $V_j$; one with differing indices is a transfer operator, $T_{jk}$.
+
+  <Admonition title="Caution" type="note">
+    Unlike the edge operators, $T_{jk}$ and $T_{kj}$ are *different* operators, not two representations of one. The order of the two index arrays is therefore significant.
+  </Admonition>
+
+  #### Example
+
+  ```c
+  1// this builds `1.0 + (-1.0) * V(0) T(0,1)`
+  2uint64_t num_terms = 2;
+  3uint64_t num_indices = 2;
+  4uint32_t left_indices[2] = {0, 0};
+  5uint32_t right_indices[2] = {0, 1};
+  6QkComplex64 coeffs[2] = {{1.0, 0.0}, {-1.0, 0.0}};
+  7uint32_t boundaries[3] = {0, 0, 2};
+  8QfTransferVertexOperator *op = qf_transfer_op_new(num_terms, num_indices, coeffs,
+  9                                                  left_indices, right_indices, boundaries);
+  ```
+
+  **Parameters**
+
+  *   **num\_terms** – The number of terms in the operator.
+  *   **num\_indices** – The number of generators summed over all terms. Both index arrays have this same length, since every generator is identified by exactly one `(left, right)` pair.
+  *   **coeffs** – A pointer to an array of term coefficients. The length of this array should be `num_terms`.
+  *   **left\_indices** – A pointer to an array of left-hand mode indices over all terms. The length of this array should be `num_indices`.
+  *   **right\_indices** – A pointer to an array of right-hand mode indices over all terms. The length of this array should be `num_indices`.
+  *   **boundaries** – A pointer to an array of the boundaries between terms. The length of this array should be `num_terms + 1`.
+
+  **Returns**
+
+  A pointer to the created operator.
+</Function>
+
+### qf\_transfer\_op\_free
+
+<Function id="qf_transfer_op_free" signature="void qf_transfer_op_free(QfTransferVertexOperator *op)">
+  Frees an existing operator.
+
+  <span id="id3" />
+
+  #### Example
+
+  ```c
+  1QfTransferVertexOperator *op = qf_transfer_op_one();
+  2qf_transfer_op_free(op);
+  ```
+
+  **Parameters**
+
+  *   **op** – A pointer to the transfer-vertex operator to be freed.
+</Function>
+
+### qf\_transfer\_op\_get\_coeffs
+
+<Function id="qf_transfer_op_get_coeffs" signature="void qf_transfer_op_get_coeffs(const QfTransferVertexOperator *op, QkComplex64 **coeffs_out, uint64_t *coeffs_len)">
+  Provides read-only access to the operator’s coefficients.
+
+  <Admonition title="See also" type="note">
+    The explanation of the internal data structure, [here](#qf-transfer-op-implementation).
+  </Admonition>
+
+  <span id="id4" />
+
+  #### Example
+
+  ```c
+   1uint64_t num_terms = 2;
+   2QkComplex64 coeffs[2] = {{1.0, 0.0}, {0.0, -1.0}};
+   3uint32_t boundaries[3] = {0, 0, 0};
+   4QfTransferVertexOperator *op =
+   5    qf_transfer_op_new(num_terms, 0, coeffs, NULL, NULL, boundaries);
+   6
+   7QkComplex64 *coeffs_out;
+   8uint64_t coeffs_len;
+   9
+  10qf_transfer_op_get_coeffs(op, &coeffs_out, &coeffs_len);
+  11
+  12assert(coeffs_len == 2);
+  ```
+
+  <Admonition title="Note" type="note">
+    This function borrows the operator’s internal buffer rather than copying it. The returned pointer stays valid only until the operator is modified or freed; do not free it yourself.
+  </Admonition>
+
+  **Parameters**
+
+  *   **op** – A pointer to the transfer-vertex operator whose coefficients to access.
+  *   **coeffs\_out** – A pointer to the array of complex values into which to write the coefficients.
+  *   **coeffs\_len** – A pointer to the integer into which to write the length of the output array.
+</Function>
+
+### qf\_transfer\_op\_get\_left\_indices
+
+<Function id="qf_transfer_op_get_left_indices" signature="void qf_transfer_op_get_left_indices(const QfTransferVertexOperator *op, uint32_t **left_indices_out, uint64_t *left_indices_len)">
+  Provides read-only access to the operator’s left-hand mode indices.
+
+  <Admonition title="See also" type="note">
+    The explanation of the internal data structure, [here](#qf-transfer-op-implementation).
+  </Admonition>
+
+  <span id="id5" />
+
+  #### Example
+
+  ```c
+   1uint64_t num_terms = 1;
+   2uint64_t num_indices = 2;
+   3uint32_t left_indices[2] = {0, 0};
+   4uint32_t right_indices[2] = {0, 1};
+   5QkComplex64 coeffs[1] = {{1.0, 0.0}};
+   6uint32_t boundaries[2] = {0, 2};
+   7QfTransferVertexOperator *op = qf_transfer_op_new(num_terms, num_indices, coeffs,
+   8                                                  left_indices, right_indices, boundaries);
+   9
+  10uint32_t *left_out;
+  11uint64_t left_len;
+  12
+  13qf_transfer_op_get_left_indices(op, &left_out, &left_len);
+  14
+  15assert(left_len == 2);
+  ```
+
+  <Admonition title="Note" type="note">
+    This function borrows the operator’s internal buffer rather than copying it. The returned pointer stays valid only until the operator is modified or freed; do not free it yourself.
+  </Admonition>
+
+  **Parameters**
+
+  *   **op** – A pointer to the transfer-vertex operator whose left indices to access.
+  *   **left\_indices\_out** – A pointer to the array of integers into which to write the indices.
+  *   **left\_indices\_len** – A pointer to the integer into which to write the length of the output array.
+</Function>
+
+### qf\_transfer\_op\_get\_right\_indices
+
+<Function id="qf_transfer_op_get_right_indices" signature="void qf_transfer_op_get_right_indices(const QfTransferVertexOperator *op, uint32_t **right_indices_out, uint64_t *right_indices_len)">
+  Provides read-only access to the operator’s right-hand mode indices.
+
+  <Admonition title="See also" type="note">
+    The explanation of the internal data structure, [here](#qf-transfer-op-implementation).
+  </Admonition>
+
+  <span id="id6" />
+
+  #### Example
+
+  ```c
+   1uint64_t num_terms = 1;
+   2uint64_t num_indices = 2;
+   3uint32_t left_indices[2] = {0, 0};
+   4uint32_t right_indices[2] = {0, 1};
+   5QkComplex64 coeffs[1] = {{1.0, 0.0}};
+   6uint32_t boundaries[2] = {0, 2};
+   7QfTransferVertexOperator *op = qf_transfer_op_new(num_terms, num_indices, coeffs,
+   8                                                  left_indices, right_indices, boundaries);
+   9
+  10uint32_t *right_out;
+  11uint64_t right_len;
+  12
+  13qf_transfer_op_get_right_indices(op, &right_out, &right_len);
+  14
+  15assert(right_len == 2);
+  ```
+
+  <Admonition title="Note" type="note">
+    This function borrows the operator’s internal buffer rather than copying it. The returned pointer stays valid only until the operator is modified or freed; do not free it yourself.
+  </Admonition>
+
+  **Parameters**
+
+  *   **op** – A pointer to the transfer-vertex operator whose right indices to access.
+  *   **right\_indices\_out** – A pointer to the array of integers into which to write the indices.
+  *   **right\_indices\_len** – A pointer to the integer into which to write the length of the output array.
+</Function>
+
+### qf\_transfer\_op\_get\_boundaries
+
+<Function id="qf_transfer_op_get_boundaries" signature="void qf_transfer_op_get_boundaries(const QfTransferVertexOperator *op, size_t **boundaries_out, uint64_t *boundaries_len)">
+  Provides read-only access to the indices indicating the boundaries between operator terms.
+
+  <Admonition title="See also" type="note">
+    The explanation of the internal data structure, [here](#qf-transfer-op-implementation).
+  </Admonition>
+
+  <span id="id7" />
+
+  #### Example
+
+  ```c
+   1uint64_t num_terms = 1;
+   2uint64_t num_indices = 2;
+   3uint32_t left_indices[2] = {0, 0};
+   4uint32_t right_indices[2] = {0, 1};
+   5QkComplex64 coeffs[1] = {{1.0, 0.0}};
+   6uint32_t boundaries[2] = {0, 2};
+   7QfTransferVertexOperator *op = qf_transfer_op_new(num_terms, num_indices, coeffs,
+   8                                                  left_indices, right_indices, boundaries);
+   9
+  10size_t *boundaries_out;
+  11uint64_t boundaries_len;
+  12
+  13qf_transfer_op_get_boundaries(op, &boundaries_out, &boundaries_len);
+  14
+  15assert(boundaries_len == 2);
+  ```
+
+  <Admonition title="Note" type="note">
+    This function borrows the operator’s internal buffer rather than copying it. The returned pointer stays valid only until the operator is modified or freed; do not free it yourself.
+  </Admonition>
+
+  **Parameters**
+
+  *   **op** – A pointer to the transfer-vertex operator whose boundaries to access.
+  *   **boundaries\_out** – A pointer to the array of integers into which to write the boundaries.
+  *   **boundaries\_len** – A pointer to the integer into which to write the length of the output array.
+</Function>
+
+### qf\_transfer\_op\_num\_support
+
+<Function id="qf_transfer_op_num_support" signature="uint32_t qf_transfer_op_num_support(const QfTransferVertexOperator *op)">
+  Gets the size of the support of an operator.
+
+  Use this to size the output buffer of [`qf_transfer_op_get_support()`](#qf_transfer_op_get_support "qf_transfer_op_get_support"), which does not report a length of its own.
+
+  <span id="id8" />
+
+  #### Example
+
+  ```c
+   1uint32_t left_indices[3] = {2, 0, 2};
+   2uint32_t right_indices[3] = {2, 1, 2};
+   3QkComplex64 coeffs[2] = {{1.0, 0.0}, {1.0, 0.0}};
+   4uint32_t boundaries[3] = {0, 2, 3};
+   5QfTransferVertexOperator *op =
+   6    qf_transfer_op_new(2, 3, coeffs, left_indices, right_indices, boundaries);
+   7
+   8uint32_t num_support = qf_transfer_op_num_support(op);
+   9
+  10assert(num_support == 3);
+  ```
+
+  **Parameters**
+
+  *   **op** – A pointer to the transfer-vertex operator whose support size to get.
+
+  **Returns**
+
+  The number of distinct mode indices acted upon by the operator.
+</Function>
+
+### qf\_transfer\_op\_get\_support
+
+<Function id="qf_transfer_op_get_support" signature="void qf_transfer_op_get_support(const QfTransferVertexOperator *op, uint32_t *support_out)">
+  Gets the support of an operator, i.e. the mode indices acted upon by the operator.
+
+  The indices are written in **ascending** order, and every index appears exactly once no matter how many terms act upon it.
+
+  <span id="id9" />
+
+  #### Example
+
+  ```c
+   1uint32_t left_indices[3] = {2, 0, 2};
+   2uint32_t right_indices[3] = {2, 1, 2};
+   3QkComplex64 coeffs[2] = {{1.0, 0.0}, {1.0, 0.0}};
+   4uint32_t boundaries[3] = {0, 2, 3};
+   5QfTransferVertexOperator *op =
+   6    qf_transfer_op_new(2, 3, coeffs, left_indices, right_indices, boundaries);
+   7
+   8uint32_t num_support = qf_transfer_op_num_support(op);
+   9uint32_t *support_out = malloc(num_support * sizeof(uint32_t));
+  10
+  11qf_transfer_op_get_support(op, support_out);
+  12
+  13assert(support_out[0] == 0);
+  14assert(support_out[1] == 1);
+  15assert(support_out[2] == 2);
+  16
+  17free(support_out);
+  ```
+
+  <Admonition title="Note" type="note">
+    Unlike the other getters, this does not hand out a pointer into the operator: the support is computed on demand rather than stored, so the caller provides the output buffer. Query its required length with [`qf_transfer_op_num_support()`](#qf_transfer_op_num_support "qf_transfer_op_num_support") first.
+  </Admonition>
+
+  <Admonition title="Note" type="note">
+    Both the left and the right indices of every generalized transfer operator contribute to the support.
+  </Admonition>
+
+  **Parameters**
+
+  *   **op** – A pointer to the transfer-vertex operator whose support to get.
+  *   **support\_out** – A pointer to the integer array into which to write the support. It must be sized to at least :c:func:`qf_transfer_op_num_support` elements.
+</Function>
+
+### qf\_transfer\_op\_zero
+
+<Function id="qf_transfer_op_zero" signature="QfTransferVertexOperator *qf_transfer_op_zero(void)">
+  Constructs the additive identity operator.
+
+  Adding the operator that is constructed by this method to another one has no effect.
+
+  <span id="id10" />
+
+  #### Example
+
+  ```c
+  1QfTransferVertexOperator *zero = qf_transfer_op_zero();
+  2
+  3QfTransferVertexOperator *op_plus_zero = qf_transfer_op_add(op, zero);
+  4
+  5assert(qf_transfer_op_equal(op, op_plus_zero));
+  ```
+
+  **Returns**
+
+  A pointer to the created operator.
+</Function>
+
+### qf\_transfer\_op\_one
+
+<Function id="qf_transfer_op_one" signature="QfTransferVertexOperator *qf_transfer_op_one(void)">
+  Constructs the multiplicative identity operator.
+
+  Composing the operator that is constructed by this method with another one has no effect.
+
+  <span id="id11" />
+
+  #### Example
+
+  ```c
+  1QfTransferVertexOperator *one = qf_transfer_op_one();
+  2
+  3QfTransferVertexOperator *op_times_one = qf_transfer_op_compose(op, one);
+  4
+  5assert(qf_transfer_op_equal(op, op_times_one));
+  ```
+
+  **Returns**
+
+  A pointer to the created operator.
+</Function>
+
+### qf\_transfer\_op\_has\_groups
+
+<Function id="qf_transfer_op_has_groups" signature="bool qf_transfer_op_has_groups(const QfTransferVertexOperator *op)">
+  Checks whether an operator has its `groups` attribute set.
+
+  <Admonition title="See also" type="note">
+    The explanation on [Group operator terms: use the operator structure](guides/grouping#grouping-explanation).
+  </Admonition>
+
+  <span id="id12" />
+
+  #### Example
+
+  ```c
+  1QfTransferVertexOperator *op = ...;
+  2
+  3bool has_groups = qf_transfer_op_has_groups(op);
+  ```
+
+  **Parameters**
+
+  *   **op** – A pointer to the transfer-vertex operator to check.
+
+  **Returns**
+
+  Whether the operator tracks group indices.
+</Function>
+
+### qf\_transfer\_op\_num\_groups
+
+<Function id="qf_transfer_op_num_groups" signature="uint32_t qf_transfer_op_num_groups(const QfTransferVertexOperator *op)">
+  Gets the number of groups from an operator.
+
+  <Admonition title="See also" type="note">
+    The explanation on [Group operator terms: use the operator structure](guides/grouping#grouping-explanation).
+  </Admonition>
+
+  <span id="id13" />
+
+  #### Example
+
+  ```c
+  1QfTransferVertexOperator *op = ...;
+  2
+  3uint32_t num_groups = qf_transfer_op_num_groups(op);
+  ```
+
+  <Admonition title="Note" type="note">
+    The number of groups is evaluated lazily as the largest occurring group index plus 1.
+  </Admonition>
+
+  **Parameters**
+
+  *   **op** – A pointer to the transfer-vertex operator whose number of groups to get.
+
+  **Returns**
+
+  The number of group indices from the operator’s `groups` attribute.
+</Function>
+
+### qf\_transfer\_op\_get\_groups
+
+<Function id="qf_transfer_op_get_groups" signature="void qf_transfer_op_get_groups(const QfTransferVertexOperator *op, uint32_t **groups_out, uint64_t *groups_len)">
+  Gets the group indices for all operator terms.
+
+  <Admonition title="See also" type="note">
+    The explanation on [Group operator terms: use the operator structure](guides/grouping#grouping-explanation).
+  </Admonition>
+
+  <span id="id14" />
+
+  #### Example
+
+  ```c
+  1QfTransferVertexOperator *op = ...;
+  2uint32_t *groups_out;
+  3uint64_t groups_len;
+  4
+  5qf_transfer_op_get_groups(op, &groups_out, &groups_len);
+  ```
+
+  <Admonition title="Note" type="note">
+    This function borrows the operator’s internal buffer rather than copying it. The returned pointer stays valid only until the operator is modified or freed; do not free it yourself.
+  </Admonition>
+
+  **Parameters**
+
+  *   **op** – A pointer to the transfer-vertex operator whose group indices to get.
+  *   **groups\_out** – A pointer to the integer array into which to write the group indices.
+  *   **groups\_len** – A pointer to the integer into which to write the length of the output array.
+</Function>
+
+### qf\_transfer\_op\_set\_groups
+
+<Function id="qf_transfer_op_set_groups" signature="QfExitCode qf_transfer_op_set_groups(QfTransferVertexOperator *op, const uint32_t *groups_in, uint64_t groups_len)">
+  Sets the `groups` attribute of the provided operator.
+
+  The length is validated here because nothing downstream re-checks it: too few indices would silently drop the trailing terms wherever terms are iterated together with their groups, and too many would make [`qf_transfer_op_num_groups()`](#qf_transfer_op_num_groups "qf_transfer_op_num_groups") report groups that no term carries.
+
+  <Admonition title="See also" type="note">
+    The explanation on [Group operator terms: use the operator structure](guides/grouping#grouping-explanation).
+  </Admonition>
+
+  <span id="id15" />
+
+  #### Example
+
+  ```c
+  1QfTransferVertexOperator *op = ...;
+  2
+  3uint32_t num_terms = 4;
+  4uint32_t groups_in[4] = {0, 1, 0, 1};
+  5qf_transfer_op_set_groups(op, groups_in, num_terms);
+  ```
+
+  **Parameters**
+
+  *   **op** – A pointer to the transfer-vertex operator whose `groups` attribute to write.
+  *   **groups\_in** – A pointer to the `groups` integer array to write into the operator.
+  *   **groups\_len** – The number of terms in the `groups_in` array.
+
+  **Returns**
+
+  An exit code.
+
+  *   `QfExitCode_Success` upon success
+  *   `QfExitCode_ValueError` if `groups_len` differs from the number of terms in the operator
+</Function>
+
+### qf\_transfer\_op\_del\_groups
+
+<Function id="qf_transfer_op_del_groups" signature="void qf_transfer_op_del_groups(QfTransferVertexOperator *op)">
+  Deletes the `groups` attribute from the provided operator.
+
+  <Admonition title="See also" type="note">
+    The explanation on [Group operator terms: use the operator structure](guides/grouping#grouping-explanation).
+  </Admonition>
+
+  <span id="id16" />
+
+  #### Example
+
+  ```c
+  1QfTransferVertexOperator *op = ...;
+  2
+  3qf_transfer_op_del_groups(op);
+  ```
+
+  **Parameters**
+
+  *   **op** – A pointer to the transfer-vertex operator whose `groups` attribute to delete.
+</Function>
+
+### qf\_transfer\_op\_split\_out\_groups
+
+<Function id="qf_transfer_op_split_out_groups" signature="void qf_transfer_op_split_out_groups(const QfTransferVertexOperator *op, const uint32_t *group_indices, uint64_t num_indices, QfTransferVertexOperator **group_ops_out)">
+  Splits this operator into a list of new operators based on its `groups` attribute.
+
+  A duplicate index in `group_indices` is written once per occurrence in `group_ops_out`. Requesting only a small number of groups out of a much larger total is significantly cheaper than requesting all of them, since terms belonging to a group that is not requested are skipped rather than appended anywhere.
+
+  <Admonition title="See also" type="note">
+    The explanation on [Group operator terms: use the operator structure](guides/grouping#grouping-explanation).
+  </Admonition>
+
+  <span id="id17" />
+
+  #### Example
+
+  ```c
+   1QfTransferVertexOperator *op = ...;
+   2
+   3uint32_t groups_in[4] = {0, 1, 0, 1};
+   4qf_transfer_op_set_groups(op, groups_in, 4);
+   5
+   6// build every group, in index order
+   7QfTransferVertexOperator *group_ops[2];
+   8qf_transfer_op_split_out_groups(op, NULL, 0, group_ops);
+   9
+  10// build only group 1
+  11uint32_t group_indices[1] = {1};
+  12QfTransferVertexOperator *group_op[1];
+  13qf_transfer_op_split_out_groups(op, group_indices, 1, group_op);
+  ```
+
+  **Parameters**
+
+  *   **op** – A pointer to the transfer-vertex operator whose `groups` to split out.
+  *   **group\_indices** – A pointer to the array of group indices for which to build operators, in the desired output order. May be `NULL`, in which case every group is built, in index order (equivalent to passing every index from `0` to :c:func:`qf_transfer_op_num_groups` `- 1`).
+  *   **num\_indices** – The number of indices in the `group_indices` array. Ignored if `group_indices` is `NULL`.
+  *   **group\_ops\_out** – A pointer to the array of :c:struct:`QfTransferVertexOperator` into which to write the operators for each requested group. Must be sized to `num_indices` when `group_indices` is non-`NULL`, or to :c:func:`qf_transfer_op_num_groups` when it is `NULL`.
+</Function>
+
+### qf\_transfer\_op\_add\_term
+
+<Function id="qf_transfer_op_add_term" signature="void qf_transfer_op_add_term(QfTransferVertexOperator *op, uint64_t num_indices, const uint32_t *left_indices, const uint32_t *right_indices, const QkComplex64 *coeff)">
+  Adds a term to an existing operator.
+
+  Any of the pointer arguments can be `NULL` if and only if their corresponding length is zero.
+
+  <Admonition title="Caution" type="note">
+    This function resets the operator’s `groups` attribute to `NULL`.
+  </Admonition>
+
+  <span id="id18" />
+
+  #### Example
+
+  ```c
+  1QfTransferVertexOperator *one = qf_transfer_op_one();
+  2
+  3QfTransferVertexOperator *op = qf_transfer_op_zero();
+  4QkComplex64 coeff = {1.0, 0.0};
+  5
+  6qf_transfer_op_add_term(op, 0, NULL, NULL, &coeff);
+  7
+  8assert(qf_transfer_op_equal(op, one));
+  ```
+
+  **Parameters**
+
+  *   **op** – A pointer to the transfer-vertex operator to be modified.
+  *   **num\_indices** – The length of both index arrays.
+  *   **left\_indices** – A pointer to an array of left-hand mode indices. The length of this array should be `num_indices`.
+  *   **right\_indices** – A pointer to an array of right-hand mode indices. The length of this array should be `num_indices`.
+  *   **coeff** – A pointer to the complex coefficient.
+</Function>
+
+### qf\_transfer\_op\_add
+
+<Function id="qf_transfer_op_add" signature="QfTransferVertexOperator *qf_transfer_op_add(const QfTransferVertexOperator *left, const QfTransferVertexOperator *right)">
+  Adds two operators together.
+
+  <span id="id19" />
+
+  #### Example
+
+  ```c
+  1QfTransferVertexOperator *one = qf_transfer_op_one();
+  2QfTransferVertexOperator *zero = qf_transfer_op_zero();
+  3
+  4QfTransferVertexOperator *result = qf_transfer_op_add(one, zero);
+  5
+  6assert(qf_transfer_op_equal(result, one));
+  ```
+
+  **Parameters**
+
+  *   **left** – A pointer to the left operator.
+  *   **right** – A pointer to the right operator.
+
+  **Returns**
+
+  A pointer to the resulting operator.
+</Function>
+
+### qf\_transfer\_op\_scaled\_add
+
+<Function id="qf_transfer_op_scaled_add" signature="QfTransferVertexOperator *qf_transfer_op_scaled_add(const QfTransferVertexOperator *left, const QfTransferVertexOperator *right, const QkComplex64 *factor)">
+  Adds two operators together, scaling the coefficients of the right one.
+
+  This fuses the scaling into the addition, which avoids building a fully scaled copy of `right` just to append it. Passing a factor of `-1` therefore subtracts, which is why no separate subtraction function is provided.
+
+  <span id="id20" />
+
+  #### Example
+
+  ```c
+  1QfTransferVertexOperator *one = qf_transfer_op_one();
+  2QfTransferVertexOperator *other = qf_transfer_op_one();
+  3
+  4// Subtracting via a factor of -1 leaves the two terms cancelling each other out.
+  5QkComplex64 factor = {-1.0, 0.0};
+  6QfTransferVertexOperator *result = qf_transfer_op_scaled_add(one, other, &factor);
+  7
+  8QfTransferVertexOperator *simplified = qf_transfer_op_simplify(result, 1e-10);
+  9assert(qf_transfer_op_len(simplified) == 0);
+  ```
+
+  <Admonition title="Note" type="note">
+    Like [`qf_transfer_op_add()`](#qf_transfer_op_add "qf_transfer_op_add"), this appends the terms of `right` without combining them with those of `left`, so the result tracks no group indices. Call [`qf_transfer_op_simplify()`](#qf_transfer_op_simplify "qf_transfer_op_simplify") to collect equal terms afterwards.
+  </Admonition>
+
+  **Parameters**
+
+  *   **left** – A pointer to the left operator.
+  *   **right** – A pointer to the right operator.
+  *   **factor** – A pointer to the factor to scale the right operator’s coefficients with.
+
+  **Returns**
+
+  A pointer to the resulting operator, `left + factor * right`.
+</Function>
+
+### qf\_transfer\_op\_add\_inplace
+
+<Function id="qf_transfer_op_add_inplace" signature="void qf_transfer_op_add_inplace(QfTransferVertexOperator *left, const QfTransferVertexOperator *right)">
+  Adds an operator into another one, in place.
+
+  The in-place counterpart of [`qf_transfer_op_add()`](#qf_transfer_op_add "qf_transfer_op_add"), which saves copying `left` into a freshly allocated result.
+
+  <Admonition title="Caution" type="note">
+    This function resets the operator’s `groups` attribute to `NULL`.
+  </Admonition>
+
+  <span id="id21" />
+
+  #### Example
+
+  ```c
+  1QfTransferVertexOperator *left = qf_transfer_op_one();
+  2QfTransferVertexOperator *right = qf_transfer_op_one();
+  3
+  4qf_transfer_op_add_inplace(left, right);
+  5
+  6assert(qf_transfer_op_len(left) == 2);
+  ```
+
+  **Parameters**
+
+  *   **left** – A pointer to the operator to add into.
+  *   **right** – A pointer to the operator to add.
+</Function>
+
+### qf\_transfer\_op\_scaled\_add\_inplace
+
+<Function id="qf_transfer_op_scaled_add_inplace" signature="void qf_transfer_op_scaled_add_inplace(QfTransferVertexOperator *left, const QfTransferVertexOperator *right, const QkComplex64 *factor)">
+  Adds an operator into another one in place, scaling the coefficients of the right one.
+
+  The in-place counterpart of [`qf_transfer_op_scaled_add()`](#qf_transfer_op_scaled_add "qf_transfer_op_scaled_add"), computing `left + factor * right` without allocating a result. As there, a factor of `-1` subtracts.
+
+  <Admonition title="Caution" type="note">
+    This function resets the operator’s `groups` attribute to `NULL`.
+  </Admonition>
+
+  <span id="id22" />
+
+  #### Example
+
+  ```c
+  1QfTransferVertexOperator *left = qf_transfer_op_one();
+  2QfTransferVertexOperator *right = qf_transfer_op_one();
+  3
+  4// Subtract, leaving two terms that cancel each other out.
+  5QkComplex64 factor = {-1.0, 0.0};
+  6qf_transfer_op_scaled_add_inplace(left, right, &factor);
+  7
+  8QfTransferVertexOperator *simplified = qf_transfer_op_simplify(left, 1e-10);
+  9assert(qf_transfer_op_len(simplified) == 0);
+  ```
+
+  **Parameters**
+
+  *   **left** – A pointer to the operator to add into.
+  *   **right** – A pointer to the operator to add.
+  *   **factor** – A pointer to the factor to scale the right operator’s coefficients with.
+</Function>
+
+### qf\_transfer\_op\_mul\_inplace
+
+<Function id="qf_transfer_op_mul_inplace" signature="void qf_transfer_op_mul_inplace(QfTransferVertexOperator *op, const QkComplex64 *scalar)">
+  Multiplies an operator by a scalar, in place.
+
+  The in-place counterpart of [`qf_transfer_op_mul()`](#qf_transfer_op_mul "qf_transfer_op_mul"), which saves copying the operator into a freshly allocated result.
+
+  <span id="id23" />
+
+  #### Example
+
+  ```c
+  1QfTransferVertexOperator *op = qf_transfer_op_one();
+  2QkComplex64 scalar = {2.0, 0.0};
+  3
+  4qf_transfer_op_mul_inplace(op, &scalar);
+  ```
+
+  <Admonition title="Note" type="note">
+    Unlike the two in-place additions above, this **preserves** the `groups` attribute: scaling the coefficients leaves the number of terms, and hence the one-index-per-term invariant, untouched.
+  </Admonition>
+
+  **Parameters**
+
+  *   **op** – A pointer to the operator to scale.
+  *   **scalar** – A pointer to the scalar.
+</Function>
+
+### qf\_transfer\_op\_mul
+
+<Function id="qf_transfer_op_mul" signature="QfTransferVertexOperator *qf_transfer_op_mul(const QfTransferVertexOperator *op, const QkComplex64 *scalar)">
+  Multiplies an operator by a scalar.
+
+  <span id="id24" />
+
+  #### Example
+
+  ```c
+  1QfTransferVertexOperator *one = qf_transfer_op_one();
+  2QkComplex64 coeff = {2.0, 0.0};
+  3QfTransferVertexOperator *result = qf_transfer_op_mul(one, &coeff);
+  4
+  5QfTransferVertexOperator *expected = qf_transfer_op_zero();
+  6qf_transfer_op_add_term(expected, 0, NULL, NULL, &coeff);
+  7
+  8assert(qf_transfer_op_equal(result, expected));
+  ```
+
+  **Parameters**
+
+  *   **op** – A pointer to the operator.
+  *   **scalar** – A pointer to the scalar.
+
+  **Returns**
+
+  A pointer to the resulting operator.
+</Function>
+
+### qf\_transfer\_op\_compose
+
+<Function id="qf_transfer_op_compose" signature="QfTransferVertexOperator *qf_transfer_op_compose(const QfTransferVertexOperator *left, const QfTransferVertexOperator *right)">
+  Composes two operators with each other.
+
+  <span id="id25" />
+
+  #### Example
+
+  ```c
+  1QfTransferVertexOperator *one = qf_transfer_op_one();
+  2QfTransferVertexOperator *zero = qf_transfer_op_zero();
+  3
+  4QfTransferVertexOperator *result = qf_transfer_op_compose(one, zero);
+  5
+  6assert(qf_transfer_op_equal(result, zero));
+  ```
+
+  <Admonition title="Note" type="note">
+    The composition of two operators tracks no groups, even when both operands do.
+  </Admonition>
+
+  **Parameters**
+
+  *   **left** – A pointer to the left operator.
+  *   **right** – A pointer to the right operator.
+
+  **Returns**
+
+  A pointer to `left.compose(right)`, which equals the operator `result = right @ left` in terms of the matrix multiplication `@`. In other words, `right` is applied first. To obtain `left @ right`, swap the arguments.
+</Function>
+
+### qf\_transfer\_op\_adjoint
+
+<Function id="qf_transfer_op_adjoint" signature="QfTransferVertexOperator *qf_transfer_op_adjoint(const QfTransferVertexOperator *op)">
+  Returns the Hermitian conjugate (or adjoint) of an operator.
+
+  This affects the terms and coefficients as follows:
+
+  *   the generators in each term reverse their order
+  *   the coefficients are complex conjugated
+
+  <span id="id26" />
+
+  #### Example
+
+  ```c
+   1QfTransferVertexOperator *op = qf_transfer_op_zero();
+   2QkComplex64 coeff = {0.0, 1.0};
+   3qf_transfer_op_add_term(op, 0, NULL, NULL, &coeff);
+   4
+   5QfTransferVertexOperator *adjoint = qf_transfer_op_adjoint(op);
+   6
+   7QfTransferVertexOperator *expected = qf_transfer_op_zero();
+   8QkComplex64 coeff_adj = {0.0, -1.0};
+   9qf_transfer_op_add_term(expected, 0, NULL, NULL, &coeff_adj);
+  10
+  11assert(qf_transfer_op_equal(adjoint, expected));
+  ```
+
+  <Admonition title="Note" type="note">
+    Reversing the operator string is essential: the transfer and vertex generators anticommute when they share an index, so `BA != AB` in general.
+  </Admonition>
+
+  **Parameters**
+
+  *   **op** – A pointer to the operator.
+
+  **Returns**
+
+  A pointer to the created operator.
+</Function>
+
+### qf\_transfer\_op\_ichop
+
+<Function id="qf_transfer_op_ichop" signature="void qf_transfer_op_ichop(QfTransferVertexOperator *op, double atol)">
+  Removes terms whose coefficient magnitude lies below the provided threshold.
+
+  <Admonition title="Caution" type="note">
+    This functions truncates coefficients greedily! If the acted upon operator might contain separate coefficients for duplicate terms consider calling [`qf_transfer_op_simplify()`](#qf_transfer_op_simplify "qf_transfer_op_simplify") instead!
+  </Admonition>
+
+  <span id="id27" />
+
+  #### Example
+
+  ```c
+  1QfTransferVertexOperator *op = qf_transfer_op_zero();
+  2QkComplex64 coeff = {1e-8, 0.0};
+  3qf_transfer_op_add_term(op, 0, NULL, NULL, &coeff);
+  4
+  5qf_transfer_op_ichop(op, 1e-6);
+  6
+  7QfTransferVertexOperator *expected = qf_transfer_op_zero();
+  8
+  9assert(qf_transfer_op_equal(op, expected));
+  ```
+
+  **Parameters**
+
+  *   **op** – A pointer to the operator.
+  *   **atol** – The absolute tolerance for coefficient truncation.
+</Function>
+
+### qf\_transfer\_op\_simplify
+
+<Function id="qf_transfer_op_simplify" signature="QfTransferVertexOperator *qf_transfer_op_simplify(const QfTransferVertexOperator *op, double atol)">
+  Returns an equivalent but simplified operator.
+
+  The simplification process first sums all coefficients that belong to equal terms and then only retains those whose total coefficient exceeds the specified tolerance (just like [`qf_transfer_op_ichop()`](#qf_transfer_op_ichop "qf_transfer_op_ichop")).
+
+  When an operator has been arithmetically manipulated or constructed in a way that does not guarantee unique terms, this method should be called before applying any method that filters numerically small coefficients to avoid loss of information.
+
+  <span id="id28" />
+
+  #### Example
+
+  ```c
+  1QfTransferVertexOperator *op = qf_transfer_op_zero();
+  2QkComplex64 coeff = {1e-5, 0.0};
+  3for (int i = 0; i < 100; i++) {
+  4  qf_transfer_op_add_term(op, 0, NULL, NULL, &coeff);
+  5}
+  6
+  7QfTransferVertexOperator *canon = qf_transfer_op_simplify(op, 1e-4);
+  8
+  9assert(qf_transfer_op_len(canon) == 1);
+  ```
+
+  <Admonition title="Note" type="note">
+    This groups terms by their exact stored index arrays. Call [`qf_transfer_op_normal_ordered()`](#qf_transfer_op_normal_ordered "qf_transfer_op_normal_ordered") first to bring mathematically equal terms into a common form.
+  </Admonition>
+
+  **Parameters**
+
+  *   **op** – A pointer to the transfer-vertex operator to be simplified.
+  *   **atol** – The absolute tolerance for coefficient truncation.
+
+  **Returns**
+
+  An equivalent but simplified operator.
+</Function>
+
+### qf\_transfer\_op\_normal\_ordered
+
+<Function id="qf_transfer_op_normal_ordered" signature="QfTransferVertexOperator *qf_transfer_op_normal_ordered(const QfTransferVertexOperator *op, bool reduce)">
+  Returns an equivalent operator with normal ordered terms.
+
+  The `reduce` flag contracts adjacent generators. There are exactly two rules: $V_j V_j = 1$ and $T_{jk} T_{jk} = 1/4$ (two identical adjacent factors contract to a scalar), and $T_{jk} T_{kj} = -\frac{1}{4} V_j V_k$ (two anti-parallel transfer operators become a pair of vertex operators).
+
+  <span id="id29" />
+
+  #### Example
+
+  ```c
+   1// `T(0,1) T(1,0)` reduces to `-1/4 V(0) V(1)`
+   2QfTransferVertexOperator *op = qf_transfer_op_zero();
+   3uint32_t left[2] = {0, 1};
+   4uint32_t right[2] = {1, 0};
+   5QkComplex64 coeff = {4.0, 0.0};
+   6qf_transfer_op_add_term(op, 2, left, right, &coeff);
+   7
+   8QfTransferVertexOperator *ordered = qf_transfer_op_normal_ordered(op, true);
+   9
+  10QfTransferVertexOperator *expected = qf_transfer_op_zero();
+  11uint32_t left_exp[2] = {0, 1};
+  12uint32_t right_exp[2] = {0, 1};
+  13QkComplex64 coeff_exp = {-1.0, 0.0};
+  14qf_transfer_op_add_term(expected, 2, left_exp, right_exp, &coeff_exp);
+  15
+  16assert(qf_transfer_op_equal(ordered, expected));
+  ```
+
+  <Admonition title="Note" type="note">
+    Unlike [`qf_edge_op_normal_ordered()`](qf-edge-op#qf_edge_op_normal_ordered "qf_edge_op_normal_ordered"), this function takes no `ascending` parameter. There is no orientation convention to fix: $T_{jk}$ and $T_{kj}$ are *different* operators rather than two representations of one.
+  </Admonition>
+
+  <Admonition title="Note" type="note">
+    There is no fusion rule. Two transfer operators sharing a single mode never collapse into one, so a product like $T_{jk} T_{jl}$ cannot be shortened.
+  </Admonition>
+
+  **Parameters**
+
+  *   **op** – A pointer to the operator.
+  *   **reduce** – Whether to contract adjacent generators via the algebra’s identities.
+
+  **Returns**
+
+  A pointer to the created operator.
+</Function>
+
+### qf\_transfer\_op\_is\_hermitian
+
+<Function id="qf_transfer_op_is_hermitian" signature="bool qf_transfer_op_is_hermitian(const QfTransferVertexOperator *op, double atol)">
+  Checks whether an operator is Hermitian.
+
+  <span id="id30" />
+
+  #### Example
+
+  ```c
+  1// `V(0) T(0,1)` is *not* Hermitian: the two generators share the index 0 and therefore
+  2// anticommute.
+  3QfTransferVertexOperator *op = qf_transfer_op_zero();
+  4uint32_t left[2] = {0, 0};
+  5uint32_t right[2] = {0, 1};
+  6QkComplex64 coeff = {1.0, 0.0};
+  7qf_transfer_op_add_term(op, 2, left, right, &coeff);
+  8
+  9assert(!qf_transfer_op_is_hermitian(op, 1e-10));
+  ```
+
+  <Admonition title="Note" type="note">
+    This check is implemented using [`qf_transfer_op_equiv()`](#qf_transfer_op_equiv "qf_transfer_op_equiv") on the [`qf_transfer_op_normal_ordered()`](#qf_transfer_op_normal_ordered "qf_transfer_op_normal_ordered") difference of `op` and its [`qf_transfer_op_adjoint()`](#qf_transfer_op_adjoint "qf_transfer_op_adjoint") and [`qf_transfer_op_zero()`](#qf_transfer_op_zero "qf_transfer_op_zero").
+  </Admonition>
+
+  **Parameters**
+
+  *   **op** – A pointer to the transfer-vertex operator to be checked.
+  *   **atol** – The absolute tolerance upto which coefficients are considered equal.
+
+  **Returns**
+
+  Whether the provided operator is Hermitian.
+</Function>
+
+### qf\_transfer\_op\_equal
+
+<Function id="qf_transfer_op_equal" signature="bool qf_transfer_op_equal(const QfTransferVertexOperator *left, const QfTransferVertexOperator *right)">
+  Compare two operators for equality.
+
+  Equality in this context means an exact match of the internal data arrays.
+
+  <span id="id31" />
+
+  #### Example
+
+  ```c
+  1QfTransferVertexOperator *one = qf_transfer_op_one();
+  2QfTransferVertexOperator *zero = qf_transfer_op_zero();
+  3
+  4assert(qf_transfer_op_equal(one, one));
+  5assert(!qf_transfer_op_equal(one, zero));
+  ```
+
+  **Parameters**
+
+  *   **left** – A pointer to the left operator.
+  *   **right** – A pointer to the right operator.
+
+  **Returns**
+
+  Whether the two operators are equal.
+</Function>
+
+### qf\_transfer\_op\_equiv
+
+<Function id="qf_transfer_op_equiv" signature="bool qf_transfer_op_equiv(const QfTransferVertexOperator *left, const QfTransferVertexOperator *right, double atol)">
+  Compare two operators for equivalence.
+
+  Equivalence in this context means approximate equality up to the specified absolute tolerance. To be more precise, this method returns `True`, when all the absolute values of the coefficients in the difference `other - self` are below the specified threshold `atol`.
+
+  <span id="id32" />
+
+  #### Example
+
+  ```c
+  1QfTransferVertexOperator *zero = qf_transfer_op_zero();
+  2
+  3QfTransferVertexOperator *op = qf_transfer_op_zero();
+  4QkComplex64 coeff = {1e-7, 0.0};
+  5qf_transfer_op_add_term(op, 0, NULL, NULL, &coeff);
+  6
+  7assert(qf_transfer_op_equiv(op, zero, 1e-6));
+  8assert(!qf_transfer_op_equiv(op, zero, 1e-8));
+  ```
+
+  **Parameters**
+
+  *   **left** – A pointer to the left operator.
+  *   **right** – A pointer to the right operator.
+  *   **atol** – The absolute tolerance for coefficient equivalence.
+
+  **Returns**
+
+  Whether the two operators are equivalent.
+</Function>
+
+### qf\_transfer\_op\_len
+
+<Function id="qf_transfer_op_len" signature="size_t qf_transfer_op_len(const QfTransferVertexOperator *op)">
+  Returns the length (or number of terms) of the provided operator.
+
+  <span id="id33" />
+
+  #### Example
+
+  ```c
+  1QfTransferVertexOperator *op = qf_transfer_op_zero();
+  2uint32_t left[2] = {0, 1};
+  3uint32_t right[2] = {1, 2};
+  4QkComplex64 coeff = {1.0, 0.0};
+  5qf_transfer_op_add_term(op, 2, left, right, &coeff);
+  6
+  7assert(qf_transfer_op_len(op) == 1);
+  ```
+
+  **Parameters**
+
+  *   **op** – A pointer to the transfer-vertex operator.
+
+  **Returns**
+
+  The length (or number of terms) of the operator.
+</Function>
+
+### qf\_transfer\_op\_relabel\_modes
+
+<Function id="qf_transfer_op_relabel_modes" signature="QfExitCode qf_transfer_op_relabel_modes(QfTransferVertexOperator *op, uint64_t num_modes, const uint32_t *permutation)">
+  Relabels the modes of the provided operator.
+
+  <span id="id34" />
+
+  #### Example
+
+  ```c
+   1QfTransferVertexOperator *op = qf_transfer_op_zero();
+   2uint32_t left[2] = {0, 2};
+   3uint32_t right[2] = {1, 3};
+   4QkComplex64 coeff = {1.0, 0.0};
+   5qf_transfer_op_add_term(op, 2, left, right, &coeff);
+   6
+   7uint32_t permutation[4] = {3, 2, 1, 0};
+   8
+   9QfExitCode exit = qf_transfer_op_relabel_modes(op, 4, permutation);
+  10
+  11assert(exit == QfExitCode_Success);
+  ```
+
+  <Admonition title="Note" type="note">
+    Both index arrays are relabelled. Unlike most operations, this preserves the operator’s `groups` attribute, since relabelling permutes mode indices without reordering, splitting or merging terms.
+  </Admonition>
+
+  **Parameters**
+
+  *   **op** – A pointer to the transfer-vertex operator.
+  *   **num\_modes** – The number of mode indices in the provided permutation list.
+  *   **permutation** – The index permutation list.
+
+  **Returns**
+
+  An exit code.
+
+  *   `QfExitCode_Success` upon success
+  *   `QfExitCode_DuplicateIndexError` if duplicate indices were found in the permutation
+  *   `QfExitCode_IndexError` for any other index errors, such as invalid indices.
+</Function>
+

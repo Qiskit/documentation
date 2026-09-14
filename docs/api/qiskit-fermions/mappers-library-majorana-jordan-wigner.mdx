@@ -1,0 +1,63 @@
+---
+title: majorana_jordan_wigner (latest version)
+description: API reference for qiskit_fermions.mappers.library.majorana_jordan_wigner in the latest version of qiskit-fermions
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit_fermions.mappers.library.majorana_jordan_wigner
+---
+
+<span id="majorana-jordan-wigner" />
+
+# majorana\_jordan\_wigner
+
+<Function id="qiskit_fermions.mappers.library.majorana_jordan_wigner" isDedicatedPage={true} signature="majorana_jordan_wigner(op, num_qubits)">
+  Map a [`MajoranaOperator`](operators-majorana-operator "qiskit_fermions.operators.MajoranaOperator") to a [`SparseObservable`](/docs/api/qiskit/qiskit.quantum_info.SparseObservable) under the Jordan-Wigner transformation.   <span id="id1" />[\[1\]](#id2)
+
+  Majorana mode $m$ acts on the fermionic mode $\lfloor m/2 \rfloor$, which is mapped to the qubit of the same index. This follows Qiskit’s little-endian qubit ordering.
+
+  **Parameters**
+
+  *   **op** – the Majorana operator to map.
+  *   **num\_qubits** – the number of qubits for the resulting qubit operator. Note that this is counted in *fermionic* modes, so it must be strictly greater than the largest Majorana index in `op` divided by two (any additional qubits are padded with the identity).
+
+  **Returns**
+
+  The mapped qubit operator. The result is not guaranteed to be fully simplified; call [`simplify()`](/docs/api/qiskit/qiskit.quantum_info.SparseObservable#simplify) to combine any remaining duplicate terms. Duplicates are merged as the result is assembled, to bound the memory required, so the exact number of terms returned may vary with the number of threads used. This does not affect the operator that the result represents.
+
+  **Raises**
+
+  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – if `num_qubits` is too small to hold the operator’s support, i.e. if it is not larger than the largest *fermionic* mode acted upon by `op`.
+
+  ## Definition
+
+  With the [`MajoranaOperator`](operators-majorana-operator "qiskit_fermions.operators.MajoranaOperator") convention that even indices carry $\gamma_j = a^\dagger_j + a_j$ and odd ones $\gamma'_j = i(a^\dagger_j - a_j)$, a single Majorana operator maps onto a single Pauli string,
+
+$$
+\gamma_j \rightarrow \bigotimes_{k\lt j} \sigma^Z_k \otimes \sigma^X_j ~~\text{and}~~
+\gamma'_j \rightarrow \bigotimes_{k\lt j} \sigma^Z_k \otimes \sigma^Y_j \, .
+$$
+
+  This is also what makes it cheaper than converting to a [`FermionOperator`](operators-fermion-operator "qiskit_fermions.operators.FermionOperator") first and calling [`fermion_jordan_wigner()`](mappers-library-fermion-jordan-wigner "qiskit_fermions.mappers.library.fermion_jordan_wigner"): each fermionic action maps onto a *two*-term sum, so that route inflates a single Pauli string into up to $4^L$ terms for a term built from $L$ Majorana operators, before merging them back down. The saving therefore grows with the length of the terms; for single-operator terms there is no blowup to avoid and the two routes cost about the same.
+
+  ## Usage
+
+  ```pycon
+  >>> from qiskit_fermions.mappers.library import majorana_jordan_wigner
+  >>> from qiskit_fermions.operators import MajoranaOperator, gamma
+  >>> mop = MajoranaOperator.from_dict(
+  ...     {
+  ...         (gamma(0, False), gamma(1, False)): 0.5,
+  ...         (gamma(0, True), gamma(1, True)): 0.5,
+  ...     }
+  ... )
+  >>> majorana_jordan_wigner(mop, 2).simplify()
+  <SparseObservable with 2 terms on 2 qubits: (0+0.5j)(Y_1 X_0) + (0-0.5j)(X_1 Y_0)>
+  ```
+
+  <span id="id2" />
+
+  \[[1](#id1)]
+
+  P. Jordan and E. Wigner, Über das Paulische Äquivalenzverbot, Zeitschrift für Physik 47, No. 9. (1928), pp. 631–651, [doi:10.1007/BF01331938](https://link.springer.com/article/10.1007/BF01331938).
+</Function>
+

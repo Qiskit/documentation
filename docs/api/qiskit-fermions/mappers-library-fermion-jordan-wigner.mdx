@@ -22,11 +22,34 @@ python_api_name: qiskit_fermions.mappers.library.fermion_jordan_wigner
 
   **Returns**
 
-  The mapped qubit operator. The result is not simplified; call [`simplify()`](/docs/api/qiskit/qiskit.quantum_info.SparseObservable#simplify) to combine duplicate terms.
+  The mapped qubit operator. The result is not guaranteed to be fully simplified; call [`simplify()`](/docs/api/qiskit/qiskit.quantum_info.SparseObservable#simplify) to combine any remaining duplicate terms. Duplicates are merged as the result is assembled, to bound the memory required, so the exact number of terms returned may vary with the number of threads used. This does not affect the operator that the result represents.
 
   **Raises**
 
   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – if `num_qubits` is too small to hold the operator’s support, i.e. if it is not larger than the largest mode index acted upon by `op`.
+
+  ## Memory usage
+
+  This mapping is parallelized for speed, and that choice costs memory. Each worker thread accumulates into an observable of its own, and the terms are handed to whichever thread is free rather than partitioned by which Pauli strings they produce, so every thread ends up holding roughly a full copy of the mapped operator. Peak memory therefore grows with the number of threads: expect on the order of the mapped operator’s size *times* the thread count, plus the input operator.
+
+  If memory matters more than wall-clock time, there are two things to reach for:
+
+  *   Reduce the thread count, using rayon’s `RAYON_NUM_THREADS` environment variable. Peak memory falls roughly in proportion, and the mapping takes correspondingly longer.
+
+  *   Map the operator in batches and combine the results yourself, which bounds the peak by the batch size at the cost of repeating the merging work:
+
+      ```python
+      import itertools
+
+      terms = op.iter_terms()
+      total = None
+      while batch := list(itertools.islice(terms, 100_000)):
+          partial = fermion_jordan_wigner(FermionOperator.from_terms(batch), num_qubits)
+          partial = partial.simplify()
+          total = partial if total is None else (total + partial).simplify()
+      ```
+
+      Note that the terms are streamed rather than materialized: `list(op.iter_terms())` on a large operator costs more than the mapping itself.
 
   ## Definition
 
