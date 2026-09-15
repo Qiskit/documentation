@@ -56,9 +56,7 @@ export function collectInlineDelimiterErrors(markdown: string): string[] {
   while ((m = linkRegex.exec(stripped)) !== null) {
     const url = m[2];
     if (TRAILING_PUNCTUATION.test(url.trimEnd())) {
-      errors.push(
-        `Hyperlink URL ends with punctuation: \`[${m[1]}](${url})\``,
-      );
+      errors.push(`Hyperlink URL ends with punctuation: \`[${m[1]}](${url})\``);
     }
   }
 

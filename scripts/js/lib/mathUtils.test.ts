@@ -38,10 +38,14 @@ test("collectInlineDelimiterErrors() - inline math, no errors", () => {
 
   // Content inside fenced code blocks is ignored
   expect(
-    collectInlineDelimiterErrors("```\n$x = 1.$\n[link](http://example.com.)\n```"),
+    collectInlineDelimiterErrors(
+      "```\n$x = 1.$\n[link](http://example.com.)\n```",
+    ),
   ).toEqual([]);
   expect(
-    collectInlineDelimiterErrors("```powershell\n$ver = 'abc'\n$bits = 64\n```"),
+    collectInlineDelimiterErrors(
+      "```powershell\n$ver = 'abc'\n$bits = 64\n```",
+    ),
   ).toEqual([]);
 
   // LaTeX ellipsis command is not plain punctuation
@@ -99,14 +103,12 @@ $$
 
 test("collectInlineDelimiterErrors() - hyperlinks, no errors", () => {
   // Clean link
-  expect(
-    collectInlineDelimiterErrors("[IBM](https://ibm.com)"),
-  ).toEqual([]);
+  expect(collectInlineDelimiterErrors("[IBM](https://ibm.com)")).toEqual([]);
 
   // Punctuation correctly placed outside the closing paren
-  expect(
-    collectInlineDelimiterErrors("See [IBM](https://ibm.com)."),
-  ).toEqual([]);
+  expect(collectInlineDelimiterErrors("See [IBM](https://ibm.com).")).toEqual(
+    [],
+  );
 
   // URL with punctuation not at the end (query params, paths)
   expect(
@@ -118,33 +120,25 @@ test("collectInlineDelimiterErrors() - hyperlinks, no errors", () => {
 });
 
 test("collectInlineDelimiterErrors() - hyperlink, trailing period in URL", () => {
-  expect(
-    collectInlineDelimiterErrors("[link](https://example.com.)"),
-  ).toEqual([
+  expect(collectInlineDelimiterErrors("[link](https://example.com.)")).toEqual([
     "Hyperlink URL ends with punctuation: `[link](https://example.com.)`",
   ]);
 });
 
 test("collectInlineDelimiterErrors() - hyperlink, trailing comma in URL", () => {
-  expect(
-    collectInlineDelimiterErrors("[link](https://example.com,)"),
-  ).toEqual([
+  expect(collectInlineDelimiterErrors("[link](https://example.com,)")).toEqual([
     "Hyperlink URL ends with punctuation: `[link](https://example.com,)`",
   ]);
 });
 
 test("collectInlineDelimiterErrors() - hyperlink, trailing semicolon in URL", () => {
-  expect(
-    collectInlineDelimiterErrors("[link](https://example.com;)"),
-  ).toEqual([
+  expect(collectInlineDelimiterErrors("[link](https://example.com;)")).toEqual([
     "Hyperlink URL ends with punctuation: `[link](https://example.com;)`",
   ]);
 });
 
 test("collectInlineDelimiterErrors() - hyperlink, trailing colon in URL", () => {
-  expect(
-    collectInlineDelimiterErrors("[link](https://example.com:)"),
-  ).toEqual([
+  expect(collectInlineDelimiterErrors("[link](https://example.com:)")).toEqual([
     "Hyperlink URL ends with punctuation: `[link](https://example.com:)`",
   ]);
 });
