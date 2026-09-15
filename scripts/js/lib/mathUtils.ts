@@ -18,40 +18,22 @@
  * Errors are returned in document order (by position of the opening delimiter).
  */
 export function collectMathPeriodErrors(markdown: string): string[] {
-  type Match = { index: number; error: string };
-  const matches: Match[] = [];
+  const errors: string[] = [];
 
-  // Check block math ($$...$$). Must run before inline to avoid
-  // the inline regex matching the single $ chars inside a block expression.
-  const blockRegex = /\$\$([\s\S]+?)\$\$/g;
-  let m: RegExpExecArray | null;
-
-  while ((m = blockRegex.exec(markdown)) !== null) {
-    const content = m[1];
-    if (content.trimEnd().endsWith(".")) {
-      matches.push({
-        index: m.index,
-        error: `Math expression ends with a period: \`$$${content}$$\``,
-      });
-    }
-  }
-
-  // Check inline math ($...$). Use negative lookahead/lookbehind to avoid
-  // matching the $$ block delimiters. Inline math must not span newlines.
+  // Only check inline math ($...$). Block math ($$...$$) is excluded.
+  // Use negative lookahead/lookbehind to avoid matching $$ block delimiters.
+  // Inline math must not span newlines.
   const inlineRegex = /(?<!\$)\$(?!\$)([^\n$]+?)(?<!\$)\$(?!\$)/g;
+  let m: RegExpExecArray | null;
 
   while ((m = inlineRegex.exec(markdown)) !== null) {
     const content = m[1];
     if (content.trimEnd().endsWith(".")) {
-      matches.push({
-        index: m.index,
-        error: `Math expression ends with a period: \`$${content}$\``,
-      });
+      errors.push(
+        `Inline math expression ends with a period: \`$${content}$\``,
+      );
     }
   }
 
-  // Sort by position in the document so errors appear in reading order.
-  matches.sort((a, b) => a.index - b.index);
-
-  return matches.map((m) => m.error);
+  return errors;
 }
