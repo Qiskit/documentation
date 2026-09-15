@@ -17,6 +17,7 @@ import { hideBin } from "yargs/helpers";
 import { collectInvalidImageErrors } from "../lib/markdownImages.js";
 import { readMarkdownAndMetadata } from "../lib/markdownReader.js";
 import { collectHeadingTitleMismatch } from "../lib/markdownTitles.js";
+import { collectInlineDelimiterErrors } from "../lib/mathUtils.js";
 import { parseMarkdown } from "../lib/markdownUtils.js";
 import { checkMetadata } from "../lib/metadataChecker.js";
 import {
@@ -62,11 +63,16 @@ async function main() {
       ? new Set<string>()
       : checkMetadata(metadata, file);
 
+    const mathPeriodErrors = file.startsWith("docs/api/")
+      ? []
+      : collectInlineDelimiterErrors(content);
+
     // Collect all errors for this file
     const errorsInFile: string[] = [
       ...imageErrors,
       ...mismatchedTitleHeadingErrors,
       ...metadataErrors,
+      ...mathPeriodErrors,
     ];
 
     if (errorsInFile.length) {
