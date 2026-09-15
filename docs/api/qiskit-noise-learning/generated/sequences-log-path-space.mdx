@@ -1,0 +1,66 @@
+---
+title: LogPathSpace (latest version)
+description: API reference for qiskit_noise_learning.sequences.LogPathSpace in the latest version of qiskit-noise-learning
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_noise_learning.sequences.LogPathSpace
+---
+
+<span id="qiskit-noise-learning-sequences-logpathspace" />
+
+# qiskit\_noise\_learning.sequences.LogPathSpace
+
+<Class id="qiskit_noise_learning.sequences.LogPathSpace" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/sequences/log_path_map.py" signature="qiskit_noise_learning.sequences.LogPathSpace(fidelity_space: IndexedSpace[FidelityIndex])" modifiers="class">
+  Bases: [`IndexedSpace`](math-indexed-space "qiskit_noise_learning.math.indexed_space.IndexedSpace")\[[`Path`](sequences-path "qiskit_noise_learning.sequences.path.Path")]
+
+  The (infinite-dimensional) space of log path-fidelities.
+
+  For a [`Path`](sequences-path "qiskit_noise_learning.sequences.Path"), the “path-fidelity” is:
+
+  *   If the path is unbound, the product of the fidelities in the repeatable fragment.
+  *   If the path is bound, the product of all fidelities in the path (counting multiplicities).
+
+  This corresponds to the sign-corrected observable of an experiment traversing the path.
+
+  The log path space represents the vector space of such log path-fidelities, indexed by the paths themselves. It is defined relative to a space of log fidelities: a path is a member if all of the fidelity indices in its fragments are members of that fidelity space.
+
+  **Parameters**
+
+  **fidelity\_space** – The space of log fidelities whose fidelity indices the paths are built from.
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit_noise_learning.sequences.LogPathSpace.__init__" signature="__init__(fidelity_space: IndexedSpace[FidelityIndex])" />
+
+  ## Methods
+
+  |                                                                                                                                               |   |
+  | --------------------------------------------------------------------------------------------------------------------------------------------- | - |
+  | [`__init__`](#qiskit_noise_learning.sequences.LogPathSpace.__init__ "qiskit_noise_learning.sequences.LogPathSpace.__init__")(fidelity\_space) |   |
+
+  ## Attributes
+
+  |                                                                                                                                                |                                                                              |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+  | [`dim`](#qiskit_noise_learning.sequences.LogPathSpace.dim "qiskit_noise_learning.sequences.LogPathSpace.dim")                                  | The dimension (cardinality) of the space.                                    |
+  | [`fidelity_space`](#qiskit_noise_learning.sequences.LogPathSpace.fidelity_space "qiskit_noise_learning.sequences.LogPathSpace.fidelity_space") | The space of log fidelities whose fidelity indices the paths are built from. |
+
+  ### fidelity\_space
+
+  <Attribute id="qiskit_noise_learning.sequences.LogPathSpace.fidelity_space">
+    Type: [`IndexedSpace`](math-indexed-space "qiskit_noise_learning.math.indexed_space.IndexedSpace")\[[`FidelityIndex`](sequences-fidelity-index "qiskit_noise_learning.sequences.fidelity_index.FidelityIndex")]
+
+    The space of log fidelities whose fidelity indices the paths are built from.
+  </Attribute>
+
+  ### dim
+
+  <Attribute id="qiskit_noise_learning.sequences.LogPathSpace.dim">
+    Type: [`int`](https://docs.python.org/3/library/functions.html#int) | [`float`](https://docs.python.org/3/library/functions.html#float)
+
+    The dimension (cardinality) of the space.
+
+    May be `math.inf` for infinite-dimensional spaces.
+  </Attribute>
+</Class>
+

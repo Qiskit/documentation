@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.PauliEvolutionGate
 
 # PauliEvolutionGate
 
-<Class id="qiskit.circuit.library.PauliEvolutionGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/pauli_evolution.py#L31-L332" signature="qiskit.circuit.library.PauliEvolutionGate(operator, time=1.0, label=None, synthesis=None)" modifiers="class">
+<Class id="qiskit.circuit.library.PauliEvolutionGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/pauli_evolution.py#L31-L336" signature="qiskit.circuit.library.PauliEvolutionGate(operator, time=1.0, label=None, synthesis=None)" modifiers="class">
   Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
   Time-evolution of an operator consisting of Paulis.
@@ -65,6 +65,10 @@ $$
   q_1: ┤1                         ├
        └──────────────────────────┘
   ```
+
+  <Admonition title="Warning" type="caution">
+    The transpiler might silently drop the `synthesis` strategy during optimization, for example, if two Pauli evolution gates are merged.
+  </Admonition>
 
   References:
 
@@ -223,7 +227,7 @@ $$
 
   ### control
 
-  <Function id="qiskit.circuit.library.PauliEvolutionGate.control" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/pauli_evolution.py#L248-L309" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=None)">
+  <Function id="qiskit.circuit.library.PauliEvolutionGate.control" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/pauli_evolution.py#L252-L313" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=None)">
     Return the controlled version of itself.
 
     The outcome is the specified controlled version of $e^{-itH}$. The returned gate represents $e^{-it H_C}$, where $H_C$ is the original operator $H$, tensored with $|0\rangle\langle 0|$ and $|1\rangle\langle 1|$ projectors (depending on the control state).
@@ -266,7 +270,7 @@ $$
 
   ### inverse
 
-  <Function id="qiskit.circuit.library.PauliEvolutionGate.inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/pauli_evolution.py#L224-L226" signature="inverse(annotated=False)">
+  <Function id="qiskit.circuit.library.PauliEvolutionGate.inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/pauli_evolution.py#L228-L230" signature="inverse(annotated=False)">
     Return the inverse, which is obtained by flipping the sign of the evolution time.
 
     **Parameters**
@@ -282,7 +286,7 @@ $$
 
   ### power
 
-  <Function id="qiskit.circuit.library.PauliEvolutionGate.power" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/pauli_evolution.py#L228-L243" signature="power(exponent, annotated=False)">
+  <Function id="qiskit.circuit.library.PauliEvolutionGate.power" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/pauli_evolution.py#L232-L247" signature="power(exponent, annotated=False)">
     Raise this gate to the power of `exponent`.
 
     The outcome represents $e^{-i tp H}$ where $p$ equals `exponent`.
@@ -361,7 +365,7 @@ $$
 
   ### to\_matrix
 
-  <Function id="qiskit.circuit.library.PauliEvolutionGate.to_matrix" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/pauli_evolution.py#L185-L222" signature="to_matrix()">
+  <Function id="qiskit.circuit.library.PauliEvolutionGate.to_matrix" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/pauli_evolution.py#L189-L226" signature="to_matrix()">
     Return the matrix $e^{-it H}$ as `numpy.ndarray`.
 
     **Returns**
@@ -387,7 +391,7 @@ $$
 
   ### validate\_parameter
 
-  <Function id="qiskit.circuit.library.PauliEvolutionGate.validate_parameter" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/pauli_evolution.py#L315-L320" signature="validate_parameter(parameter)">
+  <Function id="qiskit.circuit.library.PauliEvolutionGate.validate_parameter" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/pauli_evolution.py#L319-L324" signature="validate_parameter(parameter)">
     Gate parameters should be int, float, or ParameterExpression
 
     **Parameters**

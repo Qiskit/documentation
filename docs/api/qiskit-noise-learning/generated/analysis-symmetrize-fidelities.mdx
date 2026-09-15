@@ -1,0 +1,43 @@
+---
+title: SymmetrizeFidelities (latest version)
+description: API reference for qiskit_noise_learning.analysis.SymmetrizeFidelities in the latest version of qiskit-noise-learning
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_noise_learning.analysis.SymmetrizeFidelities
+---
+
+<span id="qiskit-noise-learning-analysis-symmetrizefidelities" />
+
+# qiskit\_noise\_learning.analysis.SymmetrizeFidelities
+
+<Class id="qiskit_noise_learning.analysis.SymmetrizeFidelities" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/analysis/symmetrize.py" signature="qiskit_noise_learning.analysis.SymmetrizeFidelities" modifiers="class">
+  Bases: [`AnalysisStage`](analysis-analysis-stage "qiskit_noise_learning.analysis.analysis_pipeline.AnalysisStage")
+
+  Project generator rates into the fidelity-symmetry null space, gate by gate.
+
+  For each gate, builds commutation matrices of generators against generators and conjugated generators against generators, then projects rates into the null space of their difference. Covariance is zeroed (the iterative projection with clipping is non-linear).
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit_noise_learning.analysis.SymmetrizeFidelities.__init__" signature="__init__()" />
+
+  ## Methods
+
+  |                                                                                                                                              |                                                                                                                             |
+  | -------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit_noise_learning.analysis.SymmetrizeFidelities.__init__ "qiskit_noise_learning.analysis.SymmetrizeFidelities.__init__")() |                                                                                                                             |
+  | `run`(fit)                                                                                                                                   | Run this stage, returning a new [`Fit`](analysis-fit "qiskit_noise_learning.analysis.Fit") with the output level populated. |
+
+  ### input\_level
+
+  <Attribute id="qiskit_noise_learning.analysis.SymmetrizeFidelities.input_level">
+    alias of [`ModelData`](data-model-data "qiskit_noise_learning.data.model_data.ModelData")
+  </Attribute>
+
+  ### output\_level
+
+  <Attribute id="qiskit_noise_learning.analysis.SymmetrizeFidelities.output_level">
+    alias of [`ModelData`](data-model-data "qiskit_noise_learning.data.model_data.ModelData")
+  </Attribute>
+</Class>
+

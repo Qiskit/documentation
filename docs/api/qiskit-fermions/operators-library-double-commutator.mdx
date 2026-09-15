@@ -1,0 +1,81 @@
+---
+title: double_commutator (latest version)
+description: API reference for qiskit_fermions.operators.library.double_commutator in the latest version of qiskit-fermions
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit_fermions.operators.library.double_commutator
+---
+
+<span id="double-commutator" />
+
+# double\_commutator
+
+<Function id="qiskit_fermions.operators.library.double_commutator" isDedicatedPage={true} signature="double_commutator(op_a, op_b, op_c, sign)">
+  Computes the double-commutator of three operators.
+
+  The double-commutator is defined as follows (see also Chapter 13.6, *Equation of motion methods*, page 479 of   <span id="id1" />[\[1\]](#id3); the `sign=False` case is the symmetric double commutator $[A, B, C]$ appearing in Equation (2) of   <span id="id2" />[\[2\]](#id4)):
+
+  If `sign` is `False`, it returns
+
+$$
+[[A, B], C]/2 + [A, [B, C]]/2 = (2ABC + 2CBA - BAC - CAB - ACB - BCA)/2.
+
+
+$$
+
+  If `sign` is `True`, it returns
+
+$$
+\{[A, B], C\}/2 + \{A, [B, C]\}/2 = (2ABC - 2CBA - BAC + CAB - ACB + BCA)/2.
+
+
+$$
+
+  Operators which support this method must implement the [`SupportsCommutators`](protocols-supports-commutators "qiskit_fermions.protocols.SupportsCommutators") protocol.
+
+  <Admonition title="Note" type="note">
+    All three inputs must be of the same operator type. This will also determine the output type.
+  </Admonition>
+
+  ```pycon
+  >>> from qiskit_fermions.operators import FermionOperator
+  >>> from qiskit_fermions.operators.library import double_commutator
+  >>> op1 = FermionOperator.from_dict({((True, 0), (False, 0)): 1})
+  >>> op2 = FermionOperator.from_dict({((False, 0), (True, 0)): 2})
+  >>> op3 = FermionOperator.from_dict(
+  ...     {((True, 0), (False, 0)): 1, ((False, 0), (True, 0)): 2 + 0.5j}
+  ... )
+  >>> comm = double_commutator(op1, op2, op3, False)
+  >>> comm = comm.normal_ordered()
+  >>> canon = comm.simplify()
+  >>> assert canon == FermionOperator.zero()
+  ```
+
+  <span id="id3" />
+
+  \[[1](#id1)]
+
+  R. McWeeny. Methods of Molecular Quantum Mechanics. 2nd Edition, Academic Press, 1992. ISBN 0-12-486552-6.
+
+  <span id="id4" />
+
+  \[[2](#id2)]
+
+  P. J. Ollitrault, A. Miessen, I. Tavernelli. Molecular Quantum Dynamics: A Quantum Computing Perspective. Acc. Chem. Res. 54, 4229-4238 (2021). [https://doi.org/10.1021/acs.accounts.1c00514](https://doi.org/10.1021/acs.accounts.1c00514)
+
+  **Parameters**
+
+  *   **op\_a** (*T*) – the operator $A$ above.
+  *   **op\_b** (*T*) – the operator $B$ above.
+  *   **op\_c** (*T*) – the operator $C$ above.
+  *   **sign** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – the nature of the outer (anti-)commutator as per the definition above.
+
+  **Returns**
+
+  The double-commutator as per the definition above.
+
+  **Return type**
+
+  *T*
+</Function>
+

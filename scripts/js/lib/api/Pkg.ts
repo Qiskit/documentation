@@ -70,8 +70,11 @@ export class Pkg {
     "qiskit-addon-utils",
     "qiskit-addon-paulice",
     "qiskit-addon-pna",
+    "qiskit-fermions",
+    "qiskit-fermions-c",
     "pauli-prop",
     "qiskit-addon-slc",
+    "qiskit-noise-learning",
   ];
 
   static VALID_NAMES = [
@@ -226,6 +229,29 @@ export class Pkg {
         hasAddonDocs: true,
       });
     }
+    if (name === "qiskit-fermions") {
+      return new Pkg({
+        ...args,
+        title: "Qiskit Fermions",
+        githubSlug: "Qiskit/qiskit-fermions",
+        kebabCaseAndShortenUrls: true,
+        language: "Python",
+      });
+    }
+    if (name === "qiskit-fermions-c") {
+      return new Pkg({
+        ...args,
+        title: "Qiskit Fermions",
+        githubSlug: "Qiskit/qiskit-fermions",
+        kebabCaseAndShortenUrls: true,
+        language: "C",
+        releaseNotesConfig: new ReleaseNotesConfig({
+          enabled: true,
+          linkToPackage: "qiskit-fermions",
+        }),
+        artifactPackageName: "qiskit-fermions",
+      });
+    }
     if (name === "qiskit-addon-pna") {
       return new Pkg({
         ...args,
@@ -261,6 +287,15 @@ export class Pkg {
         ...args,
         title: "Qiskit addon utilities",
         githubSlug: "Qiskit/qiskit-addon-utils",
+        kebabCaseAndShortenUrls: true,
+        language: "Python",
+      });
+    }
+    if (name === "qiskit-noise-learning") {
+      return new Pkg({
+        ...args,
+        title: "Qiskit noise learning",
+        githubSlug: "Qiskit/qiskit-noise-learning",
         kebabCaseAndShortenUrls: true,
         language: "Python",
       });

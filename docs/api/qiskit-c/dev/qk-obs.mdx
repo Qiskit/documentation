@@ -121,15 +121,16 @@ for (size_t i = 0; i < num_terms; i++) {
 
 ## Construction
 
-`QkObs` can be constructed by initializing an empty observable (with `qk_obs_zero`) and iteratively adding terms (with `qk_obs_add_term`). Alternatively, an observable can be constructed from “raw” data (with `qk_obs_new`) if all internal data is specified. This requires care to ensure the data is coherent and results in a valid observable.
+`QkObs` can be constructed by initializing an empty observable (with `qk_obs_zero` or `qk_obs_with_capacity`) and iteratively adding terms (with `qk_obs_add_term`). Alternatively, an observable can be constructed from “raw” data (with `qk_obs_new`) if all internal data is specified. This requires care to ensure the data is coherent and results in a valid observable.
 
 <span id="qkobs-constructors" />
 
-| Function          | Summary                                                            |
-| ----------------- | ------------------------------------------------------------------ |
-| `qk_obs_zero`     | Construct an empty observable on a given number of qubits.         |
-| `qk_obs_identity` | Construct the identity observable on a given number of qubits.     |
-| `qk_obs_new`      | Construct an observable from [the raw data arrays](#qkobs-arrays). |
+| Function               | Summary                                                            |
+| ---------------------- | ------------------------------------------------------------------ |
+| `qk_obs_zero`          | Construct an empty observable on a given number of qubits.         |
+| `qk_obs_with_capacity` | Construct an empty observable with a pre-allocated capacity.       |
+| `qk_obs_identity`      | Construct the identity observable on a given number of qubits.     |
+| `qk_obs_new`           | Construct an observable from [the raw data arrays](#qkobs-arrays). |
 
 ## Mathematical manipulation
 
@@ -186,6 +187,30 @@ for (size_t i = 0; i < num_terms; i++) {
   A pointer to the created observable.
 </Function>
 
+### qk\_obs\_with\_capacity
+
+<Function id="qk_obs_with_capacity" signature="QkObs *qk_obs_with_capacity(uint32_t num_qubits, size_t num_terms, size_t num_bit_terms)">
+  Construct an empty observable with a pre-allocated capacity.
+
+  <span id="group__QkObs_1autotoc_md318" />
+
+  #### Example
+
+  ```c
+  QkObs *empty = qk_obs_with_capacity(100, 100, 1000);
+  ```
+
+  **Parameters**
+
+  *   **num\_qubits** – The number of qubits the observable is defined on.
+  *   **num\_terms** – The number of terms for which to pre-allocate capacity.
+  *   **num\_bit\_terms** – The number of bit terms for which to pre-allocate capacity.
+
+  **Returns**
+
+  A pointer to the created observable.
+</Function>
+
 ### qk\_obs\_new
 
 <Function id="qk_obs_new" signature="QkObs *qk_obs_new(uint32_t num_qubits, uint64_t num_terms, uint64_t num_bits, QkComplex64 *coeffs, QkBitTerm *bit_terms, uint32_t *indices, size_t *boundaries)">
@@ -193,7 +218,7 @@ for (size_t i = 0; i < num_terms; i++) {
 
   Any of the pointer arguments may be `NULL` if and only if their corresponding length is zero.
 
-  <span id="group__QkObs_1autotoc_md318" />
+  <span id="group__QkObs_1autotoc_md319" />
 
   #### Example
 
@@ -213,11 +238,11 @@ for (size_t i = 0; i < num_terms; i++) {
   qk_obs_free(obs);
   ```
 
-  <span id="group__QkObs_1autotoc_md319" />
+  <span id="group__QkObs_1autotoc_md320" />
 
   #### Safety
 
-  <span id="group__QkObs_1autotoc_md319" />
+  <span id="group__QkObs_1autotoc_md320" />
 
   Behavior is undefined if any of the following conditions are violated:
 
@@ -246,7 +271,7 @@ for (size_t i = 0; i < num_terms; i++) {
 <Function id="qk_obs_free" signature="void qk_obs_free(QkObs *obs)">
   Free the observable.
 
-  <span id="group__QkObs_1autotoc_md320" />
+  <span id="group__QkObs_1autotoc_md321" />
 
   #### Example
 
@@ -255,11 +280,11 @@ for (size_t i = 0; i < num_terms; i++) {
   qk_obs_free(obs);
   ```
 
-  <span id="group__QkObs_1autotoc_md321" />
+  <span id="group__QkObs_1autotoc_md322" />
 
   #### Safety
 
-  <span id="group__QkObs_1autotoc_md321" />
+  <span id="group__QkObs_1autotoc_md322" />
 
   Behavior is undefined if `obs` is not either null or a valid pointer to a `QkObs`.
 
@@ -273,7 +298,7 @@ for (size_t i = 0; i < num_terms; i++) {
 <Function id="qk_obs_add_term" signature="QkExitCode qk_obs_add_term(QkObs *obs, const QkObsTerm *cterm)">
   Add a term to the observable.
 
-  <span id="group__QkObs_1autotoc_md322" />
+  <span id="group__QkObs_1autotoc_md323" />
 
   #### Example
 
@@ -289,11 +314,11 @@ for (size_t i = 0; i < num_terms; i++) {
   QkExitCode exit_code = qk_obs_add_term(obs, &term);
   ```
 
-  <span id="group__QkObs_1autotoc_md323" />
+  <span id="group__QkObs_1autotoc_md324" />
 
   #### Safety
 
-  <span id="group__QkObs_1autotoc_md323" />
+  <span id="group__QkObs_1autotoc_md324" />
 
   Behavior is undefined if any of the following is violated:
 
@@ -317,7 +342,7 @@ for (size_t i = 0; i < num_terms; i++) {
 
   A `QkObsTerm` contains pointers to the indices and bit terms in the term, which can be used to modify the internal data of the observable. This can leave the observable in an incoherent state and should be avoided, unless great care is taken. It is generally safer to construct a new observable instead of attempting in-place modifications.
 
-  <span id="group__QkObs_1autotoc_md324" />
+  <span id="group__QkObs_1autotoc_md325" />
 
   #### Example
 
@@ -329,11 +354,11 @@ for (size_t i = 0; i < num_terms; i++) {
   // QkExitCode error = qk_obs_term(obs, 12, &term);
   ```
 
-  <span id="group__QkObs_1autotoc_md325" />
+  <span id="group__QkObs_1autotoc_md326" />
 
   #### Safety
 
-  <span id="group__QkObs_1autotoc_md325" />
+  <span id="group__QkObs_1autotoc_md326" />
 
   Behavior is undefined if any of the following is violated
 
@@ -356,7 +381,7 @@ for (size_t i = 0; i < num_terms; i++) {
 <Function id="qk_obs_num_terms" signature="size_t qk_obs_num_terms(const QkObs *obs)">
   Get the number of terms in the observable.
 
-  <span id="group__QkObs_1autotoc_md326" />
+  <span id="group__QkObs_1autotoc_md327" />
 
   #### Example
 
@@ -365,11 +390,11 @@ for (size_t i = 0; i < num_terms; i++) {
   size_t num_terms = qk_obs_num_terms(obs);  // num_terms==1
   ```
 
-  <span id="group__QkObs_1autotoc_md327" />
+  <span id="group__QkObs_1autotoc_md328" />
 
   #### Safety
 
-  <span id="group__QkObs_1autotoc_md327" />
+  <span id="group__QkObs_1autotoc_md328" />
 
   Behavior is undefined `obs` is not a valid, non-null pointer to a `QkObs`.
 
@@ -387,7 +412,7 @@ for (size_t i = 0; i < num_terms; i++) {
 <Function id="qk_obs_num_qubits" signature="uint32_t qk_obs_num_qubits(const QkObs *obs)">
   Get the number of qubits the observable is defined on.
 
-  <span id="group__QkObs_1autotoc_md328" />
+  <span id="group__QkObs_1autotoc_md329" />
 
   #### Example
 
@@ -396,11 +421,11 @@ for (size_t i = 0; i < num_terms; i++) {
   uint32_t num_qubits = qk_obs_num_qubits(obs);  // num_qubits==100
   ```
 
-  <span id="group__QkObs_1autotoc_md329" />
+  <span id="group__QkObs_1autotoc_md330" />
 
   #### Safety
 
-  <span id="group__QkObs_1autotoc_md329" />
+  <span id="group__QkObs_1autotoc_md330" />
 
   Behavior is undefined `obs` is not a valid, non-null pointer to a `QkObs`.
 
@@ -418,7 +443,7 @@ for (size_t i = 0; i < num_terms; i++) {
 <Function id="qk_obs_len" signature="size_t qk_obs_len(const QkObs *obs)">
   Get the number of bit terms/indices in the observable.
 
-  <span id="group__QkObs_1autotoc_md330" />
+  <span id="group__QkObs_1autotoc_md331" />
 
   #### Example
 
@@ -427,11 +452,11 @@ for (size_t i = 0; i < num_terms; i++) {
   size_t len = qk_obs_len(obs);  // len==0, as there are no non-trivial bit terms
   ```
 
-  <span id="group__QkObs_1autotoc_md331" />
+  <span id="group__QkObs_1autotoc_md332" />
 
   #### Safety
 
-  <span id="group__QkObs_1autotoc_md331" />
+  <span id="group__QkObs_1autotoc_md332" />
 
   Behavior is undefined `obs` is not a valid, non-null pointer to a `QkObs`.
 
@@ -451,7 +476,7 @@ for (size_t i = 0; i < num_terms; i++) {
 
   This can be used to read and modify the observable’s coefficients. The resulting pointer is valid to read for `qk_obs_num_terms(obs)` elements of `QkComplex64`.
 
-  <span id="group__QkObs_1autotoc_md332" />
+  <span id="group__QkObs_1autotoc_md333" />
 
   #### Example
 
@@ -465,11 +490,11 @@ for (size_t i = 0; i < num_terms; i++) {
   }
   ```
 
-  <span id="group__QkObs_1autotoc_md333" />
+  <span id="group__QkObs_1autotoc_md334" />
 
   #### Safety
 
-  <span id="group__QkObs_1autotoc_md333" />
+  <span id="group__QkObs_1autotoc_md334" />
 
   Behavior is undefined `obs` is not a valid, non-null pointer to a `QkObs`.
 
@@ -489,7 +514,7 @@ for (size_t i = 0; i < num_terms; i++) {
 
   This can be used to read and modify the observable’s indices. The resulting pointer is valid to read for `qk_obs_len(obs)` elements of size `uint32_t`.
 
-  <span id="group__QkObs_1autotoc_md334" />
+  <span id="group__QkObs_1autotoc_md335" />
 
   #### Example
 
@@ -513,11 +538,11 @@ for (size_t i = 0; i < num_terms; i++) {
   qk_obs_free(obs);
   ```
 
-  <span id="group__QkObs_1autotoc_md335" />
+  <span id="group__QkObs_1autotoc_md336" />
 
   #### Safety
 
-  <span id="group__QkObs_1autotoc_md335" />
+  <span id="group__QkObs_1autotoc_md336" />
 
   Behavior is undefined `obs` is not a valid, non-null pointer to a `QkObs`.
 
@@ -537,7 +562,7 @@ for (size_t i = 0; i < num_terms; i++) {
 
   This can be used to read and modify the observable’s term boundaries. The resulting pointer is valid to read for `qk_obs_num_terms(obs) + 1` elements of size `size_t`.
 
-  <span id="group__QkObs_1autotoc_md336" />
+  <span id="group__QkObs_1autotoc_md337" />
 
   #### Example
 
@@ -559,11 +584,11 @@ for (size_t i = 0; i < num_terms; i++) {
   }
   ```
 
-  <span id="group__QkObs_1autotoc_md337" />
+  <span id="group__QkObs_1autotoc_md338" />
 
   #### Safety
 
-  <span id="group__QkObs_1autotoc_md337" />
+  <span id="group__QkObs_1autotoc_md338" />
 
   Behavior is undefined `obs` is not a valid, non-null pointer to a `QkObs`.
 
@@ -583,7 +608,7 @@ for (size_t i = 0; i < num_terms; i++) {
 
   This can be used to read and modify the observable’s bit terms. The resulting pointer is valid to read for `qk_obs_len(obs)` elements of size `uint8_t`.
 
-  <span id="group__QkObs_1autotoc_md338" />
+  <span id="group__QkObs_1autotoc_md339" />
 
   #### Example
 
@@ -607,11 +632,11 @@ for (size_t i = 0; i < num_terms; i++) {
   qk_obs_free(obs);
   ```
 
-  <span id="group__QkObs_1autotoc_md339" />
+  <span id="group__QkObs_1autotoc_md340" />
 
   #### Safety
 
-  <span id="group__QkObs_1autotoc_md339" />
+  <span id="group__QkObs_1autotoc_md340" />
 
   Behavior is undefined `obs` is not a valid, non-null pointer to a `QkObs`, or if invalid values are written into the resulting `QkBitTerm` pointer.
 
@@ -629,7 +654,7 @@ for (size_t i = 0; i < num_terms; i++) {
 <Function id="qk_obs_multiply" signature="QkObs *qk_obs_multiply(const QkObs *obs, const QkComplex64 *coeff)">
   Multiply the observable by a complex coefficient.
 
-  <span id="group__QkObs_1autotoc_md340" />
+  <span id="group__QkObs_1autotoc_md341" />
 
   #### Example
 
@@ -639,11 +664,11 @@ for (size_t i = 0; i < num_terms; i++) {
   QkObs *result = qk_obs_multiply(obs, &coeff);
   ```
 
-  <span id="group__QkObs_1autotoc_md341" />
+  <span id="group__QkObs_1autotoc_md342" />
 
   #### Safety
 
-  <span id="group__QkObs_1autotoc_md341" />
+  <span id="group__QkObs_1autotoc_md342" />
 
   Behavior is undefined if any of the following is violated
 
@@ -665,7 +690,7 @@ for (size_t i = 0; i < num_terms; i++) {
 <Function id="qk_obs_multiply_inplace" signature="void qk_obs_multiply_inplace(QkObs *obs, const QkComplex64 *coeff)">
   Multiply the observable in-place by a complex coefficient.
 
-  <span id="group__QkObs_1autotoc_md342" />
+  <span id="group__QkObs_1autotoc_md343" />
 
   #### Example
 
@@ -675,11 +700,11 @@ for (size_t i = 0; i < num_terms; i++) {
   qk_obs_multiply_inplace(obs, &coeff);
   ```
 
-  <span id="group__QkObs_1autotoc_md343" />
+  <span id="group__QkObs_1autotoc_md344" />
 
   #### Safety
 
-  <span id="group__QkObs_1autotoc_md343" />
+  <span id="group__QkObs_1autotoc_md344" />
 
   Behavior is undefined if any of the following is violated
 
@@ -697,7 +722,7 @@ for (size_t i = 0; i < num_terms; i++) {
 <Function id="qk_obs_add" signature="QkObs *qk_obs_add(const QkObs *left, const QkObs *right)">
   Add two observables.
 
-  <span id="group__QkObs_1autotoc_md344" />
+  <span id="group__QkObs_1autotoc_md345" />
 
   #### Example
 
@@ -707,11 +732,11 @@ for (size_t i = 0; i < num_terms; i++) {
   QkObs *result = qk_obs_add(left, right);
   ```
 
-  <span id="group__QkObs_1autotoc_md345" />
+  <span id="group__QkObs_1autotoc_md346" />
 
   #### Safety
 
-  <span id="group__QkObs_1autotoc_md345" />
+  <span id="group__QkObs_1autotoc_md346" />
 
   Behavior is undefined if `left` or `right` are not valid, non-null pointers to `QkObs`\ s.
 
@@ -730,7 +755,7 @@ for (size_t i = 0; i < num_terms; i++) {
 <Function id="qk_obs_add_inplace" signature="void qk_obs_add_inplace(QkObs *left, const QkObs *right)">
   Add an observable to an existing one.
 
-  <span id="group__QkObs_1autotoc_md346" />
+  <span id="group__QkObs_1autotoc_md347" />
 
   #### Example
 
@@ -740,11 +765,11 @@ for (size_t i = 0; i < num_terms; i++) {
   qk_obs_add_inplace(left, right);
   ```
 
-  <span id="group__QkObs_1autotoc_md347" />
+  <span id="group__QkObs_1autotoc_md348" />
 
   #### Safety
 
-  <span id="group__QkObs_1autotoc_md347" />
+  <span id="group__QkObs_1autotoc_md348" />
 
   Behavior is undefined if `left` or `right` are not valid, non-null pointers to `QkObs`\ s.
 
@@ -759,7 +784,7 @@ for (size_t i = 0; i < num_terms; i++) {
 <Function id="qk_obs_scaled_add" signature="QkObs *qk_obs_scaled_add(const QkObs *left, const QkObs *right, const QkComplex64 *factor)">
   Add two observables while scaling the coefficients of the right one.
 
-  <span id="group__QkObs_1autotoc_md348" />
+  <span id="group__QkObs_1autotoc_md349" />
 
   #### Example
 
@@ -770,11 +795,11 @@ for (size_t i = 0; i < num_terms; i++) {
   QkObs *result = qk_obs_scaled_add(left, right, &factor);
   ```
 
-  <span id="group__QkObs_1autotoc_md349" />
+  <span id="group__QkObs_1autotoc_md350" />
 
   #### Safety
 
-  <span id="group__QkObs_1autotoc_md349" />
+  <span id="group__QkObs_1autotoc_md350" />
 
   Behavior is undefined if `left` or `right` are not valid, non-null pointers to `QkObs`\ s.
 
@@ -794,7 +819,7 @@ for (size_t i = 0; i < num_terms; i++) {
 <Function id="qk_obs_scaled_add_inplace" signature="void qk_obs_scaled_add_inplace(QkObs *left, const QkObs *right, const QkComplex64 *factor)">
   Add a scaled observable to an existing one.
 
-  <span id="group__QkObs_1autotoc_md350" />
+  <span id="group__QkObs_1autotoc_md351" />
 
   #### Example
 
@@ -805,11 +830,11 @@ for (size_t i = 0; i < num_terms; i++) {
   qk_obs_scaled_add_inplace(left, right, &factor);
   ```
 
-  <span id="group__QkObs_1autotoc_md351" />
+  <span id="group__QkObs_1autotoc_md352" />
 
   #### Safety
 
-  <span id="group__QkObs_1autotoc_md351" />
+  <span id="group__QkObs_1autotoc_md352" />
 
   Behavior is undefined if `left` or `right` are not valid, non-null pointers to `QkObs`\ s.
 
@@ -825,7 +850,7 @@ for (size_t i = 0; i < num_terms; i++) {
 <Function id="qk_obs_compose" signature="QkObs *qk_obs_compose(const QkObs *first, const QkObs *second)">
   Compose (multiply) two observables.
 
-  <span id="group__QkObs_1autotoc_md352" />
+  <span id="group__QkObs_1autotoc_md353" />
 
   #### Example
 
@@ -835,11 +860,11 @@ for (size_t i = 0; i < num_terms; i++) {
   QkObs *result = qk_obs_compose(first, second);
   ```
 
-  <span id="group__QkObs_1autotoc_md353" />
+  <span id="group__QkObs_1autotoc_md354" />
 
   #### Safety
 
-  <span id="group__QkObs_1autotoc_md353" />
+  <span id="group__QkObs_1autotoc_md354" />
 
   Behavior is undefined if `first` or `second` are not valid, non-null pointers to `QkObs`\ s.
 
@@ -860,7 +885,7 @@ for (size_t i = 0; i < num_terms; i++) {
 
   Notably, this allows composing two observables of different size.
 
-  <span id="group__QkObs_1autotoc_md354" />
+  <span id="group__QkObs_1autotoc_md355" />
 
   #### Example
 
@@ -870,11 +895,11 @@ for (size_t i = 0; i < num_terms; i++) {
   QkObs *result = qk_obs_compose(first, second);
   ```
 
-  <span id="group__QkObs_1autotoc_md355" />
+  <span id="group__QkObs_1autotoc_md356" />
 
   #### Safety
 
-  <span id="group__QkObs_1autotoc_md355" />
+  <span id="group__QkObs_1autotoc_md356" />
 
   To call this function safely
 
@@ -899,11 +924,11 @@ for (size_t i = 0; i < num_terms; i++) {
 
   The layout is set by an array `layout` of new indices, specifying that qubit at current index `i` is relabelled to index `layout[i]`. The number of qubits the observable acts on can be extended by setting a larger `num_qubits` than the current observable has.
 
-  <span id="group__QkObs_1autotoc_md356" />
+  <span id="group__QkObs_1autotoc_md357" />
 
   #### Example
 
-  <span id="group__QkObs_1autotoc_md356" />
+  <span id="group__QkObs_1autotoc_md357" />
 
   This interface allows to relabel and extend the qubit indices:
 
@@ -939,11 +964,11 @@ for (size_t i = 0; i < num_terms; i++) {
   free(layout);
   ```
 
-  <span id="group__QkObs_1autotoc_md357" />
+  <span id="group__QkObs_1autotoc_md358" />
 
   #### Safety
 
-  <span id="group__QkObs_1autotoc_md357" />
+  <span id="group__QkObs_1autotoc_md358" />
 
   Behavior is undefined if `obs` is not a valid, non-null pointer to `QkObs` or if `layout` is not a valid, non-null pointer to a sequence of `qk_obs_num_qubits(obs)` consecutive elements of `uint32_t`.
 
@@ -968,7 +993,7 @@ for (size_t i = 0; i < num_terms; i++) {
 <Function id="qk_obs_canonicalize" signature="QkObs *qk_obs_canonicalize(const QkObs *obs, double tol)">
   Calculate the canonical representation of the observable.
 
-  <span id="group__QkObs_1autotoc_md358" />
+  <span id="group__QkObs_1autotoc_md359" />
 
   #### Example
 
@@ -980,11 +1005,11 @@ for (size_t i = 0; i < num_terms; i++) {
   QkObs *canonical = qk_obs_canonicalize(two, tol);
   ```
 
-  <span id="group__QkObs_1autotoc_md359" />
+  <span id="group__QkObs_1autotoc_md360" />
 
   #### Safety
 
-  <span id="group__QkObs_1autotoc_md359" />
+  <span id="group__QkObs_1autotoc_md360" />
 
   Behavior is undefined `obs` is not a valid, non-null pointer to a `QkObs`.
 
@@ -1003,7 +1028,7 @@ for (size_t i = 0; i < num_terms; i++) {
 <Function id="qk_obs_copy" signature="QkObs *qk_obs_copy(const QkObs *obs)">
   Copy the observable.
 
-  <span id="group__QkObs_1autotoc_md360" />
+  <span id="group__QkObs_1autotoc_md361" />
 
   #### Example
 
@@ -1012,11 +1037,11 @@ for (size_t i = 0; i < num_terms; i++) {
   QkObs *copied = qk_obs_copy(original);
   ```
 
-  <span id="group__QkObs_1autotoc_md361" />
+  <span id="group__QkObs_1autotoc_md362" />
 
   #### Safety
 
-  <span id="group__QkObs_1autotoc_md361" />
+  <span id="group__QkObs_1autotoc_md362" />
 
   Behavior is undefined `obs` is not a valid, non-null pointer to a `QkObs`.
 
@@ -1036,7 +1061,7 @@ for (size_t i = 0; i < num_terms; i++) {
 
   Note that this does not compare mathematical equality, but data equality. This means that two observables might represent the same observable but not compare as equal.
 
-  <span id="group__QkObs_1autotoc_md362" />
+  <span id="group__QkObs_1autotoc_md363" />
 
   #### Example
 
@@ -1046,11 +1071,11 @@ for (size_t i = 0; i < num_terms; i++) {
   bool are_equal = qk_obs_equal(observable, other);
   ```
 
-  <span id="group__QkObs_1autotoc_md363" />
+  <span id="group__QkObs_1autotoc_md364" />
 
   #### Safety
 
-  <span id="group__QkObs_1autotoc_md363" />
+  <span id="group__QkObs_1autotoc_md364" />
 
   Behavior is undefined if `obs` or `other` are not valid, non-null pointers to `QkObs`\ s.
 
@@ -1069,7 +1094,7 @@ for (size_t i = 0; i < num_terms; i++) {
 <Function id="qk_obs_str" signature="char *qk_obs_str(const QkObs *obs)">
   Return a string representation of a `QkObs`.
 
-  <span id="group__QkObs_1autotoc_md364" />
+  <span id="group__QkObs_1autotoc_md365" />
 
   #### Example
 
@@ -1080,11 +1105,11 @@ for (size_t i = 0; i < num_terms; i++) {
   qk_obs_free(obs);
   ```
 
-  <span id="group__QkObs_1autotoc_md365" />
+  <span id="group__QkObs_1autotoc_md366" />
 
   #### Safety
 
-  <span id="group__QkObs_1autotoc_md365" />
+  <span id="group__QkObs_1autotoc_md366" />
 
   Behavior is undefined `obs` is not a valid, non-null pointer to a `QkObs`.
 
@@ -1106,11 +1131,11 @@ for (size_t i = 0; i < num_terms; i++) {
 <Function id="qk_str_free" signature="void qk_str_free(char *string)">
   Free a string representation.
 
-  <span id="group__QkObs_1autotoc_md366" />
+  <span id="group__QkObs_1autotoc_md367" />
 
   #### Safety
 
-  <span id="group__QkObs_1autotoc_md366" />
+  <span id="group__QkObs_1autotoc_md367" />
 
   Behavior is undefined if `str` is not a pointer returned by `qk_obs_str` or `qk_obsterm_str`.
 
@@ -1126,11 +1151,11 @@ for (size_t i = 0; i < num_terms; i++) {
 
   It is not safe to use the `QkObs` pointer after calling this function. In particular, you should not attempt to clear or free it. The caller must own the `QkObs`, not hold a borrowed reference (for example, a `QkObs *` retrieved from `qk_obs_borrow_from_python` is not owned).
 
-  <span id="group__QkObs_1autotoc_md371" />
+  <span id="group__QkObs_1autotoc_md372" />
 
   #### Safety
 
-  <span id="group__QkObs_1autotoc_md371" />
+  <span id="group__QkObs_1autotoc_md372" />
 
   The caller must be attached to a Python interpreter. Behavior is undefined if `obs` is not a valid non-null pointer to an initialized and owned `QkObs`.
 
@@ -1154,11 +1179,11 @@ for (size_t i = 0; i < num_terms; i++) {
 
   You can also use `qk_obs_convert_from_python`, which is logically the exact same as this function, but can be directly used as a “converter” function for the `PyArg_Parse*` family of Python converter functions.
 
-  <span id="group__QkObs_1autotoc_md372" />
+  <span id="group__QkObs_1autotoc_md373" />
 
   #### Safety
 
-  <span id="group__QkObs_1autotoc_md372" />
+  <span id="group__QkObs_1autotoc_md373" />
 
   The caller must be attached to a Python interpreter. Behavior is undefined if `ob` is not a valid non-null pointer to a Python object.
 
@@ -1182,11 +1207,11 @@ for (size_t i = 0; i < num_terms; i++) {
 
   You can also use `qk_obs_borrow_from_python`, which is logically the exact same as this, but with a more natural signature for direct usage.
 
-  <span id="group__QkObs_1autotoc_md373" />
+  <span id="group__QkObs_1autotoc_md374" />
 
   #### Safety
 
-  <span id="group__QkObs_1autotoc_md373" />
+  <span id="group__QkObs_1autotoc_md374" />
 
   The caller must be attached to a Python interpreter. Behavior is undefined if `object` is not a valid non-null pointer to a Python object, or if `address` is not a pointer to writeable data of the correct type.
 

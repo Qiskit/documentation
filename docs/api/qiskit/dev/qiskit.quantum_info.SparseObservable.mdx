@@ -1007,6 +1007,27 @@ $$
     </Admonition>
   </Function>
 
+  #### to\_matrix
+
+  <Function id="qiskit.quantum_info.SparseObservable.to_matrix" signature="to_matrix()">
+    Expand the observable into its dense matrix form.
+
+    The reduced time complexity of this function is $O(4^n)$ where $n$ is the number of qubits. The algorithm is limited by the time required to allocate the $2^n \times 2^n$ matrix.
+
+    <Admonition title="Warning" type="caution">
+      The number of matrix elements scales exponentially with the number of qubits. You risk running out of memory when the number of qubits is sufficiently large. For example, an 8 qubit matrix uses \~4 KB of memory, whereas 16 qubits uses \~69 GB!
+    </Admonition>
+
+    **Returns**
+
+    The observable represented as a dense matrix.
+
+    **Raises**
+
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If the number of qubits exceeds system limits.
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If the number of qubits is 0.
+  </Function>
+
   #### to\_sparse\_list
 
   <Function id="qiskit.quantum_info.SparseObservable.to_sparse_list" signature="to_sparse_list()">

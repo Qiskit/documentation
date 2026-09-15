@@ -104,7 +104,7 @@ export function normalizeUrl(
 
   // The C API uses the same artifact as the Python API, but all its pages are
   // located under the `cdoc` folder.
-  const pythonApiFolders = ["stubs", "apidocs", "apidoc"];
+  const pythonApiFolders = ["stubs", "apidocs", "apidoc", "pydoc"];
   const addQiskitPrefix =
     kwargs.pkgName == "qiskit-c" &&
     pythonApiFolders.some((f) => url.split("/").includes(f));
