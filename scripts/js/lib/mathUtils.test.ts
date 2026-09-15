@@ -12,61 +12,147 @@
 
 import { expect, test } from "@playwright/test";
 
-import { collectMathPeriodErrors } from "./mathUtils.js";
+import { collectInlineDelimiterErrors } from "./mathUtils.js";
 
-test("collectMathPeriodErrors() - no errors", () => {
-  // No math at all
-  expect(collectMathPeriodErrors("Hello world.")).toEqual([]);
+// ---------------------------------------------------------------------------
+// Inline math
+// ---------------------------------------------------------------------------
 
-  // Inline math that does not end with a period
-  expect(collectMathPeriodErrors("The value is $x = 1$")).toEqual([]);
+test("collectInlineDelimiterErrors() - inline math, no errors", () => {
+  // No math
+  expect(collectInlineDelimiterErrors("Hello world.")).toEqual([]);
 
-  // Period outside the inline expression is fine
-  expect(collectMathPeriodErrors("The value is $x = 1$.")).toEqual([]);
+  // Math with no trailing punctuation
+  expect(collectInlineDelimiterErrors("The value is $x = 1$")).toEqual([]);
 
-  // A period inside inline math that is not at the end (e.g. decimal number)
-  expect(collectMathPeriodErrors("Use $1.5$ as the step.")).toEqual([]);
+  // Punctuation correctly placed outside the delimiter
+  expect(collectInlineDelimiterErrors("The value is $x = 1$.")).toEqual([]);
+  expect(collectInlineDelimiterErrors("For $a$, $b$, and $c$,")).toEqual([]);
 
-  // Block math with a trailing period is ignored
-  expect(collectMathPeriodErrors("$$\nx + y.\n$$")).toEqual([]);
-  expect(collectMathPeriodErrors("$$x + y.$$")).toEqual([]);
+  // Period inside math but not at the end (decimal number)
+  expect(collectInlineDelimiterErrors("Use $1.5$ as the step.")).toEqual([]);
 
-  // Ellipsis LaTeX command is not a plain period
-  expect(collectMathPeriodErrors("$x \\ldots y$")).toEqual([]);
+  // Block math with trailing punctuation is ignored
+  expect(collectInlineDelimiterErrors("$$\nx + y.\n$$")).toEqual([]);
+  expect(collectInlineDelimiterErrors("$$x + y,$$")).toEqual([]);
+
+  // Content inside fenced code blocks is ignored
+  expect(
+    collectInlineDelimiterErrors("```\n$x = 1.$\n[link](http://example.com.)\n```"),
+  ).toEqual([]);
+  expect(
+    collectInlineDelimiterErrors("```powershell\n$ver = 'abc'\n$bits = 64\n```"),
+  ).toEqual([]);
+
+  // LaTeX ellipsis command is not plain punctuation
+  expect(collectInlineDelimiterErrors("$x \\ldots y$")).toEqual([]);
 });
 
-test("collectMathPeriodErrors() - inline math with trailing period", () => {
-  const errors = collectMathPeriodErrors("The value is $x = 1.$");
-  expect(errors).toEqual([
-    "Inline math expression ends with a period: `$x = 1.$`",
+test("collectInlineDelimiterErrors() - inline math, trailing period", () => {
+  expect(collectInlineDelimiterErrors("The value is $x = 1.$")).toEqual([
+    "Inline math expression ends with punctuation: `$x = 1.$`",
   ]);
 });
 
-test("collectMathPeriodErrors() - inline math with trailing period and whitespace", () => {
-  const errors = collectMathPeriodErrors("The value is $x = 1.  $");
-  expect(errors).toEqual([
-    "Inline math expression ends with a period: `$x = 1.  $`",
+test("collectInlineDelimiterErrors() - inline math, trailing semicolon", () => {
+  expect(collectInlineDelimiterErrors("Let $x = 1;$")).toEqual([
+    "Inline math expression ends with punctuation: `$x = 1;$`",
   ]);
 });
 
-test("collectMathPeriodErrors() - multiple inline errors", () => {
+test("collectInlineDelimiterErrors() - inline math, trailing colon", () => {
+  expect(collectInlineDelimiterErrors("Given $x:$")).toEqual([
+    "Inline math expression ends with punctuation: `$x:$`",
+  ]);
+});
+
+test("collectInlineDelimiterErrors() - inline math, trailing comma", () => {
+  expect(collectInlineDelimiterErrors("Values $a,$")).toEqual([
+    "Inline math expression ends with punctuation: `$a,$`",
+  ]);
+});
+
+test("collectInlineDelimiterErrors() - inline math, trailing punctuation with whitespace", () => {
+  expect(collectInlineDelimiterErrors("The value is $x = 1.  $")).toEqual([
+    "Inline math expression ends with punctuation: `$x = 1.  $`",
+  ]);
+});
+
+test("collectInlineDelimiterErrors() - inline math, multiple errors", () => {
   const markdown = `
-Some text with $a = 1.$ and more text.
-Other text with $b = 2.$ here.
-A block (ignored):
+Some text with $a = 1.$ and more.
+Other text with $b = 2,$ here.
+Block (ignored):
 $$
 c + d.
 $$
 `;
-  const errors = collectMathPeriodErrors(markdown);
-  expect(errors).toEqual([
-    "Inline math expression ends with a period: `$a = 1.$`",
-    "Inline math expression ends with a period: `$b = 2.$`",
+  expect(collectInlineDelimiterErrors(markdown)).toEqual([
+    "Inline math expression ends with punctuation: `$a = 1.$`",
+    "Inline math expression ends with punctuation: `$b = 2,$`",
   ]);
 });
 
-test("collectMathPeriodErrors() - $$ delimiters not matched as inline", () => {
-  // Block math with a period inside should produce no errors.
-  expect(collectMathPeriodErrors("$$\nf(x).\n$$")).toEqual([]);
-  expect(collectMathPeriodErrors("$$f(x).$$")).toEqual([]);
+// ---------------------------------------------------------------------------
+// Hyperlinks
+// ---------------------------------------------------------------------------
+
+test("collectInlineDelimiterErrors() - hyperlinks, no errors", () => {
+  // Clean link
+  expect(
+    collectInlineDelimiterErrors("[IBM](https://ibm.com)"),
+  ).toEqual([]);
+
+  // Punctuation correctly placed outside the closing paren
+  expect(
+    collectInlineDelimiterErrors("See [IBM](https://ibm.com)."),
+  ).toEqual([]);
+
+  // URL with punctuation not at the end (query params, paths)
+  expect(
+    collectInlineDelimiterErrors("[link](https://example.com/a,b/path)"),
+  ).toEqual([]);
+  expect(
+    collectInlineDelimiterErrors("[link](https://example.com/path?a=1&b=2)"),
+  ).toEqual([]);
+});
+
+test("collectInlineDelimiterErrors() - hyperlink, trailing period in URL", () => {
+  expect(
+    collectInlineDelimiterErrors("[link](https://example.com.)"),
+  ).toEqual([
+    "Hyperlink URL ends with punctuation: `[link](https://example.com.)`",
+  ]);
+});
+
+test("collectInlineDelimiterErrors() - hyperlink, trailing comma in URL", () => {
+  expect(
+    collectInlineDelimiterErrors("[link](https://example.com,)"),
+  ).toEqual([
+    "Hyperlink URL ends with punctuation: `[link](https://example.com,)`",
+  ]);
+});
+
+test("collectInlineDelimiterErrors() - hyperlink, trailing semicolon in URL", () => {
+  expect(
+    collectInlineDelimiterErrors("[link](https://example.com;)"),
+  ).toEqual([
+    "Hyperlink URL ends with punctuation: `[link](https://example.com;)`",
+  ]);
+});
+
+test("collectInlineDelimiterErrors() - hyperlink, trailing colon in URL", () => {
+  expect(
+    collectInlineDelimiterErrors("[link](https://example.com:)"),
+  ).toEqual([
+    "Hyperlink URL ends with punctuation: `[link](https://example.com:)`",
+  ]);
+});
+
+test("collectInlineDelimiterErrors() - mixed math and hyperlink errors", () => {
+  const markdown = `See $x,$ and [docs](https://example.com.) for details.`;
+  expect(collectInlineDelimiterErrors(markdown)).toEqual([
+    "Inline math expression ends with punctuation: `$x,$`",
+    "Hyperlink URL ends with punctuation: `[docs](https://example.com.)`",
+  ]);
 });
