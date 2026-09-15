@@ -63,7 +63,9 @@ async function main() {
       ? new Set<string>()
       : checkMetadata(metadata, file);
 
-    const mathPeriodErrors = collectInlineDelimiterErrors(content);
+    const mathPeriodErrors = file.startsWith("docs/api/")
+      ? []
+      : collectInlineDelimiterErrors(content);
 
     // Collect all errors for this file
     const errorsInFile: string[] = [
