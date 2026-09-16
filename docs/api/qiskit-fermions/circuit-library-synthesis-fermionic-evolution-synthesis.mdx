@@ -1,0 +1,48 @@
+---
+title: FermionicEvolutionSynthesis (latest version)
+description: API reference for qiskit_fermions.circuit.library.synthesis.FermionicEvolutionSynthesis in the latest version of qiskit-fermions
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_fermions.circuit.library.synthesis.FermionicEvolutionSynthesis
+---
+
+# FermionicEvolutionSynthesis
+
+<Class id="qiskit_fermions.circuit.library.synthesis.FermionicEvolutionSynthesis" isDedicatedPage={true} signature="FermionicEvolutionSynthesis" modifiers="class">
+  Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC)
+
+  The interface for fermion-to-fermion synthesis of an [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") gate.
+
+  An implementation of this interface rewrites the time evolution $e^{-i t H}$ carried by an [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") gate into a [`FermionicCircuit`](circuit-fermionic-circuit "qiskit_fermions.circuit.FermionicCircuit") of *smaller* [`FermionicGate`](circuit-fermionic-gate "qiskit_fermions.circuit.FermionicGate") instances. Both sides of that rewrite live in fermionic space, which is what distinguishes this from the fermion-to-qubit synthesis performed later by [`F2QSynthesis`](transpiler-passes-f-2-q-synthesis "qiskit_fermions.transpiler.passes.F2QSynthesis"): the fermionic structure of `H` (in particular its [`groups`](operators-operator-trait#groups "qiskit_fermions.operators.OperatorTrait.groups") (see [Group operator terms: use the operator structure](guides/grouping#grouping-explanation))) survives and is still available to that later stage.
+
+  <Admonition title="Important" type="danger">
+    This fermion-to-fermion step is **optional**. An [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") gate does not need to be broken down in fermionic space at all: the fermion-to-qubit stage can map and synthesize it directly, however many terms its operator holds. Splitting it up first is a *choice*, made because the resulting factors are individually cheaper to implement, or because the split exposes structure (such as mutually commuting groups) that the later stage can exploit.
+  </Admonition>
+
+  Because the fermion-to-fermion and fermion-to-qubit steps compose, an evolution may end up approximated at either level, at both, or at neither. Where an approximation is involved at both, the accuracy of the result is governed by the weaker of the two.
+
+  <Admonition title="Note" type="note">
+    Qiskit’s [`EvolutionSynthesis`](/docs/api/qiskit/qiskit.synthesis.EvolutionSynthesis) is the closest analogue, but it belongs to the qubit layer: it synthesizes a [`PauliEvolutionGate`](/docs/api/qiskit/qiskit.circuit.library.PauliEvolutionGate) into a [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit), after the operator has already been mapped.
+  </Admonition>
+
+  ## Methods
+
+  ### synthesize
+
+  <Function id="qiskit_fermions.circuit.library.synthesis.FermionicEvolutionSynthesis.synthesize" signature="synthesize(gate)" modifiers="abstractmethod">
+    Synthesizes the provided [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") gate.
+
+    **Parameters**
+
+    **gate** ([*Evolution*](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution")) – the gate to synthesize. Its [`operator`](circuit-library-evolution#operator "qiskit_fermions.circuit.library.Evolution.operator") is the Hermitian operator $H$ and its `params[0]` the evolution time $t$ of $e^{-i t H}$.
+
+    **Returns**
+
+    A [`FermionicCircuit`](circuit-fermionic-circuit "qiskit_fermions.circuit.FermionicCircuit") on `gate.num_modes` modes implementing the evolution.
+
+    **Return type**
+
+    [FermionicCircuit](circuit-fermionic-circuit "qiskit_fermions.circuit.FermionicCircuit")
+  </Function>
+</Class>
+

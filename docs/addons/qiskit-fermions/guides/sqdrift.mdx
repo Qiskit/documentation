@@ -33,7 +33,8 @@ For the purposes of this guide, load the electronic structure Hamiltonian of N2 
 ```c
 #include <qiskit_fermions.h>
 
-QfFCIDump* fcidump = qf_fcidump_from_file("docs/guides/n2.fcidump");
+QfFCIDump* fcidump = NULL;
+qf_fcidump_from_file("docs/guides/n2.fcidump", &fcidump);
 QfFermionOperator* hamil = qf_ferm_op_from_fcidump(fcidump);
 uint32_t num_modes = 2 * qf_fcidump_norb(fcidump);
 ```
@@ -66,17 +67,22 @@ The `qiskit_fermions.operators.terms.grouping` module provides convenience funct
 \[ ] C
 
 ```c
-QfFermionOperator* normal;
-QfExitCode exit = qf_ferm_op_group_terms_by_electronic_structure(normal, num_modes, false);
-QfFermionOperator* canon = qf_ferm_op_canonical_order(normal);
+QfFermionOperator* normal = qf_ferm_op_normal_ordered(hamil, NULL);
+QfFermionOperator* simplified = qf_ferm_op_simplify(normal, 1e-16);
+QfFermionOperator* canon = qf_ferm_op_canonical_order(simplified);
+QfExitCode exit = qf_ferm_op_group_terms_by_electronic_structure(canon, num_modes, false);
+assert(exit == QfExitCode_Success);
+
+qf_ferm_op_free(normal);
+qf_ferm_op_free(simplified);
 ```
 
 <Admonition title="Hint" type="note">
   The full electronic structure Hamiltonian contains certain terms whose inclusion in a time-evolution circuit has no impact on the perceived bitstrings and, thus, only results in an increased sampling overhead. Therefore, it is recommended that such terms be filtered from the Hamiltonian at this point, before constructing the [`Evolution`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution "qiskit_fermions.circuit.library.Evolution") gate in the next step.
 
-  The terms that fit this description are those that are diagonal in the occupation-number basis, that is, the products of number operators ($a^\dagger_i a_i$). This includes the constant energy offset, whose time evolution only introduces a global phase into the circuit, the individual number-operators whose time evolution amounts to single-qubit Z rotations, as well as higher-order products such as $n_i n_j$. None of these impact the sampled bitstrings.
+  The terms that fit this description are those that are diagonal in the occupation-number basis, that is, the products of number operators ($a^\dagger_i a_i$). This includes the constant energy offset, whose time evolution only introduces a global phase into the circuit, the individual number operators whose time evolution amounts to single-qubit Z rotations, as well as higher-order products such as $n_i n_j$. None of them can change a mode’s occupation, so dropping them costs no excitation content. Unlike the per-draw rejection in step 5, this filtering happens once, on the Hamiltonian itself, so the coefficient distribution the protocol samples from is rebuilt consistently from the filtered operator rather than renormalized mid-draw.
 
-  The `filter_diagonal_terms()` function removes such terms from an operator in place:
+  The [`filter_diagonal_terms()`](/docs/api/qiskit-fermions/operators-terms-filter-diagonal-terms#qiskit_fermions.operators.terms.filter_diagonal_terms "qiskit_fermions.operators.terms.filter_diagonal_terms") function removes such terms from an operator in place:
 
   \[x] PYTHON
 
@@ -93,6 +99,30 @@ QfFermionOperator* canon = qf_ferm_op_canonical_order(normal);
   ```
 
   Filtering here, once, is considerably cheaper than filtering repeatedly. [`QDriftTrotterization`](/docs/api/qiskit-fermions/transpiler-passes-q-drift-trotterization#qiskit_fermions.transpiler.passes.QDriftTrotterization "qiskit_fermions.transpiler.passes.QDriftTrotterization") runs once per transpiled circuit, so filtering the Hamiltonian initially, rather than on every call, avoids redoing work for every circuit generated from it.
+</Admonition>
+
+<Admonition title="Hint" type="note">
+  For the same reason, it pays to order the Hamiltonian’s terms by group index here. Group indices are a per-term tag that says nothing about where those terms sit, so a group’s terms are in general scattered throughout the operator: the grouping applied above assigns indices in order of first encounter, which leaves a group’s second term far from its first.
+
+  [`QDriftTrotterization`](/docs/api/qiskit-fermions/transpiler-passes-q-drift-trotterization#qiskit_fermions.transpiler.passes.QDriftTrotterization "qiskit_fermions.transpiler.passes.QDriftTrotterization") samples whole groups and looks each drawn group up with [`split_out_groups()`](/docs/api/qiskit-fermions/operators-operator-trait#qiskit_fermions.operators.OperatorTrait.split_out_groups "qiskit_fermions.operators.OperatorTrait.split_out_groups"). Finding a group among scattered terms means scanning all of them, so that lookup costs the same whether one group is drawn or forty. [`group_order()`](/docs/api/qiskit-fermions/operators-terms-group-order#qiskit_fermions.operators.terms.group_order "qiskit_fermions.operators.terms.group_order") gathers each group into one contiguous run, after which a lookup is a binary search over the group boundaries and costs what the *drawn* groups cost rather than what the *held* terms cost. The lookup itself becomes dramatically cheaper; how much of a given transpilation that saves depends on what else the pipeline does, since mapping and synthesis dominate once the scan is gone:
+
+  \[x] PYTHON
+
+  ```python
+  >>> from qiskit_fermions.operators.terms.ordering import group_order
+  >>>
+  >>> canon = group_order(canon)
+  >>> print(canon.groups[:4])
+  [0, 0, ...]
+  ```
+
+  \[ ] C
+
+  ```c
+  QfFermionOperator* grouped = qf_ferm_op_group_order(canon);
+  ```
+
+  This reorders the terms without changing the operator’s value, and needs to happen only once no matter how many circuit randomizations are drawn from it.
 </Admonition>
 
 <span id="prepare-the-time-evolution-circuit" />
@@ -141,6 +171,7 @@ This step also introduces the few parameters you can use to customize the circui
 
 *   The number of circuits to generate: `num_sqdrift_randomizations`
 *   The length of each circuit in terms of excitation groups: `num_groups`
+*   Optionally, precomputed sampling weights, if the transpilation itself becomes a bottleneck: `weights` (see [(Optional) Precompute the sampling weights](#sqdrift-sampling-weights) below)
 
 \[x] PYTHON
 
@@ -173,11 +204,21 @@ This step also introduces the few parameters you can use to customize the circui
   The preceding example fixes the `seed` for the random number generator used inside of the [`QDriftTrotterization`](/docs/api/qiskit-fermions/transpiler-passes-q-drift-trotterization#qiskit_fermions.transpiler.passes.QDriftTrotterization "qiskit_fermions.transpiler.passes.QDriftTrotterization") transpilation pass.
 </Admonition>
 
-<span id="filter-out-trivial-excitations" />
+<span id="filter-drawn-excitations-by-occupation" />
 
-## 5. Filter out trivial excitations
+## 5. Filter drawn excitations by occupation
 
-Beyond the diagonal terms filtered out in the previous step, a sampled excitation can *still* fail to affect the sampled bitstrings. Whenever it acts entirely within a set of modes whose occupation is already fixed (all occupied or all unoccupied), it cannot move a particle from one to the other, so it leaves the state (and thus the eventual measurement outcome) unchanged. Setting `filter_trivial=True` on the [`QDriftTrotterization`](/docs/api/qiskit-fermions/transpiler-passes-q-drift-trotterization#qiskit_fermions.transpiler.passes.QDriftTrotterization "qiskit_fermions.transpiler.passes.QDriftTrotterization") pass rejects such terms as they are sampled and re-draws a replacement, so that each of the `num_groups` slots of the resulting circuit contributes a non-trivial excitation.
+Beyond the diagonal terms filtered out in the previous step, a drawn excitation can act entirely within a set of modes whose occupation is already fixed (all occupied or all unoccupied), where it cannot move a particle from one side to the other. Such an excitation tells you nothing about the sampled bitstrings, so a slot spent on it is a slot wasted. Setting `filter_trivial=True` on the [`QDriftTrotterization`](/docs/api/qiskit-fermions/transpiler-passes-q-drift-trotterization#qiskit_fermions.transpiler.passes.QDriftTrotterization "qiskit_fermions.transpiler.passes.QDriftTrotterization") pass rejects such excitations as they are drawn and draws a replacement, so that each of the `num_groups` slots of the resulting circuit carries an excitation that couples the two sides.
+
+<Admonition title="Warning" type="caution">
+  This filtering is not free, and it is off by default for that reason. What it conserves is the budget of `num_groups` sampled slots, not the circuit depth: since that budget is fixed, a rejected excitation is replaced rather than dropped, and a cheap one gives way to a coupling excitation that costs more to synthesize. Expect a filtered circuit to be deeper than an unfiltered one drawn from the same seed.
+
+  Renormalizing the draw over the accepted excitations changes the distribution the qDRIFT protocol samples from, and unlike the grouping in step 2 it also breaks the protocol’s convergence guarantee: the sampled product no longer averages to the evolution under the Hamiltonian you passed in. Every retained excitation ends up weighted by the reciprocal of the acceptance probability, the rejected ones contribute nothing, and neither the total coefficient magnitude nor the per-gate evolution time is adjusted to compensate.
+
+  The acceptance rule is also an over-approximation. It compares mode supports only, so it carries no amplitude information, and the tracked sets only ever grow: an excitation confined to the occupied set is genuinely inert on a product state, but the same reasoning gets weaker for later draws, once earlier accepted excitations have left the state entangled and marked most modes “uncertain”.
+
+  Use `filter_trivial=True` for the bitstring-sampling workflow this guide describes, where the circuits feed SQD post-processing and only the sampled bitstrings matter. Do not use it if you intend to estimate an expectation value from these circuits, or to rely on the qDRIFT error bound in any other way: those results carry a bias that the pass does not correct for.
+</Admonition>
 
 This filtering needs to know which modes start out occupied. It therefore requires an [`InitializeModes`](/docs/api/qiskit-fermions/circuit-library-initialize-modes#qiskit_fermions.circuit.library.InitializeModes "qiskit_fermions.circuit.library.InitializeModes") gate preceding the [`Evolution`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution "qiskit_fermions.circuit.library.Evolution") gates in the circuit; [`InitializeModes.from_hartree_fock()`](/docs/api/qiskit-fermions/circuit-library-initialize-modes#qiskit_fermions.circuit.library.InitializeModes.from_hartree_fock "qiskit_fermions.circuit.library.InitializeModes.from_hartree_fock") is a convenient way to construct one. Add one here for the N2 Hartree-Fock reference (seven alpha and seven beta electrons in 14 spatial orbitals) and compare the sampled excitations with and without `filter_trivial=True`:
 
@@ -225,13 +266,85 @@ This filtering needs to know which modes start out occupied. It therefore requir
 // via this API.
 ```
 
-None of the excitations sampled without filtering touch the occupied set (`0-6` and `28-34`) at all, so none of them can move a particle between an occupied and an unoccupied mode; every single one is trivial and would have no effect on the sampled bitstrings. With `filter_trivial=True`, all five are rejected and replaced by excitations that do couple an occupied mode with an unoccupied one. For example, the first accepted excitation `[0, 1, 6, 7]` moves a particle between occupied modes `0`, `1`, and `6` and unoccupied mode `7`.
+None of the excitations drawn without filtering touch the occupied set (`0-6` and `28-34`) at all, so none of them can move a particle between an occupied and an unoccupied mode. With `filter_trivial=True`, all five are rejected and replaced by excitations that do couple an occupied mode with an unoccupied one. For example, the first accepted excitation `[0, 1, 6, 7]` moves a particle between occupied modes `0`, `1`, and `6` and unoccupied mode `7`.
 
 Once an excitation is accepted, every mode in its support becomes “uncertain” and, thus, eligible to play either role for later samples, so the occupied and unoccupied mode sets keep growing as more excitations get accepted. This is what makes the second excitation, `[0, 1, 28, 29]`, acceptable. All four of its modes are among the *originally* occupied ones, so it does not couple to any originally unoccupied mode. It is only accepted because modes `0` and `1` became uncertain (and thus eligible as the “unoccupied” side of the coupling) once the first excitation touched them.
 
+This growth is what makes the rule an over-approximation rather than a test: as more modes turn uncertain, fewer draws are rejected, and the filtering does the most to the sampling distribution on the earliest draws.
+
+To judge how far the filtering moved the distribution, read the rejection counts the pass records in the circuit metadata. One entry is stored per filtered [`Evolution`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution "qiskit_fermions.circuit.library.Evolution") gate, and the accepted-to-total ratio estimates the acceptance probability, which is the factor by which the retained excitations were over-weighted:
+
+\[x] PYTHON
+
+```python
+>>> # a freshly seeded pass, so the counts do not depend on earlier draws
+>>> qdrift_counted = QDriftTrotterization(
+...     num_groups, filter_trivial=True, rng=3480
+... )
+>>> filtered = FermionicPassManager(qdrift_counted).run(hf_circ)
+>>> discarded = filtered.metadata.get("filter_trivial.discarded")
+>>> emitted = filtered.metadata.get("filter_trivial.emitted")
+>>> print(f"{emitted[0]} kept, {discarded[0]} discarded")
+5 kept, 7 discarded
+>>> print(f"acceptance probability: {emitted[0] / (emitted[0] + discarded[0]):.2f}")
+acceptance probability: 0.42
+```
+
+\[ ] C
+
+```c
+// WARNING: Qiskit's C API does not yet allow us to implement circuits
+// with custom gate definitions, which we therefore also cannot transpile
+// via this API.
+```
+
 <Admonition title="Note" type="note">
-  Without a preceding [`InitializeModes`](/docs/api/qiskit-fermions/circuit-library-initialize-modes#qiskit_fermions.circuit.library.InitializeModes "qiskit_fermions.circuit.library.InitializeModes") gate, `filter_trivial=True` has no occupation information to filter against. It emits a [`UserWarning`](https://docs.python.org/3/library/exceptions.html#UserWarning) and leaves the sampling unfiltered for that [`Evolution`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution "qiskit_fermions.circuit.library.Evolution") gate.
+  Filtering needs occupation information to filter against. A [`PrepareSlaterDeterminant`](/docs/api/qiskit-fermions/circuit-library-prepare-slater-determinant#qiskit_fermions.circuit.library.PrepareSlaterDeterminant "qiskit_fermions.circuit.library.PrepareSlaterDeterminant") gate seeds it just as [`InitializeModes`](/docs/api/qiskit-fermions/circuit-library-initialize-modes#qiskit_fermions.circuit.library.InitializeModes "qiskit_fermions.circuit.library.InitializeModes") does, and any [`OrbitalRotation`](/docs/api/qiskit-fermions/circuit-library-orbital-rotation#qiskit_fermions.circuit.library.OrbitalRotation "qiskit_fermions.circuit.library.OrbitalRotation") marks every mode it acts on as “uncertain”. Without any of them, or when the seeded modes all land on one side (every mode occupied, or every mode unoccupied), `filter_trivial=True` emits a [`UserWarning`](https://docs.python.org/3/library/exceptions.html#UserWarning) and leaves the sampling unfiltered for that [`Evolution`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution "qiskit_fermions.circuit.library.Evolution") gate. On a Hamiltonian whose remaining terms can no longer couple the two tracked sets, the pass instead raises [`RuntimeError`](https://docs.python.org/3/library/exceptions.html#RuntimeError) after [`QDriftTrotterization.MAX_SAMPLE_RETRIES`](/docs/api/qiskit-fermions/transpiler-passes-q-drift-trotterization#qiskit_fermions.transpiler.passes.QDriftTrotterization.MAX_SAMPLE_RETRIES "qiskit_fermions.transpiler.passes.QDriftTrotterization.MAX_SAMPLE_RETRIES") consecutive rejections.
 </Admonition>
+
+<span id="sqdrift-sampling-weights" />
+
+## (Optional) Precompute the sampling weights
+
+Reach for this only if the transpilation itself is a bottleneck. It changes nothing about the circuits you get.
+
+[`QDriftTrotterization`](/docs/api/qiskit-fermions/transpiler-passes-q-drift-trotterization#qiskit_fermions.transpiler.passes.QDriftTrotterization "qiskit_fermions.transpiler.passes.QDriftTrotterization") draws each group with a probability proportional to the magnitude of its coefficient, and derives those magnitudes from the Hamiltonian on every call: one value per Hamiltonian *term*, reduced down to one per group. Because the pass is stateless it repeats that reduction for every randomization, even though the result is identical every time. The `weights` argument lets you compute it once with [`group_coeff_means()`](/docs/api/qiskit-fermions/operators-terms-group-coeff-means#qiskit_fermions.operators.terms.group_coeff_means "qiskit_fermions.operators.terms.group_coeff_means") and hand the result over, moving the cost out of the loop while leaving the pass free of any cached, Hamiltonian-dependent state.
+
+This is the counterpart of the term ordering in step 2. That one hoists the group *lookup* out of the loop, this one the weight *reduction*, and each is only as noticeable as the other is absent, so it is worth applying both together. Since `canon` was already reordered above, the two compose directly:
+
+\[x] PYTHON
+
+```python
+>>> from qiskit_fermions.operators.terms.grouping import group_coeff_means
+>>>
+>>> weights = group_coeff_means(canon)  # `canon` is group-ordered, from step 2
+>>> qdrift_weighted = QDriftTrotterization(num_groups, rng=19, weights=weights)
+>>>
+>>> pm.optimization = FermionicPassManager([qdrift_weighted])
+>>> weighted_circuits = [
+...     pm.run(circ) for _ in range(num_sqdrift_randomizations)
+... ]
+>>> len(weighted_circuits)
+10
+```
+
+\[ ] C
+
+```c
+// WARNING: Qiskit's C API does not yet allow us to implement circuits
+// with custom gate definitions, which we therefore also cannot transpile
+// via this API.
+```
+
+Since those are exactly the weights the pass would have computed, the circuits are the same as before; only the repeated reduction is gone.
+
+One entry is expected per *group*, not per term, whenever the operator carries groups, since a grouped operator is sampled group-wise. Entries must be non-negative: a weight is a *magnitude*, because the qDRIFT protocol decomposes $H = \sum_j h_j H_j$ with positive $h_j$, and a coefficient’s sign belongs to $H_j$, where the pass reads it off the operator directly.
+
+<Admonition title="Caution" type="note">
+  The weights are absolute magnitudes, not relative preferences. Their sum also fixes the evolution time, so multiplying every entry by $\gamma$ samples identically but evolves for $\gamma t$ instead of $t$. Passing anything other than the Hamiltonian’s own coefficient magnitudes therefore changes which evolution the ensemble approximates, which is why this is a performance tool rather than a way to tune the sampling.
+</Admonition>
+
+Because a weights array describes the groups of one particular operator, it is validated against each [`Evolution`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution "qiskit_fermions.circuit.library.Evolution") gate it is applied to, and a circuit holding more than one such gate is rejected. Leaving `weights` unset keeps such a circuit supported, since each gate then derives its own.
 
 ## (Optional) Optimize the fermionic mode indexing
 

@@ -1,0 +1,54 @@
+---
+title: groups_have_uniform_coeffs (latest version)
+description: API reference for qiskit_fermions.operators.terms.groups_have_uniform_coeffs in the latest version of qiskit-fermions
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit_fermions.operators.terms.groups_have_uniform_coeffs
+---
+
+<span id="groups-have-uniform-coeffs" />
+
+# groups\_have\_uniform\_coeffs
+
+<Function id="qiskit_fermions.operators.terms.groups_have_uniform_coeffs" isDedicatedPage={true} signature="groups_have_uniform_coeffs(op, *, atol=1e-08, abs=True)">
+  Returns, for each group, whether all of its coefficients are numerically equal.
+
+  With `abs` (the default), the coefficient *magnitudes* are compared, which is the assumption that [`group_coeff_means()`](operators-terms-group-coeff-means "qiskit_fermions.operators.terms.group_coeff_means") makes when it averages `abs(coeff)`. Without it, the coefficients must match exactly. Note that a Hermitian group may legitimately fail the stricter form, since a conjugate pair with complex coefficients has equal magnitudes but unequal coefficients. If the operator tracks no groups, this returns `None`.
+
+  An empty or single-term group is trivially uniform.
+
+  <Admonition title="Note" type="note">
+    This is *not* a weaker form of [`groups_are_hermitian()`](operators-terms-groups-are-hermitian "qiskit_fermions.operators.terms.groups_are_hermitian"): neither implies the other. Uniform coefficients do not make a group Hermitian, and a Hermitian group can mix magnitudes.
+  </Admonition>
+
+  ```pycon
+  >>> from qiskit_fermions.operators import FermionOperator
+  >>> from qiskit_fermions.operators.terms.grouping import groups_have_uniform_coeffs
+  >>> op = FermionOperator.from_dict(
+  ...     {
+  ...         ((True, 0), (False, 1)): 1.0j,
+  ...         ((True, 1), (False, 0)): -1.0j,
+  ...     }
+  ... )
+  >>> op.groups = [0, 0]
+  >>> groups_have_uniform_coeffs(op)  # equal magnitudes
+  [True]
+  >>> groups_have_uniform_coeffs(op, abs=False)  # but not equal coefficients
+  [False]
+  ```
+
+  **Parameters**
+
+  *   **op** – the operator whose groups to check.
+  *   **atol** – The numerical accuracy upto which coefficients are considered equal. This value defaults to `1e-8`.
+  *   **abs** – Whether to compare coefficient magnitudes rather than the coefficients themselves. This value defaults to `True`.
+
+  **Returns**
+
+  One flag per group index, or `None` if the operator tracks no groups.
+
+  **Raises**
+
+  [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError) – if `op` is not a supported operator type (see [`OperatorTrait`](operators-operator-trait "qiskit_fermions.operators.OperatorTrait")).
+</Function>
+

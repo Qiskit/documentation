@@ -32,9 +32,33 @@ python_api_name: qiskit_fermions.operators.library.FCIDump
 
   The two-body integrals are expected in chemist ordering, $(ij|kl)$, matching the FCIDump convention.
 
-  <Admonition title="Note" type="note">
-    The implementation of this data structure is opaque to Python and only provides a few attributes and methods documented at the end of this page.
+  <span id="fcidump-implementation" />
+
+  ## Implementation
+
+  The integrals are stored as flattened arrays exploiting their permutational symmetry, which is also the layout the [`FermionOperator`](operators-fermion-operator "qiskit_fermions.operators.FermionOperator") electronic-integral constructors expect. Writing $n$ for the number of orbitals ([`norb`](#qiskit_fermions.operators.library.FCIDump.norb "qiskit_fermions.operators.library.FCIDump.norb")) and $\text{npair} = n (n + 1) / 2$, a single data structure contains up to 5 arrays:
+
+  |               |                                       |                                      |
+  | ------------- | ------------------------------------- | ------------------------------------ |
+  | `one_body_a`  | $\text{npair}$                        | The $\alpha$-spin 1-body integrals.  |
+  | `one_body_b`  | $\text{npair}$                        | The $\beta$-spin 1-body integrals.   |
+  | `two_body_aa` | $\text{npair} (\text{npair} + 1) / 2$ | The $\alpha\alpha$ 2-body integrals. |
+  | `two_body_ab` | $\text{npair}^2$                      | The $\alpha\beta$ 2-body integrals.  |
+  | `two_body_bb` | $\text{npair} (\text{npair} + 1) / 2$ | The $\beta\beta$ 2-body integrals.   |
+
+  The 1-body arrays are the flattened lower triangle of an $(n, n)$ matrix, indexed as `ia = i * (i + 1) // 2 + a` with `a <= i`. The `two_body_aa` and `two_body_bb` arrays are 8-fold (S8) symmetric: the flattened lower triangle of a $(\text{npair}, \text{npair})$ matrix, whose own two axes are each such a pair index.
+
+  <Admonition title="Warning" type="caution">
+    `two_body_ab` is packed *differently* from its siblings. It is only 4-fold (S4) symmetric, so it holds the **full** $(\text{npair}, \text{npair})$ matrix in row-major order, indexed as `iajb = ia * npair + jb`. Its row pair indexes the $\alpha$-spin species and its column pair the $\beta$-spin species, so it is *not* symmetric under exchanging the two pairs.
   </Admonition>
+
+  <Admonition title="Note" type="note">
+    You can access **read-only copies** of these internal arrays via their respective methods: [`get_one_body_tril_a()`](#qiskit_fermions.operators.library.FCIDump.get_one_body_tril_a "qiskit_fermions.operators.library.FCIDump.get_one_body_tril_a"), [`get_one_body_tril_b()`](#qiskit_fermions.operators.library.FCIDump.get_one_body_tril_b "qiskit_fermions.operators.library.FCIDump.get_one_body_tril_b"), [`get_two_body_tril_aa()`](#qiskit_fermions.operators.library.FCIDump.get_two_body_tril_aa "qiskit_fermions.operators.library.FCIDump.get_two_body_tril_aa"), [`get_two_body_tril_ab()`](#qiskit_fermions.operators.library.FCIDump.get_two_body_tril_ab "qiskit_fermions.operators.library.FCIDump.get_two_body_tril_ab"), and [`get_two_body_tril_bb()`](#qiskit_fermions.operators.library.FCIDump.get_two_body_tril_bb "qiskit_fermions.operators.library.FCIDump.get_two_body_tril_bb").
+  </Admonition>
+
+  The 1-body $\beta$-spin and the $\alpha\beta$ / $\beta\beta$ 2-body arrays are only present for a file carrying unrestricted spin data. They are absent together, so [`is_unrestricted`](#qiskit_fermions.operators.library.FCIDump.is_unrestricted "qiskit_fermions.operators.library.FCIDump.is_unrestricted") reports on all three at once.
+
+  The stored values are the integrals as they appear in the file. In particular, they do **not** carry the conventional factor of $\frac{1}{2}$ that the 2-body operator terms do, so a coefficient of an operator built via [`FermionOperator.from_fcidump()`](operators-fermion-operator#from_fcidump "qiskit_fermions.operators.FermionOperator.from_fcidump") is half the corresponding value returned here.
 
   ## Conversion
 
@@ -51,6 +75,49 @@ python_api_name: qiskit_fermions.operators.library.FCIDump
   16. 10. Knowles and N. C. Handy, Computer Physics Communications 54 (1989) 75-83.
 
   ## Attributes
+
+  ### constant
+
+  <Attribute id="qiskit_fermions.operators.library.FCIDump.constant">
+    Returns the constant energy offset, if the file provides one.
+
+    This is the value of the integral line whose four indices are all zero, which for an electronic structure Hamiltonian is the nuclear-repulsion energy. It is `None` when the file carries no such line.
+
+    <Admonition title="See also" type="note">
+      [`FermionOperator.from_fcidump()`](operators-fermion-operator#from_fcidump "qiskit_fermions.operators.FermionOperator.from_fcidump"), which includes this value as the identity term.
+    </Admonition>
+
+    ```pycon
+    >>> from qiskit_fermions.operators.library import FCIDump
+    >>> fcidump = FCIDump.from_file("tests/h2.fcidump")
+    >>> fcidump.constant
+    0.7199689944489797
+    ```
+
+    **Returns**
+
+    The constant energy offset, or `None` when the file provides none.
+  </Attribute>
+
+  ### is\_unrestricted
+
+  <Attribute id="qiskit_fermions.operators.library.FCIDump.is_unrestricted">
+    Whether this data structure carries unrestricted (spin-dependent) integrals.
+
+    The $\beta$-spin 1-body and the $\alpha\beta$ / $\beta\beta$ 2-body arrays are present exactly when this is `True`; they are absent together.
+
+    ```pycon
+    >>> from qiskit_fermions.operators.library import FCIDump
+    >>> FCIDump.from_file("tests/h2.fcidump").is_unrestricted
+    False
+    >>> FCIDump.from_file("tests/heh.fcidump").is_unrestricted
+    True
+    ```
+
+    **Returns**
+
+    Whether the beta-spin integral arrays are present.
+  </Attribute>
 
   ### ms2
 
@@ -98,6 +165,125 @@ python_api_name: qiskit_fermions.operators.library.FCIDump
     **Returns**
 
     The constructed data structure.
+
+    **Raises**
+
+    *   [**OSError**](https://docs.python.org/3/library/exceptions.html#OSError) – if `file_path` cannot be opened or read.
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – if the file does not honour the FCIDump format (a missing header namelist, a missing `NORB` or `NELEC` field, or a malformed `MS2` field), or if it carries an MO energy value, which is not supported yet.
+  </Function>
+
+  ### get\_one\_body\_tril\_a
+
+  <Function id="qiskit_fermions.operators.library.FCIDump.get_one_body_tril_a" signature="get_one_body_tril_a()">
+    Returns a read-only copy of the $\alpha$-spin 1-body integrals.
+
+    <Admonition title="Note" type="note">
+      This method returns a **copy** of the internal data.
+    </Admonition>
+
+    <Admonition title="See also" type="note">
+      The explanation of the internal data structure, [here](#fcidump-implementation), and [`FermionOperator.from_1body_tril_spin_sym()`](operators-fermion-operator#from_1body_tril_spin_sym "qiskit_fermions.operators.FermionOperator.from_1body_tril_spin_sym"), which consumes this array.
+    </Admonition>
+
+    ```pycon
+    >>> from qiskit_fermions.operators.library import FCIDump
+    >>> fcidump = FCIDump.from_file("tests/h2.fcidump")
+    >>> fcidump.get_one_body_tril_a().shape
+    (3,)
+    ```
+
+    **Returns**
+
+    The flattened lower-triangular 1-body integrals, of length $\text{npair} = n (n + 1) / 2$.
+  </Function>
+
+  ### get\_one\_body\_tril\_b
+
+  <Function id="qiskit_fermions.operators.library.FCIDump.get_one_body_tril_b" signature="get_one_body_tril_b()">
+    Returns a read-only copy of the $\beta$-spin 1-body integrals.
+
+    <Admonition title="Note" type="note">
+      This method returns a **copy** of the internal data.
+    </Admonition>
+
+    <Admonition title="See also" type="note">
+      The explanation of the internal data structure, [here](#fcidump-implementation), and [`FermionOperator.from_1body_tril_spin()`](operators-fermion-operator#from_1body_tril_spin "qiskit_fermions.operators.FermionOperator.from_1body_tril_spin"), which consumes this array.
+    </Admonition>
+
+    **Returns**
+
+    The flattened lower-triangular 1-body integrals, of length $\text{npair} = n (n + 1) / 2$, or `None` when [`is_unrestricted`](#qiskit_fermions.operators.library.FCIDump.is_unrestricted "qiskit_fermions.operators.library.FCIDump.is_unrestricted") is `False`.
+  </Function>
+
+  ### get\_two\_body\_tril\_aa
+
+  <Function id="qiskit_fermions.operators.library.FCIDump.get_two_body_tril_aa" signature="get_two_body_tril_aa()">
+    Returns a read-only copy of the $\alpha\alpha$-spin 2-body integrals.
+
+    The values are in chemist ordering, $(ij|kl)$, and carry no factor of $\frac{1}{2}$.
+
+    <Admonition title="Note" type="note">
+      This method returns a **copy** of the internal data.
+    </Admonition>
+
+    <Admonition title="See also" type="note">
+      The explanation of the internal data structure, [here](#fcidump-implementation), and [`FermionOperator.from_2body_tril_spin_sym()`](operators-fermion-operator#from_2body_tril_spin_sym "qiskit_fermions.operators.FermionOperator.from_2body_tril_spin_sym"), which consumes this array.
+    </Admonition>
+
+    ```pycon
+    >>> from qiskit_fermions.operators.library import FCIDump
+    >>> fcidump = FCIDump.from_file("tests/h2.fcidump")
+    >>> fcidump.get_two_body_tril_aa().shape
+    (6,)
+    ```
+
+    **Returns**
+
+    The 8-fold symmetric (S8) flattened 2-body integrals, of length $\text{npair} (\text{npair} + 1) / 2$.
+  </Function>
+
+  ### get\_two\_body\_tril\_ab
+
+  <Function id="qiskit_fermions.operators.library.FCIDump.get_two_body_tril_ab" signature="get_two_body_tril_ab()">
+    Returns a read-only copy of the $\alpha\beta$-spin 2-body integrals.
+
+    The values are in chemist ordering, $(ij|kl)$, and carry no factor of $\frac{1}{2}$.
+
+    <Admonition title="Warning" type="caution">
+      Unlike the other 2-body arrays, this one is only 4-fold (S4) symmetric: it holds the **full** $(\text{npair}, \text{npair})$ matrix, whose row pair indexes the $\alpha$-spin and whose column pair indexes the $\beta$-spin species. It is therefore *not* symmetric under exchanging the two pairs.
+    </Admonition>
+
+    <Admonition title="Note" type="note">
+      This method returns a **copy** of the internal data.
+    </Admonition>
+
+    <Admonition title="See also" type="note">
+      The explanation of the internal data structure, [here](#fcidump-implementation), and [`FermionOperator.from_2body_tril_spin()`](operators-fermion-operator#from_2body_tril_spin "qiskit_fermions.operators.FermionOperator.from_2body_tril_spin"), which consumes this array.
+    </Admonition>
+
+    **Returns**
+
+    The 4-fold symmetric (S4) flattened 2-body integrals, of length $\text{npair}^2$, or `None` when [`is_unrestricted`](#qiskit_fermions.operators.library.FCIDump.is_unrestricted "qiskit_fermions.operators.library.FCIDump.is_unrestricted") is `False`.
+  </Function>
+
+  ### get\_two\_body\_tril\_bb
+
+  <Function id="qiskit_fermions.operators.library.FCIDump.get_two_body_tril_bb" signature="get_two_body_tril_bb()">
+    Returns a read-only copy of the $\beta\beta$-spin 2-body integrals.
+
+    The values are in chemist ordering, $(ij|kl)$, and carry no factor of $\frac{1}{2}$.
+
+    <Admonition title="Note" type="note">
+      This method returns a **copy** of the internal data.
+    </Admonition>
+
+    <Admonition title="See also" type="note">
+      The explanation of the internal data structure, [here](#fcidump-implementation), and [`FermionOperator.from_2body_tril_spin()`](operators-fermion-operator#from_2body_tril_spin "qiskit_fermions.operators.FermionOperator.from_2body_tril_spin"), which consumes this array.
+    </Admonition>
+
+    **Returns**
+
+    The 8-fold symmetric (S8) flattened 2-body integrals, of length $\text{npair} (\text{npair} + 1) / 2$, or `None` when [`is_unrestricted`](#qiskit_fermions.operators.library.FCIDump.is_unrestricted "qiskit_fermions.operators.library.FCIDump.is_unrestricted") is `False`.
   </Function>
 </Class>
 

@@ -1,0 +1,37 @@
+---
+title: simplify (latest version)
+description: API reference for qiskit_fermions.transpiler.passes.synthesis.simplify in the latest version of qiskit-fermions
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit_fermions.transpiler.passes.synthesis.simplify
+---
+
+# simplify
+
+<Function id="qiskit_fermions.transpiler.passes.synthesis.simplify" isDedicatedPage={true} signature="simplify(mapper_fn)">
+  Wraps a mapper function so that it simplifies the operator it returns.
+
+  Simplifying merges duplicate Pauli terms and, as a side effect, sorts the terms into a canonical order. That order is worth asking for explicitly in two situations:
+
+  1.  The term order an unsimplified mapper produces is **not** guaranteed to be stable between runs, because the operators of the Rust core do not preserve the order their terms were added in. A product formula synthesizes the terms in the order it receives them, so an unsimplified mapper can yield a different (though equally valid) circuit each time. Simplifying pins it.
+  2.  It merges terms that map to the same Pauli string, which shortens the synthesized circuit when a mapper produces such duplicates.
+
+  Use it to wrap any `MapperFunction`:
+
+  ```python
+  MapperFnEvolutionSynthesis(simplify(jordan_wigner))
+  ```
+
+  **Parameters**
+
+  **mapper\_fn** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[*[*OperatorTrait*](operators-operator-trait "qiskit_fermions.operators.operator_trait.OperatorTrait")*,* [*int*](https://docs.python.org/3/library/functions.html#int)*],* [*SparseObservable*](/docs/api/qiskit/qiskit.quantum_info.SparseObservable)*]*) – the mapper function to wrap.
+
+  **Returns**
+
+  A mapper function that simplifies whatever `mapper_fn` returns.
+
+  **Return type**
+
+  [*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)\[\[[*OperatorTrait*](operators-operator-trait "qiskit_fermions.operators.operator_trait.OperatorTrait"), [int](https://docs.python.org/3/library/functions.html#int)], [*SparseObservable*](/docs/api/qiskit/qiskit.quantum_info.SparseObservable)]
+</Function>
+

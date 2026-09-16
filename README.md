@@ -436,7 +436,7 @@ Steps:
    - For release candidates (any rc other than rc1), run `npm run gen-api -- -p <pkg-name> -v <version> --dev`, e.g., `npm run gen-api -- -p qiskit -v 2.3.0rc2 --dev`.
    - For historical releases, run `npm run gen-api -- -p <pkg-name> -v <version> --historical`, e.g., `npm run gen-api -- -p qiskit -v 2.3.2 --historical`.
    - For the latest release, run `npm run gen-api -- -p <pkg-name> -v <version>`, e.g., `npm run gen-api -- -p qiskit -v 2.3.2`.
-2. If it's Qiskit SDK, repeat the above command, but use `-p qiskit-c` instead of `-p qiskit`.
+2. If it's Qiskit SDK or Qiskit Fermions (and probably any package with a C API), repeat the above command, but use (for example) `-p qiskit-c` instead of `-p qiskit`.
 3. Save the commit and open a pull request.
    - Add the commands that you ran to the PR description.
    - Look for any weirdness in the diff, such as if files are unexpectedly deleted.

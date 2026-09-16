@@ -340,6 +340,77 @@ The following functions exist to check certain properties of an operator.
   *   **boundaries\_len** – A pointer to the integer into which to write the length of the output array.
 </Function>
 
+### qf\_ferm\_op\_num\_support
+
+<Function id="qf_ferm_op_num_support" signature="uint32_t qf_ferm_op_num_support(const QfFermionOperator *op)">
+  Gets the size of the support of an operator.
+
+  Use this to size the output buffer of [`qf_ferm_op_get_support()`](#qf_ferm_op_get_support "qf_ferm_op_get_support"), which does not report a length of its own.
+
+  <span id="id8" />
+
+  #### Example
+
+  ```c
+  1bool actions[3] = {true, false, true};
+  2uint32_t modes[3] = {2, 0, 2};
+  3QkComplex64 coeffs[2] = {{1.0, 0.0}, {1.0, 0.0}};
+  4uint32_t boundaries[3] = {0, 2, 3};
+  5QfFermionOperator *op = qf_ferm_op_new(2, 3, coeffs, actions, modes, boundaries);
+  6
+  7uint32_t num_support = qf_ferm_op_num_support(op);
+  8
+  9assert(num_support == 2);
+  ```
+
+  **Parameters**
+
+  *   **op** – A pointer to the fermionic operator whose support size to get.
+
+  **Returns**
+
+  The number of distinct mode indices acted upon by the operator.
+</Function>
+
+### qf\_ferm\_op\_get\_support
+
+<Function id="qf_ferm_op_get_support" signature="void qf_ferm_op_get_support(const QfFermionOperator *op, uint32_t *support_out)">
+  Gets the support of an operator, i.e. the mode indices acted upon by the operator.
+
+  The indices are written in **ascending** order, and every index appears exactly once no matter how many terms act upon it.
+
+  <span id="id9" />
+
+  #### Example
+
+  ```c
+   1bool actions[3] = {true, false, true};
+   2uint32_t modes[3] = {2, 0, 2};
+   3QkComplex64 coeffs[2] = {{1.0, 0.0}, {1.0, 0.0}};
+   4uint32_t boundaries[3] = {0, 2, 3};
+   5QfFermionOperator *op = qf_ferm_op_new(2, 3, coeffs, actions, modes, boundaries);
+   6
+   7uint32_t num_support = qf_ferm_op_num_support(op);
+   8uint32_t *support_out = malloc(num_support * sizeof(uint32_t));
+   9
+  10qf_ferm_op_get_support(op, support_out);
+  11
+  12assert(support_out[0] == 0);
+  13assert(support_out[1] == 2);
+  14
+  15free(support_out);
+  ```
+
+  <Admonition title="Note" type="note">
+    Unlike the other getters, this does not hand out a pointer into the operator: the support is computed on demand rather than stored, so the caller provides the output buffer. Query its required length with [`qf_ferm_op_num_support()`](#qf_ferm_op_num_support "qf_ferm_op_num_support") first.
+  </Admonition>
+
+  **Parameters**
+
+  *   **op** – A pointer to the fermionic operator whose support to get.
+  *   **support\_out** – A pointer to the integer array into which to write the support. It must be sized to at least :c:func:`qf_ferm_op_num_support` elements.
+</Function>
+
 ### qf\_ferm\_op\_zero
 
 <Function id="qf_ferm_op_zero" signature="QfFermionOperator *qf_ferm_op_zero(void)">
@@ -347,7 +418,7 @@ The following functions exist to check certain properties of an operator.
 
   Adding the operator that is constructed by this method to another one has no effect.
 
-  <span id="id8" />
+  <span id="id10" />
 
   #### Example
 
@@ -371,7 +442,7 @@ The following functions exist to check certain properties of an operator.
 
   Composing the operator that is constructed by this method with another one has no effect.
 
-  <span id="id9" />
+  <span id="id11" />
 
   #### Example
 
@@ -394,20 +465,21 @@ The following functions exist to check certain properties of an operator.
   Checks whether this operator tracks group indices.
 
   <Admonition title="See also" type="note">
-    The explanation on [Group operator terms: use the operator structure](/docs/addons/qiskit-fermions/guides/grouping#grouping-explanation).
+    The explanation on [Group operator terms: use the operator structure](guides/grouping#grouping-explanation).
   </Admonition>
 
-  <span id="id10" />
+  <span id="id12" />
 
   #### Example
 
   ```c
-  1QfFCIDump *fcidump = qf_fcidump_from_file("molecule.fcidump");
-  2QfFermionOperator *op = qf_ferm_op_from_fcidump(fcidump);
-  3
-  4bool has_groups = qf_ferm_op_has_groups(op);
-  5
-  6assert(!has_groups);
+  1QfFCIDump *fcidump = NULL;
+  2qf_fcidump_from_file("molecule.fcidump", &fcidump);
+  3QfFermionOperator *op = qf_ferm_op_from_fcidump(fcidump);
+  4
+  5bool has_groups = qf_ferm_op_has_groups(op);
+  6
+  7assert(!has_groups);
   ```
 
   **Parameters**
@@ -425,18 +497,19 @@ The following functions exist to check certain properties of an operator.
   Gets the number of groups from an operator.
 
   <Admonition title="See also" type="note">
-    The explanation on [Group operator terms: use the operator structure](/docs/addons/qiskit-fermions/guides/grouping#grouping-explanation).
+    The explanation on [Group operator terms: use the operator structure](guides/grouping#grouping-explanation).
   </Admonition>
 
-  <span id="id11" />
+  <span id="id13" />
 
   #### Example
 
   ```c
-  1QfFCIDump *fcidump = qf_fcidump_from_file("molecule.fcidump");
-  2QfFermionOperator *op = qf_ferm_op_from_fcidump(fcidump);
-  3
-  4uint32_t num_groups = qf_ferm_op_num_groups(op);
+  1QfFCIDump *fcidump = NULL;
+  2qf_fcidump_from_file("molecule.fcidump", &fcidump);
+  3QfFermionOperator *op = qf_ferm_op_from_fcidump(fcidump);
+  4
+  5uint32_t num_groups = qf_ferm_op_num_groups(op);
   ```
 
   <Admonition title="Note" type="note">
@@ -452,61 +525,16 @@ The following functions exist to check certain properties of an operator.
   The number of group indices from the operator’s `groups` attribute.
 </Function>
 
-### qf\_ferm\_op\_group\_weights
-
-<Function id="qf_ferm_op_group_weights" signature="void qf_ferm_op_group_weights(const QfFermionOperator *op, double *weights_out)">
-  Gets the mean absolute coefficient magnitude of each group.
-
-  The `i`-th entry is the sum of `abs(coeff)` over the terms in group `i`, divided by the number of terms in that group. This is the sampling weight of a randomized product formula (e.g. qDRIFT) that draws whole groups rather than individual terms, and is computed in a single pass over the operator rather than by reducing [`qf_ferm_op_get_coeffs()`](#qf_ferm_op_get_coeffs "qf_ferm_op_get_coeffs") and [`qf_ferm_op_get_groups()`](#qf_ferm_op_get_groups "qf_ferm_op_get_groups") (one value per *ungrouped* term each) on the caller’s side.
-
-  <Admonition title="See also" type="note">
-    The explanation on [Group operator terms: use the operator structure](/docs/addons/qiskit-fermions/guides/grouping#grouping-explanation).
-  </Admonition>
-
-  <span id="id12" />
-
-  #### Example
-
-  ```c
-   1uint64_t num_terms = 4;
-   2uint64_t num_actions = 8;
-   3bool actions[8] = {true, false, true, false, true, false, true, false};
-   4uint32_t modes[8] = {0, 1, 2, 3, 1, 0, 3, 2};
-   5QkComplex64 coeffs[4] = {{1.0, 0.0}, {2.0, 0.0}, {-1.0, 0.0}, {-2.0, 0.0}};
-   6uint32_t boundaries[5] = {0, 2, 4, 6, 8};
-   7QfFermionOperator *op =
-   8    qf_ferm_op_new(num_terms, num_actions, coeffs, actions, modes, boundaries);
-   9
-  10uint32_t groups_in[4] = {0, 1, 0, 1};
-  11qf_ferm_op_set_groups(op, groups_in, num_terms);
-  12
-  13double weights[2];
-  14qf_ferm_op_group_weights(op, weights);
-  15
-  16assert(weights[0] == 1.0);
-  17assert(weights[1] == 2.0);
-  ```
-
-  <Admonition title="Note" type="note">
-    A group index that no term carries weighs `0.0`, which keeps it out of the sample.
-  </Admonition>
-
-  **Parameters**
-
-  *   **op** – A pointer to the fermionic operator whose group weights to compute.
-  *   **weights\_out** – A pointer to the array of doubles into which to write the weights. Must be sized to :c:func:`qf_ferm_op_num_groups`.
-</Function>
-
 ### qf\_ferm\_op\_get\_groups
 
 <Function id="qf_ferm_op_get_groups" signature="void qf_ferm_op_get_groups(const QfFermionOperator *op, uint32_t **groups_out, uint64_t *groups_len)">
   Gets the group indices for all operator terms.
 
   <Admonition title="See also" type="note">
-    The explanation on [Group operator terms: use the operator structure](/docs/addons/qiskit-fermions/guides/grouping#grouping-explanation).
+    The explanation on [Group operator terms: use the operator structure](guides/grouping#grouping-explanation).
   </Admonition>
 
-  <span id="id13" />
+  <span id="id14" />
 
   #### Example
 
@@ -527,14 +555,16 @@ The following functions exist to check certain properties of an operator.
 
 ### qf\_ferm\_op\_set\_groups
 
-<Function id="qf_ferm_op_set_groups" signature="void qf_ferm_op_set_groups(QfFermionOperator *op, const uint32_t *groups_in, uint64_t groups_len)">
+<Function id="qf_ferm_op_set_groups" signature="QfExitCode qf_ferm_op_set_groups(QfFermionOperator *op, const uint32_t *groups_in, uint64_t groups_len)">
   Sets the `groups` attribute of the provided operator.
 
+  The length is validated here because nothing downstream re-checks it: too few indices would silently drop the trailing terms wherever terms are iterated together with their groups, and too many would make [`qf_ferm_op_num_groups()`](#qf_ferm_op_num_groups "qf_ferm_op_num_groups") report groups that no term carries.
+
   <Admonition title="See also" type="note">
-    The explanation on [Group operator terms: use the operator structure](/docs/addons/qiskit-fermions/guides/grouping#grouping-explanation).
+    The explanation on [Group operator terms: use the operator structure](guides/grouping#grouping-explanation).
   </Admonition>
 
-  <span id="id14" />
+  <span id="id15" />
 
   #### Example
 
@@ -551,6 +581,13 @@ The following functions exist to check certain properties of an operator.
   *   **op** – A pointer to the fermionic operator whose `groups` attribute to write.
   *   **groups\_in** – A pointer to the `groups` integer array to write into the operator.
   *   **groups\_len** – The number of terms in the `groups_in` array.
+
+  **Returns**
+
+  An exit code.
+
+  *   `QfExitCode_Success` upon success
+  *   `QfExitCode_ValueError` if `groups_len` differs from the number of terms in the operator
 </Function>
 
 ### qf\_ferm\_op\_del\_groups
@@ -559,10 +596,10 @@ The following functions exist to check certain properties of an operator.
   Deletes the `groups` attribute from the provided operator.
 
   <Admonition title="See also" type="note">
-    The explanation on [Group operator terms: use the operator structure](/docs/addons/qiskit-fermions/guides/grouping#grouping-explanation).
+    The explanation on [Group operator terms: use the operator structure](guides/grouping#grouping-explanation).
   </Admonition>
 
-  <span id="id15" />
+  <span id="id16" />
 
   #### Example
 
@@ -585,10 +622,10 @@ The following functions exist to check certain properties of an operator.
   A duplicate index in `group_indices` is written once per occurrence in `group_ops_out`. Requesting only a small number of groups out of a much larger total is significantly cheaper than requesting all of them, since terms belonging to a group that is not requested are skipped rather than appended anywhere.
 
   <Admonition title="See also" type="note">
-    The explanation on [Group operator terms: use the operator structure](/docs/addons/qiskit-fermions/guides/grouping#grouping-explanation).
+    The explanation on [Group operator terms: use the operator structure](guides/grouping#grouping-explanation).
   </Admonition>
 
-  <span id="id16" />
+  <span id="id17" />
 
   #### Example
 
@@ -634,7 +671,7 @@ The following functions exist to check certain properties of an operator.
     This function resets the operator’s `groups` attribute to `NULL`.
   </Admonition>
 
-  <span id="id17" />
+  <span id="id18" />
 
   #### Example
 
@@ -665,7 +702,7 @@ The following functions exist to check certain properties of an operator.
 <Function id="qf_ferm_op_add" signature="QfFermionOperator *qf_ferm_op_add(const QfFermionOperator *left, const QfFermionOperator *right)">
   Adds two operators together.
 
-  <span id="id18" />
+  <span id="id19" />
 
   #### Example
 
@@ -688,12 +725,142 @@ The following functions exist to check certain properties of an operator.
   A pointer to the resulting operator.
 </Function>
 
+### qf\_ferm\_op\_scaled\_add
+
+<Function id="qf_ferm_op_scaled_add" signature="QfFermionOperator *qf_ferm_op_scaled_add(const QfFermionOperator *left, const QfFermionOperator *right, const QkComplex64 *factor)">
+  Adds two operators together, scaling the coefficients of the right one.
+
+  This fuses the scaling into the addition, which avoids building a fully scaled copy of `right` just to append it. Passing a factor of `-1` therefore subtracts, which is why no separate subtraction function is provided.
+
+  <span id="id20" />
+
+  #### Example
+
+  ```c
+  1QfFermionOperator *one = qf_ferm_op_one();
+  2QfFermionOperator *other = qf_ferm_op_one();
+  3
+  4// Subtracting via a factor of -1 leaves the two terms cancelling each other out.
+  5QkComplex64 factor = {-1.0, 0.0};
+  6QfFermionOperator *result = qf_ferm_op_scaled_add(one, other, &factor);
+  7
+  8QfFermionOperator *simplified = qf_ferm_op_simplify(result, 1e-10);
+  9assert(qf_ferm_op_len(simplified) == 0);
+  ```
+
+  <Admonition title="Note" type="note">
+    Like [`qf_ferm_op_add()`](#qf_ferm_op_add "qf_ferm_op_add"), this appends the terms of `right` without combining them with those of `left`, so the result tracks no group indices. Call [`qf_ferm_op_simplify()`](#qf_ferm_op_simplify "qf_ferm_op_simplify") to collect equal terms afterwards.
+  </Admonition>
+
+  **Parameters**
+
+  *   **left** – A pointer to the left operator.
+  *   **right** – A pointer to the right operator.
+  *   **factor** – A pointer to the factor to scale the right operator’s coefficients with.
+
+  **Returns**
+
+  A pointer to the resulting operator, `left + factor * right`.
+</Function>
+
+### qf\_ferm\_op\_add\_inplace
+
+<Function id="qf_ferm_op_add_inplace" signature="void qf_ferm_op_add_inplace(QfFermionOperator *left, const QfFermionOperator *right)">
+  Adds an operator into another one, in place.
+
+  The in-place counterpart of [`qf_ferm_op_add()`](#qf_ferm_op_add "qf_ferm_op_add"), which saves copying `left` into a freshly allocated result.
+
+  <Admonition title="Caution" type="note">
+    This function resets the operator’s `groups` attribute to `NULL`.
+  </Admonition>
+
+  <span id="id21" />
+
+  #### Example
+
+  ```c
+  1QfFermionOperator *left = qf_ferm_op_one();
+  2QfFermionOperator *right = qf_ferm_op_one();
+  3
+  4qf_ferm_op_add_inplace(left, right);
+  5
+  6assert(qf_ferm_op_len(left) == 2);
+  ```
+
+  **Parameters**
+
+  *   **left** – A pointer to the operator to add into.
+  *   **right** – A pointer to the operator to add.
+</Function>
+
+### qf\_ferm\_op\_scaled\_add\_inplace
+
+<Function id="qf_ferm_op_scaled_add_inplace" signature="void qf_ferm_op_scaled_add_inplace(QfFermionOperator *left, const QfFermionOperator *right, const QkComplex64 *factor)">
+  Adds an operator into another one in place, scaling the coefficients of the right one.
+
+  The in-place counterpart of [`qf_ferm_op_scaled_add()`](#qf_ferm_op_scaled_add "qf_ferm_op_scaled_add"), computing `left + factor * right` without allocating a result. As there, a factor of `-1` subtracts.
+
+  <Admonition title="Caution" type="note">
+    This function resets the operator’s `groups` attribute to `NULL`.
+  </Admonition>
+
+  <span id="id22" />
+
+  #### Example
+
+  ```c
+  1QfFermionOperator *left = qf_ferm_op_one();
+  2QfFermionOperator *right = qf_ferm_op_one();
+  3
+  4// Subtract, leaving two terms that cancel each other out.
+  5QkComplex64 factor = {-1.0, 0.0};
+  6qf_ferm_op_scaled_add_inplace(left, right, &factor);
+  7
+  8QfFermionOperator *simplified = qf_ferm_op_simplify(left, 1e-10);
+  9assert(qf_ferm_op_len(simplified) == 0);
+  ```
+
+  **Parameters**
+
+  *   **left** – A pointer to the operator to add into.
+  *   **right** – A pointer to the operator to add.
+  *   **factor** – A pointer to the factor to scale the right operator’s coefficients with.
+</Function>
+
+### qf\_ferm\_op\_mul\_inplace
+
+<Function id="qf_ferm_op_mul_inplace" signature="void qf_ferm_op_mul_inplace(QfFermionOperator *op, const QkComplex64 *scalar)">
+  Multiplies an operator by a scalar, in place.
+
+  The in-place counterpart of [`qf_ferm_op_mul()`](#qf_ferm_op_mul "qf_ferm_op_mul"), which saves copying the operator into a freshly allocated result.
+
+  <span id="id23" />
+
+  #### Example
+
+  ```c
+  1QfFermionOperator *op = qf_ferm_op_one();
+  2QkComplex64 scalar = {2.0, 0.0};
+  3
+  4qf_ferm_op_mul_inplace(op, &scalar);
+  ```
+
+  <Admonition title="Note" type="note">
+    Unlike the two in-place additions above, this **preserves** the `groups` attribute: scaling the coefficients leaves the number of terms, and hence the one-index-per-term invariant, untouched.
+  </Admonition>
+
+  **Parameters**
+
+  *   **op** – A pointer to the operator to scale.
+  *   **scalar** – A pointer to the scalar.
+</Function>
+
 ### qf\_ferm\_op\_mul
 
 <Function id="qf_ferm_op_mul" signature="QfFermionOperator *qf_ferm_op_mul(const QfFermionOperator *op, const QkComplex64 *scalar)">
   Multiplies an operator by a scalar.
 
-  <span id="id19" />
+  <span id="id24" />
 
   #### Example
 
@@ -725,7 +892,7 @@ The following functions exist to check certain properties of an operator.
 <Function id="qf_ferm_op_compose" signature="QfFermionOperator *qf_ferm_op_compose(const QfFermionOperator *left, const QfFermionOperator *right)">
   Composes two operators with each other.
 
-  <span id="id20" />
+  <span id="id25" />
 
   #### Example
 
@@ -738,6 +905,10 @@ The following functions exist to check certain properties of an operator.
   6assert(qf_ferm_op_equal(result, zero));
   ```
 
+  <Admonition title="Note" type="note">
+    The composition of two operators tracks no groups, even when both operands do.
+  </Admonition>
+
   **Parameters**
 
   *   **left** – A pointer to the left operator.
@@ -745,7 +916,7 @@ The following functions exist to check certain properties of an operator.
 
   **Returns**
 
-  A pointer to the resulting operator.
+  A pointer to `left.compose(right)`, which equals the operator `result = right @ left` in terms of the matrix multiplication `@`. In other words, `right` is applied first. To obtain `left @ right`, swap the arguments.
 </Function>
 
 ### qf\_ferm\_op\_adjoint
@@ -758,7 +929,7 @@ The following functions exist to check certain properties of an operator.
   *   the actions in each term reverse their order and flip between creation and annihilation
   *   the coefficients are complex conjugated
 
-  <span id="id21" />
+  <span id="id26" />
 
   #### Example
 
@@ -796,7 +967,7 @@ The following functions exist to check certain properties of an operator.
     This functions truncates coefficients greedily! If the acted upon operator might contain separate coefficients for duplicate terms consider calling [`qf_ferm_op_simplify()`](#qf_ferm_op_simplify "qf_ferm_op_simplify") instead!
   </Admonition>
 
-  <span id="id22" />
+  <span id="id27" />
 
   #### Example
 
@@ -877,7 +1048,7 @@ The following functions exist to check certain properties of an operator.
   *   `True`: larger indices appear towards the middle, i.e. creation actions are lexicographically ascending while annihilation ones are descending (e.g. `+_0 +_1 -_1 -_0`)
   *   `False`: smaller indices appear towards the middle, i.e. creation actions are lexicographically descending while annihilation ones are ascending (e.g. `+_1 +_0 -_0 -_1`)
 
-  <span id="id23" />
+  <span id="id28" />
 
   #### Example
 
@@ -923,7 +1094,7 @@ The following functions exist to check certain properties of an operator.
 <Function id="qf_ferm_op_is_hermitian" signature="bool qf_ferm_op_is_hermitian(const QfFermionOperator *op, double atol)">
   Checks whether an operator is Hermitian.
 
-  <span id="id24" />
+  <span id="id29" />
 
   #### Example
 
@@ -936,7 +1107,7 @@ The following functions exist to check certain properties of an operator.
    6bool actions2[2] = {true, false};
    7uint32_t modes2[2] = {1, 0};
    8QkComplex64 coeff2 = {0.0, -1};
-   9qf_ferm_op_add_term(op, 2, actions2, modes2, &coeff1);
+   9qf_ferm_op_add_term(op, 2, actions2, modes2, &coeff2);
   10
   11assert(qf_ferm_op_is_hermitian(op, 1e-4));
   12assert(!qf_ferm_op_is_hermitian(op, 1e-8));
@@ -961,7 +1132,7 @@ The following functions exist to check certain properties of an operator.
 <Function id="qf_ferm_op_max_rank" signature="uint32_t qf_ferm_op_max_rank(const QfFermionOperator *op)">
   Checks the maximum rank of an operator.
 
-  <span id="id25" />
+  <span id="id30" />
 
   #### Example
 
@@ -993,23 +1164,29 @@ The following functions exist to check certain properties of an operator.
 <Function id="qf_ferm_op_conserves_particle_number" signature="bool qf_ferm_op_conserves_particle_number(const QfFermionOperator *op)">
   Checks whether an operator is particle-number conserving.
 
-  <span id="id26" />
+  This is the special case of [`qf_ferm_op_conserves_sector()`](#qf_ferm_op_conserves_sector "qf_ferm_op_conserves_sector") that treats all modes as a single block. Use that function to additionally require conservation *within* mode blocks, for example to check conservation of the spin z-component alongside the particle number.
+
+  <span id="id31" />
 
   #### Example
 
   ```c
-   1QfFermionOperator *op = qf_ferm_op_zero();
-   2bool actions1[2] = {true, false};
-   3uint32_t modes1[2] = {0, 1};
-   4QkComplex64 coeff1 = {0.0, 1.00001};
-   5qf_ferm_op_add_term(op, 2, actions1, modes1, &coeff1);
-   6bool actions2[2] = {true, false};
-   7uint32_t modes2[2] = {1, 0};
-   8QkComplex64 coeff2 = {0.0, -1};
-   9qf_ferm_op_add_term(op, 2, actions2, modes2, &coeff2);
-  10
-  11assert(qf_ferm_op_is_hermitian(op, 1e-4));
-  12assert(!qf_ferm_op_is_hermitian(op, 1e-8));
+   1// A hopping term conserves the particle number, ...
+   2QfFermionOperator *op = qf_ferm_op_zero();
+   3bool actions[2] = {true, false};
+   4uint32_t modes[2] = {0, 2};
+   5QkComplex64 coeff = {1.0, 0.0};
+   6qf_ferm_op_add_term(op, 2, actions, modes, &coeff);
+   7
+   8assert(qf_ferm_op_conserves_particle_number(op));
+   9
+  10// ... whereas a bare creation operator does not.
+  11QfFermionOperator *cre = qf_ferm_op_zero();
+  12bool cre_actions[1] = {true};
+  13uint32_t cre_modes[1] = {0};
+  14qf_ferm_op_add_term(cre, 1, cre_actions, cre_modes, &coeff);
+  15
+  16assert(!qf_ferm_op_conserves_particle_number(cre));
   ```
 
   **Parameters**
@@ -1021,12 +1198,58 @@ The following functions exist to check certain properties of an operator.
   Whether the provided operator is particle-number conserving.
 </Function>
 
+### qf\_ferm\_op\_conserves\_sector
+
+<Function id="qf_ferm_op_conserves_sector" signature="bool qf_ferm_op_conserves_sector(const QfFermionOperator *op, const uint32_t *block_sizes, uint64_t num_blocks)">
+  Checks whether an operator conserves the particle number within each mode block.
+
+  The `block_sizes` partition the mode range into consecutive, non-overlapping blocks: block `b` spans the modes `[start_b, start_b + block_sizes[b])` where `start_b` is the sum of all preceding block sizes. A term conserves the sector if and only if, in *every* block, its number of creation operators equals its number of annihilation operators. A term acting on a mode beyond the last block never conserves the sector, because there is no block whose count it could balance.
+
+  For a spin-orbital layout of `norb` spatial orbitals, `[norb]` checks the particle number of a spinless system, while `[norb, norb]` requires the alpha block `[0, norb)` and the beta block `[norb, 2 * norb)` to be conserved *separately*, i.e. strict conservation of both the particle number and the z-component of the spin.
+
+  <span id="id32" />
+
+  #### Example
+
+  ```c
+   1// This term hops an electron from the beta block into the alpha block.
+   2QfFermionOperator *op = qf_ferm_op_zero();
+   3bool actions[2] = {true, false};
+   4uint32_t modes[2] = {0, 2};
+   5QkComplex64 coeff = {1.0, 0.0};
+   6qf_ferm_op_add_term(op, 2, actions, modes, &coeff);
+   7
+   8// The total particle number is conserved, ...
+   9uint32_t one_block[1] = {4};
+  10assert(qf_ferm_op_conserves_sector(op, one_block, 1));
+  11assert(qf_ferm_op_conserves_sector(op, NULL, 0));
+  12
+  13// ... but the two spin sectors are not conserved individually.
+  14uint32_t spin_blocks[2] = {2, 2};
+  15assert(!qf_ferm_op_conserves_sector(op, spin_blocks, 2));
+  ```
+
+  <Admonition title="Note" type="note">
+    Passing `NULL` (with `num_blocks` set to `0`) treats all modes as one unbounded block, making this equivalent to [`qf_ferm_op_conserves_particle_number()`](#qf_ferm_op_conserves_particle_number "qf_ferm_op_conserves_particle_number").
+  </Admonition>
+
+  **Parameters**
+
+  *   **op** – A pointer to the fermionic operator to be checked.
+  *   **block\_sizes** – A pointer to the array of block sizes partitioning the mode range. May be `NULL` to treat all modes as a single block.
+  *   **num\_blocks** – The number of entries in the `block_sizes` array.
+
+  **Returns**
+
+  Whether the provided operator conserves the particle number within every block.
+</Function>
+
 ### qf\_ferm\_op\_equal
 
 <Function id="qf_ferm_op_equal" signature="bool qf_ferm_op_equal(const QfFermionOperator *left, const QfFermionOperator *right)">
   Compare two operators for equality.
 
-  <span id="id27" />
+  <span id="id33" />
 
   #### Example
 
@@ -1055,7 +1278,7 @@ The following functions exist to check certain properties of an operator.
 
   Equivalence in this context means approximate equality up to the specified absolute tolerance. To be more precise, this method returns `True`, when all the absolute values of the coefficients in the difference `other - self` are below the specified threshold `atol`.
 
-  <span id="id28" />
+  <span id="id34" />
 
   #### Example
 
@@ -1088,7 +1311,7 @@ The following functions exist to check certain properties of an operator.
 <Function id="qf_ferm_op_len" signature="size_t qf_ferm_op_len(const QfFermionOperator *op)">
   Returns the length (or number of terms) of the provided operator.
 
-  <span id="id29" />
+  <span id="id35" />
 
   #### Example
 
@@ -1116,7 +1339,7 @@ The following functions exist to check certain properties of an operator.
 <Function id="qf_ferm_op_relabel_modes" signature="QfExitCode qf_ferm_op_relabel_modes(QfFermionOperator *op, uint64_t num_modes, const uint32_t *permutation)">
   Relabels the indices of the provided operator.
 
-  <span id="id30" />
+  <span id="id36" />
 
   #### Example
 

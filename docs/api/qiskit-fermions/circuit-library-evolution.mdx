@@ -8,7 +8,7 @@ python_api_name: qiskit_fermions.circuit.library.Evolution
 
 # Evolution
 
-<Class id="qiskit_fermions.circuit.library.Evolution" isDedicatedPage={true} signature="Evolution(num_modes, operator, time=1.0)" modifiers="class">
+<Class id="qiskit_fermions.circuit.library.Evolution" isDedicatedPage={true} signature="Evolution(num_modes, operator, time=1.0, *, synthesis=None, atomic=False)" modifiers="class">
   Bases: [`FermionicGate`](circuit-fermionic-gate "qiskit_fermions.circuit.fermionic_gate.FermionicGate")
 
   Implements the time evolution of an operator.
@@ -22,7 +22,13 @@ $$
   For $U$ to be unitary, $H$ must be Hermitian. This is the caller’s responsibility and is not verified.
 
   <Admonition title="Note" type="note">
-    How this evolution is decomposed into a circuit is not fixed by this gate alone. The default `_define()` implementation splits the evolution group-by-group when the `operator` has [`groups`](operators-fermion-operator#groups "qiskit_fermions.operators.FermionOperator.groups") assigned, and term-by-term otherwise, yielding a first-order product formula (which is exact only when the individual factors mutually commute). The transpilation process may further alter this decomposition (for example, [`QDriftTrotterization`](transpiler-passes-q-drift-trotterization "qiskit_fermions.transpiler.passes.QDriftTrotterization") replaces it with a randomized product formula).
+    Breaking this gate down in fermionic space (into a circuit of smaller [`Evolution`](#qiskit_fermions.circuit.library.Evolution "qiskit_fermions.circuit.library.Evolution") gates) is **optional**, and it is what the [`synthesis`](/docs/api/qiskit-fermions/circuit-library-synthesis#module-qiskit_fermions.circuit.library.synthesis "qiskit_fermions.circuit.library.synthesis") attribute governs. The gate can equally be handed straight to the fermion-to-qubit stage, which maps and synthesizes it whole, however many terms its `operator` holds. See [`synthesis`](/docs/api/qiskit-fermions/circuit-library-synthesis#module-qiskit_fermions.circuit.library.synthesis "qiskit_fermions.circuit.library.synthesis").
+
+    When it is decomposed (by [`decompose()`](circuit-fermionic-circuit#decompose "qiskit_fermions.circuit.FermionicCircuit.decompose"), for instance) [`synthesis`](/docs/api/qiskit-fermions/circuit-library-synthesis#module-qiskit_fermions.circuit.library.synthesis "qiskit_fermions.circuit.library.synthesis") decides how. It defaults to [`FermionicLieTrotter`](circuit-library-synthesis-fermionic-lie-trotter "qiskit_fermions.circuit.library.synthesis.FermionicLieTrotter"), which splits the evolution group-by-group when the `operator` has [`groups`](operators-operator-trait#groups "qiskit_fermions.operators.OperatorTrait.groups") assigned (see [Group operator terms: use the operator structure](guides/grouping#grouping-explanation)), and term-by-term otherwise (exact only when the individual factors mutually commute). The transpilation process may further alter the decomposition; [`QDriftTrotterization`](transpiler-passes-q-drift-trotterization "qiskit_fermions.transpiler.passes.QDriftTrotterization"), for example, replaces the evolution with a randomized sample of its terms. The gates it emits are [`atomic`](#qiskit_fermions.circuit.library.Evolution.atomic "qiskit_fermions.circuit.library.Evolution.atomic"), so [`synthesis`](/docs/api/qiskit-fermions/circuit-library-synthesis#module-qiskit_fermions.circuit.library.synthesis "qiskit_fermions.circuit.library.synthesis") no longer applies to them.
+  </Admonition>
+
+  <Admonition title="Note" type="note">
+    The state-vector simulation path does not go through [`synthesis`](/docs/api/qiskit-fermions/circuit-library-synthesis#module-qiskit_fermions.circuit.library.synthesis "qiskit_fermions.circuit.library.synthesis"): it exponentiates the whole `operator` exactly. Simulating this gate therefore incurs no Trotter error, whereas a decomposed circuit generally does.
   </Admonition>
 
   Initializing an instance of this gate can be done with the arguments listed below.
@@ -32,14 +38,56 @@ $$
   *   **num\_modes** ([*int*](https://docs.python.org/3/library/functions.html#int)) – the number of fermionic modes on which this gate acts.
   *   **operator** ([*OperatorTrait*](operators-operator-trait "qiskit_fermions.operators.OperatorTrait")) – the Hermitian operator $H$ under which to time evolve the acted-upon fermionic modes.
   *   **time** ([*float*](https://docs.python.org/3/library/functions.html#float)) – the evolution time $t$ entering the exponent of $e^{-i t H}$. A negative value evolves backwards in time.
+  *   **synthesis** ([*FermionicEvolutionSynthesis*](circuit-library-synthesis-fermionic-evolution-synthesis "qiskit_fermions.circuit.library.synthesis.FermionicEvolutionSynthesis") *| None*) – the fermion-to-fermion synthesis method with which to decompose this gate, when it gets decomposed at all. If `None` (the default), a [`FermionicLieTrotter`](circuit-library-synthesis-fermionic-lie-trotter "qiskit_fermions.circuit.library.synthesis.FermionicLieTrotter") instance is used.
+  *   **atomic** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – whether this gate is a fully decomposed factor which must not be broken down any further in fermionic space. See [`atomic`](#qiskit_fermions.circuit.library.Evolution.atomic "qiskit_fermions.circuit.library.Evolution.atomic").
 
   ## Attributes
+
+  ### atomic
+
+  <Attribute id="qiskit_fermions.circuit.library.Evolution.atomic">
+    Whether this gate is a factor that must not be decomposed any further.
+
+    A [`FermionicEvolutionSynthesis`](circuit-library-synthesis-fermionic-evolution-synthesis "qiskit_fermions.circuit.library.synthesis.FermionicEvolutionSynthesis") marks the factors it emits as atomic, because they are the result of the split it chose to perform: breaking them down again would discard that choice. The evolution of a single operator term is atomic for the stronger reason that there is nothing left to split.
+
+    An atomic gate has no definition at all, so [`decompose()`](circuit-fermionic-circuit#decompose "qiskit_fermions.circuit.FermionicCircuit.decompose") leaves it in place rather than expanding it. It still maps and synthesizes normally at the fermion-to-qubit level, which is where a factor is turned into actual operations.
+
+    This is read-only, for the same reason as [`synthesis`](/docs/api/qiskit-fermions/circuit-library-synthesis#module-qiskit_fermions.circuit.library.synthesis "qiskit_fermions.circuit.library.synthesis").
+  </Attribute>
+
+  ### synthesis
+
+  <Attribute id="qiskit_fermions.circuit.library.Evolution.synthesis">
+    The fermion-to-fermion synthesis method with which this gate is decomposed.
+
+    This is read-only: the gate’s definition is built once and then cached, so a synthesis method assigned after the fact could not take effect. Pass it to the constructor instead.
+  </Attribute>
 
   ### operator
 
   <Attribute id="qiskit_fermions.circuit.library.Evolution.operator">
     The operator under which to time evolve the acted-upon fermionic modes.
   </Attribute>
+
+  ## Methods
+
+  ### inverse
+
+  <Function id="qiskit_fermions.circuit.library.Evolution.inverse" signature="inverse(annotated=False)">
+    Returns the inverse of this gate, $e^{+i t H}$.
+
+    **Parameters**
+
+    **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – ignored. The inverse of this gate is another [`Evolution`](#qiskit_fermions.circuit.library.Evolution "qiskit_fermions.circuit.library.Evolution"), so it never needs to be an [`AnnotatedOperation`](/docs/api/qiskit/qiskit.circuit.AnnotatedOperation).
+
+    **Returns**
+
+    An [`Evolution`](#qiskit_fermions.circuit.library.Evolution "qiskit_fermions.circuit.library.Evolution") gate evolving the same operator for the negated time.
+
+    **Return type**
+
+    [*Evolution*](#qiskit_fermions.circuit.library.Evolution "qiskit_fermions.circuit.library.evolution.Evolution")
+  </Function>
 
   **Protocol Methods**
 
@@ -48,7 +96,7 @@ $$
   <Function id="qiskit_fermions.circuit.library.Evolution._apply_unitary_placed_" signature="_apply_unitary_placed_(vec, norb, nelec, copy, freg_indices)">
     Applies `exp(-i * time * operator)` after relabeling the operator to global modes.
 
-    The operator is relabeled onto its global modes and turned into a `scipy` `LinearOperator` via [`linear_operator()`](linalg-linear-operator "qiskit_fermions.linalg.linear_operator") (backed by a native FCI matrix-vector kernel), then applied to the vector via `scipy.sparse.linalg.expm_multiply`. This mirrors ffsim’s own `_apply_unitary_` implementations (e.g. for its UCCSD operators).
+    The operator is relabeled onto its global modes, converted to an [`ffsim.FermionOperator`](https://qiskit-community.github.io/ffsim/api/stubs/ffsim.FermionOperator.html#ffsim.FermionOperator "(in ffsim)") and handed to [`ffsim.linear_operator()`](https://qiskit-community.github.io/ffsim/api/stubs/ffsim.linear_operator.html#ffsim.linear_operator "(in ffsim)"), then applied to the vector via [`scipy.sparse.linalg.expm_multiply()`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.linalg.expm_multiply.html#scipy.sparse.linalg.expm_multiply "(in SciPy v1.18.0)"). An operator that is not already a [`FermionOperator`](operators-fermion-operator "qiskit_fermions.operators.FermionOperator") is first converted through the [`SupportsFermionOperator`](protocols-supports-fermion-operator "qiskit_fermions.protocols.SupportsFermionOperator") protocol, so any operator type of this package can be evolved.
 
     **Parameters**
 
@@ -64,8 +112,8 @@ $$
 
     **Raises**
 
-    *   [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError) – if the gate’s `operator` is not a [`FermionOperator`](operators-fermion-operator "qiskit_fermions.operators.FermionOperator"). The simulation path is currently backed by the native FCI kernel, which only `FermionOperator` exposes (via [`SupportsLinearOperator`](protocols-supports-linear-operator "qiskit_fermions.protocols.SupportsLinearOperator")); evolving other operator types is not yet supported.
-    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – if the operator does not conserve the `(norb, nelec)` sector. Evolving under `exp(-i * time * operator)` only yields a unitary when `operator` maps the sector to itself; a term that leaves the sector would be silently projected to zero by the native kernel, producing a non-unitary, physically meaningless result. Such an operator is therefore rejected rather than applied. For a pair `nelec` the alpha and beta electron counts must *each* be conserved (particle number and the z-component of spin), matching the fixed sector the kernel represents.
+    *   **MissingOptionalLibraryError** – if ffsim is not installed.
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – if the operator does not conserve the `(norb, nelec)` sector. Evolving under `exp(-i * time * operator)` only yields a unitary when `operator` maps the sector to itself, so ffsim rejects an operator that conserves neither particle number nor the z-component of spin.
 
     **Return type**
 
