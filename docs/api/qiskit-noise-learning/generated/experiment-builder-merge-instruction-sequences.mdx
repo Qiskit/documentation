@@ -1,0 +1,42 @@
+---
+title: MergeInstructionSequences (latest version)
+description: API reference for qiskit_noise_learning.experiment_builder.MergeInstructionSequences in the latest version of qiskit-noise-learning
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_noise_learning.experiment_builder.MergeInstructionSequences
+---
+
+<span id="qiskit-noise-learning-experiment-builder-mergeinstructionsequences" />
+
+# qiskit\_noise\_learning.experiment\_builder.MergeInstructionSequences
+
+<Class id="qiskit_noise_learning.experiment_builder.MergeInstructionSequences" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/experiment_builder/stages/merge_instruction_sequences.py" signature="qiskit_noise_learning.experiment_builder.MergeInstructionSequences(grouping_strategies: Sequence[GroupingStrategy] | None = None)" modifiers="class">
+  Bases: [`ExperimentBuilderStage`](experiment-builder-experiment-builder-stage "qiskit_noise_learning.experiment_builder.experiment_builder_stage.ExperimentBuilderStage")
+
+  Merge instruction sequences into a smaller set.
+
+  The sequences that can be merged with each other are grouped together by [`group_mergeable_instruction_sequences()`](sequences-group-mergeable-instruction-sequences "qiskit_noise_learning.sequences.group_mergeable_instruction_sequences"), and every group is merged into a single sequence.
+
+  **Parameters**
+
+  **grouping\_strategies** – The grouping strategies to take the fewest groups found by any of, as documented in [`group_mergeable_instruction_sequences()`](sequences-group-mergeable-instruction-sequences "qiskit_noise_learning.sequences.group_mergeable_instruction_sequences"). If `None`, an empirically determined default set of strategies is used.
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit_noise_learning.experiment_builder.MergeInstructionSequences.__init__" signature="__init__(grouping_strategies: Sequence[GroupingStrategy] | None = None)" />
+
+  ## Methods
+
+  |                                                                                                                                                                                                   |                                                  |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
+  | [`__init__`](#qiskit_noise_learning.experiment_builder.MergeInstructionSequences.__init__ "qiskit_noise_learning.experiment_builder.MergeInstructionSequences.__init__")(\[grouping\_strategies]) |                                                  |
+  | `run`(experiment)                                                                                                                                                                                 | Validate required fields, then apply this stage. |
+
+  ## Attributes
+
+  |                    |   |
+  | ------------------ | - |
+  | `populates_fields` |   |
+  | `required_fields`  |   |
+</Class>
+
