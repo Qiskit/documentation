@@ -74,6 +74,7 @@ export class Pkg {
     "qiskit-fermions-c",
     "pauli-prop",
     "qiskit-addon-slc",
+    "qiskit-mitigation",
   ];
 
   static VALID_NAMES = [
@@ -266,6 +267,17 @@ export class Pkg {
         ...args,
         title: "Pauli propagation",
         githubSlug: "Qiskit/pauli-prop",
+        kebabCaseAndShortenUrls: true,
+        language: "Python",
+        hasAddonDocs: true,
+      });
+    }
+    }
+    if (name === "qiskit-mitigation") {
+      return new Pkg({
+        ...args,
+        title: "Qiskit mitigation",
+        githubSlug: "Qiskit/qiskit-mitigation",
         kebabCaseAndShortenUrls: true,
         language: "Python",
         hasAddonDocs: true,
