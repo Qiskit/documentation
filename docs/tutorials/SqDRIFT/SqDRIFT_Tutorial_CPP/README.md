@@ -1,10 +1,10 @@
-# SqDRIFT Implementation in C++
+# SqDRIFT implementation in C++
 
 ## Background
 
 [SqDRIFT](https://arxiv.org/abs/2508.02578) is a variant of SQD that replaces the need to choose an ansatz from which to sample bitstrings with an ensemble of time-evolution circuits constructed directly from the target Hamiltonian. This is achieved by subsampling smaller time-evolution operators from said Hamiltonian based on its coefficients, which is known as the qDRIFT Trotterization method.
 
-This implementation demonstrates how to use the Qiskit C++ API to create fermionic circuits for the [qDRIFT](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.123.070503) algorithm, execute them on IBM Quantum hardware, and post-process the results for Selected Basis Diagonalization (SBD).
+This implementation demonstrates how to use the Qiskit C++ API to create fermionic circuits for the [qDRIFT](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.123.070503) algorithm, execute them on IBM Quantum&reg; hardware, and post-process the results for Selected Basis Diagonalization (SBD).
 
 Let the Hamiltonian be of the form
 
@@ -32,7 +32,7 @@ $$
 
 This tutorial shows how to generate an ensemble of such randomized circuits using C++ and execute them on IBM Quantum backends.
 
-## IBM Quantum Configuration
+## IBM Quantum configuration
 
 Before running SqDRIFT, ensure your IBM Quantum API token is configured for the **IBM Cloud platform** (the previous IBM Quantum Network platform is retired and will cause a startup panic).
 
@@ -62,29 +62,29 @@ Get your token from: https://quantum.ibm.com/
 
 Before compiling and running this code, make sure you have installed:
 
-### Required Libraries
+### Required libraries
 - **[Qiskit C-API](https://github.com/Qiskit/qiskit)** - The C-bindings for qiskit-features 
 - **[Qiskit C++ SDK](https://github.com/Qiskit/qiskit-cpp)** - Core quantum circuit library
 - **[Qiskit Fermions](https://github.com/Qiskit/qiskit-fermions)** - Fermionic operator support
 - **[Qiskit IBM Runtime](https://github.com/Qiskit/qiskit-ibm-runtime-c)** - IBM Quantum backend access
 - **[Qiskit Addon SQD HPC](https://github.com/Qiskit/qiskit-addon-sqd-hpc)** - Pre-process output strings for diagonalization
-- **[SBD](https://github.com/r-ccs-cms/sbd)** - Library for selected basis diagonalisation to find out the ground state after we obtain the relevant sub-space.
+- **[SBD](https://github.com/r-ccs-cms/sbd)** - Library for selected basis diagonalization to find out the ground state after we obtain the relevant sub-space.
 - **Boost** - For `boost::dynamic_bitset` (bitstring manipulation)
 - **nlohmann-json** - A dependency for qiskit-cpp
 - **C++17 or later** - Standard library features
 
-### System Requirements
+### System requirements
 - C++ compiler with C++17 support (GCC 7+, Clang 5+, or MSVC 2017+)
 - CMake 3.15 or later (for building)
 - Rust toolchain **rustc ≥ 1.95** — required by `qiskit-fermions`. Run `rustup update` to upgrade if you are on an older version.
 - IBM Quantum account with API token configured
 
-### Input Files
-- **FCIDump file** - Molecular Hamiltonian data (e.g., `N2_sto_3g`)
+### Input files
+- **FCIDump file** - Molecular Hamiltonian data (for example, `N2_sto_3g`)
 
-## Quick Start
+## Quick start
 
-### Build and Run (3 Commands)
+### Build and run (3 commands)
 
 ```bash
 # 1. Configure and build (from project root)
@@ -107,11 +107,11 @@ export DYLD_FALLBACK_LIBRARY_PATH="/usr/lib:/usr/local/lib:$DYLD_FALLBACK_LIBRAR
 
 See [BUILD_INSTRUCTIONS.md](BUILD_INSTRUCTIONS.md) for detailed platform-specific instructions.
 
-## Code Overview
+## Code overview
 
 The `SqDRIFT.cpp` implementation follows these key steps:
 
-### 1. Load Molecular Hamiltonian
+### 1. Load molecular Hamiltonian
 
 ```cpp
 char filename[] = "fcidump_files/N2_sto_3g";
@@ -138,7 +138,7 @@ std::cout << "✓ Loaded N2 molecule (" << norb << " orbitals, "
 
 Loads the N₂ molecule Hamiltonian from an FCIDump file. The number of qubits equals twice the number of orbitals (spin-up and spin-down).
 
-### 2. Create and Normal Order Hamiltonian
+### 2. Create and normal order Hamiltonian
 
 ```cpp
 // 2. Create and normal order Hamiltonian
@@ -148,7 +148,7 @@ QfFermionOperator* normal_ordered = qf_ferm_op_normal_ordered(hamiltonian, nullp
 
 Converts the FCIDump data into a fermionic operator and applies normal ordering to simplify the operator structure.
 
-### 3. Group Terms by Electronic Structure
+### 3. Group terms by electronic structure
 
 ```cpp
 // 3. Group terms by electronic structure
@@ -172,7 +172,7 @@ qf_ferm_op_split_out_groups(normal_ordered, nullptr, 0, group_ops);
 Grouped into 1590 groups
 ```
 Groups Hamiltonian terms that commute with each other, enabling efficient circuit construction. Each group can be evolved independently.
-### 4. Calculate Sampling Weights, Then Normalize and Map to Qubit Operators
+### 4. Calculate sampling weights, then normalize and map to qubit operators
 
 **Order matters here.** Normalization rescales every coefficient to unit magnitude *in place*, so the sampling weights must be computed first. If normalization runs first, every $|c_j|$ reads back as exactly `1.0` and each group's weight collapses into a bare count of its terms — the sampling distribution would then be driven by group size rather than by the physical coefficients.
 
@@ -235,7 +235,7 @@ Mapped all 1590 normalized groups to qubit operators
 
 The weight $\lambda_i = \frac{1}{|G_i|}\sum_{j \in G_i} |c_{ij}|$ is the mean absolute coefficient over the terms of group $G_i$, read from the original coefficients. Normalization then rescales each fermionic term to unit magnitude before the Jordan-Wigner transformation, preserving only its phase/sign in the evolved operator. This matches qDRIFT's normalized-term evolution: coefficient magnitudes determine sampling probabilities via $\lambda$, while the circuit evolution uses the normalized term so large coefficients are not counted twice.
 
-### 5. SqDRIFT Sampling
+### 5. SqDRIFT sampling
 ```cpp
 // 7. SqDRIFT Sampling: Create operator sets
     const int num_circuits = 100;    // Number of circuits to create
@@ -260,7 +260,7 @@ The weight $\lambda_i = \frac{1}{|G_i|}\sum_{j \in G_i} |c_{ij}|$ is the mean ab
 
 Generates 100 random circuits, each containing 10 operators sampled from the weighted distribution. This creates the ensemble of qDRIFT circuits.
 
-### 6. Build Suzuki-Trotter Circuits
+### 6. Build Suzuki-Trotter circuits
 
 ```cpp
     // 8. Create Suzuki-Trotter circuits by composing all operators
@@ -394,9 +394,7 @@ std::cout << "\n Connecting to IBM Quantum Cloud..." << std::endl;
 Qiskit::service::QiskitRuntimeService service;
 std::cout << "✓ Connected to IBM Quantum" << std::endl;
 
-// 2. Get backend. Selected by name rather than via least_busy(), which can
-// return a mock device whose counts are pure noise and therefore useless
-// for the diagonalization downstream.
+// 2. Get backend
 const std::string backend_name = "ibm_fez";
 auto backend = service.backend(backend_name);
 
@@ -473,9 +471,9 @@ Connects to IBM Quantum, selects the backend by name, and submits one job per ci
 
 All results quoted in this README come from a single run on `ibm_fez` (100 circuits × 100 shots). Hardware noise varies between runs, so your counts and final energy will differ.
 
-> **Why the backend is named explicitly:** `service.least_busy()` frequently returns one of the account's `mock_*` devices, whose counts are pure noise and therefore useless for the diagonalization downstream. The backend is pinned to `ibm_fez` instead. Change `backend_name` in `SqDRIFT.cpp` to target a different device; `service.backends()` lists what your account can reach.
+> **Changing the backend:** Change `backend_name` in `SqDRIFT.cpp` to target a different device; `service.backends()` lists what your account can reach.
 
-### 8. Post-Process Results
+### 8. Post-process results
 
 ```cpp
 // Step 1.5: Postselect bitstrings by Hamming weight (derived from FCIDump NELEC)
@@ -562,9 +560,9 @@ return 0;
 
 Properly frees all allocated memory and resources. The C++ `std::vector<QuantumCircuit>` is automatically cleaned up via RAII. Manually frees qubit operators, fermionic operators, and the FCIDump data.
 
-### 10. Running the diagonalisation scheme
+### 10. Run the diagonalization scheme
 
-Now that we have created the basis for projecting our Hamiltonian over, we can proceed with the diagonalisation process to obtain the ground state estimate.
+Now that we have created the basis for projecting our Hamiltonian over, we can proceed with the diagonalization process to obtain the ground state estimate.
 
 #### Step 1 — Build the SBD `diag` binary
 
@@ -576,7 +574,7 @@ The `Makefile` reads its compiler and link flags from the `Configuration` file i
 clang++: error: unsupported option '-fopenmp'
 ```
 
-The recipe below is **verified working on macOS (Apple Silicon, Darwin 25.6, Open MPI 5.x + Homebrew LLVM)**.
+The following recipe is **verified working on macOS (Apple Silicon, Darwin 25.6, Open MPI 5.x + Homebrew LLVM)**.
 
 ##### macOS (Apple Silicon) — tested
 
@@ -616,11 +614,11 @@ cd ../../../..
 
 A successful build prints the two compile/link lines and leaves a `diag` binary next to the `Makefile`. One `ld: warning: ignoring duplicate libraries: '-lomp'` is harmless.
 
-> **Intel macOS:** Homebrew's prefix is `/usr/local` rather than `/opt/homebrew`, so substitute it in both paths above.
+> **Intel macOS:** Homebrew's prefix is `/usr/local` rather than `/opt/homebrew`, so substitute it in both preceding paths.
 
 ##### Linux (Ubuntu/Debian) — untested
 
-The listed prerequisites below cover MPI, OpenMP, and BLAS/LAPACK. GCC supports `-fopenmp` natively, so no compiler override is needed. This has **not** been verified on Linux; treat it as a starting point:
+The following prerequisites cover MPI, OpenMP, and BLAS/LAPACK. GCC supports `-fopenmp` natively, so no compiler override is needed. This has **not** been verified on Linux; treat it as a starting point:
 
 ```bash
 sudo apt install -y libopenmpi-dev libomp-dev libblas-dev liblapack-dev
@@ -640,7 +638,7 @@ SYSLIB= -llapack -lblas
 # Writes alphadets_from_sqd.txt in the project root
 ```
 
-#### Step 3 — Run the diagonalisation
+#### Step 3 — Run the diagonalization
 
 ```bash
 cd deps/sbd/apps/chemistry_tpb_selected_basis_diagonalization
@@ -689,7 +687,7 @@ cd ../../../..
 ```
 
 
-## Key Parameters
+## Key parameters
 
 - **`num_circuits`**: Number of qDRIFT circuits to generate (default: 100)
 - **`ops_per_circuit`**: Number of operators per circuit (default: 10)

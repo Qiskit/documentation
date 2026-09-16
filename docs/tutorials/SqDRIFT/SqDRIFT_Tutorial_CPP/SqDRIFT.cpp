@@ -264,9 +264,7 @@ int main() {
     Qiskit::service::QiskitRuntimeService service;
     std::cout << "✓ Connected to IBM Quantum" << std::endl;
 
-    // 2. Get backend. Selected by name rather than via least_busy(), which can
-    // return a mock device whose counts are pure noise and therefore useless
-    // for the diagonalization downstream.
+    // 2. Get backend
     const std::string backend_name = "ibm_fez";
     auto backend = service.backend(backend_name);
 

@@ -1,10 +1,10 @@
-# OS-Agnostic Build Instructions for SqDRIFT
+# OS-agnostic build instructions for SqDRIFT
 
-This guide provides instructions for building SqDRIFT on different operating systems using **CMake only** - no bash scripts required!
+This guide provides instructions for building SqDRIFT on different operating systems using **CMake only**, with no bash scripts required.
 
 ## Prerequisites
 
-### All Platforms
+### All platforms
 
 1. **CMake** (version 3.15 or later)
    - Download from: https://cmake.org/download/
@@ -23,7 +23,7 @@ This guide provides instructions for building SqDRIFT on different operating sys
 
 ### Optional: the SBD diagonalization step
 
-The main CMake build fetches SBD as **source only** and does not compile it, so nothing below is needed to build or run `./SqDRIFT` itself. It is required only for the final diagonalization step that turns the sampled CI strings into a ground-state energy.
+The main CMake build fetches SBD as **source only** and does not compile it, so nothing in this section is needed to build or run `./SqDRIFT` itself. It is required only for the final diagonalization step that turns the sampled CI strings into a ground-state energy.
 
 SBD needs **MPI, OpenMP, and BLAS/LAPACK**, and it builds through its own hand-edited `Configuration` file rather than through this project's CMake — plain `make` will not work until that file matches your toolchain. On macOS the extra wrinkle is that Apple's `clang++` rejects `-fopenmp` outright, so an OpenMP-capable compiler must be supplied.
 
@@ -35,9 +35,9 @@ brew install open-mpi llvm     # BLAS/LAPACK come from Apple's Accelerate framew
 sudo apt install -y libopenmpi-dev libomp-dev libblas-dev liblapack-dev
 ```
 
-See [README.md § 10](README.md#10-running-the-diagonalisation-scheme) for the verified `Configuration` file and the exact build and run commands.
+See [README.md § 10](README.md#10-run-the-diagonalization-scheme) for the verified `Configuration` file and the exact build and run commands.
 
-### Platform-Specific Dependencies
+### Platform-specific dependencies
 
 #### macOS
 
@@ -88,9 +88,9 @@ source $HOME/.cargo/env
 - Fix CMake to generate proper import libraries for MSVC
 - Test against Visual Studio 2019+ or MinGW-w64
 
-## Build Steps (All Platforms)
+## Build steps (all platforms)
 
-### Step 1: Configure the Build
+### Step 1: Configure the build
 
 CMake will automatically:
 - Clone all Qiskit dependencies from GitHub
@@ -114,7 +114,7 @@ cmake -DCMAKE_BUILD_TYPE=Release ..
 
 **Note:** The first CMake configuration will take several minutes as it downloads and builds all dependencies. Subsequent builds will be much faster.
 
-### Step 2: Build the Project
+### Step 2: Build the project
 
 #### Linux/macOS
 
@@ -128,7 +128,7 @@ make -j$(sysctl -n hw.ncpu)  # macOS
 ```
 
 
-### Step 3: Run the Executable
+### Step 3: Run the executable
 
 **Note:** The executable is built in the project root directory (not in `build/`) so it can access the `fcidump_files/` directory.
 
@@ -172,11 +172,11 @@ export LD_LIBRARY_PATH="$PWD/deps/qiskit/dist/c/lib:$PWD/deps/qiskit-fermions/di
 ```
 
 
-## CMake Options
+## CMake options
 
 You can customize the build with these options:
 
-### Build Dependencies Control
+### Build dependencies control
 
 ```bash
 # Don't build dependencies (use existing ones in deps/ directory)
@@ -186,7 +186,7 @@ cmake .. -DBUILD_DEPENDENCIES=OFF
 cmake .. -DBUILD_DEPENDENCIES=ON
 ```
 
-### System Libraries
+### System libraries
 
 ```bash
 # Use system-installed Boost (default)
@@ -196,7 +196,7 @@ cmake .. -DUSE_SYSTEM_BOOST=ON
 cmake .. -DUSE_SYSTEM_JSON=ON
 ```
 
-### Build Type
+### Build type
 
 ```bash
 # Release build (optimized, default)
@@ -206,7 +206,7 @@ cmake .. -DCMAKE_BUILD_TYPE=Release
 cmake .. -DCMAKE_BUILD_TYPE=Debug
 ```
 
-### Custom Boost Location
+### Custom Boost location
 
 ```bash
 # If Boost is installed in a non-standard location
@@ -216,7 +216,7 @@ cmake .. -DBOOST_ROOT=/path/to/boost
 cmake .. -DBOOST_ROOT=$(brew --prefix boost)
 ```
 
-## Complete Build Example
+## Complete build example
 
 Here's a complete example from scratch:
 
@@ -354,7 +354,7 @@ $env:CARGO_BUILD_JOBS=2    # Windows PowerShell
 cmake --build . --config Release
 ```
 
-## Clean Build
+## Clean build
 
 To start fresh:
 
@@ -374,9 +374,9 @@ cmake ..
 cmake --build . --config Release
 ```
 
-## Advanced Usage
+## Advanced usage
 
-### Parallel Builds
+### Parallel builds
 
 Speed up compilation with parallel jobs:
 
@@ -385,7 +385,7 @@ Speed up compilation with parallel jobs:
 cmake --build . -j$(nproc)
 ```
 
-### Verbose Build Output
+### Verbose build output
 
 See detailed compilation commands:
 
@@ -393,7 +393,7 @@ See detailed compilation commands:
 cmake --build . --verbose
 ```
 
-### Custom Installation
+### Custom installation
 
 Install to a specific directory:
 
