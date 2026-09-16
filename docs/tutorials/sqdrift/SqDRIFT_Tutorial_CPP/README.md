@@ -114,7 +114,7 @@ The `SqDRIFT.cpp` implementation follows these key steps:
 ### 1. Load molecular Hamiltonian
 
 ```cpp
-char filename[] = "fcidump_files/N2_sto_3g";
+char filename[] = "../fcidump_files/N2_sto_3g";
 QfFCIDump* fcidump = qf_fcidump_from_file(filename);
 if (fcidump == nullptr) {
     std::cerr << "Failed to load FCIDump!" << std::endl;
