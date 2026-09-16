@@ -21,7 +21,7 @@ This guide provides instructions for building SqDRIFT on different operating sys
    - Linux/macOS: Usually pre-installed
    - Windows: Install via MSYS2 or use nmake with Visual Studio
 
-### Optional: the SBD diagonalization step
+### The SBD diagonalization step
 
 The main CMake build fetches SBD as **source only** and does not compile it, so nothing in this section is needed to build or run `./SqDRIFT` itself. It is required only for the final diagonalization step that turns the sampled CI strings into a ground-state energy.
 
