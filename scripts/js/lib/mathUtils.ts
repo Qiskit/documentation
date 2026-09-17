@@ -12,7 +12,12 @@
 
 // Punctuation characters that must not appear at the end of inline math or
 // hyperlink content. They should always be placed after the closing delimiter.
-const TRAILING_PUNCTUATION = /[.;:,]$/;
+// LaTeX commands whose last character happens to be punctuation (e.g. \; or \,)
+// and punctuation that immediately follows such a command (e.g. \!:) must not
+// be flagged. Both are excluded by requiring the punctuation to NOT be preceded
+// by a backslash (catches \;) and NOT be preceded by a two-character sequence
+// starting with a backslash (catches \!:, \!;, etc.).
+const TRAILING_PUNCTUATION = /(?<!\\)(?<!\\[^\n])[.;:,]$/;
 
 /**
  * Strip fenced code blocks (``` ... ```) from markdown so their contents are

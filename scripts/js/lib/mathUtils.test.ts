@@ -50,6 +50,13 @@ test("collectInlineDelimiterErrors() - inline math, no errors", () => {
 
   // LaTeX ellipsis command is not plain punctuation
   expect(collectInlineDelimiterErrors("$x \\ldots y$")).toEqual([]);
+
+  // LaTeX spacing commands \; and \! are not plain punctuation
+  expect(collectInlineDelimiterErrors("$\\mathbb{Z}_1 = \\{0\\},\\;$")).toEqual(
+    [],
+  );
+  expect(collectInlineDelimiterErrors("$n=7\\!:$")).toEqual([]);
+  expect(collectInlineDelimiterErrors("$\\Phi(\\rho)\\!:$")).toEqual([]);
 });
 
 test("collectInlineDelimiterErrors() - inline math, trailing period", () => {
