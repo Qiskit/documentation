@@ -475,6 +475,7 @@ Examples of when to use this process:
 2. Save the Box link.
    1. Modify `scripts/config/api-html-artifacts.json` by adding the new version with the direct link from step 9.
    2. Save a commit with the message "Set up Box link".
+2a. For a totally new package, be sure to update the `scripts/js/lib/api/Pkg.ts` file to add name and entry there.
 3. Save the prior latest docs to instead be historical docs.
    1. Identify the full version. You can find it by looking at the `_package.json` file in the package's top-level folder, such as `docs/api/qiskit/_package.json`.
    2. Run `npm run gen-api -- -p <pkg-name> -v <version> --historical`, using the version from the _previous step_. For example, `npm run gen-api -- -p qiskit -v 0.2.1 --historical`.
