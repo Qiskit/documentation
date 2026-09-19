@@ -227,7 +227,7 @@ test("full shape with Tutorials and API reference captions", async () => {
         children: [
           {
             title: "Python API reference",
-            url: "https://quantum.cloud.ibm.com/docs/api/my-addon",
+            url: "/docs/api/my-addon",
           },
           {
             title: "Release notes",
@@ -239,7 +239,7 @@ test("full shape with Tutorials and API reference captions", async () => {
   });
 });
 
-test("API reference caption: external links pass through unchanged", async () => {
+test("API reference caption: entries are rewritten to /docs/api/<package>, ignoring href", async () => {
   const { artifactDir } = await makeTestDirs(
     [{ href: "#", title: "Home" }],
     [
@@ -262,8 +262,104 @@ test("API reference caption: external links pass through unchanged", async () =>
 
   expect(apiSection?.children?.[0]).toEqual({
     title: "Python API reference",
-    url: "https://example.com/api/my-addon",
+    url: "/docs/api/my-addon",
   });
+});
+
+test("API reference caption: local apidocs/index with its full subtree is collapsed to /docs/api/<package>", async () => {
+  // Mirrors what Sphinx/Furo actually render when index.rst's "API reference"
+  // toctree references a local apidocs/index: a has-children <li> with the
+  // package's entire class/function subtree nested inside it.
+  const { artifactDir } = await makeTestDirs(
+    [{ href: "#", title: "Home" }],
+    [
+      {
+        caption: "API reference",
+        items: [
+          {
+            href: "apidocs/index.html",
+            title: "Python API reference",
+            children: [
+              { href: "apidocs/my_addon.foo.html", title: "Foo" },
+              { href: "apidocs/my_addon.bar.html", title: "Bar" },
+            ],
+          },
+        ],
+      },
+    ],
+  );
+
+  const pkg = await makePkg();
+  const toc = await generateAddonToc(pkg, artifactDir);
+  const apiSection = toc.children.find((c) => c.title === "API reference");
+
+  expect(apiSection?.children).toEqual([
+    { title: "Python API reference", url: "/docs/api/my-addon" },
+  ]);
+});
+
+test("API reference caption: multi-language entries are matched positionally against Pkg.apiReferencePackages", async () => {
+  const { artifactDir } = await makeTestDirs(
+    [{ href: "#", title: "Home" }],
+    [
+      {
+        caption: "API reference",
+        items: [
+          { href: "apidocs/index.html", title: "Python API reference" },
+          { href: "cdoc/index.html", title: "C API reference" },
+          { href: "release-notes.html", title: "Release notes" },
+        ],
+      },
+    ],
+  );
+
+  const pkg = new Pkg({
+    name: "my-addon",
+    title: "My Addon",
+    version: "1.2.0",
+    versionWithoutPatch: "1.2",
+    type: "latest",
+    language: "Python",
+    releaseNotesConfig: new ReleaseNotesConfig({ enabled: false }),
+    kebabCaseAndShortenUrls: true,
+    apiReferencePackages: ["my-addon", "my-addon-c"],
+  });
+  const toc = await generateAddonToc(pkg, artifactDir);
+  const apiSection = toc.children.find((c) => c.title === "API reference");
+
+  expect(apiSection?.children).toEqual([
+    { title: "Python API reference", url: "/docs/api/my-addon" },
+    { title: "C API reference", url: "/docs/api/my-addon-c" },
+    { title: "Release notes", url: "/docs/api/my-addon/release-notes" },
+  ]);
+});
+
+test("API reference caption: entry count mismatched with Pkg.apiReferencePackages throws", async () => {
+  const { artifactDir } = await makeTestDirs(
+    [{ href: "#", title: "Home" }],
+    [
+      {
+        caption: "API reference",
+        items: [{ href: "apidocs/index.html", title: "Python API reference" }],
+      },
+    ],
+  );
+
+  const pkg = new Pkg({
+    name: "my-addon",
+    title: "My Addon",
+    version: "1.2.0",
+    versionWithoutPatch: "1.2",
+    type: "latest",
+    language: "Python",
+    releaseNotesConfig: new ReleaseNotesConfig({ enabled: false }),
+    kebabCaseAndShortenUrls: true,
+    apiReferencePackages: ["my-addon", "my-addon-c"],
+  });
+
+  await expect(generateAddonToc(pkg, artifactDir)).rejects.toThrow(
+    /apiReferencePackages/,
+  );
 });
 
 test("sidebar order is preserved exactly", async () => {
