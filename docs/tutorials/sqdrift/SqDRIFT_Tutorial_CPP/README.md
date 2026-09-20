@@ -9,26 +9,32 @@ This implementation demonstrates how to use the Qiskit C++ API to create fermion
 Let the Hamiltonian be of the form
 
 $$
-H = \sum_{i}^{N} c_i h_i
+H = \sum_{i=1}^{N} c_i h_i
 $$
 
-Then the qDRIFT algorithm lets us realize, for the target time $t$, some operator $V_k$ defined as
+where $N$ is the number of terms (or, after grouping, the number of groups) in the Hamiltonian, and each $h_i$ is normalized so that the coefficient $c_i$ carries the full magnitude. $N$ is a property of the Hamiltonian, and is distinct from the number of operators sampled into a single circuit, written $n$ below.
+
+Then the qDRIFT algorithm lets us realize, for the target time $t$, some operator $V_k$, where $k$ goes from $1 \cdots K$ and denotes the $k_{th}$ circuit in the ensemble, defined as
 
 $$
-V_k = \prod_{j=1}^{N} e^{-i h_{k_j}t \lambda / N }
+V_k = \prod_{j=1}^{n} e^{-i\, \mathrm{sgn}(c_{k_j})\, h_{k_j}\, \lambda t / n }
 $$
 
-where
+Here $n$ is the number of sampled operators per circuit — the product runs over the $n$ draws, not over all $N$ Hamiltonian terms — and $K$ is the number of circuits. In this implementation $n$ is `ops_per_circuit`, $K$ is `num_circuits`, and $t$ is `time_step`. Since operators are drawn with replacement, the same $h_i$ may appear several times in one $V_k$, and $n$ is independent of $N$.
+
+The quantity
 
 $$
-\lambda = \sum_i |c_i|
+\lambda = \sum_{i=1}^{N} |c_i|
 $$
 
-and the series $(k_1, \ldots, k_n)$ is a random sequence obtained by sampling from the distribution
+is the sum of absolute coefficients, so every one of the $n$ steps evolves for the same duration $\lambda t / n$ (the `evolution_time` computed in the code) no matter which term was drawn. The sampling uses only the magnitudes $|c_i|$,
 
 $$
 P[k_i] = \frac{|c_i|}{\lambda}
 $$
+
+so the series $(k_1, \ldots, k_n)$ is a random sequence of term indices drawn from this distribution. Because that probability discards the sign of $c_i$, the sign must be reinstated in the evolution itself, via the $\mathrm{sgn}(c_{k_j})$ factor above: a coefficient's magnitude sets *how often* its term is drawn, while its sign sets the *direction* of the resulting rotation. This is what keeps the expected channel equal to evolution under $H$ instead of under a Hamiltonian with all coefficients made positive. Concretely, each sampled group is rescaled to unit magnitude before the Jordan-Wigner mapping, so only the phase (the sign) of each term reaches the evolution gate and the magnitudes enter solely through $P[k_i]$.
 
 This tutorial shows how to generate an ensemble of such randomized circuits using C++ and execute them on IBM Quantum backends.
 
@@ -176,7 +182,7 @@ Groups Hamiltonian terms that commute with each other, enabling efficient circui
 
 **Order matters here.** Normalization rescales every coefficient to unit magnitude *in place*, so the sampling weights must be computed first. If normalization runs first, every $|c_j|$ reads back as exactly `1.0` and each group's weight collapses into a bare count of its terms — the sampling distribution would then be driven by group size rather than by the physical coefficients.
 
-Each group's weight is the **mean** absolute coefficient, matching the Python SqDRIFT reference. Using the sum instead would make $\lambda$ scale with group size, which in turn skews the evolution time $t_k = \lambda\tau/N$.
+Each group's weight is the **mean** absolute coefficient, matching the Python SqDRIFT reference. Using the sum instead would make $\lambda$ scale with group size, which in turn skews the evolution time $t_k = \lambda\tau/n$.
 
 ```cpp
 // 5. Calculate sampling weights BEFORE normalization.
@@ -385,7 +391,7 @@ Generating 100 circuits with 10 operators each...
   Created 100/100 circuits
 ✓ Created all 100 Suzuki-Trotter circuits
 ```
-For each sampled operator, creates a Suzuki-Trotter evolution circuit with time $t_k = \frac{\lambda \tau}{N}$, where $N$ is the number of operators per circuit and $\tau$ is the time step. Because each sampled group was normalized term-by-term before mapping, this evolution applies only the phase/sign of each term during the rotation; the magnitudes contribute through the sampling distribution only. The Hartree-Fock initial state is prepared by applying X gates to qubits 0-6 and 10-16 (7 electrons in each spin sector). Each evolution circuit's instructions are manually appended to the main circuit using the C++ API.
+For each sampled operator, creates a Suzuki-Trotter evolution circuit with time $t_k = \frac{\lambda \tau}{n}$, where $n$ is the number of operators sampled per circuit (`ops_per_circuit`) and $\tau$ is the time step. Because each sampled group was normalized term-by-term before mapping, this evolution applies only the phase/sign of each term during the rotation; the magnitudes contribute through the sampling distribution only. The Hartree-Fock initial state is prepared by applying X gates to qubits 0-6 and 10-16 (7 electrons in each spin sector). Each evolution circuit's instructions are manually appended to the main circuit using the C++ API.
 ### 7. Execute on IBM Quantum
 ```cpp
 std::cout << "\n Connecting to IBM Quantum Cloud..." << std::endl;
@@ -526,17 +532,25 @@ Of 10,000 shots, 1,694 survived postselection; spin symmetrization then collapse
 
 #### How this differs from the Python SqDRIFT tutorial
 
-This companion recovers its subspace differently from the Python tutorial, so the two are **not expected to produce identical energies**:
+The two examples differ in several respects at once, not only in how they treat bad-symmetry bitstrings, so they are not expected to produce identical energies:
 
 | | This C++ companion | Python SqDRIFT tutorial |
 |---|---|---|
 | Bad-symmetry bitstrings | **Discarded** by `postselect_bitstrings` on Hamming weight | **Repaired** by iterative configuration recovery |
 | Loop structure | Single pass: sample → postselect → diagonalize once | Outer loop: diagonalize, read orbital occupancies, recover configurations, re-diagonalize |
+| Circuit count | 100 circuits (`num_circuits = 100`) | 400 circuits (200 per evolution time) |
+| Evolution times | A single $\tau$ (`time_step = 1`) | Two times, `times = [1.0, 10.0]` |
+| Diagonal terms | Kept in the sampled operator | Removed by `filter_diagonal_terms`, changing the sampling distribution and the circuits |
+| Term ordering | Grouped only | `canonical_order` applied before grouping for reproducibility |
 | Diagonalizer | **SBD** (`diag`, external MPI/OpenMP binary) | `qiskit-addon-sqd` in-process solver |
 
-Postselection is a strict filter: a shot with the wrong particle number is dropped outright. Configuration recovery instead uses the average orbital occupancies from a previous diagonalization to flip bits and *repair* such a shot into a symmetry-valid one, so it recycles shots that postselection throws away. That feedback makes it inherently iterative — `recover_configurations` in `qiskit-addon-sqd-hpc` requires an `avg_occupancies` argument that only exists after a diagonalization has already run.
+Each of these affects the sampled subspace, and therefore the energy, independently. The larger circuit ensemble and the second, longer evolution time both broaden the set of configurations the Python example explores — sampling at more than one time is what gives SqDRIFT its Krylov-like coverage of the low-energy space, so a single-time run explores less of it. Filtering diagonal terms changes which operators are available to the sampler and the relative weights it draws from, so the two runs are not even sampling the same distribution.
 
-The practical consequence is that postselection alone keeps a smaller subspace and so gives a **less variationally converged** energy. On this run it yields 54 CI strings and `-106.3198` Ha, well above the `-107.53` Ha regime a recovered subspace reaches for N₂/STO-3G. Raising `shots` or `num_circuits` widens the surviving subspace; adding a recovery loop on top of `Qiskit::addon::sqd::recover_configurations` would close most of the remaining gap and is the natural next extension of this tutorial.
+On postselection specifically: it is a strict filter, so a shot with the wrong particle number is dropped outright. Configuration recovery instead uses average orbital occupancies from a previous diagonalization to flip bits and *repair* such a shot into a symmetry-valid one, recycling shots that postselection discards. That feedback makes it inherently iterative — `recover_configurations` in `qiskit-addon-sqd-hpc` requires an `avg_occupancies` argument that only exists once a diagonalization has run.
+
+The observable outcome of this particular C++ run is a subspace of 54 CI strings and an energy of `-106.3198` Ha, above the `-107.53` Ha regime reported for N₂/STO-3G with a recovered subspace. Since SQD is variational in the selected subspace, a smaller subspace can only give an equal or higher energy, and 54 CI strings is a small subspace — that is the most direct reading of the gap. But **the comparison above is not controlled**, so the gap should not be attributed to the absence of configuration recovery alone: the circuit count, the single evolution time, diagonal-term filtering, and hardware noise all differ simultaneously and all influence the subspace. Isolating the effect of any one of them would mean holding the others fixed — for example, running both paths with the same circuit count, the same set of evolution times, and the same treatment of diagonal terms, and toggling only recovery.
+
+Useful levers if you want to close the gap: raise `shots`, `num_circuits`, or `ops_per_circuit`; sample at more than one `time_step`; and add a recovery loop on top of `Qiskit::addon::sqd::recover_configurations`. Each widens or repairs the surviving subspace, and adding a recovery loop is the natural next extension of this tutorial.
 
 ### 9. Cleanup
 ```cpp
