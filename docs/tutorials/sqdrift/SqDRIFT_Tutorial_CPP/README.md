@@ -20,15 +20,13 @@ $$
 V_k = \prod_{j=1}^{n} e^{-i\, \mathrm{sgn}(c_{k_j})\, h_{k_j}\, \lambda t / n }
 $$
 
-Here $n$ is the number of sampled operators per circuit — the product runs over the $n$ draws, not over all $N$ Hamiltonian terms — and $K$ is the number of circuits. In this implementation $n$ is `ops_per_circuit`, $K$ is `num_circuits`, and $t$ is `time_step`. Since operators are drawn with replacement, the same $h_i$ may appear several times in one $V_k$, and $n$ is independent of $N$.
-
-The quantity
+where the quantity
 
 $$
 \lambda = \sum_{i=1}^{N} |c_i|
 $$
 
-is the sum of absolute coefficients, so every one of the $n$ steps evolves for the same duration $\lambda t / n$ (the `evolution_time` computed in the code) no matter which term was drawn. The sampling uses only the magnitudes $|c_i|$,
+is the sum of absolute coefficients, so every one of the $n$ steps evolves for the same duration $\lambda t / n$ no matter which term was drawn. The sampling uses only the magnitudes $|c_i|$,
 
 $$
 P[k_i] = \frac{|c_i|}{\lambda}
@@ -391,7 +389,7 @@ Generating 100 circuits with 10 operators each...
   Created 100/100 circuits
 ✓ Created all 100 Suzuki-Trotter circuits
 ```
-For each sampled operator, creates a Suzuki-Trotter evolution circuit with time $t_k = \frac{\lambda \tau}{n}$, where $n$ is the number of operators sampled per circuit (`ops_per_circuit`) and $\tau$ is the time step. Because each sampled group was normalized term-by-term before mapping, this evolution applies only the phase/sign of each term during the rotation; the magnitudes contribute through the sampling distribution only. The Hartree-Fock initial state is prepared by applying X gates to qubits 0-6 and 10-16 (7 electrons in each spin sector). Each evolution circuit's instructions are manually appended to the main circuit using the C++ API.
+For each sampled operator, creates a Suzuki-Trotter evolution circuit with time $t_k = \frac{\lambda \tau}{n}$, where $n$ is the number of operators sampled per circuit and $\tau$ is the time step. Because each sampled group was normalized term-by-term before mapping, this evolution applies only the phase/sign of each term during the rotation; the magnitudes contribute through the sampling distribution only. The Hartree-Fock initial state is prepared by applying X gates to qubits 0-6 and 10-16 (7 electrons in each spin sector). Each evolution circuit's instructions are manually appended to the main circuit using the C++ API.
 ### 7. Execute on IBM Quantum
 ```cpp
 std::cout << "\n Connecting to IBM Quantum Cloud..." << std::endl;
