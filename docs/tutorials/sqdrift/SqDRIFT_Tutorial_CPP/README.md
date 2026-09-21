@@ -20,7 +20,7 @@ $$
 V_k = \prod_{j=1}^{n} e^{-i h_{k_j} \lambda t / n }
 $$
 
-Here $n$ is the number of sampled operators per circuit and $K$ is the number of circuits in the ensemble. The product runs over the $n$ draws, not over all $N$ Hamiltonian terms, and because the terms are drawn with replacement the same $h_i$ may appear more than once in a single $V_k$.
+Here $n$ is the number of sampled operators per circuit and $K$ is the number of circuits in the ensemble. The product runs over the $n$ draws, not over all $N$ Hamiltonian terms, and because the terms are drawn with replacement the same $h_i$ can appear more than once in a single $V_k$.
 
 The quantity
 
