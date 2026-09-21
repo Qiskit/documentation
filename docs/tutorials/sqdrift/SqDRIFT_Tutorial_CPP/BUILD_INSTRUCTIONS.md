@@ -35,7 +35,7 @@ brew install open-mpi llvm     # BLAS/LAPACK come from Apple's Accelerate framew
 sudo apt install -y libopenmpi-dev libomp-dev libblas-dev liblapack-dev
 ```
 
-See [README.md § 10](README.md#10-run-the-diagonalization-scheme) for the verified `Configuration` file and the exact build and run commands.
+See [README.md § 10](https://github.com/Qiskit/documentation/blob/main/docs/tutorials/sqdrift/SqDRIFT_Tutorial_CPP/README.md#10-run-the-diagonalization-scheme) for the verified `Configuration` file and the exact build and run commands.
 
 ### Platform-specific dependencies
 
@@ -237,7 +237,8 @@ mkdir build && cd build
 cmake ..
 cmake --build . --config Release -j$(nproc)
 
-# 4. Run
+# 4. Run (the executable is written to the project root, not to build/)
+cd ..
 ./SqDRIFT
 ```
 
@@ -320,7 +321,12 @@ $PWD/build/deps-build/qiskit-ibm-runtime-c/src/qiskit_ibm_runtime_external-build
 $DYLD_LIBRARY_PATH
 ```
 
-> **macOS + conda:** if `libqiskit.dylib` still fails to load, `libpython` and `libiconv` may need to be symlinked into `deps/qiskit/dist/c/lib/` — see the `set_dyld_path.sh` script in the project root.
+> **macOS + conda:** if `libqiskit.dylib` still fails to load, `libpython` and `libiconv` may need to be symlinked into `deps/qiskit/dist/c/lib/`, for example:
+>
+> ```bash
+> ln -sf "$CONDA_PREFIX/lib/libpython3."*.dylib deps/qiskit/dist/c/lib/
+> ln -sf "$CONDA_PREFIX/lib/libiconv.2.dylib" deps/qiskit/dist/c/lib/
+> ```
 
 ### Issue: Compilation errors with C++17 features
 

@@ -12,27 +12,31 @@ $$
 H = \sum_{i=1}^{N} c_i h_i
 $$
 
-where $N$ is the number of terms (or, after grouping, the number of groups) in the Hamiltonian, and each $h_i$ is normalized so that the coefficient $c_i$ carries the full magnitude. $N$ is a property of the Hamiltonian, and is distinct from the number of operators sampled into a single circuit, written $n$ below.
+where, without loss of generality, we require $c_i > 0$ and that the largest eigenvalue of $h_i$ be equal, in absolute value, to $1$. Any signed or complex prefactor is absorbed into $h_i$, so the coefficients $c_i$ are strictly positive weights while the $h_i$ carry the direction of each term. Here $N$ is the number of terms (or, after grouping, the number of groups) in the Hamiltonian; it is a property of the Hamiltonian and is distinct from the number of operators sampled into a single circuit, written $n$ below.
 
 Then the qDRIFT algorithm lets us realize, for the target time $t$, some operator $V_k$, where $k$ goes from $1 \cdots K$ and denotes the $k_{th}$ circuit in the ensemble, defined as
 
 $$
-V_k = \prod_{j=1}^{n} e^{-i\, \mathrm{sgn}(c_{k_j})\, h_{k_j}\, \lambda t / n }
+V_k = \prod_{j=1}^{n} e^{-i h_{k_j} \lambda t / n }
 $$
 
-where the quantity
+Here $n$ is the number of sampled operators per circuit and $K$ is the number of circuits in the ensemble. The product runs over the $n$ draws, not over all $N$ Hamiltonian terms, and because the terms are drawn with replacement the same $h_i$ may appear more than once in a single $V_k$.
+
+The quantity
 
 $$
-\lambda = \sum_{i=1}^{N} |c_i|
+\lambda = \sum_{i=1}^{N} c_i
 $$
 
-is the sum of absolute coefficients, so every one of the $n$ steps evolves for the same duration $\lambda t / n$ no matter which term was drawn. The sampling uses only the magnitudes $|c_i|$,
+is the $L_1$ norm of the coefficients, so every one of the $n$ steps evolves for the same duration $\lambda t / n$ no matter which term was drawn. This uniform step angle is the characteristic feature of qDRIFT: a coefficient influences the result through *how often* its term is drawn, not through how far that term is rotated. The indices are sampled from the distribution
 
 $$
-P[k_i] = \frac{|c_i|}{\lambda}
+P[k_i] = \frac{c_i}{\lambda}
 $$
 
-so the series $(k_1, \ldots, k_n)$ is a random sequence of term indices drawn from this distribution. Because that probability discards the sign of $c_i$, the sign must be reinstated in the evolution itself, via the $\mathrm{sgn}(c_{k_j})$ factor above: a coefficient's magnitude sets *how often* its term is drawn, while its sign sets the *direction* of the resulting rotation. This is what keeps the expected channel equal to evolution under $H$ instead of under a Hamiltonian with all coefficients made positive. Concretely, each sampled group is rescaled to unit magnitude before the Jordan-Wigner mapping, so only the phase (the sign) of each term reaches the evolution gate and the magnitudes enter solely through $P[k_i]$.
+so the series $(k_1, \ldots, k_n)$ is a random sequence of term indices drawn from this distribution. Since the $c_i$ are positive and sum to $\lambda$, this is a normalized probability distribution, and the expectation of the resulting channel over the random draws approximates evolution under $H$, with an error that decreases as $n$ grows. Note that this approximation error depends on $\lambda$ rather than on the number of terms $N$.
+
+(The SqDRIFT paper writes the number of terms as $\mathcal{N}$ and the sequence length as $N$; we use $N$ and $n$ here to keep the two clearly distinct.)
 
 This tutorial shows how to generate an ensemble of such randomized circuits using C++ and execute them on IBM Quantum backends.
 
@@ -86,6 +90,27 @@ Before compiling and running this code, make sure you have installed:
 ### Input files
 - **FCIDump file** - Molecular Hamiltonian data (for example, `N2_sto_3g`)
 
+The `N2_sto_3g` file used here describes a nitrogen molecule (N₂) in the minimal STO-3G basis at an
+interatomic separation of 1.09 Å, close to the experimental equilibrium bond length. Its header
+declares `NORB=10`, `NELEC=14`, `MS2=0`: 10 spatial orbitals (20 spin orbitals, hence the 20 qubits
+this example uses), and 14 electrons in a spin singlet, so 7 α and 7 β electrons. No orbitals are
+frozen and no point-group symmetry is exploited (every `ORBSYM` entry is 1). The bond length can be
+read back out of the file: the last entry is the nuclear repulsion energy `23.78870030741285`, and
+`R = Z_1 Z_2 / E_nuc = 49 / 23.7887 = 2.0598` bohr = 1.09 Å.
+
+The file ships with this tutorial at
+[`docs/tutorials/sqdrift/fcidump_files/`](https://github.com/Qiskit/documentation/tree/main/docs/tutorials/sqdrift/fcidump_files),
+one directory above this project root, which is why the source refers to it as
+`../fcidump_files/N2_sto_3g`. An equivalent file can be regenerated with PySCF:
+
+```python
+from pyscf import gto, scf, tools
+
+mol = gto.M(atom="N 0 0 0; N 0 0 1.09", basis="sto-3g", symmetry=False)
+mf = scf.RHF(mol).run()
+tools.fcidump.from_scf(mf, "N2_sto_3g")
+```
+
 ## Quick start
 
 ### Build and run (3 commands)
@@ -107,9 +132,9 @@ export DYLD_FALLBACK_LIBRARY_PATH="/usr/lib:/usr/local/lib:$DYLD_FALLBACK_LIBRAR
 
 **For Linux**, use `LD_LIBRARY_PATH` instead of `DYLD_LIBRARY_PATH`.
 
-**For Windows**, add library directories to `PATH` before running.
+**Windows is untested and not currently supported.** The code uses `unistd.h`/`sleep()` and CMake links the Qiskit shared libraries directly, neither of which works with MSVC as-is.
 
-See [BUILD_INSTRUCTIONS.md](BUILD_INSTRUCTIONS.md) for detailed platform-specific instructions.
+See [BUILD_INSTRUCTIONS.md](https://github.com/Qiskit/documentation/blob/main/docs/tutorials/sqdrift/SqDRIFT_Tutorial_CPP/BUILD_INSTRUCTIONS.md) for detailed platform-specific instructions, including what porting to Windows would involve.
 
 ## Code overview
 
@@ -173,7 +198,7 @@ qf_ferm_op_split_out_groups(normal_ordered, nullptr, 0, group_ops);
 ```
 **Output:**
 ```
-Grouped into 1590 groups
+Grouped into 1902 groups
 ```
 Groups Hamiltonian terms that commute with each other, enabling efficient circuit construction. Each group can be evolved independently.
 ### 4. Calculate sampling weights, then normalize and map to qubit operators
@@ -233,8 +258,8 @@ std::cout << "Mapped all " << num_groups << " normalized groups to qubit operato
 
 **Output:**
 ```
-Total weight (λ): 342.643
-Mapped all 1590 normalized groups to qubit operators
+Total weight (λ): 337.261
+Mapped all 1902 normalized groups to qubit operators
 ```
 
 The weight $\lambda_i = \frac{1}{|G_i|}\sum_{j \in G_i} |c_{ij}|$ is the mean absolute coefficient over the terms of group $G_i$, read from the original coefficients. Normalization then rescales each fermionic term to unit magnitude before the Jordan-Wigner transformation, preserving only its phase/sign in the evolved operator. This matches qDRIFT's normalized-term evolution: coefficient magnitudes determine sampling probabilities via $\lambda$, while the circuit evolution uses the normalized term so large coefficients are not counted twice.
@@ -519,9 +544,9 @@ std::cout << " Ready for SBD diagonalization!" << std::endl;
 **Output:**
 ```
 ✓ Collected 10000 total bitstrings from all circuits
-✓ Postselected 1694 bitstrings with Hamming weight (7,7)
-✓ Generated 54 CI strings
-✓ Wrote 54 CI strings to alphadets_from_sqd.txt
+✓ Postselected 1103 bitstrings with Hamming weight (7,7)
+✓ Generated 45 CI strings
+✓ Wrote 45 CI strings to alphadets_from_sqd.txt
  Ready for SBD diagonalization!
 ```
 Postselects bitstrings with the correct Hamming weight (n_alpha spin-up, n_beta spin-down electrons, derived from the FCIDump `NELEC` field), converts them to Configuration Interaction (CI) strings using spin symmetrization, and writes them to `alphadets_from_sqd.txt` for subsequent Selected Basis Diagonalization.
@@ -544,9 +569,13 @@ The two examples differ in several respects at once, not only in how they treat 
 
 Each of these affects the sampled subspace, and therefore the energy, independently. The larger circuit ensemble and the second, longer evolution time both broaden the set of configurations the Python example explores — sampling at more than one time is what gives SqDRIFT its Krylov-like coverage of the low-energy space, so a single-time run explores less of it. Filtering diagonal terms changes which operators are available to the sampler and the relative weights it draws from, so the two runs are not even sampling the same distribution.
 
-On postselection specifically: it is a strict filter, so a shot with the wrong particle number is dropped outright. Configuration recovery instead uses average orbital occupancies from a previous diagonalization to flip bits and *repair* such a shot into a symmetry-valid one, recycling shots that postselection discards. That feedback makes it inherently iterative — `recover_configurations` in `qiskit-addon-sqd-hpc` requires an `avg_occupancies` argument that only exists once a diagonalization has run.
+On postselection specifically: it is a strict filter, so a shot with the wrong particle number is dropped outright. In the run recorded above that is most of the data — 1103 of 10000 shots survived the (7,7) Hamming-weight check, about 11%, which then collapsed into just 45 distinct α-determinants. Configuration recovery instead uses average orbital occupancies from a previous diagonalization to flip bits and *repair* such a shot into a symmetry-valid one, recycling shots that postselection discards. That feedback makes it inherently iterative — `recover_configurations` in `qiskit-addon-sqd-hpc` requires an `avg_occupancies` argument that only exists once a diagonalization has run.
 
-The observable outcome of this particular C++ run is a subspace of 54 CI strings and an energy of `-106.3198` Ha, above the `-107.53` Ha regime reported for N₂/STO-3G with a recovered subspace. Since SQD is variational in the selected subspace, a smaller subspace can only give an equal or higher energy, and 54 CI strings is a small subspace — that is the most direct reading of the gap. But **the comparison above is not controlled**, so the gap should not be attributed to the absence of configuration recovery alone: the circuit count, the single evolution time, diagonal-term filtering, and hardware noise all differ simultaneously and all influence the subspace. Isolating the effect of any one of them would mean holding the others fixed — for example, running both paths with the same circuit count, the same set of evolution times, and the same treatment of diagonal terms, and toggling only recovery.
+The observable outcome of this particular C++ run is a subspace of 45 α-determinants and an energy of `-106.7127` Ha. For this Hamiltonian the exact answer is available for comparison: the full α-determinant space for 7 electrons in 10 orbitals is only $\binom{10}{7} = 120$ strings, so feeding all 120 to the same `diag` binary gives the exact FCI energy `-107.6482` Ha. This run therefore sits about `0.94` Ha above the exact result while spanning 45 of the 120 available α-determinants. Since SQD is variational in the selected subspace, a smaller subspace can only give an equal or higher energy, so an incomplete subspace is the most direct reading of the gap.
+
+Note that this exact-FCI check is only possible because the example is small; it is not part of the SqDRIFT workflow, and for system sizes where SQD is actually needed no such reference exists. It is used here purely to quantify how much of the space this run recovered.
+
+If you compare against the Python tutorial instead, **that comparison is not controlled**, so a difference should not be attributed to the absence of configuration recovery alone: the circuit count, the single evolution time, diagonal-term filtering, and hardware noise all differ simultaneously and all influence the subspace. Isolating the effect of any one of them would mean holding the others fixed — for example, running both paths with the same circuit count, the same set of evolution times, and the same treatment of diagonal terms, and toggling only recovery.
 
 Useful levers if you want to close the gap: raise `shots`, `num_circuits`, or `ops_per_circuit`; sample at more than one `time_step`; and add a recovery loop on top of `Qiskit::addon::sqd::recover_configurations`. Each widens or repairs the surviving subspace, and adding a recovery loop is the natural next extension of this tutorial.
 
@@ -654,7 +683,13 @@ SYSLIB= -llapack -lblas
 
 ```bash
 cd deps/sbd/apps/chemistry_tpb_selected_basis_diagonalization
-ln -sf ../../../../fcidump_files/N2_sto_3g fcidump.txt
+
+# The FCIDump lives in the shared sqdrift/fcidump_files/ directory, one level
+# above this tutorial's project root, hence five levels up from here.
+ln -sf ../../../../../fcidump_files/N2_sto_3g fcidump.txt
+
+# alphadets_from_sqd.txt is written by ./SqDRIFT into the project root itself,
+# which is four levels up.
 ln -sf ../../../../alphadets_from_sqd.txt alphadets.txt
 
 ./diag \
@@ -677,27 +712,35 @@ cd ../../../..
 - `--tolerance 1e-8`: Convergence tolerance for energy
 
 ```
- Elapsed time for helper construction 0.002722 (sec) 
- Elapsed time for init 2e-06 (sec) 
- Davidson iteration 0.0 (tol=0.1679881224519774): -106.2889309158878
- Davidson iteration 0.1 (tol=0.07706106654091659): -106.3180371729177 -106.1116931104476
- Davidson iteration 0.2 (tol=0.006541328082082371): -106.3198194478285 -106.1138721578469 -103.9510156258162
- Davidson iteration 0.3 (tol=0.0006551926988664466): -106.3198301294457 -106.1287205993284 -104.1014568812887 -102.9077179037872
- Davidson iteration 0.4 (tol=8.912042733637965e-05): -106.3198302883143 -106.1626881059012 -104.4237011729794 -103.1566324999358
- Davidson iteration 0.5 (tol=5.434222247938381e-06): -106.3198302902462 -106.1696365385029 -104.5462072274974 -103.1585247063852
- Davidson iteration 0.6 (tol=3.273121825449021e-07): -106.3198302902528 -106.1696974565964 -104.5481837359109 -103.4453230671285
- Davidson iteration 0.7 (tol=3.0854357339785e-08): -106.3198302902528 -106.1709665074152 -104.5570748769263 -104.104096273048
- Davidson iteration 0.8 (tol=2.076080639506236e-09): -106.3198302902528 -106.1709782568649 -104.5922106424296 -104.1352901197516
- Elapsed time for davidson 0.029941 (sec) 
- Elapsed time for diagonalization 0.029943 (sec) 
- Elapsed time for mult 0.001271 (sec) 
- Energy = -106.3198302902529
- Elapsed time for measurement 0.000153 (sec) 
- Sample-based diagonalization: Energy = -106.3198302902529
- Sample-based diagonalization: density = [1.999995504693494,1.999993918537648,1.999740495003676,1.736215760658084,0.2612900314624205,1.996036427183026,1.995784215119655,1.999835183036989,0.004026069153823931,0.007082395151186858
+ Elapsed time for helper construction 0.002257 (sec) 
+ Elapsed time for init 1e-06 (sec) 
+ Davidson iteration 0.0 (tol=0.2203969277116679): -106.6161592040213
+ Davidson iteration 0.1 (tol=0.2511236678295695): -106.6379575991942 -106.5784044161228
+ Davidson iteration 0.2 (tol=0.2215085118082215): -106.6777707088556 -106.6379340729481 -106.5779723653678
+ Davidson iteration 0.3 (tol=0.08855420978502823): -106.708537150295 -106.6488609967798 -106.5857128236443 -105.1706051086718
+ Davidson iteration 0.4 (tol=0.009715669378837248): -106.7126397551487 -106.6490674253476 -106.5862677107405 -105.1844440714578
+ Davidson iteration 0.5 (tol=0.001421615208550751): -106.7126821041105 -106.6500481470846 -106.5874396869078 -105.2069520203813
+ Davidson iteration 0.6 (tol=0.0002551578348894031): -106.7126829717841 -106.651088275621 -106.5877058778548 -105.4303569475224
+ Davidson iteration 0.7 (tol=5.05089192064267e-05): -106.7126830097915 -106.6553571840038 -106.5933201637875 -105.8093748853088
+ Davidson iteration 0.8 (tol=7.383630600054837e-06): -106.7126830109018 -106.6594821488169 -106.5953985788309 -105.8533327121656
+ Davidson iteration 0.9 (tol=1.234589278606681e-06): -106.7126830109266 -106.6623248059741 -106.5976708698388 -105.9155031111593
+ Davidson iteration 1.0 (tol=1.234589277852113e-06): -106.7126830109266
+ Davidson iteration 1.1 (tol=2.318397604484957e-07): -106.7126830109274 -105.531727295947
+ Davidson iteration 1.2 (tol=1.36305234510888e-07): -106.7126830109274 -106.5731784395845 -105.3823868555147
+ Davidson iteration 1.3 (tol=7.236729264422945e-08): -106.7126830109274 -106.5903913728404 -106.4711511952638 -105.3778888274531
+ Davidson iteration 1.4 (tol=3.144915095918728e-08): -106.7126830109274 -106.6531047799521 -106.4752027940502 -106.0177445679214
+ Davidson iteration 1.5 (tol=4.565017217972835e-09): -106.7126830109274 -106.6624943307486 -106.5121402314891 -106.1051623903646
+ Elapsed time for davidson 0.044592 (sec) 
+ Elapsed time for diagonalization 0.044593 (sec) 
+ Elapsed time for mult 0.0007559999999999999 (sec) 
+ Energy = -106.7126830109274
+ Elapsed time for measurement 0.000134 (sec) 
+ Sample-based diagonalization: Energy = -106.7126830109274
+ Sample-based diagonalization: density = [1.999998616002671,1.999999368906908,1.998704983814813,1.998130734424902,0.8825702242662372,1.118025744786651,1.998849936141351,1.998309008584048,0.002678606630423681,0.002732776442000999
  Sample-based diagonalization: carryover bitstrings = [], size = 0
 ```
 
+The `Energy = -106.7126830109274` line is the ground-state estimate over the sampled subspace.
 
 ## Key parameters
 
