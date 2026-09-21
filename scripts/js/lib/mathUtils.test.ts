@@ -57,6 +57,10 @@ test("collectInlineDelimiterErrors() - inline math, no errors", () => {
   );
   expect(collectInlineDelimiterErrors("$n=7\\!:$")).toEqual([]);
   expect(collectInlineDelimiterErrors("$\\Phi(\\rho)\\!:$")).toEqual([]);
+
+  // LaTeX \. and \, commands are not plain punctuation
+  expect(collectInlineDelimiterErrors("$a\\.$")).toEqual([]);
+  expect(collectInlineDelimiterErrors("$a\\,$")).toEqual([]);
 });
 
 test("collectInlineDelimiterErrors() - inline math, trailing period", () => {
@@ -102,6 +106,21 @@ $$
     "Inline math expression ends with punctuation: `$a = 1.$`",
     "Inline math expression ends with punctuation: `$b = 2,$`",
   ]);
+});
+
+// ---------------------------------------------------------------------------
+// Block math (not checked — should always return no errors)
+// ---------------------------------------------------------------------------
+
+test("collectInlineDelimiterErrors() - block math is not checked", () => {
+  // Block math with trailing punctuation inside is NOT flagged
+  expect(collectInlineDelimiterErrors("$$\nx + y.\n$$")).toEqual([]);
+  expect(collectInlineDelimiterErrors("$$x + y,$$")).toEqual([]);
+  expect(collectInlineDelimiterErrors("$$H = \\sum_i Z_i,$$")).toEqual([]);
+
+  // Block math with punctuation outside is also fine
+  expect(collectInlineDelimiterErrors("$$\nx + y\n$$.\n")).toEqual([]);
+  expect(collectInlineDelimiterErrors("$$\nx + y\n$$,\n")).toEqual([]);
 });
 
 // ---------------------------------------------------------------------------
