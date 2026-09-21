@@ -1,0 +1,71 @@
+---
+title: IdentityFidelityModel (latest version)
+description: API reference for qiskit_noise_learning.models.IdentityFidelityModel in the latest version of qiskit-noise-learning
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_noise_learning.models.IdentityFidelityModel
+---
+
+<span id="qiskit-noise-learning-models-identityfidelitymodel" />
+
+# qiskit\_noise\_learning.models.IdentityFidelityModel
+
+<Class id="qiskit_noise_learning.models.IdentityFidelityModel" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/models/identity_fidelity_model.py" signature="qiskit_noise_learning.models.IdentityFidelityModel(gate_set: GateSet)" modifiers="class">
+  Bases: [`LinearMap`](math-linear-map "qiskit_noise_learning.math.linear_map.LinearMap")\[[`FidelityIndex`](sequences-fidelity-index "qiskit_noise_learning.sequences.fidelity_index.FidelityIndex"), [`FidelityIndex`](sequences-fidelity-index "qiskit_noise_learning.sequences.fidelity_index.FidelityIndex")]
+
+  A fidelity model whose parameters are the log fidelities themselves.
+
+  The parameterization matrix is the identity: the input and output spaces are the same [`LogFidelitySpace`](models-log-fidelity-space "qiskit_noise_learning.models.LogFidelitySpace"), and the row of a fidelity index is the unit vector on that index.
+
+  **Parameters**
+
+  **gate\_set** – The gate set whose fidelities are being modelled. To be converted to a [`ModelGateSet`](gate-sets-model-gate-set "qiskit_noise_learning.gate_sets.ModelGateSet").
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit_noise_learning.models.IdentityFidelityModel.__init__" signature="__init__(gate_set: GateSet)" />
+
+  ## Methods
+
+  |                                                                                                                                                     |                                                                     |
+  | --------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+  | [`__init__`](#qiskit_noise_learning.models.IdentityFidelityModel.__init__ "qiskit_noise_learning.models.IdentityFidelityModel.__init__")(gate\_set) |                                                                     |
+  | `compose`(outer)                                                                                                                                    | Post-compose: self maps I->O, outer maps O->C, result maps I->C.    |
+  | `left_multiply`(matrix)                                                                                                                             | Multiply on the left by an explicit matrix.                         |
+  | `pre_compose`(inner)                                                                                                                                | Pre-compose: inner maps A->I, self maps I->O, result maps A->O.     |
+  | `projected_output`(output\_indices, vector)                                                                                                         | Compute a projection of the map applied to a vector.                |
+  | [`rows`](#qiskit_noise_learning.models.IdentityFidelityModel.rows "qiskit_noise_learning.models.IdentityFidelityModel.rows")(output\_indices)       | Construct the sub-matrix whose rows are the given fidelity indices. |
+
+  ## Attributes
+
+  |                                                                                                                                          |                                                   |
+  | ---------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- |
+  | [`gate_set`](#qiskit_noise_learning.models.IdentityFidelityModel.gate_set "qiskit_noise_learning.models.IdentityFidelityModel.gate_set") | The gate set whose fidelities are being modelled. |
+  | `input_space`                                                                                                                            | The input space.                                  |
+  | `output_space`                                                                                                                           | The output space.                                 |
+
+  ### gate\_set
+
+  <Attribute id="qiskit_noise_learning.models.IdentityFidelityModel.gate_set">
+    Type: [`ModelGateSet`](gate-sets-model-gate-set "qiskit_noise_learning.gate_sets.model_gate_set.ModelGateSet")
+
+    The gate set whose fidelities are being modelled.
+  </Attribute>
+
+  ### rows
+
+  <Function id="qiskit_noise_learning.models.IdentityFidelityModel.rows" signature="rows(output_indices: Iterable[FidelityIndex]) → IndexedMatrix[FidelityIndex, FidelityIndex]">
+    Construct the sub-matrix whose rows are the given fidelity indices.
+
+    Each row is the unit vector on its fidelity index (the identity parameterization).
+
+    **Parameters**
+
+    **output\_indices** – The fidelity indices labelling the desired rows.
+
+    **Returns**
+
+    An [`IndexedMatrix`](math-indexed-matrix "qiskit_noise_learning.math.IndexedMatrix") whose rows and columns are both the requested fidelity indices, with identity data.
+  </Function>
+</Class>
+

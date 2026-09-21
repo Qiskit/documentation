@@ -1,0 +1,168 @@
+---
+title: Experiment (latest version)
+description: API reference for qiskit_noise_learning.experiment_builder.Experiment in the latest version of qiskit-noise-learning
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_noise_learning.experiment_builder.Experiment
+---
+
+<span id="qiskit-noise-learning-experiment-builder-experiment" />
+
+# qiskit\_noise\_learning.experiment\_builder.Experiment
+
+<Class id="qiskit_noise_learning.experiment_builder.Experiment" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/experiment_builder/experiment.py" signature="qiskit_noise_learning.experiment_builder.Experiment(*, fidelity_model: LinearMap[Hashable, FidelityIndex] | ModelGateSet | None = None, paths: list[Path] | None = None, instruction_sequences: list[InstructionSequence] | None = None, relations: set[tuple[int, int]] | None = None, shots: int = 20, randomizations: int = 50, randomization_multipliers: list[int] | None = None, validate: bool = True)" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
+
+  A learning experiment specification.
+
+  An [`Experiment`](#qiskit_noise_learning.experiment_builder.Experiment "qiskit_noise_learning.experiment_builder.Experiment") collects all the data needed to define a noise-learning experiment: a fidelity model, analysis paths, instruction sequences, their relations, and execution parameters (shots and randomizations).
+
+  All fields are optional and may be progressively populated via [`ExperimentBuilderStage`](experiment-builder-experiment-builder-stage "qiskit_noise_learning.experiment_builder.ExperimentBuilderStage") instances.
+
+  **Parameters**
+
+  *   **fidelity\_model** – A fidelity model or a model gate set (which is wrapped in an [`IdentityFidelityModel`](models-identity-fidelity-model "qiskit_noise_learning.models.IdentityFidelityModel")).
+  *   **paths** – Paths to analyze.
+  *   **instruction\_sequences** – Instruction sequences (may include both bound and unbound).
+  *   **relations** – Set of `(path_idx, sequence_idx)` tuples indicating which paths are traversed by which instruction sequences.
+  *   **shots** – Global number of shots (default 20).
+  *   **randomizations** – Global number of randomizations (default 50).
+  *   **randomization\_multipliers** – Per-sequence randomization multiplier (parallel to instruction\_sequences).
+  *   **validate** – If `True` (default), enforce the same validation checks as [`replace()`](#qiskit_noise_learning.experiment_builder.Experiment.replace "qiskit_noise_learning.experiment_builder.Experiment.replace") (co-replacement, length consistency, relations bounds).
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit_noise_learning.experiment_builder.Experiment.__init__" signature="__init__(*, fidelity_model: LinearMap[Hashable, FidelityIndex] | ModelGateSet | None = None, paths: list[Path] | None = None, instruction_sequences: list[InstructionSequence] | None = None, relations: set[tuple[int, int]] | None = None, shots: int = 20, randomizations: int = 50, randomization_multipliers: list[int] | None = None, validate: bool = True)" />
+
+  ## Methods
+
+  |                                                                                                                                                                                |                                                         |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------- |
+  | [`__init__`](#qiskit_noise_learning.experiment_builder.Experiment.__init__ "qiskit_noise_learning.experiment_builder.Experiment.__init__")(\*\[, fidelity\_model, paths, ...]) |                                                         |
+  | [`replace`](#qiskit_noise_learning.experiment_builder.Experiment.replace "qiskit_noise_learning.experiment_builder.Experiment.replace")(\*\[, validate])                       | Return a shallow copy with the given fields overridden. |
+
+  ## Attributes
+
+  |                                                                                                                                                                                               |                                                                       |
+  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+  | [`design_matrix`](#qiskit_noise_learning.experiment_builder.Experiment.design_matrix "qiskit_noise_learning.experiment_builder.Experiment.design_matrix")                                     | The design matrix, lazily computed from the fidelity model and paths. |
+  | [`fidelity_model`](#qiskit_noise_learning.experiment_builder.Experiment.fidelity_model "qiskit_noise_learning.experiment_builder.Experiment.fidelity_model")                                  | The fidelity model.                                                   |
+  | [`gate_set`](#qiskit_noise_learning.experiment_builder.Experiment.gate_set "qiskit_noise_learning.experiment_builder.Experiment.gate_set")                                                    | The model gate set.                                                   |
+  | [`instruction_sequences`](#qiskit_noise_learning.experiment_builder.Experiment.instruction_sequences "qiskit_noise_learning.experiment_builder.Experiment.instruction_sequences")             | The instruction sequences.                                            |
+  | [`is_executable`](#qiskit_noise_learning.experiment_builder.Experiment.is_executable "qiskit_noise_learning.experiment_builder.Experiment.is_executable")                                     | Whether this experiment has all the information required to be run.   |
+  | [`paths`](#qiskit_noise_learning.experiment_builder.Experiment.paths "qiskit_noise_learning.experiment_builder.Experiment.paths")                                                             | The analysis paths.                                                   |
+  | [`randomization_multipliers`](#qiskit_noise_learning.experiment_builder.Experiment.randomization_multipliers "qiskit_noise_learning.experiment_builder.Experiment.randomization_multipliers") | Per-sequence randomization multipliers.                               |
+  | [`randomizations`](#qiskit_noise_learning.experiment_builder.Experiment.randomizations "qiskit_noise_learning.experiment_builder.Experiment.randomizations")                                  | Global number of randomizations.                                      |
+  | [`relations`](#qiskit_noise_learning.experiment_builder.Experiment.relations "qiskit_noise_learning.experiment_builder.Experiment.relations")                                                 | The set of path and sequence relations.                               |
+  | [`shots`](#qiskit_noise_learning.experiment_builder.Experiment.shots "qiskit_noise_learning.experiment_builder.Experiment.shots")                                                             | Global number of shots.                                               |
+
+  ### fidelity\_model
+
+  <Attribute id="qiskit_noise_learning.experiment_builder.Experiment.fidelity_model">
+    Type: [`LinearMap`](math-linear-map "qiskit_noise_learning.math.linear_map.LinearMap")\[[`Hashable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Hashable), [`FidelityIndex`](sequences-fidelity-index "qiskit_noise_learning.sequences.fidelity_index.FidelityIndex")] | [`None`](https://docs.python.org/3/library/constants.html#None)
+
+    The fidelity model.
+  </Attribute>
+
+  ### gate\_set
+
+  <Attribute id="qiskit_noise_learning.experiment_builder.Experiment.gate_set">
+    Type: [`ModelGateSet`](gate-sets-model-gate-set "qiskit_noise_learning.gate_sets.model_gate_set.ModelGateSet") | [`None`](https://docs.python.org/3/library/constants.html#None)
+
+    The model gate set.
+  </Attribute>
+
+  ### paths
+
+  <Attribute id="qiskit_noise_learning.experiment_builder.Experiment.paths">
+    Type: [`list`](https://docs.python.org/3/library/stdtypes.html#list)\[[`Path`](sequences-path "qiskit_noise_learning.sequences.path.Path")] | [`None`](https://docs.python.org/3/library/constants.html#None)
+
+    The analysis paths.
+  </Attribute>
+
+  ### instruction\_sequences
+
+  <Attribute id="qiskit_noise_learning.experiment_builder.Experiment.instruction_sequences">
+    Type: [`list`](https://docs.python.org/3/library/stdtypes.html#list)\[[`InstructionSequence`](sequences-instruction-sequence "qiskit_noise_learning.sequences.instruction_sequence.InstructionSequence")] | [`None`](https://docs.python.org/3/library/constants.html#None)
+
+    The instruction sequences.
+  </Attribute>
+
+  ### relations
+
+  <Attribute id="qiskit_noise_learning.experiment_builder.Experiment.relations">
+    Type: [`set`](https://docs.python.org/3/library/stdtypes.html#set)\[[`tuple`](https://docs.python.org/3/library/stdtypes.html#tuple)\[[`int`](https://docs.python.org/3/library/functions.html#int), [`int`](https://docs.python.org/3/library/functions.html#int)]] | [`None`](https://docs.python.org/3/library/constants.html#None)
+
+    The set of path and sequence relations.
+  </Attribute>
+
+  ### shots
+
+  <Attribute id="qiskit_noise_learning.experiment_builder.Experiment.shots">
+    Type: [`int`](https://docs.python.org/3/library/functions.html#int)
+
+    Global number of shots.
+  </Attribute>
+
+  ### randomizations
+
+  <Attribute id="qiskit_noise_learning.experiment_builder.Experiment.randomizations">
+    Type: [`int`](https://docs.python.org/3/library/functions.html#int)
+
+    Global number of randomizations.
+  </Attribute>
+
+  ### randomization\_multipliers
+
+  <Attribute id="qiskit_noise_learning.experiment_builder.Experiment.randomization_multipliers">
+    Type: [`list`](https://docs.python.org/3/library/stdtypes.html#list)\[[`int`](https://docs.python.org/3/library/functions.html#int)] | [`None`](https://docs.python.org/3/library/constants.html#None)
+
+    Per-sequence randomization multipliers.
+  </Attribute>
+
+  ### design\_matrix
+
+  <Attribute id="qiskit_noise_learning.experiment_builder.Experiment.design_matrix">
+    Type: [`IndexedMatrix`](math-indexed-matrix "qiskit_noise_learning.math.indexed_matrix.IndexedMatrix")
+
+    The design matrix, lazily computed from the fidelity model and paths.
+
+    **Raises**
+
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If `fidelity_model` or `paths` is `None`.
+  </Attribute>
+
+  ### is\_executable
+
+  <Attribute id="qiskit_noise_learning.experiment_builder.Experiment.is_executable">
+    Type: [`bool`](https://docs.python.org/3/library/functions.html#bool)
+
+    Whether this experiment has all the information required to be run.
+
+    Requires: `instruction_sequences` is set, all sequences are bound and complete, and `randomization_multipliers` is set.
+  </Attribute>
+
+  ### replace
+
+  <Function id="qiskit_noise_learning.experiment_builder.Experiment.replace" signature="replace(*, validate: bool = True, **kwargs) → Experiment">
+    Return a shallow copy with the given fields overridden.
+
+    When `validate=True` (default), the following checks are enforced:
+
+    *   **Co-replacement**: `instruction_sequences` and `randomization_multipliers` must always both be `None` or both be non-`None`. Replacing one without the other is only allowed if it preserves this invariant.
+    *   **Length consistency**: `randomization_multipliers` must have the same length as `instruction_sequences`.
+    *   **Relations bounds**: Setting `relations` requires `paths` and `instruction_sequences` to be present, and all indices must be in bounds.
+    *   **Soft invalidation**: Replacing `paths` or `instruction_sequences` without providing new `relations` will set `relations` to `None` with a warning.
+
+    **Parameters**
+
+    *   **validate** – If `True`, enforce the above checks. If `False`, fields are set as-is with no validation.
+    *   **\*\*kwargs** – Field names and their new values.
+
+    **Raises**
+
+    *   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError) – If an unrecognized field name is given.
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If a validation constraint is violated.
+  </Function>
+</Class>
+

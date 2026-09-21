@@ -1,0 +1,124 @@
+---
+title: ObservableData (latest version)
+description: API reference for qiskit_noise_learning.data.ObservableData in the latest version of qiskit-noise-learning
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_noise_learning.data.ObservableData
+---
+
+<span id="qiskit-noise-learning-data-observabledata" />
+
+# qiskit\_noise\_learning.data.ObservableData
+
+<Class id="qiskit_noise_learning.data.ObservableData" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/data/observable_data.py" signature="qiskit_noise_learning.data.ObservableData(dataset: Dataset)" modifiers="class">
+  Bases: [`LeveledData`](data-leveled-data "qiskit_noise_learning.data.leveled_data.LeveledData")
+
+  A collection of calculated expectation values.
+
+  This class is a wrapper around an XArray `Dataset`, containing the following data:
+
+  *   Data variables:
+
+      > *   `observable_values`: Observables computed from single `InstructionSequence` and `Path` pairs at a given fragment depth, separated by randomizations. Has dimensions `("observable", "randomization")`. `np.nan` values are assumed to be due to raggedness of the `"randomization"` dimension for different observables.
+      > *   `time_lbs`: Lower bound on data acquisition times, with dimensions `("observable", "randomization")`, and of type `"datetime64[us]"`.
+      > *   `time_ubs`: Upper bound on data acquisition times, with dimensions `("observable", "randomization")`, and of type `"datetime64[us]"`.
+
+  *   Coordinates:
+
+      > *   `unbound_path`: The unbound path (with `fragment_depth=None`) for each observable, along dimension `("observable",)`, of type `Path`.
+      > *   `fragment_depth`: Integer array of fragment depths along dimension `("observable",)`.
+
+  **Parameters**
+
+  **dataset** – A dataset with the above formatting.
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit_noise_learning.data.ObservableData.__init__" signature="__init__(dataset: Dataset)" />
+
+  ## Methods
+
+  |                                                                                                                                                                        |                                                 |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
+  | [`__init__`](#qiskit_noise_learning.data.ObservableData.__init__ "qiskit_noise_learning.data.ObservableData.__init__")(dataset)                                        |                                                 |
+  | [`filter_time`](#qiskit_noise_learning.data.ObservableData.filter_time "qiskit_noise_learning.data.ObservableData.filter_time")(lb, ub)                                | Filter to data gathered within the time bounds. |
+  | [`from_arrays`](#qiskit_noise_learning.data.ObservableData.from_arrays "qiskit_noise_learning.data.ObservableData.from_arrays")(unbound\_paths, fragment\_depths, ...) | Instantiate from data specified as arrays.      |
+  | [`merge`](#qiskit_noise_learning.data.ObservableData.merge "qiskit_noise_learning.data.ObservableData.merge")(other)                                                   | Merge observable data into a single instance.   |
+
+  ## Attributes
+
+  |                                                                                                                                                   |                               |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
+  | `dataset`                                                                                                                                         |                               |
+  | [`observable_values`](#qiskit_noise_learning.data.ObservableData.observable_values "qiskit_noise_learning.data.ObservableData.observable_values") | Observables data array.       |
+  | [`time_lbs`](#qiskit_noise_learning.data.ObservableData.time_lbs "qiskit_noise_learning.data.ObservableData.time_lbs")                            | Time lower bounds data array. |
+  | [`time_ubs`](#qiskit_noise_learning.data.ObservableData.time_ubs "qiskit_noise_learning.data.ObservableData.time_ubs")                            | Time upper bounds data array. |
+
+  ### from\_arrays
+
+  <Function id="qiskit_noise_learning.data.ObservableData.from_arrays" signature="from_arrays(unbound_paths: list[Path], fragment_depths: ndarray[int], observable_values: ndarray[float64], time_lbs: ndarray[datetime64], time_ubs: ndarray[datetime64])" modifiers="classmethod">
+    Instantiate from data specified as arrays.
+
+    **Parameters**
+
+    *   **unbound\_paths** – The unbound paths corresponding to the observables.
+    *   **fragment\_depths** – The fragment depths for each observable.
+    *   **observable\_values** – A 2d numpy array of `floats` with axes `("observable", "randomization")`.
+    *   **time\_lbs** – A lower bound on the data collection time for each observable and randomization. Has axes `("observable", "randomization")`.
+    *   **time\_ubs** – Upper bounds on the data collection time for each observable and randomization. Has axes `("observable", "randomization")`.
+  </Function>
+
+  ### observable\_values
+
+  <Attribute id="qiskit_noise_learning.data.ObservableData.observable_values">
+    Type: `DataArray`
+
+    Observables data array.
+  </Attribute>
+
+  ### time\_lbs
+
+  <Attribute id="qiskit_noise_learning.data.ObservableData.time_lbs">
+    Type: `DataArray`
+
+    Time lower bounds data array.
+  </Attribute>
+
+  ### time\_ubs
+
+  <Attribute id="qiskit_noise_learning.data.ObservableData.time_ubs">
+    Type: `DataArray`
+
+    Time upper bounds data array.
+  </Attribute>
+
+  ### merge
+
+  <Function id="qiskit_noise_learning.data.ObservableData.merge" signature="merge(other: Self) → Self">
+    Merge observable data into a single instance.
+
+    **Parameters**
+
+    **other** – The other observable data set.
+
+    **Returns**
+
+    The merged data.
+  </Function>
+
+  ### filter\_time
+
+  <Function id="qiskit_noise_learning.data.ObservableData.filter_time" signature="filter_time(lb: datetime64, ub: datetime64) → Self">
+    Filter to data gathered within the time bounds.
+
+    **Parameters**
+
+    *   **lb** – The time lower bound (inclusive).
+    *   **ub** – The time upper bound (inclusive).
+
+    **Returns**
+
+    The time filtered version of self.
+  </Function>
+</Class>
+
