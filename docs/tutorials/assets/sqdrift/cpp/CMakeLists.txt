@@ -85,7 +85,8 @@ if(BUILD_DEPENDENCIES)
 
     # 1. Qiskit C API
     # Pinned to 2.5.2 (latest stable). qiskit-ibm-runtime-c's README documents
-    # support up to 2.4, but in practice fix-type-17 works with 2.5.
+    # support up to 2.4, but in practice the pinned qiskit-ibm-runtime-c commit
+    # works with 2.5.
     # TODO: update pin when a newer stable release is verified.
     ExternalProject_Add(
         qiskit_external
@@ -137,8 +138,9 @@ if(BUILD_DEPENDENCIES)
     set(QISKIT_FERMIONS_LIB_DIR "${DEPS_DIR}/qiskit-fermions/dist/c/lib")
 
     # 3. Qiskit IBM Runtime C API
-    # TODO: open a PR to mtreinish/qiskit-ibm-runtime-c (and upstream Qiskit/qiskit-ibm-runtime-c)
-    #       to add #pragma once to qiskit_ibm_runtime.h, then remove the patch below.
+    # TODO: open a PR to Qiskit/qiskit-ibm-runtime-c to add #pragma once to
+    #       qiskit_ibm_runtime.h, then remove the patch below. Still absent as of
+    #       the pinned commit, so the patch is still required.
     #
     # `#pragma once` is an include guard — it tells the compiler to process the header
     # only once per translation unit. Without it, qiskit-cpp's headers each pull in
@@ -168,9 +170,10 @@ endif()
     )
     ExternalProject_Add(
         qiskit_ibm_runtime_external
-        GIT_REPOSITORY https://github.com/mtreinish/qiskit-ibm-runtime-c.git
-        # TODO: revert to upstream Qiskit/qiskit-ibm-runtime-c once PR #27 merges
-        GIT_TAG fix-type-17
+        GIT_REPOSITORY https://github.com/Qiskit/qiskit-ibm-runtime-c.git
+        # Pinned to the upstream merge of PR #27 (the fix formerly carried on
+        # mtreinish's fix-type-17 branch).
+        GIT_TAG 46a1065bbadcdf5f9561f908a76502673da0b7d5
         PREFIX ${DEPS_BUILD_DIR}/qiskit-ibm-runtime-c
         SOURCE_DIR ${DEPS_DIR}/qiskit-ibm-runtime-c
         PATCH_COMMAND ${CMAKE_COMMAND} -P "${CMAKE_CURRENT_BINARY_DIR}/patch_pragma_once.cmake"
