@@ -22,7 +22,12 @@ import remarkGfm from "remark-gfm";
 import remarkMdx from "remark-mdx";
 import remarkStringify from "remark-stringify";
 
-import { removePart, removePrefix, removeSuffix } from "../stringUtils.js";
+import {
+  getLastPartFromFullIdentifier,
+  removePart,
+  removePrefix,
+  removeSuffix,
+} from "../stringUtils.js";
 import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
 import { remarkStringifyOptions } from "./commonParserConfig.js";
 import { ObjectsInv } from "./objectsInv.js";
@@ -120,8 +125,13 @@ export function normalizeUrl(
       "#",
     );
     const page = removeSuffix(pageWithHtml, ".html");
-    // Strip the Sphinx C domain prefix (e.g. `c.qk_circuit_new` → `qk_circuit_new`)
-    const normalizedHash = hash ? removePrefix(hash, "c.") : undefined;
+    // The C API anchors are generated with getLastPartFromFullIdentifier (the last
+    // dot-separated segment), so the Sphinx C domain hash must be reduced the same way:
+    //   `c.qk_circuit_new`                  → `qk_circuit_new`   (strip the `c.` domain prefix)
+    //   `c.QfExitCode.QfExitCode_ValueError` → `QfExitCode_ValueError`  (drop the enum scope too)
+    const normalizedHash = hash
+      ? getLastPartFromFullIdentifier(hash)
+      : undefined;
     const pageAndHash = normalizedHash ? `${page}#${normalizedHash}` : page;
     // The C API package is always named `{pkgName}-c` (`qiskit` → `qiskit-c`,
     // `qiskit-fermions` → `qiskit-fermions-c`).  Replace the package-name segment rather

@@ -320,6 +320,9 @@ test("normalizeUrl() Qiskit Python API links to C API via cdoc/", () => {
     `../cdoc/qk-circuit.html#c.qk_circuit_new`,
     `../cdoc/config.html#c.qk_import`,
     `../cdoc/qk-circuit.html`,
+    // Enum members carry the enum scope (`c.<Enum>.<Member>`). The generated
+    // anchor is just the member id, so the scope must be dropped as well.
+    `../cdoc/qk-exit-code.html#c.QkExitCode.QkExitCode_ValueError`,
   ];
   const resultsByName = {};
   const itemNames = new Set<string>();
@@ -335,6 +338,7 @@ test("normalizeUrl() Qiskit Python API links to C API via cdoc/", () => {
     "/docs/api/qiskit-c/dev/qk-circuit#qk_circuit_new",
     "/docs/api/qiskit-c/dev/config#qk_import",
     "/docs/api/qiskit-c/dev/qk-circuit",
+    "/docs/api/qiskit-c/dev/qk-exit-code#QkExitCode_ValueError",
   ]);
 });
 
