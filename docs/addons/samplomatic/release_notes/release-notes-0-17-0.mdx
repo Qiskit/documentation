@@ -1,0 +1,42 @@
+---
+title: "0.17.0 - 2026-03-12"
+description: "0.17.0 - 2026-03-12 for the latest version of Samplomatic"
+---
+
+<span id="id1" />
+
+# 0.17.0 - 2026-03-12
+
+## Removed
+
+*   Removed `TWIRLING_GROUPS` and `GroupLiteral` from `annotations` in favor of `GroupMode`. ([#300](https://github.com/Qiskit/samplomatic/issues/300))
+
+## Added
+
+*   Added `BalancedUniformPauli` distribution that ensures the same number of X/Y and I/Z are chosen on each qubit. ([#264](https://github.com/Qiskit/samplomatic/issues/264))
+*   Added `GroupMode` enum to configure the twirling distribution on `Twirl` annotations. ([#300](https://github.com/Qiskit/samplomatic/issues/300))
+*   Added serialization support for `BalancedUniformPauli` distribution (SSV 3). ([#301](https://github.com/Qiskit/samplomatic/issues/301))
+*   Added the local Clifford twirling group. This group twirls a two-qubit entangling gate with the subgroup of single-qubit Cliffords that remain single-qubit Clifford under conjugation. This feature is enabled by using a `Twirl` annotation with `GroupMode.LOCAL_C1` or `"local_c1"` as the group. To support new groups like the local Clifford twirling group, added the `twirling_group` keyword argument to the `generate_boxing_pass_manager` function with default `"pauli"`. Added the `PropagateLocalC1Node` and supporting lookup tables in the new `tables` module. Added the `UniformLocalC1` distribution. ([#308](https://github.com/Qiskit/samplomatic/issues/308))
+*   Added `samplomatic.utils.unbox()` utility function for inlining box operations from a circuit. ([#318](https://github.com/Qiskit/samplomatic/issues/318))
+*   Added the `Tag` annotation to provide trace information of a box on corresponding barriers after the `build` process. The same mechanism is used to include the `InjectNoise.ref` on corresponding barriers as well. ([#319](https://github.com/Qiskit/samplomatic/issues/319))
+*   Added the `UniformPauliSubset` distribution that samples from a given subset of Paulis. ([#332](https://github.com/Qiskit/samplomatic/issues/332))
+*   Added `DistributionSamplingNode` that samples from any distribution and places the result into a register. This differs from `TwirlSamplingNode` in that we do not instantiate a sample and inverse-sample pair, just a sample. ([#334](https://github.com/Qiskit/samplomatic/issues/334))
+
+## Changed
+
+*   Increased the default SSV from `2` to `3`. ([#336](https://github.com/Qiskit/samplomatic/issues/336))
+*   Changed `Twirl.group` parameter to accept `GroupMode` values instead of `VirtualType`. ([#300](https://github.com/Qiskit/samplomatic/issues/300))
+*   Updated minimum qiskit version to 2.3.0. ([#304](https://github.com/Qiskit/samplomatic/issues/304))
+*   Lookup tables for single-qubit Cliffords, `C1_LOOKUP_TABLE` and `C1_INVERSE_TABLE`, that were in the `virtual_registers.tables` submodule have been moved to the top-level `tables` module. ([#308](https://github.com/Qiskit/samplomatic/issues/308))
+*   SSV 3 serializes `Distribution`s using dedicated serializers. Previously, they were specified ad-hoc by the serializer of `TwirlSamplingNode`. ([#332](https://github.com/Qiskit/samplomatic/issues/332))
+
+## Improved
+
+*   Updated noise injection to use the new and improved method. ([#304](https://github.com/Qiskit/samplomatic/issues/304))
+*   Reduced the number of `SliceRegisterNode`s that `build()` puts into samplexes by eliminating those slices that act trivially on their inputs. ([#311](https://github.com/Qiskit/samplomatic/issues/311))
+
+## Fixed
+
+*   Fixed an issue where unsupported virtual types could be serialized for SSV 1. ([#315](https://github.com/Qiskit/samplomatic/issues/315))
+*   Made `BoxKey` hashing deterministic across Python processes by using SHA-256 instead of the built-in `hash()`, which is randomized by `PYTHONHASHSEED`. This caused `AddInjectNoise` to generate different `ref` names for identical boxes across runs, since it derived short hash keys from `BoxKey.__hash__`. Also fixed a bug in `AddInjectNoise._get_ref()` where the computed ref was not being cached correctly. It is expected that these bugs were only visible when this pass was being run in parallel by the qiskit pass manager. ([#322](https://github.com/Qiskit/samplomatic/issues/322))
+
