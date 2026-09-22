@@ -74,6 +74,8 @@ export class Pkg {
     "qiskit-fermions-c",
     "pauli-prop",
     "qiskit-addon-slc",
+    "qiskit-noise-learning",
+    "qiskit-mitigation",
   ];
 
   static VALID_NAMES = [
@@ -189,6 +191,16 @@ export class Pkg {
         hasAddonDocs: true,
       });
     }
+    if (name === "qiskit-mitigation") {
+      return new Pkg({
+        ...args,
+        title: "Qiskit mitigation",
+        githubSlug: "Qiskit/qiskit-mitigation",
+        kebabCaseAndShortenUrls: true,
+        language: "Python",
+        hasAddonDocs: true,
+      });
+    }
     if (name === "qiskit-addon-mpf") {
       return new Pkg({
         ...args,
@@ -286,6 +298,15 @@ export class Pkg {
         ...args,
         title: "Qiskit addon utilities",
         githubSlug: "Qiskit/qiskit-addon-utils",
+        kebabCaseAndShortenUrls: true,
+        language: "Python",
+      });
+    }
+    if (name === "qiskit-noise-learning") {
+      return new Pkg({
+        ...args,
+        title: "Qiskit noise learning",
+        githubSlug: "Qiskit/qiskit-noise-learning",
         kebabCaseAndShortenUrls: true,
         language: "Python",
       });

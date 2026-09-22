@@ -1,0 +1,45 @@
+---
+title: LegacySolve (latest version)
+description: API reference for qiskit_noise_learning.analysis.LegacySolve in the latest version of qiskit-noise-learning
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_noise_learning.analysis.LegacySolve
+---
+
+<span id="qiskit-noise-learning-analysis-legacysolve" />
+
+# qiskit\_noise\_learning.analysis.LegacySolve
+
+<Class id="qiskit_noise_learning.analysis.LegacySolve" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/analysis/legacy.py" signature="qiskit_noise_learning.analysis.LegacySolve" modifiers="class">
+  Bases: [`AnalysisStage`](analysis-analysis-stage "qiskit_noise_learning.analysis.analysis_pipeline.AnalysisStage")
+
+  Solves for the [`ModelData`](data-model-data "qiskit_noise_learning.data.ModelData") using the legacy pair-fidelity method.
+
+  This solver assumes that the gate set only has a single unitary gate, and that the paths are of a vanilla-learning type (i.e. even depth with no single-qubit Cliffords required).
+
+  Delegates to `fit_noise_model_legacy()` with `noise_assumption="symmetric_fidelities"`, `optimizer_name="nnls"`, and `constrained=True`.
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit_noise_learning.analysis.LegacySolve.__init__" signature="__init__()" />
+
+  ## Methods
+
+  |                                                                                                                            |                                                                                                                             |
+  | -------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit_noise_learning.analysis.LegacySolve.__init__ "qiskit_noise_learning.analysis.LegacySolve.__init__")() |                                                                                                                             |
+  | `run`(fit)                                                                                                                 | Run this stage, returning a new [`Fit`](analysis-fit "qiskit_noise_learning.analysis.Fit") with the output level populated. |
+
+  ### input\_level
+
+  <Attribute id="qiskit_noise_learning.analysis.LegacySolve.input_level">
+    alias of [`AggregatedObservableData`](data-aggregated-observable-data "qiskit_noise_learning.data.aggregated_observable_data.AggregatedObservableData")
+  </Attribute>
+
+  ### output\_level
+
+  <Attribute id="qiskit_noise_learning.analysis.LegacySolve.output_level">
+    alias of [`ModelData`](data-model-data "qiskit_noise_learning.data.model_data.ModelData")
+  </Attribute>
+</Class>
+

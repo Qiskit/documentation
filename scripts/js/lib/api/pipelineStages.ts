@@ -163,8 +163,16 @@ function rewriteApiDocsLinks(results: HtmlToMdResultWithUrl[], pkg: Pkg) {
           const targetPkg = pkg.isCApi() ? pythonSiblingPkg : pkg.name;
           const targetUsesKebab =
             pkg.kebabCaseAndShortenUrls && targetPkg !== "qiskit";
+          // `page` may include a nested folder, e.g. `generated/qiskit_pkg.Foo`.
+          // Kebab-case only the final segment so folder separators survive —
+          // kebabCase() itself would otherwise turn `generated/foo` into
+          // `generated-foo`.
+          const pageParts = page.split("/");
           const kebabPage = targetUsesKebab
-            ? kebabCaseAndShortenPage(page, targetPkg)
+            ? [
+                ...pageParts.slice(0, -1),
+                kebabCaseAndShortenPage(pageParts.at(-1)!, targetPkg),
+              ].join("/")
             : page;
           return `](${pythonApiBase}/${kebabPage}${anchor ?? ""})`;
         },
@@ -178,6 +186,16 @@ function rewriteApiDocsLinks(results: HtmlToMdResultWithUrl[], pkg: Pkg) {
           "g",
         ),
         `](${apiBase}/release-notes$1)`,
+      )
+      // Addon API reference pages link back to guides with paths relative to
+      // the sphinx source tree (e.g. `../../guides/formalism#anchor`).
+      // Rewrite these to the guide's absolute path under docs/addons.
+      .replace(
+        /\]\((?:\.\.\/)*guides\/([^)#]+)(#[^)]+)?\)/g,
+        (match, page, anchor) =>
+          pkg.isAddon()
+            ? `](${DOCS_BASE_PATH}/addons/${pkg.name}/guides/${page}${anchor ?? ""})`
+            : match,
       );
   }
 }
