@@ -309,11 +309,11 @@ This release grows the control this package gives over circuit synthesis. An `Ev
     QfExitCode exit = qf_fcidump_from_file("molecule.fcidump", &fcidump);
     ```
 
-    It returns [`QfExitCode_ValueError`](/docs/api/qiskit-fermions-c/qf-exit-code#QfExitCode.QfExitCode_ValueError "QfExitCode_ValueError") when a file does not honour the FCIDump format (a missing header namelist, a missing `NORB` or `NELEC` field, a malformed `MS2` field, or an MO energy value, which is still unsupported), leaving the out-parameter untouched. This replaces the previous signature, which returned the pointer directly and had no way to report a failure (an unparsable file unwound a Rust panic across the FFI boundary, which is undefined behaviour).
+    It returns [`QfExitCode_ValueError`](/docs/api/qiskit-fermions-c/qf-exit-code#QfExitCode_ValueError "QfExitCode_ValueError") when a file does not honour the FCIDump format (a missing header namelist, a missing `NORB` or `NELEC` field, a malformed `MS2` field, or an MO energy value, which is still unsupported), leaving the out-parameter untouched. This replaces the previous signature, which returned the pointer directly and had no way to report a failure (an unparsable file unwound a Rust panic across the FFI boundary, which is undefined behaviour).
 
 *   `qf_ferm_op_group_weights` and its per-type counterparts have been renamed to [`qf_ferm_op_group_coeff_means()`](/docs/api/qiskit-fermions-c/qf-operators-terms-grouping#qf_ferm_op_group_coeff_means "qf_ferm_op_group_coeff_means") and friends. Their behavior is unchanged.
 
-*   [`qf_ferm_op_set_groups()`](/docs/api/qiskit-fermions-c/qf-ferm-op#qf_ferm_op_set_groups "qf_ferm_op_set_groups") and its per-type counterparts now return a [`QfExitCode`](/docs/api/qiskit-fermions-c/qf-exit-code#QfExitCode "QfExitCode") rather than `void`. Passing a group array whose length differs from the operator’s number of terms returns [`QfExitCode_ValueError`](/docs/api/qiskit-fermions-c/qf-exit-code#QfExitCode.QfExitCode_ValueError "QfExitCode_ValueError") instead of being accepted silently; passing `NULL` to clear the group indices is unaffected.
+*   [`qf_ferm_op_set_groups()`](/docs/api/qiskit-fermions-c/qf-ferm-op#qf_ferm_op_set_groups "qf_ferm_op_set_groups") and its per-type counterparts now return a [`QfExitCode`](/docs/api/qiskit-fermions-c/qf-exit-code#QfExitCode "QfExitCode") rather than `void`. Passing a group array whose length differs from the operator’s number of terms returns [`QfExitCode_ValueError`](/docs/api/qiskit-fermions-c/qf-exit-code#QfExitCode_ValueError "QfExitCode_ValueError") instead of being accepted silently; passing `NULL` to clear the group indices is unaffected.
 
 <span id="release-notes-0-2-0-build-system-changes" />
 
