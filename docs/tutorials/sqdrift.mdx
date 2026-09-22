@@ -5,14 +5,19 @@ description: SqDRIFT combines two prominent algorithms, qDRIFT and SKQD, for the
 
 {/* cspell:ignore cisolver ECORE combinatorially multiset sqdrift BLAS nullptr cerr endl cout nullopt ofstream bitstr RAII LAPACK fopenmp openblas mpicxx CCFLAGS SYSLIB lomp libopenmpi libomp libblas liblapack CCCOM llapack lblas adetfile mult */}
 
+{/* Keep the Python code blocks in sync with assets/sqdrift/sqdrift.ipynb.
+    The C++ walkthrough is adapted from assets/sqdrift/cpp/README.md;
+    its executable source and build instructions are in the same directory. */}
+
 # SqDRIFT algorithm for ground state estimation
+
+<Tabs defaultValue="python">
+  <TabItem value="python" label="Python">
 
 ## Learning outcomes
 - Learn how to create smaller depth circuits as compared to Trotterization
 - Walk through an end-to-end workflow for ground state estimation using qDRIFT and SQD
 - Learn how to use `qiskit-fermions` in tandem with other Qiskit addons to implement such a workflow
-
-Choose the Python or C++ tab below for the complete walkthrough in that language.
 
 ## Prerequisites
 - Read the [Sample-based quantum diagonalization (SQD)](/docs/addons/qiskit-addon-sqd) overview
@@ -57,13 +62,6 @@ so the series $(k_1, \ldots, k_n)$ is a random sequence of term indices drawn fr
 (The SqDRIFT paper writes the number of terms as $\mathcal{N}$ and the sequence length as $N$; we use $N$ and $n$ here to keep the two clearly distinct.)
 
 This tutorial shows how to generate an ensemble of such randomized circuits. After we have created these circuits, similar to how we create a Krylov subspace for different operators, we sample bitstrings from multiple such operators with different time parameters. This ensures a higher overlap between the ground state vectors and sampled bitstrings.
-
-{/* Keep the Python code blocks in sync with assets/sqdrift/sqdrift.ipynb.
-    The C++ walkthrough is adapted from assets/sqdrift/cpp/README.md;
-    its executable source and build instructions are in the same directory. */}
-
-<Tabs defaultValue="python">
-  <TabItem value="python" label="Python">
 
 [Download the Python notebook](https://github.com/Qiskit/documentation/raw/refs/heads/main/docs/tutorials/assets/sqdrift/sqdrift.ipynb) to run this implementation. The notebook downloads the FCIDump input if it is not already present.
 
@@ -793,6 +791,55 @@ Error:            5.0453460619e-04 Ha
 
   </TabItem>
   <TabItem value="cpp" label="C++">
+
+## Learning outcomes
+- Learn how to create smaller depth circuits as compared to Trotterization
+- Walk through an end-to-end workflow for ground state estimation using qDRIFT and SQD
+- Learn how to use `qiskit-fermions` in tandem with other Qiskit addons to implement such a workflow
+
+## Prerequisites
+- Read the [Sample-based quantum diagonalization (SQD)](/docs/addons/qiskit-addon-sqd) overview
+- Read the [Sample-based Krylov Quantum Diagonalization (SKQD)](/learning/courses/quantum-diagonalization-algorithms/skqd) lesson
+
+## Background
+
+[SqDRIFT](https://arxiv.org/abs/2508.02578) is a variant of SKQD that replaces the need to choose an ansatz from which to sample bitstrings with an ensemble of time-evolution circuits constructed directly from the target Hamiltonian. This is achieved by subsampling smaller time-evolution operators from the Hamiltonian based on its coefficients, which is known as the qDRIFT Trotterization method.
+
+Both implementations use [Qiskit Fermions](/docs/addons/qiskit-fermions) to represent the molecular Hamiltonian and construct circuits for the [qDRIFT](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.123.070503) algorithm. The Python implementation uses fermionic transpiler passes, while the C++ implementation explicitly samples groups and maps them to qubit operators.
+
+Let the Hamiltonian be of the form:
+
+$$
+H = \sum_{i=1}^{N} c_i h_i
+$$
+
+where, without loss of generality, we require $c_i > 0$ and that the largest eigenvalue of $h_i$ be equal, in absolute value, to $1$. Any signed or complex prefactor is absorbed into $h_i$, so the coefficients $c_i$ are strictly positive weights while the $h_i$ carry the direction of each term. Here $N$ is the number of terms (or, after grouping, the number of groups) in the Hamiltonian; it is a property of the Hamiltonian and is distinct from the number of operators sampled into a single circuit, written $n$ below.
+
+The qDRIFT algorithm then realizes, for the target time $t$, some operator $V_k$, where $k$ goes from $1 \cdots K$ and signifies the $k_{th}$ SqDRIFT circuit, defined as:
+
+$$
+V_k = \prod_{j=1}^{n} e^{-i h_{k_j} \lambda t / n }
+$$
+
+Here $n$ is the number of sampled operators per circuit and $K$ is the number of circuits in the ensemble. The product runs over the $n$ draws, not over all $N$ Hamiltonian terms, and because the terms are drawn with replacement, the same $h_i$ can appear more than once in a single $V_k$.
+
+The quantity:
+
+$$
+\lambda = \sum_{i=1}^{N} c_i
+$$
+
+is the $L_1$ norm of the coefficients, so each of the $n$ steps evolves for the same duration $\lambda t / n$ regardless of which term was drawn. The uniformity of the step angle is the characteristic feature of qDRIFT: a coefficient influences the result through *how often* its term is drawn, not through how far that term is rotated. The indices are sampled from the distribution:
+
+$$
+P[k_i] = \frac{c_i}{\lambda}
+$$
+
+so the series $(k_1, \ldots, k_n)$ is a random sequence of term indices drawn from this distribution. Since the $c_i$ are positive and sum to $\lambda$, this is a normalized probability distribution, and the expectation of the resulting channel over the random draws approximates evolution under $H$, with an error that decreases as $n$ grows. Note that the approximation error depends on $\lambda$ rather than on the number of terms $N$.
+
+(The SqDRIFT paper writes the number of terms as $\mathcal{N}$ and the sequence length as $N$; we use $N$ and $n$ here to keep the two clearly distinct.)
+
+This tutorial shows how to generate an ensemble of such randomized circuits. After we have created these circuits, similar to how we create a Krylov subspace for different operators, we sample bitstrings from multiple such operators with different time parameters. This ensures a higher overlap between the ground state vectors and sampled bitstrings.
 
 ## Requirements
 
