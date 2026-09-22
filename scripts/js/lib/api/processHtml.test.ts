@@ -498,6 +498,24 @@ test("handleFootnotes() preserves ids of named citations", () => {
     <p>Jordan and Wigner.</p></div>`);
 });
 
+test("handleFootnotes() preserves citation reference ids rendered as plain internal anchors", () => {
+  // Some docutils versions render a named citation's reference as a plain
+  // `<a class="reference internal" href="#jw-ferm" id="id3">` rather than
+  // `.citation-reference`. The definition's back-link targets that `id` (`#id3`),
+  // so the reference anchor's id must be preserved too.
+  const doc = CheerioDoc.load(`
+    <p>See <a class="reference internal" href="#jw-ferm" id="id3">[JW-ferm]</a>.</p>
+    <div class="citation" id="jw-ferm" role="doc-biblioentry">
+    <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">JW-ferm</a><span class="fn-bracket">]</span></span>
+    <p>Jordan and Wigner.</p></div>`);
+  handleFootnotes(doc.$, doc.$main);
+  doc.expectHtml(`
+    <p>See <span id="id3" class="target"></span><a class="reference internal" href="#jw-ferm" id="id3">[JW-ferm]</a>.</p>
+    <span id="jw-ferm" class="target"></span><div class="citation" id="jw-ferm" role="doc-biblioentry">
+    <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">JW-ferm</a><span class="fn-bracket">]</span></span>
+    <p>Jordan and Wigner.</p></div>`);
+});
+
 test.describe("maybeSetPythonModuleMetadata()", () => {
   test("not a module", () => {
     const html = `<h1>Hello</h1>`;

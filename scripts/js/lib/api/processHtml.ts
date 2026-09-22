@@ -407,19 +407,38 @@ export function handleFootnotes($: CheerioAPI, $main: Cheerio<any>): void {
   // Docutils renders footnotes (`.. [1]`) and citations (`.. [Label]`) with different
   // classes: `footnote`/`footnote-reference` versus `citation`/`citation-reference`.
   // Both carry the `id` that in-page links target, so both must be preserved.
-  $main
-    .find(
-      ".footnote, .footnote-reference, .footnote dt.label, " +
-        ".citation, .citation-reference, .citation dt.label",
-    )
-    .toArray()
-    .forEach((footnote) => {
-      const $footnote = $(footnote);
-      const id = $footnote.attr("id");
-      if (id) {
-        $footnote.before(`<span id="${id}" class="target"></span>`);
-      }
-    });
+  const preserveId = (el: any) => {
+    const $el = $(el);
+    const id = $el.attr("id");
+    if (id) {
+      $el.before(`<span id="${id}" class="target"></span>`);
+    }
+  };
+
+  // Definitions (and any reference elements that carry the dedicated classes).
+  const $definitions = $main.find(
+    ".footnote, .footnote-reference, .footnote dt.label, " +
+      ".citation, .citation-reference, .citation dt.label",
+  );
+  $definitions.toArray().forEach(preserveId);
+
+  // Some docutils versions render a named citation's *reference* as a plain
+  // internal-reference anchor (`<a class="reference internal" href="#jw-ferm"
+  // id="id3">`) rather than `.citation-reference`, so the selector above misses
+  // it and the `id` the definition's back-link targets (`[JW-ferm](#id3)`)
+  // disappears. Preserve internal-reference anchors whose href points at a
+  // footnote/citation definition.
+  const definitionIds = new Set<string>();
+  $main.find(".footnote, .citation").each((_, el) => {
+    const id = $(el).attr("id");
+    if (id) definitionIds.add(id);
+  });
+  $main.find("a.reference.internal[id]").each((_, el) => {
+    const href = $(el).attr("href");
+    if (href?.startsWith("#") && definitionIds.has(href.slice(1))) {
+      preserveId(el);
+    }
+  });
 }
 
 export async function processMembersAndSetMeta(
