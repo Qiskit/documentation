@@ -491,14 +491,14 @@ std::cout << "\n✓ Collected " << all_bitstrings.size()
 **Output:**
 ```
 ✓ Connected to IBM Quantum
-✓ Selected backend: ibm_fez
+✓ Selected backend: ibm_pittsburgh
 ⏳ Waiting for 100 jobs to complete...
 ✓ Collected 10000 total bitstrings from all circuits
 ```
 
 Connects to IBM Quantum, selects the backend by name, and submits one job per circuit. Each job is polled independently; bitstrings are collected from `result[0]` of each job — no per-shot printing.
 
-All results quoted in this README come from a single run on `ibm_fez` (100 circuits × 100 shots). Hardware noise varies between runs, so your counts and final energy will differ.
+The hardware results quoted in this README come from a run on `ibm_pittsburgh` (100 circuits × 100 shots), with `backend_name` changed from the default `ibm_fez`. The saved samples were postprocessed with the corrected determinant bit ordering shown below. Hardware noise varies between runs, so your counts and final energy will differ.
 
 > **Changing the backend:** Change `backend_name` in `SqDRIFT.cpp` to target a different device; `service.backends()` lists what your account can reach.
 
@@ -530,9 +530,8 @@ std::cout << "✓ Generated " << ci_strings.size() << " CI strings" << std::endl
 std::ofstream alpha_file("alphadets_from_sqd.txt");
 for (const auto& ci_string : ci_strings) {
     std::string bitstr;
-    for (size_t i = 0; i < ci_string.size(); i++) {
-        bitstr += ci_string[i] ? '1' : '0';
-    }
+    // SBD expects the highest orbital index first (bit zero on the right).
+    boost::to_string(ci_string, bitstr);
     alpha_file << bitstr << "\n";
 }
 alpha_file.close();
@@ -544,9 +543,9 @@ std::cout << " Ready for SBD diagonalization!" << std::endl;
 **Output:**
 ```
 ✓ Collected 10000 total bitstrings from all circuits
-✓ Postselected 1103 bitstrings with Hamming weight (7,7)
-✓ Generated 45 CI strings
-✓ Wrote 45 CI strings to alphadets_from_sqd.txt
+✓ Postselected 1137 bitstrings with Hamming weight (7,7)
+✓ Generated 49 CI strings
+✓ Wrote 49 CI strings to alphadets_from_sqd.txt
  Ready for SBD diagonalization!
 ```
 Postselects bitstrings with the correct Hamming weight (n_alpha spin-up, n_beta spin-down electrons, derived from the FCIDump `NELEC` field), converts them to Configuration Interaction (CI) strings using spin symmetrization, and writes them to `alphadets_from_sqd.txt` for subsequent Selected Basis Diagonalization.
@@ -567,9 +566,9 @@ The two examples differ in several respects at once, not only in how they treat 
 
 Each of these affects the sampled subspace, and therefore the energy, independently. The larger circuit ensemble and the second, longer evolution time both broaden the set of configurations the Python example explores — sampling at more than one time is what gives SqDRIFT its Krylov-like coverage of the low-energy space, so a single-time run explores less of it. Filtering diagonal terms changes which operators are available to the sampler and the relative weights it draws from, so the two runs are not even sampling the same distribution.
 
-On postselection specifically: it is a strict filter, so a shot with the wrong particle number is dropped outright. In the run recorded above that is most of the data — 1103 of 10000 shots survived the (7,7) Hamming-weight check, about 11%, which then collapsed into just 45 distinct α-determinants. Configuration recovery instead uses average orbital occupancies from a previous diagonalization to flip bits and *repair* such a shot into a symmetry-valid one, recycling shots that postselection discards. That feedback makes it inherently iterative — `recover_configurations` in `qiskit-addon-sqd-hpc` requires an `avg_occupancies` argument that only exists once a diagonalization has run.
+On postselection specifically: it is a strict filter, so a shot with the wrong particle number is dropped outright. In the run recorded above that is most of the data — 1137 of 10000 shots survived the (7,7) Hamming-weight check, about 11%, which then collapsed into just 49 distinct α-determinants. Configuration recovery instead uses average orbital occupancies from a previous diagonalization to flip bits and *repair* such a shot into a symmetry-valid one, recycling shots that postselection discards. That feedback makes it inherently iterative — `recover_configurations` in `qiskit-addon-sqd-hpc` requires an `avg_occupancies` argument that only exists once a diagonalization has run.
 
-The observable outcome of this particular C++ run is a subspace of 45 α-determinants and an energy of `-106.7127` Ha. For this Hamiltonian the exact answer is available for comparison: the full α-determinant space for 7 electrons in 10 orbitals is only $\binom{10}{7} = 120$ strings, so feeding all 120 to the same `diag` binary gives the exact FCI energy `-107.6482` Ha. This run therefore sits about `0.94` Ha above the exact result while spanning 45 of the 120 available α-determinants. Since SQD is variational in the selected subspace, a smaller subspace can only give an equal or higher energy, so an incomplete subspace is the most direct reading of the gap.
+The observable outcome of this particular C++ run is a subspace of 49 α-determinants and an energy of `-107.5109` Ha. For this Hamiltonian the exact answer is available for comparison: the full α-determinant space for 7 electrons in 10 orbitals is only $\binom{10}{7} = 120$ strings, so feeding all 120 to the same `diag` binary gives the exact FCI energy `-107.6482` Ha. This run therefore sits about `0.1373` Ha above the exact result while spanning 49 of the 120 available α-determinants. Since SQD is variational in the selected subspace, a smaller subspace can only give an equal or higher energy, so an incomplete subspace is the most direct reading of the gap.
 
 Note that this exact-FCI check is only possible because the example is small; it is not part of the SqDRIFT workflow, and for system sizes where SQD is actually needed no such reference exists. It is used here purely to quantify how much of the space this run recovered.
 
@@ -710,35 +709,29 @@ cd ../../../..
 - `--tolerance 1e-8`: Convergence tolerance for energy
 
 ```
- Elapsed time for helper construction 0.002257 (sec) 
- Elapsed time for init 1e-06 (sec) 
- Davidson iteration 0.0 (tol=0.2203969277116679): -106.6161592040213
- Davidson iteration 0.1 (tol=0.2511236678295695): -106.6379575991942 -106.5784044161228
- Davidson iteration 0.2 (tol=0.2215085118082215): -106.6777707088556 -106.6379340729481 -106.5779723653678
- Davidson iteration 0.3 (tol=0.08855420978502823): -106.708537150295 -106.6488609967798 -106.5857128236443 -105.1706051086718
- Davidson iteration 0.4 (tol=0.009715669378837248): -106.7126397551487 -106.6490674253476 -106.5862677107405 -105.1844440714578
- Davidson iteration 0.5 (tol=0.001421615208550751): -106.7126821041105 -106.6500481470846 -106.5874396869078 -105.2069520203813
- Davidson iteration 0.6 (tol=0.0002551578348894031): -106.7126829717841 -106.651088275621 -106.5877058778548 -105.4303569475224
- Davidson iteration 0.7 (tol=5.05089192064267e-05): -106.7126830097915 -106.6553571840038 -106.5933201637875 -105.8093748853088
- Davidson iteration 0.8 (tol=7.383630600054837e-06): -106.7126830109018 -106.6594821488169 -106.5953985788309 -105.8533327121656
- Davidson iteration 0.9 (tol=1.234589278606681e-06): -106.7126830109266 -106.6623248059741 -106.5976708698388 -105.9155031111593
- Davidson iteration 1.0 (tol=1.234589277852113e-06): -106.7126830109266
- Davidson iteration 1.1 (tol=2.318397604484957e-07): -106.7126830109274 -105.531727295947
- Davidson iteration 1.2 (tol=1.36305234510888e-07): -106.7126830109274 -106.5731784395845 -105.3823868555147
- Davidson iteration 1.3 (tol=7.236729264422945e-08): -106.7126830109274 -106.5903913728404 -106.4711511952638 -105.3778888274531
- Davidson iteration 1.4 (tol=3.144915095918728e-08): -106.7126830109274 -106.6531047799521 -106.4752027940502 -106.0177445679214
- Davidson iteration 1.5 (tol=4.565017217972835e-09): -106.7126830109274 -106.6624943307486 -106.5121402314891 -106.1051623903646
- Elapsed time for davidson 0.044592 (sec) 
- Elapsed time for diagonalization 0.044593 (sec) 
- Elapsed time for mult 0.0007559999999999999 (sec) 
- Energy = -106.7126830109274
- Elapsed time for measurement 0.000134 (sec) 
- Sample-based diagonalization: Energy = -106.7126830109274
- Sample-based diagonalization: density = [1.999998616002671,1.999999368906908,1.998704983814813,1.998130734424902,0.8825702242662372,1.118025744786651,1.998849936141351,1.998309008584048,0.002678606630423681,0.002732776442000999
+ Elapsed time for helper construction 0.001512 (sec)
+ Elapsed time for init 1e-06 (sec)
+ Davidson iteration 0.0 (tol=0.1857493937033264): -107.493531425221
+ Davidson iteration 0.1 (tol=0.0455699976495391): -107.5098150493379 -105.93368397386
+ Davidson iteration 0.2 (tol=0.009291923190816917): -107.5108356028703 -106.1245977311231 -105.6823366883346
+ Davidson iteration 0.3 (tol=0.001488674426419356): -107.5108711084406 -106.3219246016818 -105.7376912083761 -105.4392974334491
+ Davidson iteration 0.4 (tol=0.0003188697654737439): -107.5108722237947 -106.5935152393201 -106.1108017566682 -105.4932621297472
+ Davidson iteration 0.5 (tol=3.080273116687244e-05): -107.5108722587463 -106.7245930484005 -106.2313070085243 -105.6423237790271
+ Davidson iteration 0.6 (tol=2.981303155550973e-06): -107.5108722590151 -106.8008116251279 -106.330411722324 -105.69489630447
+ Davidson iteration 0.7 (tol=4.565075388900609e-07): -107.5108722590186 -106.8090569201597 -106.3345525819528 -106.0578325555555
+ Davidson iteration 0.8 (tol=4.870689101320012e-08): -107.5108722590186 -106.8098939189322 -106.3973756614146 -106.1617813840531
+ Davidson iteration 0.9 (tol=6.224330513865847e-09): -107.5108722590187 -106.8159869231416 -106.4315891597535 -106.2222021964013
+ Elapsed time for davidson 0.031276 (sec)
+ Elapsed time for diagonalization 0.031286 (sec)
+ Elapsed time for mult 0.002511 (sec)
+ Energy = -107.5108722590187
+ Elapsed time for measurement 4.6e-05 (sec)
+ Sample-based diagonalization: Energy = -107.5108722590187
+ Sample-based diagonalization: density = [1.999989340109303,1.99999662423008,1.999199121034164,1.981735389885314,1.999825046204946,1.999847567448985,1.995347419300126,0.01136512984757364,0.009844780833945199,0.002849581105572152
  Sample-based diagonalization: carryover bitstrings = [], size = 0
 ```
 
-The `Energy = -106.7126830109274` line is the ground-state estimate over the sampled subspace.
+The `Energy = -107.5108722590187` line is the ground-state estimate over the sampled subspace.
 
 ## Key parameters
 

@@ -353,9 +353,8 @@ int main() {
     std::ofstream alpha_file("alphadets_from_sqd.txt");
     for (const auto& ci_string : ci_strings) {
         std::string bitstr;
-        for (size_t i = 0; i < ci_string.size(); i++) {
-            bitstr += ci_string[i] ? '1' : '0';
-        }
+        // SBD expects the highest orbital index first (bit zero on the right).
+        boost::to_string(ci_string, bitstr);
         alpha_file << bitstr << "\n";
     }
     alpha_file.close();
