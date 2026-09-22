@@ -22,13 +22,21 @@ python_api_name: qiskit_ibm_runtime.options_models.EnvironmentOptions
 
   ### image
 
-  <Attribute id="qiskit_ibm_runtime.options_models.EnvironmentOptions.image" attributeTypeHint="Annotated[str, FieldInfo(annotation" attributeValue="NoneType, required=True, metadata=[_PydanticGeneralMetadata(pattern='[a-zA-Z0-9]+([/.\\-_][a-zA-Z0-9]+)*:[a-zA-Z0-9]+([.\\-_][a-zA-Z0-9]+)*$')])] | None = None" modifiers="field">
+  <Attribute id="qiskit_ibm_runtime.options_models.EnvironmentOptions.image" modifiers="field">
+    Type: `Annotated`\[`str`, `FieldInfo`(`annotation``=``NoneType`, `required``=``True`, `metadata``=`\[`_PydanticGeneralMetadata`(`pattern``=``'[a-zA-Z0-9]+([/.\\-_][a-zA-Z0-9]+)*:[a-zA-Z0-9]+([.\\-_][a-zA-Z0-9]+)*$'`)])] | `None`
+
+    Default value: `None`
+
     IBM Quantum Compute (formerly Qiskit Runtime) image used for this job.
   </Attribute>
 
   ### job\_tags
 
-  <Attribute id="qiskit_ibm_runtime.options_models.EnvironmentOptions.job_tags" attributeTypeHint="list[str]" attributeValue="[]" modifiers="field">
+  <Attribute id="qiskit_ibm_runtime.options_models.EnvironmentOptions.job_tags" modifiers="field">
+    Type: `list`\[`str`]
+
+    Default value: `[]`
+
     Tags to be assigned to the job.
 
     The tags can subsequently be used as a filter in the `qiskit_ibm_runtime.qiskit_runtime_service.jobs()` function call.
@@ -36,13 +44,21 @@ python_api_name: qiskit_ibm_runtime.options_models.EnvironmentOptions
 
   ### log\_level
 
-  <Attribute id="qiskit_ibm_runtime.options_models.EnvironmentOptions.log_level" attributeTypeHint="Literal['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL']" attributeValue="'WARNING'" modifiers="field">
+  <Attribute id="qiskit_ibm_runtime.options_models.EnvironmentOptions.log_level" modifiers="field">
+    Type: `Literal`\[`'DEBUG'`, `'INFO'`, `'WARNING'`, `'ERROR'`, `'CRITICAL'`]
+
+    Default value: `'WARNING'`
+
     Logging level to set in the execution environment.
   </Attribute>
 
   ### max\_execution\_time
 
-  <Attribute id="qiskit_ibm_runtime.options_models.EnvironmentOptions.max_execution_time" attributeTypeHint="int | None" attributeValue="None" modifiers="field">
+  <Attribute id="qiskit_ibm_runtime.options_models.EnvironmentOptions.max_execution_time" modifiers="field">
+    Type: `int` | `None`
+
+    Default value: `None`
+
     Maximum execution time in seconds.
 
     This value bounds system execution time (not wall clock time). System execution time is the amount of time that the system is dedicated to processing your job. If a job exceeds this time limit, it is forcibly cancelled.
@@ -50,7 +66,11 @@ python_api_name: qiskit_ibm_runtime.options_models.EnvironmentOptions
 
   ### private
 
-  <Attribute id="qiskit_ibm_runtime.options_models.EnvironmentOptions.private" attributeTypeHint="bool" attributeValue="False" modifiers="field">
+  <Attribute id="qiskit_ibm_runtime.options_models.EnvironmentOptions.private" modifiers="field">
+    Type: `bool`
+
+    Default value: `False`
+
     Boolean that indicates whether the job is marked as private.
 
     When set to true, input parameters are not returned, and the results can only be read once. After the job is completed, input parameters are deleted from the service. After the results are read, these are also deleted from the service. When set to false, the input parameters and results follow the standard retention behavior of the API.

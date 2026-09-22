@@ -86,7 +86,11 @@ Noise model specification for evaluating spacetime Pauli checks.
 
   #### gate\_noise
 
-  <Attribute id="qiskit_paulice.noise_models.NoiseModel.gate_noise" attributeTypeHint="GateNoise | None" attributeValue="None">
+  <Attribute id="qiskit_paulice.noise_models.NoiseModel.gate_noise">
+    Type: `GateNoise` | [`None`](https://docs.python.org/3/library/constants.html#None)
+
+    Default value: `None`
+
     Errors that occur during 2-qubit gate operations. Can be:
 
     *   `UniformNoise`: Same error probability for all gates. The error probability is equally distributed to each Pauli basis represented in the channel.
@@ -96,20 +100,30 @@ Noise model specification for evaluating spacetime Pauli checks.
 
   #### idling\_noise
 
-  <Attribute id="qiskit_paulice.noise_models.NoiseModel.idling_noise" attributeTypeHint="float | None" attributeValue="None">
+  <Attribute id="qiskit_paulice.noise_models.NoiseModel.idling_noise">
+    Type: [`float`](https://docs.python.org/3/library/functions.html#float) | [`None`](https://docs.python.org/3/library/constants.html#None)
+
+    Default value: `None`
+
     Qubit decay rate during idle time. Total error probability is given as `1 - exp(-t / idling_noise)`.
   </Attribute>
 
   #### readout\_noise
 
-  <Attribute id="qiskit_paulice.noise_models.NoiseModel.readout_noise" attributeTypeHint="float | None" attributeValue="None">
+  <Attribute id="qiskit_paulice.noise_models.NoiseModel.readout_noise">
+    Type: [`float`](https://docs.python.org/3/library/functions.html#float) | [`None`](https://docs.python.org/3/library/constants.html#None)
+
+    Default value: `None`
+
     Probability of bit-flip during measurement.
   </Attribute>
 </Class>
 
 ### UniformGateNoise
 
-<Attribute id="qiskit_paulice.noise_models.UniformGateNoise" attributeValue="<class 'float'>">
+<Attribute id="qiskit_paulice.noise_models.UniformGateNoise">
+  Default value: `<class 'float'>`
+
   A depolarizing probability applied uniformly to all 2-qubit gates.
 
   This probability will be equally distributed among the `15` non-identity Paulis in the 2-qubit Pauli basis to form the depolarizing channel. This noise channel will be applied **after** each entangling gate.
@@ -141,7 +155,9 @@ Noise model specification for evaluating spacetime Pauli checks.
 
 ### GateNoise
 
-<Attribute id="qiskit_paulice.noise_models.GateNoise" attributeValue="float | dict[tuple[tuple[int, int], ...], list[tuple[qiskit.quantum_info.operators.symplectic.pauli.Pauli | str, float]]] | dict[tuple[int, int], list[tuple[str, float]]]">
+<Attribute id="qiskit_paulice.noise_models.GateNoise">
+  Default value: `float | dict[tuple[tuple[int, int], ...], list[tuple[qiskit.quantum_info.operators.symplectic.pauli.Pauli | str, float]]] | dict[tuple[int, int], list[tuple[str, float]]]`
+
   Gate noise can be uniform (float), layered (dict), or gate-wise (dict).
 </Attribute>
 

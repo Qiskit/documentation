@@ -137,7 +137,12 @@ function prepareHandlers(meta: Metadata): Record<string, Handle> {
         return buildApiVersionAdmonition(node, handlers, "info");
       }
 
-      return node.properties.id && nodeClasses.includes("section")
+      // `math-wrapper` divs carry the anchor ID for numbered Sphinx equations
+      // (e.g. `id="equation-foo"`), which is otherwise dropped by the default
+      // div handler since it isn't a `section`.
+      return node.properties.id &&
+        (nodeClasses.includes("section") ||
+          nodeClasses.includes("math-wrapper"))
         ? [buildSpanId(node.properties.id), ...all(h, node)]
         : defaultHandlers.div(h, node);
     },
@@ -264,7 +269,7 @@ function buildAdmonition(
       {
         type: "mdxJsxAttribute",
         name: "title",
-        value: toText(titleNode),
+        value: titleNode ? toText(titleNode) : "",
       },
       {
         type: "mdxJsxAttribute",
@@ -362,17 +367,7 @@ function buildApiComponent(h: H, node: any): any {
   };
 
   maybeAddAttribute(hastTree, "id", node.properties.id);
-  maybeAddAttribute(
-    hastTree,
-    "attributeTypeHint",
-    node.properties.attributetypehint,
-  );
-  maybeAddAttribute(
-    hastTree,
-    "attributeTypeHintHref",
-    node.properties.attributetypehinthref,
-  );
-  maybeAddAttribute(hastTree, "attributeValue", node.properties.attributevalue);
+  maybeAddAttribute(hastTree, "name", node.properties.name);
   maybeAddExpressionAttribute(
     hastTree,
     "isDedicatedPage",

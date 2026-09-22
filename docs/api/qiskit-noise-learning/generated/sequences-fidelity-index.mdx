@@ -1,0 +1,178 @@
+---
+title: Qiskit noise learning API documentation (latest version)
+description: Index of all the modules in the latest version of qiskit-noise-learning.
+---
+
+<span id="qiskit-noise-learning-sequences-fidelityindex" />
+
+# qiskit\_noise\_learning.sequences.FidelityIndex
+
+<Class id="qiskit_noise_learning.sequences.FidelityIndex" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/sequences/fidelity_index.py" signature="qiskit_noise_learning.sequences.FidelityIndex(gate_name: str, pauli: QubitSparsePauli, in_z_idxs: frozenset[int], out_z_idxs: frozenset[int], input_pauli: QubitSparsePauli, output_pauli: QubitSparsePauli, sign_flip: bool, meas_idxs: frozenset[int])" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
+
+  Index data for a fidelity in a Pauli-MCM-reset gate set.
+
+  Let $K$ be the number of qubits, $[K] = \{0, ..., K-1\}$, $M\subset [K]$ denote the measured qubits, and $R \subset [K]$ the reset qubits for the gate. For a given gate, each fidelity is specified by:
+
+  *   A Pauli on the unmeasured and unreset qubits $Q \in P^{[K]\setminus (M \cup R)}$,
+  *   A $Z$-type operator $Z^x$ on the measured qubits, $x \in Z_2^M$, and
+  *   A $Z$-type operator $Z^y$ on the measured and reset qubits, $y \in Z_2^{M \cup R}$.
+
+  This list constitutes the “index data” for a generalized fidelity for a given gate, in the sense that there is a bijection between all generalized fidelities and the above set of all objects satisfying the above description. See Equation [(3)](/docs/addons/qiskit-noise-learning/guides/formalism#equation-clifford-mcm-reset-form) of the [mathematical formalism](/docs/addons/qiskit-noise-learning/guides/formalism) for the decomposition in which these appear.
+
+  The exponents $x$ and $y$ are stored as the sets of qubit indices on which they are non-zero, namely [`in_z_idxs`](#qiskit_noise_learning.sequences.FidelityIndex.in_z_idxs "qiskit_noise_learning.sequences.FidelityIndex.in_z_idxs") and [`out_z_idxs`](#qiskit_noise_learning.sequences.FidelityIndex.out_z_idxs "qiskit_noise_learning.sequences.FidelityIndex.out_z_idxs") – equivalently, the qubits on which $Z^x$ and $Z^y$ act non-trivially.
+
+  The constructor [`FidelityIndex.from_gate()`](#qiskit_noise_learning.sequences.FidelityIndex.from_gate "qiskit_noise_learning.sequences.FidelityIndex.from_gate") builds a [`FidelityIndex`](#qiskit_noise_learning.sequences.FidelityIndex "qiskit_noise_learning.sequences.FidelityIndex") from a [`ModelGate`](gate-sets-model-gate "qiskit_noise_learning.gate_sets.ModelGate") and the above unique index data. Alternatively, [`FidelityIndex.from_transition()`](#qiskit_noise_learning.sequences.FidelityIndex.from_transition "qiskit_noise_learning.sequences.FidelityIndex.from_transition") can be used to build an instance from the Pauli transition implied by the index data. The [`FidelityIndex.__init__()`](#qiskit_noise_learning.sequences.FidelityIndex.__init__ "qiskit_noise_learning.sequences.FidelityIndex.__init__") is viewed as a “low-level” constructor which takes all stored properties without validation.
+
+  **Parameters**
+
+  *   **gate\_name** – The name of the gate.
+  *   **pauli** – A Pauli operator with support on unmeasured and unreset qubits. Note that `pauli.num_qubits` controls the size of the operators returned by `self.transition`.
+  *   **in\_z\_idxs** – The qubit indices on which $x$ is non-zero.
+  *   **out\_z\_idxs** – The qubit indices on which $y$ is non-zero.
+  *   **input\_pauli** – The input Pauli of the transition.
+  *   **output\_pauli** – The output Pauli of the transition.
+  *   **sign\_flip** – Whether the transition involves a sign flip.
+  *   **meas\_idxs** – The measurement qubit indices for the gate.
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit_noise_learning.sequences.FidelityIndex.__init__" signature="__init__(gate_name: str, pauli: QubitSparsePauli, in_z_idxs: frozenset[int], out_z_idxs: frozenset[int], input_pauli: QubitSparsePauli, output_pauli: QubitSparsePauli, sign_flip: bool, meas_idxs: frozenset[int])" />
+
+  ## Methods
+
+  |                                                                                                                                                                                             |                                                                              |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit_noise_learning.sequences.FidelityIndex.__init__ "qiskit_noise_learning.sequences.FidelityIndex.__init__")(gate\_name, pauli, in\_z\_idxs, ...)                         |                                                                              |
+  | [`from_gate`](#qiskit_noise_learning.sequences.FidelityIndex.from_gate "qiskit_noise_learning.sequences.FidelityIndex.from_gate")(gate, pauli\[, in\_z\_idxs, out\_z\_idxs])                | Construct a fidelity index from a gate and unique index data.                |
+  | [`from_transition`](#qiskit_noise_learning.sequences.FidelityIndex.from_transition "qiskit_noise_learning.sequences.FidelityIndex.from_transition")(gate, in\_pauli, out\_pauli)            | Construct a fidelity index from a Pauli transition on the quantum registers. |
+  | [`is_valid_for_gate`](#qiskit_noise_learning.sequences.FidelityIndex.is_valid_for_gate "qiskit_noise_learning.sequences.FidelityIndex.is_valid_for_gate")(gate, pauli\[, in\_z\_idxs, ...]) | Whether the given index data forms a valid fidelity index for the gate.      |
+
+  ## Attributes
+
+  |                                                                                                                                                     |                                                                              |
+  | --------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+  | [`gate_name`](#qiskit_noise_learning.sequences.FidelityIndex.gate_name "qiskit_noise_learning.sequences.FidelityIndex.gate_name")                   | The name of the gate.                                                        |
+  | [`in_z_idxs`](#qiskit_noise_learning.sequences.FidelityIndex.in_z_idxs "qiskit_noise_learning.sequences.FidelityIndex.in_z_idxs")                   | The measured qubits carrying a $Z$ on the instrument input.                  |
+  | [`mask`](#qiskit_noise_learning.sequences.FidelityIndex.mask "qiskit_noise_learning.sequences.FidelityIndex.mask")                                  | The mask for marginalizing measurement outcomes.                             |
+  | [`observable_idxs`](#qiskit_noise_learning.sequences.FidelityIndex.observable_idxs "qiskit_noise_learning.sequences.FidelityIndex.observable_idxs") | Qubit indices of the associated $Z$ observable in ascending order.           |
+  | [`out_z_idxs`](#qiskit_noise_learning.sequences.FidelityIndex.out_z_idxs "qiskit_noise_learning.sequences.FidelityIndex.out_z_idxs")                | The measured and reset qubits carrying a $Z$ on the instrument output.       |
+  | [`pauli`](#qiskit_noise_learning.sequences.FidelityIndex.pauli "qiskit_noise_learning.sequences.FidelityIndex.pauli")                               | The Pauli operator on the Clifford portion of the model gate.                |
+  | [`sign_flip`](#qiskit_noise_learning.sequences.FidelityIndex.sign_flip "qiskit_noise_learning.sequences.FidelityIndex.sign_flip")                   | Whether the transition associated with this fidelity involves a sign flip.   |
+  | [`transition`](#qiskit_noise_learning.sequences.FidelityIndex.transition "qiskit_noise_learning.sequences.FidelityIndex.transition")                | The phaseless Pauli operator transition associated with this fidelity index. |
+
+  ### from\_gate
+
+  <Function id="qiskit_noise_learning.sequences.FidelityIndex.from_gate" signature="from_gate(gate: ModelGate, pauli: QubitSparsePauli, in_z_idxs: frozenset[int] = frozenset({}), out_z_idxs: frozenset[int] = frozenset({})) → Self" modifiers="classmethod">
+    Construct a fidelity index from a gate and unique index data.
+
+    **Parameters**
+
+    *   **gate** – The model gate.
+    *   **pauli** – A Pauli operator with support on unmeasured and unreset qubits.
+    *   **in\_z\_idxs** – The subset of measurement qubit indices carrying a $Z$ on the instrument input.
+    *   **out\_z\_idxs** – The subset of the union of measurement and reset qubit indices carrying a $Z$ on the instrument output.
+
+    **Raises**
+
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If the provided data is inconsistent with the gate.
+  </Function>
+
+  ### is\_valid\_for\_gate
+
+  <Function id="qiskit_noise_learning.sequences.FidelityIndex.is_valid_for_gate" signature="is_valid_for_gate(gate: ModelGate, pauli: QubitSparsePauli, in_z_idxs: frozenset[int] = frozenset({}), out_z_idxs: frozenset[int] = frozenset({})) → bool" modifiers="classmethod">
+    Whether the given index data forms a valid fidelity index for the gate.
+
+    This performs the same (side-effect-free) consistency checks as [`from_gate()`](#qiskit_noise_learning.sequences.FidelityIndex.from_gate "qiskit_noise_learning.sequences.FidelityIndex.from_gate"), without constructing the index or computing its transition.
+
+    **Parameters**
+
+    *   **gate** – The model gate.
+    *   **pauli** – A Pauli operator with support on unmeasured and unreset qubits.
+    *   **in\_z\_idxs** – The subset of measurement qubit indices carrying a $Z$ on the instrument input.
+    *   **out\_z\_idxs** – The subset of the union of measurement and reset qubit indices carrying a $Z$ on the instrument output.
+  </Function>
+
+  ### from\_transition
+
+  <Function id="qiskit_noise_learning.sequences.FidelityIndex.from_transition" signature="from_transition(gate: ModelGate, in_pauli: QubitSparsePauli, out_pauli: QubitSparsePauli) → Self" modifiers="classmethod">
+    Construct a fidelity index from a Pauli transition on the quantum registers.
+
+    This constructor deduces the Pauli and $Z$ index sets of a [`FidelityIndex`](#qiskit_noise_learning.sequences.FidelityIndex "qiskit_noise_learning.sequences.FidelityIndex") from the given Pauli transition.
+
+    **Parameters**
+
+    *   **gate** – The model gate.
+    *   **in\_pauli** – The input Pauli on the quantum register.
+    *   **out\_pauli** – The output Pauli on the quantum register.
+
+    **Raises**
+
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If the pair of Pauli operators do not imply a valid [`FidelityIndex`](#qiskit_noise_learning.sequences.FidelityIndex "qiskit_noise_learning.sequences.FidelityIndex").
+  </Function>
+
+  ### gate\_name
+
+  <Attribute id="qiskit_noise_learning.sequences.FidelityIndex.gate_name">
+    Type: [`str`](https://docs.python.org/3/library/stdtypes.html#str)
+
+    The name of the gate.
+  </Attribute>
+
+  ### pauli
+
+  <Attribute id="qiskit_noise_learning.sequences.FidelityIndex.pauli">
+    Type: [`QubitSparsePauli`](/docs/api/qiskit/qiskit.quantum_info.QubitSparsePauli)
+
+    The Pauli operator on the Clifford portion of the model gate.
+  </Attribute>
+
+  ### in\_z\_idxs
+
+  <Attribute id="qiskit_noise_learning.sequences.FidelityIndex.in_z_idxs">
+    Type: [`frozenset`](https://docs.python.org/3/library/stdtypes.html#frozenset)\[[`int`](https://docs.python.org/3/library/functions.html#int)]
+
+    The measured qubits carrying a $Z$ on the instrument input.
+  </Attribute>
+
+  ### out\_z\_idxs
+
+  <Attribute id="qiskit_noise_learning.sequences.FidelityIndex.out_z_idxs">
+    Type: [`frozenset`](https://docs.python.org/3/library/stdtypes.html#frozenset)\[[`int`](https://docs.python.org/3/library/functions.html#int)]
+
+    The measured and reset qubits carrying a $Z$ on the instrument output.
+  </Attribute>
+
+  ### sign\_flip
+
+  <Attribute id="qiskit_noise_learning.sequences.FidelityIndex.sign_flip">
+    Type: [`bool`](https://docs.python.org/3/library/functions.html#bool)
+
+    Whether the transition associated with this fidelity involves a sign flip.
+  </Attribute>
+
+  ### transition
+
+  <Attribute id="qiskit_noise_learning.sequences.FidelityIndex.transition">
+    Type: [`tuple`](https://docs.python.org/3/library/stdtypes.html#tuple)\[[`QubitSparsePauli`](/docs/api/qiskit/qiskit.quantum_info.QubitSparsePauli), [`QubitSparsePauli`](/docs/api/qiskit/qiskit.quantum_info.QubitSparsePauli)]
+
+    The phaseless Pauli operator transition associated with this fidelity index.
+  </Attribute>
+
+  ### mask
+
+  <Attribute id="qiskit_noise_learning.sequences.FidelityIndex.mask">
+    Type: [`ndarray`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)\[[`bool`](https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.bool)]
+
+    The mask for marginalizing measurement outcomes.
+  </Attribute>
+
+  ### observable\_idxs
+
+  <Attribute id="qiskit_noise_learning.sequences.FidelityIndex.observable_idxs">
+    Type: [`list`](https://docs.python.org/3/library/stdtypes.html#list)\[[`int`](https://docs.python.org/3/library/functions.html#int)]
+
+    Qubit indices of the associated $Z$ observable in ascending order.
+  </Attribute>
+</Class>
+

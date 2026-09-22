@@ -1,0 +1,34 @@
+---
+title: IBM Quantum Compute client changelog
+description: The latest updates from IBM Quantum Compute client, including the latest package release summaries and platform updates.
+
+---
+
+{/* cspell:ignore GGUF Phasecraft */}
+# IBM Quantum Compute client v0.46.0
+
+## April 2026
+
+<span id="executor-primitive"></span>
+- **Introducing the Executor primitive**: We're excited to announce the release of the new `Executor` primitive and a new version of the noise-learning helper class, `NoiseLearnerV3`, both of which were first previewed at QDC 2025.
+
+  Together with [Samplomatic](https://qiskit.github.io/samplomatic/index.html), they make up the [directed execution model](/docs/guides/directed-execution-model), which provides full transparency and control to fine-tune your error mitigation workflow. The [Probabilistic error cancellation with shaded lightcones](https://qiskit.github.io/qiskit-addon-slc/tutorials/01_getting_started.html) tutorial, for example, demonstrates how this model is used to combine advanced techniques, including shaded lightcones, probabilistic error cancellation (PEC), Twirled Readout Error eXtinction (TREX), and [measurement-based postselection](/docs/guides/post-selection), to further improve the result quality.
+
+  If you prefer a higher level of abstraction, [`EstimatorV2`](/docs/guides/estimator-noise-management) in Qiskit Runtime continues to provide several built-in error mitigation and suppression techniques, which you can easily tune using the [`resilience_level`](/docs/guides/estimator-noise-management#resilience-level) option.
+
+  To learn more, see the following guides:
+
+    - [Executor quickstart](/docs/guides/get-started-with-executor)
+    - [Noise learning helper](/docs/guides/noise-learning)
+
+  Both of these new features are currently in beta and require `qiskit-ibm-runtime` version 0.47.0 or higher.
+
+## March 2026
+- `qiskit-ibm-runtime` v0.46.0 has been released. View bug fixes and other notes since v0.45.0 in the [release notes](/docs/api/qiskit-ibm-runtime/release-notes#0460-2026-03-23).
+
+{/* use text like this to point to the release notes when they aren't mentioned previously: */}
+{/*- For all updates, bug fixes, and new features, see the full [0.46.0 release notes](/docs/api/qiskit-ibm-runtime/release-notes#0460-2026-03-23).*/} 
+
+{/* use url format /api/qiskit-ibm-runtime/release-notes#0XYZ to link to the specific 0.XY.Z version of the release notes */}
+
+*To see the release notes for all versions, visit the [IBM Quantum Compute client release notes](/docs/api/qiskit-ibm-runtime/release-notes).*

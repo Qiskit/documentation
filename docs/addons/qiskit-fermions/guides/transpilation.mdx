@@ -1,0 +1,117 @@
+---
+title: "Transpile fermionic circuits"
+description: "Transpile fermionic circuits for the latest version of Qiskit Fermions"
+---
+
+<span id="transpilation-explanation" />
+
+# Transpile fermionic circuits
+
+<Admonition title="Important" type="danger">
+  The concepts in this guide are currently available only in the Python API. Equivalent functionality will be made available in the C API in a future release.
+</Admonition>
+
+This guide explains how to transpile a [`FermionicCircuit`](/docs/api/qiskit-fermions/circuit-fermionic-circuit#qiskit_fermions.circuit.FermionicCircuit "qiskit_fermions.circuit.FermionicCircuit") to a standard [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit). It continues with the same time evolution example from the [fermionic circuits guide](circuit#fermionic-circuit-explanation).
+
+## Transpilation stages
+
+As explained in [`qiskit_fermions.transpiler`](/docs/api/qiskit-fermions/transpiler#module-qiskit_fermions.transpiler "qiskit_fermions.transpiler"), the preset pass managers in this project split the transpilation into the following stages:
+
+## **Input**
+
+Converts the input circuit to a directed acyclic graph (DAG) data structure.
+
+## **Optimization**
+
+Keeps the circuit in fermionic space. These passes use fermionic structure and commutation relations while problem-aware knowledge remains fully available.
+
+## **Layout**
+
+Maps fermionic mode registers to quantum registers. For occupation-basis mappings like Jordan-Wigner, each fermionic mode maps to a single qubit. This stage also supports more general mappings where the number of qubits differs from the number of fermionic modes.
+
+## **Synthesis**
+
+Converts fermionic gates to qubit operations by using the chosen fermion-to-qubit mapping. [`FermionicGate`](/docs/api/qiskit-fermions/circuit-fermionic-gate#qiskit_fermions.circuit.FermionicGate "qiskit_fermions.circuit.FermionicGate") instances are transformed into sequences of standard quantum gates.
+
+## **Qubit**
+
+Transpiles the resulting qubit circuit by using standard Qiskit methods, including optimization, layout, and routing for your target hardware.
+
+## **Output**
+
+Converts the internal DAG data structure to the desired output format.
+
+## A practical example: transpilation using Jordan-Wigner
+
+Use the preset pass manager to transpile your fermionic circuit with the Jordan-Wigner fermion-to-qubit mapping:
+
+\[x] Python
+
+```python
+>>> from qiskit_fermions.circuit import FermionicCircuit
+>>> from qiskit_fermions.circuit.library import Evolution
+>>> from qiskit_fermions.operators import FermionOperator, cre, ann
+>>> from qiskit_fermions.transpiler.presets import generate_preset_jw_pass_manager
+>>>
+>>> # Create the same fermionic circuit from the previous guide
+>>> circuit = FermionicCircuit(4)
+>>> hamiltonian = FermionOperator.from_terms([
+...     ([cre(0), ann(2)], 0.5),
+...     ([cre(2), ann(0)], 0.5),
+...     ([cre(1), ann(3)], 0.5),
+...     ([cre(3), ann(1)], 0.5),
+... ])
+>>> hamiltonian.groups = [0, 0, 1, 1]
+>>> evolution = Evolution(4, hamiltonian, time=1.0)
+>>> circuit.append(evolution, circuit.register)
+>>>
+>>> # Generate the Jordan-Wigner transpilation pipeline
+>>> pm = generate_preset_jw_pass_manager()
+>>>
+>>> # Transpile the fermionic circuit to a qubit circuit
+>>> qubit_circuit = pm.run(circuit)
+>>>
+>>> # The result is a standard QuantumCircuit
+>>> print(type(qubit_circuit))
+<class 'qiskit.circuit.quantumcircuit.QuantumCircuit'>
+```
+
+\[ ] C
+
+```c
+// The C API for transpilation will be made available in a future release.
+```
+
+![The transpiled QuantumCircuit of the fermionic time evolution.](/docs/images/addons/qiskit-fermions/transpilation-2.avif)
+
+### Compare with the traditional workflow
+
+The [fermionic circuits](circuit#fermionic-circuit-explanation) guide describes how the traditional workflow performs fermion-to-qubit encoding *before* building the [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit). Compare the two approaches:
+
+```python
+>>> from qiskit_fermions.mappers.library import jordan_wigner
+>>> from qiskit.circuit import QuantumCircuit
+>>> from qiskit.circuit.library import PauliEvolutionGate
+>>>
+>>> # Map the fermionic Hamiltonian to a qubit operator
+>>> qubit_hamiltonian = jordan_wigner(hamiltonian, 4).simplify()
+>>>
+>>> # Build the QuantumCircuit directly
+>>> quantum_circuit = QuantumCircuit(4)
+>>> pauli_evolution = PauliEvolutionGate(qubit_hamiltonian, time=1.0)
+>>> quantum_circuit.append(pauli_evolution, quantum_circuit.qubits)
+<qiskit.circuit.instructionset.InstructionSet object at ...>
+```
+
+![The directly constructed QuantumCircuit of the fermionic time evolution.](/docs/images/addons/qiskit-fermions/transpilation-4.avif)
+
+Both workflows produce equivalent circuits. However, the traditional workflow requires you to implement optimization steps manually, whereas with the fermionic-first approach you can integrate problem-aware optimizations into the transpilation process.
+
+## Advanced workflows
+
+The preset pass manager provides a convenient starting point. For more advanced use cases, you can do the following:
+
+*   Customize the transpiler passes run during each stage.
+*   Implement custom fermion-to-qubit mappings by creating synthesis plugins (see [`F2QSynthesisPlugin`](/docs/api/qiskit-fermions/transpiler-passes-synthesis-f-2-q-synthesis-plugin#qiskit_fermions.transpiler.passes.synthesis.F2QSynthesisPlugin "qiskit_fermions.transpiler.passes.synthesis.F2QSynthesisPlugin")).
+*   Build custom transpiler passes.
+

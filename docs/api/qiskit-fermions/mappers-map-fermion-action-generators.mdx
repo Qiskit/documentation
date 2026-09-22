@@ -1,0 +1,63 @@
+---
+title: map_fermion_action_generators (latest version)
+description: API reference for qiskit_fermions.mappers.map_fermion_action_generators in the latest version of qiskit-fermions
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit_fermions.mappers.map_fermion_action_generators
+---
+
+<span id="map-fermion-action-generators" />
+
+# map\_fermion\_action\_generators
+
+<Function id="qiskit_fermions.mappers.map_fermion_action_generators" isDedicatedPage={true} signature="map_fermion_action_generators(operator, map_action, identity, compose=None)">
+  Map a [`FermionOperator`](operators-fermion-operator "qiskit_fermions.operators.FermionOperator") to another operator type.
+
+  This is a generic function to aid in implementing new mappers for [`FermionOperator`](operators-fermion-operator "qiskit_fermions.operators.FermionOperator") instances. At its core, it simply iterates over the terms of the operator, mapping each encountered [`FermionAction`](operators-fermion-action-fermion-action "qiskit_fermions.operators.fermion_action.FermionAction") with the user-provided `map_action` function. In combination with the user-provided `identity` generator, this allows mapping to arbitrary output types.
+
+  <Admonition title="Note" type="note">
+    The output type `T` must support multiplication by a scalar via `__mul__`. If `compose=None` it must also support composition of two instances via `__and__`.
+  </Admonition>
+
+  ```pycon
+  >>> from qiskit_fermions.mappers import map_fermion_action_generators
+  >>> from qiskit_fermions.operators import FermionAction, FermionOperator, ann, cre
+  >>> from qiskit.quantum_info import SparsePauliOp
+  >>>
+  >>> def jordan_wigner(action: FermionAction) -> SparsePauliOp:
+  ...     act, idx = action
+  ...     qubits = list(range(idx + 1))
+  ...     return SparsePauliOp.from_sparse_list(
+  ...         [
+  ...             ("Z" * idx + "X", qubits, 0.5),
+  ...             ("Z" * idx + "Y", qubits, -0.5j if act else 0.5j),
+  ...         ],
+  ...         num_qubits=num_qubits,
+  ...     )
+  >>>
+  >>> num_qubits = 2
+  >>> def identity() -> SparsePauliOp:
+  ...     return SparsePauliOp.from_sparse_list([("", [], 1)], num_qubits)
+  >>>
+  >>> op = FermionOperator.from_dict({(cre(0), ann(1)): 2.0})
+  >>> qop = map_fermion_action_generators(op, jordan_wigner, identity)
+  >>> print([(label, complex(coeff)) for label, coeff in sorted(qop.label_iter())])
+  [('II', 0j), ('XX', (0.5+0j)), ('XY', -0.5j), ('YX', 0.5j), ('YY', (0.5+0j))]
+  ```
+
+  **Parameters**
+
+  *   **operator** ([*FermionOperator*](operators-fermion-operator "qiskit_fermions.operators.fermion_operator.FermionOperator")) – the operator to be mapped.
+  *   **map\_action** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*bool*](https://docs.python.org/3/library/functions.html#bool)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*]], T]*) – the function to map a single [`FermionAction`](operators-fermion-action-fermion-action "qiskit_fermions.operators.fermion_action.FermionAction") to the desired output type.
+  *   **identity** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[], T]*) – the function to generate the multiplicative identity instance of the output type.
+  *   **compose** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[T, T], T] | None*) – an optional function to implement the compositiion logic of two output type instances. If this is not provided, it will default to using [`operator.and_()`](https://docs.python.org/3/library/operator.html#operator.and_).
+
+  **Returns**
+
+  The mapped operator.
+
+  **Return type**
+
+  *T*
+</Function>
+

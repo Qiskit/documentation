@@ -1,0 +1,72 @@
+---
+title: ModelGateSet (latest version)
+description: API reference for qiskit_noise_learning.gate_sets.ModelGateSet in the latest version of qiskit-noise-learning
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_noise_learning.gate_sets.ModelGateSet
+---
+
+<span id="qiskit-noise-learning-gate-sets-modelgateset" />
+
+# qiskit\_noise\_learning.gate\_sets.ModelGateSet
+
+<Class id="qiskit_noise_learning.gate_sets.ModelGateSet" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/gate_sets/model_gate_set.py" signature="qiskit_noise_learning.gate_sets.ModelGateSet(num_qubits: int, *, qubit_subset: Iterable[int] | None = None, coupling_map: CouplingMap | None = None, name: str | None = None, latex_str: str | None = None)" modifiers="class">
+  Bases: [`GateSet`](gate-sets-gate-set "qiskit_noise_learning.gate_sets.gate_set.GateSet")\[[`ModelGate`](gate-sets-model-gate "qiskit_noise_learning.gate_sets.model_gate.ModelGate")]
+
+  A set of Clifford - MCM - reset gates represented as [`ModelGate`](gate-sets-model-gate "qiskit_noise_learning.gate_sets.ModelGate") instances.
+
+  **Parameters**
+
+  *   **num\_qubits** – How many qubits the QPU of interest has.
+  *   **qubit\_subset** – A subset of `range(num_qubits)` specifying the region of interest of the QPU. All gates added must act within this subset. By default, contains all qubits.
+  *   **coupling\_map** – A coupling map for the device. Defaults to the full coupling map on `num_qubits`.
+  *   **name** – Name for this gate set. If `None`, `name` falls back to the class name.
+  *   **latex\_str** – An optional LaTeX string for rendering this gate set.
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit_noise_learning.gate_sets.ModelGateSet.__init__" signature="__init__(num_qubits: int, *, qubit_subset: Iterable[int] | None = None, coupling_map: CouplingMap | None = None, name: str | None = None, latex_str: str | None = None)" />
+
+  ## Methods
+
+  |                                                                                                                                                                      |                                                  |
+  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
+  | [`__init__`](#qiskit_noise_learning.gate_sets.ModelGateSet.__init__ "qiskit_noise_learning.gate_sets.ModelGateSet.__init__")(num\_qubits, \*\[, qubit\_subset, ...]) |                                                  |
+  | `add_gate`(gate)                                                                                                                                                     | Add a gate to the gate set.                      |
+  | `draw`()                                                                                                                                                             | Draw the device topology with per-gate coloring. |
+  | `get`(k\[,d])                                                                                                                                                        |                                                  |
+  | `items`()                                                                                                                                                            |                                                  |
+  | `keys`()                                                                                                                                                             |                                                  |
+  | `values`()                                                                                                                                                           |                                                  |
+
+  ## Attributes
+
+  |                                                                                                                                                |                                                                                                                                                     |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | [`coupling_map`](#qiskit_noise_learning.gate_sets.ModelGateSet.coupling_map "qiskit_noise_learning.gate_sets.ModelGateSet.coupling_map")       | The coupling map for the device this gate set is modeling.                                                                                          |
+  | `label`                                                                                                                                        | A string label for use in plotter legends.                                                                                                          |
+  | `latex_str`                                                                                                                                    | A LaTeX string for this gate set.                                                                                                                   |
+  | `math_label`                                                                                                                                   | A string label for use within latex math mode.                                                                                                      |
+  | [`model_gate_set`](#qiskit_noise_learning.gate_sets.ModelGateSet.model_gate_set "qiskit_noise_learning.gate_sets.ModelGateSet.model_gate_set") | Return a [`ModelGateSet`](#qiskit_noise_learning.gate_sets.ModelGateSet "qiskit_noise_learning.gate_sets.ModelGateSet") representing this gate set. |
+  | `name`                                                                                                                                         | Name for this gate set, defaulting to the class name.                                                                                               |
+  | `num_qubits`                                                                                                                                   | The total number of qubits of the device this gateset acts on.                                                                                      |
+  | `qubit_subset`                                                                                                                                 | The indices of the subset of device qubits that all gates act on.                                                                                   |
+  | `target`                                                                                                                                       | The target of this gateset, if one exists.                                                                                                          |
+
+  ### coupling\_map
+
+  <Attribute id="qiskit_noise_learning.gate_sets.ModelGateSet.coupling_map">
+    Type: [`CouplingMap`](/docs/api/qiskit/qiskit.transpiler.CouplingMap)
+
+    The coupling map for the device this gate set is modeling.
+  </Attribute>
+
+  ### model\_gate\_set
+
+  <Attribute id="qiskit_noise_learning.gate_sets.ModelGateSet.model_gate_set">
+    Type: [`Self`](https://docs.python.org/3/library/typing.html#typing.Self)
+
+    Return a [`ModelGateSet`](#qiskit_noise_learning.gate_sets.ModelGateSet "qiskit_noise_learning.gate_sets.ModelGateSet") representing this gate set.
+  </Attribute>
+</Class>
+

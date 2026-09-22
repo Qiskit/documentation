@@ -34,13 +34,13 @@ python_api_name: qiskit.transpiler.StagedPassManager
 
   **Parameters**
 
-  *   **stages** (*Iterable\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*]*) – An optional list of stages to use for this instance. If this is not specified the default stages list `['init', 'layout', 'routing', 'translation', 'optimization', 'scheduling']` is used. After instantiation, the final list will be immutable and stored as tuple. If a stage is provided multiple times (i.e. at different relative positions), the associated passes, including pre and post, will run once per declaration.
+  *   **stages** (*Iterable\[*[*str*](https://docs.python.org/3/builtins/stdtypes.html#str)*]*) – An optional list of stages to use for this instance. If this is not specified the default stages list `['init', 'layout', 'routing', 'translation', 'optimization', 'scheduling']` is used. After instantiation, the final list will be immutable and stored as tuple. If a stage is provided multiple times (i.e. at different relative positions), the associated passes, including pre and post, will run once per declaration.
   *   **kwargs** – The initial [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager") values for any stages defined in `stages`. If a argument is not defined the stages will default to `None` indicating an empty/undefined stage.
 
   **Raises**
 
-  *   [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError) – If a stage in the input keyword arguments is not defined.
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If an invalid stage name is specified.
+  *   [**AttributeError**](https://docs.python.org/3/builtins/exceptions.html#AttributeError) – If a stage in the input keyword arguments is not defined.
+  *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If an invalid stage name is specified.
 
   ## Attributes
 
@@ -52,7 +52,9 @@ python_api_name: qiskit.transpiler.StagedPassManager
 
   ### invalid\_stage\_regex
 
-  <Attribute id="qiskit.transpiler.StagedPassManager.invalid_stage_regex" attributeValue="re.compile('\\s|\\+|\\-|\\*|\\/|\\\\|\\%|\\<|\\>|\\@|\\!|\\~|\\^|\\&|\\:|\\[|\\]|\\{|\\}|\\(|\\)')" />
+  <Attribute id="qiskit.transpiler.StagedPassManager.invalid_stage_regex">
+    Default value: `re.compile('\\s|\\+|\\-|\\*|\\/|\\\\|\\%|\\<|\\>|\\@|\\!|\\~|\\^|\\&|\\:|\\[|\\]|\\{|\\}|\\(|\\)')`
+  </Attribute>
 
   ### stages
 
@@ -69,7 +71,7 @@ python_api_name: qiskit.transpiler.StagedPassManager
 
     **Parameters**
 
-    **passes** ([*Task*](qiskit.passmanager.Task "qiskit.passmanager.base_tasks.Task")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*Task*](qiskit.passmanager.Task "qiskit.passmanager.base_tasks.Task")*]*) – A set of transpiler passes to be added to schedule.
+    **passes** ([*Task*](qiskit.passmanager.Task "qiskit.passmanager.base_tasks.Task")  *|*[*list*](https://docs.python.org/3/builtins/stdtypes.html#list)*\[*[*Task*](qiskit.passmanager.Task "qiskit.passmanager.base_tasks.Task")*]*) – A set of transpiler passes to be added to schedule.
 
     **Raises**
 
@@ -91,9 +93,9 @@ python_api_name: qiskit.transpiler.StagedPassManager
 
     **Parameters**
 
-    *   **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – file path to save image to.
-    *   **style** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)) – keys are the pass classes and the values are the colors to make them. An example can be seen in the DEFAULT\_STYLE. An ordered dict can be used to ensure a priority coloring when pass falls into multiple categories. Any values not included in the provided dict will be filled in from the default dict.
-    *   **raw** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – If `True`, save the raw Dot output instead of the image.
+    *   **filename** ([*str*](https://docs.python.org/3/builtins/stdtypes.html#str)) – file path to save image to.
+    *   **style** ([*dict*](https://docs.python.org/3/builtins/stdtypes.html#dict)) – keys are the pass classes and the values are the colors to make them. An example can be seen in the DEFAULT\_STYLE. An ordered dict can be used to ensure a priority coloring when pass falls into multiple categories. Any values not included in the provided dict will be filled in from the default dict.
+    *   **raw** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) – If `True`, save the raw Dot output instead of the image.
   </Function>
 
   ### remove
@@ -103,7 +105,7 @@ python_api_name: qiskit.transpiler.StagedPassManager
 
     **Parameters**
 
-    **index** ([*int*](https://docs.python.org/3/library/functions.html#int)) – Pass index to remove, based on the position in [`passes()`](/docs/api/qiskit/dev/transpiler_passes#module-qiskit.transpiler.passes "qiskit.transpiler.passes").
+    **index** ([*int*](https://docs.python.org/3/builtins/functions.html#int)) – Pass index to remove, based on the position in [`passes()`](/docs/api/qiskit/dev/transpiler_passes#module-qiskit.transpiler.passes "qiskit.transpiler.passes").
 
     **Raises**
 
@@ -121,8 +123,8 @@ python_api_name: qiskit.transpiler.StagedPassManager
 
     **Parameters**
 
-    *   **index** ([*int*](https://docs.python.org/3/library/functions.html#int)) – Pass index to replace, based on the position in passes().
-    *   **passes** (*BasePass |* [*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[BasePass]*) – A pass set to be added to the pass manager schedule.
+    *   **index** ([*int*](https://docs.python.org/3/builtins/functions.html#int)) – Pass index to replace, based on the position in passes().
+    *   **passes** (*BasePass |* [*list*](https://docs.python.org/3/builtins/stdtypes.html#list)*\[BasePass]*) – A pass set to be added to the pass manager schedule.
 
     **Return type**
 
@@ -138,7 +140,7 @@ python_api_name: qiskit.transpiler.StagedPassManager
 
     *   **circuits** (*\_CircuitsT*) – Circuit(s) to transform via all the registered passes.
 
-    *   **output\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – The output circuit name. If `None`, it will be set to the same as the input circuit name.
+    *   **output\_name** ([*str*](https://docs.python.org/3/builtins/stdtypes.html#str) *| None*) – The output circuit name. If `None`, it will be set to the same as the input circuit name.
 
     *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable) *| None*) –
 
@@ -174,9 +176,9 @@ python_api_name: qiskit.transpiler.StagedPassManager
               When running transpilation with multi-processing, the callback function is invoked within the context of each sub-process, independently of the parent process.
             </Admonition>
 
-    *   **num\_processes** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – The maximum number of parallel processes to launch if parallel execution is enabled. This argument overrides `num_processes` in the user configuration file, and the `QISKIT_NUM_PROCS` environment variable. If set to `None` the system default or local user configuration will be used.
+    *   **num\_processes** ([*int*](https://docs.python.org/3/builtins/functions.html#int) *| None*) – The maximum number of parallel processes to launch if parallel execution is enabled. This argument overrides `num_processes` in the user configuration file, and the `QISKIT_NUM_PROCS` environment variable. If set to `None` the system default or local user configuration will be used.
 
-    *   **property\_set** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*,* [*object*](https://docs.python.org/3/library/functions.html#object)*] | None*) – If given, the initial value to use as the [`PropertySet`](qiskit.passmanager.PropertySet "qiskit.passmanager.PropertySet") for the pass manager pipeline. This can be used to persist analysis from one run to another, in cases where you know the analysis is safe to share. Beware that some analysis will be specific to the input circuit and the particular [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target"), so you should take a lot of care when using this argument.
+    *   **property\_set** ([*dict*](https://docs.python.org/3/builtins/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/builtins/stdtypes.html#str)*,* [*object*](https://docs.python.org/3/builtins/functions.html#object)*] | None*) – If given, the initial value to use as the [`PropertySet`](qiskit.passmanager.PropertySet "qiskit.passmanager.PropertySet") for the pass manager pipeline. This can be used to persist analysis from one run to another, in cases where you know the analysis is safe to share. Beware that some analysis will be specific to the input circuit and the particular [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target"), so you should take a lot of care when using this argument.
 
     **Returns**
 

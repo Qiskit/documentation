@@ -646,15 +646,15 @@ In general, the requirement is that **all the same circuit modifications are mad
 
 Some tips for ensuring this include:
 
-*   Be very careful when iterating over hash-based containers. Iteration over Python’s [`set`](https://docs.python.org/3/library/stdtypes.html#set) is non-deterministic due to hash-seed randomization. In Rust, iteration over the standard-library hash-based containers, including `hashbrown` equivalents with their default hashers is non-deterministic.
+*   Be very careful when iterating over hash-based containers. Iteration over Python’s [`set`](https://docs.python.org/3/builtins/stdtypes.html#set) is non-deterministic due to hash-seed randomization. In Rust, iteration over the standard-library hash-based containers, including `hashbrown` equivalents with their default hashers is non-deterministic.
 
     <Admonition title="Note" type="note">
-      Iteration over Python’s [`dict`](https://docs.python.org/3/library/stdtypes.html#dict) *is* deterministic, and guaranteed to be in insertion order if there have been no removals, and arbitrary but still deterministic order if there have been deterministic removals.
+      Iteration over Python’s [`dict`](https://docs.python.org/3/builtins/stdtypes.html#dict) *is* deterministic, and guaranteed to be in insertion order if there have been no removals, and arbitrary but still deterministic order if there have been deterministic removals.
     </Admonition>
 
-    In Python, if you need to create a [`set`](https://docs.python.org/3/library/stdtypes.html#set) and then iterate over it, consider instead using a [`dict`](https://docs.python.org/3/library/stdtypes.html#dict) with all the values being `None` as a substitute. Using a [`set`](https://docs.python.org/3/library/stdtypes.html#set) purely for membership testing is no trouble.
+    In Python, if you need to create a [`set`](https://docs.python.org/3/builtins/stdtypes.html#set) and then iterate over it, consider instead using a [`dict`](https://docs.python.org/3/builtins/stdtypes.html#dict) with all the values being `None` as a substitute. Using a [`set`](https://docs.python.org/3/builtins/stdtypes.html#set) purely for membership testing is no trouble.
 
-    In Rust, use `indexmap` and its structs `IndexMap` and `IndexSet` as replacements for `HashMap` and `HashSet`, respectively; they have similar deterministic-iteration properties to Python’s [`dict`](https://docs.python.org/3/library/stdtypes.html#dict).
+    In Rust, use `indexmap` and its structs `IndexMap` and `IndexSet` as replacements for `HashMap` and `HashSet`, respectively; they have similar deterministic-iteration properties to Python’s [`dict`](https://docs.python.org/3/builtins/stdtypes.html#dict).
 
 *   If your pass has stochastic components, ensure that you accept a `seed` input, and make your output pure if this is supplied as an integer. Typically this means storing the seed, and instantiating a new pRNG from this seed at the start of each call to `BasePass.run()`.
 
@@ -783,168 +783,24 @@ There are also specific data structures to represent a specific subset of inform
 For example, if we wanted to visualize the [`CouplingMap`](/docs/api/qiskit/dev/qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") for the example 3 qubit [`Target`](/docs/api/qiskit/dev/qiskit.transpiler.Target "qiskit.transpiler.Target") above:
 
 ```python
-from qiskit.circuit import Parameter, Measure
-from qiskit.transpiler import Target, InstructionProperties
-from qiskit.circuit.library import UGate, RZGate, RXGate, RYGate, CXGate, CZGate
-
-target = Target(num_qubits=3)
-target.add_instruction(CXGate(), {(0, 1): InstructionProperties(error=.0001, duration=5e-7)})
-target.add_instruction(
-    UGate(Parameter('theta'), Parameter('phi'), Parameter('lam')),
-    {
-        (0,): InstructionProperties(error=.00001, duration=5e-8),
-        (1,): InstructionProperties(error=.00002, duration=6e-8)
-    }
-)
-target.add_instruction(
-    RZGate(Parameter('theta')),
-    {
-        (1,): InstructionProperties(error=.00001, duration=5e-8),
-        (2,): InstructionProperties(error=.00002, duration=6e-8)
-    }
-)
-target.add_instruction(
-    RYGate(Parameter('theta')),
-    {
-        (1,): InstructionProperties(error=.00001, duration=5e-8),
-        (2,): InstructionProperties(error=.00002, duration=6e-8)
-    }
-)
-target.add_instruction(
-    RXGate(Parameter('theta')),
-    {
-        (1,): InstructionProperties(error=.00001, duration=5e-8),
-        (2,): InstructionProperties(error=.00002, duration=6e-8)
-    }
-)
-target.add_instruction(
-    CZGate(),
-    {
-        (1, 2): InstructionProperties(error=.0001, duration=5e-7),
-        (2, 0): InstructionProperties(error=.0001, duration=5e-7)
-    }
-)
-target.add_instruction(
-    Measure(),
-    {
-        (0,): InstructionProperties(error=.001, duration=5e-5),
-        (1,): InstructionProperties(error=.002, duration=6e-5),
-        (2,): InstructionProperties(error=.2, duration=5e-7)
-    }
-)
-
 target.build_coupling_map().draw()
 ```
+
+![Output from the previous code.](/docs/images/api/qiskit/dev/transpiler-5.avif)
 
 This shows the global connectivity of the [`Target`](/docs/api/qiskit/dev/qiskit.transpiler.Target "qiskit.transpiler.Target") which is the combination of the supported qubits for [`CXGate`](/docs/api/qiskit/dev/qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate") and [`CZGate`](/docs/api/qiskit/dev/qiskit.circuit.library.CZGate "qiskit.circuit.library.CZGate"). To see the individual connectivity, you can pass the operation name to `CouplingMap.build_coupling_map()`:
 
 ```python
-from qiskit.circuit import Parameter, Measure
-from qiskit.transpiler import Target, InstructionProperties
-from qiskit.circuit.library import UGate, RZGate, RXGate, RYGate, CXGate, CZGate
-
-target = Target(num_qubits=3)
-target.add_instruction(CXGate(), {(0, 1): InstructionProperties(error=.0001, duration=5e-7)})
-target.add_instruction(
-    UGate(Parameter('theta'), Parameter('phi'), Parameter('lam')),
-    {
-        (0,): InstructionProperties(error=.00001, duration=5e-8),
-        (1,): InstructionProperties(error=.00002, duration=6e-8)
-    }
-)
-target.add_instruction(
-    RZGate(Parameter('theta')),
-    {
-        (1,): InstructionProperties(error=.00001, duration=5e-8),
-        (2,): InstructionProperties(error=.00002, duration=6e-8)
-    }
-)
-target.add_instruction(
-    RYGate(Parameter('theta')),
-    {
-        (1,): InstructionProperties(error=.00001, duration=5e-8),
-        (2,): InstructionProperties(error=.00002, duration=6e-8)
-    }
-)
-target.add_instruction(
-    RXGate(Parameter('theta')),
-    {
-        (1,): InstructionProperties(error=.00001, duration=5e-8),
-        (2,): InstructionProperties(error=.00002, duration=6e-8)
-    }
-)
-target.add_instruction(
-    CZGate(),
-    {
-        (1, 2): InstructionProperties(error=.0001, duration=5e-7),
-        (2, 0): InstructionProperties(error=.0001, duration=5e-7)
-    }
-)
-target.add_instruction(
-    Measure(),
-    {
-        (0,): InstructionProperties(error=.001, duration=5e-5),
-        (1,): InstructionProperties(error=.002, duration=6e-5),
-        (2,): InstructionProperties(error=.2, duration=5e-7)
-    }
-)
-
 target.build_coupling_map('cx').draw()
 ```
 
+![Output from the previous code.](/docs/images/api/qiskit/dev/transpiler-6.avif)
+
 ```python
-from qiskit.circuit import Parameter, Measure
-from qiskit.transpiler import Target, InstructionProperties
-from qiskit.circuit.library import UGate, RZGate, RXGate, RYGate, CXGate, CZGate
-
-target = Target(num_qubits=3)
-target.add_instruction(CXGate(), {(0, 1): InstructionProperties(error=.0001, duration=5e-7)})
-target.add_instruction(
-    UGate(Parameter('theta'), Parameter('phi'), Parameter('lam')),
-    {
-        (0,): InstructionProperties(error=.00001, duration=5e-8),
-        (1,): InstructionProperties(error=.00002, duration=6e-8)
-    }
-)
-target.add_instruction(
-    RZGate(Parameter('theta')),
-    {
-        (1,): InstructionProperties(error=.00001, duration=5e-8),
-        (2,): InstructionProperties(error=.00002, duration=6e-8)
-    }
-)
-target.add_instruction(
-    RYGate(Parameter('theta')),
-    {
-        (1,): InstructionProperties(error=.00001, duration=5e-8),
-        (2,): InstructionProperties(error=.00002, duration=6e-8)
-    }
-)
-target.add_instruction(
-    RXGate(Parameter('theta')),
-    {
-        (1,): InstructionProperties(error=.00001, duration=5e-8),
-        (2,): InstructionProperties(error=.00002, duration=6e-8)
-    }
-)
-target.add_instruction(
-    CZGate(),
-    {
-        (1, 2): InstructionProperties(error=.0001, duration=5e-7),
-        (2, 0): InstructionProperties(error=.0001, duration=5e-7)
-    }
-)
-target.add_instruction(
-    Measure(),
-    {
-        (0,): InstructionProperties(error=.001, duration=5e-5),
-        (1,): InstructionProperties(error=.002, duration=6e-5),
-        (2,): InstructionProperties(error=.2, duration=5e-7)
-    }
-)
-
 target.build_coupling_map('cz').draw()
 ```
+
+![Output from the previous code.](/docs/images/api/qiskit/dev/transpiler-7.avif)
 
 <span id="transpiler-scheduling-description" />
 

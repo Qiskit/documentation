@@ -1,0 +1,49 @@
+---
+title: ProgramExecutor (latest version)
+description: API reference for qiskit_noise_learning.noise_learner.ProgramExecutor in the latest version of qiskit-noise-learning
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_noise_learning.noise_learner.ProgramExecutor
+---
+
+<span id="qiskit-noise-learning-noise-learner-programexecutor" />
+
+# qiskit\_noise\_learning.noise\_learner.ProgramExecutor
+
+<Class id="qiskit_noise_learning.noise_learner.ProgramExecutor" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/noise_learner/noise_learner.py" signature="qiskit_noise_learning.noise_learner.ProgramExecutor(*args, **kwargs)" modifiers="class">
+  Bases: [`Protocol`](https://docs.python.org/3/library/typing.html#typing.Protocol)
+
+  The executor role that [`NoiseLearner`](noise-learner-noise-learner "qiskit_noise_learning.noise_learner.NoiseLearner") submits programs to.
+
+  Only [`run()`](#qiskit_noise_learning.noise_learner.ProgramExecutor.run "qiskit_noise_learning.noise_learner.ProgramExecutor.run") is required, so both [`Executor`](/docs/api/qiskit-ibm-runtime/executor "(in Qiskit Runtime IBM Client)") and the Aer executor qualify without either declaring conformance.
+
+  <Admonition title="Note" type="note">
+    This protocol, and the `executor` argument of [`NoiseLearner`](noise-learner-noise-learner "qiskit_noise_learning.noise_learner.NoiseLearner") that consumes it, are provisional. They exist so that a learning experiment can be run against a locally simulated executor, and this setup is expected to eventually change.
+  </Admonition>
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit_noise_learning.noise_learner.ProgramExecutor.__init__" signature="__init__(*args, **kwargs)" />
+
+  ## Methods
+
+  |                                                                                                                                                                |                                 |
+  | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- |
+  | [`__init__`](#qiskit_noise_learning.noise_learner.ProgramExecutor.__init__ "qiskit_noise_learning.noise_learner.ProgramExecutor.__init__")(\*args, \*\*kwargs) |                                 |
+  | [`run`](#qiskit_noise_learning.noise_learner.ProgramExecutor.run "qiskit_noise_learning.noise_learner.ProgramExecutor.run")(program)                           | Submit a program for execution. |
+
+  ### run
+
+  <Function id="qiskit_noise_learning.noise_learner.ProgramExecutor.run" signature="run(program: QuantumProgram) → ProgramJob">
+    Submit a program for execution.
+
+    **Parameters**
+
+    **program** – The quantum program to submit.
+
+    **Returns**
+
+    A job carrying the program’s result.
+  </Function>
+</Class>
+

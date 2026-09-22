@@ -1,0 +1,198 @@
+---
+title: Commutator Generators (latest version)
+description: API reference for Commutator Generators in the latest version of qiskit-fermions-c
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: Commutator Generators
+---
+
+# Commutator Generators
+
+The [operator representations](qf-operators#qf-operators) provide efficient functions for the computation of various commutators. Since these functions work with generic operator representations (a notion that does not exist in C), they are explained generically in the following three sections. The actual functions contained in the C API for the various operator representations are listed at the bottom of this page.
+
+## Commutator
+
+### qf\_op\_type\_commutator
+
+<Function id="qf_op_type_commutator" signature="OpType qf_op_type_commutator(const OpType *op_a, const OpType *op_b)">
+  <Admonition title="Caution" type="note">
+    The function signature here is **generic**! A real one will replace `OpType` with an actual [operator representations](qf-operators#qf-operators) and `op_type` with its matching prefix (for example, `ferm_op` for [`QfFermionOperator`](qf-ferm-op#qffermionoperator "QfFermionOperator")).
+  </Admonition>
+
+  The commutator is defined as:
+
+$$
+[A, B] = AB - BA
+$$
+
+  **Parameters**
+
+  *   **op\_a** – A pointer to the operator $A$.
+  *   **op\_b** – A pointer to the operator $B$.
+
+  **Returns**
+
+  A pointer to the constructed operator commutator.
+</Function>
+
+### Example
+
+```c
+ 1QfFermionOperator *op1 = qf_ferm_op_zero();
+ 2QkComplex64 coeff1 = {1.0, 0.0};
+ 3bool action1[2] = {true, false};
+ 4uint32_t modes1[2] = {0, 0};
+ 5qf_ferm_op_add_term(op1, 2, action1, modes1, &coeff1);
+ 6QfFermionOperator *op2 = qf_ferm_op_zero();
+ 7QkComplex64 coeff2 = {2.0, 0.0};
+ 8bool action2[2] = {false, true};
+ 9uint32_t modes2[2] = {0, 0};
+10qf_ferm_op_add_term(op2, 2, action2, modes2, &coeff2);
+11
+12QfFermionOperator *comm = qf_ferm_op_commutator(op1, op2);
+```
+
+## Anti-Commutator
+
+### qf\_op\_type\_anti\_commutator
+
+<Function id="qf_op_type_anti_commutator" signature="OpType qf_op_type_anti_commutator(const OpType *op_a, const OpType *op_b)">
+  <Admonition title="Caution" type="note">
+    The function signature here is **generic**! A real one will replace `OpType` with an actual [operator representations](qf-operators#qf-operators) and `op_type` with its matching prefix (for example, `ferm_op` for [`QfFermionOperator`](qf-ferm-op#qffermionoperator "QfFermionOperator")).
+  </Admonition>
+
+  The anti-commutator is defined as:
+
+$$
+\{A, B\} = AB + BA
+$$
+
+  **Parameters**
+
+  *   **op\_a** – A pointer to the operator $A$.
+  *   **op\_b** – A pointer to the operator $B$.
+
+  **Returns**
+
+  A pointer to the constructed operator anti-commutator.
+</Function>
+
+<span id="id1" />
+
+### Example
+
+```c
+ 1QfFermionOperator *op1 = qf_ferm_op_zero();
+ 2QkComplex64 coeff1 = {1.0, 0.0};
+ 3bool action1[2] = {true, false};
+ 4uint32_t modes1[2] = {0, 0};
+ 5qf_ferm_op_add_term(op1, 2, action1, modes1, &coeff1);
+ 6QfFermionOperator *op2 = qf_ferm_op_zero();
+ 7QkComplex64 coeff2 = {2.0, 0.0};
+ 8bool action2[2] = {false, true};
+ 9uint32_t modes2[2] = {0, 0};
+10qf_ferm_op_add_term(op2, 2, action2, modes2, &coeff2);
+11
+12QfFermionOperator *anti_comm = qf_ferm_op_anti_commutator(op1, op2);
+```
+
+## Double-Commutator
+
+### qf\_op\_type\_double\_commutator
+
+<Function id="qf_op_type_double_commutator" signature="OpType qf_op_type_double_commutator(const OpType *op_a, const OpType *op_b, const OpType *op_c, bool sign)">
+  <Admonition title="Caution" type="note">
+    The function signature here is **generic**! A real one will replace `OpType` with an actual [operator representations](qf-operators#qf-operators) and `op_type` with its matching prefix (for example, `ferm_op` for [`QfFermionOperator`](qf-ferm-op#qffermionoperator "QfFermionOperator")).
+  </Admonition>
+
+  The double-commutator is defined as follows (see also Chapter 13.6, *Equation of motion methods*, page 479 of   <span id="id2" />[\[1\]](#id4); the `sign=false` case is the symmetric double commutator $[A, B, C]$ appearing in Equation (2) of   <span id="id3" />[\[2\]](#id5)):
+
+  If `sign` is `false`, it returns
+
+$$
+[[A, B], C]/2 + [A, [B, C]]/2 = (2ABC + 2CBA - BAC - CAB - ACB - BCA)/2.
+
+
+$$
+
+  If `sign` is `true`, it returns
+
+$$
+\{[A, B], C\}/2 + \{A, [B, C]\}/2 = (2ABC - 2CBA - BAC + CAB - ACB + BCA)/2.
+
+
+$$
+
+  <span id="id4" />
+
+  \[[1](#id2)]
+
+  R. McWeeny. Methods of Molecular Quantum Mechanics. 2nd Edition, Academic Press, 1992. ISBN 0-12-486552-6.
+
+  <span id="id5" />
+
+  \[[2](#id3)]
+
+  P. J. Ollitrault, A. Miessen, I. Tavernelli. Molecular Quantum Dynamics: A Quantum Computing Perspective. Acc. Chem. Res. 54, 4229-4238 (2021). [https://doi.org/10.1021/acs.accounts.1c00514](https://doi.org/10.1021/acs.accounts.1c00514)
+
+  **Parameters**
+
+  *   **op\_a** – A pointer to the operator $A$.
+  *   **op\_b** – A pointer to the operator $B$.
+  *   **op\_c** – A pointer to the operator $C$.
+  *   **sign** – the nature of the outer (anti-)commutator as per the definition above.
+
+  **Returns**
+
+  A pointer to the constructed operator anti-commutator.
+</Function>
+
+<span id="id6" />
+
+### Example
+
+```c
+ 1QfFermionOperator *op1 = qf_ferm_op_zero();
+ 2QkComplex64 coeff1 = {1.0, 0.0};
+ 3bool action1[2] = {true, false};
+ 4uint32_t modes1[2] = {0, 0};
+ 5qf_ferm_op_add_term(op1, 2, action1, modes1, &coeff1);
+ 6QfFermionOperator *op2 = qf_ferm_op_zero();
+ 7QkComplex64 coeff2 = {2.0, 0.0};
+ 8bool action2[2] = {false, true};
+ 9uint32_t modes2[2] = {0, 0};
+10qf_ferm_op_add_term(op2, 2, action2, modes2, &coeff2);
+11QfFermionOperator *op3 = qf_ferm_op_zero();
+12qf_ferm_op_add_term(op3, 2, action1, modes1, &coeff1);
+13QkComplex64 coeff3 = {2.0, 0.5};
+14qf_ferm_op_add_term(op3, 2, action2, modes2, &coeff3);
+15
+16QfFermionOperator *double_comm = qf_ferm_op_double_commutator(op1, op2, op3, false);
+```
+
+## Functions
+
+### qf\_ferm\_op\_commutator
+
+<Function id="qf_ferm_op_commutator" signature="QfFermionOperator *qf_ferm_op_commutator(const QfFermionOperator *op_a, const QfFermionOperator *op_b)" />
+
+### qf\_ferm\_op\_anti\_commutator
+
+<Function id="qf_ferm_op_anti_commutator" signature="QfFermionOperator *qf_ferm_op_anti_commutator(const QfFermionOperator *op_a, const QfFermionOperator *op_b)" />
+
+### qf\_ferm\_op\_double\_commutator
+
+<Function id="qf_ferm_op_double_commutator" signature="QfFermionOperator *qf_ferm_op_double_commutator(const QfFermionOperator *op_a, const QfFermionOperator *op_b, const QfFermionOperator *op_c, bool sign)" />
+
+### qf\_maj\_op\_commutator
+
+<Function id="qf_maj_op_commutator" signature="QfMajoranaOperator *qf_maj_op_commutator(const QfMajoranaOperator *op_a, const QfMajoranaOperator *op_b)" />
+
+### qf\_maj\_op\_anti\_commutator
+
+<Function id="qf_maj_op_anti_commutator" signature="QfMajoranaOperator *qf_maj_op_anti_commutator(const QfMajoranaOperator *op_a, const QfMajoranaOperator *op_b)" />
+
+### qf\_maj\_op\_double\_commutator
+
+<Function id="qf_maj_op_double_commutator" signature="QfMajoranaOperator *qf_maj_op_double_commutator(const QfMajoranaOperator *op_a, const QfMajoranaOperator *op_b, const QfMajoranaOperator *op_c, bool sign)" />
+

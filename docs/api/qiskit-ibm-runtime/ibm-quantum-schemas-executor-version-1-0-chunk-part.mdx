@@ -17,7 +17,9 @@ python_api_name: ibm_quantum_schemas.executor.version_1_0.ChunkPart
 
   ### element\_range
 
-  <Attribute id="ibm_quantum_schemas.executor.version_1_0.ChunkPart.element_range" attributeTypeHint="tuple[int, int, int] [Required]" modifiers="field">
+  <Attribute id="ibm_quantum_schemas.executor.version_1_0.ChunkPart.element_range" modifiers="field">
+    Type: `tuple`\[`int`, `int`, `int`]
+
     Which elements of the item were executed in this chunk part.
 
     This range has entries `(start_idx, stop_idx, step)` that slice the flattened shape of the corresponding quantum program item, after the `permutation` has been applied. That is, this part corresponds to the data elements `flatten(permute(arr))[start_idx:stop_idx:step]` for some data array `arr` whose shape matches the corresponding item shape. The lower index is inclusive, the upper index is exclusive, and the step must be positive.
@@ -32,7 +34,9 @@ python_api_name: ibm_quantum_schemas.executor.version_1_0.ChunkPart
 
   ### idx\_item
 
-  <Attribute id="ibm_quantum_schemas.executor.version_1_0.ChunkPart.idx_item" attributeTypeHint="int [Required]" modifiers="field">
+  <Attribute id="ibm_quantum_schemas.executor.version_1_0.ChunkPart.idx_item" modifiers="field">
+    Type: `int`
+
     The index of an item in a quantum program.
 
     **Validated by**
@@ -42,7 +46,9 @@ python_api_name: ibm_quantum_schemas.executor.version_1_0.ChunkPart
 
   ### permutation
 
-  <Attribute id="ibm_quantum_schemas.executor.version_1_0.ChunkPart.permutation" attributeTypeHint="list[int] [Required]" modifiers="field">
+  <Attribute id="ibm_quantum_schemas.executor.version_1_0.ChunkPart.permutation" modifiers="field">
+    Type: `list`\[`int`]
+
     A permutation vector of the item shape before slicing elements with the `element_range`.
 
     This list should hold contiguous integers starting at 0, in some order. The convention is that `permuted_shape[i] = shape[permutation[i]]` for every dimension index `i`.
@@ -55,7 +61,9 @@ python_api_name: ibm_quantum_schemas.executor.version_1_0.ChunkPart
 
   ### size
 
-  <Attribute id="ibm_quantum_schemas.executor.version_1_0.ChunkPart.size" attributeTypeHint="int [Required]" modifiers="field">
+  <Attribute id="ibm_quantum_schemas.executor.version_1_0.ChunkPart.size" modifiers="field">
+    Type: `int`
+
     The number of elements from the quantum program item that were executed.
 
     For example, if a quantum program item has shape `(10, 5)`, then it has a total of `50` elements, so that if this `size` is `10`, it constitutes 20% of the total work for the item.

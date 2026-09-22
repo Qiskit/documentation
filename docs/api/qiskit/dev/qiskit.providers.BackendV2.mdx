@@ -44,15 +44,15 @@ python_api_name: qiskit.providers.BackendV2
   **Parameters**
 
   *   **provider** – An optional backwards reference to the provider object that the backend is from
-  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – An optional name for the backend
-  *   **description** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – An optional description of the backend
+  *   **name** ([*str*](https://docs.python.org/3/builtins/stdtypes.html#str) *| None*) – An optional name for the backend
+  *   **description** ([*str*](https://docs.python.org/3/builtins/stdtypes.html#str) *| None*) – An optional description of the backend
   *   **online\_date** ([*datetime*](https://docs.python.org/3/library/datetime.html#datetime.datetime) *| None*) – An optional datetime the backend was brought online
-  *   **backend\_version** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – An optional backend version string. This differs from the [`version`](#qiskit.providers.BackendV2.version "qiskit.providers.BackendV2.version") attribute as [`version`](#qiskit.providers.BackendV2.version "qiskit.providers.BackendV2.version") is for the abstract [`Backend`](qiskit.providers.Backend "qiskit.providers.Backend") abstract interface version of the object while `backend_version` is for versioning the backend itself.
+  *   **backend\_version** ([*str*](https://docs.python.org/3/builtins/stdtypes.html#str) *| None*) – An optional backend version string. This differs from the [`version`](#qiskit.providers.BackendV2.version "qiskit.providers.BackendV2.version") attribute as [`version`](#qiskit.providers.BackendV2.version "qiskit.providers.BackendV2.version") is for the abstract [`Backend`](qiskit.providers.Backend "qiskit.providers.Backend") abstract interface version of the object while `backend_version` is for versioning the backend itself.
   *   **fields** – kwargs for the values to use to override the default options.
 
   **Raises**
 
-  [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError) – If a field is specified that’s outside the backend’s options
+  [**AttributeError**](https://docs.python.org/3/builtins/exceptions.html#AttributeError) – If a field is specified that’s outside the backend’s options
 
   ## Attributes
 
@@ -85,7 +85,7 @@ python_api_name: qiskit.providers.BackendV2
 
     **Raises**
 
-    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError) – if the backend doesn’t support querying the output signal timestep
+    [**NotImplementedError**](https://docs.python.org/3/builtins/exceptions.html#NotImplementedError) – if the backend doesn’t support querying the output signal timestep
   </Attribute>
 
   ### instruction\_durations
@@ -121,7 +121,7 @@ python_api_name: qiskit.providers.BackendV2
 
     **Raises**
 
-    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError) – if the backend doesn’t support querying the measurement mapping
+    [**NotImplementedError**](https://docs.python.org/3/builtins/exceptions.html#NotImplementedError) – if the backend doesn’t support querying the measurement mapping
   </Attribute>
 
   ### num\_qubits
@@ -176,7 +176,9 @@ python_api_name: qiskit.providers.BackendV2
 
   ### version
 
-  <Attribute id="qiskit.providers.BackendV2.version" attributeValue="2" />
+  <Attribute id="qiskit.providers.BackendV2.version">
+    Default value: `2`
+  </Attribute>
 
   ### name
 
@@ -213,7 +215,7 @@ python_api_name: qiskit.providers.BackendV2
 
     **Parameters**
 
-    **qubit** ([*int*](https://docs.python.org/3/library/functions.html#int)  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]*) – The qubit to get the [`QubitProperties`](qiskit.providers.QubitProperties "qiskit.providers.QubitProperties") object for. This can be a single integer for 1 qubit or a list of qubits and a list of [`QubitProperties`](qiskit.providers.QubitProperties "qiskit.providers.QubitProperties") objects will be returned in the same order
+    **qubit** ([*int*](https://docs.python.org/3/builtins/functions.html#int)  *|*[*list*](https://docs.python.org/3/builtins/stdtypes.html#list)*\[*[*int*](https://docs.python.org/3/builtins/functions.html#int)*]*) – The qubit to get the [`QubitProperties`](qiskit.providers.QubitProperties "qiskit.providers.QubitProperties") object for. This can be a single integer for 1 qubit or a list of qubits and a list of [`QubitProperties`](qiskit.providers.QubitProperties "qiskit.providers.QubitProperties") objects will be returned in the same order
 
     **Returns**
 
@@ -221,11 +223,11 @@ python_api_name: qiskit.providers.BackendV2
 
     **Raises**
 
-    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError) – if the backend doesn’t support querying the qubit properties
+    [**NotImplementedError**](https://docs.python.org/3/builtins/exceptions.html#NotImplementedError) – if the backend doesn’t support querying the qubit properties
 
     **Return type**
 
-    [*QubitProperties*](qiskit.providers.QubitProperties "qiskit._accelerate.target.QubitProperties") | [list](https://docs.python.org/3/library/stdtypes.html#list)\[[*QubitProperties*](qiskit.providers.QubitProperties "qiskit._accelerate.target.QubitProperties")]
+    [*QubitProperties*](qiskit.providers.QubitProperties "qiskit._accelerate.target.QubitProperties") | [list](https://docs.python.org/3/builtins/stdtypes.html#list)\[[*QubitProperties*](qiskit.providers.QubitProperties "qiskit._accelerate.target.QubitProperties")]
   </Function>
 
   ### run
@@ -237,7 +239,7 @@ python_api_name: qiskit.providers.BackendV2
 
     **Parameters**
 
-    *   **run\_input** ([*QuantumCircuit*](/docs/api/qiskit/dev/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list)) – An individual or a list of [`QuantumCircuit`](/docs/api/qiskit/dev/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects to run on the backend.
+    *   **run\_input** ([*QuantumCircuit*](/docs/api/qiskit/dev/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*list*](https://docs.python.org/3/builtins/stdtypes.html#list)) – An individual or a list of [`QuantumCircuit`](/docs/api/qiskit/dev/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects to run on the backend.
     *   **options** – Any kwarg options to pass to the backend for running the config. If a key is also present in the options attribute/object then the expectation is that the value specified will be used instead of what’s set in the options object.
 
     **Returns**
@@ -262,7 +264,7 @@ python_api_name: qiskit.providers.BackendV2
 
     **Raises**
 
-    [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError) – If the field passed in is not part of the options
+    [**AttributeError**](https://docs.python.org/3/builtins/exceptions.html#AttributeError) – If the field passed in is not part of the options
   </Function>
 </Class>
 

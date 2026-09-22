@@ -1,0 +1,36 @@
+---
+title: gamma (latest version)
+description: API reference for qiskit_fermions.operators.gamma in the latest version of qiskit-fermions
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit_fermions.operators.gamma
+---
+
+# gamma
+
+<Function id="qiskit_fermions.operators.gamma" isDedicatedPage={true} signature="gamma(mode, is_prime)">
+  Create a majorana fermion.
+
+  ## For a given mode `i`, two majorana fermions can be created:
+
+  *   `gamma(i, False)` creates $\gamma = a_i^\dagger + a_i$
+  *   `gamma(i, True)` creates $\gamma' = i(a_i^\dagger - a_i)$
+
+  The argument order is `(mode, is_prime)` to reflect the natural interpretation of majorana operators: first specify the mode, then the variant. Unlike fermionic operators – where the distinction between creation and annihilation is fundamental – the two majorana variants are more symmetric and conceptually less different.
+
+  This mirrors the normal-ordering convention for majoranas, where operators are sorted first by mode and then by variant. For example, a normally ordered string like `((1, True), (0, False), (0, True)` is more readable and intuitive than `((True, 1), (False, 0), (True, 0)`.
+
+  **Parameters**
+
+  *   **mode** ([*int*](https://docs.python.org/3/library/functions.html#int)) – index of the fermionic mode.
+  *   **is\_prime** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – whether to create $\gamma$ (False) or $\gamma'$ (True).
+
+  **Returns**
+
+  A `MajoranaAction` object, which is essentially the flat index `2*mode+int(is_prime)`.
+
+  **Return type**
+
+  [int](https://docs.python.org/3/library/functions.html#int)
+</Function>
+

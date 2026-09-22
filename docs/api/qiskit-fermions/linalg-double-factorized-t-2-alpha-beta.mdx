@@ -1,0 +1,31 @@
+---
+title: double_factorized_t2_alpha_beta (latest version)
+description: API reference for qiskit_fermions.linalg.double_factorized_t2_alpha_beta in the latest version of qiskit-fermions
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit_fermions.linalg.double_factorized_t2_alpha_beta
+---
+
+<span id="double-factorized-t2-alpha-beta" />
+
+# double\_factorized\_t2\_alpha\_beta
+
+<Function id="qiskit_fermions.linalg.double_factorized_t2_alpha_beta" isDedicatedPage={true} signature="double_factorized_t2_alpha_beta(t2_amplitudes, tol, max_terms=None)">
+  Double-factorized decomposition of alpha-beta (spin-unrestricted) $t_2$ amplitudes.
+
+  Returns a list of terms suitable for reconstruction by [`reconstruct_t2_alpha_beta()`](linalg-reconstruct-t-2-alpha-beta "qiskit_fermions.linalg.reconstruct_t2_alpha_beta"). The number of terms is truncated to `max_terms` (default: all).
+
+  **Parameters**
+
+  *   **t2\_amplitudes** – the alpha-beta $t_2$ amplitudes of shape `(nocc_a, nocc_b, nvrt_a, nvrt_b)`.
+  *   **tol** – the tolerance controlling the truncation error of the decomposition.
+  *   **max\_terms** – the maximum number of terms to retain. Defaults to all.
+
+  **Returns**
+
+  A list of 2-tuples, each consisting of
+
+  *   a 3-tuple of the diagonal Coulomb matrices in the order `(aa, ab, bb)`
+  *   a 2-tuple of the orbital rotations in the order `(alpha, beta)`
+</Function>
+

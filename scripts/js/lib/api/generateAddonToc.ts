@@ -155,11 +155,13 @@ function parseTocUl(
       const children: TocEntry[] = [];
       $l1.find("ul > li > a").each((_, a2) => {
         const childHref = $(a2).attr("href") ?? "";
-        const dir = childHref.split("/")[0];
         const slug = hrefToSlug(childHref, pkg);
+        const childUrl = childHref.includes("/")
+          ? `${addonUrlBase}/${childHref.split("/")[0]}/${slug}`
+          : `${addonUrlBase}/${slug}`;
         children.push({
           title: $(a2).text().trim(),
-          url: `${addonUrlBase}/${dir}/${slug}`,
+          url: childUrl,
         });
       });
       if (children.length > 0) entries.push({ title, children });

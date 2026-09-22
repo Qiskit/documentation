@@ -36,8 +36,8 @@ $$
   **Parameters**
 
   *   **data** ([*QuantumCircuit*](/docs/api/qiskit/dev/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*circuit.instruction.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction") *| BaseOperator | np.ndarray*) – data to initialize superoperator.
-  *   **input\_dims** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple) *| None*) – the input subsystem dimensions.
-  *   **output\_dims** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple) *| None*) – the output subsystem dimensions.
+  *   **input\_dims** ([*tuple*](https://docs.python.org/3/builtins/stdtypes.html#tuple) *| None*) – the input subsystem dimensions.
+  *   **output\_dims** ([*tuple*](https://docs.python.org/3/builtins/stdtypes.html#tuple) *| None*) – the output subsystem dimensions.
 
   **Raises**
 
@@ -51,7 +51,9 @@ $$
 
   ### atol
 
-  <Attribute id="qiskit.quantum_info.Kraus.atol" attributeValue="1e-08" />
+  <Attribute id="qiskit.quantum_info.Kraus.atol">
+    Default value: `1e-08`
+  </Attribute>
 
   ### data
 
@@ -79,7 +81,9 @@ $$
 
   ### rtol
 
-  <Attribute id="qiskit.quantum_info.Kraus.rtol" attributeValue="1e-05" />
+  <Attribute id="qiskit.quantum_info.Kraus.rtol">
+    Default value: `1e-05`
+  </Attribute>
 
   ### settings
 
@@ -107,8 +111,8 @@ $$
     **Parameters**
 
     *   **other** ([*Kraus*](#qiskit.quantum_info.Kraus "qiskit.quantum_info.Kraus")) – a Kraus object.
-    *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list) *or None*) – a list of subsystem positions to apply other on. If None apply on all subsystems (default: None).
-    *   **front** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – If True compose using right operator multiplication, instead of left multiplication \[default: False].
+    *   **qargs** ([*list*](https://docs.python.org/3/builtins/stdtypes.html#list) *or None*) – a list of subsystem positions to apply other on. If None apply on all subsystems (default: None).
+    *   **front** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) – If True compose using right operator multiplication, instead of left multiplication \[default: False].
 
     **Returns**
 
@@ -153,7 +157,7 @@ $$
     **Parameters**
 
     *   **other** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – an operator object.
-    *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list) *or None*) – a list of subsystem positions to apply other on. If None apply on all subsystems (default: None).
+    *   **qargs** ([*list*](https://docs.python.org/3/builtins/stdtypes.html#list) *or None*) – a list of subsystem positions to apply other on. If None apply on all subsystems (default: None).
 
     **Returns**
 
@@ -201,12 +205,12 @@ $$
 
     **Parameters**
 
-    *   **atol** ([*float*](https://docs.python.org/3/library/functions.html#float) *| None*)
-    *   **rtol** ([*float*](https://docs.python.org/3/library/functions.html#float) *| None*)
+    *   **atol** ([*float*](https://docs.python.org/3/builtins/functions.html#float) *| None*)
+    *   **rtol** ([*float*](https://docs.python.org/3/builtins/functions.html#float) *| None*)
 
     **Return type**
 
-    [bool](https://docs.python.org/3/library/functions.html#bool)
+    [bool](https://docs.python.org/3/builtins/functions.html#bool)
   </Function>
 
   ### is\_cptp
@@ -222,12 +226,12 @@ $$
 
     **Parameters**
 
-    *   **atol** ([*float*](https://docs.python.org/3/library/functions.html#float) *| None*)
-    *   **rtol** ([*float*](https://docs.python.org/3/library/functions.html#float) *| None*)
+    *   **atol** ([*float*](https://docs.python.org/3/builtins/functions.html#float) *| None*)
+    *   **rtol** ([*float*](https://docs.python.org/3/builtins/functions.html#float) *| None*)
 
     **Return type**
 
-    [bool](https://docs.python.org/3/library/functions.html#bool)
+    [bool](https://docs.python.org/3/builtins/functions.html#bool)
   </Function>
 
   ### is\_unitary
@@ -237,12 +241,12 @@ $$
 
     **Parameters**
 
-    *   **atol** ([*float*](https://docs.python.org/3/library/functions.html#float) *| None*)
-    *   **rtol** ([*float*](https://docs.python.org/3/library/functions.html#float) *| None*)
+    *   **atol** ([*float*](https://docs.python.org/3/builtins/functions.html#float) *| None*)
+    *   **rtol** ([*float*](https://docs.python.org/3/builtins/functions.html#float) *| None*)
 
     **Return type**
 
-    [bool](https://docs.python.org/3/library/functions.html#bool)
+    [bool](https://docs.python.org/3/builtins/functions.html#bool)
   </Function>
 
   ### output\_dims
@@ -258,7 +262,7 @@ $$
 
     **Parameters**
 
-    **n** ([*float*](https://docs.python.org/3/library/functions.html#float)) – the power exponent.
+    **n** ([*float*](https://docs.python.org/3/builtins/functions.html#float)) – the power exponent.
 
     **Returns**
 
@@ -284,9 +288,9 @@ $$
 
     **Parameters**
 
-    *   **input\_dims** (*None or* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)) – new subsystem input dimensions. If None the original input dims will be preserved \[Default: None].
-    *   **output\_dims** (*None or* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)) – new subsystem output dimensions. If None the original output dims will be preserved \[Default: None].
-    *   **num\_qubits** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int)) – reshape to an N-qubit operator \[Default: None].
+    *   **input\_dims** (*None or* [*tuple*](https://docs.python.org/3/builtins/stdtypes.html#tuple)) – new subsystem input dimensions. If None the original input dims will be preserved \[Default: None].
+    *   **output\_dims** (*None or* [*tuple*](https://docs.python.org/3/builtins/stdtypes.html#tuple)) – new subsystem output dimensions. If None the original output dims will be preserved \[Default: None].
+    *   **num\_qubits** (*None or* [*int*](https://docs.python.org/3/builtins/functions.html#int)) – reshape to an N-qubit operator \[Default: None].
 
     **Returns**
 
