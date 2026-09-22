@@ -29,7 +29,7 @@ $$
 
   and $\mathcal{U}_\text{final}$ is an optional final orbital rotation. The number of terms $L$ is the number of ansatz repetitions.
 
-  The operator itself is built by [ffsim](https://qiskit-community.github.io/ffsim/), and this gate turns it into a [`FermionicCircuit`](circuit-fermionic-circuit "qiskit_fermions.circuit.FermionicCircuit"). That division of labor is deliberate: ffsim owns the ansatz math (double factorization of $t_2$ amplitudes, the compressed variant, the parameter-vector packing that a variational optimizer drives), while this gate expresses the result as fermionic modes so that the transpiler can lower it through *any* fermion-to-qubit encoding. Passing an ffsim operator through unchanged is what keeps the two consistent; see the [ffsim relationship guide](guides/ffsim#ffsim-relationship-explanation).
+  The operator itself is built by [ffsim](https://qiskit-community.github.io/ffsim/), and this gate turns it into a [`FermionicCircuit`](circuit-fermionic-circuit "qiskit_fermions.circuit.FermionicCircuit"). That division of labor is deliberate: ffsim owns the ansatz math (double factorization of $t_2$ amplitudes, the compressed variant, the parameter-vector packing that a variational optimizer drives), while this gate expresses the result as fermionic modes so that the transpiler can lower it through *any* fermion-to-qubit encoding. Passing an ffsim operator through unchanged is what keeps the two consistent; see the [ffsim relationship guide](/docs/addons/qiskit-fermions/guides/ffsim#ffsim-relationship-explanation).
 
   Accepts any of ffsim’s three UCJ operators, whose type fixes the spin variant and the number of modes this gate acts on:
 

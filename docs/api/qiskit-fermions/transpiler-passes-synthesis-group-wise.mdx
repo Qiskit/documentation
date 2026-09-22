@@ -13,7 +13,7 @@ python_api_name: qiskit_fermions.transpiler.passes.synthesis.group_wise
 <Function id="qiskit_fermions.transpiler.passes.synthesis.group_wise" isDedicatedPage={true} signature="group_wise(mapper_fn)">
   Wraps a mapper function so that it maps an operator one group at a time.
 
-  Rather than mapping the operator in one go, the wrapped function maps each of its [`groups`](operators-operator-trait#groups "qiskit_fermions.operators.OperatorTrait.groups") separately and sums the results (see [Group operator terms: use the operator structure](guides/grouping#grouping-explanation)). The sum is the same operator either way, but its Pauli terms come out grouped: the terms of one group are adjacent instead of interleaved with everybody else’s.
+  Rather than mapping the operator in one go, the wrapped function maps each of its [`groups`](operators-operator-trait#groups "qiskit_fermions.operators.OperatorTrait.groups") separately and sums the results (see [Group operator terms: use the operator structure](/docs/addons/qiskit-fermions/guides/grouping#grouping-explanation)). The sum is the same operator either way, but its Pauli terms come out grouped: the terms of one group are adjacent instead of interleaved with everybody else’s.
 
   That matters because a product formula synthesizes the terms in the order it receives them. Where the terms of a group act on disjoint qubits, having them adjacent lets them be scheduled in parallel, which can reduce the two-qubit depth substantially at an unchanged gate count.
 
