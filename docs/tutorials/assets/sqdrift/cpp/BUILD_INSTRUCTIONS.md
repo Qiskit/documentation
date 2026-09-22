@@ -35,7 +35,7 @@ brew install open-mpi llvm     # BLAS/LAPACK come from Apple's Accelerate framew
 sudo apt install -y libopenmpi-dev libomp-dev libblas-dev liblapack-dev
 ```
 
-See [README.md § 10](https://github.com/Qiskit/documentation/blob/main/docs/tutorials/sqdrift/SqDRIFT_Tutorial_CPP/README.md#10-run-the-diagonalization-scheme) for the verified `Configuration` file and the exact build and run commands.
+See [README.md § 10](https://github.com/Qiskit/documentation/blob/main/docs/tutorials/assets/sqdrift/cpp/README.md#10-run-the-diagonalization-scheme) for the verified `Configuration` file and the exact build and run commands.
 
 ### Platform-specific dependencies
 

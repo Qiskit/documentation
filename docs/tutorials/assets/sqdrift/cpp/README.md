@@ -99,7 +99,7 @@ read back out of the file: the last entry is the nuclear repulsion energy `23.78
 `R = Z_1 Z_2 / E_nuc = 49 / 23.7887 = 2.0598` bohr = 1.09 Å.
 
 The file ships with this tutorial at
-[`docs/tutorials/sqdrift/fcidump_files/`](https://github.com/Qiskit/documentation/tree/main/docs/tutorials/sqdrift/fcidump_files),
+[`docs/tutorials/assets/sqdrift/fcidump_files/`](https://github.com/Qiskit/documentation/tree/main/docs/tutorials/assets/sqdrift/fcidump_files),
 one directory above this project root, which is why the source refers to it as
 `../fcidump_files/N2_sto_3g`. An equivalent file can be regenerated with PySCF:
 
@@ -134,7 +134,7 @@ export DYLD_FALLBACK_LIBRARY_PATH="/usr/lib:/usr/local/lib:$DYLD_FALLBACK_LIBRAR
 
 **Windows is untested and not currently supported.** The code uses `unistd.h`/`sleep()` and CMake links the Qiskit shared libraries directly, neither of which works with MSVC as-is.
 
-See [BUILD_INSTRUCTIONS.md](https://github.com/Qiskit/documentation/blob/main/docs/tutorials/sqdrift/SqDRIFT_Tutorial_CPP/BUILD_INSTRUCTIONS.md) for detailed platform-specific instructions, including what porting to Windows would involve.
+See [BUILD_INSTRUCTIONS.md](https://github.com/Qiskit/documentation/blob/main/docs/tutorials/assets/sqdrift/cpp/BUILD_INSTRUCTIONS.md) for detailed platform-specific instructions, including what porting to Windows would involve.
 
 ## Code overview
 
@@ -550,8 +550,6 @@ std::cout << " Ready for SBD diagonalization!" << std::endl;
  Ready for SBD diagonalization!
 ```
 Postselects bitstrings with the correct Hamming weight (n_alpha spin-up, n_beta spin-down electrons, derived from the FCIDump `NELEC` field), converts them to Configuration Interaction (CI) strings using spin symmetrization, and writes them to `alphadets_from_sqd.txt` for subsequent Selected Basis Diagonalization.
-
-Of 10,000 shots, 1,694 survived postselection; spin symmetrization then collapsed those to 54 unique CI strings, which is the dimension of the subspace SBD diagonalizes over.
 
 #### How this differs from the Python SqDRIFT tutorial
 
