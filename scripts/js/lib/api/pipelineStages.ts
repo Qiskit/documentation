@@ -195,10 +195,16 @@ function rewriteApiDocsLinks(results: HtmlToMdResultWithUrl[], pkg: Pkg) {
       // the Python sibling rather than `pkg.name`.
       .replace(
         /\]\((?:\.\.\/)*guides\/([^)#]+)(#[^)]+)?\)/g,
-        (match, page, anchor) =>
-          pkg.isAddon()
-            ? `](${DOCS_BASE_PATH}/addons/${pythonSiblingPkg}/guides/${page}${anchor ?? ""})`
-            : match,
+        (match, page, anchor) => {
+          if (!pkg.isAddon()) return match;
+          // The guide pages on disk use kebab-case slugs (the addon TOC's
+          // hrefToSlug kebab-cases them too), so a source name like
+          // `1d_fermi_hubbard` must become `1-d-fermi-hubbard` to resolve.
+          const slug = pkg.kebabCaseAndShortenUrls
+            ? kebabCaseAndShortenPage(page, pythonSiblingPkg)
+            : page;
+          return `](${DOCS_BASE_PATH}/addons/${pythonSiblingPkg}/guides/${slug}${anchor ?? ""})`;
+        },
       );
   }
 }
