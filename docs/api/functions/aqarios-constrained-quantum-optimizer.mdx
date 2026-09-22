@@ -23,7 +23,7 @@ The function is loaded and invoked as follows:
 
 ```python
 optimizer = catalog.load("aqarios/constrained-quantum-optimizer")
-job = optimizer.run(model=lp_str, backend_name="ibm_phoenix")
+job = optimizer.run(problem=lp_str, backend_name="ibm_phoenix")
 result = job.result()
 ```
 
@@ -35,16 +35,16 @@ result = job.result()
 
 See the following list for all input parameters this API accepts. Required parameters must be provided on every call; all others are optional.
 
-### `model`
+### `problem`
 
 <Attribute attributeTypeHint="str">
-The serialized optimization model to solve. Three formats are supported:
+The serialized optimization problem to solve. Three formats are supported:
 
 - **LP** (`*.lp`): Standard LP file format exported as a string, for example via DOcplex's `export_as_lp_string()`
 - **MPS** (`*.mps`): Standard MPS file format exported as a string, for example via DOcplex's `export_as_mps_string()`
 - **Luna Model**: Base64-encoded serialization of an Aqarios Luna Model object, obtained via `model.encode_b64()`
 
-The model must represent a binary optimization problem, either as a maximization or minimization. Constraints can be inequalities or equalities over binary variables. Integer variables are only supported when clear upper and lower bounds are specified. The objective and constraints can be higher order and do not need to be linear only.
+The model must represent a binary optimization problem, either as a maximization or minimization. Constraints can be inequalities or equalities over binary variables. Integer variables are only supported when clear upper and lower bounds are specified. Continuous (real-valued) variables are not supported, and a model that contains them fails with error code `4710`. The objective and constraints can be higher order and do not need to be linear only.
 
 - Required: Yes
 - Example LP:
@@ -76,7 +76,7 @@ The name of the IBM Quantum backend to run on (for example `"ibm_phoenix"`). Whe
 Algorithm configuration options controlling the behavior of the iterative warm-starting QAOA. Options are specified as a dictionary. See the [options list](#options-list) below for all available keys and their default values.
 
 - Required: No
-- Example: `{"reps": 2, "num_parallel": 10, "postprocessing": "weak"}`
+- Example: `{"reps": 2, "num_parallel": 10, "postprocessing_level": 1}`
 </Attribute>
 
 <span id="options-list"></span>
@@ -138,17 +138,16 @@ Controls the approximation level applied to the cost function and during transpi
 - Choices: Float in range `[0.0, 1.0]`
 </Attribute>
 
-##### `postprocessing`
+##### `postprocessing_level`
 
-<Attribute attributeTypeHint="str" attributeValue='"strong"'>
-Classical postprocessing strategy applied after each sampling step to improve solution quality. Stronger levels apply more aggressive local search at the cost of additional classical compute time.
+<Attribute attributeTypeHint="int" attributeValue="3">
+Strength of the classical postprocessing applied after each sampling step to improve solution quality. Higher levels apply more aggressive local search at the cost of additional classical compute time.
 
-
-- Choices: `"off"` / `"weak"` / `"medium"` / `"strong"`
-  * `"off"`: Disable postprocessing.
-  * `"weak"`: Single-pass local search. Try to flip every bit once in random order and keep flips that reduce energy.
-  * `"medium"`: Three-pass local search. Apply the weak strategy three times with different random orders.
-  * `"strong"`: Greedy local search. Repeatedly apply the bit-flip that reduces energy the most until no further improvement is possible.
+- Choices: Integer in range `[0, 3]`
+  * `0`: Disable postprocessing.
+  * `1`: Single-pass local search. Try to flip every bit once in random order and keep flips that reduce energy.
+  * `2`: Three-pass local search. Apply level `1` three times with different random orders.
+  * `3`: Greedy local search. Repeatedly apply the bit-flip that reduces energy the most until no further improvement is possible.
 </Attribute>
 
 ##### `penalty_override`
@@ -167,13 +166,71 @@ Whether to use IBM Quantum Compute Service [session mode](/docs/guides/execution
 - Choices: `True` / `False`
 </Attribute>
 
+##### `seed_transpiler`
+
+<Attribute attributeTypeHint="int or None" attributeValue="None">
+Seed passed to the transpiler that maps the circuit onto the selected backend. Set a fixed value to make circuit synthesis and routing reproducible across runs. When set to `None`, the transpiler seeds itself non-deterministically, so repeated runs of the same problem can yield different circuit layouts.
+
+- Choices: Any integer, or `None` for a non-deterministic seed
+</Attribute>
+
+##### `job_tags`
+
+<Attribute attributeTypeHint="list[str]" attributeValue="[]">
+Extra tags attached to every Qiskit Runtime job that the function submits to the QPU. The function always tags its jobs with `"aqarios/constrained-quantum-optimizer"`, the function job ID, and the problem name; the entries given here are appended to that list. Use this to group or filter the underlying primitive jobs in your workload list.
+
+- Choices: List of strings
+- Example: `["my-experiment", "mis-benchmark"]`
+</Attribute>
+
 ## Outputs
 
 The output of this API is a dictionary returned by `job.result()`, containing the best solutions found and associated metadata.
 
 <Attribute attributeTypeHint="dict[str, Any]">
 Result dictionary with solution assignments, objective value, feasibility status, and runtime metadata.
-- Example: `{"solutions": [{"x_0": 1, "x_1": 0}], "obj_value": 42.0, "feasible": True, "metadata": {...}}`
+
+Example:
+```python
+{
+    'solutions': [{'x_1': 0, 'x_2': 1, 'x_3': 0, 'x_4': 1, 'x_5': 1}],
+    'solution_bitstrings': ['01011'],
+    'raw_energy': -6.0,
+    'objective_value': -6.0,
+    'feasible': True,
+    'metadata': {
+        'resource_usage': {
+            'RUNNING: MAPPING': {'CPU': 5.405},
+            'RUNNING: OPTIMIZING_FOR_HARDWARE': {'CPU': 9.902},
+            'RUNNING: WAITING_FOR_QPU': {'CPU': 25.456},
+            'RUNNING: EXECUTING_QPU': {'QPU': 25.202},
+            'RUNNING: POST_PROCESSING': {'CPU': 6.481}
+        },
+        'circuit_metrics': {
+            'before_transpilation': {
+                'num_qubits': 6,
+                'gate_count': 42,
+                'depth': 15,
+                'two_qubit_gate_count': 12,
+                'two_qubit_gate_depth': 7,
+                'operations': {'rz': 12, 'p': 8, 'ry': 7, 'rzz': 4, 'cx': 3,
+                               'xx_plus_yy': 3, 'global_phase': 2, 'cry': 2, 'x': 1}
+            },
+            'after_transpilation': {
+                'num_qubits': 156,
+                'gate_count': 254,
+                'depth': 100,
+                'two_qubit_gate_count': 48,
+                'two_qubit_gate_depth': 33,
+                'operations': {'rz': 78, 'sx': 122, 'cz': 48, 'measure': 6, 'x': 0}
+            }
+        },
+        'solver_info': {
+            'variable_mapping': {'x_1': 0, 'x_2': 1, 'x_3': 2, 'x_4': 3, 'x_5': 4}
+        }
+    }
+}
+```
 </Attribute>
 
 ### Output structure
@@ -185,7 +242,13 @@ Result dictionary with solution assignments, objective value, feasibility status
         - Example: `[{"x_0": 1, "x_1": 0, "x_2": 1}]`
         </Attribute>
 
-    `obj_value`
+    `solution_bitstrings`
+        <Attribute attributeTypeHint="list[str]">
+        The same solutions as in `solutions`, encoded as bitstrings. Entry $i$ of this list corresponds to entry $i$ of `solutions`. Use `metadata.solver_info.variable_mapping` to look up which character position of a bitstring holds which variable: the value of variable `v` is `bitstring[variable_mapping[v]]`.
+        - Example: `["101"]`
+        </Attribute>
+
+    `objective_value`
         <Attribute attributeTypeHint="float">
         The objective value of the best solution found, expressed in terms of the original problem. For maximization problems this value is larger for better solutions; for minimization problems it is smaller.
         - Example: `42.0`
@@ -219,9 +282,33 @@ Result dictionary with solution assignments, objective value, feasibility status
                 </Attribute>
 
             `circuit_metrics`
-                <Attribute attributeTypeHint="dict">
-                Average gate counts and circuit depths over all circuits submitted to the device during the optimization run.
-                - Example: `{"depth": 48, "gate_count": 312, "num_qubits": 20}`
+                <Attribute attributeTypeHint="dict or None">
+                Gate counts and circuit depths of the QAOA circuit, reported both as synthesized and as executed on the device. The value is `None` when the problem was solved during preprocessing and no circuit was run (error code `4712`).
+                    <LeftColoredBar color="purple">
+                        `before_transpilation`
+                        <Attribute attributeTypeHint="dict">
+                        Metrics of the abstract QAOA circuit as synthesized from the problem, before it is mapped to the backend.
+                        </Attribute>
+
+                        `after_transpilation`
+                        <Attribute attributeTypeHint="dict">
+                        Metrics of the circuits actually submitted to the device, averaged over all circuits executed during the optimization run.
+                        </Attribute>
+                    </LeftColoredBar>
+
+                Both entries hold the same fields: `num_qubits` (number of qubits in the circuit), `gate_count` (total number of operations), `depth` (circuit depth), `two_qubit_gate_count` (number of two-qubit gates), `two_qubit_gate_depth` (depth counting only two-qubit gates), and `operations` (gate name mapped to its number of occurrences).
+                </Attribute>
+
+            `solver_info`
+                <Attribute attributeTypeHint="dict or None">
+                Additional information about how the solver represented the problem.
+                    <LeftColoredBar color="purple">
+                        `variable_mapping`
+                        <Attribute attributeTypeHint="dict[str, int]">
+                        Maps each variable name to its character position in the entries of `solution_bitstrings`.
+                        - Example: `{"x_0": 0, "x_1": 1, "x_2": 2}`
+                        </Attribute>
+                    </LeftColoredBar>
                 </Attribute>
         </LeftColoredBar>
 </LeftColoredBar>
@@ -230,12 +317,13 @@ Result dictionary with solution assignments, objective value, feasibility status
 
 | Code | Description |
 | --- | --- |
-| `4710` | The input model is not supported. The model contains unbounded integer or continuous variables. |
-| `4711` | The input string cannot be parsed into a model. Verify that the input is a valid LP, MPS, or Luna Model string. |
-| `4712` | The model was solved to optimality during preprocessing and no quantum computation was performed. The result is still returned. |
+| `4710` | The input model is not supported. The model contains continuous (real-valued) variables, which the function cannot solve, or integer variables without explicit bounds. |
+| `4711` | The input string cannot be parsed into a model. Verify that `problem` is a valid LP, MPS, or Luna Model string. |
+| `4712` | The model was solved to optimality during preprocessing and no quantum computation was performed. The result is still returned, with `metadata.circuit_metrics` set to `None`. |
 | `4719` | Unexpected internal function error. Contact support@aqarios.com with your job ID. |
 
 <Admonition type="caution" title="Common error conditions">
-- **Invalid model format**: If the `model` string cannot be parsed as a valid LP, MPS, or Luna Model, the job fails with error code `4711`.
+- **Unsupported variable types**: The function solves discrete problems only. Continuous (real-valued) variables are not supported, and integer variables must carry an explicit lower and upper bound. A model that violates this fails with error code `4710`.
+- **Invalid problem format**: If the `problem` string cannot be parsed as a valid LP, MPS, or Luna Model, the job fails with error code `4711`.
 - **Option validation errors**: Option keys or values outside the documented ranges cause the job to fail immediately with error code `1221`.
 </Admonition>
