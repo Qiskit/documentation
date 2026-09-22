@@ -23,7 +23,7 @@ Additionally, `qiskit-fermions` integrates with other tools of the ecosystem, su
 
 The schematic description in the image above provides a glimpse of the breadth of features and general workflow that this package provides. You can work in the fermionic regime with both, operator and circuit representation, before you define a fermion-to-qubit encoding that plugs into the multi-representation transpiler pipeline of Qiskit.
 
-All of these features are explained in [several guides](guides/overview) to help you get started. For an overview working through exactly the pipeline shown above, start with the [1D Fermi-Hubbard guide](guides/1-d-fermi-hubbard).
+All of these features are explained in [several guides](/docs/addons/qiskit-fermions/guides/overview) to help you get started. For an overview working through exactly the pipeline shown above, start with the [1D Fermi-Hubbard guide](/docs/addons/qiskit-fermions/guides/1-d-fermi-hubbard).
 
 ## Use case examples
 
@@ -48,7 +48,7 @@ That last point is the reason to bring an ffsim operator here. ffsim’s own Qis
 
 On the simulation side, ffsim is the backend. This package’s gates and operators implement the protocol methods ffsim’s simulation functions consume (`_apply_unitary_`, `_linear_operator_` and `_trace_`; see [`qiskit_fermions.protocols`](/docs/api/qiskit-fermions/protocols#module-qiskit_fermions.protocols "qiskit_fermions.protocols")), so ffsim’s tools work on them natively, with no conversion step. Because ffsim depends on PySCF, which does not support Windows, simulating on Windows means going through the [Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/) for now. Building operators, mapping them and transpiling the resulting circuits need none of this and work everywhere.
 
-For the full picture, read the [ffsim relationship guide](guides/ffsim#ffsim-relationship-explanation).
+For the full picture, read the [ffsim relationship guide](/docs/addons/qiskit-fermions/guides/ffsim#ffsim-relationship-explanation).
 
 ### Known issues
 
