@@ -1,0 +1,22 @@
+---
+title: "0.11.0 - 2025-10-28"
+description: "0.11.0 - 2025-10-28 for the latest version of Samplomatic"
+---
+
+<span id="id1" />
+
+# 0.11.0 - 2025-10-28
+
+## Added
+
+*   Added the ability to provide inputs to `Samplex.sample()` as arbitrary mappings. ([#186](https://github.com/Qiskit/samplomatic/issues/186))
+
+## Changed
+
+*   Changed the serialization format of `qiskit.circuit.ParameterExpression`s within the samplex serializer. ([#185](https://github.com/Qiskit/samplomatic/issues/185))
+*   Negated the convention for what boolean outputs mean when sampling Pauli Lindblad maps with negative rates. Following this change, the `InjectNoiseNode` samplex node intentionally uses the opposite convention as :meth:`qiskit.quantum_info.PauliLindbladMap.signed_sample` for representing signs as boolean values. In particular, values written by this node now represent the parity of the number of non-trivial factors in the sampled error that arise from negative rates. In other words, when using the boolean written by this node to implement basic PEC, the sign used to correct expectation values should be `(-1)**bool_value`. ([#188](https://github.com/Qiskit/samplomatic/issues/188))
+
+## Fixed
+
+*   Fixed a bug that prevented `qiskit.circuit.ParameterExpression`s from being decoded when present in a samplex’ expression table. ([#185](https://github.com/Qiskit/samplomatic/issues/185))
+

@@ -1,0 +1,42 @@
+---
+title: replace_annotations (latest version)
+description: API reference for samplomatic.utils.replace_annotations in the latest version of samplomatic
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: samplomatic.utils.replace_annotations
+---
+
+<span id="replace-annotations" />
+
+# replace\_annotations
+
+<Function id="samplomatic.utils.replace_annotations" isDedicatedPage={true} github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/utils/map_annotations.py#L144-L179" signature="samplomatic.utils.replace_annotations(circuit: QuantumCircuit, fn: Callable[[Annotation], list[Annotation]]) → QuantumCircuit">
+  Return a new circuit with annotations replaced according to a callable.
+
+  For each annotation on each box, `fn` is called with the annotation instance and must return a list of annotations to substitute in its place. Returning a single-element list replaces the annotation, returning an empty list removes it, and returning a multi-element list expands one annotation into several.
+
+  **Parameters**
+
+  *   **circuit** – The circuit whose box annotations to replace.
+  *   **fn** – A callable that receives each annotation and returns the list of annotations to substitute in its place.
+
+  **Returns**
+
+  A new circuit with annotations replaced per `fn`.
+
+  ```python
+  from qiskit.circuit import QuantumCircuit
+  from samplomatic import Twirl
+  from samplomatic.utils import replace_annotations
+
+  circuit = QuantumCircuit(2)
+  with circuit.box([Twirl(group="pauli")]):
+      circuit.cx(0, 1)
+
+  # Replace Twirl annotations, delete anything else
+  updated = replace_annotations(
+      circuit, lambda a: [Twirl(group="local_c1")] if isinstance(a, Twirl) else []
+  )
+  ```
+</Function>
+

@@ -1,0 +1,76 @@
+---
+title: DanglerMatch (latest version)
+description: API reference for samplomatic.pre_samplex.DanglerMatch in the latest version of samplomatic
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: samplomatic.pre_samplex.DanglerMatch
+---
+
+# DanglerMatch
+
+<Class id="samplomatic.pre_samplex.DanglerMatch" isDedicatedPage={true} github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/pre_samplex/pre_samplex.py#L244-L268" signature="samplomatic.pre_samplex.DanglerMatch(direction: Direction | None = None, node_types: tuple[type[PreNode], ...] | None = None, dangler_type: DanglerType | None = None)" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
+
+  A helper class to specify conditions on danglers.
+
+  **Attributes Summary**
+
+  |                                                                                                                          |                                    |
+  | ------------------------------------------------------------------------------------------------------------------------ | ---------------------------------- |
+  | [`dangler_type`](#samplomatic.pre_samplex.DanglerMatch.dangler_type "samplomatic.pre_samplex.DanglerMatch.dangler_type") | The desired type of dangler.       |
+  | [`direction`](#samplomatic.pre_samplex.DanglerMatch.direction "samplomatic.pre_samplex.DanglerMatch.direction")          | The desired direction of the node. |
+  | [`node_types`](#samplomatic.pre_samplex.DanglerMatch.node_types "samplomatic.pre_samplex.DanglerMatch.node_types")       | The desired type of the node.      |
+
+  **Methods Summary**
+
+  |                                                                                                                          |                                                                |
+  | ------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------- |
+  | [`match_node`](#samplomatic.pre_samplex.DanglerMatch.match_node "samplomatic.pre_samplex.DanglerMatch.match_node")(node) | Check if a node matches the conditions specified in the object |
+
+  **Attributes Documentation**
+
+  ### dangler\_type
+
+  <Attribute id="samplomatic.pre_samplex.DanglerMatch.dangler_type">
+    Type: `DanglerType` | [`None`](https://docs.python.org/3/builtins/constants.html#None)
+
+    Default value: `None`
+
+    The desired type of dangler.
+
+    Set to None to get both required and optional danglers.
+  </Attribute>
+
+  ### direction
+
+  <Attribute id="samplomatic.pre_samplex.DanglerMatch.direction">
+    Type: [`Direction`](constants-direction "samplomatic.constants.Direction") | [`None`](https://docs.python.org/3/builtins/constants.html#None)
+
+    Default value: `None`
+
+    The desired direction of the node.
+
+    Set to None to get all node directions. Note that setting to BOTH will only match nodes with BOTH direction.
+  </Attribute>
+
+  ### node\_types
+
+  <Attribute id="samplomatic.pre_samplex.DanglerMatch.node_types">
+    Type: [`tuple`](https://docs.python.org/3/builtins/stdtypes.html#tuple)\[[`type`](https://docs.python.org/3/builtins/functions.html#type)\[[`PreNode`](pre-samplex-pre-node "samplomatic.pre_samplex.graph_data.PreNode")], ...] | [`None`](https://docs.python.org/3/builtins/constants.html#None)
+
+    Default value: `None`
+
+    The desired type of the node.
+
+    Set to None to get all node types.
+  </Attribute>
+
+  **Methods Documentation**
+
+  ### match\_node
+
+  <Function id="samplomatic.pre_samplex.DanglerMatch.match_node" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/pre_samplex/pre_samplex.py#L264-L268" signature="match_node(node: PreNode) → bool">
+    Check if a node matches the conditions specified in the object
+  </Function>
+</Class>
+

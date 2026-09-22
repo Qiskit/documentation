@@ -1,0 +1,97 @@
+---
+title: Specification (latest version)
+description: API reference for samplomatic.tensor_interface.Specification in the latest version of samplomatic
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: samplomatic.tensor_interface.Specification
+---
+
+# Specification
+
+<Class id="samplomatic.tensor_interface.Specification" isDedicatedPage={true} github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/tensor_interface.py#L40-L99" signature="samplomatic.tensor_interface.Specification" modifiers="class">
+  Bases: [`Generic`](https://docs.python.org/3/library/typing.html#typing.Generic)\[`T`]
+
+  A specification of an expected value inside of an interface.
+
+  **Attributes Summary**
+
+  |                                                                                                                                               |                                                                                   |
+  | --------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+  | [`description`](#samplomatic.tensor_interface.Specification.description "samplomatic.tensor_interface.Specification.description")             | A description of this specification.                                              |
+  | [`free_dimensions`](#samplomatic.tensor_interface.Specification.free_dimensions "samplomatic.tensor_interface.Specification.free_dimensions") | Named dimensions whose sizes are free until an interface value binds their value. |
+  | [`name`](#samplomatic.tensor_interface.Specification.name "samplomatic.tensor_interface.Specification.name")                                  | The name of this specification.                                                   |
+  | [`num_bytes`](#samplomatic.tensor_interface.Specification.num_bytes "samplomatic.tensor_interface.Specification.num_bytes")                   | The number of bytes required to represent data for this specification.            |
+  | [`optional`](#samplomatic.tensor_interface.Specification.optional "samplomatic.tensor_interface.Specification.optional")                      | Whether this is an optional specification.                                        |
+
+  **Methods Summary**
+
+  |                                                                                                                                                                  |                                                            |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
+  | [`describe`](#samplomatic.tensor_interface.Specification.describe "samplomatic.tensor_interface.Specification.describe")()                                       | Return a human-readable description of this specification. |
+  | [`validate_and_coerce`](#samplomatic.tensor_interface.Specification.validate_and_coerce "samplomatic.tensor_interface.Specification.validate_and_coerce")(value) | Coerce a value into a correct type if valid.               |
+
+  **Attributes Documentation**
+
+  ### description
+
+  <Attribute id="samplomatic.tensor_interface.Specification.description">
+    A description of this specification.
+  </Attribute>
+
+  ### free\_dimensions
+
+  <Attribute id="samplomatic.tensor_interface.Specification.free_dimensions">
+    Named dimensions whose sizes are free until an interface value binds their value.
+
+    Within a [`TensorInterface`](tensor-interface-tensor-interface "samplomatic.tensor_interface.TensorInterface"), all free dimensions of the same name must be consistently bound. This allows specification of dimensions of values that can be arbitrary, and that are only resolved once bound to an interface.
+  </Attribute>
+
+  ### name
+
+  <Attribute id="samplomatic.tensor_interface.Specification.name">
+    The name of this specification.
+  </Attribute>
+
+  ### num\_bytes
+
+  <Attribute id="samplomatic.tensor_interface.Specification.num_bytes">
+    The number of bytes required to represent data for this specification.
+
+    Implementations of this attribute should not be overly concerned with accounting for memory required, say, for builtin Python container objects. They should be more interested in the large data limit where memory is dominated by sources like NumPy buffers.
+
+    If the specification has [`free_dimensions`](#samplomatic.tensor_interface.Specification.free_dimensions "samplomatic.tensor_interface.Specification.free_dimensions"), implementations should return the number of bytes per unit of each free dimension. For example, if the specification has a free dimension `"n"` and requires `8 * n` bytes, this property should return `8`.
+  </Attribute>
+
+  ### optional
+
+  <Attribute id="samplomatic.tensor_interface.Specification.optional">
+    Whether this is an optional specification.
+  </Attribute>
+
+  **Methods Documentation**
+
+  ### describe
+
+  <Function id="samplomatic.tensor_interface.Specification.describe" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/tensor_interface.py#L82-L84" signature="describe() → str" modifiers="abstractmethod">
+    Return a human-readable description of this specification.
+  </Function>
+
+  ### validate\_and\_coerce
+
+  <Function id="samplomatic.tensor_interface.Specification.validate_and_coerce" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/tensor_interface.py#L86-L99" signature="validate_and_coerce(value: Any) → tuple[T, dict[str, int]]" modifiers="abstractmethod">
+    Coerce a value into a correct type if valid.
+
+    **Parameters**
+
+    **value** – A value to validate and coerce with respect to this specification.
+
+    **Raises**
+
+    [**TypeError**](https://docs.python.org/3/builtins/exceptions.html#TypeError) – If the value cannot be coerced into a valid type.
+
+    **Returns**
+
+    The coerced value, and a dictionary mapping each member of [`free_dimensions`](#samplomatic.tensor_interface.Specification.free_dimensions "samplomatic.tensor_interface.Specification.free_dimensions") to a size implied by the `value`.
+  </Function>
+</Class>
+

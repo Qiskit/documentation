@@ -1,0 +1,23 @@
+---
+title: "0.15.0 - 2025-12-15"
+description: "0.15.0 - 2025-12-15 for the latest version of Samplomatic"
+---
+
+<span id="id1" />
+
+# 0.15.0 - 2025-12-15
+
+## Added
+
+*   Added the `TemplateState.finalize` and `TemplateState.qubits` methods to facilitate constructing the template circuit as a `qiskit.dagcircuit.DAGCircuit` during the `build` process. ([#270](https://github.com/Qiskit/samplomatic/issues/270))
+*   Added the `Builder.yield_from_dag` method. This method provides an iteration order such that all of the easy gates and hard gates will be yielded topologically in two separate groups separated by a sentinel, defining the easy-hard boundary of a dressed box. ([#273](https://github.com/Qiskit/samplomatic/issues/273))
+*   Added the `InjectLocalClifford` annotation. This annotation allows for the specification of single-qubit Clifford frame changes at `Samplex.sample` time by adding a `local_clifford.ref` argument to its inputs. The input expects an integer array following the same convention as the `C1Register`. ([#275](https://github.com/Qiskit/samplomatic/issues/275))
+
+## Changed
+
+*   The `pre_build` function now constructs the template as a `qiskit.dagcircuit.DAGCircuit` as opposed to a `qiskit.QuantumCircuit`. Methods on `BoxBuilder`, `PassthroughBuilder`, `PreSamplex`, and `TemplateState` that previously had `qiskit.circuit.CircuitInstruction` in their signature now have `qiskit.dagcircuit.DAGOpNode` instead. The signature of the `build` function has not changed, but now calls the `TemplateState.finalize` method to construct the `qiskit.QuantumCircuit`. ([#270](https://github.com/Qiskit/samplomatic/issues/270))
+
+## Fixed
+
+*   Fixed the samplex serializer to encode all information in the header at the specified SSV, rather than encoding some of it at the most recent SSV irrespective of the specified version. ([#276](https://github.com/Qiskit/samplomatic/issues/276))
+

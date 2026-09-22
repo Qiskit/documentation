@@ -1,0 +1,149 @@
+---
+title: generate_boxing_pass_manager (latest version)
+description: API reference for samplomatic.transpiler.generate_boxing_pass_manager in the latest version of samplomatic
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: samplomatic.transpiler.generate_boxing_pass_manager
+---
+
+<span id="generate-boxing-pass-manager" />
+
+# generate\_boxing\_pass\_manager
+
+<Function id="samplomatic.transpiler.generate_boxing_pass_manager" isDedicatedPage={true} github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/transpiler/generate_boxing_pass_manager.py#L33-L304" signature="samplomatic.transpiler.generate_boxing_pass_manager(*, enable_gates: bool = True, enable_measures: bool = True, measure_annotations: Literal['twirl', 'change_basis', 'all'] = 'twirl', twirling_strategy: Literal['active', 'active_accum', 'active_circuit', 'all'] = 'active_circuit', twirling_group: Literal['pauli', 'balanced_pauli', 'local_c1', 'local_pauli'] = 'pauli', decomposition: Literal['rzsx', 'rzrx'] = 'rzsx', inject_noise_targets: Literal['none', 'gates', 'measures', 'all'] = 'none', inject_noise_strategy: Literal['no_modification', 'uniform_modification', 'individual_modification'] = 'no_modification', inject_noise_site: Literal['before', 'after'] = 'after', remove_barriers: Literal['immediately', 'finally', 'after_stratification', 'never', True, False] = 'after_stratification', add_tags: Literal['none', 'unique_box', 'unique_instance', 'noise_ref'] = 'none', boxing_strategy: Literal['asap', 'alap'] = 'asap') → PassManager">
+  Construct a pass manager to group the operations in a circuit into boxes.
+
+  This function can be used to construct a new [`qiskit.transpiler.PassManager`](/docs/api/qiskit/qiskit.transpiler.PassManager) that puts the instructions of the circuit into annotated boxes.
+
+  ```python
+  >>> from qiskit.circuit import QuantumCircuit
+  >>> from samplomatic.transpiler import generate_boxing_pass_manager
+  >>>
+  >>> # Create a simple circuit to test with
+  >>> circuit = QuantumCircuit(3)
+  >>> circuit.cz(0, 1)
+  >>> circuit.cz(1, 2)
+  >>> circuit.measure_all()
+  >>>
+  >>> pm = generate_boxing_pass_manager()
+  >>>
+  >>> boxed_circuit = pm.run(circuit)
+  >>> boxed_circuit.draw("mpl")
+  ```
+
+  ![../../\_images/samplomatic-transpiler-generate\_boxing\_pass\_manager-1.png](/docs/images/api/samplomatic/samplomatic-transpiler-generate_boxing_pass_manager-1.avif)
+
+  To group instructions into boxes, a pass manager returned by this function takes the following steps in order:
+
+  *   If `remove_barriers` is `True`, it removes all the barriers in the input circuit using the [`qiskit.transpiler.passes.RemoveBarriers`](/docs/api/qiskit/qiskit.transpiler.passes.RemoveBarriers) pass.
+  *   If `enable_gates` is `True`, using the [`GroupGatesIntoBoxes`](transpiler-passes-group-gates-into-boxes "samplomatic.transpiler.passes.GroupGatesIntoBoxes") pass, it creates boxes containing two-qubit gates. The resulting boxes are twirl-annotated and left-dressed, and contain a single layer of two-qubit gates.
+  *   If `enable_measures` is `True`, it uses the [`GroupMeasIntoBoxes`](transpiler-passes-group-meas-into-boxes "samplomatic.transpiler.passes.GroupMeasIntoBoxes") pass to group the measurements. All the resulting boxes are left dressed. Depending on the value of `measure_annotations`, they own a [`Twirl`](twirl "samplomatic.Twirl") annotation, a [`ChangeBasis`](change-basis "samplomatic.ChangeBasis") annotation, or both.
+  *   It adds idling qubits to the boxes following the given `twirling_strategy`.
+  *   Using the [`AddTerminalRightDressedBoxes`](transpiler-passes-add-terminal-right-dressed-boxes "samplomatic.transpiler.passes.AddTerminalRightDressedBoxes") pass, it adds empty right-dressed boxes to ensure that the resulting pass manager can produce circuits that can be successfully turned into a template/samplex pair by the [`samplomatic.build()`](build "samplomatic.build") function.
+  *   It uses the [`AbsorbSingleQubitGates`](transpiler-passes-absorb-single-qubit-gates "samplomatic.transpiler.passes.AbsorbSingleQubitGates") pass to absorb any chains of single-qubit gates in the circuit into a box, left- or right-dressed, that immediately succeeds the chain. This will cause the gates to be folded into the dressing once the circuit is built.
+  *   If `inject_noise_targets` is not `'none'`, it uses the [`AddInjectNoise`](transpiler-passes-add-inject-noise "samplomatic.transpiler.passes.AddInjectNoise") pass to replace boxes with new boxes that additionally have inject noise [`InjectNoise`](inject-noise "samplomatic.InjectNoise") annotations.
+  *   If `add_tags` is not `'none'`, it uses the [`AddTags`](transpiler-passes-add-tags "samplomatic.transpiler.passes.AddTags") pass to add a [`Tag`](tag "samplomatic.Tag") annotation to every box.
+
+  <Admonition title="Deprecated since version 0.14.0" type="danger">
+    Providing boolean values to the `remove_barriers` argument of `generate_boxing_pass_manager()` is deprecated as of samplomatic 0.14.0. It will be removed no earlier than 1 month after the release date. Instead, choose one of the string values.
+  </Admonition>
+
+  **Parameters**
+
+  *   **enable\_gates** – Whether to collect single- and multi-qubit gates into boxes using the [`GroupGatesIntoBoxes`](transpiler-passes-group-gates-into-boxes "samplomatic.transpiler.passes.GroupGatesIntoBoxes") pass.
+
+  *   **enable\_measures** – Whether to collect measurements into boxes using the [`GroupMeasIntoBoxes`](transpiler-passes-group-meas-into-boxes "samplomatic.transpiler.passes.GroupMeasIntoBoxes") pass.
+
+  *   **measure\_annotations** –
+
+      The annotations placed on the measurement boxes by [`GroupMeasIntoBoxes`](transpiler-passes-group-meas-into-boxes "samplomatic.transpiler.passes.GroupMeasIntoBoxes") when `enable_measures` is `True`. The supported values are:
+
+      *   `'twirl'` for a [`Twirl`](twirl "samplomatic.Twirl") annotation.
+      *   `'change_basis'` for a [`ChangeBasis`](change-basis "samplomatic.ChangeBasis") annotation with mode `measure`.
+      *   `'all'` for both [`Twirl`](twirl "samplomatic.Twirl") and [`ChangeBasis`](change-basis "samplomatic.ChangeBasis") annotations.
+
+  *   **twirling\_strategy** –
+
+      The strategy for whether and how twirling boxes are extended to include eligible idle qubits; the boxing pass manager begins by constructing twirling boxes that contain one layer of multi-qubit gates or measurements, preceded by all of the adjacent single-qubit gates, then, according to the value of this option, these boxes are extended to include idling qubits. The allowed values are:
+
+      *   `'active'`: No idling qubits are added to the boxes, meaning that every box only twirls the qubits that are active within the box.
+      *   `'active_accum'`: Idling qubits are added so that each individual box twirls all qubits that have been acted on by some instruction in the circuit up to and including the box.
+      *   `'active_circuit'`: Idling qubits are added so that each individual box twirls all qubits acted on by any instruction in the circuit.
+      *   `'all'`: Idling qubits are added so that each individual box twirls all of the qubits in the circuit.
+
+  *   **twirling\_group** –
+
+      The group to use for the twirling boxes.
+
+      *   `'pauli'` uses the Pauli group.
+      *   `'balanced_pauli'` uses the Pauli group with a balanced distribution.
+      *   `'local_c1'` uses the subgroup of single-qubit Cliffords that are conjugated to single-qubit Cliffords on any entangling gates in the box, and the Pauli group everywhere else.
+      *   `'local_pauli'` uses the Pauli subgroup that commutes with an entangler for non-Clifford gates, and the Pauli group everywhere else.
+
+  *   **decomposition** –
+
+      The gate sequence into which single-qubit dressing gates are synthesized.
+
+      *   `'rzsx'` synthesizes single-qubit gates with rz-sx-rz-sx-rz.
+      *   `'rzrx'` synthesizes single-qubit gates with rz-rx-rz.
+
+  *   **inject\_noise\_targets** –
+
+      The boxes to annotate with an [`InjectNoise`](inject-noise "samplomatic.InjectNoise") annotation using the [`AddInjectNoise`](transpiler-passes-add-inject-noise "samplomatic.transpiler.passes.AddInjectNoise") pass. The supported values are:
+
+      *   `'none'` to avoid annotating boxes of any kind.
+      *   `'gates'` to annotate all the twirled boxes that contain entanglers, such as those created by the [`GroupGatesIntoBoxes`](transpiler-passes-group-gates-into-boxes "samplomatic.transpiler.passes.GroupGatesIntoBoxes") pass, and avoid annotating all the other boxes.
+      *   `'measures'` to annotate all the twirled boxes that own a classical register, such as those created by the [`GroupMeasIntoBoxes`](transpiler-passes-group-meas-into-boxes "samplomatic.transpiler.passes.GroupMeasIntoBoxes") pass, and avoid annotating all the other boxes.
+      *   `'all'` to target all the twirl-annotated boxes that contain entanglers and/or own classical registers.
+
+  *   **inject\_noise\_strategy** –
+
+      The noise injection strategies supported by the `AddInjectNoise` pass. The following options are supported. In all these options, by “equivalent boxes” we mean boxes that are equal up to single-qubit gates on the dressing side.
+
+      *   `'no_modification'`: All the equivalent boxes are assigned an inject noise annotation with the same `ref` and with `modifier_ref=''`.
+      *   `'uniform_modification'`: All the equivalent boxes are assigned an inject noise annotation with the same `ref` and with `modifier_ref=ref`.
+      *   `'individual_modification'`: All the equivalent boxes are assigned an inject noise annotation with the same `ref`. Every box is assigned a unique `modifier_ref`.
+
+  *   **inject\_noise\_site** –
+
+      The noise injection sites supported by the `AddInjectNoise` pass. All possible string values are:
+
+      *   `'before'` to inject noise before the hard content of the box.
+      *   `'after'` to inject noise after the content of the box.
+
+  *   **remove\_barriers** –
+
+      When to apply the [`qiskit.transpiler.passes.RemoveBarriers`](/docs/api/qiskit/qiskit.transpiler.passes.RemoveBarriers) pass. All possible string values are:
+
+      *   `'after_stratification'` removes barriers, but only after entangler and measurement instructions have been boxed and extended with `twirling_strategy`, and before single-qubit gates are boxed. This effectively allows barriers to be used as hints to choose the entangler and measurement content of boxes, while also letting single-qubit gates move freely past where there had been a barrier, allowing them be absorbed into adjacent boxes.
+      *   `'immediately'` removes barriers before doing anything else, so that existing barriers effectively have no role in box grouping.
+      *   `'finally'` removes barriers, but only as the very last step. This causes, for example, single-qubit gates that are trapped between barriers to not be placed into boxes.
+      *   `'never'` causes barriers to never be removed.
+
+      Boolean values are deprecated such that `True` corresponds to `'immediately'` and `False` corresponds to `'never'`.
+
+  *   **boxing\_strategy** –
+
+      The strategy used by the [`GroupGatesIntoBoxes`](transpiler-passes-group-gates-into-boxes "samplomatic.transpiler.passes.GroupGatesIntoBoxes") pass to assign two-qubit gates to boxes. The supported values are:
+
+      *   `'asap'`: Each two-qubit gate is placed in the earliest possible box, given the circuit’s dependency constraints and any barriers or existing boxes.
+      *   `'alap'`: Each two-qubit gate is placed in the latest possible box, given the circuit’s dependency constraints and any barriers or existing boxes.
+
+  *   **add\_tags** –
+
+      Whether and how to add a [`Tag`](tag "samplomatic.Tag") annotation to every box using the [`AddTags`](transpiler-passes-add-tags "samplomatic.transpiler.passes.AddTags") pass. Boxes with pre-existing [`Tag`](tag "samplomatic.Tag") annotations are left unchanged. The supported values are:
+
+      *   `'none'` to not add any tags.
+      *   `'unique_box'`: the `ref` is a truncated hash of the box’s structural content (i.e. ignoring single-qubit gate, and see [`BoxKey`](utils-box-key "samplomatic.utils.BoxKey")), so structurally equivalent boxes share the same `ref` across circuits. Boxes with different [`Twirl`](twirl "samplomatic.Twirl") specifications are treated as unique, but all other annotations are ignored when comparing boxes.
+      *   `'unique_instance'`: the `ref` is an incrementing counter (`t0`, `t1`, …), so every box in a circuit gets a unique `ref`. The counter resets on each call to `run()`.
+      *   `'noise_ref'`: the `ref` is taken from the box’s [`InjectNoise`](inject-noise "samplomatic.InjectNoise") annotation’s `ref` field joined by an underscore with its `modifier_ref` field when present. Boxes without an [`InjectNoise`](inject-noise "samplomatic.InjectNoise") annotation are skipped.\`\`’noise\_ref’`: the ``ref` is taken from the box’s [`InjectNoise`](inject-noise "samplomatic.InjectNoise") annotation’s `ref` field. Boxes without an [`InjectNoise`](inject-noise "samplomatic.InjectNoise") annotation are skipped (no [`Tag`](tag "samplomatic.Tag") is added). Typically used together with a non-`'none'` `inject_noise_targets` value.
+
+  **Returns**
+
+  A pass manager that groups operations into boxes.
+
+  **Raises**
+
+  **TranspilerError** – If the user selects a combination of inputs that is not supported.
+</Function>
+

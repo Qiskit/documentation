@@ -1,0 +1,96 @@
+---
+title: Synth (latest version)
+description: API reference for samplomatic.synths.Synth in the latest version of samplomatic
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: samplomatic.synths.Synth
+---
+
+# Synth
+
+<Class id="samplomatic.synths.Synth" isDedicatedPage={true} github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/synths/synth.py#L28-L74" signature="samplomatic.synths.Synth" modifiers="class">
+  Bases: [`Generic`](https://docs.python.org/3/library/typing.html#typing.Generic)\[`QubitT`, `ParameterT`, `InstructionT`]
+
+  Base class for synthesizers.
+
+  **Attributes Summary**
+
+  |                                                                                                                                         |   |
+  | --------------------------------------------------------------------------------------------------------------------------------------- | - |
+  | [`compatible_register_types`](#samplomatic.synths.Synth.compatible_register_types "samplomatic.synths.Synth.compatible_register_types") |   |
+  | [`num_params`](#samplomatic.synths.Synth.num_params "samplomatic.synths.Synth.num_params")                                              |   |
+  | [`num_qubits`](#samplomatic.synths.Synth.num_qubits "samplomatic.synths.Synth.num_qubits")                                              |   |
+
+  **Methods Summary**
+
+  |                                                                                                                                                |                                                                                          |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+  | [`generate_template_values`](#samplomatic.synths.Synth.generate_template_values "samplomatic.synths.Synth.generate_template_values")(register) | Generate parameter values for all gates of the register valid for this synth's template. |
+  | [`make_template`](#samplomatic.synths.Synth.make_template "samplomatic.synths.Synth.make_template")(qubits, params)                            | Return a parametric template that can synthesize gates.                                  |
+
+  **Attributes Documentation**
+
+  ### compatible\_register\_types
+
+  <Attribute id="samplomatic.synths.Synth.compatible_register_types">
+    Type: [`frozenset`](https://docs.python.org/3/builtins/stdtypes.html#frozenset)\[[`VirtualType`](virtual-registers-virtual-type "samplomatic.virtual_registers.virtual_type.VirtualType")]
+
+    Default value: `frozenset({})`
+  </Attribute>
+
+  ### num\_params
+
+  <Attribute id="samplomatic.synths.Synth.num_params">
+    Type: [`int`](https://docs.python.org/3/builtins/functions.html#int)
+
+    Default value: `0`
+  </Attribute>
+
+  ### num\_qubits
+
+  <Attribute id="samplomatic.synths.Synth.num_qubits">
+    Type: [`int`](https://docs.python.org/3/builtins/functions.html#int)
+
+    Default value: `1`
+  </Attribute>
+
+  **Methods Documentation**
+
+  ### generate\_template\_values
+
+  <Function id="samplomatic.synths.Synth.generate_template_values" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/synths/synth.py#L61-L74" signature="generate_template_values(register: VirtualRegister) → ndarray" modifiers="abstractmethod">
+    Generate parameter values for all gates of the register valid for this synth’s template.
+
+    **Parameters**
+
+    **register** – The data register containing the virtual gates to generate template parameter values for.
+
+    **Returns**
+
+    An array of shape `(register.num_subsystems, register.num_samples, num_params)`.
+
+    **Raises**
+
+    [**SynthError**](exceptions-synth-error "samplomatic.exceptions.SynthError") – If the provided virtual register type is incompatible with this synth.
+  </Function>
+
+  ### make\_template
+
+  <Function id="samplomatic.synths.Synth.make_template" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/synths/synth.py#L44-L59" signature="make_template(qubits: list[QubitT], params: Iterable[ParameterT]) → Iterable[InstructionT]" modifiers="abstractmethod">
+    Return a parametric template that can synthesize gates.
+
+    **Parameters**
+
+    *   **qubits** – The qubits for which to make the template.
+    *   **params** – The ordered parameters to use while making the template.
+
+    **Yields**
+
+    Instructions that implement the template.
+
+    **Raises**
+
+    [**SynthError**](exceptions-synth-error "samplomatic.exceptions.SynthError") – When there is a problem synthesizing.
+  </Function>
+</Class>
+

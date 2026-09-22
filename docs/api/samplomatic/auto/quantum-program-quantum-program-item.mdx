@@ -1,0 +1,55 @@
+---
+title: QuantumProgramItem (latest version)
+description: API reference for samplomatic.quantum_program.QuantumProgramItem in the latest version of samplomatic
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: samplomatic.quantum_program.QuantumProgramItem
+---
+
+# QuantumProgramItem
+
+<Class id="samplomatic.quantum_program.QuantumProgramItem" isDedicatedPage={true} github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/quantum_program/quantum_program.py#L35-L73" signature="samplomatic.quantum_program.QuantumProgramItem(circuit: QuantumCircuit, chunk_size: int | None = None)" modifiers="class">
+  Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC)
+
+  An item of a [`QuantumProgram`](quantum-program-quantum-program "samplomatic.quantum_program.QuantumProgram").
+
+  Each item has a [`shape`](#samplomatic.quantum_program.QuantumProgramItem.shape "samplomatic.quantum_program.QuantumProgramItem.shape") that determines the number of circuit executions. This shape is computed by broadcasting the *extrinsic* shapes of all input arrays. Input arrays have both extrinsic axes (leftmost, defining the sweep grid) and intrinsic axes (rightmost, determined by the data type). For example, `circuit_arguments` for a circuit with `n` parameters has intrinsic shape `(n,)`, so an array of shape `(5, 3, n)` has extrinsic shape `(5, 3)`.
+
+  Output arrays should follow the same convention: extrinsic axes match the item’s [`shape`](#samplomatic.quantum_program.QuantumProgramItem.shape "samplomatic.quantum_program.QuantumProgramItem.shape"), and intrinsic axes are determined by the output type (e.g., `(num_shots, creg_size)` for classical register data).
+
+  **Parameters**
+
+  *   **circuit** – The circuit to be executed.
+  *   **chunk\_size** – The maximum number of bound circuits in each shot loop execution, or `None` to use a server-side heuristic to optimize speed. When not executing in a session, the server-side heuristic is always used and this value is ignored.
+
+  **Attributes Summary**
+
+  |                                                                                                                         |                                                                                        |
+  | ----------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+  | [`shape`](#samplomatic.quantum_program.QuantumProgramItem.shape "samplomatic.quantum_program.QuantumProgramItem.shape") | The extrinsic shape of this item, i.e. the broadcasted extrinsic shapes of all inputs. |
+
+  **Methods Summary**
+
+  |                                                                                                                        |                                                |
+  | ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+  | [`size`](#samplomatic.quantum_program.QuantumProgramItem.size "samplomatic.quantum_program.QuantumProgramItem.size")() | Return the total number elements in this item. |
+
+  **Attributes Documentation**
+
+  ### shape
+
+  <Attribute id="samplomatic.quantum_program.QuantumProgramItem.shape">
+    The extrinsic shape of this item, i.e. the broadcasted extrinsic shapes of all inputs.
+  </Attribute>
+
+  **Methods Documentation**
+
+  ### size
+
+  <Function id="samplomatic.quantum_program.QuantumProgramItem.size" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/quantum_program/quantum_program.py#L68-L73" signature="size() → int">
+    Return the total number elements in this item.
+
+    The size is calculated as the product of the entries of [`shape`](#samplomatic.quantum_program.QuantumProgramItem.shape "samplomatic.quantum_program.QuantumProgramItem.shape").
+  </Function>
+</Class>
+

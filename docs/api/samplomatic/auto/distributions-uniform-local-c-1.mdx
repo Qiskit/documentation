@@ -1,0 +1,65 @@
+---
+title: UniformLocalC1 (latest version)
+description: API reference for samplomatic.distributions.UniformLocalC1 in the latest version of samplomatic
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: samplomatic.distributions.UniformLocalC1
+---
+
+# UniformLocalC1
+
+<Class id="samplomatic.distributions.UniformLocalC1" isDedicatedPage={true} github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/distributions/uniform_local_c1.py#L22-L89" signature="samplomatic.distributions.UniformLocalC1(num_subsystems: int, gate_name: str, *, lookup_table: ndarray | None = None)" modifiers="class">
+  Bases: [`Distribution`](distributions-distribution "samplomatic.distributions.distribution.Distribution")
+
+  The uniform distribution over C1⊗C1 elements that stay local and C1 under conjugation.
+
+  For each pair of consecutive subsystems, independently draws a pair `(c0, c1)` uniformly from the set of C1⊗C1 elements that remain factorized as C1⊗C1 after conjugation by the specified two-qubit gate.
+
+  **Parameters**
+
+  *   **num\_subsystems** – The number of subsystems this distribution samples. Must be even.
+  *   **gate\_name** – A two-qubit gate name whose conjugation table appears in `LOCAL_C1_PROPAGATE_LOOKUP_TABLES`.
+
+  **Attributes Summary**
+
+  |                                                                                                                                     |                                      |
+  | ----------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
+  | [`gate_name`](#samplomatic.distributions.UniformLocalC1.gate_name "samplomatic.distributions.UniformLocalC1.gate_name")             | The name of the two-qubit gate.      |
+  | [`register_type`](#samplomatic.distributions.UniformLocalC1.register_type "samplomatic.distributions.UniformLocalC1.register_type") | The virtual gate type being sampled. |
+
+  **Methods Summary**
+
+  |                                                                                                                           |                          |
+  | ------------------------------------------------------------------------------------------------------------------------- | ------------------------ |
+  | [`sample`](#samplomatic.distributions.UniformLocalC1.sample "samplomatic.distributions.UniformLocalC1.sample")(size, rng) | Sample the distribution. |
+
+  **Attributes Documentation**
+
+  ### gate\_name
+
+  <Attribute id="samplomatic.distributions.UniformLocalC1.gate_name">
+    The name of the two-qubit gate.
+  </Attribute>
+
+  ### register\_type
+
+  <Attribute id="samplomatic.distributions.UniformLocalC1.register_type" />
+
+  **Methods Documentation**
+
+  ### sample
+
+  <Function id="samplomatic.distributions.UniformLocalC1.sample" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/distributions/uniform_local_c1.py#L67-L76" signature="sample(size, rng)">
+    Sample the distribution.
+
+    **Parameters**
+
+    *   **size** – The number elements to sample.
+    *   **rng** – A randomness generator.
+
+    **Returns**
+
+    The samples.
+  </Function>
+</Class>
+

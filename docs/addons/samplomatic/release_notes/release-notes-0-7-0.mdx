@@ -1,0 +1,33 @@
+---
+title: "0.7.0 - 2025-09-15"
+description: "0.7.0 - 2025-09-15 for the latest version of Samplomatic"
+---
+
+<span id="id1" />
+
+# 0.7.0 - 2025-09-15
+
+## Removed
+
+*   Removed the `PauliRegister.from_paulis` method. ([#14](https://github.com/Qiskit/samplomatic/issues/14))
+
+## Added
+
+*   Added a `width` argument to `TensorInterface.describe()` for text wrapping, and added this description to `Samplex.__str__()`. ([#104](https://github.com/Qiskit/samplomatic/issues/104))
+*   Added a `NoiseModelRequirement` class that describes a noise model required by a `Samplex` at sample time. Added a `Samplex.noise_models` property containing a dictionary of `NoiseModelRequirement`s. ([#112](https://github.com/Qiskit/samplomatic/issues/112))
+*   Added `InjectNoise` and `BasisTransform` to the top-level module, allowing, for example, `from samplomatic import InjectNoise, BasisTransform`. ([#117](https://github.com/Qiskit/samplomatic/issues/117))
+
+## Changed
+
+*   Measurement flips are now returned with shape `(num_randomizations, 1, num_qubits)` to facilitate processing against a shots axis. Previously, they would be returned as `(num_randomizations, num_qubits)`. ([#105](https://github.com/Qiskit/samplomatic/issues/105))
+*   In order to facilitate broadcasting, `Samplex.sample()` now expects an array of rates and a `qiskit.quantum_info.QubitSparsePauliList` for each noise reference. Previously, it expected a `qiskit.quantum_info.PauliLindbladMap`. This change is reflected in `Samplex.inputs()` which now requires a `qiskit.quantum_info.QubitSparsePauliList` for each element of `Samplex.noise_models`. The returned `TensorInterface` object then contains the bound `QubitSparsePauliList`s, as well as `TensorSpecification`s for the rates, the scale, and the local scales. ([#112](https://github.com/Qiskit/samplomatic/issues/112))
+
+## Fixed
+
+*   `Samplex.sample` arguments corresponding to `BasisTransform` and `InjectNoise` annotations are indexed in physical qubit order, in other words, the order of the qubits in the outer-most circuit, restricted to those used by the box. Previously, they followed the order of `CircuitInstruction.qubits`. ([#116](https://github.com/Qiskit/samplomatic/issues/116))
+
+## Improved
+
+*   The `ParameterExpressionTable.evaluate` method now uses `ParameterExpression.bind_all` to increase performance. ([#13](https://github.com/Qiskit/samplomatic/issues/13))
+*   The `InjectNoise.sample` now uses the `QubitSparsePauliList.to_dense_array` method for increased performance. ([#14](https://github.com/Qiskit/samplomatic/issues/14))
+

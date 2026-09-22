@@ -75,6 +75,7 @@ export class Pkg {
     "pauli-prop",
     "qiskit-addon-slc",
     "qiskit-noise-learning",
+    "samplomatic"
   ];
 
   static VALID_NAMES = [
@@ -298,6 +299,16 @@ export class Pkg {
         githubSlug: "Qiskit/qiskit-noise-learning",
         kebabCaseAndShortenUrls: true,
         language: "Python",
+      });
+    }
+    if (name === "samplomatic") {
+      return new Pkg({
+        ...args,
+        title: "Samplomatic",
+        githubSlug: "Qiskit/samplomatic",
+        kebabCaseAndShortenUrls: true,
+        language: "Python",
+        hasAddonDocs: true,
       });
     }
 

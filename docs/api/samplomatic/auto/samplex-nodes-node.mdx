@@ -1,0 +1,122 @@
+---
+title: Node (latest version)
+description: API reference for samplomatic.samplex.nodes.Node in the latest version of samplomatic
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: samplomatic.samplex.nodes.Node
+---
+
+# Node
+
+<Class id="samplomatic.samplex.nodes.Node" isDedicatedPage={true} github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/samplex/nodes/node.py#L27-L180" signature="samplomatic.samplex.nodes.Node" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
+
+  Parent class for samplex node operations.
+
+  **Attributes Summary**
+
+  |                                                                                                                                            |                                                                                   |
+  | ------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------- |
+  | [`num_parameters`](#samplomatic.samplex.nodes.Node.num_parameters "samplomatic.samplex.nodes.Node.num_parameters")                         | The number of parameter values this node requires at sampling time.               |
+  | [`outgoing_register_type`](#samplomatic.samplex.nodes.Node.outgoing_register_type "samplomatic.samplex.nodes.Node.outgoing_register_type") | The virtual gate type of outgoing registers.                                      |
+  | [`parameter_idxs`](#samplomatic.samplex.nodes.Node.parameter_idxs "samplomatic.samplex.nodes.Node.parameter_idxs")                         | Which evaluated parameter expressions this node needs access to at sampling time. |
+  | [`trace_info`](#samplomatic.samplex.nodes.Node.trace_info "samplomatic.samplex.nodes.Node.trace_info")                                     | Debug trace information linking this node back to its originating box(es).        |
+
+  **Methods Summary**
+
+  |                                                                                                                                                           |                                                                                  |
+  | --------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+  | [`get_style`](#samplomatic.samplex.nodes.Node.get_style "samplomatic.samplex.nodes.Node.get_style")()                                                     | Return the style of this node when plotted.                                      |
+  | [`instantiates`](#samplomatic.samplex.nodes.Node.instantiates "samplomatic.samplex.nodes.Node.instantiates")()                                            | Return a manifest of new virtual registers that this node instantiates.          |
+  | [`outputs_to`](#samplomatic.samplex.nodes.Node.outputs_to "samplomatic.samplex.nodes.Node.outputs_to")()                                                  | Return the set of names of outputs this node mutates.                            |
+  | [`reads_from`](#samplomatic.samplex.nodes.Node.reads_from "samplomatic.samplex.nodes.Node.reads_from")()                                                  | Return a manifest of which virtual register values this node needs to read from. |
+  | [`removes`](#samplomatic.samplex.nodes.Node.removes "samplomatic.samplex.nodes.Node.removes")()                                                           | Return a manifest of virtual registers that this node removes.                   |
+  | [`validate_and_update`](#samplomatic.samplex.nodes.Node.validate_and_update "samplomatic.samplex.nodes.Node.validate_and_update")(register\_descriptions) | Validate provided register descriptions are compatible, update with changes.     |
+  | [`writes_to`](#samplomatic.samplex.nodes.Node.writes_to "samplomatic.samplex.nodes.Node.writes_to")()                                                     | Return a manifest of which virtual register values this node needs to write to.  |
+
+  **Attributes Documentation**
+
+  ### num\_parameters
+
+  <Attribute id="samplomatic.samplex.nodes.Node.num_parameters">
+    The number of parameter values this node requires at sampling time.
+  </Attribute>
+
+  ### outgoing\_register\_type
+
+  <Attribute id="samplomatic.samplex.nodes.Node.outgoing_register_type">
+    The virtual gate type of outgoing registers.
+  </Attribute>
+
+  ### parameter\_idxs
+
+  <Attribute id="samplomatic.samplex.nodes.Node.parameter_idxs">
+    Which evaluated parameter expressions this node needs access to at sampling time.
+  </Attribute>
+
+  ### trace\_info
+
+  <Attribute id="samplomatic.samplex.nodes.Node.trace_info">
+    Debug trace information linking this node back to its originating box(es).
+
+    Populated only when the samplex was built with `debug=True`. Contains annotation metadata such as tag and inject-noise refs from the box(es) that produced this node. This information is not serialized.
+  </Attribute>
+
+  **Methods Documentation**
+
+  ### get\_style
+
+  <Function id="samplomatic.samplex.nodes.Node.get_style" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/samplex/nodes/node.py#L162-L177" signature="get_style() → NodeStyle">
+    Return the style of this node when plotted.
+  </Function>
+
+  ### instantiates
+
+  <Function id="samplomatic.samplex.nodes.Node.instantiates" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/samplex/nodes/node.py#L80-L88" signature="instantiates() → dict[str, tuple[int, VirtualType]]">
+    Return a manifest of new virtual registers that this node instantiates.
+
+    <Admonition title="Note" type="note">
+      *   To change the type or size of a register, both instantiate and remove it.
+      *   Do not specify [`reads_from()`](#samplomatic.samplex.nodes.Node.reads_from "samplomatic.samplex.nodes.Node.reads_from") or [`writes_to()`](#samplomatic.samplex.nodes.Node.writes_to "samplomatic.samplex.nodes.Node.writes_to") for an instantiated register, these powers are implicit.
+    </Admonition>
+  </Function>
+
+  ### outputs\_to
+
+  <Function id="samplomatic.samplex.nodes.Node.outputs_to" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/samplex/nodes/node.py#L68-L70" signature="outputs_to() → set[str]">
+    Return the set of names of outputs this node mutates.
+  </Function>
+
+  ### reads\_from
+
+  <Function id="samplomatic.samplex.nodes.Node.reads_from" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/samplex/nodes/node.py#L72-L74" signature="reads_from() → dict[str, tuple[set[int], VirtualType]]">
+    Return a manifest of which virtual register values this node needs to read from.
+  </Function>
+
+  ### removes
+
+  <Function id="samplomatic.samplex.nodes.Node.removes" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/samplex/nodes/node.py#L90-L96" signature="removes() → set[str]">
+    Return a manifest of virtual registers that this node removes.
+
+    It is assumed that registers are removed as a last step; it is not ill-defined to read and write from a removed register.
+  </Function>
+
+  ### validate\_and\_update
+
+  <Function id="samplomatic.samplex.nodes.Node.validate_and_update" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/samplex/nodes/node.py#L122-L160" signature="validate_and_update(register_descriptions: dict[str, tuple[int, VirtualType]])">
+    Validate provided register descriptions are compatible, update with changes.
+
+    This method can be used by a samplex to determine when a node execution order has well-defined dependencies before sampling begins.
+
+    **Parameters**
+
+    **register\_descriptions** – A map from existing register names to their size and type.
+  </Function>
+
+  ### writes\_to
+
+  <Function id="samplomatic.samplex.nodes.Node.writes_to" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/samplex/nodes/node.py#L76-L78" signature="writes_to() → dict[str, tuple[set[int], VirtualType]]">
+    Return a manifest of which virtual register values this node needs to write to.
+  </Function>
+</Class>
+

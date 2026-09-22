@@ -1,0 +1,195 @@
+---
+title: TensorInterface (latest version)
+description: API reference for samplomatic.tensor_interface.TensorInterface in the latest version of samplomatic
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: samplomatic.tensor_interface.TensorInterface
+---
+
+# TensorInterface
+
+<Class id="samplomatic.tensor_interface.TensorInterface" isDedicatedPage={true} github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/tensor_interface.py#L304-L604" signature="samplomatic.tensor_interface.TensorInterface(specs: Iterable[Specification])" modifiers="class">
+  Bases: [`MutableMapping`](https://docs.python.org/3/library/collections.abc.html#collections.abc.MutableMapping)
+
+  An interface described by strict value type specifications, with a focus on tensor values.
+
+  This object implements the mapping protocol against data that is present; if a possible value type has a [`Specification`](tensor-interface-specification "samplomatic.tensor_interface.Specification"), it is not reported as being present (i.e. `"name" in interface`) until a value has been assigned to it. Assigning to a key without a specification, or an invalid value to a specified key, will raise an error.
+
+  **Parameters**
+
+  **specs** – An iterable of specificaitons for the allowed data in this interface.
+
+  **Attributes Summary**
+
+  |                                                                                                                                                      |                                                                                                                                                                                                  |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+  | [`bound_dimensions`](#samplomatic.tensor_interface.TensorInterface.bound_dimensions "samplomatic.tensor_interface.TensorInterface.bound_dimensions") | Those [`free_dimensions`](#samplomatic.tensor_interface.TensorInterface.free_dimensions "samplomatic.tensor_interface.TensorInterface.free_dimensions") that have already been bound to a value. |
+  | [`free_dimensions`](#samplomatic.tensor_interface.TensorInterface.free_dimensions "samplomatic.tensor_interface.TensorInterface.free_dimensions")    | All free dimensions in the interface.                                                                                                                                                            |
+  | [`fully_bound`](#samplomatic.tensor_interface.TensorInterface.fully_bound "samplomatic.tensor_interface.TensorInterface.fully_bound")                | Whether all non-optional interfaces have data specified.                                                                                                                                         |
+  | [`ndim`](#samplomatic.tensor_interface.TensorInterface.ndim "samplomatic.tensor_interface.TensorInterface.ndim")                                     | The number of dimensions, i.e. the length of [`shape`](#samplomatic.tensor_interface.TensorInterface.shape "samplomatic.tensor_interface.TensorInterface.shape").                                |
+  | [`shape`](#samplomatic.tensor_interface.TensorInterface.shape "samplomatic.tensor_interface.TensorInterface.shape")                                  | The shape of this interface broadcasted over all present broadcastable tensor values.                                                                                                            |
+  | [`size`](#samplomatic.tensor_interface.TensorInterface.size "samplomatic.tensor_interface.TensorInterface.size")                                     | The total number of elements once broadcasted, i.e. the product of the [`shape`](#samplomatic.tensor_interface.TensorInterface.shape "samplomatic.tensor_interface.TensorInterface.shape").      |
+  | [`specs`](#samplomatic.tensor_interface.TensorInterface.specs "samplomatic.tensor_interface.TensorInterface.specs")                                  | The interface specifacations, sorted by name.                                                                                                                                                    |
+
+  **Methods Summary**
+
+  |                                                                                                                                                              |                                                                                         |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------- |
+  | [`bind`](#samplomatic.tensor_interface.TensorInterface.bind "samplomatic.tensor_interface.TensorInterface.bind")(\*\*kwargs)                                 | Bind data to this interface.                                                            |
+  | [`describe`](#samplomatic.tensor_interface.TensorInterface.describe "samplomatic.tensor_interface.TensorInterface.describe")(\[include\_bound, ...])         | Return a human-readable description of this interface.                                  |
+  | [`get_specs`](#samplomatic.tensor_interface.TensorInterface.get_specs "samplomatic.tensor_interface.TensorInterface.get_specs")(\[pattern])                  | Return all specifications of this inteface whose names the pattern string.              |
+  | [`make_broadcastable`](#samplomatic.tensor_interface.TensorInterface.make_broadcastable "samplomatic.tensor_interface.TensorInterface.make_broadcastable")() | Return a new interface like this one where all tensor specifications are broadcastable. |
+  | [`num_bytes`](#samplomatic.tensor_interface.TensorInterface.num_bytes "samplomatic.tensor_interface.TensorInterface.num_bytes")(\*\*dimensions)              | Return the total number of bytes required to represent all data in this interface.      |
+
+  **Attributes Documentation**
+
+  ### bound\_dimensions
+
+  <Attribute id="samplomatic.tensor_interface.TensorInterface.bound_dimensions">
+    Those [`free_dimensions`](#samplomatic.tensor_interface.TensorInterface.free_dimensions "samplomatic.tensor_interface.TensorInterface.free_dimensions") that have already been bound to a value.
+  </Attribute>
+
+  ### free\_dimensions
+
+  <Attribute id="samplomatic.tensor_interface.TensorInterface.free_dimensions">
+    All free dimensions in the interface.
+  </Attribute>
+
+  ### fully\_bound
+
+  <Attribute id="samplomatic.tensor_interface.TensorInterface.fully_bound">
+    Whether all non-optional interfaces have data specified.
+  </Attribute>
+
+  ### ndim
+
+  <Attribute id="samplomatic.tensor_interface.TensorInterface.ndim">
+    The number of dimensions, i.e. the length of [`shape`](#samplomatic.tensor_interface.TensorInterface.shape "samplomatic.tensor_interface.TensorInterface.shape").
+  </Attribute>
+
+  ### shape
+
+  <Attribute id="samplomatic.tensor_interface.TensorInterface.shape">
+    The shape of this interface broadcasted over all present broadcastable tensor values.
+
+    This shape does not include the native shapes of any particular tensor value. For example, if some broadastable value has shape `(4, 5, 6, 7)` and the associated tensor specification has shape `(6, 7)`, then this value naturally contributes a shape of `(4, 5)` to this interface. Consequently, the shape here will always be `()` for an interface with no broadcastable specifications.
+  </Attribute>
+
+  ### size
+
+  <Attribute id="samplomatic.tensor_interface.TensorInterface.size">
+    The total number of elements once broadcasted, i.e. the product of the [`shape`](#samplomatic.tensor_interface.TensorInterface.shape "samplomatic.tensor_interface.TensorInterface.shape").
+  </Attribute>
+
+  ### specs
+
+  <Attribute id="samplomatic.tensor_interface.TensorInterface.specs">
+    The interface specifacations, sorted by name.
+  </Attribute>
+
+  **Methods Documentation**
+
+  ### bind
+
+  <Function id="samplomatic.tensor_interface.TensorInterface.bind" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/tensor_interface.py#L478-L522" signature="bind(**kwargs: Mapping[str, Any]) → Self">
+    Bind data to this interface.
+
+    A tensor interface is a flat data structure mapping names to values, where the values must conform to constraints specifed by the [`specs`](#samplomatic.tensor_interface.TensorInterface.specs "samplomatic.tensor_interface.TensorInterface.specs").
+
+    ```python
+    >>> from samplomatic.tensor_interface import TensorSpecification, TensorInterface
+    >>> import numpy as np
+    >>>
+    >>> interface = TensorInterface([
+    ...     TensorSpecification("foo.bar", (2, 3), np.float64),
+    ...     TensorSpecification("x", (15,), np.int64),
+    ...     TensorSpecification("y", (4,), np.float32)
+    ... ])
+    >>>
+    >>> # bind a single value
+    >>> interface.bind(x=np.arange(15), y=np.linspace(0, 1, 4))
+    TensorInterface(...)
+    >>>
+    >>> # bind a value that has a "."-separated name
+    >>> interface.bind(foo={"bar": np.zeros((2, 3))})
+    TensorInterface(...)
+    >>>
+    >>> # alternatively, items can be set directly
+    >>> interface["foo.bar"] = np.ones((2, 3))
+    >>> interface["y"] = [2.1, 2.2, 2.3, 2.4]
+    ```
+
+    **Parameters**
+
+    **\*\*kwargs** – Key-value data to bind.
+
+    **Raises**
+
+    [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If a specification not present in this interface is in `kwargs`.
+
+    **Returns**
+
+    This interface.
+  </Function>
+
+  ### describe
+
+  <Function id="samplomatic.tensor_interface.TensorInterface.describe" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/tensor_interface.py#L409-L464" signature="describe(include_bound: bool = True, include_free_dimensions: bool = False, prefix: str = '* ', bound_prefix: str | None = None, width: int = 0) → str">
+    Return a human-readable description of this interface.
+
+    **Parameters**
+
+    *   **include\_bound** – Whether to include interface specs that are already bound.
+    *   **include\_free\_dimensions** – Whether to include information about free dimensions and their bound values.
+    *   **prefix** – A string prefix for every specification in the interface that has no value.
+    *   **bound\_prefix** – A string prefix for every specification in the interface that has a value, or `None` to use the same value as `prefix`.
+    *   **width** – The text width to wrap at, minimum 40, but where 0 specifies no wrapping.
+
+    **Returns**
+
+    A description.
+  </Function>
+
+  ### get\_specs
+
+  <Function id="samplomatic.tensor_interface.TensorInterface.get_specs" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/tensor_interface.py#L466-L476" signature="get_specs(pattern: str = '') → list[Specification]">
+    Return all specifications of this inteface whose names the pattern string.
+
+    **Parameters**
+
+    **pattern** – A pattern string. Regex is supported.
+
+    **Returns**
+
+    Those specifications whose names match the pattern, sorted.
+  </Function>
+
+  ### make\_broadcastable
+
+  <Function id="samplomatic.tensor_interface.TensorInterface.make_broadcastable" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/tensor_interface.py#L524-L537" signature="make_broadcastable() → TensorInterface">
+    Return a new interface like this one where all tensor specifications are broadcastable.
+
+    **Returns**
+
+    A new [`TensorInterface`](#samplomatic.tensor_interface.TensorInterface "samplomatic.tensor_interface.TensorInterface").
+  </Function>
+
+  ### num\_bytes
+
+  <Function id="samplomatic.tensor_interface.TensorInterface.num_bytes" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/tensor_interface.py#L373-L402" signature="num_bytes(**dimensions: int) → int">
+    Return the total number of bytes required to represent all data in this interface.
+
+    This sums [`num_bytes`](tensor-interface-specification#num_bytes "samplomatic.tensor_interface.Specification.num_bytes") over all specifications, multiplied by the product of all free dimensions that each specification depends on.
+
+    This estimate is not overly concerned with accounting for memory required, say, for builtin Python container objects. It is more interested in the large data limit where memory is dominated by sources like NumPy buffers.
+
+    **Parameters**
+
+    **\*\*dimensions** – Values for free dimensions. These override any already-bound dimensions.
+
+    **Raises**
+
+    [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If any free dimensions are not specified.
+  </Function>
+</Class>
+

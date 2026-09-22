@@ -1,0 +1,615 @@
+---
+title: PreSamplex (latest version)
+description: API reference for samplomatic.pre_samplex.PreSamplex in the latest version of samplomatic
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: samplomatic.pre_samplex.PreSamplex
+---
+
+# PreSamplex
+
+<Class id="samplomatic.pre_samplex.PreSamplex" isDedicatedPage={true} github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/pre_samplex/pre_samplex.py#L271-L1973" signature="samplomatic.pre_samplex.PreSamplex(graph: PyDiGraph[PreNode, PreEdge] | None = None, qubit_map: dict[Qubit, int] | None = None, dangling: dict[int, set[int]] | None = None, optional_dangling: dict[int, set[int]] | None = None, cregs: list[ClassicalRegister] | None = None, pauli_lindblad_map_count: count | None = None, pauli_lindblad_maps: dict[str, int] | None = None, noise_modifiers: dict[str, set[str]] | None = None, basis_changes: dict[str, int] | None = None, twirled_clbits: set[int] | None = None, passthrough_params: list[tuple[int | None, ParameterExpression]] | None = None, forced_copy_node_idxs: set[int] | None = None, debug: bool = False)" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
+
+  The sampling IR between a boxed-up circuit and a [`Samplex`](samplex-samplex "samplomatic.samplex.Samplex").
+
+  In this IR, as in the lower [`Samplex`](samplex-samplex "samplomatic.samplex.Samplex"), sampling operations are described as a graph. Operations describe actions like sampling from distributions and propagating virtual gates past other gates. However, unlike the lower IR, this IR still maintains the notion of qubit indices, and operations are still declarative rather than procedural.
+
+  **Parameters**
+
+  *   **graph** – The graph being built.
+  *   **qubit\_map** – A map from qubits in the source circuit to physical qubit indices.
+  *   **dangling** – A map from qubit indices to sets of node indices that are still eligible to, and must, receive edges at a further point in parsing the circuit being built.
+  *   **optional\_dangling** – A map from qubit indices to sets of node indices that are still eligible to, but don’t have to, receive edges at a further point in parsing the circuit being built.
+  *   **cregs** – A list of classical registers in the order that they were added to the circuit.
+  *   **pauli\_lindblad\_map\_count** – A count of the total number of Pauli Lindblad maps.
+  *   **pauli\_lindblad\_maps** – A map from unique identifiers of Pauli Lindblad maps to the number of systems the map acts on.
+  *   **basis\_changes** – A map from unique identifiers of basis changes to the number of subsystems in that basis change.
+  *   **twirled\_clbits** – A set of all classical bit indices which were previously twirled in the circuit.
+  *   **passthrough\_params** – List of `ParamSpec` for parameters which exist in the template but are not generated in the collectors.
+  *   **forced\_copy\_node\_idxs** – List of node indices for which copying of registers will be forced. The nodes behave differently for edges with left/right direction. For left direction, the incoming node is checked against forced\_copy\_node\_idxs, while for right direction, the outgoing node is.
+
+  **Attributes Summary**
+
+  |                                                                                                                         |                                                      |
+  | ----------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
+  | [`max_param_idx`](#samplomatic.pre_samplex.PreSamplex.max_param_idx "samplomatic.pre_samplex.PreSamplex.max_param_idx") | The maximum template parameter index over all nodes. |
+
+  **Methods Summary**
+
+  |                                                                                                                                                                                                            |                                                                                                                                                                 |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | [`add_change_basis_node`](#samplomatic.pre_samplex.PreSamplex.add_change_basis_node "samplomatic.pre_samplex.PreSamplex.add_change_basis_node")(samplex, ...)                                              | Add basis transform node to a samplex, mutating it in place.                                                                                                    |
+  | [`add_collect`](#samplomatic.pre_samplex.PreSamplex.add_collect "samplomatic.pre_samplex.PreSamplex.add_collect")(qubits, synth, param\_idxs\[, ...])                                                      | Add or extend a node to collect virtual gates of types allowed by the `synth`.                                                                                  |
+  | [`add_collect_node`](#samplomatic.pre_samplex.PreSamplex.add_collect_node "samplomatic.pre_samplex.PreSamplex.add_collect_node")(samplex, pre\_node\_idx, ...)                                             | Add evaluation nodes to a samplex, mutating it in place.                                                                                                        |
+  | [`add_combine_node`](#samplomatic.pre_samplex.PreSamplex.add_combine_node "samplomatic.pre_samplex.PreSamplex.add_combine_node")(samplex, pre\_node\_idx, ...)                                             | Add a node that combines all the predecessor nodes of a given pre-node.                                                                                         |
+  | [`add_dangler`](#samplomatic.pre_samplex.PreSamplex.add_dangler "samplomatic.pre_samplex.PreSamplex.add_dangler")(qubit\_idxs, node\_idx\[, dangler\_type])                                                | Mark a node as dangling.                                                                                                                                        |
+  | [`add_emit_left_basis_change`](#samplomatic.pre_samplex.PreSamplex.add_emit_left_basis_change "samplomatic.pre_samplex.PreSamplex.add_emit_left_basis_change")(qubits, ...\[, ...])                        | Add a node that emits virtual gates left to change frames.                                                                                                      |
+  | [`add_emit_noise_left`](#samplomatic.pre_samplex.PreSamplex.add_emit_noise_left "samplomatic.pre_samplex.PreSamplex.add_emit_noise_left")(qubits, noise\_ref\[, ...])                                      | Add a node that emits virtual gates for noise injection to the left.                                                                                            |
+  | [`add_emit_noise_right`](#samplomatic.pre_samplex.PreSamplex.add_emit_noise_right "samplomatic.pre_samplex.PreSamplex.add_emit_noise_right")(qubits, noise\_ref\[, ...])                                   | Add a node that emits virtual gates for noise injection to the right.                                                                                           |
+  | [`add_emit_right_basis_change`](#samplomatic.pre_samplex.PreSamplex.add_emit_right_basis_change "samplomatic.pre_samplex.PreSamplex.add_emit_right_basis_change")(qubits, ...\[, ...])                     | Add a node that emits virtual gates right to change frames.                                                                                                     |
+  | [`add_emit_twirl`](#samplomatic.pre_samplex.PreSamplex.add_emit_twirl "samplomatic.pre_samplex.PreSamplex.add_emit_twirl")(qubits, register\_type\[, ...])                                                 | Add a node that emits virtual gates left and right of the same type.                                                                                            |
+  | [`add_force_copy_nodes`](#samplomatic.pre_samplex.PreSamplex.add_force_copy_nodes "samplomatic.pre_samplex.PreSamplex.add_force_copy_nodes")(node\_idxs)                                                   | Add node indices for which a register will be forced to copy.                                                                                                   |
+  | [`add_inject_noise_node`](#samplomatic.pre_samplex.PreSamplex.add_inject_noise_node "samplomatic.pre_samplex.PreSamplex.add_inject_noise_node")(samplex, ...)                                              | Add an inject noise node to a samplex, mutating it in place.                                                                                                    |
+  | [`add_measure_propagate`](#samplomatic.pre_samplex.PreSamplex.add_measure_propagate "samplomatic.pre_samplex.PreSamplex.add_measure_propagate")(instr, clbit\_idx\[, ...])                                 | Add a node that propagates virtual Paulis through a measurement.                                                                                                |
+  | [`add_measure_propagate_node`](#samplomatic.pre_samplex.PreSamplex.add_measure_propagate_node "samplomatic.pre_samplex.PreSamplex.add_measure_propagate_node")(samplex, ...)                               | Lower a [`PreMeasure`](pre-samplex-pre-measure "samplomatic.pre_samplex.PreMeasure") node to samplex nodes.                                                     |
+  | [`add_propagate`](#samplomatic.pre_samplex.PreSamplex.add_propagate "samplomatic.pre_samplex.PreSamplex.add_propagate")(instr, mode, params\[, ...])                                                       | Add a node that propagates virtual gates through an operation.                                                                                                  |
+  | [`add_propagate_node`](#samplomatic.pre_samplex.PreSamplex.add_propagate_node "samplomatic.pre_samplex.PreSamplex.add_propagate_node")(samplex, ...)                                                       | Add propagation node to a samplex, mutating it in place.                                                                                                        |
+  | [`add_reset_propagate`](#samplomatic.pre_samplex.PreSamplex.add_reset_propagate "samplomatic.pre_samplex.PreSamplex.add_reset_propagate")(instr\[, trace\_info])                                           | Add a node that propagates virtual Paulis through a reset.                                                                                                      |
+  | [`add_reset_propagate_node`](#samplomatic.pre_samplex.PreSamplex.add_reset_propagate_node "samplomatic.pre_samplex.PreSamplex.add_reset_propagate_node")(samplex, ...)                                     | Lower a `PreReset` node to samplex nodes.                                                                                                                       |
+  | [`add_twirl_sampling_node`](#samplomatic.pre_samplex.PreSamplex.add_twirl_sampling_node "samplomatic.pre_samplex.PreSamplex.add_twirl_sampling_node")(samplex, ...)                                        | Add sampling nodes to a samplex, mutating it in place.                                                                                                          |
+  | [`draw`](#samplomatic.pre_samplex.PreSamplex.draw "samplomatic.pre_samplex.PreSamplex.draw")(\[cols, subgraph\_idxs, layout\_method])                                                                      | Draw the graph in this pre-samplex using the `plot_graph()` method.                                                                                             |
+  | [`enforce_no_propagation`](#samplomatic.pre_samplex.PreSamplex.enforce_no_propagation "samplomatic.pre_samplex.PreSamplex.enforce_no_propagation")(instr)                                                  | Make sure the instruction doesn't participate in virtual gate propagation.                                                                                      |
+  | [`finalize`](#samplomatic.pre_samplex.PreSamplex.finalize "samplomatic.pre_samplex.PreSamplex.finalize")()                                                                                                 | Finalize the pre-samplex.                                                                                                                                       |
+  | [`find_danglers`](#samplomatic.pre_samplex.PreSamplex.find_danglers "samplomatic.pre_samplex.PreSamplex.find_danglers")(match, subsystems)                                                                 | Look through the dangling nodes and yield matches overlapping on `subsystems`.                                                                                  |
+  | [`find_then_remove_danglers`](#samplomatic.pre_samplex.PreSamplex.find_then_remove_danglers "samplomatic.pre_samplex.PreSamplex.find_then_remove_danglers")(match, subsystems)                             | Extend [`find_danglers()`](#samplomatic.pre_samplex.PreSamplex.find_danglers "samplomatic.pre_samplex.PreSamplex.find_danglers") to also remove dangling nodes. |
+  | [`get_all_danglers`](#samplomatic.pre_samplex.PreSamplex.get_all_danglers "samplomatic.pre_samplex.PreSamplex.get_all_danglers")()                                                                         | Return the danglers information                                                                                                                                 |
+  | [`merge_parallel_nodes`](#samplomatic.pre_samplex.PreSamplex.merge_parallel_nodes "samplomatic.pre_samplex.PreSamplex.merge_parallel_nodes")(node\_type)                                                   | Merge parallel nodes of a given type acting on disjoint subsystems.                                                                                             |
+  | [`prune_prenodes_unreachable_from_emission`](#samplomatic.pre_samplex.PreSamplex.prune_prenodes_unreachable_from_emission "samplomatic.pre_samplex.PreSamplex.prune_prenodes_unreachable_from_emission")() | Prune all pre-nodes that are unreachable from pre-emit nodes.                                                                                                   |
+  | [`prune_uncollected_prenodes`](#samplomatic.pre_samplex.PreSamplex.prune_uncollected_prenodes "samplomatic.pre_samplex.PreSamplex.prune_uncollected_prenodes")()                                           | Prune all pre-nodes that are not collected by pre-measure or pre-collect nodes.                                                                                 |
+  | [`qubits_to_indices`](#samplomatic.pre_samplex.PreSamplex.qubits_to_indices "samplomatic.pre_samplex.PreSamplex.qubits_to_indices")(qubits)                                                                | Convert uniform subsystems on qubits to uniform subsystems on qubit indices.                                                                                    |
+  | [`remap`](#samplomatic.pre_samplex.PreSamplex.remap "samplomatic.pre_samplex.PreSamplex.remap")(qubit\_map)                                                                                                | Remap the object to a new [`PreSamplex`](#samplomatic.pre_samplex.PreSamplex "samplomatic.pre_samplex.PreSamplex") object.                                      |
+  | [`remove_force_copy_nodes`](#samplomatic.pre_samplex.PreSamplex.remove_force_copy_nodes "samplomatic.pre_samplex.PreSamplex.remove_force_copy_nodes")(node\_idxs)                                          | Remove node indices for which a register will be forced to copy.                                                                                                |
+  | [`set_all_danglers`](#samplomatic.pre_samplex.PreSamplex.set_all_danglers "samplomatic.pre_samplex.PreSamplex.set_all_danglers")(dangling, optional\_dangling)                                             | Set the danglers information in place                                                                                                                           |
+  | [`sorted_predecessor_idxs`](#samplomatic.pre_samplex.PreSamplex.sorted_predecessor_idxs "samplomatic.pre_samplex.PreSamplex.sorted_predecessor_idxs")(pre\_node\_idx, order)                               | Return the predecessors of a node in edge-sorted order.                                                                                                         |
+  | [`subgraphs`](#samplomatic.pre_samplex.PreSamplex.subgraphs "samplomatic.pre_samplex.PreSamplex.subgraphs")()                                                                                              | Return a list of disconnected components.                                                                                                                       |
+  | [`validate_no_rightward_danglers`](#samplomatic.pre_samplex.PreSamplex.validate_no_rightward_danglers "samplomatic.pre_samplex.PreSamplex.validate_no_rightward_danglers")()                               | Validate that there are no nodes that require termination but are still dangling.                                                                               |
+  | [`verify_no_twirled_clbits`](#samplomatic.pre_samplex.PreSamplex.verify_no_twirled_clbits "samplomatic.pre_samplex.PreSamplex.verify_no_twirled_clbits")(clbits)                                           | Verify the given classical bits are not twirled, for classical conditions validation.                                                                           |
+
+  **Attributes Documentation**
+
+  ### max\_param\_idx
+
+  <Attribute id="samplomatic.pre_samplex.PreSamplex.max_param_idx">
+    The maximum template parameter index over all nodes.
+  </Attribute>
+
+  **Methods Documentation**
+
+  ### add\_change\_basis\_node
+
+  <Function id="samplomatic.pre_samplex.PreSamplex.add_change_basis_node" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/pre_samplex/pre_samplex.py#L1437-L1469" signature="add_change_basis_node(samplex: Samplex, pre_basis_idx: int, pre_nodes_to_nodes: dict[int, int], order: dict[int, int], register_names: dict[int, dict[int, str]]) → None">
+    Add basis transform node to a samplex, mutating it in place.
+
+    **Parameters**
+
+    *   **samplex** – The samplex to add nodes to.
+    *   **pre\_basis\_idx** – The index of the pre-basis node to turn into a basis change node.
+    *   **pre\_nodes\_to\_nodes** – A map from pre-node indices to node indices.
+    *   **order** – A map from pre-node indices to integers representing their position in a topological sort of the samplex state graph.
+    *   **register\_names** – A map such that `register_names[a][b]` is the name of the register implied by the edge (a, b) in the samplex state graph.
+  </Function>
+
+  ### add\_collect
+
+  <Function id="samplomatic.pre_samplex.PreSamplex.add_collect" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/pre_samplex/pre_samplex.py#L536-L598" signature="add_collect(qubits: Partition[Qubit], synth: Synth, param_idxs: ndarray[tuple[int, int], dtype[int64]], node_idx: int | None = None, trace_info: TraceInfo | None = None)">
+    Add or extend a node to collect virtual gates of types allowed by the `synth`.
+
+    If `node_idx` is None, a new node is added. If `node_idx` is provided, the [`PreCollect`](pre-samplex-pre-collect "samplomatic.pre_samplex.PreCollect") node at that index will be extended to include the given qubits. Note that the function does not verify the compatibility of the node at `node_idx` - it is assumed that it’s type is appropriate, and that the `synth` is the same.
+
+    **Parameters**
+
+    *   **qubits** – The qubits to collect virtual gates on.
+    *   **synth** – The synthesizer to generate gate parameters.
+    *   **param\_idxs** – The indices of the parameters in the corresponding template.
+    *   **node\_idx** – The index of the node to be extended to include the provided qubits.
+    *   **trace\_info** – Optional debug trace info to attach to the node.
+
+    **Returns**
+
+    The index of the new node in the graph.
+  </Function>
+
+  ### add\_collect\_node
+
+  <Function id="samplomatic.pre_samplex.PreSamplex.add_collect_node" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/pre_samplex/pre_samplex.py#L1756-L1798" signature="add_collect_node(samplex: Samplex, pre_node_idx: int, pre_nodes_to_nodes: dict[int, int], order: dict[int, int], register_names: dict[int, dict[int, str]])">
+    Add evaluation nodes to a samplex, mutating it in place.
+
+    **Parameters**
+
+    *   **samplex** – The samplex to add nodes to.
+    *   **pre\_node\_idx** – The index of the pre-collect node to turn into a collection node in the samplex.
+    *   **pre\_nodes\_to\_nodes** – A map from pre-node indices to node indices.
+    *   **order** – A map from pre-node indices to integers representing their position in a topological sort of the pre-samplex graph.
+    *   **register\_names** – A map such that `register_names[a][b]` is the name of the register implied by the edge (a, b) in the pre-samplex graph.
+  </Function>
+
+  ### add\_combine\_node
+
+  <Function id="samplomatic.pre_samplex.PreSamplex.add_combine_node" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/pre_samplex/pre_samplex.py#L1557-L1646" signature="add_combine_node(samplex: Samplex, pre_node_idx: int, pre_nodes_to_nodes: dict[int, int], order: dict[int, int], register_names: dict[int, dict[int, str]], combined_register_name: str, combined_register_type: VirtualType) → tuple[int, str]">
+    Add a node that combines all the predecessor nodes of a given pre-node.
+
+    This function adds a [`SliceRegisterNode`](samplex-nodes-slice-register-node "samplomatic.samplex.nodes.SliceRegisterNode") if the given pre-node has a single predecessor, or a [`CombineRegistersNode`](samplex-nodes-combine-registers-node "samplomatic.samplex.nodes.CombineRegistersNode") if it has multiple predecessors. If the pre-node has a single predecessor and the slice is trivial (same type, identity index mapping, no forced copy), the slice node is skipped entirely and the predecessor’s node index and register name are returned directly.
+
+    **Parameters**
+
+    *   **samplex** – The samplex to add nodes to.
+    *   **pre\_node\_idx** – The index of the pre-node whose predecessors are to be combined.
+    *   **pre\_nodes\_to\_nodes** – A map from pre-node indices to node indices. The indices of the pre-node’s predecessors must be included.
+    *   **order** – A map from pre-node indices to integers representing their position in a topological sort of the pre-samplex graph. The indices of the pre-node and its predecessors must be included.
+    *   **register\_names** – A map such that `register_names[a][b]` is the name of the register implied by the edge (a, b) in the pre-samplex graph.
+    *   **combined\_register\_name** – The prefix of the name of the combined node.
+    *   **combined\_register\_type** – The type of register to combine the predecessor registers into.
+
+    **Returns**
+
+    A tuple containing the node index and register name to use for downstream nodes.
+  </Function>
+
+  ### add\_dangler
+
+  <Function id="samplomatic.pre_samplex.PreSamplex.add_dangler" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/pre_samplex/pre_samplex.py#L410-L435" signature="add_dangler(qubit_idxs: Iterable[int], node_idx: int, dangler_type: DanglerType = DanglerType.REQUIRED)">
+    Mark a node as dangling.
+
+    A dangling node is one that is eligible to be connected to subsequently added nodes.
+
+    **Parameters**
+
+    *   **qubit\_idxs** – The qubits on which the node is dangling.
+    *   **node\_idx** – The index of the node within the pre-samplex graph.
+    *   **dangler\_type** – Specifies the behavior of the dangler.
+
+    **Raises**
+
+    [**SamplexBuildError**](exceptions-samplex-build-error "samplomatic.exceptions.SamplexBuildError") – If the dangler type is invalid.
+  </Function>
+
+  ### add\_emit\_left\_basis\_change
+
+  <Function id="samplomatic.pre_samplex.PreSamplex.add_emit_left_basis_change" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/pre_samplex/pre_samplex.py#L862-L901" signature="add_emit_left_basis_change(qubits: Partition[Qubit], basis_ref: str, basis_change: Literal['local_clifford', 'pauli_prepare', 'pauli_measure'], trace_info: TraceInfo | None = None) → int">
+    Add a node that emits virtual gates left to change frames.
+
+    **Parameters**
+
+    *   **qubits** – The qubits to emit virtual gates on.
+    *   **basis\_ref** – Unique identifier of this basis change.
+    *   **basis\_change** – What basis change to use.
+
+    **Raises**
+
+    [**SamplexBuildError**](exceptions-samplex-build-error "samplomatic.exceptions.SamplexBuildError") – If a basis change with the same basis\_ref but of different length has already been added.
+
+    **Returns**
+
+    The index of the new node in the graph.
+  </Function>
+
+  ### add\_emit\_noise\_left
+
+  <Function id="samplomatic.pre_samplex.PreSamplex.add_emit_noise_left" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/pre_samplex/pre_samplex.py#L772-L815" signature="add_emit_noise_left(qubits: Partition[Qubit], noise_ref: str, modifier_ref: str = '', trace_info: TraceInfo | None = None) → int">
+    Add a node that emits virtual gates for noise injection to the left.
+
+    **Parameters**
+
+    *   **qubits** – The qubits to emit virtual gates on.
+    *   **noise\_ref** – Unique identifier of the noise to inject.
+    *   **modifier\_ref** – Unique identifier for modifiers to apply to this Pauli Lindblad map.
+    *   **trace\_info** – Optional debug trace info to attach to the node.
+
+    **Raises**
+
+    [**SamplexBuildError**](exceptions-samplex-build-error "samplomatic.exceptions.SamplexBuildError") – If a Pauli Lindblad map with the same noise\_ref but of different length has already been added.
+
+    **Returns**
+
+    The index of the new node in the graph.
+  </Function>
+
+  ### add\_emit\_noise\_right
+
+  <Function id="samplomatic.pre_samplex.PreSamplex.add_emit_noise_right" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/pre_samplex/pre_samplex.py#L817-L860" signature="add_emit_noise_right(qubits: Partition[Qubit], noise_ref: str, modifier_ref: str = '', trace_info: TraceInfo | None = None) → int">
+    Add a node that emits virtual gates for noise injection to the right.
+
+    **Parameters**
+
+    *   **qubits** – The qubits to emit virtual gates on.
+    *   **noise\_ref** – Unique identifier of the noise to inject.
+    *   **modifier\_ref** – Unique identifier for modifiers to apply to this Pauli Lindblad map.
+    *   **trace\_info** – Optional debug trace info to attach to the node.
+
+    **Raises**
+
+    [**SamplexBuildError**](exceptions-samplex-build-error "samplomatic.exceptions.SamplexBuildError") – If a Pauli Lindblad map with the same noise\_ref but of different length has already been added.
+
+    **Returns**
+
+    The index of the new node in the graph.
+  </Function>
+
+  ### add\_emit\_right\_basis\_change
+
+  <Function id="samplomatic.pre_samplex.PreSamplex.add_emit_right_basis_change" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/pre_samplex/pre_samplex.py#L903-L942" signature="add_emit_right_basis_change(qubits: Partition[Qubit], basis_ref: str, basis_change: Literal['local_clifford', 'pauli_prepare', 'pauli_measure'], trace_info: TraceInfo | None = None) → int">
+    Add a node that emits virtual gates right to change frames.
+
+    **Parameters**
+
+    *   **qubits** – The qubits to emit virtual gates on.
+    *   **basis\_ref** – Unique identifier of this basis change.
+    *   **basis\_change** – What basis change to use.
+
+    **Raises**
+
+    [**SamplexBuildError**](exceptions-samplex-build-error "samplomatic.exceptions.SamplexBuildError") – If a basis change with the same basis\_ref but of different length has already been added.
+
+    **Returns**
+
+    The index of the new node in the graph.
+  </Function>
+
+  ### add\_emit\_twirl
+
+  <Function id="samplomatic.pre_samplex.PreSamplex.add_emit_twirl" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/pre_samplex/pre_samplex.py#L690-L748" signature="add_emit_twirl(qubits: Partition[Qubit], register_type: GroupMode, twirl_gate: str | None = None, trace_info: TraceInfo | None = None) → int">
+    Add a node that emits virtual gates left and right of the same type.
+
+    **Parameters**
+
+    *   **qubits** – The qubits to emit virtual gates on.
+    *   **register\_type** – The type of virtual gate to emit.
+    *   **twirl\_gate** – The 2Q gate name for `UniformLocalC1` sampling, or `None`.
+    *   **trace\_info** – Optional debug trace info to attach to the node.
+
+    **Raises**
+
+    *   [**SamplexBuildError**](exceptions-samplex-build-error "samplomatic.exceptions.SamplexBuildError") – When qubits has overlap with a hanging emit node with a different virtual gate type.
+    *   [**SamplexBuildError**](exceptions-samplex-build-error "samplomatic.exceptions.SamplexBuildError") – When any of the elements of qubits is not dangling.
+
+    **Returns**
+
+    The index of the new node in the graph.
+  </Function>
+
+  ### add\_force\_copy\_nodes
+
+  <Function id="samplomatic.pre_samplex.PreSamplex.add_force_copy_nodes" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/pre_samplex/pre_samplex.py#L528-L530" signature="add_force_copy_nodes(node_idxs: Iterable[int])">
+    Add node indices for which a register will be forced to copy.
+  </Function>
+
+  ### add\_inject\_noise\_node
+
+  <Function id="samplomatic.pre_samplex.PreSamplex.add_inject_noise_node" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/pre_samplex/pre_samplex.py#L1471-L1512" signature="add_inject_noise_node(samplex: Samplex, pre_inject_idx: int, pre_nodes_to_nodes: dict[int, int], order: dict[int, int], register_names: dict[int, dict[int, str]]) → None">
+    Add an inject noise node to a samplex, mutating it in place.
+
+    **Parameters**
+
+    *   **samplex** – The samplex to add nodes to.
+    *   **pre\_inject\_idx** – The index of the pre-inject noise node to turn into an inject noise node.
+    *   **pre\_nodes\_to\_nodes** – A map from pre-node indices to node indices.
+    *   **order** – A map from pre-node indices to integers representing their position in a topological sort of the samplex state graph.
+    *   **register\_names** – A map such that `register_names[a][b]` is the name of the register implied by the edge (a, b) in the samplex state graph.
+  </Function>
+
+  ### add\_measure\_propagate
+
+  <Function id="samplomatic.pre_samplex.PreSamplex.add_measure_propagate" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/pre_samplex/pre_samplex.py#L600-L659" signature="add_measure_propagate(instr: DAGOpNode, clbit_idx: int, trace_info: TraceInfo | None = None) → int | None">
+    Add a node that propagates virtual Paulis through a measurement.
+
+    This creates a [`PreMeasure`](pre-samplex-pre-measure "samplomatic.pre_samplex.PreMeasure") node that, during lowering, produces both a Z2 measurement flip output and a continued Pauli register with preserved X component and randomized Z component.
+
+    **Parameters**
+
+    *   **instr** – The measurement instruction.
+    *   **clbit\_idx** – The global classical bit index.
+    *   **trace\_info** – Optional debug trace info to attach to the node.
+
+    **Returns**
+
+    The index of the new node, or None if no rightward danglers were found.
+  </Function>
+
+  ### add\_measure\_propagate\_node
+
+  <Function id="samplomatic.pre_samplex.PreSamplex.add_measure_propagate_node" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/pre_samplex/pre_samplex.py#L1800-L1902" signature="add_measure_propagate_node(samplex: Samplex, pre_node_idx: int, pre_nodes_to_nodes: dict[int, int], order: dict[int, int], register_names: dict[int, dict[int, str]])">
+    Lower a [`PreMeasure`](pre-samplex-pre-measure "samplomatic.pre_samplex.PreMeasure") node to samplex nodes.
+
+    **Parameters**
+
+    *   **samplex** – The samplex to add nodes to.
+    *   **pre\_node\_idx** – The index of the PreMeasure node.
+    *   **pre\_nodes\_to\_nodes** – A map from pre-node indices to node indices.
+    *   **order** – A map from pre-node indices to topological order.
+    *   **register\_names** – A map for register name tracking between nodes.
+  </Function>
+
+  ### add\_propagate
+
+  <Function id="samplomatic.pre_samplex.PreSamplex.add_propagate" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/pre_samplex/pre_samplex.py#L944-L1071" signature="add_propagate(instr: DAGOpNode, mode: InstructionMode, params: list[tuple[int | None, ParameterExpression]], trace_info: TraceInfo | None = None, commutant_twirl: bool = False)">
+    Add a node that propagates virtual gates through an operation.
+
+    This method deduces which direction to propagate virtual gates by inspecting the previous nodes on the dangling qubits that overlap with the instruction’s qubits.
+
+    **Parameters**
+
+    *   **instr** – The circuit instruction to propagate through.
+    *   **mode** – What mode to use for propagation.
+    *   **params** – The parameters of the instruction.
+    *   **trace\_info** – Optional debug trace info to attach to the node.
+    *   **commutant\_twirl** – Whether to twirl fractional gates with their commutants.
+
+    **Raises**
+
+    [**SamplexBuildError**](exceptions-samplex-build-error "samplomatic.exceptions.SamplexBuildError") – If the qubits of `instr` have partial overlap with dangling qubits of the pre-samplex.
+
+    **Returns**
+
+    The index of the new node in the graph.
+  </Function>
+
+  ### add\_propagate\_node
+
+  <Function id="samplomatic.pre_samplex.PreSamplex.add_propagate_node" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/pre_samplex/pre_samplex.py#L1648-L1754" signature="add_propagate_node(samplex: Samplex, pre_propagate_idx: int, pre_nodes_to_nodes: dict[int, int], order: dict[int, int], register_names: dict[int, dict[int, str]])">
+    Add propagation node to a samplex, mutating it in place.
+
+    **Parameters**
+
+    *   **samplex** – The samplex to add nodes to.
+    *   **pre\_propagate\_idx** – The index of the pre-propagate node to turn into nodes in the samplex.
+    *   **pre\_nodes\_to\_nodes** – A map from pre-node indices to node indices.
+    *   **order** – A map from pre-node indices to integers representing their position in a topological sort of the pre-samplex graph.
+    *   **register\_names** – A map such that `register_names[a][b]` is the name of the register implied by the edge (a, b) in the pre-samplex graph.
+
+    **Raises**
+
+    [**SamplexBuildError**](exceptions-samplex-build-error "samplomatic.exceptions.SamplexBuildError") – If a pre-propagate contains an unsupported operation.
+  </Function>
+
+  ### add\_reset\_propagate
+
+  <Function id="samplomatic.pre_samplex.PreSamplex.add_reset_propagate" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/pre_samplex/pre_samplex.py#L661-L688" signature="add_reset_propagate(instr: DAGOpNode, trace_info: TraceInfo | None = None)">
+    Add a node that propagates virtual Paulis through a reset.
+
+    **Parameters**
+
+    *   **instr** – The reset instruction.
+    *   **trace\_info** – Optional debug trace info to attach to the node.
+
+    **Returns**
+
+    The index of the new node, or None if no rightward danglers were found.
+  </Function>
+
+  ### add\_reset\_propagate\_node
+
+  <Function id="samplomatic.pre_samplex.PreSamplex.add_reset_propagate_node" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/pre_samplex/pre_samplex.py#L1904-L1933" signature="add_reset_propagate_node(samplex: Samplex, pre_reset_idx: int, pre_nodes_to_nodes: dict[int, int], order: dict[int, int], register_names: dict[int, dict[int, str]])">
+    Lower a `PreReset` node to samplex nodes.
+
+    **Parameters**
+
+    *   **samplex** – The samplex to add nodes to.
+    *   **pre\_node\_idx** – The index of the PreReset node.
+    *   **pre\_nodes\_to\_nodes** – A map from pre-node indices to node indices.
+    *   **order** – A map from pre-node indices to topological order.
+    *   **register\_names** – A map for register name tracking between nodes.
+  </Function>
+
+  ### add\_twirl\_sampling\_node
+
+  <Function id="samplomatic.pre_samplex.PreSamplex.add_twirl_sampling_node" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/pre_samplex/pre_samplex.py#L1514-L1555" signature="add_twirl_sampling_node(samplex: Samplex, pre_emit_idx: int, pre_nodes_to_nodes: dict[int, int], order: dict[int, int], register_names: dict[int, dict[int, str]])">
+    Add sampling nodes to a samplex, mutating it in place.
+
+    **Parameters**
+
+    *   **samplex** – The samplex to add nodes to.
+    *   **pre\_emit\_idx** – The index of the pre-emit node to turn into a twirl sampling node.
+    *   **pre\_nodes\_to\_nodes** – A map from pre-node indices to node indices.
+    *   **order** – A map from pre-node indices to integers representing their position in a topological sort of the pre-samplex graph.
+    *   **register\_names** – A map such that `register_names[a][b]` is the name of the register implied by the edge (a, b) in the pre-samplex graph.
+  </Function>
+
+  ### draw
+
+  <Function id="samplomatic.pre_samplex.PreSamplex.draw" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/pre_samplex/pre_samplex.py#L1942-L1973" signature="draw(cols: int = 2, subgraph_idxs: None | int | Sequence[int] = None, layout_method: Literal['auto', 'spring', 'graphviz', 'graphviz_curved', 'graphviz_line'] | LayoutMethod = 'auto') → Figure">
+    Draw the graph in this pre-samplex using the `plot_graph()` method.
+
+    **Parameters**
+
+    *   **cols** – The number of columns in the returned figure.
+    *   **subgraph\_idxs** – The indices of the subgraphs to include in the plot, or `None` to include all of the subgraphs.
+    *   **layout\_method** – A predefined layout method by name, or a callable implementing a layout.
+
+    **Returns**
+
+    A Plotly figure.
+  </Function>
+
+  ### enforce\_no\_propagation
+
+  <Function id="samplomatic.pre_samplex.PreSamplex.enforce_no_propagation" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/pre_samplex/pre_samplex.py#L475-L495" signature="enforce_no_propagation(instr: DAGOpNode)">
+    Make sure the instruction doesn’t participate in virtual gate propagation.
+
+    We check to see if there are left-to-right danglers, and error if they exist. We remove right-to-left danglers, which will cause an error later when an emission can’t reach a collection on its left.
+
+    **Parameters**
+
+    **instr** – The circuit instruction that can’t be propagated through.
+
+    **Raises**
+
+    [**SamplexBuildError**](exceptions-samplex-build-error "samplomatic.exceptions.SamplexBuildError") – If instr involves active left-to-right danglers.
+  </Function>
+
+  ### finalize
+
+  <Function id="samplomatic.pre_samplex.PreSamplex.finalize" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/pre_samplex/pre_samplex.py#L1245-L1435" signature="finalize()">
+    Finalize the pre-samplex.
+
+    **Raises**
+
+    [**SamplexBuildError**](exceptions-samplex-build-error "samplomatic.exceptions.SamplexBuildError") – If there are any emission nodes that are not collected.
+  </Function>
+
+  ### find\_danglers
+
+  <Function id="samplomatic.pre_samplex.PreSamplex.find_danglers" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/pre_samplex/pre_samplex.py#L368-L408" signature="find_danglers(match: DanglerMatch, subsystems: Partition[int]) → Iterator[tuple[int, Partition[int]]]">
+    Look through the dangling nodes and yield matches overlapping on `subsystems`.
+
+    <Admonition title="Note" type="note">
+      The `match` function is only called on those nodes that overlap the given subsystems.
+    </Admonition>
+
+    **Parameters**
+
+    *   **match** – A [`DanglerMatch`](pre-samplex-dangler-match "samplomatic.pre_samplex.DanglerMatch") object specifying the conditions on the danglers.
+    *   **subsystems** – Subsystems of the virtual registers we are interested in.
+
+    **Yields**
+
+    Pairs `node_idx, intersecting_subsystems` representing a matching node along with the subsystems on which it overlaps with the provided subsystems.
+  </Function>
+
+  ### find\_then\_remove\_danglers
+
+  <Function id="samplomatic.pre_samplex.PreSamplex.find_then_remove_danglers" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/pre_samplex/pre_samplex.py#L437-L473" signature="find_then_remove_danglers(match: DanglerMatch, subsystems: Partition[int]) → Iterator[tuple[int, Partition[int]]]">
+    Extend [`find_danglers()`](#samplomatic.pre_samplex.PreSamplex.find_danglers "samplomatic.pre_samplex.PreSamplex.find_danglers") to also remove dangling nodes.
+
+    <Admonition title="Note" type="note">
+      Nodes are removed only after all of them have been yielded.
+    </Admonition>
+
+    **Parameters**
+
+    *   **match** – A [`DanglerMatch`](pre-samplex-dangler-match "samplomatic.pre_samplex.DanglerMatch") object specifying the conditions on the danglers.
+    *   **subsystems** – Subsystems of the virtual registers we are interested in.
+
+    **Yields**
+
+    Pairs `node_idx, intersecting_subsystems` representing a matching node along with the subsystems on which it overlaps with the provided subsystems.
+  </Function>
+
+  ### get\_all\_danglers
+
+  <Function id="samplomatic.pre_samplex.PreSamplex.get_all_danglers" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/pre_samplex/pre_samplex.py#L497-L501" signature="get_all_danglers() → tuple[dict[int, set[int]], dict[int, set[int]]]">
+    Return the danglers information
+  </Function>
+
+  ### merge\_parallel\_nodes
+
+  <Function id="samplomatic.pre_samplex.PreSamplex.merge_parallel_nodes" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/pre_samplex/pre_samplex.py#L1073-L1101" signature="merge_parallel_nodes(node_type: type[PrePropagate] | type[PreMeasure] | type[PreReset])">
+    Merge parallel nodes of a given type acting on disjoint subsystems.
+
+    Nodes are merged when they belong to the same topological generation, share at least one predecessor, have disjoint subsystems, and return the same clustering key from `to_key()`.
+
+    **Parameters**
+
+    **node\_type** – The pre-node type to merge. Must implement `to_key()` and `from_cluster()` methods.
+  </Function>
+
+  ### prune\_prenodes\_unreachable\_from\_emission
+
+  <Function id="samplomatic.pre_samplex.PreSamplex.prune_prenodes_unreachable_from_emission" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/pre_samplex/pre_samplex.py#L1171-L1176" signature="prune_prenodes_unreachable_from_emission()">
+    Prune all pre-nodes that are unreachable from pre-emit nodes.
+  </Function>
+
+  ### prune\_uncollected\_prenodes
+
+  <Function id="samplomatic.pre_samplex.PreSamplex.prune_uncollected_prenodes" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/pre_samplex/pre_samplex.py#L1178-L1193" signature="prune_uncollected_prenodes()">
+    Prune all pre-nodes that are not collected by pre-measure or pre-collect nodes.
+  </Function>
+
+  ### qubits\_to\_indices
+
+  <Function id="samplomatic.pre_samplex.PreSamplex.qubits_to_indices" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/pre_samplex/pre_samplex.py#L522-L526" signature="qubits_to_indices(qubits: Partition[Qubit]) → Partition[int]">
+    Convert uniform subsystems on qubits to uniform subsystems on qubit indices.
+  </Function>
+
+  ### remap
+
+  <Function id="samplomatic.pre_samplex.PreSamplex.remap" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/pre_samplex/pre_samplex.py#L343-L366" signature="remap(qubit_map: dict[Qubit, int]) → PreSamplex">
+    Remap the object to a new [`PreSamplex`](#samplomatic.pre_samplex.PreSamplex "samplomatic.pre_samplex.PreSamplex") object.
+
+    **Parameters**
+
+    **qubit\_map** – A new map from qubits in the source circuit to physical qubit indices.
+
+    **Returns**
+
+    A [`PreSamplex`](#samplomatic.pre_samplex.PreSamplex "samplomatic.pre_samplex.PreSamplex") object which is identical, except for qubit\_map.
+  </Function>
+
+  ### remove\_force\_copy\_nodes
+
+  <Function id="samplomatic.pre_samplex.PreSamplex.remove_force_copy_nodes" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/pre_samplex/pre_samplex.py#L532-L534" signature="remove_force_copy_nodes(node_idxs: Iterable[int])">
+    Remove node indices for which a register will be forced to copy.
+  </Function>
+
+  ### set\_all\_danglers
+
+  <Function id="samplomatic.pre_samplex.PreSamplex.set_all_danglers" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/pre_samplex/pre_samplex.py#L503-L512" signature="set_all_danglers(dangling: dict[int, set[int]], optional_dangling: dict[int, set[int]])">
+    Set the danglers information in place
+  </Function>
+
+  ### sorted\_predecessor\_idxs
+
+  <Function id="samplomatic.pre_samplex.PreSamplex.sorted_predecessor_idxs" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/pre_samplex/pre_samplex.py#L1135-L1169" signature="sorted_predecessor_idxs(pre_node_idx: int, order: dict[int, int]) → list[int]">
+    Return the predecessors of a node in edge-sorted order.
+
+    **Edge-sorted order**
+
+    *   places all nodes connected by `LEFT` edges before `RIGHT` edges, and
+    *   the `LEFT` edges connected to twirl emissions before other emissions sorted according to reverse `order`,
+    *   while the `RIGHT` place emissions in order.
+
+    This order scheme is designed so that it corresponds to circuit-temporal precedence of predecessors. For example, a pre-collector will have inbound edges marked both left and right. We need to know in which order to multiply them together. This method is that order.
+
+    **Parameters**
+
+    *   **pre\_node\_idx** – The pre-node to get the predecessors of.
+    *   **order** – A dictionary specifying an integer for at least the predecessors of `pre_node_idx`. These integers are referenced in the second two bullets above.
+
+    **Returns**
+
+    The predecessors of `pre_node_idx` in edge-sorted order.
+  </Function>
+
+  ### subgraphs
+
+  <Function id="samplomatic.pre_samplex.PreSamplex.subgraphs" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/pre_samplex/pre_samplex.py#L1935-L1940" signature="subgraphs() → list[PyDiGraph[PreNode, PreEdge]]">
+    Return a list of disconnected components.
+  </Function>
+
+  ### validate\_no\_rightward\_danglers
+
+  <Function id="samplomatic.pre_samplex.PreSamplex.validate_no_rightward_danglers" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/pre_samplex/pre_samplex.py#L1195-L1217" signature="validate_no_rightward_danglers()">
+    Validate that there are no nodes that require termination but are still dangling.
+
+    Optional danglers are ignored.
+
+    **Raises**
+
+    [**SamplexBuildError**](exceptions-samplex-build-error "samplomatic.exceptions.SamplexBuildError") – If any nodes are expecting collections.
+  </Function>
+
+  ### verify\_no\_twirled\_clbits
+
+  <Function id="samplomatic.pre_samplex.PreSamplex.verify_no_twirled_clbits" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/pre_samplex/pre_samplex.py#L1219-L1232" signature="verify_no_twirled_clbits(clbits: list[int])">
+    Verify the given classical bits are not twirled, for classical conditions validation.
+
+    **Parameters**
+
+    **clbits** – list of classical bits indices.
+
+    **Raises**
+
+    [**SamplexBuildError**](exceptions-samplex-build-error "samplomatic.exceptions.SamplexBuildError") – if any classical bit is twirled.
+  </Function>
+</Class>
+

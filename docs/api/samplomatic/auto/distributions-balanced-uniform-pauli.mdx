@@ -1,0 +1,59 @@
+---
+title: BalancedUniformPauli (latest version)
+description: API reference for samplomatic.distributions.BalancedUniformPauli in the latest version of samplomatic
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: samplomatic.distributions.BalancedUniformPauli
+---
+
+# BalancedUniformPauli
+
+<Class id="samplomatic.distributions.BalancedUniformPauli" isDedicatedPage={true} github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/distributions/balanced_uniform_pauli.py#L23-L53" signature="samplomatic.distributions.BalancedUniformPauli(num_subsystems: int)" modifiers="class">
+  Bases: [`Distribution`](distributions-distribution "samplomatic.distributions.distribution.Distribution")
+
+  The balanced uniform distribution over virtual Pauli gates.
+
+  Here, *balanced* means that on every qubit, each of the four Paulis appears the same number of times, provided that the requested number of samples is a multiple of four. Moreover, when the number of samples is a multiple of two, it is promised that, for each qubit, X or Y is sampled the same number of times as I or Z.
+
+  The sampling algorithm is simply to draw four times fewer n-qubit Paulis uniformly and iid than requested, and then replicate each four times with respective multiplications by $I^{\otimes}n$, $X^{\otimes}n$, $Z^{\otimes}n$, and $Y^{\otimes}n$, truncating the samples if their requested number is not a multiple of four. Randomizations are ordered such that the four replications are consecutive. The particular ordering of the four multiplicative terms— $I$ then $X$ then $Z$ then $Y$ —is what provides the guarantee that for each qubit, X or Y is sampled the same number of times as I or Z, even if the number of samples is even but not a multiple of four.
+
+  **Parameters**
+
+  **num\_subsystems** – The number of subsystems this distribution samples.
+
+  **Attributes Summary**
+
+  |                                                                                                                                                 |                                      |
+  | ----------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
+  | [`register_type`](#samplomatic.distributions.BalancedUniformPauli.register_type "samplomatic.distributions.BalancedUniformPauli.register_type") | The virtual gate type being sampled. |
+
+  **Methods Summary**
+
+  |                                                                                                                                       |                          |
+  | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------ |
+  | [`sample`](#samplomatic.distributions.BalancedUniformPauli.sample "samplomatic.distributions.BalancedUniformPauli.sample")(size, rng) | Sample the distribution. |
+
+  **Attributes Documentation**
+
+  ### register\_type
+
+  <Attribute id="samplomatic.distributions.BalancedUniformPauli.register_type" />
+
+  **Methods Documentation**
+
+  ### sample
+
+  <Function id="samplomatic.distributions.BalancedUniformPauli.sample" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/distributions/balanced_uniform_pauli.py#L48-L53" signature="sample(size, rng)">
+    Sample the distribution.
+
+    **Parameters**
+
+    *   **size** – The number elements to sample.
+    *   **rng** – A randomness generator.
+
+    **Returns**
+
+    The samples.
+  </Function>
+</Class>
+

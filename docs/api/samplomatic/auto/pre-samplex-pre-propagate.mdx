@@ -1,0 +1,154 @@
+---
+title: PrePropagate (latest version)
+description: API reference for samplomatic.pre_samplex.PrePropagate in the latest version of samplomatic
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: samplomatic.pre_samplex.PrePropagate
+---
+
+# PrePropagate
+
+<Class id="samplomatic.pre_samplex.PrePropagate" isDedicatedPage={true} github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/pre_samplex/graph_data.py#L248-L365" signature="samplomatic.pre_samplex.PrePropagate(subsystems: Partition[int], direction: Direction, operation: Gate, partition: Partition[int], mode: InstructionMode, params: list[tuple[int | None, ParameterExpression]], bounded_params: list[float] | None = None, commutant_twirl: bool = False, *, trace_info: TraceInfo | None = None)" modifiers="class">
+  Bases: [`PreNode`](pre-samplex-pre-node "samplomatic.pre_samplex.graph_data.PreNode")
+
+  The propagation node type used during samplex building.
+
+  **Attributes Summary**
+
+  |                                                                                                                                   |                                                                                      |
+  | --------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+  | [`bounded_params`](#samplomatic.pre_samplex.PrePropagate.bounded_params "samplomatic.pre_samplex.PrePropagate.bounded_params")    | List of bounded params if `operation` is a fractional gate with a bounded parameter. |
+  | [`commutant_twirl`](#samplomatic.pre_samplex.PrePropagate.commutant_twirl "samplomatic.pre_samplex.PrePropagate.commutant_twirl") | Whether this operation should be twirled with its commutant.                         |
+  | [`direction`](#samplomatic.pre_samplex.PrePropagate.direction "samplomatic.pre_samplex.PrePropagate.direction")                   | The direction of virtual gates that can interact with this node.                     |
+  | [`mode`](#samplomatic.pre_samplex.PrePropagate.mode "samplomatic.pre_samplex.PrePropagate.mode")                                  | How the operation acts on virtual gates.                                             |
+  | [`operation`](#samplomatic.pre_samplex.PrePropagate.operation "samplomatic.pre_samplex.PrePropagate.operation")                   | The operation to propagate through.                                                  |
+  | [`params`](#samplomatic.pre_samplex.PrePropagate.params "samplomatic.pre_samplex.PrePropagate.params")                            | The parameters required by the node.                                                 |
+  | [`partition`](#samplomatic.pre_samplex.PrePropagate.partition "samplomatic.pre_samplex.PrePropagate.partition")                   | A partition of subsystem indices, each of which is propagated jointly.               |
+  | [`subsystems`](#samplomatic.pre_samplex.PrePropagate.subsystems "samplomatic.pre_samplex.PrePropagate.subsystems")                | The subsystems that virtual gates act on.                                            |
+  | [`trace_info`](#samplomatic.pre_samplex.PrePropagate.trace_info "samplomatic.pre_samplex.PrePropagate.trace_info")                | Debug trace information, populated when building with `debug=True`.                  |
+
+  **Methods Summary**
+
+  |                                                                                                                                 |                                                                                                                                       |
+  | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+  | [`from_cluster`](#samplomatic.pre_samplex.PrePropagate.from_cluster "samplomatic.pre_samplex.PrePropagate.from_cluster")(nodes) |                                                                                                                                       |
+  | [`get_style`](#samplomatic.pre_samplex.PrePropagate.get_style "samplomatic.pre_samplex.PrePropagate.get_style")()               | Summarizes the style of this node when plotted via [`plot_graph()`](visualization-plot-graph "samplomatic.visualization.plot_graph"). |
+  | [`to_key`](#samplomatic.pre_samplex.PrePropagate.to_key "samplomatic.pre_samplex.PrePropagate.to_key")()                        |                                                                                                                                       |
+
+  **Attributes Documentation**
+
+  ### bounded\_params
+
+  <Attribute id="samplomatic.pre_samplex.PrePropagate.bounded_params">
+    Type: [`list`](https://docs.python.org/3/builtins/stdtypes.html#list)\[[`float`](https://docs.python.org/3/builtins/functions.html#float)] | [`None`](https://docs.python.org/3/builtins/constants.html#None)
+
+    Default value: `None`
+
+    List of bounded params if `operation` is a fractional gate with a bounded parameter.
+
+    If the node involves a relevant operation with a single subsystem, the parameter is automatically extracted from the operation.
+  </Attribute>
+
+  ### commutant\_twirl
+
+  <Attribute id="samplomatic.pre_samplex.PrePropagate.commutant_twirl">
+    Type: [`bool`](https://docs.python.org/3/builtins/functions.html#bool)
+
+    Default value: `False`
+
+    Whether this operation should be twirled with its commutant.
+
+    If the operation is not a fractional gate, this value will be `False`. If it is a fractional gate, `True` signals that it should be twirled by its commutant, while `False` signals that its angle has been bound to a Clifford.
+  </Attribute>
+
+  ### direction
+
+  <Attribute id="samplomatic.pre_samplex.PrePropagate.direction">
+    Type: [`Direction`](constants-direction "samplomatic.constants.Direction")
+
+    Default value: `<dataclasses._MISSING_TYPE object>`
+
+    The direction of virtual gates that can interact with this node.
+  </Attribute>
+
+  ### mode
+
+  <Attribute id="samplomatic.pre_samplex.PrePropagate.mode">
+    Type: `InstructionMode`
+
+    Default value: `<dataclasses._MISSING_TYPE object>`
+
+    How the operation acts on virtual gates.
+  </Attribute>
+
+  ### operation
+
+  <Attribute id="samplomatic.pre_samplex.PrePropagate.operation">
+    Type: [`Gate`](/docs/api/qiskit/qiskit.circuit.Gate)
+
+    Default value: `<dataclasses._MISSING_TYPE object>`
+
+    The operation to propagate through.
+
+    Even when the `PrePropagate` represents more than one subsystem (i.e more than one operation) only a single common `Gate` object is stored, and possible parameters are stored elsewhere.
+  </Attribute>
+
+  ### params
+
+  <Attribute id="samplomatic.pre_samplex.PrePropagate.params">
+    Type: [`list`](https://docs.python.org/3/builtins/stdtypes.html#list)\[[`tuple`](https://docs.python.org/3/builtins/stdtypes.html#tuple)\[[`int`](https://docs.python.org/3/builtins/functions.html#int) | [`None`](https://docs.python.org/3/builtins/constants.html#None), [`ParameterExpression`](/docs/api/qiskit/qiskit.circuit.ParameterExpression)]]
+
+    Default value: `<dataclasses._MISSING_TYPE object>`
+
+    The parameters required by the node.
+  </Attribute>
+
+  ### partition
+
+  <Attribute id="samplomatic.pre_samplex.PrePropagate.partition">
+    Type: [`Partition`](partition-partition "samplomatic.partition.Partition")\[[`int`](https://docs.python.org/3/builtins/functions.html#int)]
+
+    Default value: `<dataclasses._MISSING_TYPE object>`
+
+    A partition of subsystem indices, each of which is propagated jointly.
+
+    For example, a CX gate propagates pairs of single-qubit subsystems jointly. In this case, a partition would be a list of pairs of subsystem indices, where pairs are disjoint from each other.
+  </Attribute>
+
+  ### subsystems
+
+  <Attribute id="samplomatic.pre_samplex.PrePropagate.subsystems">
+    Type: [`Partition`](partition-partition "samplomatic.partition.Partition")\[[`int`](https://docs.python.org/3/builtins/functions.html#int)]
+
+    Default value: `<dataclasses._MISSING_TYPE object>`
+
+    The subsystems that virtual gates act on.
+  </Attribute>
+
+  ### trace\_info
+
+  <Attribute id="samplomatic.pre_samplex.PrePropagate.trace_info">
+    Type: `TraceInfo` | [`None`](https://docs.python.org/3/builtins/constants.html#None)
+
+    Default value: `None`
+
+    Debug trace information, populated when building with `debug=True`.
+  </Attribute>
+
+  **Methods Documentation**
+
+  ### from\_cluster
+
+  <Function id="samplomatic.pre_samplex.PrePropagate.from_cluster" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/pre_samplex/graph_data.py#L319-L357" signature="from_cluster(nodes: list[PrePropagate]) → PrePropagate" modifiers="classmethod" />
+
+  ### get\_style
+
+  <Function id="samplomatic.pre_samplex.PrePropagate.get_style" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/pre_samplex/graph_data.py#L301-L308" signature="get_style()">
+    Summarizes the style of this node when plotted via [`plot_graph()`](visualization-plot-graph "samplomatic.visualization.plot_graph").
+  </Function>
+
+  ### to\_key
+
+  <Function id="samplomatic.pre_samplex.PrePropagate.to_key" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/pre_samplex/graph_data.py#L310-L317" signature="to_key() → PrePropagateKey" />
+</Class>
+

@@ -1,0 +1,72 @@
+---
+title: GroupMode (latest version)
+description: API reference for samplomatic.annotations.GroupMode in the latest version of samplomatic
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: samplomatic.annotations.GroupMode
+---
+
+# GroupMode
+
+<Class id="samplomatic.annotations.GroupMode" isDedicatedPage={true} github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/annotations/group_mode.py#L21-L44" signature="samplomatic.annotations.GroupMode(value)" modifiers="class">
+  Bases: [`str`](https://docs.python.org/3/builtins/stdtypes.html#str), [`Enum`](https://docs.python.org/3/library/enum.html#enum.Enum)
+
+  Which set of gates and distribution to sample with.
+
+  **Attributes Summary**
+
+  |                                                                                                                 |                                                                                              |
+  | --------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+  | [`BALANCED`](#samplomatic.annotations.GroupMode.BALANCED "samplomatic.annotations.GroupMode.BALANCED")          | Sample the Pauli group, balancing the proportions of I, X, Y, and Z.                         |
+  | [`LOCAL_C1`](#samplomatic.annotations.GroupMode.LOCAL_C1 "samplomatic.annotations.GroupMode.LOCAL_C1")          | Sample C1 gates that stay C1 under conjugation by an entangler uniformly and iid.            |
+  | [`LOCAL_PAULI`](#samplomatic.annotations.GroupMode.LOCAL_PAULI "samplomatic.annotations.GroupMode.LOCAL_PAULI") | Sample from Pauli gates that stay Pauli under conjugation by an entangler uniformly and iid. |
+  | [`PAULI`](#samplomatic.annotations.GroupMode.PAULI "samplomatic.annotations.GroupMode.PAULI")                   | Sample the Pauli group uniformly and iid.                                                    |
+  | [`PHASE`](#samplomatic.annotations.GroupMode.PHASE "samplomatic.annotations.GroupMode.PHASE")                   | Sample the phase group I, Z uniformly and iid.                                               |
+
+  **Attributes Documentation**
+
+  ### BALANCED
+
+  <Attribute id="samplomatic.annotations.GroupMode.BALANCED">
+    Default value: `'balanced_pauli'`
+
+    Sample the Pauli group, balancing the proportions of I, X, Y, and Z.
+  </Attribute>
+
+  ### LOCAL\_C1
+
+  <Attribute id="samplomatic.annotations.GroupMode.LOCAL_C1">
+    Default value: `'local_c1'`
+
+    Sample C1 gates that stay C1 under conjugation by an entangler uniformly and iid.
+
+    Sample the Pauli group if no entangler is present.
+  </Attribute>
+
+  ### LOCAL\_PAULI
+
+  <Attribute id="samplomatic.annotations.GroupMode.LOCAL_PAULI">
+    Default value: `'local_pauli'`
+
+    Sample from Pauli gates that stay Pauli under conjugation by an entangler uniformly and iid.
+
+    For non-Clifford or parametric entanglers, this mode currently uses the subgroup of the Paulis that commute with the generators. For Clifford gates, this mode falls back to the Pauli group.
+  </Attribute>
+
+  ### PAULI
+
+  <Attribute id="samplomatic.annotations.GroupMode.PAULI">
+    Default value: `'pauli'`
+
+    Sample the Pauli group uniformly and iid.
+  </Attribute>
+
+  ### PHASE
+
+  <Attribute id="samplomatic.annotations.GroupMode.PHASE">
+    Default value: `'phase'`
+
+    Sample the phase group I, Z uniformly and iid.
+  </Attribute>
+</Class>
+

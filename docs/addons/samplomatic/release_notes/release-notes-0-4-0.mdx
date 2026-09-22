@@ -1,0 +1,22 @@
+---
+title: "0.4.0 - 2025-08-26"
+description: "0.4.0 - 2025-08-26 for the latest version of Samplomatic"
+---
+
+<span id="id1" />
+
+# 0.4.0 - 2025-08-26
+
+## Added
+
+*   Added support for measurements after twirled measurements. ([#82](https://github.com/Qiskit/samplomatic/issues/82))
+
+## Changed
+
+*   Moved `num_randomizations` back to a kwarg of `Samplex.sample()`. This has flip-flopped a couple of times as we optimize workflow. ([#84](https://github.com/Qiskit/samplomatic/issues/84))
+
+## Fixed
+
+*   Fixed a bug in `TensorInterface.__getitem__` for non-string inputs where it was incorrectly attempting to slice arrays whose shape did not match the full broadcasted shape of the interface. ([#83](https://github.com/Qiskit/samplomatic/issues/83))
+*   Fixed serialization of `Samplex` by including the passthrough parameters field. Previously, this would result in inconsistent output parameter values when sampling from the same samplex with the same input arguments. ([#86](https://github.com/Qiskit/samplomatic/issues/86))
+
