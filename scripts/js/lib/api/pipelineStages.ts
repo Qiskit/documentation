@@ -190,11 +190,14 @@ function rewriteApiDocsLinks(results: HtmlToMdResultWithUrl[], pkg: Pkg) {
       // Addon API reference pages link back to guides with paths relative to
       // the sphinx source tree (e.g. `../../guides/formalism#anchor`).
       // Rewrite these to the guide's absolute path under docs/addons.
+      // For C API packages the guides live under the companion Python package
+      // (`qiskit-fermions-c` → `docs/addons/qiskit-fermions/guides/…`), so use
+      // the Python sibling rather than `pkg.name`.
       .replace(
         /\]\((?:\.\.\/)*guides\/([^)#]+)(#[^)]+)?\)/g,
         (match, page, anchor) =>
           pkg.isAddon()
-            ? `](${DOCS_BASE_PATH}/addons/${pkg.name}/guides/${page}${anchor ?? ""})`
+            ? `](${DOCS_BASE_PATH}/addons/${pythonSiblingPkg}/guides/${page}${anchor ?? ""})`
             : match,
       );
   }
