@@ -338,6 +338,23 @@ test("normalizeUrl() Qiskit Python API links to C API via cdoc/", () => {
   ]);
 });
 
+test("normalizeUrl() rewrites cdoc/ links for a non-qiskit package", () => {
+  // The C API package is `{pkgName}-c`, so `qiskit-fermions` → `qiskit-fermions-c`.
+  // A plain `.replace("qiskit", "qiskit-c")` would wrongly yield `qiskit-c-fermions`.
+  expect(
+    normalizeUrl(
+      "cdoc/qf-ferm-op.html#c.qf_ferm_op_set_groups",
+      {},
+      new Set(),
+      {
+        kebabCaseAndShorten: true,
+        pkgName: "qiskit-fermions",
+        pkgOutputDir: "/docs/api/qiskit-fermions",
+      },
+    ),
+  ).toEqual("/docs/api/qiskit-fermions-c/qf-ferm-op#qf_ferm_op_set_groups");
+});
+
 test.describe("relativizeLink()", () => {
   [
     "https://ibm.com",

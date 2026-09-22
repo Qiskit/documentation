@@ -123,7 +123,16 @@ export function normalizeUrl(
     // Strip the Sphinx C domain prefix (e.g. `c.qk_circuit_new` → `qk_circuit_new`)
     const normalizedHash = hash ? removePrefix(hash, "c.") : undefined;
     const pageAndHash = normalizedHash ? `${page}#${normalizedHash}` : page;
-    return `${kwargs.pkgOutputDir.replace("qiskit", "qiskit-c")}/${pageAndHash}`;
+    // The C API package is always named `{pkgName}-c` (`qiskit` → `qiskit-c`,
+    // `qiskit-fermions` → `qiskit-fermions-c`).  Replace the package-name segment rather
+    // than substituting the literal `qiskit`: a plain `.replace("qiskit", "qiskit-c")`
+    // rewrites the *first* match, turning `qiskit-fermions` into `qiskit-c-fermions`.
+    // Replacing `pkgName` also preserves any version subdirectory (e.g. `.../qiskit/dev`).
+    const cApiOutputDir = kwargs.pkgOutputDir.replace(
+      kwargs.pkgName,
+      `${kwargs.pkgName}-c`,
+    );
+    return `${cApiOutputDir}/${pageAndHash}`;
   }
 
   // TODO (#3375): Investigate if we can make this case more generic.

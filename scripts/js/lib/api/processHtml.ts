@@ -404,8 +404,14 @@ export function removeColonSpans($main: Cheerio<any>): void {
 }
 
 export function handleFootnotes($: CheerioAPI, $main: Cheerio<any>): void {
+  // Docutils renders footnotes (`.. [1]`) and citations (`.. [Label]`) with different
+  // classes: `footnote`/`footnote-reference` versus `citation`/`citation-reference`.
+  // Both carry the `id` that in-page links target, so both must be preserved.
   $main
-    .find(".footnote, .footnote-reference, .footnote dt.label")
+    .find(
+      ".footnote, .footnote-reference, .footnote dt.label, " +
+        ".citation, .citation-reference, .citation dt.label",
+    )
     .toArray()
     .forEach((footnote) => {
       const $footnote = $(footnote);
