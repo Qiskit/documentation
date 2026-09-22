@@ -1,0 +1,191 @@
+---
+title: VirtualRegister (latest version)
+description: API reference for samplomatic.virtual_registers.VirtualRegister in the latest version of samplomatic
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: samplomatic.virtual_registers.VirtualRegister
+---
+
+# VirtualRegister
+
+<Class id="samplomatic.virtual_registers.VirtualRegister" isDedicatedPage={true} github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/virtual_registers/virtual_register.py#L47-L195" signature="samplomatic.virtual_registers.VirtualRegister(virtual_gates: ndarray)" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
+
+  A data register containing a 2D array of virtual gates.
+
+  Each virtual gate itself has a shape equal to [`GATE_SHAPE`](#samplomatic.virtual_registers.VirtualRegister.GATE_SHAPE "samplomatic.virtual_registers.VirtualRegister.GATE_SHAPE"), so the number of dimensions of the array owned by a virtual register is actually 2 plus one for each member of gate shape. The first two axes of the array are respectively reserved to represent the number of subsystems and the number of samples. For example, a virtual register representing 2-qubit unitaries might have an array of shape `(5, 6, 4, 4)` to store a 5x6 array of 4x4 complex unitary matrices.
+
+  **Parameters**
+
+  **virtual\_gates** – The virtual gates in this register.
+
+  **Raises**
+
+  [**VirtualGateError**](exceptions-virtual-gate-error "samplomatic.exceptions.VirtualGateError") – If `virtual_gates`’ shape is not understood.
+
+  **Attributes Summary**
+
+  |                                                                                                                                                           |                                                                                                                                                             |
+  | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | [`CONVERTABLE_TYPES`](#samplomatic.virtual_registers.VirtualRegister.CONVERTABLE_TYPES "samplomatic.virtual_registers.VirtualRegister.CONVERTABLE_TYPES") | Valid arguments for [`convert_to()`](#samplomatic.virtual_registers.VirtualRegister.convert_to "samplomatic.virtual_registers.VirtualRegister.convert_to"). |
+  | [`DTYPE`](#samplomatic.virtual_registers.VirtualRegister.DTYPE "samplomatic.virtual_registers.VirtualRegister.DTYPE")                                     | The data type of gate array elements.                                                                                                                       |
+  | [`GATE_SHAPE`](#samplomatic.virtual_registers.VirtualRegister.GATE_SHAPE "samplomatic.virtual_registers.VirtualRegister.GATE_SHAPE")                      | The array shape of any single virtual gate.                                                                                                                 |
+  | [`SUBSYSTEM_SIZE`](#samplomatic.virtual_registers.VirtualRegister.SUBSYSTEM_SIZE "samplomatic.virtual_registers.VirtualRegister.SUBSYSTEM_SIZE")          | The number of qubits each virtual gate acts on.                                                                                                             |
+  | [`TYPE`](#samplomatic.virtual_registers.VirtualRegister.TYPE "samplomatic.virtual_registers.VirtualRegister.TYPE")                                        | The group name in 1-1 correspondence with this virtual gate type.                                                                                           |
+  | [`num_samples`](#samplomatic.virtual_registers.VirtualRegister.num_samples "samplomatic.virtual_registers.VirtualRegister.num_samples")                   | The number of samples in this register.                                                                                                                     |
+  | [`num_subsystems`](#samplomatic.virtual_registers.VirtualRegister.num_subsystems "samplomatic.virtual_registers.VirtualRegister.num_subsystems")          | The number of subsystems in this register.                                                                                                                  |
+  | [`shape`](#samplomatic.virtual_registers.VirtualRegister.shape "samplomatic.virtual_registers.VirtualRegister.shape")                                     | The shape of this register, excluding the trailing shape due to gate shape.                                                                                 |
+  | [`size`](#samplomatic.virtual_registers.VirtualRegister.size "samplomatic.virtual_registers.VirtualRegister.size")                                        | The total number of virtual gates in this register.                                                                                                         |
+  | [`virtual_gates`](#samplomatic.virtual_registers.VirtualRegister.virtual_gates "samplomatic.virtual_registers.VirtualRegister.virtual_gates")             | The virtual gates of the virtual gates in this register.                                                                                                    |
+
+  **Methods Summary**
+
+  |                                                                                                                                                               |                                                                                                                                                                                                                                                    |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | [`convert_to`](#samplomatic.virtual_registers.VirtualRegister.convert_to "samplomatic.virtual_registers.VirtualRegister.convert_to")(register\_type)          | Convert this register type to some other type, if possible.                                                                                                                                                                                        |
+  | [`copy`](#samplomatic.virtual_registers.VirtualRegister.copy "samplomatic.virtual_registers.VirtualRegister.copy")()                                          | Generate a copy of this virtual register.                                                                                                                                                                                                          |
+  | [`empty`](#samplomatic.virtual_registers.VirtualRegister.empty "samplomatic.virtual_registers.VirtualRegister.empty")(num\_subsystems, num\_samples)          | Instantiate a new register.                                                                                                                                                                                                                        |
+  | [`identity`](#samplomatic.virtual_registers.VirtualRegister.identity "samplomatic.virtual_registers.VirtualRegister.identity")(num\_subsystems, num\_samples) | Instantiate a new register of identity virtual gates.                                                                                                                                                                                              |
+  | [`select`](#samplomatic.virtual_registers.VirtualRegister.select "samplomatic.virtual_registers.VirtualRegister.select")(register\_type)                      | Select a [`VirtualRegister`](#samplomatic.virtual_registers.VirtualRegister "samplomatic.virtual_registers.VirtualRegister") subclass based on a [`VirtualType`](virtual-registers-virtual-type "samplomatic.virtual_registers.VirtualType") enum. |
+
+  **Attributes Documentation**
+
+  ### CONVERTABLE\_TYPES
+
+  <Attribute id="samplomatic.virtual_registers.VirtualRegister.CONVERTABLE_TYPES">
+    Type: [`frozenset`](https://docs.python.org/3/builtins/stdtypes.html#frozenset)\[[`VirtualType`](virtual-registers-virtual-type "samplomatic.virtual_registers.virtual_type.VirtualType")]
+
+    Default value: `frozenset({})`
+
+    Valid arguments for [`convert_to()`](#samplomatic.virtual_registers.VirtualRegister.convert_to "samplomatic.virtual_registers.VirtualRegister.convert_to").
+  </Attribute>
+
+  ### DTYPE
+
+  <Attribute id="samplomatic.virtual_registers.VirtualRegister.DTYPE">
+    Type: [`dtype`](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype)
+
+    Default value: `NotImplemented`
+
+    The data type of gate array elements.
+  </Attribute>
+
+  ### GATE\_SHAPE
+
+  <Attribute id="samplomatic.virtual_registers.VirtualRegister.GATE_SHAPE">
+    Type: [`tuple`](https://docs.python.org/3/builtins/stdtypes.html#tuple)\[[`int`](https://docs.python.org/3/builtins/functions.html#int), ...]
+
+    Default value: `NotImplemented`
+
+    The array shape of any single virtual gate.
+  </Attribute>
+
+  ### SUBSYSTEM\_SIZE
+
+  <Attribute id="samplomatic.virtual_registers.VirtualRegister.SUBSYSTEM_SIZE">
+    Type: [`int`](https://docs.python.org/3/builtins/functions.html#int)
+
+    Default value: `NotImplemented`
+
+    The number of qubits each virtual gate acts on.
+  </Attribute>
+
+  ### TYPE
+
+  <Attribute id="samplomatic.virtual_registers.VirtualRegister.TYPE">
+    Type: [`VirtualType`](virtual-registers-virtual-type "samplomatic.virtual_registers.virtual_type.VirtualType")
+
+    Default value: `NotImplemented`
+
+    The group name in 1-1 correspondence with this virtual gate type.
+  </Attribute>
+
+  ### num\_samples
+
+  <Attribute id="samplomatic.virtual_registers.VirtualRegister.num_samples">
+    The number of samples in this register.
+  </Attribute>
+
+  ### num\_subsystems
+
+  <Attribute id="samplomatic.virtual_registers.VirtualRegister.num_subsystems">
+    The number of subsystems in this register.
+  </Attribute>
+
+  ### shape
+
+  <Attribute id="samplomatic.virtual_registers.VirtualRegister.shape">
+    The shape of this register, excluding the trailing shape due to gate shape.
+  </Attribute>
+
+  ### size
+
+  <Attribute id="samplomatic.virtual_registers.VirtualRegister.size">
+    The total number of virtual gates in this register.
+  </Attribute>
+
+  ### virtual\_gates
+
+  <Attribute id="samplomatic.virtual_registers.VirtualRegister.virtual_gates">
+    The virtual gates of the virtual gates in this register.
+  </Attribute>
+
+  **Methods Documentation**
+
+  ### convert\_to
+
+  <Function id="samplomatic.virtual_registers.VirtualRegister.convert_to" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/virtual_registers/virtual_register.py#L163-L178" signature="convert_to(register_type: VirtualType) → VirtualRegister">
+    Convert this register type to some other type, if possible.
+
+    **Parameters**
+
+    **register\_type** – The type of register to convert to.
+
+    **Returns**
+
+    A new register of the specified output type, or this instance if its type is `register_type`.
+
+    **Raises**
+
+    [**VirtualGateError**](exceptions-virtual-gate-error "samplomatic.exceptions.VirtualGateError") – If this type cannot be converted to the specified type.
+  </Function>
+
+  ### copy
+
+  <Function id="samplomatic.virtual_registers.VirtualRegister.copy" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/virtual_registers/virtual_register.py#L159-L161" signature="copy() → VirtualRegister">
+    Generate a copy of this virtual register.
+  </Function>
+
+  ### empty
+
+  <Function id="samplomatic.virtual_registers.VirtualRegister.empty" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/virtual_registers/virtual_register.py#L120-L127" signature="empty(num_subsystems: int, num_samples: int) → T" modifiers="classmethod">
+    Instantiate a new register.
+
+    The array element values are not initialized to any value, so it is expected that the user of this constructor overwrites them all.
+  </Function>
+
+  ### identity
+
+  <Function id="samplomatic.virtual_registers.VirtualRegister.identity" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/virtual_registers/virtual_register.py#L129-L132" signature="identity(num_subsystems: int, num_samples: int) → T" modifiers="abstractmethod classmethod">
+    Instantiate a new register of identity virtual gates.
+  </Function>
+
+  ### select
+
+  <Function id="samplomatic.virtual_registers.VirtualRegister.select" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/virtual_registers/virtual_register.py#L97-L118" signature="select(register_type: VirtualType) → type[VirtualRegister]" modifiers="static">
+    Select a [`VirtualRegister`](#samplomatic.virtual_registers.VirtualRegister "samplomatic.virtual_registers.VirtualRegister") subclass based on a [`VirtualType`](virtual-registers-virtual-type "samplomatic.virtual_registers.VirtualType") enum.
+
+    <Admonition title="Note" type="note">
+      Not all [`VirtualRegister`](#samplomatic.virtual_registers.VirtualRegister "samplomatic.virtual_registers.VirtualRegister")s need to define a [`TYPE`](#samplomatic.virtual_registers.VirtualRegister.TYPE "samplomatic.virtual_registers.VirtualRegister.TYPE"), though they will need to if they want to participate in many types of [`Node`](samplex-nodes-node "samplomatic.samplex.nodes.Node") actions. Conversely, not every [`VirtualType`](virtual-registers-virtual-type "samplomatic.virtual_registers.VirtualType") must correspond to a [`VirtualRegister`](#samplomatic.virtual_registers.VirtualRegister "samplomatic.virtual_registers.VirtualRegister"), most notably intermediate abstractions like `VirtualType` can correspond to at most one [`VirtualRegister`](#samplomatic.virtual_registers.VirtualRegister "samplomatic.virtual_registers.VirtualRegister") type.
+    </Admonition>
+
+    **Parameters**
+
+    **register\_type** – The identifier of the type to select.
+
+    **Returns**
+
+    The unique subclass associated with the `register_type`, if any.
+  </Function>
+</Class>
+

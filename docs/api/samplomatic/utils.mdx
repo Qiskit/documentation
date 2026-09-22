@@ -1,0 +1,39 @@
+---
+title: utils (latest version)
+description: API reference for samplomatic.utils in the latest version of samplomatic
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: samplomatic.utils
+---
+
+<span id="module-samplomatic.utils" />
+
+<span id="samplomatic-utils" />
+
+# samplomatic.utils
+
+Utility functions.
+
+## Functions
+
+|                                                                                                                                                  |                                                                                            |
+| ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| [`deprecate_arg`](auto/utils-deprecate-arg "samplomatic.utils.deprecate_arg")(name, \*, since\[, ...])                                           | Return a decorator to indicate an argument has been deprecated in some way.                |
+| [`extend_annotations`](auto/utils-extend-annotations "samplomatic.utils.extend_annotations")(circuit, \*annotations)                             | Return a new circuit with the given annotations appended to every box.                     |
+| [`filter_annotations`](auto/utils-filter-annotations "samplomatic.utils.filter_annotations")(circuit, keep)                                      | Return a new circuit keeping only annotations of the given type(s) on each box.            |
+| [`find_unique_box_instructions`](auto/utils-find-unique-box-instructions "samplomatic.utils.find_unique_box_instructions")(instructions\[, ...]) | Return instructions that contains unique boxes.                                            |
+| [`get_annotation`](auto/utils-get-annotation "samplomatic.utils.get_annotation")(box, annotation\_type)                                          | Return a box's first annotation of the given type(s).                                      |
+| [`map_annotations`](auto/utils-map-annotations "samplomatic.utils.map_annotations")(circuit, fn)                                                 | Return a new circuit where each box's annotations are replaced by `fn(annotations)`.       |
+| [`replace_annotations`](auto/utils-replace-annotations "samplomatic.utils.replace_annotations")(circuit, fn)                                     | Return a new circuit with annotations replaced according to a callable.                    |
+| [`strip_annotations`](auto/utils-strip-annotations "samplomatic.utils.strip_annotations")(circuit)                                               | Return a new circuit with all annotations removed from every box.                          |
+| [`unbox`](auto/utils-unbox "samplomatic.utils.unbox")(circuit)                                                                                   | Return a circuit with all box operations inlined.                                          |
+| [`undress_box`](auto/utils-undress-box "samplomatic.utils.undress_box")(box)                                                                     | Return a box equivalent to `box`, stripped of the single-qubit gates on the dressing side. |
+| [`validate_literals`](auto/utils-validate-literals "samplomatic.utils.validate_literals")(\*arg\_names)                                          | Return a decorator to validate function arguments against literal type annotations.        |
+
+## Classes
+
+|                                                                                           |                                                                                               |
+| ----------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| [`BoxKey`](auto/utils-box-key "samplomatic.utils.BoxKey")(instruction)                    | An immutable snapshot of an instruction that owns a box, suitable for comparison and hashing. |
+| [`FrozenDict`](auto/utils-frozen-dict "samplomatic.utils.FrozenDict")(\*args, \*\*kwargs) | An immutable and hashable dictionary-like mapping.                                            |
+

@@ -1,0 +1,60 @@
+---
+title: QuantumProgramResult (latest version)
+description: API reference for samplomatic.quantum_program.QuantumProgramResult in the latest version of samplomatic
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: samplomatic.quantum_program.QuantumProgramResult
+---
+
+# QuantumProgramResult
+
+<Class id="samplomatic.quantum_program.QuantumProgramResult" isDedicatedPage={true} github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/quantum_program/quantum_program_result.py#L198-L270" signature="samplomatic.quantum_program.QuantumProgramResult(data: Sequence[dict[str, ndarray] | QuantumProgramItemResult], passthrough_data: list[list[DataTree] | dict[str, DataTree] | ndarray[float] | str | float | int | bool | None] | dict[str, list[DataTree] | dict[str, DataTree] | ndarray[float] | str | float | int | bool | None] | ndarray[float] | str | float | int | bool | None = None)" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
+
+  A container to store results from executing a [`QuantumProgram`](quantum-program-quantum-program "samplomatic.quantum_program.QuantumProgram").
+
+  **Parameters**
+
+  *   **data** – A list of dictionaries with array-valued data.
+  *   **passthrough\_data** – Arbitrary nested data passed through execution without modification.
+
+  **Attributes Summary**
+
+  |                                                                                                                                |                                                |
+  | ------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------- |
+  | [`timing`](#samplomatic.quantum_program.QuantumProgramResult.timing "samplomatic.quantum_program.QuantumProgramResult.timing") | Execution timing information of these results. |
+
+  **Attributes Documentation**
+
+  ### timing
+
+  <Attribute id="samplomatic.quantum_program.QuantumProgramResult.timing">
+    Execution timing information of these results.
+
+    A single executor job may be broken up into chunks of work that are executed serially. This property stores information about their timing. Most notably, for each chunk of execution, a start and stop timestamp are provided that bound the window in which the data was collected.
+
+    To draw the timings for a single result:
+
+    ```python
+    job.result().timing.draw()
+    ```
+
+    To draw the timings for several results on one plot:
+
+    ```python
+    from samplomatic.visualization.draw_chunk_timings import draw_chunk_timings
+
+    draw_chunk_timings(
+        job1.result().timing,
+        job2.result().timing,
+        names=["job 1", "job 2"],
+        common_start=True,
+    )
+    ```
+
+    **Returns**
+
+    A [`ChunkTiming`](quantum-program-chunk-timing "samplomatic.quantum_program.ChunkTiming") collection.
+  </Attribute>
+</Class>
+

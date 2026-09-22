@@ -1,0 +1,125 @@
+---
+title: PreInjectNoise (latest version)
+description: API reference for samplomatic.pre_samplex.PreInjectNoise in the latest version of samplomatic
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: samplomatic.pre_samplex.PreInjectNoise
+---
+
+# PreInjectNoise
+
+<Class id="samplomatic.pre_samplex.PreInjectNoise" isDedicatedPage={true} github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/pre_samplex/graph_data.py#L432-L449" signature="samplomatic.pre_samplex.PreInjectNoise(subsystems: Partition[int], direction: Direction, register_type: VirtualType, ref: str, modifier_ref: str, sign_idx: str, *, trace_info: TraceInfo | None = None, twirl_gate: str | None = None)" modifiers="class">
+  Bases: [`PreEmit`](pre-samplex-pre-emit "samplomatic.pre_samplex.graph_data.PreEmit")
+
+  The inject noise emit node type used during samplex building.
+
+  **Attributes Summary**
+
+  |                                                                                                                                 |                                                                                  |
+  | ------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+  | [`direction`](#samplomatic.pre_samplex.PreInjectNoise.direction "samplomatic.pre_samplex.PreInjectNoise.direction")             | The direction of virtual gates that can interact with this node.                 |
+  | [`modifier_ref`](#samplomatic.pre_samplex.PreInjectNoise.modifier_ref "samplomatic.pre_samplex.PreInjectNoise.modifier_ref")    | Unique identifier for modifiers to apply to the Pauli Lindblad map on this node. |
+  | [`ref`](#samplomatic.pre_samplex.PreInjectNoise.ref "samplomatic.pre_samplex.PreInjectNoise.ref")                               | Unique identifier of the Pauli Lindblad map to use for noise injection.          |
+  | [`register_type`](#samplomatic.pre_samplex.PreInjectNoise.register_type "samplomatic.pre_samplex.PreInjectNoise.register_type") | The virtual register type of the noise injection.                                |
+  | [`sign_idx`](#samplomatic.pre_samplex.PreInjectNoise.sign_idx "samplomatic.pre_samplex.PreInjectNoise.sign_idx")                | The index of the output array to write the sign to.                              |
+  | [`subsystems`](#samplomatic.pre_samplex.PreInjectNoise.subsystems "samplomatic.pre_samplex.PreInjectNoise.subsystems")          | The subsystems that virtual gates act on.                                        |
+  | [`trace_info`](#samplomatic.pre_samplex.PreInjectNoise.trace_info "samplomatic.pre_samplex.PreInjectNoise.trace_info")          | Debug trace information, populated when building with `debug=True`.              |
+  | [`twirl_gate`](#samplomatic.pre_samplex.PreInjectNoise.twirl_gate "samplomatic.pre_samplex.PreInjectNoise.twirl_gate")          | The gate name used for gate-dependent sampling, or `None`.                       |
+
+  **Methods Summary**
+
+  |                                                                                                                       |                                                                                                                                       |
+  | --------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+  | [`get_style`](#samplomatic.pre_samplex.PreInjectNoise.get_style "samplomatic.pre_samplex.PreInjectNoise.get_style")() | Summarizes the style of this node when plotted via [`plot_graph()`](visualization-plot-graph "samplomatic.visualization.plot_graph"). |
+
+  **Attributes Documentation**
+
+  ### direction
+
+  <Attribute id="samplomatic.pre_samplex.PreInjectNoise.direction">
+    Type: [`Direction`](constants-direction "samplomatic.constants.Direction")
+
+    Default value: `<dataclasses._MISSING_TYPE object>`
+
+    The direction of virtual gates that can interact with this node.
+  </Attribute>
+
+  ### modifier\_ref
+
+  <Attribute id="samplomatic.pre_samplex.PreInjectNoise.modifier_ref">
+    Type: [`str`](https://docs.python.org/3/builtins/stdtypes.html#str)
+
+    Default value: `<dataclasses._MISSING_TYPE object>`
+
+    Unique identifier for modifiers to apply to the Pauli Lindblad map on this node.
+  </Attribute>
+
+  ### ref
+
+  <Attribute id="samplomatic.pre_samplex.PreInjectNoise.ref">
+    Type: [`str`](https://docs.python.org/3/builtins/stdtypes.html#str)
+
+    Default value: `<dataclasses._MISSING_TYPE object>`
+
+    Unique identifier of the Pauli Lindblad map to use for noise injection.
+  </Attribute>
+
+  ### register\_type
+
+  <Attribute id="samplomatic.pre_samplex.PreInjectNoise.register_type">
+    Type: [`VirtualType`](virtual-registers-virtual-type "samplomatic.virtual_registers.virtual_type.VirtualType")
+
+    Default value: `<dataclasses._MISSING_TYPE object>`
+
+    The virtual register type of the noise injection.
+  </Attribute>
+
+  ### sign\_idx
+
+  <Attribute id="samplomatic.pre_samplex.PreInjectNoise.sign_idx">
+    Type: [`str`](https://docs.python.org/3/builtins/stdtypes.html#str)
+
+    Default value: `<dataclasses._MISSING_TYPE object>`
+
+    The index of the output array to write the sign to.
+  </Attribute>
+
+  ### subsystems
+
+  <Attribute id="samplomatic.pre_samplex.PreInjectNoise.subsystems">
+    Type: [`Partition`](partition-partition "samplomatic.partition.Partition")\[[`int`](https://docs.python.org/3/builtins/functions.html#int)]
+
+    Default value: `<dataclasses._MISSING_TYPE object>`
+
+    The subsystems that virtual gates act on.
+  </Attribute>
+
+  ### trace\_info
+
+  <Attribute id="samplomatic.pre_samplex.PreInjectNoise.trace_info">
+    Type: `TraceInfo` | [`None`](https://docs.python.org/3/builtins/constants.html#None)
+
+    Default value: `None`
+
+    Debug trace information, populated when building with `debug=True`.
+  </Attribute>
+
+  ### twirl\_gate
+
+  <Attribute id="samplomatic.pre_samplex.PreInjectNoise.twirl_gate">
+    Type: [`str`](https://docs.python.org/3/builtins/stdtypes.html#str) | [`None`](https://docs.python.org/3/builtins/constants.html#None)
+
+    Default value: `None`
+
+    The gate name used for gate-dependent sampling, or `None`.
+  </Attribute>
+
+  **Methods Documentation**
+
+  ### get\_style
+
+  <Function id="samplomatic.pre_samplex.PreInjectNoise.get_style" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/pre_samplex/graph_data.py#L448-L449" signature="get_style() → NodeStyle">
+    Summarizes the style of this node when plotted via [`plot_graph()`](visualization-plot-graph "samplomatic.visualization.plot_graph").
+  </Function>
+</Class>
+

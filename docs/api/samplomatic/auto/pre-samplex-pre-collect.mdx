@@ -1,0 +1,101 @@
+---
+title: PreCollect (latest version)
+description: API reference for samplomatic.pre_samplex.PreCollect in the latest version of samplomatic
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: samplomatic.pre_samplex.PreCollect
+---
+
+# PreCollect
+
+<Class id="samplomatic.pre_samplex.PreCollect" isDedicatedPage={true} github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/pre_samplex/graph_data.py#L99-L133" signature="samplomatic.pre_samplex.PreCollect(subsystems: Partition[int], direction: Direction, synth: Synth, param_idxs: ndarray[tuple[int, int], dtype[int64]], *, trace_info: TraceInfo | None = None)" modifiers="class">
+  Bases: [`PreNode`](pre-samplex-pre-node "samplomatic.pre_samplex.graph_data.PreNode")
+
+  The collection node type used during samplex building.
+
+  **Attributes Summary**
+
+  |                                                                                                                |                                                                        |
+  | -------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+  | [`direction`](#samplomatic.pre_samplex.PreCollect.direction "samplomatic.pre_samplex.PreCollect.direction")    | The direction of virtual gates that can interact with this node.       |
+  | [`param_idxs`](#samplomatic.pre_samplex.PreCollect.param_idxs "samplomatic.pre_samplex.PreCollect.param_idxs") | The indices of the template circuit to write the synthesis results to. |
+  | [`subsystems`](#samplomatic.pre_samplex.PreCollect.subsystems "samplomatic.pre_samplex.PreCollect.subsystems") | The subsystems that virtual gates act on.                              |
+  | [`synth`](#samplomatic.pre_samplex.PreCollect.synth "samplomatic.pre_samplex.PreCollect.synth")                | The synthesizer to convert virtual to physical gates.                  |
+  | [`trace_info`](#samplomatic.pre_samplex.PreCollect.trace_info "samplomatic.pre_samplex.PreCollect.trace_info") | Debug trace information, populated when building with `debug=True`.    |
+
+  **Methods Summary**
+
+  |                                                                                                                                                               |                                                                                                                                       |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+  | [`add_subsystems`](#samplomatic.pre_samplex.PreCollect.add_subsystems "samplomatic.pre_samplex.PreCollect.add_subsystems")(new\_subsystems, new\_param\_idxs) | Add subsystems to existing `PreCollect` node.                                                                                         |
+  | [`get_style`](#samplomatic.pre_samplex.PreCollect.get_style "samplomatic.pre_samplex.PreCollect.get_style")()                                                 | Summarizes the style of this node when plotted via [`plot_graph()`](visualization-plot-graph "samplomatic.visualization.plot_graph"). |
+
+  **Attributes Documentation**
+
+  ### direction
+
+  <Attribute id="samplomatic.pre_samplex.PreCollect.direction">
+    Type: [`Direction`](constants-direction "samplomatic.constants.Direction")
+
+    Default value: `<dataclasses._MISSING_TYPE object>`
+
+    The direction of virtual gates that can interact with this node.
+  </Attribute>
+
+  ### param\_idxs
+
+  <Attribute id="samplomatic.pre_samplex.PreCollect.param_idxs">
+    Type: [`ndarray`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)\[[`tuple`](https://docs.python.org/3/builtins/stdtypes.html#tuple)\[[`int`](https://docs.python.org/3/builtins/functions.html#int), [`int`](https://docs.python.org/3/builtins/functions.html#int)], [`dtype`](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype)\[`int64`]]
+
+    Default value: `<dataclasses._MISSING_TYPE object>`
+
+    The indices of the template circuit to write the synthesis results to.
+
+    This should be ordered according to [`subsystems`](#samplomatic.pre_samplex.PreCollect.subsystems "samplomatic.pre_samplex.PreCollect.subsystems").
+  </Attribute>
+
+  ### subsystems
+
+  <Attribute id="samplomatic.pre_samplex.PreCollect.subsystems">
+    Type: [`Partition`](partition-partition "samplomatic.partition.Partition")\[[`int`](https://docs.python.org/3/builtins/functions.html#int)]
+
+    Default value: `<dataclasses._MISSING_TYPE object>`
+
+    The subsystems that virtual gates act on.
+  </Attribute>
+
+  ### synth
+
+  <Attribute id="samplomatic.pre_samplex.PreCollect.synth">
+    Type: [`Synth`](synths-synth "samplomatic.synths.synth.Synth")
+
+    Default value: `<dataclasses._MISSING_TYPE object>`
+
+    The synthesizer to convert virtual to physical gates.
+  </Attribute>
+
+  ### trace\_info
+
+  <Attribute id="samplomatic.pre_samplex.PreCollect.trace_info">
+    Type: `TraceInfo` | [`None`](https://docs.python.org/3/builtins/constants.html#None)
+
+    Default value: `None`
+
+    Debug trace information, populated when building with `debug=True`.
+  </Attribute>
+
+  **Methods Documentation**
+
+  ### add\_subsystems
+
+  <Function id="samplomatic.pre_samplex.PreCollect.add_subsystems" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/pre_samplex/graph_data.py#L128-L133" signature="add_subsystems(new_subsystems: Partition[int], new_param_idxs: ndarray[tuple[int, int], dtype[int64]])">
+    Add subsystems to existing `PreCollect` node.
+  </Function>
+
+  ### get\_style
+
+  <Function id="samplomatic.pre_samplex.PreCollect.get_style" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/pre_samplex/graph_data.py#L112-L117" signature="get_style()">
+    Summarizes the style of this node when plotted via [`plot_graph()`](visualization-plot-graph "samplomatic.visualization.plot_graph").
+  </Function>
+</Class>
+

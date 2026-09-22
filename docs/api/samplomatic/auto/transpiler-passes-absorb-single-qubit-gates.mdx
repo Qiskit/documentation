@@ -1,0 +1,32 @@
+---
+title: AbsorbSingleQubitGates (latest version)
+description: API reference for samplomatic.transpiler.passes.AbsorbSingleQubitGates in the latest version of samplomatic
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: samplomatic.transpiler.passes.AbsorbSingleQubitGates
+---
+
+# AbsorbSingleQubitGates
+
+<Class id="samplomatic.transpiler.passes.AbsorbSingleQubitGates" isDedicatedPage={true} github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/transpiler/passes/absorb_single_qubit_gates.py#L27-L73" signature="samplomatic.transpiler.passes.AbsorbSingleQubitGates(*args, **kwargs)" modifiers="class">
+  Bases: [`TransformationPass`](/docs/api/qiskit/qiskit.transpiler.TransformationPass)
+
+  Absorb all chains of single-qubit gates that are left of a box instruction into the box.
+
+  Any instruction that is not a single-qubit gate, including measurements, entanglers, barriers, and boxes, is considered an interruption and ends a chain. For example, if an X, a measurement, a Y, and a Z gate precede a box in this order, then the Y and the Z will be absorbed into the box, but the X and the measurement will not.
+
+  **Methods Summary**
+
+  |                                                                                                                                    |                                                                |
+  | ---------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
+  | [`run`](#samplomatic.transpiler.passes.AbsorbSingleQubitGates.run "samplomatic.transpiler.passes.AbsorbSingleQubitGates.run")(dag) | Perform rightwards absorption of chains of single-qubit gates. |
+
+  **Methods Documentation**
+
+  ### run
+
+  <Function id="samplomatic.transpiler.passes.AbsorbSingleQubitGates.run" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/transpiler/passes/absorb_single_qubit_gates.py#L36-L73" signature="run(dag: DAGCircuit) → DAGCircuit">
+    Perform rightwards absorption of chains of single-qubit gates.
+  </Function>
+</Class>
+

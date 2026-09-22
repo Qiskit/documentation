@@ -1,0 +1,107 @@
+---
+title: SliceRegisterNode (latest version)
+description: API reference for samplomatic.samplex.nodes.SliceRegisterNode in the latest version of samplomatic
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: samplomatic.samplex.nodes.SliceRegisterNode
+---
+
+# SliceRegisterNode
+
+<Class id="samplomatic.samplex.nodes.SliceRegisterNode" isDedicatedPage={true} github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/samplex/nodes/slice_register_node.py#L26-L144" signature="samplomatic.samplex.nodes.SliceRegisterNode(input_type: VirtualType, output_type: VirtualType, input_register_name: str, output_register_name: str, slice_idxs: slice | Sequence[int], force_copy: bool = False)" modifiers="class">
+  Bases: [`EvaluationNode`](samplex-nodes-evaluation-node "samplomatic.samplex.nodes.evaluation_node.EvaluationNode")
+
+  A node to slice a register.
+
+  <Admonition title="Note" type="note">
+    Slicing of a register can alternatively be done using a [`CombineRegistersNode`](samplex-nodes-combine-registers-node "samplomatic.samplex.nodes.CombineRegistersNode"), providing `operands` of length `1`. However, using [`SliceRegisterNode`](#samplomatic.samplex.nodes.SliceRegisterNode "samplomatic.samplex.nodes.SliceRegisterNode") is recommended because its [`evaluate()`](#samplomatic.samplex.nodes.SliceRegisterNode.evaluate "samplomatic.samplex.nodes.SliceRegisterNode.evaluate") method is optimized for slicing a single register.
+  </Admonition>
+
+  **Parameters**
+
+  *   **input\_type** – The type of the input register.
+  *   **output\_type** – The type of the output register.
+  *   **input\_register\_name** – The name of the input register.
+  *   **output\_register\_name** – The name of the output register.
+  *   **slice\_idxs** – The indices used to slice the register.
+  *   **force\_copy** – Whether or not to force output register to be a copy instead of a view of the input register.
+
+  **Raises**
+
+  [**SamplexConstructionError**](exceptions-samplex-construction-error "samplomatic.exceptions.SamplexConstructionError") – If `slice_idxs` has the wrong shape.
+
+  **Attributes Summary**
+
+  |                                                                                                                                                                      |                                              |
+  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
+  | [`outgoing_register_type`](#samplomatic.samplex.nodes.SliceRegisterNode.outgoing_register_type "samplomatic.samplex.nodes.SliceRegisterNode.outgoing_register_type") | The virtual gate type of outgoing registers. |
+
+  **Methods Summary**
+
+  |                                                                                                                                                                                     |                                                                                  |
+  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+  | [`evaluate`](#samplomatic.samplex.nodes.SliceRegisterNode.evaluate "samplomatic.samplex.nodes.SliceRegisterNode.evaluate")(registers, \*\_)                                         | Evaluate this node.                                                              |
+  | [`get_style`](#samplomatic.samplex.nodes.SliceRegisterNode.get_style "samplomatic.samplex.nodes.SliceRegisterNode.get_style")()                                                     | Return the style of this node when plotted.                                      |
+  | [`instantiates`](#samplomatic.samplex.nodes.SliceRegisterNode.instantiates "samplomatic.samplex.nodes.SliceRegisterNode.instantiates")()                                            | Return a manifest of new virtual registers that this node instantiates.          |
+  | [`reads_from`](#samplomatic.samplex.nodes.SliceRegisterNode.reads_from "samplomatic.samplex.nodes.SliceRegisterNode.reads_from")()                                                  | Return a manifest of which virtual register values this node needs to read from. |
+  | [`validate_and_update`](#samplomatic.samplex.nodes.SliceRegisterNode.validate_and_update "samplomatic.samplex.nodes.SliceRegisterNode.validate_and_update")(register\_descriptions) | Validate provided register descriptions are compatible, update with changes.     |
+
+  **Attributes Documentation**
+
+  ### outgoing\_register\_type
+
+  <Attribute id="samplomatic.samplex.nodes.SliceRegisterNode.outgoing_register_type" />
+
+  **Methods Documentation**
+
+  ### evaluate
+
+  <Function id="samplomatic.samplex.nodes.SliceRegisterNode.evaluate" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/samplex/nodes/slice_register_node.py#L117-L119" signature="evaluate(registers, *_)">
+    Evaluate this node.
+
+    **Parameters**
+
+    *   **registers** – At least those registers needed by this node to read from or write to.
+    *   **parameter\_values** – Parameter values to use during evaluation.
+
+    **Raises**
+
+    [**SamplexRuntimeError**](exceptions-samplex-runtime-error "samplomatic.exceptions.SamplexRuntimeError") – If the number of parameter values received does not equal the number required by this node.
+  </Function>
+
+  ### get\_style
+
+  <Function id="samplomatic.samplex.nodes.SliceRegisterNode.get_style" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/samplex/nodes/slice_register_node.py#L137-L144" signature="get_style()">
+    Return the style of this node when plotted.
+  </Function>
+
+  ### instantiates
+
+  <Function id="samplomatic.samplex.nodes.SliceRegisterNode.instantiates" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/samplex/nodes/slice_register_node.py#L81-L92" signature="instantiates()">
+    Return a manifest of new virtual registers that this node instantiates.
+
+    <Admonition title="Note" type="note">
+      *   To change the type or size of a register, both instantiate and remove it.
+      *   Do not specify [`reads_from()`](#samplomatic.samplex.nodes.SliceRegisterNode.reads_from "samplomatic.samplex.nodes.SliceRegisterNode.reads_from") or `writes_to()` for an instantiated register, these powers are implicit.
+    </Admonition>
+  </Function>
+
+  ### reads\_from
+
+  <Function id="samplomatic.samplex.nodes.SliceRegisterNode.reads_from" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/samplex/nodes/slice_register_node.py#L94-L105" signature="reads_from()">
+    Return a manifest of which virtual register values this node needs to read from.
+  </Function>
+
+  ### validate\_and\_update
+
+  <Function id="samplomatic.samplex.nodes.SliceRegisterNode.validate_and_update" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/samplex/nodes/slice_register_node.py#L107-L115" signature="validate_and_update(register_descriptions)">
+    Validate provided register descriptions are compatible, update with changes.
+
+    This method can be used by a samplex to determine when a node execution order has well-defined dependencies before sampling begins.
+
+    **Parameters**
+
+    **register\_descriptions** – A map from existing register names to their size and type.
+  </Function>
+</Class>
+

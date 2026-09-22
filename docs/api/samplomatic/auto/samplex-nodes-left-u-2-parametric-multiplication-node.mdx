@@ -1,0 +1,53 @@
+---
+title: LeftU2ParametricMultiplicationNode (latest version)
+description: API reference for samplomatic.samplex.nodes.LeftU2ParametricMultiplicationNode in the latest version of samplomatic
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: samplomatic.samplex.nodes.LeftU2ParametricMultiplicationNode
+---
+
+# LeftU2ParametricMultiplicationNode
+
+<Class id="samplomatic.samplex.nodes.LeftU2ParametricMultiplicationNode" isDedicatedPage={true} github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/samplex/nodes/u2_param_multiplication_node.py#L96-L136" signature="samplomatic.samplex.nodes.LeftU2ParametricMultiplicationNode(operand: Literal['rz', 'rx'], register_name: str, param_idxs: list[int])" modifiers="class">
+  Bases: [`U2ParametricMultiplicationNode`](samplex-nodes-u-2-parametric-multiplication-node "samplomatic.samplex.nodes.u2_param_multiplication_node.U2ParametricMultiplicationNode")
+
+  Perform parametric left multiplication on a [`U2Register`](virtual-registers-u-2-register "samplomatic.virtual_registers.U2Register").
+
+  The node stores a parametric representation $g$ of a one-qubit gate or gates from the original circuit and performs a $g*reg$ multiplication, where $reg$ is the existing `U2Register`.
+
+  $g$ is limited to the gates `rz` or `rx`, and all gates within the node are of the same type.
+
+  **Parameters**
+
+  *   **operand** – The gate type, given as a string.
+  *   **register\_name** – The name of the register the operation is applied to.
+  *   **param\_idxs** – List of `ParamIndex` for the parameter expressions specifying the gate arguments. List order must match the order subsystems in the register.
+
+  **Raises**
+
+  [**SamplexConstructionError**](exceptions-samplex-construction-error "samplomatic.exceptions.SamplexConstructionError") – if param\_idxs is empty.
+
+  **Methods Summary**
+
+  |                                                                                                                                                                                            |                     |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------- |
+  | [`evaluate`](#samplomatic.samplex.nodes.LeftU2ParametricMultiplicationNode.evaluate "samplomatic.samplex.nodes.LeftU2ParametricMultiplicationNode.evaluate")(registers, parameter\_values) | Evaluate this node. |
+
+  **Methods Documentation**
+
+  ### evaluate
+
+  <Function id="samplomatic.samplex.nodes.LeftU2ParametricMultiplicationNode.evaluate" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/samplex/nodes/u2_param_multiplication_node.py#L116-L136" signature="evaluate(registers: dict[str, VirtualRegister], parameter_values: ndarray)">
+    Evaluate this node.
+
+    **Parameters**
+
+    *   **registers** – At least those registers needed by this node to read from or write to.
+    *   **parameter\_values** – The evaluated values of the parameter expressions in indices `self.parameter_idxs`, at the same order.
+
+    **Raises**
+
+    [**SamplexRuntimeError**](exceptions-samplex-runtime-error "samplomatic.exceptions.SamplexRuntimeError") – If the number of parameter values doesn’t match the number of parameter expressions in `self.parameter_idxs`.
+  </Function>
+</Class>
+

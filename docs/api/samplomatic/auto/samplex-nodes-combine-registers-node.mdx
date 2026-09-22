@@ -1,0 +1,107 @@
+---
+title: CombineRegistersNode (latest version)
+description: API reference for samplomatic.samplex.nodes.CombineRegistersNode in the latest version of samplomatic
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: samplomatic.samplex.nodes.CombineRegistersNode
+---
+
+# CombineRegistersNode
+
+<Class id="samplomatic.samplex.nodes.CombineRegistersNode" isDedicatedPage={true} github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/samplex/nodes/combine_registers_node.py#L33-L190" signature="samplomatic.samplex.nodes.CombineRegistersNode(output_type: VirtualType, output_register_name: str, num_output_subsystems: int, operands: dict[str, tuple[Sequence[int], Sequence[int], VirtualType]])" modifiers="class">
+  Bases: [`EvaluationNode`](samplex-nodes-evaluation-node "samplomatic.samplex.nodes.evaluation_node.EvaluationNode")
+
+  Composes one or more registers into a new register.
+
+  The registers are composed in the order of `operands`.
+
+  The new register can be larger than any of the registers being composed. In this case, any slice of the new register that remains untouched is initialized to identity. Therefore, this node can be used for virtual gate multiplication of registers of the same type, for tensoring subsystems, for slicing registers, for implicit identity insertion, and for subsystem reordering.
+
+  **Parameters**
+
+  *   **output\_type** – What type of register type to collect into.
+  *   **output\_register\_name** – The name of the output register.
+  *   **num\_output\_subsystems** – The number of subsystems of the output register.
+  *   **operands** – A map from register names to tuples `(source_idxs, destination_idxs, input_type)` where `source_idxs` slices the input register, `destination_idxs` is of the same length and slices the output register, dictating the location into which to multiply, and `input_type` is the type of the input register. The order of this map is in standard matrix multiplication order.
+
+  **Raises**
+
+  *   [**SamplexConstructionError**](exceptions-samplex-construction-error "samplomatic.exceptions.SamplexConstructionError") – If some pair of input and output indices don’t match size.
+  *   [**SamplexConstructionError**](exceptions-samplex-construction-error "samplomatic.exceptions.SamplexConstructionError") – If an output index is not in `[0, .., num_output_subsystems-1]`.
+  *   [**SamplexConstructionError**](exceptions-samplex-construction-error "samplomatic.exceptions.SamplexConstructionError") – If there is not at least one register.
+
+  **Attributes Summary**
+
+  |                                                                                                                                                                            |                                              |
+  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
+  | [`outgoing_register_type`](#samplomatic.samplex.nodes.CombineRegistersNode.outgoing_register_type "samplomatic.samplex.nodes.CombineRegistersNode.outgoing_register_type") | The virtual gate type of outgoing registers. |
+
+  **Methods Summary**
+
+  |                                                                                                                                                                                           |                                                                                  |
+  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+  | [`evaluate`](#samplomatic.samplex.nodes.CombineRegistersNode.evaluate "samplomatic.samplex.nodes.CombineRegistersNode.evaluate")(registers, \*\_)                                         | Evaluate this node.                                                              |
+  | [`get_style`](#samplomatic.samplex.nodes.CombineRegistersNode.get_style "samplomatic.samplex.nodes.CombineRegistersNode.get_style")()                                                     | Return the style of this node when plotted.                                      |
+  | [`instantiates`](#samplomatic.samplex.nodes.CombineRegistersNode.instantiates "samplomatic.samplex.nodes.CombineRegistersNode.instantiates")()                                            | Return a manifest of new virtual registers that this node instantiates.          |
+  | [`reads_from`](#samplomatic.samplex.nodes.CombineRegistersNode.reads_from "samplomatic.samplex.nodes.CombineRegistersNode.reads_from")()                                                  | Return a manifest of which virtual register values this node needs to read from. |
+  | [`validate_and_update`](#samplomatic.samplex.nodes.CombineRegistersNode.validate_and_update "samplomatic.samplex.nodes.CombineRegistersNode.validate_and_update")(register\_descriptions) | Validate provided register descriptions are compatible, update with changes.     |
+
+  **Attributes Documentation**
+
+  ### outgoing\_register\_type
+
+  <Attribute id="samplomatic.samplex.nodes.CombineRegistersNode.outgoing_register_type" />
+
+  **Methods Documentation**
+
+  ### evaluate
+
+  <Function id="samplomatic.samplex.nodes.CombineRegistersNode.evaluate" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/samplex/nodes/combine_registers_node.py#L133-L151" signature="evaluate(registers, *_)">
+    Evaluate this node.
+
+    **Parameters**
+
+    *   **registers** – At least those registers needed by this node to read from or write to.
+    *   **parameter\_values** – Parameter values to use during evaluation.
+
+    **Raises**
+
+    [**SamplexRuntimeError**](exceptions-samplex-runtime-error "samplomatic.exceptions.SamplexRuntimeError") – If the number of parameter values received does not equal the number required by this node.
+  </Function>
+
+  ### get\_style
+
+  <Function id="samplomatic.samplex.nodes.CombineRegistersNode.get_style" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/samplex/nodes/combine_registers_node.py#L174-L190" signature="get_style()">
+    Return the style of this node when plotted.
+  </Function>
+
+  ### instantiates
+
+  <Function id="samplomatic.samplex.nodes.CombineRegistersNode.instantiates" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/samplex/nodes/combine_registers_node.py#L113-L114" signature="instantiates()">
+    Return a manifest of new virtual registers that this node instantiates.
+
+    <Admonition title="Note" type="note">
+      *   To change the type or size of a register, both instantiate and remove it.
+      *   Do not specify [`reads_from()`](#samplomatic.samplex.nodes.CombineRegistersNode.reads_from "samplomatic.samplex.nodes.CombineRegistersNode.reads_from") or `writes_to()` for an instantiated register, these powers are implicit.
+    </Admonition>
+  </Function>
+
+  ### reads\_from
+
+  <Function id="samplomatic.samplex.nodes.CombineRegistersNode.reads_from" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/samplex/nodes/combine_registers_node.py#L116-L120" signature="reads_from()">
+    Return a manifest of which virtual register values this node needs to read from.
+  </Function>
+
+  ### validate\_and\_update
+
+  <Function id="samplomatic.samplex.nodes.CombineRegistersNode.validate_and_update" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/samplex/nodes/combine_registers_node.py#L122-L131" signature="validate_and_update(register_descriptions)">
+    Validate provided register descriptions are compatible, update with changes.
+
+    This method can be used by a samplex to determine when a node execution order has well-defined dependencies before sampling begins.
+
+    **Parameters**
+
+    **register\_descriptions** – A map from existing register names to their size and type.
+  </Function>
+</Class>
+

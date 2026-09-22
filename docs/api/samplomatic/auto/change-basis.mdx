@@ -1,0 +1,45 @@
+---
+title: ChangeBasis (latest version)
+description: API reference for samplomatic.ChangeBasis in the latest version of samplomatic
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: samplomatic.ChangeBasis
+---
+
+<span id="samplomatic-changebasis" />
+
+# samplomatic.ChangeBasis
+
+<Class id="samplomatic.ChangeBasis" isDedicatedPage={true} github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/annotations/change_basis.py#L23-L71" signature="samplomatic.ChangeBasis(decomposition: DecompositionMode | Literal['rzsx', 'rzrx'] = DecompositionMode.RZSX, mode: ChangeBasisMode | Literal['measure', 'prepare'] = ChangeBasisMode.MEASURE, ref: str | None = None, dressing: DressingMode | Literal['left', 'right'] = DressingMode.LEFT)" modifiers="class">
+  Directive to add basis changing gates.
+
+  The resulting [`Samplex`](samplex-samplex "samplomatic.samplex.Samplex") built from a circuit with a box with this annotation has a tensor input with name `basis_changes.ref` and shape `'(len(box_instruction.qubits),)'`. The tensor is indexed in physical qubit order, in other words, the order of the qubits in the outer-most circuit, restricted to those used by the box.
+
+  **Parameters**
+
+  *   **decomposition** – How to decompose basis changing gates.
+  *   **dressing** – Which side of the box to attach the dressing instructions.
+  *   **mode** – Whether to add gates to prepare or measure in a given basis.
+  *   **ref** – A unique identifier of this basis change. If `None`, it is set to `mode.value`.
+
+  ### \_\_init\_\_
+
+  <Function id="samplomatic.ChangeBasis.__init__" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/annotations/change_basis.py#L42-L52" signature="__init__(decomposition: DecompositionMode | Literal['rzsx', 'rzrx'] = DecompositionMode.RZSX, mode: ChangeBasisMode | Literal['measure', 'prepare'] = ChangeBasisMode.MEASURE, ref: str | None = None, dressing: DressingMode | Literal['left', 'right'] = DressingMode.LEFT)" />
+
+  ## Methods
+
+  |                                                                                                                           |   |
+  | ------------------------------------------------------------------------------------------------------------------------- | - |
+  | [`__init__`](#samplomatic.ChangeBasis.__init__ "samplomatic.ChangeBasis.__init__")(\[decomposition, mode, ref, dressing]) |   |
+
+  ## Attributes
+
+  |                 |   |
+  | --------------- | - |
+  | `decomposition` |   |
+  | `dressing`      |   |
+  | `mode`          |   |
+  | `ref`           |   |
+  | `namespace`     |   |
+</Class>
+

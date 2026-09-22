@@ -1,0 +1,53 @@
+---
+title: InjectLocalClifford (latest version)
+description: API reference for samplomatic.annotations.InjectLocalClifford in the latest version of samplomatic
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: samplomatic.annotations.InjectLocalClifford
+---
+
+# InjectLocalClifford
+
+<Class id="samplomatic.annotations.InjectLocalClifford" isDedicatedPage={true} github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplomatic/annotations/inject_local_clifford.py#L22-L65" signature="samplomatic.annotations.InjectLocalClifford(ref: str, decomposition: DecompositionMode | Literal['rzsx', 'rzrx'] = DecompositionMode.RZSX, dressing: DressingMode | Literal['left', 'right'] = DressingMode.LEFT)" modifiers="class">
+  Bases: [`Annotation`](/docs/api/qiskit/qiskit.circuit.Annotation)
+
+  Directive to inject local Cliffords.
+
+  The resulting [`Samplex`](samplex-samplex "samplomatic.samplex.Samplex") built from a circuit with a box with this annotation has a tensor input with name `local_cliffords.ref` and shape `'(len(box_instruction.qubits),)'`. The tensor is indexed in physical qubit order, in other words, the order of the qubits in the outer-most circuit, restricted to those used by the box.
+
+  **Parameters**
+
+  *   **ref** – A unique identifier of the Cliffords.
+  *   **decomposition** – How to decompose the Cliffords.
+  *   **dressing** – Which side of the box to attach the dressing instructions.
+
+  **Attributes Summary**
+
+  |                                                                                                                                           |   |
+  | ----------------------------------------------------------------------------------------------------------------------------------------- | - |
+  | [`decomposition`](#samplomatic.annotations.InjectLocalClifford.decomposition "samplomatic.annotations.InjectLocalClifford.decomposition") |   |
+  | [`dressing`](#samplomatic.annotations.InjectLocalClifford.dressing "samplomatic.annotations.InjectLocalClifford.dressing")                |   |
+  | [`namespace`](#samplomatic.annotations.InjectLocalClifford.namespace "samplomatic.annotations.InjectLocalClifford.namespace")             |   |
+  | [`ref`](#samplomatic.annotations.InjectLocalClifford.ref "samplomatic.annotations.InjectLocalClifford.ref")                               |   |
+
+  **Attributes Documentation**
+
+  ### decomposition
+
+  <Attribute id="samplomatic.annotations.InjectLocalClifford.decomposition" />
+
+  ### dressing
+
+  <Attribute id="samplomatic.annotations.InjectLocalClifford.dressing" />
+
+  ### namespace
+
+  <Attribute id="samplomatic.annotations.InjectLocalClifford.namespace">
+    Default value: `'samplomatic.inject_local_clifford'`
+  </Attribute>
+
+  ### ref
+
+  <Attribute id="samplomatic.annotations.InjectLocalClifford.ref" />
+</Class>
+
