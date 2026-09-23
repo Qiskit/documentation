@@ -62,21 +62,21 @@ $$
   When `filter_trivial` actually filters a gate, the returned [`FermionicDAGCircuit`](circuit-fermionic-dag-circuit "qiskit_fermions.circuit.FermionicDAGCircuit") records how many draws it discarded in its [`metadata`](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit#metadata), under `filter_trivial.discarded` and `filter_trivial.emitted`. Both hold one entry per filtered [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") gate, in circuit order. Their ratio estimates the acceptance probability, and hence the factor by which the filtering inflated the coefficients of the terms it kept: an acceptance probability close to one means the filtering barely moved the distribution, while a small one means the retained terms were weighted far above their true share of the Hamiltonian.
 
   <Admonition title="Important" type="danger">
-    Neither field is present when no gate was filtered, which covers `filter_trivial=False` and every case in which filtering was skipped with a [`UserWarning`](https://docs.python.org/3/library/exceptions.html#UserWarning). Read them defensively, for example with `qcirc.metadata.get("filter_trivial.discarded")`. A discarded count of zero is different from an absent field: it says the filtering ran on that gate and accepted every draw, so it left the sampling distribution untouched.
+    Neither field is present when no gate was filtered, which covers `filter_trivial=False` and every case in which filtering was skipped with a [`UserWarning`](https://docs.python.org/3/builtins/exceptions.html#UserWarning). Read them defensively, for example with `qcirc.metadata.get("filter_trivial.discarded")`. A discarded count of zero is different from an absent field: it says the filtering ran on that gate and accepted every draw, so it left the sampling distribution untouched.
   </Admonition>
 
   Initializing this transpiler pass can be done with the arguments listed below.
 
   **Parameters**
 
-  *   **num\_terms** ([*int*](https://docs.python.org/3/library/functions.html#int)) – the number of terms to sample for the qDRIFT Trotterization. This equals the number of [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") gates emitted per input gate; a larger value reduces the Trotterization error at the cost of a deeper circuit.
-  *   **filter\_trivial** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – when set to `True`, the sampling loop rejects a drawn term unless its support couples a mode tracked as occupied with a mode tracked as unoccupied, and draws a replacement in its place. This spends every one of the `num_terms` slots on an excitation that can move a particle, at the cost of biasing the Trotterization and of a deeper circuit, so it defaults to `False`. See also [`filter_trivial`](#qiskit_fermions.transpiler.passes.QDriftTrotterization.filter_trivial "qiskit_fermions.transpiler.passes.QDriftTrotterization.filter_trivial") for the acceptance rule and its prerequisites, and the warning in the class docstring for the bias it introduces.
-  *   **weights** (*Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float)*] | np.ndarray | None*) – the sampling weights to use instead of the coefficient magnitudes derived from the Hamiltonian. If `None` (the default), they are computed from the evolved operator on every call, which reproduces the textbook qDRIFT distribution. See [`weights`](#qiskit_fermions.transpiler.passes.QDriftTrotterization.weights "qiskit_fermions.transpiler.passes.QDriftTrotterization.weights") for the expected length, the sign convention and the effect on the evolution time.
-  *   **rng** (*np.random.Generator |* [*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – the random number generator (rng) to be used. When this is an `int`, the internal rng will be initialized with `np.random.default_rng(seed=rng)`.
+  *   **num\_terms** ([*int*](https://docs.python.org/3/builtins/functions.html#int)) – the number of terms to sample for the qDRIFT Trotterization. This equals the number of [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") gates emitted per input gate; a larger value reduces the Trotterization error at the cost of a deeper circuit.
+  *   **filter\_trivial** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) – when set to `True`, the sampling loop rejects a drawn term unless its support couples a mode tracked as occupied with a mode tracked as unoccupied, and draws a replacement in its place. This spends every one of the `num_terms` slots on an excitation that can move a particle, at the cost of biasing the Trotterization and of a deeper circuit, so it defaults to `False`. See also [`filter_trivial`](#qiskit_fermions.transpiler.passes.QDriftTrotterization.filter_trivial "qiskit_fermions.transpiler.passes.QDriftTrotterization.filter_trivial") for the acceptance rule and its prerequisites, and the warning in the class docstring for the bias it introduces.
+  *   **weights** (*Sequence\[*[*float*](https://docs.python.org/3/builtins/functions.html#float)*] | np.ndarray | None*) – the sampling weights to use instead of the coefficient magnitudes derived from the Hamiltonian. If `None` (the default), they are computed from the evolved operator on every call, which reproduces the textbook qDRIFT distribution. See [`weights`](#qiskit_fermions.transpiler.passes.QDriftTrotterization.weights "qiskit_fermions.transpiler.passes.QDriftTrotterization.weights") for the expected length, the sign convention and the effect on the evolution time.
+  *   **rng** (*np.random.Generator |* [*int*](https://docs.python.org/3/builtins/functions.html#int) *| None*) – the random number generator (rng) to be used. When this is an `int`, the internal rng will be initialized with `np.random.default_rng(seed=rng)`.
 
   **Raises**
 
-  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – if `weights` is not one-dimensional, is empty, holds a non-finite or negative entry, or sums to zero.
+  [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – if `weights` is not one-dimensional, is empty, holds a non-finite or negative entry, or sums to zero.
 
   ## Attributes
 
@@ -85,7 +85,7 @@ $$
   <Attribute id="qiskit_fermions.transpiler.passes.QDriftTrotterization.MAX_SAMPLE_RETRIES">
     Default value: `1000000`
 
-    The maximum number of consecutive rejected samples tolerated by `filter_trivial` before [`run()`](#qiskit_fermions.transpiler.passes.QDriftTrotterization.run "qiskit_fermions.transpiler.passes.QDriftTrotterization.run") gives up and raises [`RuntimeError`](https://docs.python.org/3/library/exceptions.html#RuntimeError). This guards against an infinite loop when the Hamiltonian’s remaining terms cannot bridge the tracked occupied/unoccupied mode sets. That happens when both sets remain small and disjoint (few modes have been marked occupied or unoccupied, and none has yet become “uncertain”) and no remaining term’s support touches both.
+    The maximum number of consecutive rejected samples tolerated by `filter_trivial` before [`run()`](#qiskit_fermions.transpiler.passes.QDriftTrotterization.run "qiskit_fermions.transpiler.passes.QDriftTrotterization.run") gives up and raises [`RuntimeError`](https://docs.python.org/3/builtins/exceptions.html#RuntimeError). This guards against an infinite loop when the Hamiltonian’s remaining terms cannot bridge the tracked occupied/unoccupied mode sets. That happens when both sets remain small and disjoint (few modes have been marked occupied or unoccupied, and none has yet become “uncertain”) and no remaining term’s support touches both.
   </Attribute>
 
   ### num\_terms
@@ -101,7 +101,7 @@ $$
 
     When this is `True`, the sampling loop accepts a drawn term only if its support intersects both the set of modes tracked as occupied and the set tracked as unoccupied, and it draws a replacement for every term it rejects, so that none of the [`num_terms`](#qiskit_fermions.transpiler.passes.QDriftTrotterization.num_terms "qiskit_fermions.transpiler.passes.QDriftTrotterization.num_terms") slots is spent on a term that leaves the occupation unchanged and therefore says nothing about the sampled bitstrings. Rejection renormalizes the sampling distribution over the accepted terms, which biases the Trotterization, and the replacement it draws is more expensive to synthesize than the term it displaced: see the warning in the class docstring before enabling this.
 
-    Filtering requires an [`InitializeModes`](circuit-library-initialize-modes "qiskit_fermions.circuit.library.InitializeModes") or [`PrepareSlaterDeterminant`](circuit-library-prepare-slater-determinant "qiskit_fermions.circuit.library.PrepareSlaterDeterminant") gate to precede the [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") gates being Trotterized, to seed the initial occupied and unoccupied mode sets. If none is found, or if the sets it seeds turn out to be entirely occupied or entirely unoccupied, filtering is skipped for that gate and a [`UserWarning`](https://docs.python.org/3/library/exceptions.html#UserWarning) is emitted instead.
+    Filtering requires an [`InitializeModes`](circuit-library-initialize-modes "qiskit_fermions.circuit.library.InitializeModes") or [`PrepareSlaterDeterminant`](circuit-library-prepare-slater-determinant "qiskit_fermions.circuit.library.PrepareSlaterDeterminant") gate to precede the [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") gates being Trotterized, to seed the initial occupied and unoccupied mode sets. If none is found, or if the sets it seeds turn out to be entirely occupied or entirely unoccupied, filtering is skipped for that gate and a [`UserWarning`](https://docs.python.org/3/builtins/exceptions.html#UserWarning) is emitted instead.
 
     Any [`OrbitalRotation`](circuit-library-orbital-rotation "qiskit_fermions.circuit.library.OrbitalRotation") gate encountered before or between the [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") gates also updates these sets: every mode it acts on becomes “uncertain”, since the rotation can mix it with any other mode it touches, just like a mode touched by an accepted term. A [`PrepareSlaterDeterminant`](circuit-library-prepare-slater-determinant "qiskit_fermions.circuit.library.PrepareSlaterDeterminant") gate updates the sets the same way its [`InitializeModes`](circuit-library-initialize-modes "qiskit_fermions.circuit.library.InitializeModes") and [`OrbitalRotation`](circuit-library-orbital-rotation "qiskit_fermions.circuit.library.OrbitalRotation") components would if applied in sequence: it seeds the occupied and unoccupied sets from its `occupation`, then immediately marks every mode it acts on as “uncertain” because of its rotation. See the [`run()`](#qiskit_fermions.transpiler.passes.QDriftTrotterization.run "qiskit_fermions.transpiler.passes.QDriftTrotterization.run") docstring for the precise acceptance rule.
   </Attribute>
@@ -109,13 +109,13 @@ $$
   ### weights
 
   <Attribute id="qiskit_fermions.transpiler.passes.QDriftTrotterization.weights">
-    Type: `np.ndarray` | [`None`](https://docs.python.org/3/library/constants.html#None)
+    Type: `np.ndarray` | [`None`](https://docs.python.org/3/builtins/constants.html#None)
 
     The sampling weights $w_j$, or `None` to derive them from the evolved operator.
 
     Supplying them hoists their computation out of the transpilation: the default path recomputes them on *every* call to [`run()`](#qiskit_fermions.transpiler.passes.QDriftTrotterization.run "qiskit_fermions.transpiler.passes.QDriftTrotterization.run"), which is repeated work when generating an ensemble from a single Hamiltonian. Deriving them once with [`group_coeff_means()`](operators-terms-group-coeff-means "qiskit_fermions.operators.terms.group_coeff_means") and passing the result here keeps this pass stateless while paying that cost a single time. That is the reason to reach for this argument; passing anything other than the Hamiltonian’s own coefficient magnitudes changes which evolution the ensemble approximates (see the caution below).
 
-    One entry is expected per *group* when the evolved operator carries [`groups`](operators-operator-trait#groups "qiskit_fermions.operators.OperatorTrait.groups"), and per *term* otherwise; a mismatch raises [`ValueError`](https://docs.python.org/3/library/exceptions.html#ValueError). Because such an array describes one specific operator, a circuit holding more than one [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") gate is rejected as well: leave this unset for such a circuit, so that every gate derives its own weights, or transpile one gate at a time.
+    One entry is expected per *group* when the evolved operator carries [`groups`](operators-operator-trait#groups "qiskit_fermions.operators.OperatorTrait.groups"), and per *term* otherwise; a mismatch raises [`ValueError`](https://docs.python.org/3/builtins/exceptions.html#ValueError). Because such an array describes one specific operator, a circuit holding more than one [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") gate is rejected as well: leave this unset for such a circuit, so that every gate derives its own weights, or transpile one gate at a time.
 
     The granularity follows what the pass samples, which is why it is the grouping that decides it: a grouped operator is sampled group-wise, so a weight describes a whole group. Whether the grouping is the appropriate unit for a given operator is a property of that operator, not of this argument – see [Group operator terms: use the operator structure](/docs/addons/qiskit-fermions/guides/grouping#grouping-explanation), and [`groups_are_hermitian()`](operators-terms-groups-are-hermitian "qiskit_fermions.operators.terms.groups_are_hermitian") to check the most common convention.
 
@@ -149,8 +149,8 @@ $$
 
     **Raises**
 
-    *   [**RuntimeError**](https://docs.python.org/3/library/exceptions.html#RuntimeError) – if `filter_trivial` is `True` and [`MAX_SAMPLE_RETRIES`](#qiskit_fermions.transpiler.passes.QDriftTrotterization.MAX_SAMPLE_RETRIES "qiskit_fermions.transpiler.passes.QDriftTrotterization.MAX_SAMPLE_RETRIES") consecutive draws are rejected without any of them coupling the tracked occupied and unoccupied mode sets.
-    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – if [`weights`](#qiskit_fermions.transpiler.passes.QDriftTrotterization.weights "qiskit_fermions.transpiler.passes.QDriftTrotterization.weights") was supplied and its length does not match the number of groups (or terms) of an evolved operator, or if the circuit holds more than one [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") gate.
+    *   [**RuntimeError**](https://docs.python.org/3/builtins/exceptions.html#RuntimeError) – if `filter_trivial` is `True` and [`MAX_SAMPLE_RETRIES`](#qiskit_fermions.transpiler.passes.QDriftTrotterization.MAX_SAMPLE_RETRIES "qiskit_fermions.transpiler.passes.QDriftTrotterization.MAX_SAMPLE_RETRIES") consecutive draws are rejected without any of them coupling the tracked occupied and unoccupied mode sets.
+    *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – if [`weights`](#qiskit_fermions.transpiler.passes.QDriftTrotterization.weights "qiskit_fermions.transpiler.passes.QDriftTrotterization.weights") was supplied and its length does not match the number of groups (or terms) of an evolved operator, or if the circuit holds more than one [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") gate.
 
     **Return type**
 
@@ -168,7 +168,7 @@ $$
 
     *   **passmanager\_ir** (*IR*) – Qiskit IR to optimize.
     *   **state** ([*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)) – State associated with workflow execution by the pass manager itself.
-    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[*[*Task*](/docs/api/qiskit/qiskit.passmanager.Task)*, IR\_OUT,* [*PropertySet*](/docs/api/qiskit/qiskit.passmanager.PropertySet)*,* [*float*](https://docs.python.org/3/library/functions.html#float)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*], None] | None*) – A callback function which is called per execution of optimization task.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[*[*Task*](/docs/api/qiskit/qiskit.passmanager.Task)*, IR\_OUT,* [*PropertySet*](/docs/api/qiskit/qiskit.passmanager.PropertySet)*,* [*float*](https://docs.python.org/3/builtins/functions.html#float)*,* [*int*](https://docs.python.org/3/builtins/functions.html#int)*], None] | None*) – A callback function which is called per execution of optimization task.
 
     **Returns**
 
@@ -176,7 +176,7 @@ $$
 
     **Return type**
 
-    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[*IR\_OUT*, [*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)]
+    [tuple](https://docs.python.org/3/builtins/stdtypes.html#tuple)\[*IR\_OUT*, [*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)]
   </Function>
 
   ### name
@@ -186,7 +186,7 @@ $$
 
     **Return type**
 
-    [str](https://docs.python.org/3/library/stdtypes.html#str)
+    [str](https://docs.python.org/3/builtins/stdtypes.html#str)
   </Function>
 
   ### update\_status

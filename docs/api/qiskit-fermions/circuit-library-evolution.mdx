@@ -35,11 +35,11 @@ $$
 
   **Parameters**
 
-  *   **num\_modes** ([*int*](https://docs.python.org/3/library/functions.html#int)) – the number of fermionic modes on which this gate acts.
+  *   **num\_modes** ([*int*](https://docs.python.org/3/builtins/functions.html#int)) – the number of fermionic modes on which this gate acts.
   *   **operator** ([*OperatorTrait*](operators-operator-trait "qiskit_fermions.operators.OperatorTrait")) – the Hermitian operator $H$ under which to time evolve the acted-upon fermionic modes.
-  *   **time** ([*float*](https://docs.python.org/3/library/functions.html#float)) – the evolution time $t$ entering the exponent of $e^{-i t H}$. A negative value evolves backwards in time.
+  *   **time** ([*float*](https://docs.python.org/3/builtins/functions.html#float)) – the evolution time $t$ entering the exponent of $e^{-i t H}$. A negative value evolves backwards in time.
   *   **synthesis** ([*FermionicEvolutionSynthesis*](circuit-library-synthesis-fermionic-evolution-synthesis "qiskit_fermions.circuit.library.synthesis.FermionicEvolutionSynthesis") *| None*) – the fermion-to-fermion synthesis method with which to decompose this gate, when it gets decomposed at all. If `None` (the default), a [`FermionicLieTrotter`](circuit-library-synthesis-fermionic-lie-trotter "qiskit_fermions.circuit.library.synthesis.FermionicLieTrotter") instance is used.
-  *   **atomic** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – whether this gate is a fully decomposed factor which must not be broken down any further in fermionic space. See [`atomic`](#qiskit_fermions.circuit.library.Evolution.atomic "qiskit_fermions.circuit.library.Evolution.atomic").
+  *   **atomic** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) – whether this gate is a fully decomposed factor which must not be broken down any further in fermionic space. See [`atomic`](#qiskit_fermions.circuit.library.Evolution.atomic "qiskit_fermions.circuit.library.Evolution.atomic").
 
   ## Attributes
 
@@ -78,7 +78,7 @@ $$
 
     **Parameters**
 
-    **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – ignored. The inverse of this gate is another [`Evolution`](#qiskit_fermions.circuit.library.Evolution "qiskit_fermions.circuit.library.Evolution"), so it never needs to be an [`AnnotatedOperation`](/docs/api/qiskit/qiskit.circuit.AnnotatedOperation).
+    **annotated** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) – ignored. The inverse of this gate is another [`Evolution`](#qiskit_fermions.circuit.library.Evolution "qiskit_fermions.circuit.library.Evolution"), so it never needs to be an [`AnnotatedOperation`](/docs/api/qiskit/qiskit.circuit.AnnotatedOperation).
 
     **Returns**
 
@@ -101,10 +101,10 @@ $$
     **Parameters**
 
     *   **vec** (*np.ndarray*) – the state vector to act on.
-    *   **norb** ([*int*](https://docs.python.org/3/library/functions.html#int)) – the number of spatial orbitals of the *global* state vector.
-    *   **nelec** ([*int*](https://docs.python.org/3/library/functions.html#int)  *|*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*]*) – either a single integer for a spinless system, or a pair of integers storing the numbers of spin alpha and spin beta fermions. An integer selects the spinless mode interpretation (the operator’s `norb` modes are alpha orbitals); a pair selects the spinful `(orb, spin)` interpretation of the operator’s `2 * norb` modes.
-    *   **copy** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – whether to copy the vector before operating on it.
-    *   **freg\_indices** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]*) – the absolute (global) mode indices that this gate’s local modes map onto. The operator is relabeled from its local modes to these global modes before being applied, mirroring the transpiler’s synthesis pass.
+    *   **norb** ([*int*](https://docs.python.org/3/builtins/functions.html#int)) – the number of spatial orbitals of the *global* state vector.
+    *   **nelec** ([*int*](https://docs.python.org/3/builtins/functions.html#int)  *|*[*tuple*](https://docs.python.org/3/builtins/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/builtins/functions.html#int)*,* [*int*](https://docs.python.org/3/builtins/functions.html#int)*]*) – either a single integer for a spinless system, or a pair of integers storing the numbers of spin alpha and spin beta fermions. An integer selects the spinless mode interpretation (the operator’s `norb` modes are alpha orbitals); a pair selects the spinful `(orb, spin)` interpretation of the operator’s `2 * norb` modes.
+    *   **copy** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) – whether to copy the vector before operating on it.
+    *   **freg\_indices** ([*list*](https://docs.python.org/3/builtins/stdtypes.html#list)*\[*[*int*](https://docs.python.org/3/builtins/functions.html#int)*]*) – the absolute (global) mode indices that this gate’s local modes map onto. The operator is relabeled from its local modes to these global modes before being applied, mirroring the transpiler’s synthesis pass.
 
     **Returns**
 
@@ -113,7 +113,7 @@ $$
     **Raises**
 
     *   **MissingOptionalLibraryError** – if ffsim is not installed.
-    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – if the operator does not conserve the `(norb, nelec)` sector. Evolving under `exp(-i * time * operator)` only yields a unitary when `operator` maps the sector to itself, so ffsim rejects an operator that conserves neither particle number nor the z-component of spin.
+    *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – if the operator does not conserve the `(norb, nelec)` sector. Evolving under `exp(-i * time * operator)` only yields a unitary when `operator` maps the sector to itself, so ffsim rejects an operator that conserves neither particle number nor the z-component of spin.
 
     **Return type**
 
