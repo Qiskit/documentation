@@ -33,6 +33,36 @@ The present data structure only stores the information relevant for constructing
 
 The only required values are the 1-body alpha-spin integrals.
 
+The two-body integrals are expected in chemist ordering, $(ij|kl)$, matching the FCIDump convention.
+
+***
+
+<span id="qf-fcidump-implementation" />
+
+## Data layout
+
+The integrals are stored as flattened arrays exploiting their permutational symmetry, which is also the layout the electronic integral constructors ([Electronic Integrals](qf-electronic-integrals)) expect. Writing $n$ for the number of orbitals ([`qf_fcidump_norb()`](#qf_fcidump_norb "qf_fcidump_norb")) and $\text{npair} = n (n + 1) / 2$, a single data structure contains up to 5 arrays:
+
+| Array         | Length                                | Contents                             |
+| ------------- | ------------------------------------- | ------------------------------------ |
+| `one_body_a`  | $\text{npair}$                        | The $\alpha$-spin 1-body integrals.  |
+| `one_body_b`  | $\text{npair}$                        | The $\beta$-spin 1-body integrals.   |
+| `two_body_aa` | $\text{npair} (\text{npair} + 1) / 2$ | The $\alpha\alpha$ 2-body integrals. |
+| `two_body_ab` | $\text{npair}^2$                      | The $\alpha\beta$ 2-body integrals.  |
+| `two_body_bb` | $\text{npair} (\text{npair} + 1) / 2$ | The $\beta\beta$ 2-body integrals.   |
+
+The 1-body arrays are the flattened lower triangle of an $(n, n)$ matrix, indexed as `ia = i * (i + 1) / 2 + a` with `a <= i`. The `two_body_aa` and `two_body_bb` arrays are 8-fold (S8) symmetric: the flattened lower triangle of a $(\text{npair}, \text{npair})$ matrix, whose own two axes are each such a pair index.
+
+<Admonition title="Warning" type="caution">
+  `two_body_ab` is packed *differently* from its siblings. It is only 4-fold (S4) symmetric, so it holds the **full** $(\text{npair}, \text{npair})$ matrix in row-major order, indexed as `iajb = ia * npair + jb`. Its row pair indexes the $\alpha$-spin species and its column pair the $\beta$-spin species, so it is *not* symmetric under exchanging the two pairs.
+</Admonition>
+
+The $\beta$-spin 1-body and the $\alpha\beta$ / $\beta\beta$ 2-body arrays are only present for a file carrying unrestricted spin data. They are absent together, so [`qf_fcidump_is_unrestricted()`](#qf_fcidump_is_unrestricted "qf_fcidump_is_unrestricted") reports on all three at once and gates the getters that read them.
+
+The stored values are the integrals as they appear in the file. In particular, they do **not** carry the conventional factor of $\frac{1}{2}$ that the 2-body operator terms do, so a coefficient of an operator built via [`qf_ferm_op_from_fcidump()`](#qf_ferm_op_from_fcidump "qf_ferm_op_from_fcidump") is half the corresponding value returned here.
+
+Building a dense $(n, n)$ or $(n, n, n, n)$ tensor from these arrays (as required by, for example, sample-based diagonalization tooling) is the caller’s task; the index formulae above are what that expansion needs.
+
 ***
 
 <span id="id2" />
@@ -45,7 +75,7 @@ The only required values are the 1-body alpha-spin integrals.
 
 ### qf\_fcidump\_from\_file
 
-<Function id="qf_fcidump_from_file" signature="QfFCIDump *qf_fcidump_from_file(char *file_path)">
+<Function id="qf_fcidump_from_file" signature="QfExitCode qf_fcidump_from_file(char *file_path, QfFCIDump **out)">
   Parses an FCIDump file.
 
   #### Example
@@ -53,16 +83,20 @@ The only required values are the 1-body alpha-spin integrals.
   Assuming you have an FCIDump file called `molecule.fcidump`, you use this function like so:
 
   ```c
-  1QfFCIDump *fcidump = qf_fcidump_from_file("molecule.fcidump");
+  1QfFCIDump *fcidump = NULL;
+  2QfExitCode exit = qf_fcidump_from_file("molecule.fcidump", &fcidump);
+  3
+  4assert(exit == QfExitCode_Success);
   ```
 
   **Parameters**
 
   *   **file\_path** – The path to the FCIDump file.
+  *   **out** – A pointer to the pointer that will be set to the parsed FCIDump data structure. It is only written to on success; on failure it is left untouched.
 
   **Returns**
 
-  A pointer to the FCIDump data structure.
+  An exit code. This is `QfExitCode_ValueError` if the file cannot be opened or read, or if it does not honour the FCIDump format (a missing header namelist, a missing `NORB` or `NELEC` field, a malformed `MS2` field, or an unsupported MO energy value).
 </Function>
 
 ### qf\_fcidump\_free
@@ -75,8 +109,9 @@ The only required values are the 1-body alpha-spin integrals.
   #### Example
 
   ```c
-  1QfFCIDump *fcidump = qf_fcidump_from_file("molecule.fcidump");
-  2qf_fcidump_free(fcidump);
+  1QfFCIDump *fcidump = NULL;
+  2qf_fcidump_from_file("molecule.fcidump", &fcidump);
+  3qf_fcidump_free(fcidump);
   ```
 
   **Parameters**
@@ -96,13 +131,14 @@ The only required values are the 1-body alpha-spin integrals.
   #### Example
 
   ```c
-  1QfFCIDump *fcidump = qf_fcidump_from_file("molecule.fcidump");
-  2uint32_t norb = qf_fcidump_norb(fcidump);
+  1QfFCIDump *fcidump = NULL;
+  2qf_fcidump_from_file("molecule.fcidump", &fcidump);
+  3uint32_t norb = qf_fcidump_norb(fcidump);
   ```
 
   **Parameters**
 
-  *   **fcidump** – A pointer to the FCIDump data structure to be freed.
+  *   **fcidump** – A pointer to the FCIDump data structure to query.
 
   **Returns**
 
@@ -121,13 +157,14 @@ The only required values are the 1-body alpha-spin integrals.
   #### Example
 
   ```c
-  1QfFCIDump *fcidump = qf_fcidump_from_file("molecule.fcidump");
-  2uint32_t nelec = qf_fcidump_nelec(fcidump);
+  1QfFCIDump *fcidump = NULL;
+  2qf_fcidump_from_file("molecule.fcidump", &fcidump);
+  3uint32_t nelec = qf_fcidump_nelec(fcidump);
   ```
 
   **Parameters**
 
-  *   **fcidump** – A pointer to the FCIDump data structure to be freed.
+  *   **fcidump** – A pointer to the FCIDump data structure to query.
 
   **Returns**
 
@@ -146,17 +183,299 @@ The only required values are the 1-body alpha-spin integrals.
   #### Example
 
   ```c
-  1QfFCIDump *fcidump = qf_fcidump_from_file("molecule.fcidump");
-  2uint32_t ms2 = qf_fcidump_ms2(fcidump);
+  1QfFCIDump *fcidump = NULL;
+  2qf_fcidump_from_file("molecule.fcidump", &fcidump);
+  3uint32_t ms2 = qf_fcidump_ms2(fcidump);
   ```
 
   **Parameters**
 
-  *   **fcidump** – A pointer to the FCIDump data structure to be freed.
+  *   **fcidump** – A pointer to the FCIDump data structure to query.
 
   **Returns**
 
   The spin quantum number (multiplied by 2 to ensure an integer value).
+</Function>
+
+### qf\_fcidump\_is\_unrestricted
+
+<Function id="qf_fcidump_is_unrestricted" signature="bool qf_fcidump_is_unrestricted(const QfFCIDump *fcidump)">
+  Checks whether an FCIDump carries unrestricted (spin-dependent) integrals.
+
+  The beta-spin 1-body and the alpha-beta / beta-beta 2-body arrays are present exactly when this returns `true`; they are absent together. Use it to guard [`qf_fcidump_get_one_body_tril_b()`](#qf_fcidump_get_one_body_tril_b "qf_fcidump_get_one_body_tril_b"), [`qf_fcidump_get_two_body_tril_ab()`](#qf_fcidump_get_two_body_tril_ab "qf_fcidump_get_two_body_tril_ab") and [`qf_fcidump_get_two_body_tril_bb()`](#qf_fcidump_get_two_body_tril_bb "qf_fcidump_get_two_body_tril_bb").
+
+  <span id="id7" />
+
+  #### Example
+
+  ```c
+  1QfFCIDump *fcidump = NULL;
+  2qf_fcidump_from_file("molecule.fcidump", &fcidump);
+  3
+  4bool unrestricted = qf_fcidump_is_unrestricted(fcidump);
+  ```
+
+  **Parameters**
+
+  *   **fcidump** – A pointer to the FCIDump data structure to query.
+
+  **Returns**
+
+  `true` if the beta-spin integrals are present.
+</Function>
+
+### qf\_fcidump\_has\_constant
+
+<Function id="qf_fcidump_has_constant" signature="bool qf_fcidump_has_constant(const QfFCIDump *fcidump)">
+  Checks whether an FCIDump provides a constant energy offset.
+
+  Use this to guard [`qf_fcidump_constant()`](#qf_fcidump_constant "qf_fcidump_constant"). This is independent of [`qf_fcidump_is_unrestricted()`](#qf_fcidump_is_unrestricted "qf_fcidump_is_unrestricted"): a spin-restricted file may well carry a constant.
+
+  <span id="id8" />
+
+  #### Example
+
+  ```c
+  1QfFCIDump *fcidump = NULL;
+  2qf_fcidump_from_file("molecule.fcidump", &fcidump);
+  3
+  4bool has_constant = qf_fcidump_has_constant(fcidump);
+  ```
+
+  **Parameters**
+
+  *   **fcidump** – A pointer to the FCIDump data structure to query.
+
+  **Returns**
+
+  `true` if the file carried an integral line whose four indices are all zero.
+</Function>
+
+### qf\_fcidump\_constant
+
+<Function id="qf_fcidump_constant" signature="double qf_fcidump_constant(const QfFCIDump *fcidump)">
+  Gets the constant energy offset from an FCIDump.
+
+  This is the value of the integral line whose four indices are all zero, which for an electronic structure Hamiltonian is the nuclear-repulsion energy.
+
+  <span id="id9" />
+
+  #### Example
+
+  ```c
+  1QfFCIDump *fcidump = NULL;
+  2qf_fcidump_from_file("molecule.fcidump", &fcidump);
+  3
+  4double constant = 0.0;
+  5if (qf_fcidump_has_constant(fcidump)) {
+  6    constant = qf_fcidump_constant(fcidump);
+  7}
+  ```
+
+  <Admonition title="Warning" type="caution">
+    Only call this when [`qf_fcidump_has_constant()`](#qf_fcidump_has_constant "qf_fcidump_has_constant") returns `true`; calling it otherwise panics.
+  </Admonition>
+
+  **Parameters**
+
+  *   **fcidump** – A pointer to the FCIDump data structure to query.
+
+  **Returns**
+
+  The constant energy offset.
+</Function>
+
+### qf\_fcidump\_get\_one\_body\_tril\_a
+
+<Function id="qf_fcidump_get_one_body_tril_a" signature="void qf_fcidump_get_one_body_tril_a(const QfFCIDump *fcidump, double **out, uint64_t *out_len)">
+  Provides read-only access to the alpha-spin 1-body integrals.
+
+  <Admonition title="See also" type="note">
+    The explanation of the internal data layout, [here](#qf-fcidump-implementation).
+  </Admonition>
+
+  <span id="id10" />
+
+  #### Example
+
+  ```c
+  1QfFCIDump *fcidump = NULL;
+  2qf_fcidump_from_file("molecule.fcidump", &fcidump);
+  3
+  4double *integrals;
+  5uint64_t len;
+  6qf_fcidump_get_one_body_tril_a(fcidump, &integrals, &len);
+  ```
+
+  <Admonition title="Note" type="note">
+    This function borrows the FCIDump’s internal buffer rather than copying it. The returned pointer stays valid only until the data structure is freed; do not free it yourself.
+  </Admonition>
+
+  **Parameters**
+
+  *   **fcidump** – A pointer to the FCIDump data structure whose integrals to access.
+  *   **out** – A pointer to the array of doubles into which to write the integrals.
+  *   **out\_len** – A pointer to the integer into which to write the length of the output array.
+</Function>
+
+### qf\_fcidump\_get\_one\_body\_tril\_b
+
+<Function id="qf_fcidump_get_one_body_tril_b" signature="void qf_fcidump_get_one_body_tril_b(const QfFCIDump *fcidump, double **out, uint64_t *out_len)">
+  Provides read-only access to the beta-spin 1-body integrals.
+
+  <Admonition title="See also" type="note">
+    The explanation of the internal data layout, [here](#qf-fcidump-implementation).
+  </Admonition>
+
+  <span id="id11" />
+
+  #### Example
+
+  ```c
+  1QfFCIDump *fcidump = NULL;
+  2qf_fcidump_from_file("molecule.fcidump", &fcidump);
+  3
+  4double *integrals;
+  5uint64_t len;
+  6qf_fcidump_get_one_body_tril_b(fcidump, &integrals, &len);
+  ```
+
+  <Admonition title="Warning" type="caution">
+    Only call this on a data structure carrying unrestricted spin data. Check [`qf_fcidump_is_unrestricted()`](#qf_fcidump_is_unrestricted "qf_fcidump_is_unrestricted") first; calling it otherwise panics.
+  </Admonition>
+
+  <Admonition title="Note" type="note">
+    This function borrows the FCIDump’s internal buffer rather than copying it. The returned pointer stays valid only until the data structure is freed; do not free it yourself.
+  </Admonition>
+
+  **Parameters**
+
+  *   **fcidump** – A pointer to the FCIDump data structure whose integrals to access.
+  *   **out** – A pointer to the array of doubles into which to write the integrals.
+  *   **out\_len** – A pointer to the integer into which to write the length of the output array.
+</Function>
+
+### qf\_fcidump\_get\_two\_body\_tril\_aa
+
+<Function id="qf_fcidump_get_two_body_tril_aa" signature="void qf_fcidump_get_two_body_tril_aa(const QfFCIDump *fcidump, double **out, uint64_t *out_len)">
+  Provides read-only access to the alpha-alpha-spin 2-body integrals.
+
+  <Admonition title="See also" type="note">
+    The explanation of the internal data layout, [here](#qf-fcidump-implementation).
+  </Admonition>
+
+  <span id="id12" />
+
+  #### Example
+
+  ```c
+  1QfFCIDump *fcidump = NULL;
+  2qf_fcidump_from_file("molecule.fcidump", &fcidump);
+  3
+  4double *integrals;
+  5uint64_t len;
+  6qf_fcidump_get_two_body_tril_aa(fcidump, &integrals, &len);
+  ```
+
+  <Admonition title="Note" type="note">
+    This function borrows the FCIDump’s internal buffer rather than copying it. The returned pointer stays valid only until the data structure is freed; do not free it yourself.
+  </Admonition>
+
+  <Admonition title="Note" type="note">
+    The values are in chemist ordering, $(ij|kl)$, and carry no factor of $\frac{1}{2}$.
+  </Admonition>
+
+  **Parameters**
+
+  *   **fcidump** – A pointer to the FCIDump data structure whose integrals to access.
+  *   **out** – A pointer to the array of doubles into which to write the integrals.
+  *   **out\_len** – A pointer to the integer into which to write the length of the output array.
+</Function>
+
+### qf\_fcidump\_get\_two\_body\_tril\_ab
+
+<Function id="qf_fcidump_get_two_body_tril_ab" signature="void qf_fcidump_get_two_body_tril_ab(const QfFCIDump *fcidump, double **out, uint64_t *out_len)">
+  Provides read-only access to the alpha-beta-spin 2-body integrals.
+
+  <Admonition title="See also" type="note">
+    The explanation of the internal data layout, [here](#qf-fcidump-implementation).
+  </Admonition>
+
+  <span id="id13" />
+
+  #### Example
+
+  ```c
+  1QfFCIDump *fcidump = NULL;
+  2qf_fcidump_from_file("molecule.fcidump", &fcidump);
+  3
+  4double *integrals;
+  5uint64_t len;
+  6qf_fcidump_get_two_body_tril_ab(fcidump, &integrals, &len);
+  ```
+
+  <Admonition title="Warning" type="caution">
+    Only call this on a data structure carrying unrestricted spin data. Check [`qf_fcidump_is_unrestricted()`](#qf_fcidump_is_unrestricted "qf_fcidump_is_unrestricted") first; calling it otherwise panics.
+  </Admonition>
+
+  <Admonition title="Note" type="note">
+    This function borrows the FCIDump’s internal buffer rather than copying it. The returned pointer stays valid only until the data structure is freed; do not free it yourself.
+  </Admonition>
+
+  <Admonition title="Note" type="note">
+    The values are in chemist ordering, $(ij|kl)$, and carry no factor of $\frac{1}{2}$.
+  </Admonition>
+
+  <Admonition title="Warning" type="caution">
+    Unlike the other 2-body arrays, this one is only 4-fold (S4) symmetric: it holds the **full** `(npair, npair)` matrix, whose row pair indexes the alpha-spin and whose column pair indexes the beta-spin species. It is therefore *not* symmetric under exchanging the two pairs.
+  </Admonition>
+
+  **Parameters**
+
+  *   **fcidump** – A pointer to the FCIDump data structure whose integrals to access.
+  *   **out** – A pointer to the array of doubles into which to write the integrals.
+  *   **out\_len** – A pointer to the integer into which to write the length of the output array.
+</Function>
+
+### qf\_fcidump\_get\_two\_body\_tril\_bb
+
+<Function id="qf_fcidump_get_two_body_tril_bb" signature="void qf_fcidump_get_two_body_tril_bb(const QfFCIDump *fcidump, double **out, uint64_t *out_len)">
+  Provides read-only access to the beta-beta-spin 2-body integrals.
+
+  <Admonition title="See also" type="note">
+    The explanation of the internal data layout, [here](#qf-fcidump-implementation).
+  </Admonition>
+
+  <span id="id14" />
+
+  #### Example
+
+  ```c
+  1QfFCIDump *fcidump = NULL;
+  2qf_fcidump_from_file("molecule.fcidump", &fcidump);
+  3
+  4double *integrals;
+  5uint64_t len;
+  6qf_fcidump_get_two_body_tril_bb(fcidump, &integrals, &len);
+  ```
+
+  <Admonition title="Warning" type="caution">
+    Only call this on a data structure carrying unrestricted spin data. Check [`qf_fcidump_is_unrestricted()`](#qf_fcidump_is_unrestricted "qf_fcidump_is_unrestricted") first; calling it otherwise panics.
+  </Admonition>
+
+  <Admonition title="Note" type="note">
+    This function borrows the FCIDump’s internal buffer rather than copying it. The returned pointer stays valid only until the data structure is freed; do not free it yourself.
+  </Admonition>
+
+  <Admonition title="Note" type="note">
+    The values are in chemist ordering, $(ij|kl)$, and carry no factor of $\frac{1}{2}$.
+  </Admonition>
+
+  **Parameters**
+
+  *   **fcidump** – A pointer to the FCIDump data structure whose integrals to access.
+  *   **out** – A pointer to the array of doubles into which to write the integrals.
+  *   **out\_len** – A pointer to the integer into which to write the length of the output array.
 </Function>
 
 ***
@@ -170,13 +489,14 @@ Operator representations which can be constructed from an instance of [`QfFCIDum
 <Function id="qf_ferm_op_from_fcidump" signature="QfFermionOperator *qf_ferm_op_from_fcidump(const QfFCIDump *fcidump)">
   Constructs an :c:struct:`QfFermionOperator` from a :c:struct:`QfFCIDump`.
 
-  <span id="id7" />
+  <span id="id15" />
 
   #### Example
 
   ```c
-  1QfFCIDump *fcidump = qf_fcidump_from_file("molecule.fcidump");
-  2QfFermionOperator *op = qf_ferm_op_from_fcidump(fcidump);
+  1QfFCIDump *fcidump = NULL;
+  2qf_fcidump_from_file("molecule.fcidump", &fcidump);
+  3QfFermionOperator *op = qf_ferm_op_from_fcidump(fcidump);
   ```
 
   **Parameters**

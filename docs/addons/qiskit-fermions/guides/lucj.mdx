@@ -1,14 +1,14 @@
 ---
-title: "Build an LUCJ ansatz"
-description: "Build an LUCJ ansatz for the latest version of Qiskit Fermions"
+title: "Transpile an LUCJ ansatz"
+description: "Transpile an LUCJ ansatz for the latest version of Qiskit Fermions"
 ---
 
-<span id="lucj-getting-started" />
+<span id="lucj-transpilation" />
 
-# Build an LUCJ ansatz
+# Transpile an LUCJ ansatz
 
 <Admonition title="Important" type="danger">
-  The concepts in this guide are currently available only in the Python API. Equivalent functionality will be made available in the C API in a future release.
+  The concepts in this guide are only available in the Python API.
 </Admonition>
 
 The local unitary cluster Jastrow ([LUCJ](https://pubs.rsc.org/en/content/articlelanding/2023/sc/d3sc02516k)) ansatz is a compact, hardware-efficient parametrization of a correlated electronic wavefunction. It is a member of the more general unitary cluster Jastrow (UCJ) family and takes the form
@@ -25,15 +25,24 @@ $$
 n_{i\sigma}\, n_{j\tau},
 $$
 
-with $n_{i\sigma}$ the number operator on spatial orbital $i$ with spin $\sigma$. This guide shows how to assemble such an ansatz for a real molecule using the [`UCJ`](/docs/api/qiskit-fermions/circuit-library-ucj#qiskit_fermions.circuit.library.UCJ "qiskit_fermions.circuit.library.UCJ") gate from [`qiskit_fermions.circuit.library`](/docs/api/qiskit-fermions/circuit-library#module-qiskit_fermions.circuit.library "qiskit_fermions.circuit.library").
+with $n_{i\sigma}$ the number operator on spatial orbital $i$ with spin $\sigma$.
 
-<span id="run-the-classical-calculation" />
+[ffsim](https://qiskit-community.github.io/ffsim/) builds the ansatz operator; this package turns it into a circuit and lowers that circuit onto qubits. This guide is about the second half of that sentence. The reason to make the trip is the lowering itself: ffsim’s own Qiskit gates are specific to the Jordan-Wigner transformation, whereas a [`FermionicCircuit`](/docs/api/qiskit-fermions/circuit-fermionic-circuit#qiskit_fermions.circuit.FermionicCircuit "qiskit_fermions.circuit.FermionicCircuit") carries no assumption about its fermion-to-qubit encoding, so the same ansatz can be synthesized through whichever encoding suits the target device.
 
-## 1. Run the classical calculation
+The ansatz operator therefore arrives here ready-made, and everything below is what happens to it afterwards: what the gate decomposes into, how it lowers through Jordan-Wigner, how it is matched to a device coupling map, and what a non-Jordan-Wigner lowering would still need. For building, parametrizing, or simulating a UCJ ansatz in the first place, see ffsim’s [own guides](https://qiskit-community.github.io/ffsim/how-to-guides/qiskit-lucj.html).
 
-The (L)UCJ ansatz can be initialized from the amplitudes of a coupled-cluster singles and doubles (CCSD) calculation. Run restricted Hartree-Fock followed by CCSD for a hydrogen molecule in the `6-31g` basis, using [PySCF](https://pyscf.org/) for the quantum chemistry.
+<Admonition title="See also" type="note">
+  The [ffsim relationship guide](ffsim#ffsim-relationship-explanation) for how the two packages divide the work, and the [transpilation guide](transpilation#transpilation-explanation) for the pipeline stages used below.
+</Admonition>
+
+<span id="get-an-lucj-operator-from-ffsim" />
+
+## 1. Get an LUCJ operator from ffsim
+
+The ansatz is initialized from the amplitudes of a coupled-cluster singles and doubles (CCSD) calculation. Run restricted Hartree-Fock followed by CCSD for a hydrogen molecule in the `6-31g` basis, using [PySCF](https://pyscf.org/) for the quantum chemistry, then hand the amplitudes to ffsim’s [`from_t_amplitudes()`](https://qiskit-community.github.io/ffsim/api/stubs/ffsim.UCJOpSpinBalanced.html#ffsim.UCJOpSpinBalanced.from_t_amplitudes "(in ffsim)"). It performs a *double factorization* of the $t_2$ amplitudes to obtain the per-layer diagonal Coulomb matrices and orbital rotations, and derives an optional final orbital rotation from the $t_1$ amplitudes. The number of repetitions $L$ is whatever that factorization yields; `n_reps` truncates it, trading accuracy for a shallower circuit.
 
 ```python
+>>> import ffsim
 >>> import pyscf
 >>> import pyscf.cc
 >>>
@@ -48,154 +57,133 @@ The (L)UCJ ansatz can be initialized from the amplitudes of a coupled-cluster si
 <pyscf.gto.mole.Mole object at ...>
 >>> scf = pyscf.scf.RHF(mol).run()
 >>>
->>> mo_coeff = scf.mo_coeff
->>> norb = mo_coeff.shape[1]
+>>> norb = scf.mo_coeff.shape[1]
 >>> nelec = (mol.nelec[0], mol.nelec[1])
 >>>
->>> # run CCSD for the t-amplitudes
+>>> # run CCSD for the t-amplitudes, then factorize them into an ansatz operator
 >>> ccsd = pyscf.cc.CCSD(scf).run()
 >>> t1, t2 = ccsd.t1, ccsd.t2
+>>>
+>>> ucj_op = ffsim.UCJOpSpinBalanced.from_t_amplitudes(t2, t1=t1, n_reps=2)
 ```
 
-<span id="build-the-molecular-hamiltonian-as-a-fermionic-operator" />
+This is where the ansatz stops being an ffsim concern. ffsim offers choices here that this package neither sees nor needs to know about, such as the variationally optimized (“compressed”) factorization behind `optimize=True`, or the parameter-vector packing that a variational optimizer drives. All of them produce the same kind of operator, and everything below works unchanged on any of them.
 
-## 2. Build the molecular Hamiltonian as a fermionic operator
+<span id="turn-the-operator-into-a-fermionic-circuit" />
 
-The Hamiltonian is needed later to evaluate the ansatz energy. Build it directly as a [`FermionOperator`](/docs/api/qiskit-fermions/operators-fermion-operator#qiskit_fermions.operators.FermionOperator "qiskit_fermions.operators.FermionOperator") from the molecular-orbital integrals: the one-body integrals `h1e` (the core Hamiltonian in the MO basis), the two-body integrals `h2e` (from `pyscf.ao2mo()`), and the constant nuclear-repulsion energy. The electronic-integral constructors [`from_1body_tril_spin_sym()`](/docs/api/qiskit-fermions/operators-fermion-operator#qiskit_fermions.operators.FermionOperator.from_1body_tril_spin_sym "qiskit_fermions.operators.FermionOperator.from_1body_tril_spin_sym") and [`from_2body_tril_spin_sym()`](/docs/api/qiskit-fermions/operators-fermion-operator#qiskit_fermions.operators.FermionOperator.from_2body_tril_spin_sym "qiskit_fermions.operators.FermionOperator.from_2body_tril_spin_sym") expect the integrals in packed (lower-triangular) chemist ordering, which is what PySCF produces.
+## 2. Turn the operator into a fermionic circuit
 
-```python
->>> from pyscf import ao2mo, lib
->>>
->>> from qiskit_fermions.operators import FermionOperator
->>>
->>> # one- and two-body molecular-orbital integrals and the nuclear-repulsion energy
->>> h1e = mo_coeff.T @ scf.get_hcore() @ mo_coeff
->>> h2e = ao2mo.kernel(mol, mo_coeff)
->>> ecore = mol.energy_nuc()
->>>
->>> # pack into the lower-triangular chemist-ordered layout the constructors expect
->>> h1e_tril = lib.pack_tril(h1e)
->>> h2e_tril = lib.pack_tril(h2e)
->>>
->>> hamiltonian = ecore * FermionOperator.one()
->>> hamiltonian += FermionOperator.from_1body_tril_spin_sym(h1e_tril, norb)
->>> hamiltonian += FermionOperator.from_2body_tril_spin_sym(h2e_tril, norb)
-```
-
-<span id="build-the-lucj-circuit" />
-
-## 3. Build the LUCJ circuit
-
-The [`UCJ`](/docs/api/qiskit-fermions/circuit-library-ucj#qiskit_fermions.circuit.library.UCJ "qiskit_fermions.circuit.library.UCJ") gate assembles the ansatz directly from the coupled-cluster amplitudes. Its [`from_t_amplitudes()`](/docs/api/qiskit-fermions/circuit-library-ucj#qiskit_fermions.circuit.library.UCJ.from_t_amplitudes "qiskit_fermions.circuit.library.UCJ.from_t_amplitudes") constructor performs a *double factorization* of the $t_2$ amplitudes (by using [`double_factorized_t2()`](/docs/api/qiskit-fermions/linalg-double-factorized-t-2#qiskit_fermions.linalg.double_factorized_t2 "qiskit_fermions.linalg.double_factorized_t2")) to obtain the per-layer diagonal Coulomb matrices and orbital rotations, and derives an optional final orbital rotation from the $t_1$ amplitudes.
-
-The number of ansatz repetitions, $L$, equals the number of terms in the double factorization. Truncating it with the `n_reps` argument trades some accuracy for a shallower circuit; here the two largest terms are kept, which recovers most of the correlation energy while halving the number of layers.
+The [`UCJ`](/docs/api/qiskit-fermions/circuit-library-ucj#qiskit_fermions.circuit.library.UCJ "qiskit_fermions.circuit.library.UCJ") gate wraps the operator and expresses it as a circuit over *fermionic modes*. The gate is a pure unitary carrying no reference of its own, so prepend an [`InitializeModes`](/docs/api/qiskit-fermions/circuit-library-initialize-modes#qiskit_fermions.circuit.library.InitializeModes "qiskit_fermions.circuit.library.InitializeModes") gate (built with [`from_hartree_fock()`](/docs/api/qiskit-fermions/circuit-library-initialize-modes#qiskit_fermions.circuit.library.InitializeModes.from_hartree_fock "qiskit_fermions.circuit.library.InitializeModes.from_hartree_fock")) to supply the Hartree-Fock reference the ansatz is applied to.
 
 ```python
 >>> from qiskit_fermions.circuit import FermionicCircuit
 >>> from qiskit_fermions.circuit.library import InitializeModes, UCJ
 >>>
->>> ansatz = UCJ.from_t_amplitudes(nelec, t2, t1=t1, n_reps=2)
+>>> ansatz = UCJ(ucj_op)
 >>>
 >>> circuit = FermionicCircuit(2 * norb)
 >>> circuit.append(InitializeModes.from_hartree_fock(norb, nelec), circuit.modes)
 >>> circuit.append(ansatz, circuit.modes)
 ```
 
-The [`UCJ`](/docs/api/qiskit-fermions/circuit-library-ucj#qiskit_fermions.circuit.library.UCJ "qiskit_fermions.circuit.library.UCJ") gate is a pure unitary carrying no reference of its own, so prepend an [`InitializeModes`](/docs/api/qiskit-fermions/circuit-library-initialize-modes#qiskit_fermions.circuit.library.InitializeModes "qiskit_fermions.circuit.library.InitializeModes") gate (built with [`from_hartree_fock()`](/docs/api/qiskit-fermions/circuit-library-initialize-modes#qiskit_fermions.circuit.library.InitializeModes.from_hartree_fock "qiskit_fermions.circuit.library.InitializeModes.from_hartree_fock")) to supply the Hartree-Fock reference the ansatz is applied to. Decomposing the circuit reveals its anatomy. The [`InitializeModes`](/docs/api/qiskit-fermions/circuit-library-initialize-modes#qiskit_fermions.circuit.library.InitializeModes "qiskit_fermions.circuit.library.InitializeModes") gate prepares the reference determinant, and each ansatz layer contributes an [`OrbitalRotation`](/docs/api/qiskit-fermions/circuit-library-orbital-rotation#qiskit_fermions.circuit.library.OrbitalRotation "qiskit_fermions.circuit.library.OrbitalRotation") $\mathcal{U}_k^\dagger$, then $e^{i\mathcal{J}_k}$ (an [`Evolution`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution "qiskit_fermions.circuit.library.Evolution") of the diagonal Coulomb operator $\mathcal{J}_k$), then $\mathcal{U}_k$, with a final [`OrbitalRotation`](/docs/api/qiskit-fermions/circuit-library-orbital-rotation#qiskit_fermions.circuit.library.OrbitalRotation "qiskit_fermions.circuit.library.OrbitalRotation") at the end. The orbital rotations act per spin sector, so each is placed on the alpha modes `0..norb` and the beta modes `norb..2*norb` independently.
+Decomposing the circuit reveals its anatomy, and this is the representation the rest of the guide operates on. The [`InitializeModes`](/docs/api/qiskit-fermions/circuit-library-initialize-modes#qiskit_fermions.circuit.library.InitializeModes "qiskit_fermions.circuit.library.InitializeModes") gate prepares the reference determinant, and each ansatz layer contributes an [`OrbitalRotation`](/docs/api/qiskit-fermions/circuit-library-orbital-rotation#qiskit_fermions.circuit.library.OrbitalRotation "qiskit_fermions.circuit.library.OrbitalRotation") $\mathcal{U}_k^\dagger$, then $e^{i\mathcal{J}_k}$ (an [`Evolution`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution "qiskit_fermions.circuit.library.Evolution") of the diagonal Coulomb operator $\mathcal{J}_k$), then $\mathcal{U}_k$, with a final [`OrbitalRotation`](/docs/api/qiskit-fermions/circuit-library-orbital-rotation#qiskit_fermions.circuit.library.OrbitalRotation "qiskit_fermions.circuit.library.OrbitalRotation") at the end. The orbital rotations act per spin sector, so each is placed on the alpha modes `0..norb` and the beta modes `norb..2*norb` independently.
 
 ```python
 >>> circuit.decompose().draw("mpl", fold=-1)
 <Figure size ... with 1 Axes>
 ```
 
-![The gates that the UCJ ansatz decomposes into.](/docs/images/addons/qiskit-fermions/lucj-4.avif)
+![The gates that the UCJ ansatz decomposes into.](/docs/images/addons/qiskit-fermions/lucj-3.avif)
+
+Every gate in that decomposition is still fermionic: [`OrbitalRotation`](/docs/api/qiskit-fermions/circuit-library-orbital-rotation#qiskit_fermions.circuit.library.OrbitalRotation "qiskit_fermions.circuit.library.OrbitalRotation") and [`Evolution`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution "qiskit_fermions.circuit.library.Evolution") are defined on modes, and no qubit or Pauli operator has appeared yet. That is what leaves the encoding open, and it is the state the ansatz stays in until the synthesis stage picks one.
 
 <Admonition title="Note" type="note">
   Each layer ends with $\mathcal{U}_k$ and the next begins with $\mathcal{U}_{k+1}^\dagger$, so adjacent [`OrbitalRotation`](/docs/api/qiskit-fermions/circuit-library-orbital-rotation#qiskit_fermions.circuit.library.OrbitalRotation "qiskit_fermions.circuit.library.OrbitalRotation") gates could be merged into a single rotation. A transpilation pass performing this fusion is a planned future development.
 </Admonition>
 
-<span id="simulate-the-ansatz-and-evaluate-its-energy" />
+<span id="choose-a-fermion-to-qubit-encoding" />
 
-## 4. Simulate the ansatz and evaluate its energy
+## 3. Choose a fermion-to-qubit encoding
 
-Because every gate in the circuit implements ffsim’s [`ffsim.SupportsApplyUnitary`](https://qiskit-community.github.io/ffsim/api/stubs/ffsim.SupportsApplyUnitary.html#ffsim.SupportsApplyUnitary "(in ffsim)") protocol, the whole [`FermionicCircuit`](/docs/api/qiskit-fermions/circuit-fermionic-circuit#qiskit_fermions.circuit.FermionicCircuit "qiskit_fermions.circuit.FermionicCircuit") can be applied to a fixed particle-number state vector with [`ffsim.apply_unitary()`](https://qiskit-community.github.io/ffsim/api/stubs/ffsim.apply_unitary.html#ffsim.apply_unitary "(in ffsim)"), starting from the Hartree-Fock reference. The [`FermionOperator`](/docs/api/qiskit-fermions/operators-fermion-operator#qiskit_fermions.operators.FermionOperator "qiskit_fermions.operators.FermionOperator") likewise implements ffsim’s [`ffsim.SupportsLinearOperator`](https://qiskit-community.github.io/ffsim/api/stubs/ffsim.SupportsLinearOperator.html#ffsim.SupportsLinearOperator "(in ffsim)") protocol, so you can obtain a SciPy [`LinearOperator`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.linalg.LinearOperator.html#scipy.sparse.linalg.LinearOperator "(in SciPy v1.18.0)") for it via [`ffsim.linear_operator()`](https://qiskit-community.github.io/ffsim/api/stubs/ffsim.linear_operator.html#ffsim.linear_operator "(in ffsim)") and evaluate the ansatz energy as the expectation value of the molecular Hamiltonian.
+The circuit is still fermionic, and that is the point at which this package earns its place in the workflow. A [`FermionicCircuit`](/docs/api/qiskit-fermions/circuit-fermionic-circuit#qiskit_fermions.circuit.FermionicCircuit "qiskit_fermions.circuit.FermionicCircuit") carries no assumption about how modes become qubits, so the encoding is a *synthesis-stage* choice rather than something baked into the ansatz. That is what this package adds over ffsim’s own Qiskit gates, which are specific to the Jordan-Wigner transformation.
 
-```python
->>> import ffsim
->>> import numpy as np
->>>
->>> reference = ffsim.hartree_fock_state(norb, nelec)
->>> state = ffsim.apply_unitary(reference, circuit, norb=norb, nelec=nelec)
->>>
->>> linop = ffsim.linear_operator(hamiltonian, norb=norb, nelec=nelec)
->>> energy = np.vdot(state, linop @ state).real
->>> print(f"LUCJ energy: {energy:.8f} Hartree")
-LUCJ energy: -1.14618323 Hartree
-```
+For Jordan-Wigner alone you would not need this detour: ffsim ships [`UCJOpSpinBalancedJW`](https://qiskit-community.github.io/ffsim/api/stubs/ffsim.qiskit.UCJOpSpinBalancedJW.html#ffsim.qiskit.UCJOpSpinBalancedJW "(in ffsim)") and its siblings, which take a UCJ operator to a qubit circuit on their own. The reason to route the ansatz through a fermionic circuit is everything *else* an encoding can buy you. Local encodings, for instance, spend extra qubits to bound the Pauli weight of each term, which the [1D](1-d-fermi-hubbard#d-fermi-hubbard) and [2D](2-d-fermi-hubbard#d-fermi-hubbard) flow-set guides use to make a Trotter step’s two-qubit depth independent of the system size.
 
-The LUCJ energy improves substantially on the Hartree-Fock reference and approaches the CCSD energy it was initialized from; the small remaining gap is the price of truncating the ansatz to two repetitions:
+For a UCJ ansatz specifically, the synthesis stage has to cover two kinds of gate:
 
-```python
->>> print(f"Hartree-Fock: {scf.e_tot:.8f} Hartree")
-Hartree-Fock: -1.12675532 Hartree
->>> print(f"CCSD:         {ccsd.e_tot:.8f} Hartree")
-CCSD:         -1.15167268 Hartree
-```
+*   **The diagonal Coulomb evolution.** [`Evolution`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution "qiskit_fermions.circuit.library.Evolution") is already encoding-agnostic: [`MapperFnEvolutionSynthesis`](/docs/api/qiskit-fermions/transpiler-passes-synthesis-mapper-fn-evolution-synthesis#qiskit_fermions.transpiler.passes.synthesis.MapperFnEvolutionSynthesis "qiskit_fermions.transpiler.passes.synthesis.MapperFnEvolutionSynthesis") takes a mapper function, so the $e^{i \mathcal{J}_k}$ layers lower through any encoding you can express as one. The [flow-set guides](1-d-fermi-hubbard#d-fermi-hubbard) show how to write one.
+*   **Everything else.** The plugins for [`OrbitalRotation`](/docs/api/qiskit-fermions/circuit-library-orbital-rotation#qiskit_fermions.circuit.library.OrbitalRotation "qiskit_fermions.circuit.library.OrbitalRotation"), [`InitializeModes`](/docs/api/qiskit-fermions/circuit-library-initialize-modes#qiskit_fermions.circuit.library.InitializeModes "qiskit_fermions.circuit.library.InitializeModes") and [`PrepareSlaterDeterminant`](/docs/api/qiskit-fermions/circuit-library-prepare-slater-determinant#qiskit_fermions.circuit.library.PrepareSlaterDeterminant "qiskit_fermions.circuit.library.PrepareSlaterDeterminant") are not parametrized by an encoding; each documents its assumption of an occupation-basis encoding with a 1-to-1 mode-to-qubit mapping, and emits gates directly on that basis. A different encoding needs its own plugin for each of these three, and none ships yet.
 
-<span id="optional-use-ffsim-s-compressed-double-factorization" />
+How to transpile UCJ circuits under a non-Jordan-Wigner encoding is an open research question and this package provides the framework within which to develop such a pipeline. The remainder of this guide constructs the transpiler pipeline for the Jordan-Wigner encoding, equivalent to the one produced by [`generate_preset_jw_pass_manager()`](/docs/api/qiskit-fermions/transpiler-presets-generate-preset-jw-pass-manager#qiskit_fermions.transpiler.presets.generate_preset_jw_pass_manager "qiskit_fermions.transpiler.presets.generate_preset_jw_pass_manager"), as an example.
 
-## 5. (Optional) Use ffsim’s compressed double factorization
+<span id="lower-it-through-jordan-wigner" />
 
-The [`UCJ`](/docs/api/qiskit-fermions/circuit-library-ucj#qiskit_fermions.circuit.library.UCJ "qiskit_fermions.circuit.library.UCJ") gate above is initialized from an *exact* double factorization of the $t_2$ amplitudes. The number of ansatz repetitions $L$ is whatever that factorization yields (up to the `n_reps` truncation), and each layer reproduces one factorized term exactly. [ffsim](https://qiskit-community.github.io/ffsim/) additionally offers an optimized (“compressed”) double factorization, its `from_t_amplitudes(..., optimize=True)`, which variationally fits the amplitudes with a chosen, typically smaller, number of repetitions. This trades a classical optimization up front for a shallower ansatz at a target accuracy, and has no equivalent in this package.
+## 4. Lower it through Jordan-Wigner
 
-There is no need to re-implement it: an `ffsim` UCJ operator exposes the same tensors that [`UCJ`](/docs/api/qiskit-fermions/circuit-library-ucj#qiskit_fermions.circuit.library.UCJ "qiskit_fermions.circuit.library.UCJ") is built from, so you can construct the operator with `optimize=True` and hand its `diag_coulomb_mats` / `orbital_rotations` / `final_orbital_rotation` straight to the [`UCJ`](/docs/api/qiskit-fermions/circuit-library-ucj#qiskit_fermions.circuit.library.UCJ "qiskit_fermions.circuit.library.UCJ") constructor.
+Lowering happens in [`F2QSynthesis`](/docs/api/qiskit-fermions/transpiler-passes-f-2-q-synthesis#qiskit_fermions.transpiler.passes.F2QSynthesis "qiskit_fermions.transpiler.passes.F2QSynthesis"), which works like Qiskit’s [`HighLevelSynthesis`](/docs/api/qiskit/qiskit.transpiler.passes.HighLevelSynthesis): it walks the fermionic instructions and hands each to a plugin registered for that gate name. Its [`F2QSynthesis.methods`](/docs/api/qiskit-fermions/transpiler-passes-f-2-q-synthesis#qiskit_fermions.transpiler.passes.F2QSynthesis.methods "qiskit_fermions.transpiler.passes.F2QSynthesis.methods") attribute holds one [`F2QSynthesisPlugin`](/docs/api/qiskit-fermions/transpiler-passes-synthesis-f-2-q-synthesis-plugin#qiskit_fermions.transpiler.passes.synthesis.F2QSynthesisPlugin "qiskit_fermions.transpiler.passes.synthesis.F2QSynthesisPlugin") per gate name, so building the stage means choosing a plugin for every fermionic gate the circuit contains:
 
 ```python
->>> compressed = ffsim.UCJOpSpinBalanced.from_t_amplitudes(
-...     t2, t1=t1, n_reps=2, optimize=True
+>>> from qiskit_fermions.mappers.library import jordan_wigner
+>>> from qiskit_fermions.transpiler.passes import F2QSynthesis
+>>> from qiskit_fermions.transpiler.passes.synthesis import (
+...     GivensDecompositionOrbitalRotationSynthesis,
+...     GivensDecompositionSlaterDeterminantSynthesis,
+...     MapperFnEvolutionSynthesis,
+...     TrivialOccupationInitializeModesSynthesis,
 ... )
 >>>
->>> compressed_ansatz = UCJ(
-...     "balanced",
-...     compressed.diag_coulomb_mats,
-...     compressed.orbital_rotations,
-...     final_orbital_rotation=compressed.final_orbital_rotation,
+>>> synthesis = F2QSynthesis()
+>>> synthesis.methods["Evolution"] = MapperFnEvolutionSynthesis(jordan_wigner)
+>>> synthesis.methods["InitializeModes"] = TrivialOccupationInitializeModesSynthesis()
+>>> synthesis.methods["OrbitalRotation"] = GivensDecompositionOrbitalRotationSynthesis()
+>>> synthesis.methods["PrepareSlaterDeterminant"] = (
+...     GivensDecompositionSlaterDeterminantSynthesis()
 ... )
->>>
->>> compressed_circuit = FermionicCircuit(2 * norb)
->>> compressed_circuit.append(
-...     InitializeModes.from_hartree_fock(norb, nelec), compressed_circuit.modes
-... )
->>> compressed_circuit.append(compressed_ansatz, compressed_circuit.modes)
 ```
 
-The resulting circuit is used like the one built from the exact factorization (the [`UCJ`](/docs/api/qiskit-fermions/circuit-library-ucj#qiskit_fermions.circuit.library.UCJ "qiskit_fermions.circuit.library.UCJ") gate does not care how its tensors were obtained), and evaluating its energy the same way recovers the same correlation energy at this (small) system size:
+Assigning instances like this is also how a plugin you wrote yourself enters the pipeline, without having to register it anywhere first.
+
+This is where the encoding is settled, in the two ways section 3 described: explicitly, by handing [`jordan_wigner()`](/docs/api/qiskit-fermions/mappers-library-jordan-wigner#qiskit_fermions.mappers.library.jordan_wigner "qiskit_fermions.mappers.library.jordan_wigner") to [`MapperFnEvolutionSynthesis`](/docs/api/qiskit-fermions/transpiler-passes-synthesis-mapper-fn-evolution-synthesis#qiskit_fermions.transpiler.passes.synthesis.MapperFnEvolutionSynthesis "qiskit_fermions.transpiler.passes.synthesis.MapperFnEvolutionSynthesis"), and implicitly, by the other three plugins already assuming it.
+
+That stage then slots into a [`MultiStagePassManager`](/docs/api/qiskit/qiskit.passmanager.MultiStagePassManager) whose stages run in a fixed order:
 
 ```python
->>> state = ffsim.apply_unitary(reference, compressed_circuit, norb=norb, nelec=nelec)
->>> energy = np.vdot(state, linop @ state).real
->>> print(f"compressed LUCJ energy: {energy:.8f} Hartree")
-compressed LUCJ energy: -1.14618323 Hartree
+>>> from qiskit.passmanager import MultiStagePassManager
+>>> from qiskit.transpiler import generate_preset_pass_manager
+>>>
+>>> from qiskit_fermions.transpiler import (
+...     FermionicCircuitToDAG,
+...     FermionicPassManager,
+...     QuantumDAGToCircuit,
+... )
+>>> from qiskit_fermions.transpiler.passes import (
+...     MergeOrbitalRotations,
+...     MergeSlaterDeterminantPreparation,
+...     TrivialF2QLayout,
+... )
+>>>
+>>> pm = MultiStagePassManager(
+...     input=FermionicCircuitToDAG(),
+...     optimization=FermionicPassManager(
+...         [MergeOrbitalRotations(), MergeSlaterDeterminantPreparation()]
+...     ),
+...     layout=FermionicPassManager(TrivialF2QLayout()),
+...     synthesis=synthesis,
+...     qubit=generate_preset_pass_manager(),
+...     output=QuantumDAGToCircuit(),
+... )
 ```
 
-<Admonition title="Note" type="note">
-  `diag_coulomb_mats` from `optimize=True` might carry tiny imaginary round-off; [`UCJ`](/docs/api/qiskit-fermions/circuit-library-ucj#qiskit_fermions.circuit.library.UCJ "qiskit_fermions.circuit.library.UCJ") takes their real part and raises only if the imaginary part is not negligible. For a better fit at a given `n_reps` (at increased classical cost) see ffsim’s `multi_stage_start` / `multi_stage_step` options.
-</Admonition>
+The **optimization** stage runs *before* synthesis, on the fermionic circuit, which is what makes it worth having: it rewrites gates while they are still fermionic and encoding-agnostic, so the savings carry to whatever encoding follows. [`MergeOrbitalRotations`](/docs/api/qiskit-fermions/transpiler-passes-merge-orbital-rotations#qiskit_fermions.transpiler.passes.MergeOrbitalRotations "qiskit_fermions.transpiler.passes.MergeOrbitalRotations") collapses each run of consecutive [`OrbitalRotation`](/docs/api/qiskit-fermions/circuit-library-orbital-rotation#qiskit_fermions.circuit.library.OrbitalRotation "qiskit_fermions.circuit.library.OrbitalRotation") gates into one, which matters for a UCJ ansatz because every layer ends with $\mathcal{U}_k$ and the next begins with $\mathcal{U}_{k+1}^\dagger$. [`MergeSlaterDeterminantPreparation`](/docs/api/qiskit-fermions/transpiler-passes-merge-slater-determinant-preparation#qiskit_fermions.transpiler.passes.MergeSlaterDeterminantPreparation "qiskit_fermions.transpiler.passes.MergeSlaterDeterminantPreparation") then fuses the leading [`InitializeModes`](/docs/api/qiskit-fermions/circuit-library-initialize-modes#qiskit_fermions.circuit.library.InitializeModes "qiskit_fermions.circuit.library.InitializeModes") and the rotation that follows it into a single [`PrepareSlaterDeterminant`](/docs/api/qiskit-fermions/circuit-library-prepare-slater-determinant#qiskit_fermions.circuit.library.PrepareSlaterDeterminant "qiskit_fermions.circuit.library.PrepareSlaterDeterminant"), which synthesis lowers through the cheaper reduced Slater decomposition instead of a full square rotation. The order matters: merging the rotations first exposes the single rotation immediately after the initialization, which the Slater fusion then contracts into it.
 
-<span id="transpile-the-ansatz-to-a-qubit-circuit" />
+The remaining stages are plumbing. `input` and `output` convert between circuits and DAGs, `layout` assigns fermionic modes to qubits ([`TrivialF2QLayout`](/docs/api/qiskit-fermions/transpiler-passes-trivial-f-2-q-layout#qiskit_fermions.transpiler.passes.TrivialF2QLayout "qiskit_fermions.transpiler.passes.TrivialF2QLayout") maps mode `i` to qubit `i`), and `qubit` is an ordinary Qiskit pass manager that takes over once nothing fermionic is left.
 
-## 6. Transpile the ansatz to a qubit circuit
-
-To run the ansatz on hardware, it must be lowered from fermionic modes to qubits. The [`generate_preset_jw_pass_manager()`](/docs/api/qiskit-fermions/transpiler-presets-generate-preset-jw-pass-manager#qiskit_fermions.transpiler.presets.generate_preset_jw_pass_manager "qiskit_fermions.transpiler.presets.generate_preset_jw_pass_manager") preset builds a staged pipeline that maps the fermionic circuit through the Jordan-Wigner transformation and synthesizes each gate into a qubit-level circuit. The composite [`UCJ`](/docs/api/qiskit-fermions/circuit-library-ucj#qiskit_fermions.circuit.library.UCJ "qiskit_fermions.circuit.library.UCJ") gate must first be decomposed into its primitive gates ([`OrbitalRotation`](/docs/api/qiskit-fermions/circuit-library-orbital-rotation#qiskit_fermions.circuit.library.OrbitalRotation "qiskit_fermions.circuit.library.OrbitalRotation"), [`Evolution`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution "qiskit_fermions.circuit.library.Evolution"), …) so the pipeline’s optimization stage can act on them, so pass `circuit.decompose()`.
+Running it requires one preparatory step: the composite [`UCJ`](/docs/api/qiskit-fermions/circuit-library-ucj#qiskit_fermions.circuit.library.UCJ "qiskit_fermions.circuit.library.UCJ") gate has to be decomposed into its primitive gates first, so the optimization stage can see the individual rotations and evolutions.
 
 ```python
->>> from qiskit_fermions.transpiler.presets import generate_preset_jw_pass_manager
->>>
->>> # ``circuit`` is the exact-factorization ansatz assembled in step 3
->>> pm = generate_preset_jw_pass_manager()
 >>> transpiled = pm.run(circuit.decompose())
 >>> print(dict(sorted(transpiled.count_ops().items())))
-{'p': 16, 'rzz': 12, 'x': 2, 'xx_plus_yy': 28}
+{'p': 14, 'rzz': 12, 'x': 2, 'xx_plus_yy': 28}
 ```
 
 Without a target device, this maps onto `2 * norb` qubits with all-to-all connectivity assumed; the orbital rotations synthesize into [`XXPlusYYGate`](/docs/api/qiskit/qiskit.circuit.library.XXPlusYYGate)objects and the diagonal Coulomb evolutions into [`RZZGate`](/docs/api/qiskit/qiskit.circuit.library.RZZGate)objects:
@@ -205,9 +193,21 @@ Without a target device, this maps onto `2 * norb` qubits with all-to-all connec
 <Figure size ... with 1 Axes>
 ```
 
-![The Jordan-Wigner transpiled LUCJ circuit.](/docs/images/addons/qiskit-fermions/lucj-10.avif)
+![The Jordan-Wigner transpiled LUCJ circuit.](/docs/images/addons/qiskit-fermions/lucj-7.avif)
 
-**Target hardware connectivity with ffsim’s LUCJ pass manager**
+This pipeline is exactly what [`generate_preset_jw_pass_manager()`](/docs/api/qiskit-fermions/transpiler-presets-generate-preset-jw-pass-manager#qiskit_fermions.transpiler.presets.generate_preset_jw_pass_manager "qiskit_fermions.transpiler.presets.generate_preset_jw_pass_manager") assembles, so reach for the preset in practice and build the stages by hand when you need to change one of them:
+
+```python
+>>> from qiskit_fermions.transpiler.presets import generate_preset_jw_pass_manager
+>>>
+>>> preset = generate_preset_jw_pass_manager()
+>>> preset.run(circuit.decompose()).count_ops() == transpiled.count_ops()
+True
+```
+
+<span id="match-the-device-topology" />
+
+## 5. Match the device topology
 
 A real device has a restricted qubit coupling map, and the LUCJ ansatz is designed to match it. The same-spin (`pairs_aa`) interactions form two linear chains and the alpha-beta (`pairs_ab`) interactions bridge them. ffsim’s [`generate_lucj_pass_manager()`](https://qiskit-community.github.io/ffsim/api/stubs/ffsim.qiskit.generate_lucj_pass_manager.html#ffsim.qiskit.generate_lucj_pass_manager "(in ffsim)") builds a device-aware qubit pipeline for this structure, and returns the subset of `pairs_ab` the hardware can actually accommodate. Slot that pipeline into the preset’s `qubit` stage while keeping the package’s own fermion-to-qubit synthesis:
 
@@ -237,7 +237,9 @@ A real device has a restricted qubit coupling map, and the LUCJ ansatz is design
 [(0, 0)]
 ```
 
-With `pm.qubit` now set to the device-aware pipeline, running the pass manager lays the circuit out on the backend’s qubits and routes it to the coupling map. For the *unrestricted* ansatz from step 3, whose diagonal Coulomb operator still contains alpha-beta terms the hardware cannot reach directly, the router must insert many `SWAP` gates to bridge them:
+That composition is the point: the `qubit` stage is device-aware, while the fermion-to-qubit synthesis stage ahead of it stays this package’s own, and so stays replaceable.
+
+With `pm.qubit` now set to the device-aware pipeline, running the pass manager lays the circuit out on the backend’s qubits and routes it to the coupling map. For the *unrestricted* ansatz from step 1, whose diagonal Coulomb operator still contains alpha-beta terms the hardware cannot reach directly, the router must insert many `SWAP` gates to bridge them:
 
 ```python
 >>> naive = pm.run(circuit.decompose())
@@ -250,11 +252,13 @@ With `pm.qubit` now set to the device-aware pipeline, running the pass manager l
 
 **Restrict the ansatz to the hardware-implementable interactions**
 
-The fix is to feed `allowed_pairs_ab` back into the ansatz construction, through the `interaction_pairs` argument of [`from_t_amplitudes()`](/docs/api/qiskit-fermions/circuit-library-ucj#qiskit_fermions.circuit.library.UCJ.from_t_amplitudes "qiskit_fermions.circuit.library.UCJ.from_t_amplitudes"), so the diagonal Coulomb operator only contains alpha-beta terms the coupling map can implement directly. The ansatz then matches the device topology and the router barely has to touch it:
+The fix is to feed `allowed_pairs_ab` back into the ansatz construction, through the `interaction_pairs` argument of [`from_t_amplitudes()`](https://qiskit-community.github.io/ffsim/api/stubs/ffsim.UCJOpSpinBalanced.html#ffsim.UCJOpSpinBalanced.from_t_amplitudes "(in ffsim)"), so the diagonal Coulomb operator only contains alpha-beta terms the coupling map can implement directly. The ansatz then matches the device topology and the router barely has to touch it:
 
 ```python
->>> restricted = UCJ.from_t_amplitudes(
-...     nelec, t2, t1=t1, n_reps=2, interaction_pairs=(pairs_aa, allowed_pairs_ab)
+>>> restricted = UCJ(
+...     ffsim.UCJOpSpinBalanced.from_t_amplitudes(
+...         t2, t1=t1, n_reps=2, interaction_pairs=(pairs_aa, allowed_pairs_ab)
+...     )
 ... )
 >>>
 >>> circuit = FermionicCircuit(2 * norb)
@@ -275,7 +279,7 @@ Drawing only the active qubits (`idle_wires=False`) shows the circuit restricted
 <Figure size ... with 1 Axes>
 ```
 
-![The hardware-restricted LUCJ circuit routed onto the heavy-hex device coupling map.](/docs/images/addons/qiskit-fermions/lucj-14.avif)
+![The hardware-restricted LUCJ circuit routed onto the heavy-hex device coupling map.](/docs/images/addons/qiskit-fermions/lucj-12.avif)
 
 <Admonition title="Note" type="note">
   The exact post-layout gate counts and depth depend on the routing/optimization passes and the chosen device, so they are not reproduced here. The key point is the co-design; expressing the ansatz with a nearest-neighbor `pairs_aa` chain and hardware-filtered `pairs_ab` bridges keeps the synthesized circuit close to the device topology, minimizing the routing overhead (inserted `SWAP` gates). See [`GivensDecompositionSlaterDeterminantSynthesis`](/docs/api/qiskit-fermions/transpiler-passes-synthesis-givens-decomposition-slater-determinant-synthesis#qiskit_fermions.transpiler.passes.synthesis.GivensDecompositionSlaterDeterminantSynthesis "qiskit_fermions.transpiler.passes.synthesis.GivensDecompositionSlaterDeterminantSynthesis") for a related synthesis choice (`minimize_2q_gate_count`), trading two-qubit gate count against routed depth.
@@ -284,7 +288,8 @@ Drawing only the active qubits (`idle_wires=False`) shows the circuit restricted
 ## Next steps
 
 *   Learn how the individual gates work in the [`qiskit_fermions.circuit.library`](/docs/api/qiskit-fermions/circuit-library#module-qiskit_fermions.circuit.library "qiskit_fermions.circuit.library") documentation and the [fermionic circuit guide](circuit#fermionic-circuit-explanation).
-*   Explore the [operators explanation guide](operators#operators-explanation) to understand how to construct fermionic Hamiltonians such as the diagonal Coulomb operator used above.
+*   Explore the [operators explanation guide](operators#operators-explanation) to understand how to construct fermionic operators and Hamiltonians directly.
 *   See how a fermionic circuit is mapped to qubits in the [transpilation guide](transpilation#transpilation-explanation).
-*   Read the [ffsim backend guide](ffsim#ffsim-backend-explanation) to understand why [`ffsim.apply_unitary()`](https://qiskit-community.github.io/ffsim/api/stubs/ffsim.apply_unitary.html#ffsim.apply_unitary "(in ffsim)") and [`ffsim.linear_operator()`](https://qiskit-community.github.io/ffsim/api/stubs/ffsim.linear_operator.html#ffsim.linear_operator "(in ffsim)") work natively on this ansatz, and how to evaluate its energy without ffsim installed.
+*   Read the [`F2QSynthesis`](/docs/api/qiskit-fermions/transpiler-passes-f-2-q-synthesis#qiskit_fermions.transpiler.passes.F2QSynthesis "qiskit_fermions.transpiler.passes.F2QSynthesis") documentation for the other way to configure the synthesis stage: a `config` dictionary that selects plugins by the short names they register under their `qiskit_fermions.transpiler.synthesis` entry points, rather than by instance.
+*   Read the [ffsim relationship guide](ffsim#ffsim-relationship-explanation) to understand how the two packages divide the work, and which protocols let ffsim simulate this package’s circuits.
 

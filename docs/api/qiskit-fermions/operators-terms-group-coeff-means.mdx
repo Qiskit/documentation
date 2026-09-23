@@ -1,0 +1,54 @@
+---
+title: group_coeff_means (latest version)
+description: API reference for qiskit_fermions.operators.terms.group_coeff_means in the latest version of qiskit-fermions
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit_fermions.operators.terms.group_coeff_means
+---
+
+<span id="group-coeff-means" />
+
+# group\_coeff\_means
+
+<Function id="qiskit_fermions.operators.terms.group_coeff_means" isDedicatedPage={true} signature="group_coeff_means(op)">
+  Returns the mean absolute coefficient magnitude of each group.
+
+  The `i`-th entry is the sum of `abs(coeff)` over the terms in group `i`, divided by the number of terms in that group. If the operator tracks no groups, this returns `None`.
+
+  This is the sampling weight of a randomized product formula (for example, qDRIFT) that draws whole groups rather than individual terms: it is the magnitude of one *atomic* group, which is the relevant scale because grouping is what makes each sampled piece Hermitian (and hence its time evolution unitary) in the first place.
+
+  Computing it natively is considerably cheaper than reducing `get_coeffs()` and `groups` in NumPy, because those two accessors each copy one value per *ungrouped* term out of the operator only for it to be aggregated back down to one value per group, whereas this returns just the `num_groups()` reduced values.
+
+  <Admonition title="Note" type="note">
+    A group index that no term carries weighs `0.0`, which keeps it out of the sample.
+  </Admonition>
+
+  ```pycon
+  >>> from qiskit_fermions.operators import FermionOperator
+  >>> from qiskit_fermions.operators.terms.grouping import group_coeff_means
+  >>> op = FermionOperator(
+  ...     [1.0, 2.0, -1.0, -2.0],
+  ...     [True, False, True, False, True, False, True, False],
+  ...     [0, 1, 2, 3, 1, 0, 3, 2],
+  ...     [0, 2, 4, 6, 8],
+  ... )
+  >>> print(group_coeff_means(op))
+  None
+  >>> op.groups = [0, 1, 0, 1]
+  >>> group_coeff_means(op)
+  [1.0, 2.0]
+  ```
+
+  **Parameters**
+
+  **op** – the operator whose groups to reduce.
+
+  **Returns**
+
+  The mean absolute coefficient magnitude of each group index, or `None` if the operator tracks no groups.
+
+  **Raises**
+
+  [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError) – if `op` is not a supported operator type (see [`OperatorTrait`](operators-operator-trait "qiskit_fermions.operators.OperatorTrait")).
+</Function>
+
