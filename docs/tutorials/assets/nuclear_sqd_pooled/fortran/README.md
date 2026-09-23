@@ -2,9 +2,9 @@
 
 This is the Fortran companion to [Pooled sample-based quantum diagonalization of a nuclear Hamiltonian](https://quantum.cloud.ibm.com/docs/en/tutorials/nuclear_sqd_pooled). It builds an ensemble of excitation circuits, samples determinants on IBM Quantum&reg; hardware, filters them by nuclear symmetries, and diagonalizes the Hamiltonian in the selected subspace.
 
-Aaryav Mishra developed this application in [qiskit-fortran PR #26](https://github.com/Qiskit/qiskit-fortran/pull/26). The Fortran sources and interaction data here are copied from the merged revision [`f0561fa030ca2875d5117cc1c7648210b8ec6d1e`](https://github.com/Qiskit/qiskit-fortran/tree/f0561fa030ca2875d5117cc1c7648210b8ec6d1e/applications/nuclear_shell). They retain the upstream copyright notices and [Apache 2.0 license](LICENSE.txt). The CMake setup and documentation are adapted for this directory in Qiskit/documentation. Future updates should identify the upstream revision and revalidate the build.
+Aaryav Mishra developed this application in [qiskit-fortran PR #26](https://github.com/Qiskit/qiskit-fortran/pull/26). The Fortran sources and interaction data here are based on the merged revision [`f0561fa030ca2875d5117cc1c7648210b8ec6d1e`](https://github.com/Qiskit/qiskit-fortran/tree/f0561fa030ca2875d5117cc1c7648210b8ec6d1e/applications/nuclear_shell). They retain the upstream copyright notices and [Apache 2.0 license](LICENSE.txt). This companion includes corrections to interaction mass scaling and antisymmetrized pair-exchange phases. The CMake setup and documentation are adapted for this directory in Qiskit/documentation. Future updates should identify the upstream revision and revalidate the build.
 
-The upstream `tutorial.ipynb` contains Python code; the reviewed Python notebook remains the platform tutorial. This companion consists of the Fortran application and the instructions on this page.
+The platform tutorial contains the Python implementation. This companion contains the Fortran application and its build and run instructions.
 
 ## Build
 
@@ -26,7 +26,7 @@ Without `--runtime`, the application generates copies of the reference determina
 For this local test, the expected result includes:
 
 ```text
-RESULT  energy_level01      -29.360326984 MeV
+RESULT  energy_level01      -28.644723043 MeV
 RESULT  subspace_dim                  1 states
 RESULT  pooled_kept                 768 shots
 ```
@@ -57,7 +57,7 @@ Use `./nuclear_shell_driver --help` for the full option list. To use another int
 
 ## Differences from the Python tutorial
 
-The Fortran driver filters samples by nuclear symmetries and supports pooled or per-step diagonalization. It does **not** implement the Python notebook's self-consistent configuration-recovery loop. Circuit construction, selection, and resource settings also differ, so the two examples should not be expected to produce identical energies.
+The Fortran driver filters samples by nuclear symmetries and supports pooled or per-step diagonalization. It does **not** implement the Python notebook's self-consistent configuration-recovery loop. Circuit construction, selection, and resource settings also differ, so independently sampled runs can produce different energies. For the same interaction, nucleus, and determinant basis, the two implementations should agree. Low sample retention can limit the accuracy of the Fortran result even when the Hamiltonian is correct.
 
 `nuclear_shell_parallel` is an optional coarray postprocessor built when the compiler and runtime support it. The default GNU build uses the single-image coarray runtime. After generating two step files, check it with:
 

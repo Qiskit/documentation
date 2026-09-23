@@ -27,9 +27,9 @@
 !>
 !> Note on J-coupled vs m-scheme:
 !>   TBMEs <ab;J|V|cd;J> are in the J-coupled basis. Mapping to qubit
-!>   bitstrings requires a Pandya transform into the m-scheme basis where each
-!>   qubit is a single (n,l,j,m_j,tz) orbital, this is done in a separate
-!>   module (future: subspace_transform.f90).
+!>   bitstrings requires Clebsch-Gordan recoupling into the m-scheme basis, where
+!>   each qubit represents a single (n,l,j,m_j,tz) state. The exact_solver
+!>   module performs this recoupling.
 module usdb_reader
   implicit none
   private

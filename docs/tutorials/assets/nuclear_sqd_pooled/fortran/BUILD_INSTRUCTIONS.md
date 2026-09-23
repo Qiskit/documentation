@@ -1,6 +1,6 @@
 # Build instructions
 
-These instructions build the docs-hosted Fortran application. Run them from `docs/tutorials/assets/nuclear_sqd_pooled/fortran/` in a checkout of Qiskit/documentation. The dependency builds live in a separate directory.
+These instructions build the Fortran companion application. Run them from `docs/tutorials/assets/nuclear_sqd_pooled/fortran/` in a checkout of Qiskit/documentation. Build the dependencies in a separate directory.
 
 ## Prerequisites
 
@@ -18,7 +18,7 @@ On Ubuntu or Debian:
 sudo apt install gfortran gcc cmake make git liblapack-dev libblas-dev libgsl-dev
 ```
 
-Install Rust separately on Linux if it is not already available. macOS uses Accelerate for LAPACK; Linux uses the installed BLAS/LAPACK libraries. GSL and OpenMP are optional; CMake reports whether they are available. The Linux instructions have not been validated for this docs-hosted copy.
+Install Rust separately on Linux if it is not already available. macOS uses Accelerate for LAPACK; Linux uses the installed BLAS/LAPACK libraries. GSL and OpenMP are optional; CMake reports whether they are available. The Linux instructions have not been validated for this companion.
 
 ## Build the dependencies
 
@@ -117,6 +117,6 @@ Run the Hamiltonian regression check after either build. It checks interaction m
 ctest --test-dir "$NUCLEAR_SRC/build" --output-on-failure
 ```
 
-Run the [local checks](README.md#check-the-local-workflow) before using the [hardware instructions](README.md#run-on-hardware). Run from `$NUCLEAR_SRC/build`, where CMake stages `USDB.snt`.
+Run the [local checks](README.md#check-the-local-workflow) before using the [hardware instructions](README.md#run-on-hardware). Run from `$NUCLEAR_SRC/build`, where CMake copies `USDB.snt`.
 
 If changing the Fortran compiler, use fresh build directories for both the bindings and the application. For missing shared libraries, check that the dependency paths still exist; the application records these locations in its runtime search paths.
