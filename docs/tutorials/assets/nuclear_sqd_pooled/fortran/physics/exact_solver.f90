@@ -1,3 +1,4 @@
+! Modified for Qiskit documentation: correct antisymmetrized pair-exchange phases.
 ! Module: exact_solver
 !
 ! Purpose: Shell-model Hamiltonian construction and exact diagonalization.
@@ -297,7 +298,7 @@ contains
             do t = 1, n_tbme
                 if (tbmes(t)%J /= J_2 / 2) cycle
                 ! USDB stores pn TBMEs proton-orbital first; try all 4 bra/ket orderings.
-                ! J-scheme antisymmetry phase for swapping a pair: (-1)^{(j_a+j_b)/2 - J}.
+                ! J-scheme antisymmetry phase for swapping a pair: -(-1)^{j_a+j_b-J}.
                 if ((tbmes(t)%a == sp(p)%orb_idx .and. tbmes(t)%b == sp(q)%orb_idx .and. &
                      tbmes(t)%c == sp(r)%orb_idx .and. tbmes(t)%d == sp(s_idx)%orb_idx) .or. &
                     (tbmes(t)%a == sp(r)%orb_idx .and. tbmes(t)%b == sp(s_idx)%orb_idx .and. &
@@ -310,7 +311,7 @@ contains
                     (tbmes(t)%a == sp(r)%orb_idx .and. tbmes(t)%b == sp(s_idx)%orb_idx .and. &
                      tbmes(t)%c == sp(q)%orb_idx .and. tbmes(t)%d == sp(p)%orb_idx)) then
                     tbme_val = tbmes(t)%matrix_elem * &
-                        phase_sign((sp(p)%j2 + sp(q)%j2)/2 - J_2/2)
+                        (-phase_sign((sp(p)%j2 + sp(q)%j2)/2 - J_2/2))
                     exit
                 end if
                 if ((tbmes(t)%a == sp(p)%orb_idx .and. tbmes(t)%b == sp(q)%orb_idx .and. &
@@ -318,7 +319,7 @@ contains
                     (tbmes(t)%a == sp(s_idx)%orb_idx .and. tbmes(t)%b == sp(r)%orb_idx .and. &
                      tbmes(t)%c == sp(p)%orb_idx .and. tbmes(t)%d == sp(q)%orb_idx)) then
                     tbme_val = tbmes(t)%matrix_elem * &
-                        phase_sign((sp(r)%j2 + sp(s_idx)%j2)/2 - J_2/2)
+                        (-phase_sign((sp(r)%j2 + sp(s_idx)%j2)/2 - J_2/2))
                     exit
                 end if
                 if ((tbmes(t)%a == sp(q)%orb_idx .and. tbmes(t)%b == sp(p)%orb_idx .and. &
@@ -326,8 +327,8 @@ contains
                     (tbmes(t)%a == sp(s_idx)%orb_idx .and. tbmes(t)%b == sp(r)%orb_idx .and. &
                      tbmes(t)%c == sp(q)%orb_idx .and. tbmes(t)%d == sp(p)%orb_idx)) then
                     tbme_val = tbmes(t)%matrix_elem * &
-                        phase_sign((sp(p)%j2 + sp(q)%j2)/2 - J_2/2) * &
-                        phase_sign((sp(r)%j2 + sp(s_idx)%j2)/2 - J_2/2)
+                        (-phase_sign((sp(p)%j2 + sp(q)%j2)/2 - J_2/2)) * &
+                        (-phase_sign((sp(r)%j2 + sp(s_idx)%j2)/2 - J_2/2))
                     exit
                 end if
             end do

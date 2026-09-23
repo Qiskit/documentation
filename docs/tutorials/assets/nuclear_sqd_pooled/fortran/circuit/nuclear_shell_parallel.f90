@@ -1,3 +1,4 @@
+! Modified for Qiskit documentation: pass valence counts for interaction mass scaling.
 ! This code is part of Qiskit.
 !
 ! (C) Copyright IBM 2026.
@@ -168,7 +169,7 @@ program nuclear_shell_parallel
     ! Use a coarray flag so a load failure on any image triggers a clean collective
     ! error stop rather than a hung sync all (one image stopped, others waiting).
     snt_ok_flag = 0
-    call read_usdb_file(trim(snt_file), ms, snt_st)
+    call read_usdb_file(trim(snt_file), ms, snt_st, n_protons_arg, n_neutrons_arg)
     if (snt_st /= 0) then
         write(*,'("Image ",I4,": ERROR: could not load ",A)') me, trim(snt_file)
         snt_ok_flag = 1

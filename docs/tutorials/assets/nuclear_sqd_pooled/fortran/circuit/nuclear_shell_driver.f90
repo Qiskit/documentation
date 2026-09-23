@@ -1,3 +1,4 @@
+! Modified for Qiskit documentation: pass valence counts for interaction mass scaling.
 ! This code is part of Qiskit.
 !
 ! (C) Copyright IBM 2026.
@@ -264,7 +265,7 @@ contains
         ! --- 2. Load Hamiltonian from .snt file ----------------------------------
         block
             integer :: snt_status
-            call read_usdb_file(trim(snt_str), model_space, snt_status)
+            call read_usdb_file(trim(snt_str), model_space, snt_status, n_protons, n_neutrons)
             if (snt_status /= 0) then
                 write(*,'("ERROR: could not load ",A)') trim(snt_str)
                 error stop "run_circuit_ensemble: .snt file not found"
@@ -723,7 +724,7 @@ contains
 
         block
             integer :: snt_st2
-            call read_usdb_file(trim(snt_str), ms, snt_st2)
+            call read_usdb_file(trim(snt_str), ms, snt_st2, n_protons, n_neutrons)
             if (snt_st2 /= 0) then
                 write(*,'("ERROR: could not load ",A)') trim(snt_str)
                 error stop "run_bitstrings_dir: .snt file not found"

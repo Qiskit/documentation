@@ -10,15 +10,17 @@
 ! copyright notice, and modified files need to carry a notice indicating
 ! that they have been altered from the originals.
 
+! Modified for Qiskit documentation: correct .snt core counts and mass scaling.
+
 !> @brief USDB.snt interaction file reader for nuclear shell-model calculations.
 !>
 !> File format (.snt):
-!>   First non-comment line: n_proton_orbs  n_neutron_orbs  core_A  core_Z
+!>   First non-comment line: n_proton_orbs  n_neutron_orbs  core_Z  core_N
 !>   Next n_orb lines: orbital definitions  -  idx  n  l  2j  tz
 !>     (tz = -1 proton, +1 neutron)
 !>   SPE header line: n_spe  method
 !>   Next n_spe lines: i  i  energy(MeV)   (diagonal only)
-!>   TBME header line: n_tbme  method  hbar_omega  core_energy
+!>   TBME header line: n_tbme  method  [A_ref  exponent]
 !>   Next n_tbme lines: a  b  c  d  J  value(MeV)
 !>     a,b = bra orbital indices (1-based), c,d = ket orbital indices
 !>     J = total angular momentum coupling
@@ -56,12 +58,13 @@ module usdb_reader
   type :: model_space_data
     integer :: n_proton_orbs   ! proton  orbital count from header
     integer :: n_neutron_orbs  ! neutron orbital count from header
-    integer :: core_A          ! core mass number
+    integer :: core_A          ! core mass number (= core_Z + core_N)
+    integer :: core_N          ! core neutron number
     integer :: core_Z          ! core proton number
     integer :: n_orbitals      ! = n_proton_orbs + n_neutron_orbs
     integer :: n_spe
     integer :: n_tbme
-    real(8) :: core_energy     ! MeV, from TBME header
+    real(8) :: core_energy = 0.0d0 ! No core-energy offset is specified by .snt
     type(orbital_info), allocatable :: orbitals(:)
     real(8),            allocatable :: spes(:)
     type(tbme_element), allocatable :: tbmes(:)
@@ -73,17 +76,19 @@ contains
   !>
   !> @param[in]  filename   Path to the .snt file
   !> @param[out] ms         Populated model_space_data on success
+  !> @param[in]  n_protons, n_neutrons  Valence counts used to determine total mass
   !> @param[out] status     0 = ok; negative = I/O error; positive = parse error
-  subroutine read_usdb_file(filename, ms, status)
+  subroutine read_usdb_file(filename, ms, status, n_protons, n_neutrons)
     character(len=*),       intent(in)  :: filename
     type(model_space_data), intent(out) :: ms
     integer,                intent(out) :: status
+    integer,                intent(in) :: n_protons, n_neutrons
 
     integer, parameter :: U = 42
     character(len=512) :: line
     integer            :: ios, i
-    integer            :: n_spe_hdr, n_tbme_hdr, dummy_int
-    real(8)            :: dummy_real
+    integer            :: n_spe_hdr, n_tbme_hdr, method
+    real(8)            :: mass_ref, exponent, mass_factor, mass
     integer            :: orb_i, orb_j
 
     status = 0
@@ -96,11 +101,12 @@ contains
     ! model space header
     call next_noncomment(U, line, ios)
     if (ios /= 0) then; status = -2; close(U); return; end if
-    read(line, *, iostat=ios) ms%n_proton_orbs, ms%n_neutron_orbs, ms%core_A, ms%core_Z
+    read(line, *, iostat=ios) ms%n_proton_orbs, ms%n_neutron_orbs, ms%core_Z, ms%core_N
     if (ios /= 0) then
       write(*,'(a,a)') "usdb_reader: bad model-space line: ", trim(line)
       status = 1; close(U); return
     end if
+    ms%core_A = ms%core_Z + ms%core_N
     ms%n_orbitals = ms%n_proton_orbs + ms%n_neutron_orbs
 
     ! orbital definitions
@@ -140,14 +146,35 @@ contains
       end if
     end do
 
-    ! TBME header  ("n  method  hbar_omega  core_energy")
+    ! Method 0: unscaled TBMEs. Method 1: multiply by (A / A_ref)**exponent.
+    ! The optional header fields describe mass dependence, not a core-energy offset.
     call next_noncomment(U, line, ios)
     if (ios /= 0) then; status = -6; close(U); return; end if
-    read(line, *, iostat=ios) n_tbme_hdr, dummy_int, dummy_real, ms%core_energy
+    read(line, *, iostat=ios) n_tbme_hdr, method
     if (ios /= 0) then
       write(*,'(a,a)') "usdb_reader: bad TBME header: ", trim(line)
       status = 5; close(U); return
     end if
+    mass_factor = 1.0d0
+    ms%core_energy = 0.0d0
+    select case (method)
+    case (0)
+      ! A two-field header is sufficient for an unscaled interaction.
+    case (1)
+      read(line, *, iostat=ios) n_tbme_hdr, method, mass_ref, exponent
+      if (ios /= 0) then
+        status = 5; close(U); return
+      end if
+      mass = real(ms%core_A + n_protons + n_neutrons, 8)
+      if (mass_ref <= 0.0d0 .or. mass <= 0.0d0 .or. n_protons < 0 .or. n_neutrons < 0) then
+        write(*,'(a)') "usdb_reader: invalid mass-scaling parameters"
+        status = 5; close(U); return
+      end if
+      mass_factor = (mass / mass_ref)**exponent
+    case default
+      write(*,'(a,i0)') "usdb_reader: unsupported TBME method: ", method
+      status = 5; close(U); return
+    end select
 
     ! TBME values  ("a  b  c  d  J  value")
     ms%n_tbme = n_tbme_hdr
@@ -162,6 +189,7 @@ contains
         write(*,'(a,i0,a,a)') "usdb_reader: bad TBME line ", i, ": ", trim(line)
         status = 6; close(U); return
       end if
+      ms%tbmes(i)%matrix_elem = ms%tbmes(i)%matrix_elem * mass_factor
     end do
 
     close(U)

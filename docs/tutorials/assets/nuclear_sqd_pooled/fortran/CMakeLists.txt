@@ -348,3 +348,13 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/data/USDB.snt
 install(TARGETS nuclear_shell_driver
     RUNTIME DESTINATION bin
 )
+# Regression coverage for interaction conventions, independent of QPU access.
+include(CTest)
+if(BUILD_TESTING)
+    add_executable(hamiltonian_regression tests/hamiltonian_regression.f90)
+    target_link_libraries(hamiltonian_regression PRIVATE nuclear_shell_lib)
+    target_include_directories(hamiltonian_regression PRIVATE ${CMAKE_BINARY_DIR}/modules)
+    add_test(NAME nuclear_hamiltonian_regression
+        COMMAND hamiltonian_regression ${CMAKE_CURRENT_SOURCE_DIR}/data/USDB.snt)
+    set_tests_properties(nuclear_hamiltonian_regression PROPERTIES ENVIRONMENT "OMP_NUM_THREADS=4")
+endif()

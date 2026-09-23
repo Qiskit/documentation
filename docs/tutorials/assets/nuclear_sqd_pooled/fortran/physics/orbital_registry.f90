@@ -1,3 +1,4 @@
+! Modified for Qiskit documentation: pass valence counts for interaction mass scaling.
 ! This code is part of Qiskit.
 !
 ! (C) Copyright IBM 2026.
@@ -176,7 +177,7 @@ contains
     type(model_space_data) :: ms
     integer :: status
 
-    call read_usdb_file(snt_filename, ms, status)
+    call read_usdb_file(snt_filename, ms, status, n_protons, n_neutrons)
     if (status /= 0) then
       write(*,'(a,a,a)') "orbital_registry: could not load ", trim(snt_filename), "  -  check path"
       error stop

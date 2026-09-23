@@ -111,6 +111,12 @@ cmake --build "$NUCLEAR_SRC/build" --parallel 4
 
 Check that CMake reports `--runtime mode enabled` before attempting a hardware run. Without both `qiskit_runtime.mod` and the Runtime library, the application builds with hardware submission disabled.
 
+Run the Hamiltonian regression check after either build. It checks interaction mass scaling and compares the complete neon-20 basis energy with the Python tutorial's result. It does not submit hardware jobs.
+
+```bash
+ctest --test-dir "$NUCLEAR_SRC/build" --output-on-failure
+```
+
 Run the [local checks](README.md#check-the-local-workflow) before using the [hardware instructions](README.md#run-on-hardware). Run from `$NUCLEAR_SRC/build`, where CMake stages `USDB.snt`.
 
 If changing the Fortran compiler, use fresh build directories for both the bindings and the application. For missing shared libraries, check that the dependency paths still exist; the application records these locations in its runtime search paths.
