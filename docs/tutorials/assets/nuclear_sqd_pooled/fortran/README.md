@@ -1,6 +1,6 @@
 # Nuclear shell-model diagonalization with Fortran
 
-This is the Fortran companion to [Pooled sample-based quantum diagonalization of a nuclear Hamiltonian](https://quantum.cloud.ibm.com/docs/en/tutorials/nuclear_sqd_pooled). It builds an ensemble of excitation circuits, samples determinants on IBM Quantum&reg; hardware, filters them by nuclear symmetries, and diagonalizes the Hamiltonian in the selected subspace.
+This is the Fortran companion to [Pooled sample-based quantum diagonalization of a nuclear Hamiltonian](https://quantum.cloud.ibm.com/docs/tutorials/nuclear-sqd-pooled). It builds an ensemble of excitation circuits, samples determinants on IBM Quantum&reg; hardware, filters them by nuclear symmetries, and diagonalizes the Hamiltonian in the selected subspace.
 
 Aaryav Mishra developed this application in [qiskit-fortran PR #26](https://github.com/Qiskit/qiskit-fortran/pull/26). The Fortran sources and interaction data here are based on the merged revision [`f0561fa030ca2875d5117cc1c7648210b8ec6d1e`](https://github.com/Qiskit/qiskit-fortran/tree/f0561fa030ca2875d5117cc1c7648210b8ec6d1e/applications/nuclear_shell). They retain the upstream copyright notices and [Apache 2.0 license](LICENSE.txt). This companion includes corrections to interaction mass scaling and antisymmetrized pair-exchange phases. The CMake setup and documentation are adapted for this directory in Qiskit/documentation. Future updates should identify the upstream revision and revalidate the build.
 
