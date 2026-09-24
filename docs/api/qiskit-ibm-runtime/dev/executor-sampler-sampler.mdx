@@ -1,0 +1,152 @@
+---
+title: Sampler (dev version)
+description: API reference for qiskit_ibm_runtime.executor_sampler.Sampler in the dev version of qiskit-ibm-runtime
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_ibm_runtime.executor_sampler.Sampler
+---
+
+# Sampler
+
+<Class id="qiskit_ibm_runtime.executor_sampler.Sampler" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/executor_sampler/sampler.py#L47-L235" signature="Sampler(mode=None, options=None)" modifiers="class">
+  Bases: [`BaseSamplerV2`](/docs/api/qiskit/qiskit.primitives.BaseSamplerV2)
+
+  Client-side Sampler primitive for IBM Quantum Compute (formerly Qiskit Runtime).
+
+  This is an implementation of Sampler built on top of the Executor primitive, enabling transparent client-side processing with faster feedback loops and greater user control.
+
+  **Limitations:**
+
+  *   When twirling is disabled, circuits must not contain [`BoxOp`](/docs/api/qiskit/qiskit.circuit.BoxOp) instructions.
+  *   Dynamical decoupling is incompatible with dynamic circuits.
+
+  **Example**
+
+  ```python
+  from qiskit import QuantumCircuit
+  from qiskit_ibm_runtime import QiskitRuntimeService
+  from qiskit_ibm_runtime.executor_sampler import Sampler
+
+  service = QiskitRuntimeService()
+  backend = service.least_busy(operational=True, simulator=False)
+
+  # Create a simple circuit
+  circuit = QuantumCircuit(2, 2)
+  circuit.h(0)
+  circuit.cx(0, 1)
+  circuit.measure_all()
+
+  # Run the sampler with options
+  sampler = Sampler(mode=backend)
+  sampler.options.default_shots = 2048
+  sampler.options.execution.init_qubits = True
+  job = sampler.run([circuit])
+  result = job.result()
+  ```
+
+  **Parameters**
+
+  *   **mode** (*BackendV2 |* [*Session*](session "qiskit_ibm_runtime.Session")  *|*[*Batch*](batch "qiskit_ibm_runtime.Batch") *| None*) –
+
+      The execution mode used to make the primitive query. It can be:
+
+      *   A [`BackendV2`](/docs/api/qiskit/qiskit.providers.BackendV2) if you are using job mode.
+      *   A [`Session`](session "qiskit_ibm_runtime.Session") if you are using session execution mode.
+      *   A [`Batch`](batch "qiskit_ibm_runtime.Batch") if you are using batch execution mode.
+
+      Refer to the [IBM Quantum Compute documentation](/docs/guides/execution-modes) for more information about execution modes.
+
+  *   **options** ([*SamplerOptions*](options-models-sampler-options "qiskit_ibm_runtime.options_models.sampler.SamplerOptions")) – Sampler options. See [`SamplerOptions`](options-models-sampler-options "qiskit_ibm_runtime.options_models.SamplerOptions") for all available options.
+
+  ## Attributes
+
+  ### mode
+
+  <Attribute id="qiskit_ibm_runtime.executor_sampler.Sampler.mode">
+    Return the execution mode used by this primitive.
+
+    **Returns**
+
+    Mode used by this primitive, or `None` if an execution mode is not used.
+  </Attribute>
+
+  ### options
+
+  <Attribute id="qiskit_ibm_runtime.executor_sampler.Sampler.options">
+    Type: [`SamplerOptions`](options-models-sampler-options "qiskit_ibm_runtime.options_models.sampler.SamplerOptions")
+
+    The options of this Sampler.
+  </Attribute>
+
+  ## Methods
+
+  ### backend
+
+  <Function id="qiskit_ibm_runtime.executor_sampler.Sampler.backend" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/executor_sampler/sampler.py#L129-L131" signature="backend()">
+    Return the backend the primitive query will be run on.
+
+    **Return type**
+
+    BackendV2
+  </Function>
+
+  ### finalize\_options
+
+  <Function id="qiskit_ibm_runtime.executor_sampler.Sampler.finalize_options" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/executor_sampler/sampler.py#L171-L182" signature="finalize_options()">
+    Construct and finalize the Sampler options.
+
+    This method produces the final [`SamplerOptions`](options-models-sampler-options "qiskit_ibm_runtime.options_models.SamplerOptions") instance used inside a call to [`run()`](#qiskit_ibm_runtime.executor_sampler.Sampler.run "qiskit_ibm_runtime.executor_sampler.Sampler.run") by resolving the `None` in the twirling options as documented in [`TwirlingOptions`](options-models-twirling-options "qiskit_ibm_runtime.options_models.TwirlingOptions").
+
+    **Returns**
+
+    The finalized [`SamplerOptions`](options-models-sampler-options "qiskit_ibm_runtime.options_models.SamplerOptions") object.
+
+    **Return type**
+
+    [*SamplerOptions*](options-models-sampler-options "qiskit_ibm_runtime.options_models.sampler.SamplerOptions")
+  </Function>
+
+  ### find\_unique\_layers
+
+  <Function id="qiskit_ibm_runtime.executor_sampler.Sampler.find_unique_layers" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/executor_sampler/sampler.py#L142-L169" signature="find_unique_layers(pubs, types='gates')">
+    Return the unique boxed layers found across the given PUBs of a given type.
+
+    The `types` of layers can be either `"gates"` or `"all"`, corresponding to only gate layers or all layers, respectively. The returned list then contains one instance of each distinct boxed layer (represented as a `CircuitInstruction`) appearing in the input PUBs.
+
+    **Parameters**
+
+    *   **pubs** (*Iterable\[SamplerPubLike]*) – The list of PUBs to return a list of unique boxes for.
+    *   **types** (*Literal\['gates', 'all']*) – The types of layers to return. Can be either `"gates"` or `"all"`.
+
+    **Returns**
+
+    The unique boxed layers of a certain type found across the given PUBs.
+
+    **Return type**
+
+    list\[CircuitInstruction]
+  </Function>
+
+  ### run
+
+  <Function id="qiskit_ibm_runtime.executor_sampler.Sampler.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/executor_sampler/sampler.py#L184-L235" signature="run(pubs, *, shots=None, dry_run=False)">
+    Submit a request to the sampler primitive.
+
+    For moderate and complex workloads, the client-side processing done to map sampler inputs to executor inputs can be resource intensive and cause a delay between invoking the function and the `job` being submitted. In order to check the progress of the call, it is recommended to setup logging (with an `INFO` level) - see [IBM Quantum Compute documentation](/docs/api/qiskit-ibm-runtime/runtime-service#logging) for more information.
+
+    **Parameters**
+
+    *   **pubs** (*Iterable\[SamplerPubLike]*) – An iterable of pub-like objects. For example, a list of circuits or tuples `(circuit, parameter_values)`.
+    *   **shots** (*int | None*) – The total number of shots to sample for each sampler pub that does not specify its own shots. If `None`, the value from `options.default_shots` will be used.
+    *   **dry\_run** (*bool*) – If `True`, performs a dry run without executing the job on a QPU. This mode can be used to validate the job, estimate usage consumption, and retrieve circuit timing metadata. Returned results preserve the expected schema but contain **randomized mock data** rather than actual or simulated measurement results. Unlike the fake backends, the processing of this dry run happens on the server-side, so the job may not finish immediately and access to this feature may be restricted.
+
+    **Returns**
+
+    The submitted job.
+
+    **Return type**
+
+    [RuntimeJobV2](runtime-job-v2 "qiskit_ibm_runtime.RuntimeJobV2") | LocalRuntimeJob
+  </Function>
+</Class>
+
