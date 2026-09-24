@@ -24,9 +24,9 @@ The tables in the "Options classes summary" section on each primitive's "options
 <span id="options-precedence"></span>
 ## Set options
 
-Options can be defined before a primitive is constructed and passed to the primitive as an instance of the options class or a dictionary.  The primitive makes a copy of them, which means that changing the original dictionary or options instance doesn't affect the options that the primitive owns. 
+Options can be defined before a primitive is constructed and passed to the primitive as an instance of the options class or a dictionary.  The primitive makes a copy of them, which means that changing the original dictionary or options instance doesn't affect the options that the primitive owns.
 
-Additionally, you can change the options after the primitive is constructed. Use the workflow that works best for your application. 
+Additionally, you can change the options after the primitive is constructed. Use the workflow that works best for your application.
 
 <Admonition type="note" title="Notes about specifying primitive options">
 - You can see the available options during or after primitive initialization.
@@ -44,8 +44,14 @@ The following example uses the Estimator primitive, but the syntax for other pri
 
 ```python
 from qiskit_ibm_runtime import QiskitRuntimeService
-from qiskit_ibm_runtime import EstimatorV2 as Estimator
-from qiskit_ibm_runtime.options import EstimatorOptions
+
+# Legacy server-side primitive before qiskit-ibm-runtime 0.50.0
+# from qiskit_ibm_runtime import Estimator
+# from qiskit_ibm_runtime.options import EstimatorOptions
+
+# Client-side primitive introduced in qiskit-ibm-runtime 0.50.0
+from qiskit_ibm_runtime.executor_estimator import Estimator
+from qiskit_ibm_runtime.options_models import EstimatorOptions
 
 service = QiskitRuntimeService()
 backend = service.least_busy(operational=True, simulator=False)
@@ -72,7 +78,12 @@ The following example uses the Estimator primitive, but the syntax for other pri
 
 ```python
 from qiskit_ibm_runtime import QiskitRuntimeService
-from qiskit_ibm_runtime import EstimatorV2 as Estimator
+
+# Legacy server-side primitive before qiskit-ibm-runtime 0.50.0
+# from qiskit_ibm_runtime import Estimator
+
+# Client-side primitive introduced in qiskit-ibm-runtime 0.50.0
+from qiskit_ibm_runtime.executor_estimator import Estimator
 
 service = QiskitRuntimeService()
 backend = service.least_busy(operational=True, simulator=False)
@@ -101,7 +112,12 @@ The following example uses the Estimator primitive, but the syntax for other pri
 
 ```python
 from qiskit_ibm_runtime import QiskitRuntimeService
-from qiskit_ibm_runtime import EstimatorV2 as Estimator
+
+# Legacy server-side primitive before qiskit-ibm-runtime 0.50.0
+# from qiskit_ibm_runtime import Estimator
+
+# Client-side primitive introduced in qiskit-ibm-runtime 0.50.0
+from qiskit_ibm_runtime.executor_estimator import Estimator
 
 service = QiskitRuntimeService()
 backend = service.least_busy(operational=True, simulator=False)
