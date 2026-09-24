@@ -1,10 +1,10 @@
 ---
-title: Migrate from `NoiseLearner` to `NoiseLearnerV3`
+title: Migrate from NoiseLearner to NoiseLearnerV3
 description: Migrate from using the NoiseLearner helper program to NoiseLearnerV3 in IBM Quantum Compute Service
 
 ---
 
-# Migrate from `NoiseLearner` to `NoiseLearnerV3`
+# Migrate from NoiseLearner to NoiseLearnerV3
 
 This guide walks you through migrating from IBM Quantum `NoiseLearner` to `NoiseLearnerV3`. Both
 classes perform experiments that characterize noise processes based on a
@@ -13,23 +13,23 @@ outputs are slightly different.
 
 ## Background
 
-The [`NoiseLearner`](https://quantum.cloud.ibm.com/docs/en/api/qiskit-ibm-runtime/noise-learner-noise-learner)
-class was initially created to allow users to perform explicit noise learning. The resulting
+The [`NoiseLearner`](https://quantum.cloud.ibm.com/docs/api/qiskit-ibm-runtime/noise-learner-noise-learner)
+class was created to allow users to perform explicit noise learning. The resulting
 noise model can then be passed to IBM Quantum `Estimator` for applying error mitigation techniques
 such as PEA and PEC.
 
 `NoiseLearner` was designed to work with `Estimator`, and therefore it implicitly employs the same
-layer-finding strategy as `Estimator`. This strategy cannot be changed; otherwise, the subsequent
+layer finding strategy as `Estimator`. This strategy cannot be changed; otherwise, the subsequent
 mitigation steps would not work correctly.
 
 Starting with `qiskit-ibm-runtime` v0.47.0, there is a new
-[`NoiseLearnerV3`](https://quantum.cloud.ibm.com/docs/en/api/qiskit-ibm-runtime/noise-learner-v3-noise-learner-v3)
+[`NoiseLearnerV3`](https://quantum.cloud.ibm.com/docs/api/qiskit-ibm-runtime/noise-learner-v3-noise-learner-v3)
 class that is compatible with the `Executor` primitive and the
 [directed execution model](https://quantum.cloud.ibm.com/docs/guides/directed-execution-model).
-This new model delivers a **white-box** experience by providing the ingredients to capture design intent
+This new model delivers a **white-box** experience by providing the pieces to capture design intent
 on the client side, and a single server-side primitive (Executor) processes those inputs exactly as
 directed — it makes no implicit decisions on your behalf. Unlike the original `NoiseLearner`, `NoiseLearnerV3`
-gives you control over how to stratify your circuits, and the class simply takes a list of boxed circuit instructions
+lets you control how to stratify your circuits, and the class simply takes a list of boxed circuit instructions
 (for example, unique layers) as its input.
 
 `NoiseLearnerV3` also supports measurement noise learning. For each instruction in the input list, it runs the
@@ -41,8 +41,12 @@ protocol if the box contains measurements.
 ## Should you migrate?
 
 `NoiseLearner` only works with the legacy server-side `Estimator`, and `NoiseLearnerV3` only works with
-`Executor` and the client-side `Estimator`. You must migrate to `NoiseLearnerV3` **if you are using
-`Executor` or client-side `Estimator`**. The legacy server-side `Estimator` is deprecated and replaced by the client-side equivalent in `qiskit-ibm-runtime` version 0.50.0. If you are on `qiskit-ibm-runtime` version 0.50.0 or later, read the [Migrate from server-side to client-side Sampler and Estimator](/docs/guides/migrate-to-client-side-primitives) guide to migrate to client-side primitives first.
+`Executor` and the client-side `Estimator`. **You must migrate to `NoiseLearnerV3` if you are using
+`Executor` or client-side `Estimator`**. The legacy server-side `Estimator` is deprecated and replaced by the client-side equivalent in `qiskit-ibm-runtime` v0.50.0. 
+
+<Admonition type="note">
+If you are using `qiskit-ibm-runtime` v0.50.0 or later, read the [Migrate from server-side to client-side Sampler and Estimator](/docs/guides/migrate-to-client-side-primitives) guide to migrate to client-side primitives first.
+</Admonition>
 
 ## Migration steps
 
@@ -62,8 +66,8 @@ from qiskit_ibm_runtime import NoiseLearnerV3
 
 ### Step 2: Update the inputs
 
-`NoiseLearner`'s `run()` method takes a list of circuits or PUBs, whereas `NoiseLearnerV3`'s takes a list of instructions, each of which must be a twirling-annotated [BoxOp](https://quantum.cloud.ibm.com/docs/en/api/qiskit/qiskit.circuit.BoxOp) containing ISA operations.
-Different convenience methods are available for generating these annotated boxes, depending on which
+The `NoiseLearner` `run()` method takes a list of circuits or PUBs, whereas the `NoiseLearnerV3` `run()` method takes a list of instructions, each of which must be a twirling-annotated [BoxOp](https://quantum.cloud.ibm.com/docs/api/qiskit/qiskit.circuit.BoxOp) containing ISA operations.
+Convenience methods are available for generating the annotated boxes, depending on which
 primitive you plan to use.
 
 **`NoiseLearner`:**
@@ -124,10 +128,10 @@ learner_job = learner.run(unique_box_instructions)
 
 ### Step 3: Convert the options
 
-Most [`NoiseLearnerOptions`](https://quantum.cloud.ibm.com/docs/en/api/qiskit-ibm-runtime/options-noise-learner-options) fields map directly to [`NoiseLearnerV3Options`](https://quantum.cloud.ibm.com/docs/en/api/qiskit-ibm-runtime/options-models-noise-learner-v3-options), except:
+Most [`NoiseLearnerOptions`](https://quantum.cloud.ibm.com/docs/api/qiskit-ibm-runtime/options-noise-learner-options) fields map directly to [`NoiseLearnerV3Options`](https://quantum.cloud.ibm.com/docs/api/qiskit-ibm-runtime/options-models-noise-learner-v3-options), except the following:
 
-- `max_layers_to_learn`: The number of layers to learn is instead based on the number of layers passed to `NoiseLearnerV3`.
-- `twirling_strategy`: The twirling strategy is defined by how the instructions are boxed and annotated (e.g. when using `generate_boxing_pass_manager()`).
+- `max_layers_to_learn`: With `NoiseLearnerV3`, the number of layers to learn is based on the number of layers passed in.
+- `twirling_strategy`: With `NoiseLearnerV3`, the twirling strategy is defined by how the instructions are boxed and annotated (such as when using `generate_boxing_pass_manager()`).
 
 **`NoiseLearner`:**
 
@@ -175,8 +179,8 @@ learner_job = learner.run(layers[:3])
 
 If you are planning to use Executor for circuit execution, you can pass the `twirling_strategy` option to the [generate_boxing_pass_manager](https://qiskit.github.io/samplomatic/api/auto/samplomatic.transpiler.generate_boxing_pass_manager.html#samplomatic.transpiler.generate_boxing_pass_manager) function.
 
-Note that `generate_boxing_pass_manager()` spells its `twirling_strategy` values with underscores
-(`"active_accum"`, `"active_circuit"`), whereas `NoiseLearnerOptions.twirling_strategy` and use hyphens (`"active-accum"`, `"active-circuit"`).
+Note that with `generate_boxing_pass_manager()`, the `twirling_strategy` values use underscores
+(`"active_accum"`, `"active_circuit"`), whereas `NoiseLearnerOptions.twirling_strategy` values use hyphens (`"active-accum"`, `"active-circuit"`).
 
 ```python
 from qiskit_ibm_runtime.noise_learner_v3 import NoiseLearnerV3
@@ -217,10 +221,10 @@ The outputs of `NoiseLearner` and `NoiseLearnerV3` contain similar information b
 
 | Attribute | NoiseLearner | NoiseLearnerV3 |
 | --- | --- | --- |
-| Result type | [NoiseLearnerResult](https://quantum.cloud.ibm.com/docs/en/api/qiskit-ibm-runtime/results-noise-learner-result#noiselearnerresult) | [NoiseLearnerV3Results](https://quantum.cloud.ibm.com/docs/en/api/qiskit-ibm-runtime/results-noise-learner-v3-results), a sequence-like container of [NoiseLearnerV3Result](https://quantum.cloud.ibm.com/docs/en/api/qiskit-ibm-runtime/results-noise-learner-v3-result) |
+| Result type | [NoiseLearnerResult](https://quantum.cloud.ibm.com/docs/api/qiskit-ibm-runtime/results-noise-learner-result#noiselearnerresult) | [NoiseLearnerV3Results](https://quantum.cloud.ibm.com/docs/api/qiskit-ibm-runtime/results-noise-learner-v3-results), a sequence-like container of [NoiseLearnerV3Result](https://quantum.cloud.ibm.com/docs/api/qiskit-ibm-runtime/results-noise-learner-v3-result) |
 | Number of learned layers | len(learner_result.data) | len(learner_result) |
 | Data for the first layer | layer_error = learner_result.data[0] | noise_map = learner_result[0].to_pauli_lindblad_map() |
-| Result type of each layer | [LayerError](https://quantum.cloud.ibm.com/docs/en/api/qiskit-ibm-runtime/results-layer-error) (`type(layer_error)`) | [PauliLindbladMap](https://quantum.cloud.ibm.com/docs/en/api/qiskit/qiskit.quantum_info.PauliLindbladMap) (`type(noise_map)`) |
+| Result type of each layer | [LayerError](https://quantum.cloud.ibm.com/docs/api/qiskit-ibm-runtime/results-layer-error) (`type(layer_error)`) | [PauliLindbladMap](https://quantum.cloud.ibm.com/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap) (`type(noise_map)`) |
 | Generators for the error channel | layer_error.error.generators | noise_map.generators() |
 | Error rates | layer_error.error.rates | noise_map.rates |
 
@@ -243,11 +247,11 @@ job = estimator.run(pubs)
 
 **`NoiseLearnerV3`, when working with client-side Estimator:**
 
-Reuse the same `estimator` that produced `layers` in step 2 — the noise maps returned by the
-learner are positionally matched to those layers, so they must be assigned to the estimator
+Reuse the same `Estimator` that produced `layers` in step 2. The noise maps returned by the
+learner are positionally matched to those layers, so they must be assigned to the Estimator
 they came from. PEA/PEC was already enabled on it in step 2.
 
-Note that while `NoiseLearnerV3` supports both Pauli-Lindblad and TREX protocols, `Estimator` only accepts noise model for two-qubit layers learned with the Pauli-Lindblad protocol.
+Note that while `NoiseLearnerV3` supports both Pauli-Lindblad and TREX protocols, `Estimator` only accepts noise models for two-qubit layers learned with the Pauli-Lindblad protocol.
 
 ```python
 learner_result = learner_job.result()
@@ -292,7 +296,7 @@ executor_job = executor.run(program)
 
 ## Full examples
 
-### Using NoiseLearnerV3 and client-side Estimator
+### NoiseLearnerV3 and client-side Estimator
 
 ```python
 from qiskit import QuantumCircuit
@@ -341,7 +345,7 @@ job = estimator.run(pubs)
 result = job.result()
 ```
 
-### Using NoiseLearnerV3 and Executor
+### NoiseLearnerV3 and Executor
 
 ```python
 from qiskit import QuantumCircuit

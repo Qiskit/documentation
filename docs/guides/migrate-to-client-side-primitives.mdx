@@ -125,7 +125,7 @@ or your code will fail. Measurement noise learning for TREX is unaffected and co
 
 Similarly, if your code uses `NoiseLearner` and passes the resulting noise model to server-side Estimator, you will need to migrate to `NoiseLearnerV3`. Do NOT use the older `NoiseLearner` which is incompatible with the new Estimator.
 
-All of the noise learning options in the server-side Estimator ([`LayerNoiseLearningOptions`](https://quantum.cloud.ibm.com/docs/en/api/qiskit-ibm-runtime/options-layer-noise-learning-options)) map directly to `NoiseLearnerV3` option ([`NoiseLearnerV3Options`](https://quantum.cloud.ibm.com/docs/en/api/qiskit-ibm-runtime/options-models-noise-learner-v3-options)), with the exception of `max_layers_to_learn`. The number of layers to learn is instead based on the number of layers passed to `NoiseLearnerV3`.
+All of the noise learning options in the server-side Estimator ([`LayerNoiseLearningOptions`](https://quantum.cloud.ibm.com/docs/api/qiskit-ibm-runtime/options-layer-noise-learning-options)) map directly to `NoiseLearnerV3` option ([`NoiseLearnerV3Options`](https://quantum.cloud.ibm.com/docs/api/qiskit-ibm-runtime/options-models-noise-learner-v3-options)), with the exception of `max_layers_to_learn`. The number of layers to learn is instead based on the number of layers passed to `NoiseLearnerV3`.
 
 For example:
 
@@ -229,8 +229,8 @@ with Batch(backend=backend) as batch:
 
 The new implementation maps Sampler/Estimator inputs to Executor inputs, so `job.inputs` returns a dictionary that contains Executor inputs. This dictionary has the following keys:
 
-- `options`: The input [`ExecutorOption`](https://quantum.cloud.ibm.com/docs/en/api/qiskit-ibm-runtime/options-models-executor-options).
-- `quantum_program`: The input [`QuantumProgram`](https://quantum.cloud.ibm.com/docs/en/api/qiskit-ibm-runtime/quantum-program-quantum-program)
+- `options`: The input [`ExecutorOption`](https://quantum.cloud.ibm.com/docs/api/qiskit-ibm-runtime/options-models-executor-options).
+- `quantum_program`: The input [`QuantumProgram`](https://quantum.cloud.ibm.com/docs/api/qiskit-ibm-runtime/quantum-program-quantum-program)
 - `schema_version`: The server-side schema version used.
 
 If your code used `job.inputs['options']` to find options specified for the job, you can now use `job.result().metadata['options']` instead.
@@ -304,6 +304,6 @@ Instead, apply TREX outside of the primitive with the `qiskit-mitigation` librar
 
 [dem]: https://quantum.cloud.ibm.com/docs/guides/directed-execution-model
 [noiselearnerv3]: https://quantum.cloud.ibm.com/docs/guides/noise-learning#noiselearnerv3
-[noiselearnerv3-api]: https://quantum.cloud.ibm.com/docs/en/api/qiskit-ibm-runtime/noise-learner-v3-noise-learner-v3
-[convertisa]: https://quantum.cloud.ibm.com/docs/en/api/qiskit-ibm-runtime/transpiler-passes-convert-isa-to-clifford
+[noiselearnerv3-api]: https://quantum.cloud.ibm.com/docs/api/qiskit-ibm-runtime/noise-learner-v3-noise-learner-v3
+[convertisa]: https://quantum.cloud.ibm.com/docs/api/qiskit-ibm-runtime/transpiler-passes-convert-isa-to-clifford
 [emt]: https://quantum.cloud.ibm.com/docs/guides/error-mitigation-and-suppression-techniques
