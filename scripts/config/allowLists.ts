@@ -25,7 +25,7 @@ export const IMAGE_ALLOWLIST: Set<string> = new Set([]);
 
 const IGNORE_TITLE_MISMATCHES: string[] = [
   "docs/guides/changelog-qiskit-addons.mdx", // ok
-  "docs/guides/changelog-qiskit-code-assistant.mdx", // ok
+  "docs/guides/changelog-qiskit-skills.mdx", // ok
   "docs/guides/changelog-qiskit-functions.mdx", // ok
   "docs/guides/changelog-qiskit-transpiler.mdx", // ok
   "docs/guides/changelog-quantum-compute-service.mdx", // ok
