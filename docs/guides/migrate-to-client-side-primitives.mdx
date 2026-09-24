@@ -82,7 +82,7 @@ from qiskit_ibm_runtime.options_models import SamplerOptions, EstimatorOptions
 | Change | Migration action |
 | ------ | ---------------- |
 | The underlying primitive is now Executor. Both the IBM Quantum Platform UI and `job.primitive_id` will show `executor` instead of `estimator`. | Update any code that references `job.primitive_id`. |
-| The new implementation maps Estimator inputs to Executor inputs, so `job.inputs` returns Executor inputs. |Update any code that references `job.inputs`. See [Job inputs](#job-inputs). |
+| The new implementation maps Estimator inputs to Executor inputs, so `job.inputs` returns Executor inputs. |Update any code that references `job.inputs`. See [Job inputs](#job-inputs-structure). |
 | More pre- and post-processing happens on the client side, so `estimator.run()` and `job.result()` may take longer than before. | Enable INFO logging to follow the progress of client-side processing. See [Enable INFO logging](#enable-info-logging). |
 | Circuit metadata is copied into result metadata. The data types allowed in result metadata are now limited to `str`, `float`, `int`, `bool`, and lists/dictionaries of those types. | If you need other data types, encode them as a string first (for example, with base64). |
 | Options classes (`options_models.EstimatorOptions`, etc) are now Pydantic models instead of dataclasses, so they can no longer be converted to Python dictionaries using `asdict()`. | Use `options.model_dump()` instead. |
