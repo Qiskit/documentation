@@ -83,7 +83,7 @@ python_api_name: qiskit_fermions.transpiler.passes.RelabelModes
 
   **Parameters**
 
-  *   **permutation** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*] | None*) – the index permutation used to relabel the fermionic mode indices. When this is `None`, a permutation will be determined automatically based on [`build_excitation_span_minimization_model()`](mappers-optimization-build-excitation-span-minimization-model "qiskit_fermions.mappers.optimization.build_excitation_span_minimization_model"). See also [`permutation`](#qiskit_fermions.transpiler.passes.RelabelModes.permutation "qiskit_fermions.transpiler.passes.RelabelModes.permutation") for more details.
+  *   **permutation** ([*list*](https://docs.python.org/3/builtins/stdtypes.html#list)*\[*[*int*](https://docs.python.org/3/builtins/functions.html#int)*] | None*) – the index permutation used to relabel the fermionic mode indices. When this is `None`, a permutation will be determined automatically based on [`build_excitation_span_minimization_model()`](mappers-optimization-build-excitation-span-minimization-model "qiskit_fermions.mappers.optimization.build_excitation_span_minimization_model"). See also [`permutation`](#qiskit_fermions.transpiler.passes.RelabelModes.permutation "qiskit_fermions.transpiler.passes.RelabelModes.permutation") for more details.
   *   **solver** (*pyomo.opt.SolverFactory | None*) – the optimization problem solver instance used to solve the [`build_excitation_span_minimization_model()`](mappers-optimization-build-excitation-span-minimization-model "qiskit_fermions.mappers.optimization.build_excitation_span_minimization_model") problem. When this is `None`, no `permutation` can be determined automatically. See also [`solver`](#qiskit_fermions.transpiler.passes.RelabelModes.solver "qiskit_fermions.transpiler.passes.RelabelModes.solver") for more details.
   *   **kwargs** – any additional keyword arguments will be forward to [`build_excitation_span_minimization_model()`](mappers-optimization-build-excitation-span-minimization-model "qiskit_fermions.mappers.optimization.build_excitation_span_minimization_model").
 
@@ -136,11 +136,11 @@ python_api_name: qiskit_fermions.transpiler.passes.RelabelModes
 
     **Raises**
 
-    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError) – when encountering an [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") gate containing an operator that is not a [`FermionOperator`](operators-fermion-operator "qiskit_fermions.operators.FermionOperator") instance.
+    [**NotImplementedError**](https://docs.python.org/3/builtins/exceptions.html#NotImplementedError) – when encountering an [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") gate containing an operator that is not a [`FermionOperator`](operators-fermion-operator "qiskit_fermions.operators.FermionOperator") instance.
 
     **Return type**
 
-    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[list](https://docs.python.org/3/library/stdtypes.html#list)\[[int](https://docs.python.org/3/library/functions.html#int)] | None, [pyomo.opt.results.results\_.SolverResults](https://pyomo.readthedocs.io/en/stable/api/pyomo.opt.results.results_.SolverResults.html#pyomo.opt.results.results_.SolverResults "(in Pyomo v6.10.1)") | None]
+    [tuple](https://docs.python.org/3/builtins/stdtypes.html#tuple)\[[list](https://docs.python.org/3/builtins/stdtypes.html#list)\[[int](https://docs.python.org/3/builtins/functions.html#int)] | None, [pyomo.opt.results.results\_.SolverResults](https://pyomo.readthedocs.io/en/stable/api/pyomo.opt.results.results_.SolverResults.html#pyomo.opt.results.results_.SolverResults "(in Pyomo v6.10.1)") | None]
   </Function>
 
   ### run
@@ -158,7 +158,7 @@ python_api_name: qiskit_fermions.transpiler.passes.RelabelModes
 
     **Raises**
 
-    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError) – when the provided input circuit has more than a single register.
+    [**NotImplementedError**](https://docs.python.org/3/builtins/exceptions.html#NotImplementedError) – when the provided input circuit has more than a single register.
 
     **Return type**
 
@@ -176,7 +176,7 @@ python_api_name: qiskit_fermions.transpiler.passes.RelabelModes
 
     *   **passmanager\_ir** (*IR*) – Qiskit IR to optimize.
     *   **state** ([*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)) – State associated with workflow execution by the pass manager itself.
-    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[*[*Task*](/docs/api/qiskit/qiskit.passmanager.Task)*, IR\_OUT,* [*PropertySet*](/docs/api/qiskit/qiskit.passmanager.PropertySet)*,* [*float*](https://docs.python.org/3/library/functions.html#float)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*], None] | None*) – A callback function which is called per execution of optimization task.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[*[*Task*](/docs/api/qiskit/qiskit.passmanager.Task)*, IR\_OUT,* [*PropertySet*](/docs/api/qiskit/qiskit.passmanager.PropertySet)*,* [*float*](https://docs.python.org/3/builtins/functions.html#float)*,* [*int*](https://docs.python.org/3/builtins/functions.html#int)*], None] | None*) – A callback function which is called per execution of optimization task.
 
     **Returns**
 
@@ -184,7 +184,7 @@ python_api_name: qiskit_fermions.transpiler.passes.RelabelModes
 
     **Return type**
 
-    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[*IR\_OUT*, [*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)]
+    [tuple](https://docs.python.org/3/builtins/stdtypes.html#tuple)\[*IR\_OUT*, [*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)]
   </Function>
 
   ### name
@@ -194,7 +194,7 @@ python_api_name: qiskit_fermions.transpiler.passes.RelabelModes
 
     **Return type**
 
-    [str](https://docs.python.org/3/library/stdtypes.html#str)
+    [str](https://docs.python.org/3/builtins/stdtypes.html#str)
   </Function>
 
   ### update\_status
