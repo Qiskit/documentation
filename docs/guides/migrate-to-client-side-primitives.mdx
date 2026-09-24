@@ -96,7 +96,7 @@ from qiskit_ibm_runtime.options_models import SamplerOptions, EstimatorOptions
 | Some input validation has moved to the server side and now raises `RuntimeError` instead of `IBMInputValueError`. | Update the exception types your code catches. |
 | No more implicit noise learning for PEA and PEC. Measurement noise learning for TREX is still supported. | Learn the noise models separately and pass them to Estimator. See [Perform explicit noise learning for PEA and PEC](#perform-explicit-noise-learning-for-pea-and-pec). |
 | The input type of `ResilienceOptions.layer_noise_model` is different and can be constructed from `NoiseLearnerV3` results. | See [Perform explicit noise learning for PEA and PEC](#perform-explicit-noise-learning-for-pea-and-pec) on how to learn the noise models using `NoiseLearnerV3` and pass them to Estimator. |
-| `MeasureNoiseLearningOptions.shots_per_randomization` is no longer supported. | A single shot value is used for all circuits in the job, including measurement noise-learning circuits. If you must use a different shot value, apply TREX with `qiskit-mitigation` outside Estimator. See [Use qiskit-mitigation to apply TREX](#use-qiskit-mitigation-to-apply-trex). |
+| `MeasureNoiseLearningOptions.shots_per_randomization` is no longer supported. | A single shot value is used for all circuits in the job, including measurement noise-learning circuits. If you must use a different shot value, apply TREX with `qiskit-mitigation` outside Estimator.|
 | Mixed precision values in a single job are no longer supported. | Submit a separate job for each desired precision. See [Job splitting](#job-splitting) for considerations. |
 | The `seed_estimator` option is no longer supported. | Remove any `options.seed_estimator` assignment (setting it raises a `ValidationError`). There is no client-side equivalent, so results are no longer reproducible through this seed. |
 
@@ -256,8 +256,9 @@ used as documented.
 A fake backend uses a statevector/noisy simulator, whose cost grows exponentially with
 qubit count and depth — a realistic workload circuit can hang or exhaust memory. Since
 local testing only needs to exercise the option paths (not reproduce physical results),
-reduce the circuit to a Clifford one first with [`ConvertISAToClifford`][convertisa], which
-rounds each `RZ`/`RZZ`/`RX` angle to the nearest multiple of π/2. Clifford circuits
+reduce the circuit to a Clifford one first with
+[`ConvertISAToClifford`](https://quantum.cloud.ibm.com/docs/api/qiskit-ibm-runtime/transpiler-passes-convert-isa-to-clifford),
+which rounds each `RZ`/`RZZ`/`RX` angle to the nearest multiple of π/2. Clifford circuits
 simulate efficiently (stabilizer simulation) regardless of size.
 
 ```python
@@ -281,15 +282,6 @@ to account for when constructing the local PUB:
   carries a parameter-values array fails coercion. For the local run, drop the parameter
   array from the PUB; the hardware run keeps the original parametric circuit and its values.
 
-## Use qiskit-mitigation to apply TREX
-
-If your workflow requires a **different** shot value for measurement noise learning than
-for the main experiment, you can no longer express that through Estimator's options.
-Instead, apply TREX outside of the primitive with the `qiskit-mitigation` library.
-
-> **Note:** `qiskit-mitigation` has not been released yet. This section will be filled in
-> with a concrete example once it is available.
-
 ## References
 
 - [Directed execution model][dem]
@@ -299,11 +291,9 @@ Instead, apply TREX outside of the primitive with the `qiskit-mitigation` librar
 - [Specify Sampler options](https://quantum.cloud.ibm.com/docs/guides/sampler-options)
 - [Noise learning helper (NoiseLearnerV3)][noiselearnerv3]
 - [NoiseLearnerV3 API reference][noiselearnerv3-api]
-- [ConvertISAToClifford transpiler pass][convertisa]
-- [Error mitigation and suppression techniques][emt]
+- [ConvertISAToClifford transpiler pass](https://quantum.cloud.ibm.com/docs/api/qiskit-ibm-runtime/transpiler-passes-convert-isa-to-clifford)
+- [Error mitigation and suppression techniques](https://quantum.cloud.ibm.com/docs/guides/error-mitigation-and-suppression-techniques)
 
 [dem]: https://quantum.cloud.ibm.com/docs/guides/directed-execution-model
 [noiselearnerv3]: https://quantum.cloud.ibm.com/docs/guides/noise-learning#noiselearnerv3
 [noiselearnerv3-api]: https://quantum.cloud.ibm.com/docs/api/qiskit-ibm-runtime/noise-learner-v3-noise-learner-v3
-[convertisa]: https://quantum.cloud.ibm.com/docs/api/qiskit-ibm-runtime/transpiler-passes-convert-isa-to-clifford
-[emt]: https://quantum.cloud.ibm.com/docs/guides/error-mitigation-and-suppression-techniques
