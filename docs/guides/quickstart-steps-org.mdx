@@ -13,7 +13,7 @@ Follow these steps to set up IBM Quantum Platform.
 
 First, configure the following settings in the administrator's IAM account. To review and configure these settings, go to [Manage → IAM → Settings](https://cloud.ibm.com/iam/settings).
 
-* **User list visibility** determines whether users can see each other, regardless of project assignment. The `enabled` setting restricts user visibility. That is, users in your account cannot see each other, even if they can access the same resources. Choose the appropriate value for your environment. See [Controlling user visibility](https://cloud.ibm.com/docs/account?topic=account-iam-user-setting) for more information.
+* **User list visibility** determines whether users can see each other, regardless of instance assignment. The `enabled` setting restricts user visibility. That is, users in your account cannot see each other, even if they can access the same resources. Choose the appropriate value for your environment. See [Controlling user visibility](https://cloud.ibm.com/docs/account?topic=account-iam-user-setting) for more information.
 * **API key creation** controls whether users can create API keys. In IBM Quantum Platform, it is common to use API keys. If API keys are being used, choose `disabled`. Alternatively, you can give specific permissions to each user.
 
 <span id="crt-rsc-grp-org"></span>
@@ -34,10 +34,10 @@ If you already created IBM Quantum service instances, skip this step.
 Follow the steps in [Set up to use IBM Cloud](/docs/guides/cloud-setup#cloud) for instructions.
 
 <span id="create-group-org"></span>
-## 4. Create access groups for projects
+## 4. Create access groups for instances
 
 First, [create a custom role](/docs/guides/custom-roles#custom) that allows users to perform actions to work with IBM Quantum service instances.
-Next, [create an access group](/docs/guides/access-groups) for each project and give that group the minimum set of permissions that are required to work with the project resources.
+Next, [create an access group](/docs/guides/access-groups) for each instance and give that group the minimum set of permissions that are required to work with the instance's resources.
 
 <span id="setup-idp-org"></span>
 ## 5. Set up your ID provider and assign users

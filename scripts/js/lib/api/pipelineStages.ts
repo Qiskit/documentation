@@ -148,12 +148,34 @@ export async function postProcess(
 
 function rewriteApiDocsLinks(results: HtmlToMdResultWithUrl[], pkg: Pkg) {
   const apiBase = pkg.apiOutputDir(DOCS_BASE_PATH);
+  // For C API packages, stubs/pydoc links point to the companion Python package.
+  const pythonSiblingPkg = pkg.isCApi() ? pkg.artifactPackageName : pkg.name;
+  const pythonApiBase = apiBase.replace(pkg.name, pythonSiblingPkg);
   const githubIo = `https://qiskit.github.io/${pkg.name}`;
   for (const result of results) {
     result.markdown = result.markdown
       .replace(
-        /\]\((?:\.\.\/)*?(apidocs|apidoc|stubs)\/([^)]+)\)/g,
-        `](${apiBase}/$2)`,
+        /\]\((?:\.\.\/)*?(apidocs|apidoc|stubs|pydoc)\/([^)#]+)(#[^)]+)?\)/g,
+        (_, _folder, page, anchor) => {
+          // Only kebab-case the page name when the target package uses kebab-case
+          // URLs. For C packages the sibling is the Python companion; for Python
+          // packages the sibling is the package itself.
+          const targetPkg = pkg.isCApi() ? pythonSiblingPkg : pkg.name;
+          const targetUsesKebab =
+            pkg.kebabCaseAndShortenUrls && targetPkg !== "qiskit";
+          // `page` may include a nested folder, e.g. `generated/qiskit_pkg.Foo`.
+          // Kebab-case only the final segment so folder separators survive —
+          // kebabCase() itself would otherwise turn `generated/foo` into
+          // `generated-foo`.
+          const pageParts = page.split("/");
+          const kebabPage = targetUsesKebab
+            ? [
+                ...pageParts.slice(0, -1),
+                kebabCaseAndShortenPage(pageParts.at(-1)!, targetPkg),
+              ].join("/")
+            : page;
+          return `](${pythonApiBase}/${kebabPage}${anchor ?? ""})`;
+        },
       )
       // Release notes live under the API pipeline's output, even when
       // referenced from addon guides/tutorials. Catches relative
@@ -164,6 +186,25 @@ function rewriteApiDocsLinks(results: HtmlToMdResultWithUrl[], pkg: Pkg) {
           "g",
         ),
         `](${apiBase}/release-notes$1)`,
+      )
+      // Addon API reference pages link back to guides with paths relative to
+      // the sphinx source tree (e.g. `../../guides/formalism#anchor`).
+      // Rewrite these to the guide's absolute path under docs/addons.
+      // For C API packages the guides live under the companion Python package
+      // (`qiskit-fermions-c` → `docs/addons/qiskit-fermions/guides/…`), so use
+      // the Python sibling rather than `pkg.name`.
+      .replace(
+        /\]\((?:\.\.\/)*guides\/([^)#]+)(#[^)]+)?\)/g,
+        (match, page, anchor) => {
+          if (!pkg.isAddon()) return match;
+          // The guide pages on disk use kebab-case slugs (the addon TOC's
+          // hrefToSlug kebab-cases them too), so a source name like
+          // `1d_fermi_hubbard` must become `1-d-fermi-hubbard` to resolve.
+          const slug = pkg.kebabCaseAndShortenUrls
+            ? kebabCaseAndShortenPage(page, pythonSiblingPkg)
+            : page;
+          return `](${DOCS_BASE_PATH}/addons/${pythonSiblingPkg}/guides/${slug}${anchor ?? ""})`;
+        },
       );
   }
 }

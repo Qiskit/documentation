@@ -57,6 +57,8 @@ export class Pkg {
   readonly kebabCaseAndShortenUrls: boolean;
   readonly artifactPackageName: string;
   readonly hasRootNamespaceFile: boolean;
+  /** Whether this addon has a dedicated docs page at /docs/addons/{name}. */
+  readonly hasAddonDocs: boolean;
   /** Slugs of docs/tutorials/ notebooks to surface under this addon's tutorials route. */
 
   static ADDON_NAMES = [
@@ -68,8 +70,12 @@ export class Pkg {
     "qiskit-addon-utils",
     "qiskit-addon-paulice",
     "qiskit-addon-pna",
+    "qiskit-fermions",
+    "qiskit-fermions-c",
     "pauli-prop",
     "qiskit-addon-slc",
+    "qiskit-noise-learning",
+    "qiskit-mitigation",
   ];
 
   static VALID_NAMES = [
@@ -93,6 +99,7 @@ export class Pkg {
     kebabCaseAndShortenUrls: boolean;
     artifactPackageName?: string;
     hasRootNamespaceFile?: boolean;
+    hasAddonDocs?: boolean;
   }) {
     this.name = kwargs.name;
     this.title = kwargs.title;
@@ -107,6 +114,7 @@ export class Pkg {
     this.kebabCaseAndShortenUrls = kwargs.kebabCaseAndShortenUrls;
     this.artifactPackageName = kwargs.artifactPackageName ?? this.name;
     this.hasRootNamespaceFile = kwargs.hasRootNamespaceFile ?? false;
+    this.hasAddonDocs = kwargs.hasAddonDocs ?? false;
   }
 
   static async fromArgs(
@@ -180,6 +188,17 @@ export class Pkg {
         githubSlug: "Qiskit/qiskit-addon-obp",
         kebabCaseAndShortenUrls: true,
         language: "Python",
+        hasAddonDocs: true,
+      });
+    }
+    if (name === "qiskit-mitigation") {
+      return new Pkg({
+        ...args,
+        title: "Qiskit mitigation",
+        githubSlug: "Qiskit/qiskit-mitigation",
+        kebabCaseAndShortenUrls: true,
+        language: "Python",
+        hasAddonDocs: true,
       });
     }
     if (name === "qiskit-addon-mpf") {
@@ -199,6 +218,7 @@ export class Pkg {
         githubSlug: "Qiskit/qiskit-addon-sqd",
         kebabCaseAndShortenUrls: true,
         language: "Python",
+        hasAddonDocs: true,
       });
     }
     if (name === "qiskit-addon-cutting") {
@@ -217,6 +237,30 @@ export class Pkg {
         githubSlug: "Qiskit/qiskit-addon-paulice",
         kebabCaseAndShortenUrls: true,
         language: "Python",
+        hasAddonDocs: true,
+      });
+    }
+    if (name === "qiskit-fermions") {
+      return new Pkg({
+        ...args,
+        title: "Qiskit Fermions",
+        githubSlug: "Qiskit/qiskit-fermions",
+        kebabCaseAndShortenUrls: true,
+        language: "Python",
+      });
+    }
+    if (name === "qiskit-fermions-c") {
+      return new Pkg({
+        ...args,
+        title: "Qiskit Fermions",
+        githubSlug: "Qiskit/qiskit-fermions",
+        kebabCaseAndShortenUrls: true,
+        language: "C",
+        releaseNotesConfig: new ReleaseNotesConfig({
+          enabled: true,
+          linkToPackage: "qiskit-fermions",
+        }),
+        artifactPackageName: "qiskit-fermions",
       });
     }
     if (name === "qiskit-addon-pna") {
@@ -226,6 +270,7 @@ export class Pkg {
         githubSlug: "Qiskit/qiskit-addon-pna",
         kebabCaseAndShortenUrls: true,
         language: "Python",
+        hasAddonDocs: true,
       });
     }
     if (name === "pauli-prop") {
@@ -235,6 +280,7 @@ export class Pkg {
         githubSlug: "Qiskit/pauli-prop",
         kebabCaseAndShortenUrls: true,
         language: "Python",
+        hasAddonDocs: true,
       });
     }
     if (name === "qiskit-addon-slc") {
@@ -244,6 +290,7 @@ export class Pkg {
         githubSlug: "Qiskit/qiskit-addon-slc",
         kebabCaseAndShortenUrls: true,
         language: "Python",
+        hasAddonDocs: true,
       });
     }
     if (name === "qiskit-addon-utils") {
@@ -251,6 +298,15 @@ export class Pkg {
         ...args,
         title: "Qiskit addon utilities",
         githubSlug: "Qiskit/qiskit-addon-utils",
+        kebabCaseAndShortenUrls: true,
+        language: "Python",
+      });
+    }
+    if (name === "qiskit-noise-learning") {
+      return new Pkg({
+        ...args,
+        title: "Qiskit noise learning",
+        githubSlug: "Qiskit/qiskit-noise-learning",
         kebabCaseAndShortenUrls: true,
         language: "Python",
       });

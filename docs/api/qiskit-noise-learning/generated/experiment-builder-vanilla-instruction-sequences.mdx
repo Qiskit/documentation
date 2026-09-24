@@ -1,0 +1,58 @@
+---
+title: VanillaInstructionSequences (latest version)
+description: API reference for qiskit_noise_learning.experiment_builder.VanillaInstructionSequences in the latest version of qiskit-noise-learning
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_noise_learning.experiment_builder.VanillaInstructionSequences
+---
+
+<span id="qiskit-noise-learning-experiment-builder-vanillainstructionsequences" />
+
+# qiskit\_noise\_learning.experiment\_builder.VanillaInstructionSequences
+
+<Class id="qiskit_noise_learning.experiment_builder.VanillaInstructionSequences" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/experiment_builder/stages/sequence_generators/vanilla_instruction_sequences.py" signature="qiskit_noise_learning.experiment_builder.VanillaInstructionSequences(*, prep_gate: ModelGate | None = None, meas_gate: ModelGate | None = None, gates: list[ModelGate] | None = None, coupling_map: CouplingMap | None = None, randomization_multiplier: int = 1)" modifiers="class">
+  Bases: [`AddInstructionSequences`](experiment-builder-add-instruction-sequences "qiskit_noise_learning.experiment_builder.stages.sequence_generators.add_instruction_sequences.AddInstructionSequences")
+
+  Generate vanilla instruction sequences for each target gate.
+
+  For each gate, generates 9 instruction sequences sufficient to measure any single- and two-qubit Pauli fidelity on a triangle-free coupling map.
+
+  **Parameters**
+
+  *   **prep\_gate** – The preparation gate. If `None`, defaults to the gate named `"P"`.
+  *   **meas\_gate** – The measurement gate. If `None`, defaults to the gate named `"M"`.
+  *   **gates** – Gates to generate sequences for. If `None`, defaults to all non-SPAM gates.
+  *   **coupling\_map** – The coupling map. If `None`, defaults to the gate set’s coupling map.
+  *   **randomization\_multiplier** – Randomization multiplier applied to all generated sequences.
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit_noise_learning.experiment_builder.VanillaInstructionSequences.__init__" signature="__init__(*, prep_gate: ModelGate | None = None, meas_gate: ModelGate | None = None, gates: list[ModelGate] | None = None, coupling_map: CouplingMap | None = None, randomization_multiplier: int = 1)" />
+
+  ## Methods
+
+  |                                                                                                                                                                                                                         |                                                  |
+  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
+  | [`__init__`](#qiskit_noise_learning.experiment_builder.VanillaInstructionSequences.__init__ "qiskit_noise_learning.experiment_builder.VanillaInstructionSequences.__init__")(\*\[, prep\_gate, meas\_gate, gates, ...]) |                                                  |
+  | `run`(experiment)                                                                                                                                                                                                       | Validate required fields, then apply this stage. |
+
+  ## Attributes
+
+  |                                                                                                                                                                                                   |                              |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------- |
+  | `populates_fields`                                                                                                                                                                                |                              |
+  | [`required_fields`](#qiskit_noise_learning.experiment_builder.VanillaInstructionSequences.required_fields "qiskit_noise_learning.experiment_builder.VanillaInstructionSequences.required_fields") | Built-in immutable sequence. |
+
+  ### required\_fields
+
+  <Attribute id="qiskit_noise_learning.experiment_builder.VanillaInstructionSequences.required_fields">
+    Type: [`tuple`](https://docs.python.org/3/library/stdtypes.html#tuple)\[[`str`](https://docs.python.org/3/library/stdtypes.html#str), ...]
+
+    Built-in immutable sequence.
+
+    If no argument is given, the constructor returns an empty tuple. If iterable is specified the tuple is initialized from iterable’s items.
+
+    If the argument is a tuple, the return value is the same object.
+  </Attribute>
+</Class>
+

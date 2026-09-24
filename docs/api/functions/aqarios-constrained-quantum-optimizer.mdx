@@ -1,0 +1,241 @@
+---
+title: "Aqarios Constrained Quantum Optimizer API reference"
+description: "API reference for the Aqarios Constrained Quantum Optimizer Qiskit Function, including inputs, outputs, and configuration options"
+---
+
+# Aqarios Constrained Quantum Optimizer API reference
+
+{/* cspell:ignore Aqarios QOBLIB */}
+
+<CardGroup>
+    <Card
+      title="Qiskit Functions"
+      description="Qiskit Functions &mdash; pre-built tools created by partner organizations &mdash; abstract away parts of the software development workflow to simplify and accelerate utility-scale algorithm discovery and application development. Click to view the guide for this Qiskit Function."
+      href="/docs/guides/aqarios-constrained-quantum-optimizer"
+      analyticsName="Functions API: aqarios-constrained-quantum-optimizer"
+      linkText="Aqarios Constrained Quantum Optimizer guide"
+    />
+</CardGroup>
+
+The Aqarios Constrained Quantum Optimizer solves constrained binary optimization problems on IBM Quantum&reg; hardware. It accepts problems in LP, MPS, or Luna Model format and internally handles all reformulation, circuit synthesis, transpilation, and iterative warm-starting by using fixed-angle QAOA with XY-mixers.
+
+The function is loaded and invoked as follows:
+
+```python
+optimizer = catalog.load("aqarios/constrained-quantum-optimizer")
+job = optimizer.run(model=lp_str, backend_name="ibm_phoenix")
+result = job.result()
+```
+
+<Admonition type="note" title="Preview release">
+  The Aqarios Constrained Quantum Optimizer is available only to IBM Quantum&reg; Premium Plan, Flex Plan, and On-Prem Plan users. It is in preview release status and subject to change.
+</Admonition>
+
+## Inputs
+
+See the following list for all input parameters this API accepts. Required parameters must be provided on every call; all others are optional.
+
+### `model`
+
+<Attribute attributeTypeHint="str">
+The serialized optimization model to solve. Three formats are supported:
+
+- **LP** (`*.lp`): Standard LP file format exported as a string, for example via DOcplex's `export_as_lp_string()`
+- **MPS** (`*.mps`): Standard MPS file format exported as a string, for example via DOcplex's `export_as_mps_string()`
+- **Luna Model**: Base64-encoded serialization of an Aqarios Luna Model object, obtained via `model.encode_b64()`
+
+The model must represent a binary optimization problem, either as a maximization or minimization. Constraints can be inequalities or equalities over binary variables. Integer variables are only supported when clear upper and lower bounds are specified. The objective and constraints can be higher order and do not need to be linear only.
+
+- Required: Yes
+- Example LP:
+```
+\Problem name: MIS
+Minimize
+  obj: ...
+Subject To
+  c1: ...
+  ...
+Binaries
+  x_0 x_1
+End
+```
+</Attribute>
+
+### `backend_name`
+
+<Attribute attributeTypeHint="str or None" attributeValue="None">
+The name of the IBM Quantum backend to run on (for example `"ibm_phoenix"`). When set to `None`, the function automatically selects the least-busy available device.
+
+- Required: No
+- Example: `"ibm_phoenix"`
+</Attribute>
+
+### `options`
+
+<Attribute attributeTypeHint="dict or None" attributeValue="None">
+Algorithm configuration options controlling the behavior of the iterative warm-starting QAOA. Options are specified as a dictionary. See the [options list](#options-list) below for all available keys and their default values.
+
+- Required: No
+- Example: `{"reps": 2, "num_parallel": 10, "postprocessing": "weak"}`
+</Attribute>
+
+<span id="options-list"></span>
+#### Options list
+
+##### `reps`
+
+<Attribute attributeTypeHint="int" attributeValue="1">
+Number of QAOA layer repetitions (circuit depth parameter $p$). Higher values increase solution quality at the cost of deeper circuits and longer execution time, which can inflict more noise.
+
+- Choices: Integer in range `[1, 10]`
+</Attribute>
+
+##### `num_parallel`
+
+<Attribute attributeTypeHint="int" attributeValue="5">
+Number of independent warm-start chains run in parallel. Increasing this value improves the probability of finding high-quality solutions but raises the total shot budget consumed.
+
+- Choices: Integer in range `[1, 100]`
+</Attribute>
+
+##### `shots`
+
+<Attribute attributeTypeHint="int" attributeValue="500">
+Number of measurement shots per iteration per chain.
+
+- Choices: Integer in range `[1, 10000]`
+</Attribute>
+
+##### `total_shots`
+
+<Attribute attributeTypeHint="int" attributeValue="5000">
+Total shot budget across all iterations for a single warm-start chain. The iteration loop terminates for a chain once this budget is exhausted.
+
+- Choices: Integer in range `[1, 1000000]`
+</Attribute>
+
+##### `epsilon`
+
+<Attribute attributeTypeHint="float" attributeValue="0.1">
+Regularization parameter for the warm-start probabilities. Prevents the probability distribution from collapsing to a deterministic state, preserving exploration across iterations.
+
+- Choices: Float in range `(0.01, 1)`
+</Attribute>
+
+##### `beta`
+
+<Attribute attributeTypeHint="float" attributeValue="10">
+Inverse temperature for the Boltzmann weighting used to derive new warm-start states from measurement samples. Higher values concentrate probability mass on lower-energy samples.
+
+- Choices: Float satisfying `beta > 0`
+</Attribute>
+
+##### `approximation_degree`
+
+<Attribute attributeTypeHint="float" attributeValue="1.0">
+Controls the approximation level applied to the cost function and during transpilation. Lower values reduce circuit depth by introducing approximations, which can affect solution quality.
+
+- Choices: Float in range `[0.0, 1.0]`
+</Attribute>
+
+##### `postprocessing`
+
+<Attribute attributeTypeHint="str" attributeValue='"strong"'>
+Classical postprocessing strategy applied after each sampling step to improve solution quality. Stronger levels apply more aggressive local search at the cost of additional classical compute time.
+
+
+- Choices: `"off"` / `"weak"` / `"medium"` / `"strong"`
+  * `"off"`: Disable postprocessing.
+  * `"weak"`: Single-pass local search. Try to flip every bit once in random order and keep flips that reduce energy.
+  * `"medium"`: Three-pass local search. Apply the weak strategy three times with different random orders.
+  * `"strong"`: Greedy local search. Repeatedly apply the bit-flip that reduces energy the most until no further improvement is possible.
+</Attribute>
+
+##### `penalty_override`
+
+<Attribute attributeTypeHint="float or None" attributeValue="None">
+Manually overrides the penalty value used when converting constraints into penalty terms added to the objective. By default, the penalty is derived automatically from the problem structure. Use this option only if the automatic value produces infeasible results.
+
+- Choices: Float satisfying `penalty_override > 0`, or `None` to use the automatic value
+</Attribute>
+
+##### `use_session`
+
+<Attribute attributeTypeHint="bool" attributeValue="False">
+Whether to use IBM Quantum Compute Service [session mode](/docs/guides/execution-modes#session-mode) for job execution. Enabling sessions reduces circuit execution overhead by keeping a dedicated connection to the QPU open across iterations, which can lower overall wall-clock time.
+
+- Choices: `True` / `False`
+</Attribute>
+
+## Outputs
+
+The output of this API is a dictionary returned by `job.result()`, containing the best solutions found and associated metadata.
+
+<Attribute attributeTypeHint="dict[str, Any]">
+Result dictionary with solution assignments, objective value, feasibility status, and runtime metadata.
+- Example: `{"solutions": [{"x_0": 1, "x_1": 0}], "obj_value": 42.0, "feasible": True, "metadata": {...}}`
+</Attribute>
+
+### Output structure
+
+<LeftColoredBar color="blue">
+    `solutions`
+        <Attribute attributeTypeHint="list[dict[str, int]]">
+        A list of the best solutions found. Each entry is a dictionary mapping variable names (for example, `"x_0"`) to their binary assignments (`0` or `1`). The list contains more than one entry only when multiple degenerate optima have been identified.
+        - Example: `[{"x_0": 1, "x_1": 0, "x_2": 1}]`
+        </Attribute>
+
+    `obj_value`
+        <Attribute attributeTypeHint="float">
+        The objective value of the best solution found, expressed in terms of the original problem. For maximization problems this value is larger for better solutions; for minimization problems it is smaller.
+        - Example: `42.0`
+        </Attribute>
+
+    `raw_energy`
+        <Attribute attributeTypeHint="float">
+        The raw QAOA energy of the best solution, always expressed as a minimization value. This includes any penalty terms added during problem reformulation and is useful for diagnosing constraint violations.
+        - Example: `-38.5`
+        </Attribute>
+
+    `feasible`
+        <Attribute attributeTypeHint="bool">
+        Whether the returned solutions satisfy all constraints of the original input model. A result can be infeasible if the penalty values are insufficient to enforce all constraints on the hardware.
+        - Example: `True`
+        </Attribute>
+
+    `metadata`
+        <LeftColoredBar color="purple">
+            `resource_usage`
+                <Attribute attributeTypeHint="dict">
+                Quantum and classical resource consumption broken down by phase of the algorithm (mapping, hardware optimization, QPU execution, post-processing).
+                - Example: 
+```python
+{'RUNNING: MAPPING': {'CPU': 4.57},
+ 'RUNNING: OPTIMIZING_FOR_HARDWARE': {'CPU': 0.177},
+ 'RUNNING: WAITING_FOR_QPU': {'CPU': 9.238},
+ 'RUNNING: EXECUTING_QPU': {'QPU': 30},
+ 'RUNNING: POST_PROCESSING': {'CPU': 0.093}}
+```
+                </Attribute>
+
+            `circuit_metrics`
+                <Attribute attributeTypeHint="dict">
+                Average gate counts and circuit depths over all circuits submitted to the device during the optimization run.
+                - Example: `{"depth": 48, "gate_count": 312, "num_qubits": 20}`
+                </Attribute>
+        </LeftColoredBar>
+</LeftColoredBar>
+
+## Error handling
+
+| Code | Description |
+| --- | --- |
+| `4710` | The input model is not supported. The model contains unbounded integer or continuous variables. |
+| `4711` | The input string cannot be parsed into a model. Verify that the input is a valid LP, MPS, or Luna Model string. |
+| `4712` | The model was solved to optimality during preprocessing and no quantum computation was performed. The result is still returned. |
+| `4719` | Unexpected internal function error. Contact support@aqarios.com with your job ID. |
+
+<Admonition type="caution" title="Common error conditions">
+- **Invalid model format**: If the `model` string cannot be parsed as a valid LP, MPS, or Luna Model, the job fails with error code `4711`.
+- **Option validation errors**: Option keys or values outside the documented ranges cause the job to fail immediately with error code `1221`.
+</Admonition>

@@ -1,0 +1,138 @@
+---
+title: UCC (latest version)
+description: API reference for qiskit_fermions.circuit.library.UCC in the latest version of qiskit-fermions
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_fermions.circuit.library.UCC
+---
+
+# UCC
+
+<Class id="qiskit_fermions.circuit.library.UCC" isDedicatedPage={true} signature="UCC(uccsd_op)" modifiers="class">
+  Bases: [`FermionicGate`](circuit-fermionic-gate "qiskit_fermions.circuit.fermionic_gate.FermionicGate")
+
+  Implements the unitary coupled-cluster singles and doubles (UCCSD) ansatz.
+
+  A unitary coupled-cluster operator has the form
+
+$$
+e^{T - T^\dagger}, \qquad
+T = \sum_{ia} t^a_i\, a^\dagger_a a_i
++ \sum_{ijab} t^{ab}_{ij}\, a^\dagger_a a^\dagger_b a_j a_i,
+$$
+
+  with $i, j$ occupied and $a, b$ virtual orbitals, and the amplitudes $t_1 = t^a_i$ and $t_2 = t^{ab}_{ij}$ supplied by the operator this gate wraps.
+
+  The operator itself is built by [ffsim](https://qiskit-community.github.io/ffsim/), and this gate turns it into a [`FermionicCircuit`](circuit-fermionic-circuit "qiskit_fermions.circuit.FermionicCircuit"). That division of labor is deliberate: ffsim owns the ansatz math (the amplitude conventions and the parameter-vector packing that a variational optimizer drives), while this gate expresses the result as fermionic modes so that the transpiler can lower it through *any* fermion-to-qubit encoding. ffsim ships no Qiskit gate for UCCSD at all, so this is the only route from one of its UCCSD operators to a circuit; see the [ffsim relationship guide](/docs/addons/qiskit-fermions/guides/ffsim#ffsim-relationship-explanation).
+
+  Accepts any of ffsim’s four UCCSD operators, whose type fixes the spin variant and the number of modes this gate acts on. All four act on `2 * norb` block-spin modes (mode `p` is alpha orbital `p`, mode `norb + p` is beta orbital `p`), with the occupied orbitals ordered before the virtual ones:
+
+  *   [`UCCSDOpRestrictedReal`](https://qiskit-community.github.io/ffsim/api/stubs/ffsim.UCCSDOpRestrictedReal.html#ffsim.UCCSDOpRestrictedReal "(in ffsim)") and [`UCCSDOpRestricted`](https://qiskit-community.github.io/ffsim/api/stubs/ffsim.UCCSDOpRestricted.html#ffsim.UCCSDOpRestricted "(in ffsim)") share one spatial parametrization between both spin sectors: `t1` has shape `(nocc, nvrt)` and `t2` has shape `(nocc, nocc, nvrt, nvrt)`.
+  *   [`UCCSDOpUnrestrictedReal`](https://qiskit-community.github.io/ffsim/api/stubs/ffsim.UCCSDOpUnrestrictedReal.html#ffsim.UCCSDOpUnrestrictedReal "(in ffsim)") and [`UCCSDOpUnrestricted`](https://qiskit-community.github.io/ffsim/api/stubs/ffsim.UCCSDOpUnrestricted.html#ffsim.UCCSDOpUnrestricted "(in ffsim)") parameterize the spin sectors independently: `t1` is a pair `(t1a, t1b)` and `t2` a triple `(t2aa, t2ab, t2bb)`.
+
+  <Admonition title="Note" type="note">
+    The cluster operator only ever sees the part of a same-spin $t_2$ block that is symmetric under the *simultaneous* exchange $t_2[i,j,a,b] = t_2[j,i,b,a]$, because the underlying excitation $a^\dagger_a a^\dagger_b a_j a_i$ is invariant under relabeling the pairs $(i,a) \leftrightarrow (j,b)$. Coupled-cluster amplitudes (from PySCF, or ffsim’s own [`uccsd_generator_restricted()`](https://qiskit-community.github.io/ffsim/api/stubs/ffsim.uccsd_generator_restricted.html#ffsim.uccsd_generator_restricted "(in ffsim)")) always carry that symmetry, so this gate and ffsim agree exactly on them. A hand-built `t2` without it describes the same ansatz here as its symmetrized counterpart, whereas ffsim reads the raw tensor.
+  </Admonition>
+
+  <Admonition title="Note" type="note">
+    Unlike [`UCJ`](circuit-library-ucj "qiskit_fermions.circuit.library.UCJ"), this ansatz carries no final orbital rotation of its own: its $t_1$ amplitudes already provide the single excitations, so a trailing rotation would be redundant freedom. ffsim’s operators do expose a `final_orbital_rotation`; when one is set, this gate appends it as a closing [`OrbitalRotation`](circuit-library-orbital-rotation "qiskit_fermions.circuit.library.OrbitalRotation").
+  </Admonition>
+
+  <Admonition title="Note" type="note">
+    Because the individual excitation terms of $T - T^\dagger$ do **not** commute, the circuit `definition()` this gate produces is a *first-order product formula* (Trotter) approximation of the exponential, not an exact decomposition (the usual situation for UCC ansatz circuits). The state-vector simulation path ([`_apply_unitary_placed_()`](#qiskit_fermions.circuit.library.UCC._apply_unitary_placed_ "qiskit_fermions.circuit.library.UCC._apply_unitary_placed_")), by contrast, applies the exponential *exactly* via `scipy`’s `expm_multiply`. Consequently the simulated gate and its synthesized circuit agree only up to the Trotter error; use a higher-order product formula during transpilation to tighten it.
+  </Admonition>
+
+  <Admonition title="Note" type="note">
+    ffsim does not support Windows (through its unconditional PySCF dependency), so this gate requires the `ffsim` extra (`pip install "qiskit-fermions[ffsim]"`) and is unavailable there. Use [WSL](https://learn.microsoft.com/windows/wsl/) on Windows.
+  </Admonition>
+
+  <Admonition title="Caution" type="note">
+    This is an early development prototype. Beware of changes to its interface without warning during the pre-release development of this package.
+  </Admonition>
+
+  ```pycon
+  >>> import ffsim
+  >>> import numpy as np
+  >>> from qiskit_fermions.circuit.library import UCC
+  >>> uccsd_op = ffsim.UCCSDOpRestrictedReal(
+  ...     t1=np.zeros((1, 1)), t2=np.zeros((1, 1, 1, 1))
+  ... )
+  >>> gate = UCC(uccsd_op)
+  >>> gate.norb, gate.num_modes
+  (2, 4)
+  ```
+
+  Initializing an instance of this gate can be done with the argument listed below.
+
+  **Parameters**
+
+  **uccsd\_op** (*Any*) – the ffsim UCCSD operator to build the circuit from, one of [`UCCSDOpRestrictedReal`](https://qiskit-community.github.io/ffsim/api/stubs/ffsim.UCCSDOpRestrictedReal.html#ffsim.UCCSDOpRestrictedReal "(in ffsim)"), [`UCCSDOpRestricted`](https://qiskit-community.github.io/ffsim/api/stubs/ffsim.UCCSDOpRestricted.html#ffsim.UCCSDOpRestricted "(in ffsim)"), [`UCCSDOpUnrestrictedReal`](https://qiskit-community.github.io/ffsim/api/stubs/ffsim.UCCSDOpUnrestrictedReal.html#ffsim.UCCSDOpUnrestrictedReal "(in ffsim)") or [`UCCSDOpUnrestricted`](https://qiskit-community.github.io/ffsim/api/stubs/ffsim.UCCSDOpUnrestricted.html#ffsim.UCCSDOpUnrestricted "(in ffsim)"). Its type determines the spin variant (see the class docstring).
+
+  **Raises**
+
+  *   **MissingOptionalLibraryError** – if `ffsim` is not installed.
+  *   [**TypeError**](https://docs.python.org/3/builtins/exceptions.html#TypeError) – if `uccsd_op` is not one of ffsim’s four UCCSD operator types.
+
+  ## Attributes
+
+  ### norb
+
+  <Attribute id="qiskit_fermions.circuit.library.UCC.norb">
+    The number of spatial orbitals.
+  </Attribute>
+
+  ### uccsd\_op
+
+  <Attribute id="qiskit_fermions.circuit.library.UCC.uccsd_op">
+    The ffsim UCCSD operator this gate builds its circuit from.
+  </Attribute>
+
+  ## Methods
+
+  ### cluster\_operator
+
+  <Function id="qiskit_fermions.circuit.library.UCC.cluster_operator" signature="cluster_operator()">
+    Returns the anti-Hermitian cluster generator $T - T^\dagger$.
+
+    The generator is expressed in the block-spin mode convention (mode `p` is alpha orbital `p`, mode `norb + p` is beta orbital `p`). Occupied orbitals are ordered before virtual ones.
+
+    Being anti-Hermitian, this generator relates to the ansatz unitary by $e^{T - T^\dagger} = e^{-i H}$ with the Hermitian $H = i (T - T^\dagger)$. That $H$ is what [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") consumes, since it requires a Hermitian operator to produce a unitary, and it is how `_build_definition()` expresses the ansatz.
+
+    The returned operator carries [`groups`](operators-fermion-operator#groups "qiskit_fermions.operators.FermionOperator.groups") that pair every excitation with its Hermitian conjugate. That grouping is load-bearing: [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") decomposes group-by-group, so each group becomes one factor $e^{-i H_k}$ of the product formula, and multiplying by $i$ leaves every group individually Hermitian – hence every factor a genuine unitary. Splitting term-by-term instead would not be (see the comment below).
+
+    **Returns**
+
+    The cluster generator $T - T^\dagger$ as a [`FermionOperator`](operators-fermion-operator "qiskit_fermions.operators.FermionOperator").
+
+    **Return type**
+
+    [*FermionOperator*](operators-fermion-operator "qiskit_fermions.operators.fermion_operator.FermionOperator")
+  </Function>
+
+  **Protocol Methods**
+
+  ### \_apply\_unitary\_placed\_
+
+  <Function id="qiskit_fermions.circuit.library.UCC._apply_unitary_placed_" signature="_apply_unitary_placed_(vec, norb, nelec, copy, freg_indices)">
+    Applies the ansatz after placing its modes onto the vector’s global modes.
+
+    This builds the gate’s definition (the cluster-operator evolution) and applies it to `vec`, with the definition circuit placed onto the global modes `freg_indices`. Because the definition’s single [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") carries the *whole* cluster generator, its own `_apply_unitary_placed_` exponentiates it exactly (via `scipy`’s `expm_multiply`) – so this path incurs no Trotter error, unlike the synthesized circuit. See `_define()` for the exact gate sequence.
+
+    **Parameters**
+
+    *   **vec** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)) – the state vector to act on.
+    *   **norb** ([*int*](https://docs.python.org/3/builtins/functions.html#int)) – the number of spatial orbitals of the *global* state vector.
+    *   **nelec** ([*int*](https://docs.python.org/3/builtins/functions.html#int)  *|*[*tuple*](https://docs.python.org/3/builtins/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/builtins/functions.html#int)*,* [*int*](https://docs.python.org/3/builtins/functions.html#int)*]*) – either a single integer for a spinless system, or a pair of integers storing the numbers of spin alpha and spin beta fermions.
+    *   **copy** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) – whether to copy the vector before operating on it.
+    *   **freg\_indices** ([*list*](https://docs.python.org/3/builtins/stdtypes.html#list)*\[*[*int*](https://docs.python.org/3/builtins/functions.html#int)*]*) – the absolute (global) mode indices that this gate’s local modes map onto.
+
+    **Returns**
+
+    The transformed vector.
+
+    **Return type**
+
+    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)
+  </Function>
+</Class>
+

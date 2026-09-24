@@ -1,0 +1,359 @@
+---
+title: "ParityQC Parity Twine Optimizer API reference"
+description: "API reference for ParityQC Parity Twine Optimizer, including inputs, outputs, and configuration options"
+---
+
+# Parity Twine Optimizer API reference
+
+{/* 
+    In the card component below, leave the title and description fields exactly as they appear here. Edit only the `href`, `analyticsName`, and `linkText` fields to link to the guide for your Qiskit Function.
+*/}
+
+<CardGroup>
+    <Card
+      title="Qiskit Functions"
+      description="Qiskit Functions &mdash; pre-built tools created by partner organizations &mdash; abstract away parts of the software development workflow to simplify and accelerate utility-scale algorithm discovery and application development. Click to view the guide for this Qiskit Function."
+      href="/docs/guides/parity-twine-optimizer"
+      analyticsName="Functions API: parity-twine-optimizer"
+      linkText="ParityQC Parity Twine Optimizer guide"
+    />
+</CardGroup>
+
+{/*
+  LINKS
+  You can link to related content *within* IBM Quantum Platform using the following markdown syntax (note there is no file extension at the end of links):
+  - [Guides](/docs/guides/example)
+  - [Tutorials](/docs/tutorials/example)
+  - [API references](/docs/api/api-name/example)
+  - [Learning](learning/courses/course-name/example)
+
+  **Important** - if you copy and paste a link, it might automatically contain a globalization indicator (e.g., `en/`, `de/`). Remove this when you paste a link in your documentation (it will also raise an error in our lint checker).
+
+  You can link to external content using markdown like [this](https://arxiv.org/)
+*/}
+
+{/*
+  OPTIONAL: ADMONITION SECTIONS
+  Use these highlight important information. Examples uses
+  - Limitations or constraints (type="caution")
+  - Important prerequisites (type="note")
+  - Tips for getting started (type="tip")
+  - How options interact with each other
+  - Defaults and precedence rules
+  - Links to related guides or documentation
+*/}
+
+
+## Inputs
+
+{/* 
+  INPUTS SECTION
+  This section documents all parameters the API accepts.
+  Organize parameters logically:
+  - Required parameters first
+  - Optional parameters second
+  - Complex/nested parameters (like options) can have their own subsection
+  
+  For APIs with many inputs, you can add a brief intro sentence explaining
+  the organization of inputs.
+*/}
+
+See the following list for all input parameters this API accepts.
+
+{/*
+  ATTRIBUTE COMPONENT FOR A SIMPLE INPUT
+  
+  attributeTypeHint (required): Shows the data type.
+    - Primitive types: "str", "int", "float", "bool"
+    - Collections: "list[str]", "dict[str, Any]", "Iterable[SomeType]"
+    - Union types: "str or None", "int or float"
+    - Custom types: "QuantumCircuit", "EstimatorPubLike", "SparsePauliOp"
+  
+  attributeValue (optional): Shows the default value if one exists.
+    - If a parameter is required, omit attributeValue
+    - Examples: "True", "1000", "None", "least busy backend"
+  
+  Content: Provide a clear description. Include:
+    - What the parameter does
+    - Any constraints or valid values
+    - "Required: Yes/No"
+    - An example (actual value or type example)
+  
+  Supported markdown: bold, links, code blocks, lists
+*/}
+
+### `problem`
+
+<Attribute attributeTypeHint="dict[str, float]">
+The cost function to be solved. Dictionary keys correspond to qubit labels, values to coefficients.
+- Required: Yes
+- Example: `{"()": 3, "(0,)": 1, "(0, 1)": 2, "(1, 2)": -1}`
+</Attribute>
+
+
+### `variable_type`
+
+<Attribute attributeTypeHint="str">
+Whether the variables are of type `spin` ($s \in \{-1, 1\}$) or `binary` ($x \in \{0, 1\}$).
+- Required: Yes
+- Choices: `spin` or `binary`
+</Attribute>
+
+
+### `backend_name`
+
+<Attribute attributeTypeHint="str">
+Name of backend to use. If not specified, the least busy backend is chosen.
+- Required: No
+- Example: `ibm_phoenix`
+</Attribute>
+
+
+### `problem_type`
+
+<Attribute attributeTypeHint="str" attributeValue='""'>
+Specifies the type of problem to enable specialized post-processing. At the moment, only `mis` (Maximum Independent Set) is supported. If `mis` is set, the algorithm applies specific post-processing that exploits the MIS structure. If left empty, standard post-processing is applied.
+- Required: No
+- Choices: `mis`
+</Attribute>
+
+
+### Options
+
+{/*
+  OPTIONS SUBSECTION
+  Use this when the API accepts a complex options parameter (usually a `dict`).
+  Include an explanation of how options are structured, then document each option.
+*/}
+
+<Attribute attributeTypeHint="dict[str, Any]">
+Input options, including the following: (Optional) Options are specified as a nested dictionary. See the full [list of options](#options-list) and their default values.
+- Required: No
+- Example: `{"shots": 1000, 
+             "problem_type": "my_problem",
+             "postprocessing_level": 1,
+             "transpile_only": False,
+             "job_tags": ["my_tag"]} `
+</Attribute>
+
+<span id="options-list"></span>
+#### Options list
+
+##### `shots`
+
+{/*
+  SIMPLE OPTIONS: Use Attribute directly within an h5 heading for each option.
+  Show type, default value, valid choices, and a clear description.
+*/}
+
+<Attribute attributeTypeHint="int" attributeValue="100000">
+The number of shots to use.
+</Attribute>
+
+
+##### `postprocessing_level`
+
+<Attribute attributeTypeHint="int" attributeValue="1">
+Whether to do classical post-processing or not. Possible values are 0 (no post-processing) and 1 (do post-processing).
+</Attribute>
+
+
+##### `transpile_only`
+
+<Attribute attributeTypeHint="bool" attributeValue="False">
+Boolean for whether only transpilation of the circuit is carried out. If so, circuit metrics are returned.
+</Attribute>
+
+
+##### `job_tags`
+
+<Attribute attributeTypeHint="list[str]" attributeValue="None">
+A label to identify job on IBM Quantum&reg; Platform.
+- Default: `None`
+- Example: `["my_job_tag"]`
+</Attribute>
+
+
+## Outputs
+
+{/*
+  OUTPUTS SECTION
+  Document the structure and contents of the API response.
+  
+  Two common patterns:
+  
+  1. SINGLE RESPONSE TYPE:
+     If the API returns a single object/type, start with a brief intro explaining
+     what that type is, then use LeftColoredBar to document its fields.
+  
+  2. CONDITIONAL RESPONSE:
+     Some APIs return different structures based on options (e.g., transpile_only=True).
+     Use subsections and Admonitions to clarify which output goes with which mode.
+*/}
+
+The output of this API is a `dict` object containing solution, solution bitstring, objective value, and metadata. If the `transpile_only` flag is set, only the circuit metric fields are populated with values.
+
+Example:
+```
+{
+    'solution': {'0': -1, '1': 1, '2': 1}, 
+    'objective_value': -1.0,
+    'solution_bitstring': '100',
+    'metadata': {
+        'circuit_metrics': {
+            'depth': 23, 
+            'gate_count': 200,
+            'two_qubit_gate_depth': 4,
+            'two_qubit_gate_count': 4,
+            'num_qubits': 3,
+            'operations': {'delay': 158, 'rz': 18, 'sx': 15, 'cz': 4, 'measure': 3, 'x': 2}
+        }, 
+        'solver_info': {
+            'variable_mapping': {'0': 0, '1': 1, '2': 2},
+            'bitstring_distributions': {
+                'before_postprocessing': {'011': 3, '001': 1, '110': 1, '111': 3, '101': 1, '010': 1},
+                'after_postprocessing': {'011': 4, '100': 6}
+            }, 
+            'best_parameters': {
+                'beta': [-0.46259546391008877],
+                'gamma': [0.6181957189727373]
+            }
+        },
+        'resource_usage': {
+            'RUNNING: MAPPING': {'CPU_TIME': 15.536},
+            'RUNNING: OPTIMIZING_FOR_HARDWARE': {'CPU_TIME': 0.04}, 
+            'RUNNING: WAITING_FOR_QPU': {'CPU_TIME': 0.0},
+            'RUNNING: EXECUTING_QPU': {'QPU_TIME': 8.945},
+            'RUNNING: POST_PROCESSING': {'CPU_TIME': 0.765}
+        }
+    }
+}
+```
+
+### Output structure
+
+{/*
+  Use LeftColoredBar to organize output fields into a visual hierarchy.
+  Each field should have an Attribute with type, description, and optionally an example.
+*/}
+
+`solution`
+    <Attribute attributeTypeHint="dict[str, int]">
+    Value of solution. Keys correspond to those defined in `problem`.
+    - Example: `{'0': -1, '1': 1, '2': 1}`
+    </Attribute>
+`objective_value`
+    <Attribute attributeTypeHint="float">
+    Cost of the solution. Quantifies the solution quality.
+    - Example: `-1.0`
+    </Attribute>
+`solution_bitstring`
+    <Attribute attributeTypeHint="str">
+    The bitstring corresponding to the lowest cost.
+    - Example: `'100'`
+    </Attribute>
+`metadata`
+    {/*
+      NESTED OUTPUT FIELDS
+      For complex outputs with nested structures, use nested LeftColoredBar.
+      Use a different color to show the hierarchy level.
+    */}
+    <LeftColoredBar color="purple">
+        `circuit_metrics`
+            <Attribute attributeTypeHint="dict[str, Any]">
+            Information on the Twine transpilation.
+                <LeftColoredBar color="purple">
+                    `depth`
+                    <Attribute attributeTypeHint="int">
+                    The depth of circuit.
+                    </Attribute>
+                    `gate_count`
+                    <Attribute attributeTypeHint="int">
+                    The number of gates in circuit.
+                    </Attribute>
+                    `two_qubit_gate_depth` 
+                    <Attribute attributeTypeHint="int">
+                    The two-qubit depth of circuit.
+                    </Attribute>
+                    `two_qubit_gate_count`
+                    <Attribute attributeTypeHint="int">
+                    The two-qubit count of circuit.
+                    </Attribute>
+                    `num_qubits`
+                    <Attribute attributeTypeHint="int">
+                    Number of qubits active in circuit.
+                    </Attribute>
+                    `operations`
+                    <Attribute attributeTypeHint="dict[str, int]">
+                    Gate type (keys) and occurrence (value) in circuit.
+                    </Attribute>
+                </LeftColoredBar>
+            </Attribute>
+
+        `solver_info`
+            <Attribute attributeTypeHint="dict[str, Any]">
+            Algorithmic insights
+                <LeftColoredBar color="purple">
+                    `variable_mapping`
+                    <Attribute attributeTypeHint="dict[str, int]">
+                    The variable-to-qubit mapping used in the computation.
+                    </Attribute>
+                    `bitstring_distributions`
+                    <Attribute attributeTypeHint="dict[str, Any]">
+                    A mapping of the basis state and how often it was sampled.
+                        <LeftColoredBar color="purple">
+                            `before_postprocessing`
+                            <Attribute attributeTypeHint="dict[str, int]">
+                            Distribution of measured bitstrings before classical post-processing.
+                            </Attribute>
+                            `after_postprocessing`
+                            <Attribute attributeTypeHint="dict[str, int]">
+                            Distribution of measured bitstrings after classical post-processing.
+                            </Attribute>
+                        </LeftColoredBar>
+                    </Attribute>
+                    `best_parameters`
+                    <Attribute attributeTypeHint="dict[str, Any]">
+                    Optimized variational training parameters.
+                        <LeftColoredBar color="purple">
+                            `beta`
+                            <Attribute attributeTypeHint="list[float]">
+                            Optimized variational parameter beta.
+                            </Attribute>
+                            `gamma`
+                            <Attribute attributeTypeHint="list[float]">
+                            Optimized variational parameter gamma.
+                            </Attribute>
+                        </LeftColoredBar>
+                    </Attribute>
+                </LeftColoredBar>
+            </Attribute>
+    
+        `resource_usage`
+            <Attribute attributeTypeHint="dict[str, Any]">
+            Information on timing.
+                <LeftColoredBar color="purple">
+                    `RUNNING: MAPPING`
+                    <Attribute attributeTypeHint="dict[str, float]">
+                    CPU time (s) for mapping problem.
+                    </Attribute>
+                    `RUNNING: OPTIMIZING_FOR_HARDWARE`
+                    <Attribute attributeTypeHint="dict[str, float]">
+                    CPU time (s) for hardware optimization.
+                    </Attribute>
+                    `RUNNING: WAITING_FOR_QPU`
+                    <Attribute attributeTypeHint="dict[str, float]">
+                    CPU time (s) waiting for QPU.
+                    </Attribute>
+                    `RUNNING: EXECUTING_QPU`
+                    <Attribute attributeTypeHint="dict[str, float]">
+                    QPU time (s) used.
+                    </Attribute>
+                    `RUNNING: POST_PROCESSING`
+                    <Attribute attributeTypeHint="dict[str, float]">
+                    CPU time (s) for post processing results.
+                    </Attribute>
+                </LeftColoredBar>
+            </Attribute>
+    </LeftColoredBar>
+
