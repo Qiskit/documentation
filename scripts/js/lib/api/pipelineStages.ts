@@ -190,12 +190,21 @@ function rewriteApiDocsLinks(results: HtmlToMdResultWithUrl[], pkg: Pkg) {
       // Addon API reference pages link back to guides with paths relative to
       // the sphinx source tree (e.g. `../../guides/formalism#anchor`).
       // Rewrite these to the guide's absolute path under docs/addons.
+      // For C API packages the guides live under the companion Python package
+      // (`qiskit-fermions-c` → `docs/addons/qiskit-fermions/guides/…`), so use
+      // the Python sibling rather than `pkg.name`.
       .replace(
         /\]\((?:\.\.\/)*guides\/([^)#]+)(#[^)]+)?\)/g,
-        (match, page, anchor) =>
-          pkg.isAddon()
-            ? `](${DOCS_BASE_PATH}/addons/${pkg.name}/guides/${page}${anchor ?? ""})`
-            : match,
+        (match, page, anchor) => {
+          if (!pkg.isAddon()) return match;
+          // The guide pages on disk use kebab-case slugs (the addon TOC's
+          // hrefToSlug kebab-cases them too), so a source name like
+          // `1d_fermi_hubbard` must become `1-d-fermi-hubbard` to resolve.
+          const slug = pkg.kebabCaseAndShortenUrls
+            ? kebabCaseAndShortenPage(page, pythonSiblingPkg)
+            : page;
+          return `](${DOCS_BASE_PATH}/addons/${pythonSiblingPkg}/guides/${slug}${anchor ?? ""})`;
+        },
       );
   }
 }

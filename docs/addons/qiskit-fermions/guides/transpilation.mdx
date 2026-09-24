@@ -23,7 +23,7 @@ Converts the input circuit to a directed acyclic graph (DAG) data structure.
 
 ## **Optimization**
 
-Keeps the circuit in fermionic space. These passes use fermionic structure and commutation relations while problem-aware knowledge remains fully available.
+Keeps the circuit in fermionic space. These passes use fermionic structure and commutation relations while problem-aware knowledge remains fully available. [`FermionicTrotterization`](/docs/api/qiskit-fermions/transpiler-passes-fermionic-trotterization#qiskit_fermions.transpiler.passes.FermionicTrotterization "qiskit_fermions.transpiler.passes.FermionicTrotterization") and [`QDriftTrotterization`](/docs/api/qiskit-fermions/transpiler-passes-q-drift-trotterization#qiskit_fermions.transpiler.passes.QDriftTrotterization "qiskit_fermions.transpiler.passes.QDriftTrotterization") are the passes that Trotterize an [`Evolution`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution "qiskit_fermions.circuit.library.Evolution") gate here; see [Optimization Passes](/docs/api/qiskit-fermions/transpiler-passes#qiskit-fermions-transpiler-passes-optimization) for the full set and [Synthesize an Evolution gate in fermionic space](fermionic-synthesis#fermionic-synthesis-explanation) for how a product formula is chosen.
 
 ## **Layout**
 
@@ -112,6 +112,7 @@ Both workflows produce equivalent circuits. However, the traditional workflow re
 The preset pass manager provides a convenient starting point. For more advanced use cases, you can do the following:
 
 *   Customize the transpiler passes run during each stage.
+*   Choose the product formula that Trotterizes an [`Evolution`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution "qiskit_fermions.circuit.library.Evolution") gate in fermionic space, either per gate or for a whole pipeline with [`FermionicTrotterization`](/docs/api/qiskit-fermions/transpiler-passes-fermionic-trotterization#qiskit_fermions.transpiler.passes.FermionicTrotterization "qiskit_fermions.transpiler.passes.FermionicTrotterization") (see [Synthesize an Evolution gate in fermionic space](fermionic-synthesis#fermionic-synthesis-explanation)).
 *   Implement custom fermion-to-qubit mappings by creating synthesis plugins (see [`F2QSynthesisPlugin`](/docs/api/qiskit-fermions/transpiler-passes-synthesis-f-2-q-synthesis-plugin#qiskit_fermions.transpiler.passes.synthesis.F2QSynthesisPlugin "qiskit_fermions.transpiler.passes.synthesis.F2QSynthesisPlugin")).
 *   Build custom transpiler passes.
 
