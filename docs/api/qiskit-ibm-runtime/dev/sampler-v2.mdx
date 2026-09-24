@@ -8,7 +8,7 @@ python_api_name: qiskit_ibm_runtime.SamplerV2
 
 # SamplerV2
 
-<Class id="qiskit_ibm_runtime.SamplerV2" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/sampler.py#L47-L134" signature="SamplerV2(mode=None, options=None)" modifiers="class">
+<Class id="qiskit_ibm_runtime.SamplerV2" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/sampler.py#L48-L153" signature="SamplerV2(mode=None, options=None)" modifiers="class">
   Bases: `BasePrimitiveV2`\[[`SamplerOptions`](options-sampler-options "qiskit_ibm_runtime.options.sampler_options.SamplerOptions")], `Sampler`, [`BaseSamplerV2`](/docs/api/qiskit/qiskit.primitives.BaseSamplerV2)
 
   SamplerV2 primitive for IBM Quantum Compute (formerly Qiskit Runtime).
@@ -31,7 +31,7 @@ python_api_name: qiskit_ibm_runtime.SamplerV2
 
       Refer to the [IBM Quantum Compute documentation](/docs/guides/execution-modes) for more information about the `Execution modes`.
 
-  *   **options** (*dict |* [*SamplerOptions*](options-sampler-options "qiskit_ibm_runtime.options.SamplerOptions") *| None*) – Sampler options, see [`qiskit_ibm_runtime.options.SamplerOptions`](options-sampler-options "qiskit_ibm_runtime.options.SamplerOptions") for detailed description.
+  *   **options** (*dict |* [*options.SamplerOptions*](options-sampler-options "qiskit_ibm_runtime.options.SamplerOptions") *| None*) – Sampler options, see [`qiskit_ibm_runtime.options.SamplerOptions`](options-sampler-options "qiskit_ibm_runtime.options.SamplerOptions") for detailed description.
 
   ## Attributes
 
@@ -48,8 +48,6 @@ python_api_name: qiskit_ibm_runtime.SamplerV2
   ### options
 
   <Attribute id="qiskit_ibm_runtime.SamplerV2.options">
-    Type: [`SamplerOptions`](options-sampler-options "qiskit_ibm_runtime.options.SamplerOptions")
-
     Return options.
   </Attribute>
 
@@ -63,7 +61,7 @@ python_api_name: qiskit_ibm_runtime.SamplerV2
 
   ### backend
 
-  <Function id="qiskit_ibm_runtime.SamplerV2.backend" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/base_primitive.py#L213-L215" signature="backend()">
+  <Function id="qiskit_ibm_runtime.SamplerV2.backend" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/base_primitive.py#L224-L226" signature="backend()">
     Return the backend the primitive query will be run on.
 
     **Return type**
@@ -73,13 +71,14 @@ python_api_name: qiskit_ibm_runtime.SamplerV2
 
   ### run
 
-  <Function id="qiskit_ibm_runtime.SamplerV2.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/sampler.py#L90-L121" signature="run(pubs, *, shots=None)">
+  <Function id="qiskit_ibm_runtime.SamplerV2.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/sampler.py#L101-L140" signature="run(pubs, *, shots=None, dry_run=False)">
     Submit a request to the sampler primitive.
 
     **Parameters**
 
     *   **pubs** (*Iterable\[SamplerPubLike]*) – An iterable of pub-like objects. For example, a list of circuits or tuples `(circuit, parameter_values)`.
     *   **shots** (*int | None*) – The total number of shots to sample for each sampler pub that does not specify its own shots. If `None`, the primitive’s default shots value will be used, which can vary by implementation.
+    *   **dry\_run** (*bool*) – If `True`, performs a dry run without executing the job on a QPU. This mode can be used to validate the job, estimate usage consumption, and retrieve circuit timing metadata. Returned results preserve the expected schema but contain **randomized mock data** rather than actual or simulated measurement results. Unlike the fake backends, the processing of this dry run happens on the server-side, so the job may not finish immediately and access to this feature may be restricted.
 
     **Returns**
 
