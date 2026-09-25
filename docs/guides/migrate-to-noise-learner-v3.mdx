@@ -13,7 +13,7 @@ outputs are slightly different.
 
 ## Background
 
-The [`NoiseLearner`](https://quantum.cloud.ibm.com/docs/api/qiskit-ibm-runtime/noise-learner-noise-learner)
+The [`NoiseLearner`](/docs/api/qiskit-ibm-runtime/noise-learner-noise-learner)
 class was created to allow users to perform explicit noise learning. The resulting
 noise model can then be passed to IBM Quantum `Estimator` for applying error mitigation techniques
 such as PEA and PEC.
@@ -23,9 +23,9 @@ layer finding strategy as `Estimator`. This strategy cannot be changed; otherwis
 mitigation steps would not work correctly.
 
 Starting with `qiskit-ibm-runtime` v0.47.0, there is a new
-[`NoiseLearnerV3`](https://quantum.cloud.ibm.com/docs/api/qiskit-ibm-runtime/noise-learner-v3-noise-learner-v3)
+[`NoiseLearnerV3`](/docs/api/qiskit-ibm-runtime/noise-learner-v3-noise-learner-v3)
 class that is compatible with the `Executor` primitive and the
-[directed execution model](https://quantum.cloud.ibm.com/docs/guides/directed-execution-model).
+[directed execution model](/docs/guides/directed-execution-model).
 This new model delivers a **white-box** experience by providing the pieces to capture design intent
 on the client side, and a single server-side primitive (Executor) processes those inputs exactly as
 directed — it makes no implicit decisions on your behalf. Unlike the original `NoiseLearner`, `NoiseLearnerV3`
@@ -34,7 +34,7 @@ lets you control how to stratify your circuits, and the class simply takes a lis
 
 `NoiseLearnerV3` also supports measurement noise learning. For each instruction in the input list, it runs the
 Pauli-Lindblad learning protocol if the box contains one- and two-qubit gates, and the
-[TREX](https://quantum.cloud.ibm.com/docs/guides/error-mitigation-and-suppression-techniques#twirled-readout-error-extinction-trex)
+[TREX](/docs/guides/error-mitigation-and-suppression-techniques#twirled-readout-error-extinction-trex)
 protocol if the box contains measurements.
 
 
@@ -66,7 +66,7 @@ from qiskit_ibm_runtime import NoiseLearnerV3
 
 ### Step 2: Update the inputs
 
-The `NoiseLearner` `run()` method takes a list of circuits or PUBs, whereas the `NoiseLearnerV3` `run()` method takes a list of instructions, each of which must be a twirling-annotated [BoxOp](https://quantum.cloud.ibm.com/docs/api/qiskit/qiskit.circuit.BoxOp) containing ISA operations.
+The `NoiseLearner` `run()` method takes a list of circuits or PUBs, whereas the `NoiseLearnerV3` `run()` method takes a list of instructions, each of which must be a twirling-annotated [BoxOp](/docs/api/qiskit/qiskit.circuit.BoxOp) containing ISA operations.
 Convenience methods are available for generating the annotated boxes, depending on which
 primitive you plan to use.
 
@@ -128,7 +128,7 @@ learner_job = learner.run(unique_box_instructions)
 
 ### Step 3: Convert the options
 
-Most [`NoiseLearnerOptions`](https://quantum.cloud.ibm.com/docs/api/qiskit-ibm-runtime/options-noise-learner-options) fields map directly to [`NoiseLearnerV3Options`](https://quantum.cloud.ibm.com/docs/api/qiskit-ibm-runtime/options-models-noise-learner-v3-options), except the following:
+Most [`NoiseLearnerOptions`](/docs/api/qiskit-ibm-runtime/options-noise-learner-options) fields map directly to [`NoiseLearnerV3Options`](/docs/api/qiskit-ibm-runtime/options-models-noise-learner-v3-options), except the following:
 
 - `max_layers_to_learn`: With `NoiseLearnerV3`, the number of layers to learn is based on the number of layers passed in.
 - `twirling_strategy`: With `NoiseLearnerV3`, the twirling strategy is defined by how the instructions are boxed and annotated (such as when using `generate_boxing_pass_manager()`).
@@ -221,10 +221,10 @@ The outputs of `NoiseLearner` and `NoiseLearnerV3` contain similar information b
 
 | Attribute | NoiseLearner | NoiseLearnerV3 |
 | --- | --- | --- |
-| Result type | [NoiseLearnerResult](https://quantum.cloud.ibm.com/docs/api/qiskit-ibm-runtime/results-noise-learner-result#noiselearnerresult) | [NoiseLearnerV3Results](https://quantum.cloud.ibm.com/docs/api/qiskit-ibm-runtime/results-noise-learner-v3-results), a sequence-like container of [NoiseLearnerV3Result](https://quantum.cloud.ibm.com/docs/api/qiskit-ibm-runtime/results-noise-learner-v3-result) |
+| Result type | [NoiseLearnerResult](/docs/api/qiskit-ibm-runtime/results-noise-learner-result#noiselearnerresult) | [NoiseLearnerV3Results](/docs/api/qiskit-ibm-runtime/results-noise-learner-v3-results), a sequence-like container of [NoiseLearnerV3Result](/docs/api/qiskit-ibm-runtime/results-noise-learner-v3-result) |
 | Number of learned layers | len(learner_result.data) | len(learner_result) |
 | Data for the first layer | layer_error = learner_result.data[0] | noise_map = learner_result[0].to_pauli_lindblad_map() |
-| Result type of each layer | [LayerError](https://quantum.cloud.ibm.com/docs/api/qiskit-ibm-runtime/results-layer-error) (`type(layer_error)`) | [PauliLindbladMap](https://quantum.cloud.ibm.com/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap) (`type(noise_map)`) |
+| Result type of each layer | [LayerError](/docs/api/qiskit-ibm-runtime/results-layer-error) (`type(layer_error)`) | [PauliLindbladMap](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap) (`type(noise_map)`) |
 | Generators for the error channel | layer_error.error.generators | noise_map.generators() |
 | Error rates | layer_error.error.rates | noise_map.rates |
 
@@ -415,5 +415,5 @@ result = job.result()
 
 ## References
 
-- [Directed execution model](https://quantum.cloud.ibm.com/docs/guides/directed-execution-model)
-- [Noise learning helper](https://quantum.cloud.ibm.com/docs/guides/noise-learning)
+- [Directed execution model](/docs/guides/directed-execution-model)
+- [Noise learning helper](/docs/guides/noise-learning)
