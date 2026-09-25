@@ -1,0 +1,162 @@
+---
+title: U2Register (latest version)
+description: API reference for samplomatic.virtual_registers.U2Register in the latest version of samplomatic
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: samplomatic.virtual_registers.U2Register
+---
+
+# U2Register
+
+<Class id="samplomatic.virtual_registers.U2Register" isDedicatedPage={true} github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/virtual_registers/u2_register.py#L25-L115" signature="samplomatic.virtual_registers.U2Register(virtual_gates: ndarray)" modifiers="class">
+  Bases: [`GroupRegister`](virtual-registers-group-register "samplomatic.virtual_registers.group_register.GroupRegister")
+
+  Virtual register of 2x2 Unitary matrices.
+
+  The equality method of this class is overridden to ignore global phase.
+
+  **Attributes Summary**
+
+  |                                                                                                                                                 |                                                                   |
+  | ----------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+  | [`CONVERTABLE_TYPES`](#samplomatic.virtual_registers.U2Register.CONVERTABLE_TYPES "samplomatic.virtual_registers.U2Register.CONVERTABLE_TYPES") | Valid arguments for `convert_to()`.                               |
+  | [`GATE_SHAPE`](#samplomatic.virtual_registers.U2Register.GATE_SHAPE "samplomatic.virtual_registers.U2Register.GATE_SHAPE")                      | The array shape of any single virtual gate.                       |
+  | [`SUBSYSTEM_SIZE`](#samplomatic.virtual_registers.U2Register.SUBSYSTEM_SIZE "samplomatic.virtual_registers.U2Register.SUBSYSTEM_SIZE")          | The number of qubits each virtual gate acts on.                   |
+  | [`TYPE`](#samplomatic.virtual_registers.U2Register.TYPE "samplomatic.virtual_registers.U2Register.TYPE")                                        | The group name in 1-1 correspondence with this virtual gate type. |
+
+  **Methods Summary**
+
+  |                                                                                                                                                                                        |                                                                                    |
+  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+  | [`identity`](#samplomatic.virtual_registers.U2Register.identity "samplomatic.virtual_registers.U2Register.identity")(num\_subsystems, num\_samples)                                    | Instantiate a new register of identity virtual gates.                              |
+  | [`inplace_multiply`](#samplomatic.virtual_registers.U2Register.inplace_multiply "samplomatic.virtual_registers.U2Register.inplace_multiply")(other\[, subsystem\_idxs])                | Inplace-multiply each virtual gate with the corresponding element of `other`.      |
+  | [`invert`](#samplomatic.virtual_registers.U2Register.invert "samplomatic.virtual_registers.U2Register.invert")()                                                                       | Return a new virtual register that inverts each virtual gate.                      |
+  | [`left_inplace_multiply`](#samplomatic.virtual_registers.U2Register.left_inplace_multiply "samplomatic.virtual_registers.U2Register.left_inplace_multiply")(other\[, subsystem\_idxs]) | Left inplace-multiply each virtual gate with the corresponding element of `other`. |
+  | [`left_multiply`](#samplomatic.virtual_registers.U2Register.left_multiply "samplomatic.virtual_registers.U2Register.left_multiply")(other\[, subsystem\_idxs])                         | Left multiply each virtual gate with the corresponding element of `other`.         |
+  | [`multiply`](#samplomatic.virtual_registers.U2Register.multiply "samplomatic.virtual_registers.U2Register.multiply")(other\[, subsystem\_idxs])                                        | Multiply each virtual gate with the corresponding element of `other`.              |
+
+  **Attributes Documentation**
+
+  ### CONVERTABLE\_TYPES
+
+  <Attribute id="samplomatic.virtual_registers.U2Register.CONVERTABLE_TYPES">
+    Type: [`frozenset`](https://docs.python.org/3/builtins/stdtypes.html#frozenset)\[[`VirtualType`](virtual-registers-virtual-type "samplomatic.virtual_registers.virtual_type.VirtualType")]
+
+    Default value: `frozenset({VirtualType.U2})`
+
+    Valid arguments for `convert_to()`.
+  </Attribute>
+
+  ### GATE\_SHAPE
+
+  <Attribute id="samplomatic.virtual_registers.U2Register.GATE_SHAPE">
+    Type: [`tuple`](https://docs.python.org/3/builtins/stdtypes.html#tuple)\[[`int`](https://docs.python.org/3/builtins/functions.html#int), ...]
+
+    Default value: `(2, 2)`
+
+    The array shape of any single virtual gate.
+  </Attribute>
+
+  ### SUBSYSTEM\_SIZE
+
+  <Attribute id="samplomatic.virtual_registers.U2Register.SUBSYSTEM_SIZE">
+    Type: [`int`](https://docs.python.org/3/builtins/functions.html#int)
+
+    Default value: `1`
+
+    The number of qubits each virtual gate acts on.
+  </Attribute>
+
+  ### TYPE
+
+  <Attribute id="samplomatic.virtual_registers.U2Register.TYPE">
+    Type: [`VirtualType`](virtual-registers-virtual-type "samplomatic.virtual_registers.virtual_type.VirtualType")
+
+    Default value: `'u2'`
+
+    The group name in 1-1 correspondence with this virtual gate type.
+  </Attribute>
+
+  **Methods Documentation**
+
+  ### identity
+
+  <Function id="samplomatic.virtual_registers.U2Register.identity" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/virtual_registers/u2_register.py#L37-L41" signature="identity(num_subsystems, num_samples)" modifiers="classmethod">
+    Instantiate a new register of identity virtual gates.
+  </Function>
+
+  ### inplace\_multiply
+
+  <Function id="samplomatic.virtual_registers.U2Register.inplace_multiply" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/virtual_registers/u2_register.py#L59-L71" signature="inplace_multiply(other, subsystem_idxs: list[int] | slice = slice(None, None, None))">
+    Inplace-multiply each virtual gate with the corresponding element of `other`.
+
+    **Parameters**
+
+    *   **other** – Another virtual register of the same type.
+    *   **subsystem\_idxs** – The indices of the subsystems to multiply, in self.
+
+    **Raises**
+
+    [**VirtualGateError**](exceptions-virtual-gate-error "samplomatic.exceptions.VirtualGateError") – When the shapes do not match.
+  </Function>
+
+  ### invert
+
+  <Function id="samplomatic.virtual_registers.U2Register.invert" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/virtual_registers/u2_register.py#L105-L106" signature="invert()">
+    Return a new virtual register that inverts each virtual gate.
+  </Function>
+
+  ### left\_inplace\_multiply
+
+  <Function id="samplomatic.virtual_registers.U2Register.left_inplace_multiply" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/virtual_registers/u2_register.py#L89-L103" signature="left_inplace_multiply(other, subsystem_idxs: list[int] | slice = slice(None, None, None))">
+    Left inplace-multiply each virtual gate with the corresponding element of `other`.
+
+    **Parameters**
+
+    *   **other** – Another virtual register of the same type.
+    *   **subsystem\_idxs** – The indices of the subsystems to multiply, in self.
+
+    **Raises**
+
+    [**VirtualGateError**](exceptions-virtual-gate-error "samplomatic.exceptions.VirtualGateError") – When the shapes do not match.
+  </Function>
+
+  ### left\_multiply
+
+  <Function id="samplomatic.virtual_registers.U2Register.left_multiply" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/virtual_registers/u2_register.py#L73-L87" signature="left_multiply(other, subsystem_idxs: list[int] | slice = slice(None, None, None))">
+    Left multiply each virtual gate with the corresponding element of `other`.
+
+    **Parameters**
+
+    *   **other** – Another virtual register of the same type.
+    *   **subsystem\_idxs** – The indices of the subsystems to multiply, in self.
+
+    **Returns**
+
+    A new virtual register of the same type.
+
+    **Raises**
+
+    [**VirtualGateError**](exceptions-virtual-gate-error "samplomatic.exceptions.VirtualGateError") – When the shapes do not match.
+  </Function>
+
+  ### multiply
+
+  <Function id="samplomatic.virtual_registers.U2Register.multiply" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/virtual_registers/u2_register.py#L43-L57" signature="multiply(other, subsystem_idxs: list[int] | slice = slice(None, None, None))">
+    Multiply each virtual gate with the corresponding element of `other`.
+
+    **Parameters**
+
+    *   **other** – Another virtual register of the same type.
+    *   **subsystem\_idxs** – The indices of the subsystems to multiply, in self.
+
+    **Returns**
+
+    A new virtual register of the same type.
+
+    **Raises**
+
+    [**VirtualGateError**](exceptions-virtual-gate-error "samplomatic.exceptions.VirtualGateError") – When the shapes do not match.
+  </Function>
+</Class>
+

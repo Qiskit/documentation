@@ -1,0 +1,43 @@
+---
+title: "0.20.0 - 2026-06-23"
+description: "0.20.0 - 2026-06-23 for the latest version of Samplomatic"
+---
+
+<span id="id1" />
+
+# 0.20.0 - 2026-06-23
+
+## Deprecated
+
+*   The default value for the inject noise site for the `generate_boxing_pass_manager`, `AddInjectNoise`, and `InjectNoise` has been updated from `'before'` to `None`, which results in a future warning and sets the value to `'before'`. In a future release, the default will be updated to `'after'`. ([#372](https://github.com/Qiskit/samplomatic/issues/372))
+
+## Added
+
+*   Added support for propagating Pauli twirls past single-qubit Clifford gates (`s`, `sx`, `sdg`, `sxdg`, and compositions with `h`) and through single-qubit rotations (`rz`, `p`, `rx`) at Clifford angles when they appear between entangling gates inside a `Twirl` box. ([#351](https://github.com/Qiskit/samplomatic/issues/351))
+
+*   Exposed three primitives that together let consumers of `build()` evaluate deterministic template parameters (e.g., `RZZ` angles) without invoking `Samplex.sample`:
+
+    *   `Samplex.param_table` — return the underlying `ParameterExpressionTable`.
+    *   `Samplex.passthrough_params` — a tuple `(template_idxs, expression_idxs)` mapping each passthrough template parameter to its expression-table index.
+    *   `ParameterExpressionTable.evaluate` — gained an optional `indices` argument so callers can evaluate only a chosen subset of the table’s expressions.
+
+    ([#367](https://github.com/Qiskit/samplomatic/issues/367))
+
+*   Random phases are now applied to qubits after mid-circuit measurement twirling. ([#369](https://github.com/Qiskit/samplomatic/issues/369))
+
+*   Added reset twirling. Rather than propagating virtual registers, a reset in a twirl‑annotated box discards them and instead samples and injects a new random phase following the reset. ([#371](https://github.com/Qiskit/samplomatic/issues/371))
+
+## Changed
+
+*   Twirl emissions are now inserted at the easy-hard boundary of boxes with a `Twirl` annotation `"left"` dressing when building. Previously, they were inserted after the content of the box. ([#368](https://github.com/Qiskit/samplomatic/issues/368))
+
+## Improved
+
+*   Measurement twirling is now implemented using virtual gate propagation. A virtual Pauli is propagated past a measure by discarding its `z` component, while propagating its `x` component and recording it as a bit flip. Previously, measurement twirling was implemented by collecting bit flips associated with virtual gates exclusively in the right hand side of a left-dressed box. The new approach allows for more flexible measurement twirling, e.g., sequential measurements of the same qubit to different clbits in the same box and measurement twirling in right-dressed boxes. ([#369](https://github.com/Qiskit/samplomatic/issues/369))
+*   Removed the restriction of having a single entangler type when using `Group.local_c1`. ([#370](https://github.com/Qiskit/samplomatic/issues/370))
+
+## Fixed
+
+*   Fixed an issue when using `GroupMode.local_pauli` twirling where the fallback for Clifford gates to the Pauli group would not trigger when a fractional gate was also present. ([#370](https://github.com/Qiskit/samplomatic/issues/370))
+*   Fixed a bug where untwirled measurements in annotated boxes did not block leftwards virtual gate propagation. ([#373](https://github.com/Qiskit/samplomatic/issues/373))
+

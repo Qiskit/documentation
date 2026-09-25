@@ -1,0 +1,105 @@
+---
+title: CollectTemplateValues (latest version)
+description: API reference for samplomatic.samplex.nodes.CollectTemplateValues in the latest version of samplomatic
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: samplomatic.samplex.nodes.CollectTemplateValues
+---
+
+# CollectTemplateValues
+
+<Class id="samplomatic.samplex.nodes.CollectTemplateValues" isDedicatedPage={true} github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplex/nodes/collect_template_values.py#L24-L136" signature="samplomatic.samplex.nodes.CollectTemplateValues(template_params_name: str, template_idxs: ndarray[tuple[int, int], dtype[int64]], register_name: str, register_type: VirtualType, subsystem_idxs: ndarray[tuple[int], dtype[int64]], synth: Synth)" modifiers="class">
+  Bases: [`CollectionNode`](samplex-nodes-collection-node "samplomatic.samplex.nodes.collection_node.CollectionNode")
+
+  Collects a register slice and writes corresponding template values to output.
+
+  **Parameters**
+
+  *   **template\_params\_name** – The name of the output to write template parameters to.
+  *   **template\_idxs** – An array of shape `(num_subsystems, num_params_per_subsystem)` specifying which entries of the entire template parameter value array to write to.
+  *   **register\_name** – The name of the register to collect.
+  *   **register\_type** – What kind of register type to collect.
+  *   **subsystem\_idxs** – The slice of the register to collect.
+  *   **synth** – A synth to take the product of register values and generate template parameter values.
+
+  **Raises**
+
+  *   [**SamplexConstructionError**](exceptions-samplex-construction-error "samplomatic.exceptions.SamplexConstructionError") – If `register_type` is not compatible with `synth`.
+  *   [**SamplexConstructionError**](exceptions-samplex-construction-error "samplomatic.exceptions.SamplexConstructionError") – If the second axis of `template_idxs` does not match [`Synth.num_params`](synths-synth#num_params "samplomatic.synths.Synth.num_params"), or the first axis of `template_idxs` does not match the number of subsystems in each entry of `registers`.
+
+  **Attributes Summary**
+
+  |                                                                                                                                                      |                                                                                   |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+  | [`num_subsystems`](#samplomatic.samplex.nodes.CollectTemplateValues.num_subsystems "samplomatic.samplex.nodes.CollectTemplateValues.num_subsystems") | The number of subsystems being collected.                                         |
+  | [`template_idxs`](#samplomatic.samplex.nodes.CollectTemplateValues.template_idxs "samplomatic.samplex.nodes.CollectTemplateValues.template_idxs")    | Specification of which entries of the template parameter value array to write to. |
+
+  **Methods Summary**
+
+  |                                                                                                                                                                                             |                                                                                  |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+  | [`collect`](#samplomatic.samplex.nodes.CollectTemplateValues.collect "samplomatic.samplex.nodes.CollectTemplateValues.collect")(registers, outputs, rng)                                    | Collect.                                                                         |
+  | [`get_style`](#samplomatic.samplex.nodes.CollectTemplateValues.get_style "samplomatic.samplex.nodes.CollectTemplateValues.get_style")()                                                     | Return the style of this node when plotted.                                      |
+  | [`outputs_to`](#samplomatic.samplex.nodes.CollectTemplateValues.outputs_to "samplomatic.samplex.nodes.CollectTemplateValues.outputs_to")()                                                  | Return the set of names of outputs this node mutates.                            |
+  | [`reads_from`](#samplomatic.samplex.nodes.CollectTemplateValues.reads_from "samplomatic.samplex.nodes.CollectTemplateValues.reads_from")()                                                  | Return a manifest of which virtual register values this node needs to read from. |
+  | [`validate_and_update`](#samplomatic.samplex.nodes.CollectTemplateValues.validate_and_update "samplomatic.samplex.nodes.CollectTemplateValues.validate_and_update")(register\_descriptions) | Validate provided register descriptions are compatible, update with changes.     |
+
+  **Attributes Documentation**
+
+  ### num\_subsystems
+
+  <Attribute id="samplomatic.samplex.nodes.CollectTemplateValues.num_subsystems">
+    The number of subsystems being collected.
+  </Attribute>
+
+  ### template\_idxs
+
+  <Attribute id="samplomatic.samplex.nodes.CollectTemplateValues.template_idxs">
+    Specification of which entries of the template parameter value array to write to.
+  </Attribute>
+
+  **Methods Documentation**
+
+  ### collect
+
+  <Function id="samplomatic.samplex.nodes.CollectTemplateValues.collect" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplex/nodes/collect_template_values.py#L105-L115" signature="collect(registers, outputs, rng)">
+    Collect.
+
+    **Parameters**
+
+    *   **registers** – Registers to collect from.
+    *   **outputs** – Where to output.
+    *   **rng** – A randomness generator.
+  </Function>
+
+  ### get\_style
+
+  <Function id="samplomatic.samplex.nodes.CollectTemplateValues.get_style" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplex/nodes/collect_template_values.py#L128-L136" signature="get_style()">
+    Return the style of this node when plotted.
+  </Function>
+
+  ### outputs\_to
+
+  <Function id="samplomatic.samplex.nodes.CollectTemplateValues.outputs_to" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplex/nodes/collect_template_values.py#L89-L90" signature="outputs_to()">
+    Return the set of names of outputs this node mutates.
+  </Function>
+
+  ### reads\_from
+
+  <Function id="samplomatic.samplex.nodes.CollectTemplateValues.reads_from" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplex/nodes/collect_template_values.py#L92-L93" signature="reads_from()">
+    Return a manifest of which virtual register values this node needs to read from.
+  </Function>
+
+  ### validate\_and\_update
+
+  <Function id="samplomatic.samplex.nodes.CollectTemplateValues.validate_and_update" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplex/nodes/collect_template_values.py#L95-L103" signature="validate_and_update(register_descriptions)">
+    Validate provided register descriptions are compatible, update with changes.
+
+    This method can be used by a samplex to determine when a node execution order has well-defined dependencies before sampling begins.
+
+    **Parameters**
+
+    **register\_descriptions** – A map from existing register names to their size and type.
+  </Function>
+</Class>
+

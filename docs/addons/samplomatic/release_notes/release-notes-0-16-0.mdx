@@ -1,0 +1,26 @@
+---
+title: "0.16.0 - 2026-01-19"
+description: "0.16.0 - 2026-01-19 for the latest version of Samplomatic"
+---
+
+<span id="id1" />
+
+# 0.16.0 - 2026-01-19
+
+## Added
+
+*   Added the `InjectNoise.site` attribute to specify whether the noise should be injected before or after the hard content of a dressed box. Added the `inject_noise_site` argument to the `generate_boxing_pass_manager` function to specify where noise should be injected. ([#280](https://github.com/Qiskit/samplomatic/issues/280))
+*   Added the `decomposition` argument to the `samplomatic.transpiler.generate_boxing_pass_manager()` function that causes all `Twirl` and `ChangeBasis` annotations added by the pass manager to have the specified dressing gate decomposition. The current allowed values are `'rzsx'` (default) and `'rzrx'`. The same argument was also added to the `GroupMeasIntoBoxes` pass, and the `GroupGatesIntoBoxes` pass similarly gained an argument `annotations`. ([#284](https://github.com/Qiskit/samplomatic/issues/284))
+*   Added the `num_bytes` attribute to `Specification`, `TensorSpecification`, and `PauliLindbladMapSpecification`, and the `num_bytes()` method to `TensorInterface`, to estimate memory usage for interface data. ([#289](https://github.com/Qiskit/samplomatic/issues/289))
+
+## Changed
+
+*   The constructor of the `GroupMeasIntoBoxes` transpiler pass now only accepts keyword arguments. ([#284](https://github.com/Qiskit/samplomatic/issues/284))
+*   The `ChangeBasis` annotation now accepts `dressing` and `mode` as independent arguments. Peviously, a `mode` of `prepare` would result in a `right` dressing, while a `measure` would result in a `left` dressing. ([#285](https://github.com/Qiskit/samplomatic/issues/285))
+*   The `AddInjectNoise` pass now generates references based on the hash of a box’s `BoxKey`, resulting in the same reference from run to run of the pass. Additionally, it increments individual modifier references starting from `0` in each run. ([#291](https://github.com/Qiskit/samplomatic/issues/291))
+
+## Fixed
+
+*   Fixed imports to not assume that the `typing` subpackage exists in the `numpy` namespace; the line `import numpy; numpy.typing` fails in some environments, whereas `import numpy.typing; numpy.typing` always succeeds under the current version restrictions. ([#286](https://github.com/Qiskit/samplomatic/issues/286))
+*   Fixed a bug where parametric gates with fixed parameters outside of boxes caused building to fail. ([#294](https://github.com/Qiskit/samplomatic/issues/294))
+

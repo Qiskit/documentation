@@ -1,0 +1,311 @@
+---
+title: "Debugging and Tracing"
+description: "Debugging and Tracing for the latest version of Samplomatic"
+---
+
+# Debugging and Tracing
+
+The [`build()`](/docs/api/samplomatic/auto/build#samplomatic.build "samplomatic.build") function transforms an annotated circuit into a template circuit and samplex pair. In a complex circuit it can be hard to tell which box in the original circuit corresponds to which barriers in the template, or which nodes in the samplex DAG.
+
+Samplomatic provides two complementary tracing tools:
+
+*   **Barrier labels**: Every barrier in the template circuit carries a label that encodes its origin. These are always present regardless of whether `debug=True` is set.
+*   **Trace info on samplex nodes**: When [`build()`](/docs/api/samplomatic/auto/build#samplomatic.build "samplomatic.build") is called with `debug=True`, every samplex node carries a `TraceInfo` object linking it back to the box or boxes that produced it.
+
+Both tools are most useful when boxes carry a [`Tag`](/docs/api/samplomatic/auto/tag#samplomatic.Tag "samplomatic.Tag") annotation, which attaches a `ref` string to the box. Alternatively, [`InjectNoise`](/docs/api/samplomatic/auto/inject-noise#samplomatic.InjectNoise "samplomatic.InjectNoise") references are also attached.
+
+## Tag boxes
+
+A [`Tag`](/docs/api/samplomatic/auto/tag#samplomatic.Tag "samplomatic.Tag") annotation attaches a `ref` string to a box. The `ref` then appears in barrier labels and in trace information on samplex nodes.
+
+The following example circuit has three boxes: two tagged CX boxes on disjoint qubit pairs, and an untagged right-dressed measurement box. The second CX box also carries an [`InjectNoise`](/docs/api/samplomatic/auto/inject-noise#samplomatic.InjectNoise "samplomatic.InjectNoise") annotation — both its `tag` ref and its noise `ref` will appear in the barrier labels. The two CX boxes cover different qubits, which enables the samplex optimizer to merge their propagation nodes into shared nodes. This is shown in the trace information section.
+
+```python
+from qiskit.circuit import QuantumCircuit
+
+from samplomatic import InjectNoise, Tag, Twirl, build
+
+circuit = QuantumCircuit(4, 4)
+
+with circuit.box([Twirl(), Tag("cx_ab")]):
+    circuit.cx(0, 1)
+
+with circuit.box([Twirl(), InjectNoise("cx_noise"), Tag("cx_cd")]):
+    circuit.cx(2, 3)
+
+with circuit.box([Twirl(), Tag("meas_box")]):
+    circuit.measure(range(4), range(4))
+
+circuit.draw("mpl")
+```
+
+![../\_images/f6b6fe7b60a39ba897814008443fa79b66213005462ab09f49ffc89aab1f3668.png](/docs/images/addons/samplomatic/f6b6fe7b60a39ba897814008443fa79b66213005462ab09f49ffc89aab1f3668.avif)
+
+## Barrier labels in the template circuit
+
+Calling [`build()`](/docs/api/samplomatic/auto/build#samplomatic.build "samplomatic.build") on the circuit above produces a template whose barriers carry identifying labels. Each label has the form `{side}{scope}@{key=value&...}`:
+
+*   **Side**: `L` = left-dressing boundary, `M` = inner box content boundary, `R` = right-dressing boundary.
+*   **Scope**: An integer index (or underscore-separated list for nested boxes) that distinguishes multiple boxes at the same nesting level.
+*   **Annotations**: An `@`-prefixed, `&`-separated list of `key=value` pairs derived from the box’s annotations. The `tag` key comes from a [`Tag`](/docs/api/samplomatic/auto/tag#samplomatic.Tag "samplomatic.Tag") annotation and `inject_noise` comes from an [`InjectNoise`](/docs/api/samplomatic/auto/inject-noise#samplomatic.InjectNoise "samplomatic.InjectNoise") annotation.
+
+Barriers from untagged boxes carry only the side and scope (for example, `L2`), with no `@` suffix.
+
+```python
+template, samplex = build(circuit)
+template.draw("mpl", fold=100)
+```
+
+![../\_images/e533d70a29504005a636aa27306d3ce3b1d2488358ac6a53f0674f2934698ab8.png](/docs/images/addons/samplomatic/e533d70a29504005a636aa27306d3ce3b1d2488358ac6a53f0674f2934698ab8.avif)
+
+The barrier labels can also be extracted programmatically:
+
+```python
+barrier_labels = [instr.operation.label for instr in template if instr.operation.name == "barrier"]
+barrier_labels
+```
+
+```myst
+['L0@tag=cx_ab',
+ 'M0@tag=cx_ab',
+ 'R0@tag=cx_ab',
+ 'L1@inject_noise=cx_noise&tag=cx_cd',
+ 'M1@inject_noise=cx_noise&tag=cx_cd',
+ 'R1@inject_noise=cx_noise&tag=cx_cd',
+ 'L2@tag=meas_box',
+ 'M2@tag=meas_box',
+ 'R2@tag=meas_box']
+```
+
+## Trace information on samplex nodes
+
+Passing `debug=True` to [`build()`](/docs/api/samplomatic/auto/build#samplomatic.build "samplomatic.build") attaches trace information to every samplex node. Each node’s [`trace_info`](/docs/api/samplomatic/auto/samplex-nodes-node#samplomatic.samplex.nodes.Node.trace_info "samplomatic.samplex.nodes.Node.trace_info") attribute is a `TraceInfo` object whose `trace_refs` dictionary maps annotation keys (for example, `"tag"` and `"inject_noise"`) to sets of ref strings. Nodes without a corresponding box annotation have `trace_info=None`.
+
+When [`draw()`](/docs/api/samplomatic/auto/samplex-samplex#samplomatic.samplex.Samplex.draw "samplomatic.samplex.Samplex.draw") is called on a debug-built samplex, hovering over any node in the interactive graph reveals its `trace_refs` inside the hover tooltip.
+
+```python
+template, samplex = build(circuit, debug=True)
+samplex.draw()
+```
+
+Trace information can also be inspected programmatically. Notice that some nodes carry references from both `'cx_ab'` and `'cx_cd'`. The samplex optimizer merged their parallel propagation nodes because the two boxes cover disjoint qubits and share a common predecessor from the right-dressed measurement box’s emission.
+
+```python
+for node in samplex.graph.nodes():
+    if node.trace_info is not None:
+        tags = node.trace_info.trace_refs.get("tag", set())
+        merged = " ← merged" if len(tags) > 1 else ""
+        print(f"{type(node).__name__:40s}  tags={tags}{merged}")
+```
+
+```myst
+TwirlSamplingNode                         tags={'meas_box'}
+InjectNoiseNode                           tags={'cx_cd'}
+CollectZ2ToOutputNode                     tags={'cx_cd'}
+TwirlSamplingNode                         tags={'cx_cd'}
+CombineRegistersNode                      tags={'cx_cd'}
+CollectTemplateValues                     tags={'cx_cd'}
+TwirlSamplingNode                         tags={'cx_ab'}
+CombineRegistersNode                      tags={'cx_ab', 'cx_cd'} ← merged
+CollectTemplateValues                     tags={'cx_ab', 'cx_cd'} ← merged
+```
+
+To find all nodes that originate from a specific box, filter by the `"tag"` key:
+
+```python
+tag_ref = "cx_ab"
+matching_nodes = [
+    node
+    for node in samplex.graph.nodes()
+    if node.trace_info is not None and tag_ref in node.trace_info.trace_refs.get("tag", set())
+]
+
+print(f"Nodes originating from box '{tag_ref}':")
+for node in matching_nodes:
+    print(f"  {type(node).__name__}")
+```
+
+```myst
+Nodes originating from box 'cx_ab':
+  TwirlSamplingNode
+  CombineRegistersNode
+  CollectTemplateValues
+```
+
+## The samplex DAG
+
+The samplex returned by [`build()`](/docs/api/samplomatic/auto/build#samplomatic.build "samplomatic.build") is a directed acyclic graph (DAG) where **edges denote register dependency**. That is, an edge from node A to node B means B must wait for A to have acted on the shared virtual registers before B is allowed to act. This is not a temporal ordering like the DAG of a quantum circuit. Instead, the graph flows from nodes responsible for generating randomizations to nodes responsible for synthesizing them as outputs.
+
+There are three node types, each with a distinct visual style in the interactive plot:
+
+| Shape  | Color         | Type                                                                                                                                                             | Role                                                            |
+| ------ | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
+| Star   | Red           | [`SamplingNode`](/docs/api/samplomatic/auto/samplex-nodes-sampling-node#samplomatic.samplex.nodes.SamplingNode "samplomatic.samplex.nodes.SamplingNode")         | Instantiates new virtual registers from a distribution or input |
+| Circle | Green         | [`EvaluationNode`](/docs/api/samplomatic/auto/samplex-nodes-evaluation-node#samplomatic.samplex.nodes.EvaluationNode "samplomatic.samplex.nodes.EvaluationNode") | Transforms, combines, or propagates virtual registers           |
+| Bowtie | Blue / Purple | [`CollectionNode`](/docs/api/samplomatic/auto/samplex-nodes-collection-node#samplomatic.samplex.nodes.CollectionNode "samplomatic.samplex.nodes.CollectionNode") | Reads registers and writes to `sample()` outputs                |
+
+Execution proceeds in three phases:
+
+1.  All sampling nodes run first (in parallel).
+2.  Evaluation nodes run next, in topological order (parallel within each generation).
+3.  Collection nodes run last (in parallel).
+
+The graphviz layout reflects this. Sampling nodes appear at the top, collection nodes at the bottom.
+
+## Hover tooltips
+
+Every node in the interactive visualization shows a tooltip when you hover over it. The tooltip contains the following information:
+
+*   **Node class name** and its integer graph index.
+*   **Register manifests**, which registers the node instantiates, reads from, writes to, and removes. These tell you how data flows between nodes.
+*   **Node-specific details**, including the distribution type for sampling nodes, the operand for multiplication nodes, the template parameter indices for collection nodes, and so on.
+*   **Trace refs** (only when `debug=True`), which are the annotation keys and ref strings that link the node back to its originating boxes.
+
+Clicking the plot and then hovering over individual nodes is the fastest way to understand what a given node does without reading source code.
+
+## Samplex summary
+
+Before examining the visualization, `print(samplex)` gives a quick text summary of the node count, required inputs, and promised outputs.
+
+```python
+template, samplex = build(circuit)
+print(samplex)
+```
+
+```myst
+Samplex(<17 nodes>)
+  Inputs:
+  - 'pauli_lindblad_maps.cx_noise' <PauliLindbladMap>: A PauliLindblad map acting on 2
+      qubits, with 'num_terms_cx_noise' terms.
+
+  Outputs:
+    * 'measurement_flips.c' <bool['num_randomizations', 1, 4]>: Bit-flip corrections for
+        measurement twirling.
+    * 'parameter_values' <float32['num_randomizations', 24]>: Parameter values valid for an
+        associated template circuit.
+    * 'pauli_signs' <bool['num_randomizations', 1]>: Signs from sampled Pauli Lindblad
+        maps, where boolean values represent the parity of the number of non-trivial factors in the
+        sampled error that arise from negative rates. In other words, in order to implement basic
+        PEC, the sign used to correct expectation values should be ``(-1)**bool_value``. The order
+        matches the iteration order of boxes in the original circuit with noise injection
+        annotations.
+```
+
+## Inspect registers
+
+Passing `keep_registers=True` to [`sample()`](/docs/api/samplomatic/auto/samplex-samplex#samplomatic.samplex.Samplex.sample "samplomatic.samplex.Samplex.sample") retains the intermediate [`VirtualRegister`](/docs/api/samplomatic/auto/virtual-registers-virtual-register#samplomatic.virtual_registers.VirtualRegister "samplomatic.virtual_registers.VirtualRegister") objects that are live at the end of sampling, and stores them in `outputs.metadata["registers"]`. Each register is a 2D array (shape `(num_subsystems, num_randomizations)`, with possible trailing gate-shape dimensions) of virtual group elements.
+
+This is useful for verifying that virtual gates were combined correctly, or for inspecting the raw Pauli or unitary samples before they are synthesized into rotation angles.
+
+```python
+from qiskit.quantum_info import PauliLindbladMap
+
+outputs = samplex.sample(
+    {"pauli_lindblad_maps.cx_noise": PauliLindbladMap.identity(2)},
+    num_randomizations=3,
+    keep_registers=True,
+)
+for name, reg in outputs.metadata["registers"].items():
+    print(f"{name}: type={reg.TYPE.value}, shape={reg.virtual_gates.shape}")
+```
+
+```myst
+lhs_0: type=pauli, shape=(4, 3)
+rhs_0: type=pauli, shape=(4, 3)
+lhs_3: type=pauli, shape=(2, 3)
+rhs_3: type=pauli, shape=(2, 3)
+inject_noise_1: type=pauli, shape=(2, 3)
+sign_1: type=z2, shape=(1, 3)
+lhs_7: type=pauli, shape=(2, 3)
+rhs_7: type=pauli, shape=(2, 3)
+meas_prop_6: type=pauli, shape=(4, 3)
+collect_10: type=u2, shape=(2, 3, 2, 2)
+meas_prop_z2a_6: type=z2, shape=(4, 3)
+collect_9: type=u2, shape=(4, 3, 2, 2)
+collect_5: type=u2, shape=(2, 3, 2, 2)
+```
+
+You can view the contents of the end-state of a particular register. In the following example, the register has type [`PauliRegister`](/docs/api/samplomatic/auto/virtual-registers-pauli-register#samplomatic.virtual_registers.PauliRegister "samplomatic.virtual_registers.PauliRegister"). See the `API documentation(/apidocs/index)`\_\_ for details about the storage format.
+
+```python
+print("lhs_0:", outputs.metadata["registers"]["lhs_0"])
+outputs.metadata["registers"]["lhs_0"].virtual_gates
+```
+
+```myst
+lhs_0: PauliRegister(<4, 3>)
+```
+
+```myst
+array([[0, 0, 1],
+       [3, 1, 1],
+       [3, 0, 0],
+       [1, 0, 0]], dtype=uint8)
+```
+
+## How samplex nodes map to template parameters
+
+The `outputs["parameter_values"]` array returned by [`sample()`](/docs/api/samplomatic/auto/samplex-samplex#samplomatic.samplex.Samplex.sample "samplomatic.samplex.Samplex.sample") has shape `(num_randomizations, N)`, where `N` matches `len(template.parameters)`. Each column corresponds to one parameter in the template circuit — the i-th column fills in `template.parameters[i]`.
+
+The [`CollectTemplateValues`](/docs/api/samplomatic/auto/samplex-nodes-collect-template-values#samplomatic.samplex.nodes.CollectTemplateValues "samplomatic.samplex.nodes.CollectTemplateValues") collection nodes are the link between virtual registers and template parameters. Each such node holds index information that records which columns of the output array it writes to. This makes it possible to trace which virtual gate subsystems drive which template parameters.
+
+See the \{Samplex inputs and outputs}`samplex_io` guide to learn how to bind the sampled parameter values to the template circuit and run experiments.
+
+```python
+from samplomatic.samplex.nodes import CollectTemplateValues
+
+template, samplex = build(circuit, debug=True)
+for node in samplex.graph.nodes():
+    if isinstance(node, CollectTemplateValues):
+        tags = node.trace_info.trace_refs.get("tag", set()) if node.trace_info else set()
+        print(f"tags={tags}  →  template param indices: {node.template_idxs.tolist()}")
+```
+
+```myst
+tags={'cx_cd'}  →  template param indices: [[6, 7, 8], [9, 10, 11]]
+tags={'cx_ab', 'cx_cd'}  →  template param indices: [[12, 13, 14], [15, 16, 17], [18, 19, 20], [21, 22, 23]]
+tags=set()  →  template param indices: [[0, 1, 2], [3, 4, 5]]
+```
+
+## Automatic tagging
+
+When using [`generate_boxing_pass_manager()`](/docs/api/samplomatic/auto/transpiler-generate-boxing-pass-manager#samplomatic.transpiler.generate_boxing_pass_manager "samplomatic.transpiler.generate_boxing_pass_manager"), the `add_tags` parameter automatically adds [`Tag`](/docs/api/samplomatic/auto/tag#samplomatic.Tag "samplomatic.Tag") annotations to all boxes. Three modes are available:
+
+*   **`"unique_instance"`**: Assigns sequential `ref` (`t0`, `t1`, and so on) to boxes in circuit order. Every box gets a distinct `ref` regardless of its structure.
+*   **`"unique_box"`**: Computes a structural hash of each box’s content and assigns the same `ref` to all structurally equivalent boxes. This is useful for grouping boxes by type rather than position.
+*   **`"noise_ref"`**: Copies the `ref` from each box’s [`InjectNoise`](/docs/api/samplomatic/auto/inject-noise#samplomatic.InjectNoise "samplomatic.InjectNoise") annotation and only tags boxes that have one. This is useful when meaningful noise refs already exist.
+
+The following example applies `"unique_instance"` and `"unique_box"` to a circuit whose two CX boxes are structurally equivalent. With `"unique_instance"`, each gets a distinct `ref`, while with `"unique_box"`, they share one.
+
+```python
+from samplomatic.transpiler import generate_boxing_pass_manager
+
+base_circuit = QuantumCircuit(3)
+base_circuit.cx(0, 1)
+base_circuit.cx(1, 2)
+base_circuit.measure_all()
+
+# unique_instance: every box gets a distinct tag ref
+pm = generate_boxing_pass_manager(add_tags="unique_instance")
+boxed = pm.run(base_circuit)
+template, _ = build(boxed)
+
+print("unique_instance barrier labels:")
+for instr in template:
+    if instr.operation.name == "barrier" and instr.operation.label:
+        print(f"  {instr.operation.label}")
+```
+
+```myst
+unique_instance barrier labels:
+  L0@tag=t0
+  M0@tag=t0
+  R0@tag=t0
+  L1@tag=t1
+  M1@tag=t1
+  R1@tag=t1
+  L2@tag=t2
+  M2@tag=t2
+  R2@tag=t2
+```
+

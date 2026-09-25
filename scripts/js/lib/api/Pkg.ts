@@ -75,6 +75,7 @@ export class Pkg {
     "pauli-prop",
     "qiskit-addon-slc",
     "qiskit-noise-learning",
+    "samplomatic",
     "qiskit-mitigation",
   ];
 
@@ -298,6 +299,15 @@ export class Pkg {
         ...args,
         title: "Qiskit addon utilities",
         githubSlug: "Qiskit/qiskit-addon-utils",
+        kebabCaseAndShortenUrls: true,
+        language: "Python",
+      });
+    }
+    if (name === "samplomatic") {
+      return new Pkg({
+        ...args,
+        title: "Samplomatic",
+        githubSlug: "Qiskit/samplomatic",
         kebabCaseAndShortenUrls: true,
         language: "Python",
       });

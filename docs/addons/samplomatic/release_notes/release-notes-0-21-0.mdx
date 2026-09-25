@@ -1,0 +1,25 @@
+---
+title: "0.21.0 - 2026-08-25"
+description: "0.21.0 - 2026-08-25 for the latest version of Samplomatic"
+---
+
+<span id="id1" />
+
+# 0.21.0 - 2026-08-25
+
+## Added
+
+*   Added the `strategy` argument to `GroupGatesIntoBoxes` to determine how to to assign two-qubit gates to boxes, allowing for new strategies like `"alap"`. The default behavior has not changed and corresponds to the `"asap"` strategy. This can also be specified with the new `boxing_strategy` argument of `generate_boxing_pass_manager`. ([#380](https://github.com/Qiskit/samplomatic/issues/380))
+*   Added support for `delay` in `GroupGatesIntoBoxes`, `GroupMeasIntoBoxes`, and `AddTerminalRightDressedBoxes`. Added support for `reset` in `GroupGatesIntoBoxes` and `AddTerminalRightDressedBoxes`. ([#381](https://github.com/Qiskit/samplomatic/issues/381))
+*   Added support for `Delay` operations with `Stretch` durations. ([#384](https://github.com/Qiskit/samplomatic/issues/384))
+*   Added `decomposition` argument to `AddTerminalRightDressedBoxes`. ([#392](https://github.com/Qiskit/samplomatic/issues/392))
+*   Added `samplomatic.quantum_program` module to store `QuantumProgram`, `QuantumProgramResults`, and all the related classes. ([#396](https://github.com/Qiskit/samplomatic/issues/396))
+
+## Fixed
+
+*   Fixed a crash in `generate_boxing_pass_manager` when the input circuit contained inline `GlobalPhaseGate` (or other zero-bit) instructions. The `GroupGatesIntoBoxes` and `GroupMeasIntoBoxes` passes now treat zero-qubit standard gates as pass-through and no longer fail on operations with empty `qargs` and `cargs` (such as a zero-width barrier). Note that, independently, `build()` does not and has never preserved `QuantumCircuit.global_phase` in the template circuit; this expected behavior is now documented in the `build()` docstring. ([#377](https://github.com/Qiskit/samplomatic/issues/377))
+*   Fixed `samplomatic.visualization.plot_graph()` to draw straight lines between nodes when the edge data is missing. Prior to this fix, it used a spline that sometimes ended up curved in strange ways. ([#378](https://github.com/Qiskit/samplomatic/issues/378))
+*   The `decomposition` argument now applies to terminal right dressed-boxes in `generate_boxing_pass_manager`. Previously, it would always use `rzsx`. ([#392](https://github.com/Qiskit/samplomatic/issues/392))
+*   When the boxing pass manager encounters an instruction whose name starts with `"meas"`, it treats it as a standard measurement instruction. ([#399](https://github.com/Qiskit/samplomatic/issues/399))
+*   Named reset instructions, such as `"reset_2"`, are now recognized by the boxing passes and by :class:`~.BoxKey`. ([#400](https://github.com/Qiskit/samplomatic/issues/400))
+
