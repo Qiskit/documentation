@@ -18,7 +18,44 @@ This service is provisioned across three zones in a multi-zone region with no si
 
 If an HA instance node or zone fails, the service continues to run API requests through to the surviving HA instance nodes.  No noticeable degradation of service occurs during a zonal failure.
 
-It available in the following regions:
+It is available in the following regions:
 
 - Washington DC (us-east)
 - Frankfurt (eu-de)
+
+## Disaster recovery
+
+Disaster recovery (DR) covers the steps required to restore IBM Quantum Compute Service to a working state after a regional failure or other major incident.
+
+### IBM responsibilities
+
+IBM is responsible for the following disaster recovery tasks:
+
+- Restoring or rebuilding the provisioning environments and resources in the affected region.
+- Automatically recovering and restoring IBM Quantum Compute Service capabilities to normal operations following a regional or major incident.
+
+### Your responsibilities
+
+IBM Quantum Compute Service is available in two regions: Washington DC (us-east) and Frankfurt (eu-de). If a regional failure occurs, IBM recommends the following course of action.
+
+**Switch to an alternate region (recommended)**
+
+If your workload allows it, provision a new IBM Quantum Compute Service [instance](/docs/guides/instances) in the alternate region and resubmit any impacted jobs there. This is the fastest path to resuming operations.
+
+You might not be able to switch regions if, for example:
+
+- Your work requires specific qubit characteristics that are only available in the affected region.
+- Regulatory or data-residency requirements prevent you from using a different region.
+
+**Wait for service recovery in your region**
+
+If switching regions is not an option, wait for IBM to recover the service in your region. IBM will communicate status and progress through the [IBM Cloud status page](https://cloud.ibm.com/status). After recovery is confirmed, resubmit any impacted jobs.
+
+### Additional responsibilities
+
+You are also responsible for the following:
+
+- Monitoring instance and resource states so that you can detect a regional failure promptly.
+- Backing up any configuration data and workload data needed to resubmit jobs, as IBM does not back up user configuration or workload data.
+
+For a full breakdown of IBM and customer responsibilities during a disaster recovery event, see [Disaster recovery](/docs/guides/responsibilities#disaster-recovery) in the responsibilities topic.
