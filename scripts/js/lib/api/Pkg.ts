@@ -291,6 +291,15 @@ export class Pkg {
         language: "Python",
       });
     }
+     if (name === "samplomatic") {
+      return new Pkg({
+        ...args,
+        title: "Samplomatic",
+        githubSlug: "Qiskit/samplomatic",
+        kebabCaseAndShortenUrls: true,
+        language: "Python",
+      });
+    }   
     if (name === "qiskit-noise-learning") {
       return new Pkg({
         ...args,
