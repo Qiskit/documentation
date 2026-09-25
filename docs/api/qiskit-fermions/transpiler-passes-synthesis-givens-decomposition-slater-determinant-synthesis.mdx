@@ -9,7 +9,7 @@ python_api_name: qiskit_fermions.transpiler.passes.synthesis.GivensDecomposition
 # GivensDecompositionSlaterDeterminantSynthesis
 
 <Class id="qiskit_fermions.transpiler.passes.synthesis.GivensDecompositionSlaterDeterminantSynthesis" isDedicatedPage={true} signature="GivensDecompositionSlaterDeterminantSynthesis(*, minimize_2q_gate_count=False)" modifiers="class">
-  Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
+  Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
 
   A [`F2QSynthesisPlugin`](transpiler-passes-synthesis-f-2-q-synthesis-plugin "qiskit_fermions.transpiler.passes.synthesis.F2QSynthesisPlugin") for transpiling [`PrepareSlaterDeterminant`](circuit-library-prepare-slater-determinant "qiskit_fermions.circuit.library.PrepareSlaterDeterminant").
 
@@ -45,7 +45,7 @@ python_api_name: qiskit_fermions.transpiler.passes.synthesis.GivensDecomposition
 
   **Parameters**
 
-  **minimize\_2q\_gate\_count** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – which of two equivalent syntheses to emit, selected by the circuit metric to optimize. When `False` (the default), the full leading-reference Givens sweep is used: every emitted two-qubit rotation is nearest-neighbor along the mode order, minimizing the post-routing two-qubit *depth* on a constrained coupling map at the cost of more two-qubit gates. When `True`, disjoint unit-orbitals (occupied orbitals that are basis vectors on a mode disjoint from all other occupied orbitals) are peeled out of the decomposition and realized with a direct `XGate`, minimizing the two-qubit gate *count* but potentially emitting long-range rotations that inflate the routed depth (see the caution in the class docstring). Both settings prepare the same state (up to a global phase); the default favors depth because it generally matters more than gate count, both on hardware and in simulation.
+  **minimize\_2q\_gate\_count** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) – which of two equivalent syntheses to emit, selected by the circuit metric to optimize. When `False` (the default), the full leading-reference Givens sweep is used: every emitted two-qubit rotation is nearest-neighbor along the mode order, minimizing the post-routing two-qubit *depth* on a constrained coupling map at the cost of more two-qubit gates. When `True`, disjoint unit-orbitals (occupied orbitals that are basis vectors on a mode disjoint from all other occupied orbitals) are peeled out of the decomposition and realized with a direct `XGate`, minimizing the two-qubit gate *count* but potentially emitting long-range rotations that inflate the routed depth (see the caution in the class docstring). Both settings prepare the same state (up to a global phase); the default favors depth because it generally matters more than gate count, both on hardware and in simulation.
 
   ## Attributes
 
@@ -66,7 +66,7 @@ python_api_name: qiskit_fermions.transpiler.passes.synthesis.GivensDecomposition
 
     *   **in\_node** ([*DAGOpNode*](/docs/api/qiskit/qiskit.dagcircuit.DAGOpNode)) – the input fermion-based circuit instruction. When this plugin gets called, the `in_node.op` attribute must be of type [`PrepareSlaterDeterminant`](circuit-library-prepare-slater-determinant "qiskit_fermions.circuit.library.PrepareSlaterDeterminant").
     *   **out\_dag** ([*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit)) – the output qubit-based circuit.
-    *   **f2q\_layout** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*QuantumRegister*](/docs/api/qiskit/circuit#qiskit.circuit.QuantumRegister)*,* [*QuantumRegister*](/docs/api/qiskit/circuit#qiskit.circuit.QuantumRegister)*]*) – the global transpilation [`F2QLayout`](transpiler-f-2-q-layout "qiskit_fermions.transpiler.F2QLayout") setting.
+    *   **f2q\_layout** ([*dict*](https://docs.python.org/3/builtins/stdtypes.html#dict)*\[*[*QuantumRegister*](/docs/api/qiskit/circuit#qiskit.circuit.QuantumRegister)*,* [*QuantumRegister*](/docs/api/qiskit/circuit#qiskit.circuit.QuantumRegister)*]*) – the global transpilation [`F2QLayout`](transpiler-f-2-q-layout "qiskit_fermions.transpiler.F2QLayout") setting.
 
     **Return type**
 
@@ -78,13 +78,13 @@ python_api_name: qiskit_fermions.transpiler.passes.synthesis.GivensDecomposition
 
     **Raises**
 
-    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError) – when `in_node` acts on fermionic modes that are spread across multiple [`FermionicRegister`](circuit-fermionic-register "qiskit_fermions.circuit.FermionicRegister") instances.
+    [**NotImplementedError**](https://docs.python.org/3/builtins/exceptions.html#NotImplementedError) – when `in_node` acts on fermionic modes that are spread across multiple [`FermionicRegister`](circuit-fermionic-register "qiskit_fermions.circuit.FermionicRegister") instances.
 
     **Parameters**
 
     *   **in\_node** ([*DAGOpNode*](/docs/api/qiskit/qiskit.dagcircuit.DAGOpNode))
     *   **out\_dag** ([*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit))
-    *   **f2q\_layout** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*QuantumRegister*](/docs/api/qiskit/circuit#qiskit.circuit.QuantumRegister)*,* [*QuantumRegister*](/docs/api/qiskit/circuit#qiskit.circuit.QuantumRegister)*]*)
+    *   **f2q\_layout** ([*dict*](https://docs.python.org/3/builtins/stdtypes.html#dict)*\[*[*QuantumRegister*](/docs/api/qiskit/circuit#qiskit.circuit.QuantumRegister)*,* [*QuantumRegister*](/docs/api/qiskit/circuit#qiskit.circuit.QuantumRegister)*]*)
 
     **Return type**
 
