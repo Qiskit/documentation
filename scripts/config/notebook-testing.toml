@@ -65,25 +65,14 @@ notebooks = ["docs/guides/visualize-results.ipynb"]
 test-strategies.extended = { patch = "qiskit-ibm-runtime", backend = "test_eagle_us-east", qiskit_runtime_service_args = "" }
 test-strategies.hardware = { patch = "qiskit-ibm-runtime-open" }
 notebooks = [
-  "docs/guides/debug-qiskit-runtime-jobs.ipynb",
   "docs/guides/fractional-gates.ipynb",
-  "docs/guides/sampler-examples.ipynb",
-  "docs/guides/estimator-examples.ipynb",
   "docs/guides/executor-examples.ipynb",
   "docs/guides/executor-input-output.ipynb",
   "docs/guides/execute-dynamic-circuits.ipynb",
   "docs/guides/estimator-rest-api.ipynb",
-  "docs/guides/get-started-with-sampler.ipynb",
   "docs/guides/get-started-with-executor.ipynb",
-  "docs/guides/sampler-input-output.ipynb",
-  "docs/guides/sampler-options.ipynb",
-  "docs/guides/estimator-input-output.ipynb",
-  "docs/guides/estimator-options.ipynb",
   "docs/guides/executor-options.ipynb",
-  "docs/guides/get-started-with-estimator.ipynb",
   "docs/guides/primitives.ipynb",
-  "docs/guides/run-jobs-batch.ipynb",
-  "docs/guides/run-jobs-session.ipynb",
   "docs/guides/primitive-input-output.ipynb",
   "docs/guides/add-job-tags.ipynb",
   "docs/guides/qiskit-runtime-circuit-timing.ipynb",
@@ -96,15 +85,6 @@ notebooks = [
 test-strategies.hardware = { patch = "qiskit-ibm-runtime-open" }
 notebooks = [
   "docs/guides/post-selection.ipynb",
-  "docs/guides/hello-world.ipynb",
-
-  # The following notebooks don't seem to work with `test-eagle`, but I'm not
-  # sure why. I've added them here to run on the next cron job so we can
-  # confirm on actual hardware.
-
-  #   This timed out for me, even though I saw the job finish. Maybe it needs
-  #   longer? Running in cron job to remove time limit.
-  "docs/guides/noise-learning.ipynb",
 ]
 
 # Don't ever test the following notebooks
@@ -117,6 +97,21 @@ notebooks = [
   "docs/guides/sampler-noise-management.ipynb",
   "docs/guides/error-mitigation-and-suppression-techniques.ipynb",
   "docs/guides/local-testing-mode.ipynb",
+  "docs/guides/debug-qiskit-runtime-jobs.ipynb",
+  "docs/guides/estimator-examples.ipynb",
+  "docs/guides/estimator-input-output.ipynb",
+  "docs/guides/estimator-options.ipynb",
+  "docs/guides/get-started-with-estimator.ipynb",
+  "docs/guides/get-started-with-sampler.ipynb",
+  "docs/guides/run-jobs-batch.ipynb",
+  "docs/guides/run-jobs-session.ipynb",
+  "docs/guides/sampler-examples.ipynb",
+  "docs/guides/sampler-input-output.ipynb",
+  "docs/guides/sampler-options.ipynb",
+  "docs/guides/hello-world.ipynb",
+  # noise-learning was previously in cron-job-only (timed out under test-eagle);
+  # restore it there once runtime 0.50.0 is recognized.
+  "docs/guides/noise-learning.ipynb",
 
   # Addon notebooks require the addon packages and are not run in standard CI
   "docs/addons/**/*.ipynb",
