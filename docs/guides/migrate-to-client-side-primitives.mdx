@@ -30,11 +30,11 @@ directed — it makes no implicit decisions on your behalf.
 
 Starting in `qiskit-ibm-runtime` v0.50.0, Sampler and Estimator are re-implemented
 on the **client side** on top of Executor. They provide the same convenience and
-abstraction as before, while letting you inspect the implementation details when you need
-to. Because the interfaces and options remain largely the same, migration is meant to be
+abstraction as before, and now you can inspect the implementation details when you need
+to. Because the interfaces and options remain largely the same, migration should be
 seamless.
 
-Note: IBM Quantum only supports version 2 of Sampler and Estimator interfaces (`BaseSamplerV2` and `BaseEstimatorV2`). Therefore they are simply referred to as Sampler and Estimator in this guide.
+Note: IBM Quantum only supports version 2 of Sampler and Estimator interfaces (`BaseSamplerV2` and `BaseEstimatorV2`). Therefore, they are simply referred to as Sampler and Estimator in this guide.
 
 
 ## Update the imports
@@ -116,7 +116,7 @@ logger.setLevel(logging.INFO)
 
 The new Estimator no longer performs *implicit* noise learning when the PEA or PEC error
 mitigation method is selected. You must learn the noise models explicitly and pass them
-in. Use the new [`NoiseLearnerV3`](/docs/guides/noise-learning#noiselearnerv3), which lets you control how circuits
+in. Use the new [`NoiseLearnerV3`](/docs/guides/noise-learning#noiselearnerv3) to control how circuits
 are stratified into layers. It takes a list of boxed circuit instructions (for example,
 the unique layers) as input.
 
@@ -127,7 +127,7 @@ or your code will fail. Measurement noise learning for TREX is unaffected and co
 
 Similarly, if your code uses `NoiseLearner` and passes the resulting noise model to server-side Estimator, you need to [migrate to `NoiseLearnerV3`](/docs/guides/migrate-to-noise-learner-v3). Do NOT use the older `NoiseLearner`, which is incompatible with the new Estimator.
 
-All of the noise learning options in the server-side Estimator ([`LayerNoiseLearningOptions`](/docs/api/qiskit-ibm-runtime/options-layer-noise-learning-options)) map directly to `NoiseLearnerV3` option ([`NoiseLearnerV3Options`](/docs/api/qiskit-ibm-runtime/options-models-noise-learner-v3-options)), with the exception of `max_layers_to_learn`. The number of layers to learn is instead based on the number of layers passed to `NoiseLearnerV3`.
+All of the noise learning options in the server-side Estimator ([`LayerNoiseLearningOptions`](/docs/api/qiskit-ibm-runtime/options-layer-noise-learning-options)) map directly to the `NoiseLearnerV3` option ([`NoiseLearnerV3Options`](/docs/api/qiskit-ibm-runtime/options-models-noise-learner-v3-options)), with the exception of `max_layers_to_learn`. The number of layers to learn is instead based on the number of layers passed to `NoiseLearnerV3`.
 
 For example:
 
@@ -173,7 +173,7 @@ job = estimator.run(pubs)
 
 ### Migrate from `NoiseLearner` to `NoiseLearnerV3`
 
-`NoiseLearner` only works with server-side implementation of `Estimator`. So if your code uses `NoiseLearner` to learn the noise model and pass it to `Estimator`, you need to update your code to use `NoiseLearnerV3`.
+`NoiseLearner` only works with server-side implementation of `Estimator`. Therefore, if your code uses `NoiseLearner` to learn the noise model and pass it to `Estimator`, you need to update your code to use `NoiseLearnerV3`.
 
 See the [Migrate from `NoiseLearner` to `NoiseLearnerV3`](/docs/guides/migrate-to-noise-learner-v3) guide for details.
 
@@ -293,6 +293,6 @@ when constructing the local PUB:
 - [Specify Sampler options](/docs/guides/sampler-options)
 - [Noise learning helper (NoiseLearnerV3)](/docs/guides/noise-learning#noiselearnerv3)
 - [NoiseLearnerV3 API reference](/docs/api/qiskit-ibm-runtime/noise-learner-v3-noise-learner-v3)
-- [ConvertISAToClifford transpiler pass](/docs/api/qiskit-ibm-runtime/transpiler-passes-convert-isa-to-clifford)
+- [`ConvertISAToClifford` transpiler pass](/docs/api/qiskit-ibm-runtime/transpiler-passes-convert-isa-to-clifford)
 - [Error mitigation and suppression techniques](/docs/guides/error-mitigation-and-suppression-techniques)
 </Admonition>

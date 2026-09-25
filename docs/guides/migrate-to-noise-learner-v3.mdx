@@ -6,7 +6,7 @@ description: Migrate from using the NoiseLearner helper program to NoiseLearnerV
 
 # Migrate from NoiseLearner to NoiseLearnerV3
 
-This guide walks you through migrating from IBM Quantum `NoiseLearner` to `NoiseLearnerV3`. Both
+This guide walks you through migrating from IBM Quantum&reg; `NoiseLearner` to `NoiseLearnerV3`. Both
 classes perform experiments that characterize noise processes based on a
 [Pauli-Lindblad noise model](https://arxiv.org/abs/2201.09866), but the inputs and
 outputs are slightly different.
@@ -28,8 +28,8 @@ class that is compatible with the `Executor` primitive and the
 [directed execution model](/docs/guides/directed-execution-model).
 This new model delivers a **white-box** experience by providing the pieces to capture design intent
 on the client side, and a single server-side primitive (Executor) processes those inputs exactly as
-directed — it makes no implicit decisions on your behalf. Unlike the original `NoiseLearner`, `NoiseLearnerV3`
-lets you control how to stratify your circuits, and the class simply takes a list of boxed circuit instructions
+directed — it makes no implicit decisions on your behalf. Unlike the original `NoiseLearner`,
+you control how to stratify your circuits when you use`NoiseLearnerV3`, and the class simply takes a list of boxed circuit instructions
 (for example, unique layers) as its input.
 
 `NoiseLearnerV3` also supports measurement noise learning. For each instruction in the input list, it runs the
@@ -66,7 +66,7 @@ from qiskit_ibm_runtime import NoiseLearnerV3
 
 ### Step 2: Update the inputs
 
-The `NoiseLearner` `run()` method takes a list of circuits or PUBs, whereas the `NoiseLearnerV3` `run()` method takes a list of instructions, each of which must be a twirling-annotated [BoxOp](/docs/api/qiskit/qiskit.circuit.BoxOp) containing ISA operations.
+The `NoiseLearner` `run()` method takes a list of circuits or PUBs, whereas the `NoiseLearnerV3` `run()` method takes a list of instructions, each of which must be a twirling-annotated [`BoxOp`](/docs/api/qiskit/qiskit.circuit.BoxOp) containing ISA operations.
 Convenience methods are available for generating the annotated boxes, depending on which
 primitive you plan to use.
 
@@ -101,7 +101,7 @@ learner_job = learner.run(layers)
 
 **`NoiseLearnerV3`, when working with Executor:**
 
-If you are planning to use Executor for circuit execution, consider using the [generate_boxing_pass_manager](https://qiskit.github.io/samplomatic/api/auto/samplomatic.transpiler.generate_boxing_pass_manager.html#samplomatic.transpiler.generate_boxing_pass_manager) function from [samplomatic](https://github.com/Qiskit/samplomatic/) to create annotated boxes:
+If you are planning to use Executor for circuit execution, consider using the [generate_boxing_pass_manager](https://qiskit.github.io/samplomatic/api/auto/samplomatic.transpiler.generate_boxing_pass_manager.html#samplomatic.transpiler.generate_boxing_pass_manager) function from [Samplomatic](https://github.com/Qiskit/samplomatic/) to create annotated boxes:
 
 ```python
 from qiskit_ibm_runtime.noise_learner_v3 import NoiseLearnerV3
@@ -224,9 +224,9 @@ The outputs of `NoiseLearner` and `NoiseLearnerV3` contain similar information b
 | Result type | [NoiseLearnerResult](/docs/api/qiskit-ibm-runtime/results-noise-learner-result#noiselearnerresult) | [NoiseLearnerV3Results](/docs/api/qiskit-ibm-runtime/results-noise-learner-v3-results), a sequence-like container of [NoiseLearnerV3Result](/docs/api/qiskit-ibm-runtime/results-noise-learner-v3-result) |
 | Number of learned layers | len(learner_result.data) | len(learner_result) |
 | Data for the first layer | layer_error = learner_result.data[0] | noise_map = learner_result[0].to_pauli_lindblad_map() |
-| Result type of each layer | [LayerError](/docs/api/qiskit-ibm-runtime/results-layer-error) (`type(layer_error)`) | [PauliLindbladMap](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap) (`type(noise_map)`) |
-| Generators for the error channel | layer_error.error.generators | noise_map.generators() |
-| Error rates | layer_error.error.rates | noise_map.rates |
+| Result type of each layer | [`LayerError`](/docs/api/qiskit-ibm-runtime/results-layer-error) (`type(layer_error)`) | [`PauliLindbladMap`](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap) (`type(noise_map)`) |
+| Generators for the error channel | `layer_error.error.generators` | `noise_map.generators()` |
+| Error rates | `layer_error.error.rates` | `noise_map.rates` |
 
 ### Step 5: Input noise model to a primitive
 
@@ -331,16 +331,16 @@ estimator.options.resilience.pec_mitigation = True
 # 5. Extract the unique boxed layers from PUBs
 layers = estimator.find_unique_layers(pubs)
 
-# 6. Learn the noise model for those layers.
+# 6. Learn the noise model for those layers
 learner = NoiseLearnerV3(backend)
 learner_job = learner.run(layers)
 learner_result = learner_job.result()
 
-# 7. Convert the result to Pauli-Lindblad maps and pass them to Estimator.
+# 7. Convert the result to Pauli-Lindblad maps and pass them to Estimator
 pauli_lindblad_maps = learner_result.to_pauli_lindblad_maps()
 estimator.options.resilience.layer_noise_model = zip(layers, pauli_lindblad_maps)
 
-# 8. Execute the target PUBs.
+# 8. Execute the target PUBs
 job = estimator.run(pubs)
 result = job.result()
 ```
@@ -385,7 +385,7 @@ boxed_circuit = boxing_pm.run(isa_circuit)
 # 5. Find unique boxed instructions (layers)
 unique_box_instructions = find_unique_box_instructions(boxed_circuit.data)
 
-# 6. Learn the noise model for those layers.
+# 6. Learn the noise model for those layers
 learner = NoiseLearnerV3(backend)
 learner_job = learner.run(unique_box_instructions)
 learner_result = learner_job.result()
