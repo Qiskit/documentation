@@ -23,7 +23,7 @@ This black-box experience is convenient: you don't have to worry about implement
 details. But it also makes the primitives hard to debug, customize, or learn from,
 because you can't see what happens during processing.
 
-The newly introduced [directed execution model](/guides/directed-execution-model#directed-execution-model-beta) takes the opposite approach and
+The newly introduced [directed execution model](/docs/guides/directed-execution-model#directed-execution-model-beta) takes the opposite approach and
 provides a **white-box** experience. All design intents are captured on the client side,
 and a single server-side primitive [**Executor**](/docs/guides/directed-execution-model#executor-primitive) processes those inputs exactly as
 directed — it makes no implicit decisions on your behalf.
@@ -125,7 +125,7 @@ PEA and PEC now **require** this explicit pattern. Do not skip the noise-learnin
 or your code will fail. Measurement noise learning for TREX is unaffected and continues to work as before.
 </Admonition>
 
-Similarly, if your code uses `NoiseLearner` and passes the resulting noise model to server-side Estimator, you need to [migrate to `NoiseLearnerV3`](/docs/guides/migrate-to-noise-learner-v3.mdx). Do NOT use the older `NoiseLearner`, which is incompatible with the new Estimator.
+Similarly, if your code uses `NoiseLearner` and passes the resulting noise model to server-side Estimator, you need to [migrate to `NoiseLearnerV3`](/docs/guides/migrate-to-noise-learner-v3). Do NOT use the older `NoiseLearner`, which is incompatible with the new Estimator.
 
 All of the noise learning options in the server-side Estimator ([`LayerNoiseLearningOptions`](/docs/api/qiskit-ibm-runtime/options-layer-noise-learning-options)) map directly to `NoiseLearnerV3` option ([`NoiseLearnerV3Options`](/docs/api/qiskit-ibm-runtime/options-models-noise-learner-v3-options)), with the exception of `max_layers_to_learn`. The number of layers to learn is instead based on the number of layers passed to `NoiseLearnerV3`.
 
