@@ -472,11 +472,11 @@ Version 18 also narrows the bit-term elements of the SPARSE\_OBSERVABLE payload 
 
 The values of [`SparseObservable.BitTerm`](/docs/api/qiskit/dev/qiskit.quantum_info.SparseObservable#bitterm "qiskit.quantum_info.SparseObservable.BitTerm") always fit in a single byte, so the wider type stored a byte of padding for every bit term. A version 18 payload is therefore one byte smaller per bit term than the equivalent version 17 payload. No other field of SPARSE\_OBSERVABLE changes, and the meaning of bitterm\_data\_len is unaffected because it counts elements rather than bytes.
 
-<span id="changes-to-register-pack" />
-
-#### Changes to REGISTER\_PACK
+#### Changes to REGISTERS
 
 The representation of registers defined in [REGISTERS](#qpy-registers) and updated in [Version 4](#qpy-version-4)) in QPY has changed in Version 18. The first change is the type of register index mapping array from `int64_t` to `uint32_t` (which is what it was prior to QPY v4). The original change to `int64_t` was done to enable using -1 as a sentinel value for a bit not in the circuit. This is not actually needed as we can use the max value of a `uint32_t` (4294967295) as the sentinel value. In version 18 values of 4294967295 should be treated as -1 was in previous QPY and the bit in that array position is not in the circuit.
+
+Version 18 also adds `'a'` as a value for the `type` field to represent an [`AncillaRegister`](circuit#qiskit.circuit.AncillaRegister "qiskit.circuit.AncillaRegister"). Previously, ancilla registers were encoded as `'q'` and were therefore deserialized as ordinary [`QuantumRegister`](circuit#qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister") objects. The existing `'q'` and `'c'` values continue to represent quantum and classical registers, respectively.
 
 The [REGISTERS](#qpy-registers) header format has also been updated to
 
