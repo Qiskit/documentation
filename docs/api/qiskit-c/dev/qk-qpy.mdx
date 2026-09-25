@@ -1,0 +1,311 @@
+---
+title: QPY (dev version)
+description: API reference for QPY in the dev version of qiskit-c
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: QPY
+---
+
+<span id="capi-qpy" />
+
+# QPY
+
+QPY is Qiskit’s portable, cross-platform binary format for storing quantum circuits. The QPY C API can serialize multiple `QkCircuit` objects to a file or an in-memory buffer and load all the circuits from either representation. QPY data produced by this interface is compatible with the Python [`qiskit.qpy`](/docs/api/qiskit/dev/qpy#module-qiskit.qpy "qiskit.qpy") interface.
+
+[`qk_qpy_read_min_version()`](#qk_qpy_read_min_version "qk_qpy_read_min_version") returns the oldest QPY format version that the loaded library can read. This is equivalent to Python’s [`qiskit.qpy.QPY_COMPATIBILITY_VERSION`](/docs/api/qiskit/dev/qpy#qiskit.qpy.QPY_COMPATIBILITY_VERSION "qiskit.qpy.QPY_COMPATIBILITY_VERSION"). [`qk_qpy_write_min_version()`](#qk_qpy_write_min_version "qk_qpy_write_min_version") returns the oldest version that the C API can write. The two bounds differ because the C API uses the Rust QPY implementation, while Python can use its legacy implementation to write older formats.
+
+Loaded circuits are newly allocated and must be released with `qk_qpy_free_circuits()`.
+
+The standard dump functions accept native `QkCircuit` objects and do not interact with Python. If you’re using the C API in a Python extension you should use the Python functions: [`qpy.dump()`](/docs/api/qiskit/dev/qpy#qiskit.qpy.dump "qiskit.qpy.dump") and [`qpy.load()`](/docs/api/qiskit/dev/qpy#qiskit.qpy.load "qiskit.qpy.load") as the C API functions will return an error if Python is required to create or load a QPY payload from the circuit.
+
+The following example writes two circuits to a file and loads them again:
+
+```c
+#include <qiskit.h>
+#include <stddef.h>
+
+int main(void) {
+    QkCircuit *bell = qk_circuit_new(2, 0);
+    qk_circuit_gate(bell, QkGate_H, (uint32_t[]){0}, NULL);
+    qk_circuit_gate(bell, QkGate_CX, (uint32_t[]){0, 1}, NULL);
+
+    QkCircuit *plus = qk_circuit_new(1, 0);
+    qk_circuit_gate(plus, QkGate_H, (uint32_t[]){0}, NULL);
+
+    const QkCircuit *circuits[] = {bell, plus};
+
+    if (qk_qpy_dump_file(circuits, 2, "circuits.qpy", NULL) != QkExitCode_Success) {
+        qk_circuit_free(plus);
+        qk_circuit_free(bell);
+        return 1;
+    }
+
+    QkQpyLoadedCircuits loaded = {NULL, 0};
+    if (qk_qpy_load_file(&loaded, "circuits.qpy", NULL) != QkExitCode_Success) {
+        qk_circuit_free(plus);
+        qk_circuit_free(bell);
+        return 1;
+    }
+
+    int result = loaded.len == 2 ? 0 : 1;
+    qk_qpy_loaded_circuits_clear(&loaded);
+    qk_circuit_free(plus);
+    qk_circuit_free(bell);
+    return result;
+}
+```
+
+The buffer variants allocate the serialized data. Pass the returned pointer and its exact size to [`qk_qpy_free_buffer()`](#qk_qpy_free_buffer "qk_qpy_free_buffer") when it is no longer needed. The `*_with_version` variants select a specific output QPY format version; query [`qk_qpy_write_min_version()`](#qk_qpy_write_min_version "qk_qpy_write_min_version") for the minimum supported output version. All functions that can fail return `QkExitCode`, including `QkExitCode_QpyError` for serialization, deserialization, path, and file-I/O errors. Their final `error` argument may be null to ignore diagnostic details. Otherwise, on a QPY error it is populated with an allocated, nul-terminated description that must be released with [`qk_str_free()`](qk-obs#qk_str_free "qk_str_free"). The output pointer is unchanged on success and for errors without an additional diagnostic.
+
+## Functions
+
+### qk\_qpy\_read\_min\_version
+
+<Function id="qk_qpy_read_min_version" signature="uint8_t qk_qpy_read_min_version(void)">
+  Get the oldest QPY format version readable by the loaded library.
+
+  **Returns**
+
+  The oldest QPY format version supported for reading.
+</Function>
+
+### qk\_qpy\_write\_min\_version
+
+<Function id="qk_qpy_write_min_version" signature="uint8_t qk_qpy_write_min_version(void)">
+  Get the oldest QPY format version writable by the loaded library.
+
+  Use this value as the lower bound for the `*_with_version` dump functions.
+
+  This is the equivalent of Python’s [`QPY_COMPATIBILITY_VERSION`](/docs/api/qiskit/dev/qpy#qiskit.qpy.QPY_COMPATIBILITY_VERSION "qiskit.qpy.QPY_COMPATIBILITY_VERSION")
+
+  **Returns**
+
+  The oldest QPY format version supported for writing.
+</Function>
+
+### qk\_qpy\_dump\_file
+
+<Function id="qk_qpy_dump_file" signature="QkExitCode qk_qpy_dump_file(const QkCircuit *const *circuits, size_t num_circuits, const char *filename, char **error)">
+  Write circuits to a QPY file.
+
+  This function will return an error if any aspect of the circuit requires the Python interpreter to generate the QPY payload. If you are using this function in a Python extension module you should use the Python function [`qpy.dump()`](/docs/api/qiskit/dev/qpy#qiskit.qpy.dump "qiskit.qpy.dump") instead to avoid this limitation.
+
+  <span id="group__QkQpy_1autotoc_md322" />
+
+  #### Safety
+
+  <span id="group__QkQpy_1autotoc_md322" />
+
+  Every element of `circuits` must point to a valid `QkCircuit`. If any entry is not a valid aligned, non-null pointer the behavior is undefined. `filename` must point to a valid nul-terminated string for the duration of this call. `error` must be null or valid writeable pointer to a char pointer.
+
+  **Parameters**
+
+  *   **circuits** – A valid, non-null pointer to an array of `num_circuits` circuit pointers.
+  *   **num\_circuits** – The number of circuit pointers in `circuits`.
+  *   **filename** – A valid, non-null, nul-terminated UTF-8 path.
+  *   **error** – Optional output location for an error description. Free a returned string with `qk_str_free`.
+
+  **Returns**
+
+  `QkExitCode_Success` on success, `QkExitCode_NullPointerError` for a null pointer, or `QkExitCode_QpyError` for an invalid path, unsupported QPY data, or I/O failure.
+</Function>
+
+### qk\_qpy\_dump\_file\_with\_version
+
+<Function id="qk_qpy_dump_file_with_version" signature="QkExitCode qk_qpy_dump_file_with_version(const QkCircuit *const *circuits, size_t num_circuits, const char *filename, uint8_t version, char **error)">
+  Write circuits to a QPY file using a specific format version.
+
+  This function will return an error if any aspect of the circuit requires the Python interpreter to generate the QPY payload. If you are using this function in a Python extension module you should use the Python function [`qpy.dump()`](/docs/api/qiskit/dev/qpy#qiskit.qpy.dump "qiskit.qpy.dump") instead to avoid this limitation.
+
+  <span id="group__QkQpy_1autotoc_md323" />
+
+  #### Safety
+
+  <span id="group__QkQpy_1autotoc_md323" />
+
+  Every element of `circuits` must point to a valid `QkCircuit`. If any entry is not a valid aligned, non-null pointer the behavior is undefined. `filename` must point to a valid nul-terminated string for the duration of this call. `error` must be null or valid writeable pointer to a char pointer.
+
+  **Parameters**
+
+  *   **circuits** – A valid, non-null pointer to an array of `num_circuits` circuit pointers.
+  *   **num\_circuits** – The number of circuit pointers in `circuits`.
+  *   **filename** – A valid, non-null, nul-terminated UTF-8 path.
+  *   **version** – The QPY format version. It must be at least the value returned by `qk_qpy_write_min_version`.
+  *   **error** – Optional output location for an error description. Free a returned string with `qk_str_free`.
+
+  **Returns**
+
+  The same exit codes as `qk_qpy_dump_file`.
+</Function>
+
+### qk\_qpy\_load\_file
+
+<Function id="qk_qpy_load_file" signature="QkExitCode qk_qpy_load_file(QkQpyLoadedCircuits *circuits, const char *filename, char **error)">
+  Load all circuits from a QPY file.
+
+  This function will return an error if any aspect of the circuits in the QPY payload require the Python interpreter to create the `QkCircuit` object. If you are using this function in a Python extension module you should use the Python function [`qpy.dump()`](/docs/api/qiskit/dev/qpy#qiskit.qpy.dump "qiskit.qpy.dump") instead to avoid this limitation.
+
+  <span id="group__QkQpy_1autotoc_md324" />
+
+  #### Safety
+
+  <span id="group__QkQpy_1autotoc_md324" />
+
+  `filename` must point to a valid nul-terminated string; `circuits` must be valid non-null, aligned valid pointer to a `QpyLoadedCircuits` or behavior is undefined. `error` must be null or a valid pointer to a `char` pointer.
+
+  **Parameters**
+
+  *   **filename** – A valid, non-null, nul-terminated UTF-8 path.
+  *   **circuits** – Output location for loaded circuits.
+  *   **error** – Optional output location for an error description. Free a returned string with `qk_str_free`.
+
+  **Returns**
+
+  `QkExitCode_Success` on success, `QkExitCode_NullPointerError` for a null pointer, or `QkExitCode_QpyError` if the file cannot be read or is not supported QPY. The returned array and all its circuits must be released with `qk_qpy_loaded_circuits_clear`.
+</Function>
+
+### qk\_qpy\_dump\_buffer
+
+<Function id="qk_qpy_dump_buffer" signature="QkExitCode qk_qpy_dump_buffer(const QkCircuit *const *circuits, size_t num_circuits, uint8_t **buffer, size_t *size, char **error)">
+  Serialize circuits into a newly allocated QPY buffer.
+
+  This function will return an error if any aspect of the circuit requires the Python interpreter to generate the QPY payload. If you are using this function in a Python extension module you should use the Python function [`qpy.dump()`](/docs/api/qiskit/dev/qpy#qiskit.qpy.dump "qiskit.qpy.dump") instead to avoid this limitation.
+
+  <span id="group__QkQpy_1autotoc_md325" />
+
+  #### Safety
+
+  <span id="group__QkQpy_1autotoc_md325" />
+
+  Every element of `circuits` must point to a valid `QkCircuit`. `buffer` and `size` must each be valid for one pointer-sized write for the duration of this call. `error` must be null or valid for one pointer write.
+
+  **Parameters**
+
+  *   **circuits** – A valid, non-null pointer to an array of `num_circuits` circuit pointers.
+  *   **num\_circuits** – The number of circuit pointers in `circuits`.
+  *   **buffer** – Output location for the newly allocated buffer. It is unchanged on failure.
+  *   **size** – Output location for the buffer size in bytes. It is unchanged on failure.
+  *   **error** – Optional output location for an error description. Free a returned string with `qk_str_free`.
+
+  **Returns**
+
+  `QkExitCode_Success` on success, `QkExitCode_NullPointerError` for a null pointer, or `QkExitCode_QpyError` if serialization fails. The returned buffer must be released with `qk_qpy_free_buffer`.
+</Function>
+
+### qk\_qpy\_dump\_buffer\_with\_version
+
+<Function id="qk_qpy_dump_buffer_with_version" signature="QkExitCode qk_qpy_dump_buffer_with_version(const QkCircuit *const *circuits, size_t num_circuits, uint8_t **buffer, size_t *size, uint8_t version, char **error)">
+  Serialize circuits into a newly allocated QPY buffer using a specific format version.
+
+  This function will return an error if any aspect of the circuit requires the Python interpreter to generate the QPY payload. If you are using this function in a Python extension module you should use the Python function [`qpy.dump()`](/docs/api/qiskit/dev/qpy#qiskit.qpy.dump "qiskit.qpy.dump") instead to avoid this limitation.
+
+  <span id="group__QkQpy_1autotoc_md326" />
+
+  #### Safety
+
+  <span id="group__QkQpy_1autotoc_md326" />
+
+  The pointer requirements are the same as for `qk_qpy_dump_buffer`.
+
+  **Parameters**
+
+  *   **circuits** – A valid, non-null pointer to an array of `num_circuits` circuit pointers.
+  *   **num\_circuits** – The number of circuit pointers in `circuits`.
+  *   **buffer** – Output location for the newly allocated buffer. It is unchanged on failure.
+  *   **size** – Output location for the buffer size in bytes. It is unchanged on failure.
+  *   **version** – The QPY format version. It must be at least the value returned by `qk_qpy_write_min_version`.
+  *   **error** – Optional output location for an error description. Free a returned string with `qk_str_free`.
+
+  **Returns**
+
+  The same exit codes as `qk_qpy_dump_buffer`.
+</Function>
+
+### qk\_qpy\_load\_buffer
+
+<Function id="qk_qpy_load_buffer" signature="QkExitCode qk_qpy_load_buffer(QkQpyLoadedCircuits *circuits, const uint8_t *buffer, size_t size, char **error)">
+  Load all circuits from a QPY buffer.
+
+  This function will return an error if any aspect of the circuits in the QPY payload require the Python interpreter to create the `QkCircuit` object. If you are using this function in a Python extension module you should use the Python function [`qpy.dump()`](/docs/api/qiskit/dev/qpy#qiskit.qpy.dump "qiskit.qpy.dump") instead to avoid this limitation.
+
+  <span id="group__QkQpy_1autotoc_md327" />
+
+  #### Safety
+
+  <span id="group__QkQpy_1autotoc_md327" />
+
+  `buffer` must be valid for reads of `size` bytes; `circuits` must be valid non-null, aligned valid pointer to a `QpyLoadedCircuits` or behavior is undefined. `error` must be null or a valid pointer to a `char` pointer.
+
+  **Parameters**
+
+  *   **circuits** – Output location for loaded circuits.
+  *   **buffer** – A valid buffer containing `size` bytes of QPY data.
+  *   **size** – The size of `buffer` in bytes.
+  *   **error** – Optional output location for an error description. Free a returned string with `qk_str_free`.
+
+  **Returns**
+
+  `QkExitCode_Success` on success, `QkExitCode_NullPointerError` for a null pointer, or `QkExitCode_QpyError` if the buffer is not supported QPY. The returned array and all its circuits must be released with `qk_qpy_loaded_circuits_clear`.
+</Function>
+
+### qk\_qpy\_loaded\_circuits\_clear
+
+<Function id="qk_qpy_loaded_circuits_clear" signature="void qk_qpy_loaded_circuits_clear(QkQpyLoadedCircuits *circuits)">
+  Free circuits returned by `qk_qpy_load_file` or `qk_qpy_load_buffer`.
+
+  <span id="group__QkQpy_1autotoc_md328" />
+
+  #### Safety
+
+  <span id="group__QkQpy_1autotoc_md328" />
+
+  `circuits` must either be null, or valid aligned pointer to a `QkQpyLoadedCircuits` object with the `.data` field populated with an array of `QkCircuit` pointers as populated by `qk_qpy_load_file` or `qk_qpy_load_buffer`. Otherwise the behavior of this function is undefined.
+
+  **Parameters**
+
+  *   **circuits** – The pointer to the loaded circuits object populated by a QPY load function, or null.
+</Function>
+
+### qk\_qpy\_free\_buffer
+
+<Function id="qk_qpy_free_buffer" signature="void qk_qpy_free_buffer(uint8_t *buffer, size_t size)">
+  Free a buffer returned by `qk_qpy_dump_buffer`.
+
+  <span id="group__QkQpy_1autotoc_md329" />
+
+  #### Safety
+
+  <span id="group__QkQpy_1autotoc_md329" />
+
+  A non-null `buffer` must have been returned by `qk_qpy_dump_buffer` with exactly this `size` and must not have been freed previously.
+
+  **Parameters**
+
+  *   **buffer** – A buffer returned by `qk_qpy_dump_buffer`, or null.
+  *   **size** – The buffer size returned by `qk_qpy_dump_buffer`.
+</Function>
+
+### QkQpyLoadedCircuits
+
+<Class id="QkQpyLoadedCircuits" signature="struct QkQpyLoadedCircuits">
+  *#include \<types.h>*
+
+  The output data from `qk_qpy_load_file` or `qk_qpy_load_buffer`
+
+  This contains an array of pointers to `QkCircuit` and a length.
+
+  The array as populated by the QPY load functions are owned by qiskit and must be freed by calling `qk_qpy_loaded_circuits_clear`.
+
+  #### QkCircuit \*\*data
+
+  <Attribute id="data">
+    The array of `QkCircuit` pointers that were loaded from the QPY payload.
+  </Attribute>
+
+  #### size\_t len
+
+  <Attribute id="len">
+    The number of circuits in `data`.
+  </Attribute>
+</Class>
+

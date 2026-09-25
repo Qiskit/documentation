@@ -8,10 +8,12 @@ python_api_name: qiskit_ibm_runtime.RuntimeDecoder
 
 # RuntimeDecoder
 
-<Class id="qiskit_ibm_runtime.RuntimeDecoder" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.49/qiskit_ibm_runtime/json.py#L458-L652" signature="RuntimeDecoder(*args, **kwargs)" modifiers="class">
+<Class id="qiskit_ibm_runtime.RuntimeDecoder" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.50/qiskit_ibm_runtime/json.py#L464-L664" signature="RuntimeDecoder(*args, **kwargs)" modifiers="class">
   Bases: `JSONDecoder`
 
   JSON Decoder used by IBM Quantum Compute service.
+
+  This class has been designed for using as part of IBM Quantum Compute client. When using as standalone or outside the regular flow of the `qiskit_ibm_runtime` package, it provides no guarantees on the safety, validity and potential side effects. It is recommended to only use this class and its functions on trusted input.
 
   `object_hook`, if specified, will be called with the result of every JSON object decoded and its return value will be used in place of the given `dict`. This can be used to provide custom deserializations (e.g. to support JSON-RPC class hinting).
 
@@ -34,7 +36,7 @@ python_api_name: qiskit_ibm_runtime.RuntimeDecoder
 
   ### decode
 
-  <Function id="qiskit_ibm_runtime.RuntimeDecoder.decode" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.49/qiskit_ibm_runtime/json.py#L466-L512" signature="decode(s)">
+  <Function id="qiskit_ibm_runtime.RuntimeDecoder.decode" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.50/qiskit_ibm_runtime/json.py#L478-L524" signature="decode(s)">
     Return the Python representation of a string `s` containing a JSON document.
 
     Applies additional conversion for executor program and NLV3’s `params`, preserving the superclass `decode()` output in all other cases.
@@ -50,7 +52,7 @@ python_api_name: qiskit_ibm_runtime.RuntimeDecoder
 
   ### object\_hook
 
-  <Function id="qiskit_ibm_runtime.RuntimeDecoder.object_hook" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.49/qiskit_ibm_runtime/json.py#L514-L652" signature="object_hook(obj)">
+  <Function id="qiskit_ibm_runtime.RuntimeDecoder.object_hook" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.50/qiskit_ibm_runtime/json.py#L526-L664" signature="object_hook(obj)">
     Called to decode object.
 
     **Parameters**

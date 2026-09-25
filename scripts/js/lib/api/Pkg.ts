@@ -76,6 +76,7 @@ export class Pkg {
     "qiskit-addon-slc",
     "qiskit-noise-learning",
     "samplomatic",
+    "qiskit-mitigation",
   ];
 
   static VALID_NAMES = [
@@ -186,6 +187,16 @@ export class Pkg {
         ...args,
         title: "Operator backpropagation (OBP)",
         githubSlug: "Qiskit/qiskit-addon-obp",
+        kebabCaseAndShortenUrls: true,
+        language: "Python",
+        hasAddonDocs: true,
+      });
+    }
+    if (name === "qiskit-mitigation") {
+      return new Pkg({
+        ...args,
+        title: "Qiskit mitigation",
+        githubSlug: "Qiskit/qiskit-mitigation",
         kebabCaseAndShortenUrls: true,
         language: "Python",
         hasAddonDocs: true,

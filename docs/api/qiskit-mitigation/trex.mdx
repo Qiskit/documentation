@@ -1,0 +1,114 @@
+---
+title: TREX (latest version)
+description: API reference for qiskit_mitigation.TREX in the latest version of qiskit-mitigation
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_mitigation.TREX
+---
+
+<span id="trex-qiskit-mitigation-trex" />
+
+# TREX (`qiskit_mitigation.trex`)
+
+### TREX
+
+<Class id="qiskit_mitigation.TREX" github="https://github.com/Qiskit/qiskit-mitigation/tree/stable/0.1/qiskit_mitigation/trex.py#L37-L330" signature="TREX" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
+
+  Mitigates readout errors in expectation values using the Twirled Readout Error eXtinction (TREX) method.
+
+  The class enables adding a readout error calibration item to a QuantumProgram shared by one or more mitigation tasks, that can be executed on hardware using the Executor. The calibration results are post processed into a measurement noise model, which is used to calculate scale factors that correct the expectation values computed by the connected mitigation tasks.
+
+  Instantiate a TREX task.
+
+  #### Methods
+
+  ##### prepare
+
+  <Function id="qiskit_mitigation.TREX.prepare" github="https://github.com/Qiskit/qiskit-mitigation/tree/stable/0.1/qiskit_mitigation/trex.py#L100-L133" signature="prepare(num_randomizations, quantum_program, custom_boxing_options=None)">
+    Adds a TREX calibration item to the quantum program.
+
+    **Parameters**
+
+    *   **num\_randomizations** ([*int*](https://docs.python.org/3/builtins/functions.html#int)) – Number of randomizations for the TREX calibration.
+    *   **quantum\_program** ([*QuantumProgram*](https://qiskit.github.io/samplomatic/api/auto/samplomatic.quantum_program.QuantumProgram.html#samplomatic.quantum_program.QuantumProgram "(in samplomatic)")) – The quantum program to add an item for.
+    *   **custom\_boxing\_options** ([*dict*](https://docs.python.org/3/builtins/stdtypes.html#dict) *| None*) – The custom boxing options that will be used by `generate_boxing_pass_manager()` function.
+
+    **Returns**
+
+    The input `QuantumProgram` instance with added TREX calibration item.
+
+    **Return type**
+
+    [*QuantumProgram*](https://qiskit.github.io/samplomatic/api/auto/samplomatic.quantum_program.QuantumProgram.html#samplomatic.quantum_program.QuantumProgram "(in samplomatic)")
+  </Function>
+
+  ##### calculate\_trex\_factor
+
+  <Function id="qiskit_mitigation.TREX.calculate_trex_factor" github="https://github.com/Qiskit/qiskit-mitigation/tree/stable/0.1/qiskit_mitigation/trex.py#L267-L301" signature="calculate_trex_factor(noise_data, observable_term)" modifiers="static">
+    Calculate TREX factor relevant for a given observable term based on noise model.
+
+    **Parameters**
+
+    *   **noise\_data** ([*PauliLindbladMap*](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap)  *|*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)) – PauliLindbladMap containing measurement noise model or a result of TREX calibration execution.
+    *   **observable\_term** ([*Pauli*](/docs/api/qiskit/qiskit.quantum_info.Pauli)  *|*[*QubitSparsePauli*](/docs/api/qiskit/qiskit.quantum_info.QubitSparsePauli)  *|*[*str*](https://docs.python.org/3/builtins/stdtypes.html#str)) – observable term to calculate TREX factor for.
+
+    **Returns**
+
+    TREX factor for the observable term.
+
+    **Return type**
+
+    [float](https://docs.python.org/3/builtins/functions.html#float)
+  </Function>
+
+  ##### trex\_factors\_each\_term
+
+  <Function id="qiskit_mitigation.TREX.trex_factors_each_term" github="https://github.com/Qiskit/qiskit-mitigation/tree/stable/0.1/qiskit_mitigation/trex.py#L303-L330" signature="trex_factors_each_term(measurement_noise_map, observables)" modifiers="static">
+    Calculates TREX mitigation algorithm’s expectation value scale factor for each Pauli term in each observable.
+
+    Calculates $\langle Z^N \rangle$ for each non-identity Pauli term in each observable using learned measurement noise, where $N$ are the non-identity indices in the term.
+
+    **Parameters**
+
+    *   **measurement\_noise\_map** ([*PauliLindbladMap*](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap)) – Learned measurement noise in PauliLindbladMap format.
+    *   **observables** ([*ObservablesArray*](/docs/api/qiskit/qiskit.primitives.ObservablesArray)  *|*[*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp)*]*) – Observables in which the TREX algorithm mitigates their expectation values.
+
+    **Returns**
+
+    A dictionary mapping Pauli terms to their expectation values scale factors.
+
+    **Return type**
+
+    [dict](https://docs.python.org/3/builtins/stdtypes.html#dict)\[[str](https://docs.python.org/3/builtins/stdtypes.html#str), [float](https://docs.python.org/3/builtins/functions.html#float)]
+  </Function>
+
+  ##### compute\_noise\_model
+
+  <Function id="qiskit_mitigation.TREX.compute_noise_model" github="https://github.com/Qiskit/qiskit-mitigation/tree/stable/0.1/qiskit_mitigation/trex.py#L237-L265" signature="compute_noise_model(results)">
+    Compute noise model from program results.
+
+    **Parameters**
+
+    **results** ([*QuantumProgramResult*](https://qiskit.github.io/samplomatic/api/auto/samplomatic.quantum_program.QuantumProgramResult.html#samplomatic.quantum_program.QuantumProgramResult "(in samplomatic)")) – QuantumProgramResult which contains the TREX calibration circuit results.
+
+    **Returns**
+
+    The learned readout noise model as a `PauliLindbladMap`.
+
+    **Return type**
+
+    [*PauliLindbladMap*](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap)
+  </Function>
+
+  ##### has\_calibration\_result
+
+  <Function id="qiskit_mitigation.TREX.has_calibration_result" github="https://github.com/Qiskit/qiskit-mitigation/tree/stable/0.1/qiskit_mitigation/trex.py#L135-L137" signature="has_calibration_result()">
+    Whether a TREX calibration task has been added to the quantum program.
+
+    **Return type**
+
+    [bool](https://docs.python.org/3/builtins/functions.html#bool)
+  </Function>
+</Class>
+

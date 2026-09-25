@@ -38,6 +38,18 @@ $$
   3QfFermionOperator *op = qf_ferm_op_from_1body_tril_spin_sym(one_body_a, norb);
   ```
 
+  <span id="group__qf__electronic__integrals_1autotoc_md0" />
+
+  #### Safety
+
+  <span id="group__qf__electronic__integrals_1autotoc_md0" />
+
+  Behavior is undefined if any of the following conditions are violated:
+
+  *   `one_body_a` is a non-null, aligned pointer to a `double` array of length `norb * (norb + 1) / 2`
+
+  A null or misaligned pointer is detected and panics; the array *length* cannot be derived from the pointer, so it remains an unchecked caller contract.
+
   **Parameters**
 
   *   **one\_body\_a** – a 1-dimensional array of length `norb * (norb + 1) / 2` storing the 1-body electronic integral coefficients of the alpha-spin species, as a flattened triangular matrix.
@@ -45,7 +57,7 @@ $$
 
   **Returns**
 
-  The 1-body component of the electronic structure Hamiltonian as defined above.
+  A pointer to the component of the electronic structure Hamiltonian defined below.
 </Function>
 
 ### qf\_ferm\_op\_from\_1body\_tril\_spin
@@ -70,6 +82,18 @@ $$
   4QfFermionOperator *op = qf_ferm_op_from_1body_tril_spin(one_body_a, one_body_b, norb);
   ```
 
+  <span id="group__qf__electronic__integrals_1autotoc_md1" />
+
+  #### Safety
+
+  <span id="group__qf__electronic__integrals_1autotoc_md1" />
+
+  Behavior is undefined if any of the following conditions are violated:
+
+  *   `one_body_a` and `one_body_b` are non-null, aligned pointers to `double` arrays, each of length `norb * (norb + 1) / 2`
+
+  A null or misaligned pointer is detected and panics; the array *lengths* cannot be derived from the pointers, so they remain an unchecked caller contract.
+
   **Parameters**
 
   *   **one\_body\_a** – a 1-dimensional array of length `norb * (norb + 1) / 2` storing the 1-body electronic integral coefficients of the alpha-spin species, as a flattened triangular matrix.
@@ -78,7 +102,7 @@ $$
 
   **Returns**
 
-  The 1-body component of the electronic structure Hamiltonian as defined above.
+  A pointer to the component of the electronic structure Hamiltonian defined below.
 </Function>
 
 ### qf\_ferm\_op\_from\_2body\_tril\_spin\_sym
@@ -105,6 +129,18 @@ $$
   3QfFermionOperator *op = qf_ferm_op_from_2body_tril_spin_sym(two_body_aa, norb);
   ```
 
+  <span id="group__qf__electronic__integrals_1autotoc_md2" />
+
+  #### Safety
+
+  <span id="group__qf__electronic__integrals_1autotoc_md2" />
+
+  Behavior is undefined if any of the following conditions are violated:
+
+  *   `two_body_aa` is a non-null, aligned pointer to a `double` array of length `npair * (npair + 1) / 2`, where `npair = norb * (norb + 1) / 2`
+
+  A null or misaligned pointer is detected and panics; the array *length* cannot be derived from the pointer, so it remains an unchecked caller contract.
+
   <Admonition title="Note" type="note">
     `two_body_aa` is an S8-fold symmetric array. That means, it is the flattened lower-triangular data of a matrix of shape `(npair, npair)`, where `npair = (norb * (norb + 1) // 2`. This in turn is the lower-triangular data of the 4-dimensional array of shape `(norb, norb, norb, norb)`. Therefore, $\mathcal{P}$ above expands the flattened index $ijkl$ into all index permutations $(i,j,k,l)$ that index this 4-dimensional array.
   </Admonition>
@@ -116,7 +152,7 @@ $$
 
   **Returns**
 
-  The 2-body component of the electronic structure Hamiltonian as defined above.
+  A pointer to the component of the electronic structure Hamiltonian defined below.
 </Function>
 
 ### qf\_ferm\_op\_from\_2body\_tril\_spin
@@ -149,6 +185,19 @@ $$
   7    two_body_aa, two_body_ab, two_body_bb, norb);
   ```
 
+  <span id="group__qf__electronic__integrals_1autotoc_md3" />
+
+  #### Safety
+
+  <span id="group__qf__electronic__integrals_1autotoc_md3" />
+
+  Behavior is undefined if any of the following conditions are violated:
+
+  *   `two_body_aa` and `two_body_bb` are non-null, aligned pointers to `double` arrays, each of length `npair * (npair + 1) / 2`, where `npair = norb * (norb + 1) / 2`
+  *   `two_body_ab` is a non-null, aligned pointer to a `double` array of length `npair * npair`
+
+  A null or misaligned pointer is detected and panics; the array *lengths* cannot be derived from the pointers, so they remain an unchecked caller contract.
+
   <Admonition title="Note" type="note">
     `two_body_aa` and `two_body_bb` are a S8-fold symmetric arrays. That means, they are the flattened lower-triangular data of matrices of shape `(npair, npair)`, where `npair = (norb * (norb + 1) // 2`. These in turn are the lower-triangular data of the 4-dimensional arrays of shape `(norb, norb, norb, norb)`. Therefore, $\mathcal{P}$ above expands the flattened index $ijkl$ into all index permutations $(i,j,k,l)$ that index these 4-dimensional arrays.
 
@@ -164,6 +213,6 @@ $$
 
   **Returns**
 
-  The 2-body component of the electronic structure Hamiltonian as defined above.
+  A pointer to the component of the electronic structure Hamiltonian defined below.
 </Function>
 
