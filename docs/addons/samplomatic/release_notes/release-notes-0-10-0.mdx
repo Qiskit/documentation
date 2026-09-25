@@ -1,0 +1,37 @@
+---
+title: "0.10.0 - 2025-10-20"
+description: "0.10.0 - 2025-10-20 for the latest version of Samplomatic"
+---
+
+<span id="id1" />
+
+# 0.10.0 - 2025-10-20
+
+## Removed
+
+*   Removed the `NoiseModelRequirement` class and the associated method `Samplex.add_noise_requirement()` and attribute `Samplex.noise_requirements`. Instead, all noise model requirements are integrated into `Samplex.inputs()`. ([#164](https://github.com/Qiskit/samplomatic/issues/164))
+*   Removed `samplomatic.tensor_interface.ValueType`. ([#164](https://github.com/Qiskit/samplomatic/issues/164))
+
+## Added
+
+*   Added a new subclass `samplomatic.tensor_interface.PauliLindbladNoiseSpecification` of `samplomatic.tensor_interface.Specification`. ([#164](https://github.com/Qiskit/samplomatic/issues/164))
+*   Added the concept of `free_dimensions` to `samplomatic.tensor_inteface.Specification`, which comes with assocated methods and attributes. A free dimension is a string name of an integer quantity whose value is not known until values have been bound to the specification in a `samplomatic.tensor_interface.TensorInterface`, and all free dimensions with the same name in the interface need to have a consistent value or an error will be raised during binding. ([#164](https://github.com/Qiskit/samplomatic/issues/164))
+
+## Changed
+
+*   Throughout the library, the terms noise map and noise model have been replaced with the more descriptive Pauli Lindblad map. ([#126](https://github.com/Qiskit/samplomatic/issues/126))
+*   Replace `generate_boxing_pass_manager`’s argument `enable_measure` with `enable_measures`. ([#153](https://github.com/Qiskit/samplomatic/issues/153))
+*   The `twirling_strategy` of pass managers no longer supports `active-circuit` and `active-accum`, use `active_circuit` and `active_accum` instead. ([#156](https://github.com/Qiskit/samplomatic/issues/156))
+*   Overhauled how noise models are specified on the `Samplex`. Rates and Pauli lists that define Pauli Lindblad maps are no longer separated into the respective distinct entries `"noise_maps.rates.<ref>"` and `"noise_maps.paulis.<ref>"` of `Samplex.inputs()`. Instead, they are specified as a single entry `"pauli_lindblad_maps.<ref>"` that expects type `qiskit.quantum_info.PauliLindbladMap`. Moreover, `Samplex.noise_requirements` is removed (along with the concept of `NoiseModelRequirement`). Instead, the specification for `"pauli_lindblad_maps<ref>"` within `Samplex.inputs()` dictates the required number of qubits the noise model should act on, and the number of terms can be chosen at the time that `Samplex.sample()` is called so long as it is consistent. ([#164](https://github.com/Qiskit/samplomatic/issues/164))
+*   Converted `samplomatic.tensor_interface.Specification` to an abstract class. ([#164](https://github.com/Qiskit/samplomatic/issues/164))
+*   Changed `samplomatic.samplex.interfaces.SamplexOutput` to not construct empty data arrays on construction, it is now the caller’s responsibility to populate the data. This does not affect users of `Samplex.sample()`. ([#164](https://github.com/Qiskit/samplomatic/issues/164))
+*   The format returned by `samplomatic.samplex.samplex_serialization.samplex_to_json()` changed to accomodate the absense of noise requirements, and it (and the reverse function `samplex_from_json()`) are not backwards compatible with the previous minor version. ([#164](https://github.com/Qiskit/samplomatic/issues/164))
+*   Renamed `samplomatic.BasisTransform` to `samplomatic.ChangeBasis` in order to make all annotations start with a verb, and to consolidate all names around “change” rather than “transform”. Likewise, renamed `samplomatic.samplex.nodes.BasisTransformNode` to `samplomatic.samplex.nodes.ChangeBasisNode`.
+*   Renamed string literal option for from `"basis_transform"` to `"change_basis"` in both `samplomatic.transpiler.generate_boxing_pass_manager` and `samplomatic.transpiler.passes.GroupMeasIntoBoxes`. ([#172](https://github.com/Qiskit/samplomatic/issues/172))
+
+## Fixed
+
+*   Made `TwirlingStrategyLiteral` consistent with `TwirlingStrategy` enum by replacing `active-circuit` with `active_circuit` and `active-accum` and `active_accum`. ([#156](https://github.com/Qiskit/samplomatic/issues/156))
+*   Fixed the basis changing gates for `ChangeBasisNode` for Pauli Y. ([#161](https://github.com/Qiskit/samplomatic/issues/161))
+*   Fixed the ordering of `ChangeBasisNode` to conform with the rest of the library. ([#161](https://github.com/Qiskit/samplomatic/issues/161))
+

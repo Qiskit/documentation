@@ -1,0 +1,23 @@
+---
+title: "0.18.0 - 2026-04-09"
+description: "0.18.0 - 2026-04-09 for the latest version of Samplomatic"
+---
+
+<span id="id1" />
+
+# 0.18.0 - 2026-04-09
+
+## Added
+
+*   Added the `add_tags` option to :func:`~samplomatic.transpiler.generate_boxing_pass_manager` and the :class:`~samplomatic.transpiler.passes.AddTags` transpiler pass. When enabled, a :class:`~samplomatic.annotations.Tag` annotation is automatically added to every box. Two modes are supported: `'unique_box'` assigns the same hash-based ref to structurally equivalent boxes, and `'unique_instance'` assigns a unique incrementing ref (`t0`, `t1`, …) to every box in the circuit. ([#342](https://github.com/Qiskit/samplomatic/issues/342))
+*   Added the `debug` option to `build()` that populates debug/trace information on samplex nodes, enabling users to trace nodes back to their originating box annotations. ([#345](https://github.com/Qiskit/samplomatic/issues/345))
+*   Added `map_annotations()`, `strip_annotations()`, `filter_annotations()`, `extend_annotations()`, and `replace_annotations()` utilities to `samplomtic.utils` for modifying annotations on existing circuits. ([#347](https://github.com/Qiskit/samplomatic/issues/347))
+
+## Improved
+
+*   Improved the two synthesizers `RzRxSynth` and `RzSxSynth` to always generate Clifford angles when given a U2 gate that is Clifford. It is only possible to end up with non-Clifford angles when the gate being synthesized is a Z rotation, or a pi-gate of some angle. Either case leads to a degree of freedom in how to distribute the angle between the first and last RZ gate of the synthesis. This was fixed by enforcing the last angle be 0 in both cases. ([#341](https://github.com/Qiskit/samplomatic/issues/341))
+
+## Fixed
+
+*   Fixed `samplomatic.utils.default_normalize_annotations()` to also keep `Tag` annotations, in addition to `InjectNoise` and `Twirl` annotations. ([#343](https://github.com/Qiskit/samplomatic/issues/343))
+

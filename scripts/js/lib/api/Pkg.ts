@@ -75,6 +75,7 @@ export class Pkg {
     "pauli-prop",
     "qiskit-addon-slc",
     "qiskit-noise-learning",
+    "samplomatic",
   ];
 
   static VALID_NAMES = [
@@ -82,7 +83,6 @@ export class Pkg {
     "qiskit-ibm-runtime",
     "qiskit-ibm-transpiler",
     "qiskit-c",
-    "samplomatic",
     ...Pkg.ADDON_NAMES,
   ];
 

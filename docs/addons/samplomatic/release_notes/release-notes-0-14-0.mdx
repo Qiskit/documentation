@@ -1,0 +1,36 @@
+---
+title: "0.14.0 - 2025-12-09"
+description: "0.14.0 - 2025-12-09 for the latest version of Samplomatic"
+---
+
+<span id="id1" />
+
+# 0.14.0 - 2025-12-09
+
+## Removed
+
+*   Removed the `VirtualRegister.to_json_dict` and the `virtual_register_from_json` function. ([#223](https://github.com/Qiskit/samplomatic/issues/223))
+*   Removed support for Python 3.9 following its end-of-life date. ([#244](https://github.com/Qiskit/samplomatic/issues/244))
+*   The modules `.transpiler.noise_injection_strategies`, `.transpiler.twirling_strategies`, and their contents have been removed. These files contained enum classes for specifying arguments to some of the transpiler passes; these arguments must now be specified as strings. ([#257](https://github.com/Qiskit/samplomatic/issues/257))
+*   *Temporarily* removed support for `IfElseOp` instructions inside of boxes—we are in the middle of refactoring this to make it more general, but we cannot wait for it to be complete to make a new release. Please refrain from upgrading if this breaks your workflow, and apologies.
+
+## Deprecated
+
+*   Deprecated boolean values for the `remove_barriers` argument of `samplomatic.transpiler.generate_boxing_pass_manager`. Now, the four options are `'immediately'`, `'finally,`, `'after_stratification'`, and `'never'`, where `True` and `False` are equivalent to the first and last string values, respectively. The default value is `'after_stratification'` which is a change in behavior, but should be a better choice in most cases. ([#238](https://github.com/Qiskit/samplomatic/issues/238))
+
+## Added
+
+*   Added SSV `2` serializers for `BasisChange` and `ChangeBasisNode`. ([#223](https://github.com/Qiskit/samplomatic/issues/223))
+*   Added `C1Register`, a virtual register of single-qubit Cliffords, and the `UniformC1` distribution.
+*   Added `FiniteGroupRegister`. ([#224](https://github.com/Qiskit/samplomatic/issues/224))
+*   Added support to `samplomatic.utils.get_annotation` for specifying multiple annotation types. ([#237](https://github.com/Qiskit/samplomatic/issues/237))
+
+## Changed
+
+*   Increased the default SSV from `1` to `2`. ([#224](https://github.com/Qiskit/samplomatic/issues/224))
+*   Changed the scope of the transpiler passes `GroupGatesIntoBoxes`, `GroupMeasIntoBoxes`, and `AddTerminalRightDressedBoxes`. Formerly, all three of these passes were responsible for discovering single-qubit gates in the input circuit and moving them into newly created boxes. Now, to simplify their implementations and make the pass manager more modular, these three passes no longer have this responsibility, which has instead been delegated to the new pass `AbsorbSingleQubitGates`. In particular, `GroupGatesIntoBoxes` and `GroupMeasIntoBoxes` are now responsible only for inserting new left-dressed boxes populated only with entangling and measurement instructions. Similarly, `AddTerminalRightDressedBoxes` inserts empty right-dressed boxes boxes. The `generate_boxing_pass_manager` function has been updated to include `AbsorbSingleQubitGates`. ([#237](https://github.com/Qiskit/samplomatic/issues/237))
+*   Changed the behaviour of the pass manager returned by `samplomatic.transpiler.generate_boxing_pass_manager` under default settings with respect to how it treats barriers. Before, it would discard all barriers before attempting to put entangling gates into boxes. Now, it discards barriers after entangling gates are put into boxes, but before single-qubit gates are moved into adjacent boxes. This means that barriers can effectively be used as hints to choose how to stratify entangling gates without constraining single-qubit gates to end up in their own boxes. This also has better interaction with the Qiskit transpiler in the case that the original circuit is programmed in terms of a different entangling gate than the target. See the new possible values of the argument `remove_barriers` for details. ([#238](https://github.com/Qiskit/samplomatic/issues/238))
+*   The `DataSerializer.serialize` now requires the SSV as an argument. ([#254](https://github.com/Qiskit/samplomatic/issues/254))
+*   Arguments to `samplomatic.transpiler.generate_boxing_pass_manager` are now required to be keyword arguments. Moreover, all string-valued selection arguments (e.g. `twirling_strategy`) are required to be specified as strings because the enum classes have been removed. ([#257](https://github.com/Qiskit/samplomatic/issues/257))
+*   Changed the default `twirling_strategy` of `samplomatic.transpiler.generate_boxing_pass_manager` from `"active"` to `"active_circit"`. This was done because the latter is a safer default. Typically, when twirling, one wants to eliminate all coherent error on active qubits. The `"active"` strategy is only able to do this under certain assumptions about noise processes. ([#265](https://github.com/Qiskit/samplomatic/issues/265))
+

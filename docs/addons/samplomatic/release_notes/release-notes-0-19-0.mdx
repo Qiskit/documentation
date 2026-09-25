@@ -1,0 +1,27 @@
+---
+title: "0.19.0 - 2026-05-19"
+description: "0.19.0 - 2026-05-19 for the latest version of Samplomatic"
+---
+
+<span id="id1" />
+
+# 0.19.0 - 2026-05-19
+
+## Removed
+
+*   Removed the warn-on-import about beta versions. ([#353](https://github.com/Qiskit/samplomatic/issues/353))
+
+## Added
+
+*   Added support for `delay` instructions inside of `utils.BoxKey` objects. ([#350](https://github.com/Qiskit/samplomatic/issues/350))
+*   Added Pauli twirling for `rzz` instructions for non-zero Clifford angles. ([#356](https://github.com/Qiskit/samplomatic/issues/356))
+*   Added local C1 twirling support for `rzz` instructions for non-zero Clifford angles. Added the `local_pauli` twirling group mode. This group mode will twirl gates with the subgroup of Paulis that remain local Paulis under conjugation. In particular, this allows for twirling of parametric and non-Clifford `rzz` instructions. When an `rzz` is encountered, the samples are drawn from the Pauli subgroup that commutes with `rzz`. For Cliffords, it defaults back to the Pauli group. This mode is set by annotating a box with a `Twirl` that has `Twirl.group_mode = local_pauli` or by using a boxing pass manager with `twirling_group = local_pauli`. Added the `phase` group mode that samples uniformly from Paulis I and Z. ([#357](https://github.com/Qiskit/samplomatic/issues/357))
+
+## Changed
+
+*   Increased the SSV from 3 to 4. ([#357](https://github.com/Qiskit/samplomatic/issues/357))
+
+## Fixed
+
+*   Fixed a per-sample sign error in samplex sampling that occurred when an `InjectLocalClifford`-annotated box body contained multiple parallel multi-qubit gates (e.g. `cz(0,1)` and `cz(2,3)` in the same box). The parallel-propagate merge optimization in `PreSamplex` re-created the merged node with a fresh high graph index, which caused the lowered `CombineRegistersNode` to receive its operands in the wrong order and silently apply the basis-change Clifford in the wrong position of the matrix product. ([#356](https://github.com/Qiskit/samplomatic/issues/356))
+
