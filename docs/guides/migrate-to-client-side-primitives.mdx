@@ -127,7 +127,7 @@ or your code will fail. Measurement noise learning for TREX is unaffected and co
 
 Similarly, if your code uses `NoiseLearner` and passes the resulting noise model to server-side Estimator, you need to [migrate to `NoiseLearnerV3`](/docs/guides/migrate-to-noise-learner-v3). Do NOT use the older `NoiseLearner`, which is incompatible with the new Estimator.
 
-All of the noise learning options in the server-side Estimator ([`LayerNoiseLearningOptions`](/docs/api/qiskit-ibm-runtime/options-layer-noise-learning-options)) map directly to the `NoiseLearnerV3` option ([`NoiseLearnerV3Options`](/docs/api/qiskit-ibm-runtime/options-models-noise-learner-v3-options)), with the exception of `max_layers_to_learn`. The number of layers to learn is instead based on the number of layers passed to `NoiseLearnerV3`.
+All of the noise learning options in the server-side Estimator ([`LayerNoiseLearningOptions`](/docs/api/qiskit-ibm-runtime/options-models-layer-noise-learning-options)) map directly to the `NoiseLearnerV3` option ([`NoiseLearnerV3Options`](/docs/api/qiskit-ibm-runtime/options-models-noise-learner-v3-options)), with the exception of `max_layers_to_learn`. The number of layers to learn is instead based on the number of layers passed to `NoiseLearnerV3`.
 
 For example:
 
