@@ -1,0 +1,298 @@
+---
+title: Migrate from server-side to client-side Sampler and Estimator
+description: Migrate from using the server-side Sampler and Estimator to the client-side implementations of these primitives in IBM Quantum Compute Service
+
+---
+
+# Migrate from server-side to client-side Sampler and Estimator
+
+This guide describes how to migrate from the **server-side** implementations of IBM Quantum&reg;
+`Sampler` and `Estimator` to their new **client-side** implementations in
+`qiskit-ibm-runtime`. The interfaces and options are largely unchanged, so most code
+runs as-is, but there are some behavioral differences to understand.
+
+## Background
+
+Sampler and Estimator are primitive *interfaces* defined in Qiskit. The IBM Quantum
+Compute Service (formerly Qiskit Runtime) has historically provided the *implementation*
+of these primitives inside its runtime environment. When you call `sampler.run()` or
+`estimator.run()`, the request is sent to the service, and **all** computation — including
+error suppression and mitigation — happens on the server side.
+
+This black-box experience is convenient: you don't have to worry about implementation
+details. But it also makes the primitives hard to debug, customize, or learn from,
+because you can't see what happens during processing.
+
+The newly introduced [directed execution model](/docs/guides/directed-execution-model#directed-execution-model-beta) takes the opposite approach and
+provides a **white-box** experience. All design intents are captured on the client side,
+and a single server-side primitive [**Executor**](/docs/guides/directed-execution-model#executor-primitive) processes those inputs exactly as
+directed — it makes no implicit decisions on your behalf.
+
+Starting in `qiskit-ibm-runtime` v0.50.0, Sampler and Estimator are re-implemented
+on the **client side** on top of Executor. They provide the same convenience and
+abstraction as before, and now you can inspect the implementation details when you need
+to. Because the interfaces and options remain largely the same, migration should be
+seamless.
+
+Note: IBM Quantum only supports version 2 of Sampler and Estimator interfaces (`BaseSamplerV2` and `BaseEstimatorV2`). Therefore, they are simply referred to as Sampler and Estimator in this guide.
+
+
+## Update the imports
+
+Today, you must explicitly import the new implementations from their dedicated modules:
+
+```python
+from qiskit_ibm_runtime.executor_sampler import Sampler
+from qiskit_ibm_runtime.executor_estimator import Estimator
+```
+
+In the near future, the top-level imports will resolve to the new client-side
+implementations, and no code change will be required:
+
+```python
+# Coming soon — the following code will import the new client-side implementations.
+from qiskit_ibm_runtime import Sampler, Estimator
+```
+
+Similarly, if you construct typed options objects, you must import them from
+`qiskit_ibm_runtime.options_models` instead, or just pass a plain nested dict:
+
+```python
+from qiskit_ibm_runtime.options_models import SamplerOptions, EstimatorOptions
+```
+
+## What stays the same
+
+- Primitive construction with a `mode` and `options`.
+- The `run()` signature and PUB format.
+- The options tree (`options.twirling`, `options.resilience`, `options.default_shots`,
+  and so on).
+- The result data structure returned by `job.result()`.
+
+
+## Incompatible changes in the new Sampler
+
+| Change | Migration action |
+| ------ | ---------------- |
+| The underlying primitive is now Executor. Both the IBM Quantum Platform user interface and `job.primitive_id` will show `executor` instead of `sampler`. | Update any code that references `job.primitive_id`. |
+| The new implementation maps Sampler inputs to Executor inputs, so `job.inputs` returns Executor inputs. | Update any code that references `job.inputs`. See [Job inputs](#job-inputs-structure). |
+| More pre- and post-processing now happens on the client side, so `sampler.run()` and `job.result()` might take longer than before. | Enable INFO logging to follow the progress of client-side processing. See [Enable INFO logging](#enable-info-logging). |
+| Circuit metadata is copied into result metadata. The data types allowed in result metadata are now limited to `str`, `float`, `int`, `bool`, and lists or dictionaries of those types. | If you need other data types, encode them as a string first (for example, with base64). |
+| Options classes (`options_models.SamplerOptions` and so on) are now Pydantic models instead of dataclasses, so they can no longer be converted to Python dictionaries by using `asdict()`. | Use `options.model_dump()` instead. |
+| If `twirling` is enabled and `shots` (in the PUBs or in `run()`), `shots_per_randomization`, and `num_randomizations` are **all** specified, then `num_randomizations * shots_per_randomization` takes precedence over `shots`. | Omit `num_randomizations` and `shots_per_randomization` if you want the `shots` value to be used. |
+| Some input validation has moved to the server side and now raises `RuntimeError` instead of `IBMInputValueError`. | Update the exception types your code catches. |
+| Mixed shot values in a single job are no longer supported. | Submit a separate job for each shot value. See [Job splitting](#job-splitting) for considerations. |
+
+## Incompatible changes in the new Estimator
+
+| Change | Migration action |
+| ------ | ---------------- |
+| The underlying primitive is now Executor. Both the IBM Quantum Platform user interface and `job.primitive_id` will show `executor` instead of `estimator`. | Update any code that references `job.primitive_id`. |
+| The new implementation maps Estimator inputs to Executor inputs, so `job.inputs` returns Executor inputs. |Update any code that references `job.inputs`. See [Job inputs](#job-inputs-structure). |
+| More pre- and post-processing now happens on the client side, so `estimator.run()` and `job.result()` might take longer than before. | Enable INFO logging to follow the progress of client-side processing. See [Enable INFO logging](#enable-info-logging). |
+| Circuit metadata is copied into result metadata. The data types allowed in result metadata are now limited to `str`, `float`, `int`, `bool`, and lists or dictionaries of those types. | If you need other data types, encode them as a string first (for example, with base64). |
+| Options classes (`options_models.EstimatorOptions` and so on) are now Pydantic models instead of dataclasses, so they can no longer be converted to Python dictionaries using `asdict()`. | Use `options.model_dump()` instead. |
+| All input options are returned in result metadata, rather than a selected subset. | None — this is informational. |
+| Some input validation has moved to the server side and now raises `RuntimeError` instead of `IBMInputValueError`. | Update the exception types your code catches. |
+| No more implicit noise learning for PEA and PEC. Measurement noise learning for TREX is still supported. | Learn the noise models separately and pass them to Estimator. See [Perform explicit noise learning for PEA and PEC](#perform-explicit-noise-learning-for-pea-and-pec). |
+| The input type of `ResilienceOptions.layer_noise_model` is different and can be constructed from `NoiseLearnerV3` results. | See [Perform explicit noise learning for PEA and PEC](#perform-explicit-noise-learning-for-pea-and-pec) on how to learn the noise models using `NoiseLearnerV3` and pass them to Estimator. |
+| `MeasureNoiseLearningOptions.shots_per_randomization` is no longer supported. | A single shot value is used for all circuits in the job, including measurement noise-learning circuits. If you must use a different shot value, apply TREX with `qiskit-mitigation` outside Estimator.|
+| Mixed precision values in a single job are no longer supported. | Submit a separate job for each desired precision. See [Job splitting](#job-splitting) for considerations. |
+| The `seed_estimator` option is no longer supported. | Remove any `options.seed_estimator` assignment (setting it raises a `ValidationError`). There is no client-side equivalent, so results are no longer reproducible through this seed. |
+
+## Enable INFO logging
+
+Because more work now happens on the client side, it's useful to see the progress of that
+processing. Enable INFO-level logging for the `qiskit_ibm_runtime` logger:
+
+```python
+import logging
+
+logger = logging.getLogger("qiskit_ibm_runtime")
+logger.setLevel(logging.INFO)
+```
+
+## Perform explicit noise learning for PEA and PEC
+
+The new Estimator no longer performs *implicit* noise learning when the PEA or PEC error
+mitigation method is selected. You must learn the noise models explicitly and pass them
+in. Use the new [`NoiseLearnerV3`](/docs/guides/noise-learning#noiselearnerv3) to control how circuits
+are stratified into layers. It takes a list of boxed circuit instructions (for example,
+the unique layers) as input.
+
+<Admonition type="note" title="Important">
+PEA and PEC now **require** this explicit pattern. Do not skip the noise-learning step
+or your code will fail. Measurement noise learning for TREX is unaffected and continues to work as before.
+</Admonition>
+
+Similarly, if your code uses `NoiseLearner` and passes the resulting noise model to server-side Estimator, you need to [migrate to `NoiseLearnerV3`](/docs/guides/migrate-to-noise-learner-v3). Do NOT use the older `NoiseLearner`, which is incompatible with the new Estimator.
+
+All of the noise learning options in the server-side Estimator ([`LayerNoiseLearningOptions`](/docs/api/qiskit-ibm-runtime/options-layer-noise-learning-options)) map directly to the `NoiseLearnerV3` option ([`NoiseLearnerV3Options`](/docs/api/qiskit-ibm-runtime/options-models-noise-learner-v3-options)), with the exception of `max_layers_to_learn`. The number of layers to learn is instead based on the number of layers passed to `NoiseLearnerV3`.
+
+For example:
+
+**Server-side Estimator (with PEC enabled):**
+```python
+from qiskit_ibm_runtime import Estimator
+
+pubs = [...]  # Your PUBs
+estimator = Estimator(mode, options)
+estimator.options.resilience.pec_mitigation = True  # or zne_mitigation + pea amplifier
+estimator.options.resilience.layer_noise_learning.num_randomizations = 64
+
+job = estimator.run(pubs)
+```
+
+**Client-side Estimator (with PEC enabled):**
+```python
+from qiskit_ibm_runtime.executor_estimator import Estimator
+from qiskit_ibm_runtime import NoiseLearnerV3
+
+pubs = [...]  # Your PUBs
+estimator = Estimator(mode, options)
+estimator.options.resilience.pec_mitigation = True  # or zne_mitigation + pea amplifier
+
+# Identify the unique layers to learn.
+layers = estimator.find_unique_layers(pubs)
+
+# Learn the noise model for those layers (runs as a separate job).
+learner = NoiseLearnerV3(mode)
+learner.options.num_randomizations = 64  # Same as layer_noise_learning.num_randomizations
+learner_job = learner.run(layers)
+learner_result = learner_job.result()
+
+# Convert results to Pauli-Lindblad noise maps.
+pauli_lindblad_maps = learner_result.to_pauli_lindblad_maps()
+
+# Assign the learned noise maps so PEA/PEC uses them.
+estimator.options.resilience.layer_noise_model = zip(layers, pauli_lindblad_maps)
+
+# Now execute the target PUBs.
+job = estimator.run(pubs)
+```
+
+### Migrate from `NoiseLearner` to `NoiseLearnerV3`
+
+`NoiseLearner` only works with server-side implementation of `Estimator`. Therefore, if your code uses `NoiseLearner` to learn the noise model and pass it to `Estimator`, you need to update your code to use `NoiseLearnerV3`.
+
+See the [Migrate from `NoiseLearner` to `NoiseLearnerV3`](/docs/guides/migrate-to-noise-learner-v3) guide for details.
+
+## Job splitting
+
+When you have to split one job into several because mixed shot or precision
+values in a single job are no longer supported, consider the following:
+
+- **Group the PUBs by their target value — one job per distinct value, not one job per
+  PUB.** Splitting is a regrouping, so the total number of PUBs you submit does not change.
+  For example, given `[A@0.01, B@0.05, C@0.01]`, submit two jobs: `[A, C]` at `precision=0.01` and `[B]`
+  at `precision=0.05`. Submitting `A` and `C` as separate jobs is less efficient, as each job comes with a fixed overhead.
+
+- **Learn once and use the noise models in all split jobs.** It is more efficient to
+  run a single `NoiseLearnerV3` job over the union of all layers.
+  The result of a noise learner job contains a list of `NoiseLearnerV3Result` objects,
+  one for each input instruction, and is in the same order as the input list. You can
+  use the output of this noise learner job in all the split (Estimator) jobs, and noise
+  models for layers not in the PUBs of a split job are ignored.
+
+- **Submit all the split jobs in a `Batch` first, then collect their results.**
+  The `Batch` execution mode provides efficient parallel execution when there are multiple jobs.
+  However, `job.result()` is blocking, so calling it inside the submission loop serializes the jobs and negates the benefits of using `Batch`.
+  Make sure you use the submit-all-then-collect pattern (shown below).
+
+In the following example, `pub1` and `pub2` require `precision=0.5`, whereas `pub3` requires `precision=0.1`:
+
+```python
+group1_pubs = [pub1, pub2]
+group2_pubs = [pub3]
+
+with Batch(backend=backend) as batch:
+    estimator = Estimator(mode=batch)
+    estimator.options.resilience.pec_mitigation = True
+
+    # Learn once, over the union of every job's layers.
+    all_layers = estimator.find_unique_layers(group1_pubs + group2_pubs)
+    learner_job = NoiseLearnerV3(mode=batch).run(all_layers)
+    learner_result = learner_job.result()
+    pauli_lindblad_maps = learner_result.to_pauli_lindblad_maps()
+
+    # Assign the learned noise maps. Any layers not found in the input PUBs are ignored.
+    estimator.options.resilience.layer_noise_model = zip(all_layers, pauli_lindblad_maps)
+
+    # Submit every split job with different precision values.
+    jobs = []
+    jobs.append(estimator.run(group1_pubs, precision=0.5))
+    jobs.append(estimator.run(group2_pubs, precision=0.1))
+
+    # Block once, at the end — the jobs run in parallel.
+    results = [job.result() for job in jobs]
+```
+
+## Job inputs structure
+
+The new implementation maps Sampler or Estimator inputs to Executor inputs, so `job.inputs` returns a dictionary that contains Executor inputs. This dictionary has the following keys:
+
+- `options`: The input [`ExecutorOption`](/docs/api/qiskit-ibm-runtime/options-models-executor-options).
+- `quantum_program`: The input [`QuantumProgram`](/docs/api/qiskit-ibm-runtime/quantum-program-quantum-program)
+- `schema_version`: The server-side schema version used.
+
+If your code used `job.inputs['options']` to find options specified for the job, you can now use `job.result().metadata['options']` instead.
+
+## Test locally with a fake backend
+
+Before submitting to hardware, you can validate the migrated code against a `Fake*`
+backend to catch any syntax errors early. Note the following details about local testing mode:
+
+- **It does not reproduce hardware results.** Local noisy simulation does not perfectly
+  replicate real device noise, and therefore the outputs might differ. Running does validate 
+  that the option paths and value types are correct.
+- `NoiseLearnerV3` has **no local testing mode**: its `mode` accepts only a real `Backend`,
+`Session`, or `Batch`, so you cannot exercise the noise-learning step against a fake
+backend. Verify that part of your code against the
+[`NoiseLearnerV3` API reference](/docs/api/qiskit-ibm-runtime/noise-learner-v3-noise-learner-v3) instead. Confirm that the constructor,
+the `run(instructions)` input shape, and any helper (such as the unique-layer helper) are
+used as documented.
+
+### Cliffordize the circuit for efficient local simulation
+
+A fake backend uses a statevector (noisy) simulator, whose cost grows exponentially with
+qubit count and depth. Thus, a realistic workload circuit can hang or exhaust memory. Since
+local testing only needs to exercise the option paths (not reproduce physical results),
+reduce the circuit to a Clifford one first with
+[`ConvertISAToClifford`](/docs/api/qiskit-ibm-runtime/transpiler-passes-convert-isa-to-clifford),
+which rounds each `RZ`/`RZZ`/`RX` angle to the nearest multiple of π/2. Clifford circuits
+simulate efficiently (stabilizer simulation) regardless of size.
+
+```python
+from qiskit.transpiler import PassManager
+from qiskit_ibm_runtime.transpiler.passes import ConvertISAToClifford
+
+clifford = PassManager([ConvertISAToClifford()]).run(isa_circuit)
+# run `clifford` (not the original) through the fake-backend primitive
+```
+
+`ConvertISAToClifford` **requires an ISA circuit** as input (the output of
+`generate_preset_pass_manager(...).run(...)` targeting the backend). You must account for the following consequences
+when constructing the local PUB:
+
+- **The `.layout` attribute is dropped.** The Cliffordized circuit keeps the same qubit
+  count, but `clifford.layout` is `None`, so `observable.apply_layout(clifford.layout)`
+  fails. Lay the observable out from the **pre-Clifford ISA** circuit instead:
+  `isa_obs = observable.apply_layout(isa_circuit.layout)`, then run `(clifford, isa_obs)`.
+- **Parameters are bound away.** Rounding the rotation angles turns a parametric ISA circuit
+  into a concrete Clifford one, so `clifford.num_parameters` becomes `0`. A PUB that still
+  carries a parameter-values array fails coercion. For the local run, drop the parameter
+  array from the PUB; the hardware run keeps the original parametric circuit and its values.
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+- [Directed execution model](/docs/guides/directed-execution-model)
+- [Estimator inputs and outputs](/docs/guides/estimator-input-output)
+- [Specify Estimator options](/docs/guides/estimator-options)
+- [Sampler inputs and outputs](/docs/guides/sampler-input-output)
+- [Specify Sampler options](/docs/guides/sampler-options)
+- [Noise learning helper (NoiseLearnerV3)](/docs/guides/noise-learning#noiselearnerv3)
+- [NoiseLearnerV3 API reference](/docs/api/qiskit-ibm-runtime/noise-learner-v3-noise-learner-v3)
+- [`ConvertISAToClifford` transpiler pass](/docs/api/qiskit-ibm-runtime/transpiler-passes-convert-isa-to-clifford)
+- [Error mitigation and suppression techniques](/docs/guides/error-mitigation-and-suppression-techniques)
+</Admonition>
