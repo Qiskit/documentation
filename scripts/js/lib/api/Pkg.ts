@@ -82,6 +82,7 @@ export class Pkg {
     "qiskit-ibm-runtime",
     "qiskit-ibm-transpiler",
     "qiskit-c",
+    "samplomatic",
     ...Pkg.ADDON_NAMES,
   ];
 

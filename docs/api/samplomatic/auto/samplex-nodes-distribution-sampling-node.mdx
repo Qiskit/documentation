@@ -1,0 +1,73 @@
+---
+title: DistributionSamplingNode (latest version)
+description: API reference for samplomatic.samplex.nodes.DistributionSamplingNode in the latest version of samplomatic
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: samplomatic.samplex.nodes.DistributionSamplingNode
+---
+
+# DistributionSamplingNode
+
+<Class id="samplomatic.samplex.nodes.DistributionSamplingNode" isDedicatedPage={true} github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplex/nodes/distribution_sampling_node.py#L21-L64" signature="samplomatic.samplex.nodes.DistributionSamplingNode(register_name: str, distribution: Distribution)" modifiers="class">
+  Bases: [`SamplingNode`](samplex-nodes-sampling-node "samplomatic.samplex.nodes.sampling_node.SamplingNode")
+
+  A node that produces samples from a distribution.
+
+  **Parameters**
+
+  *   **register\_name** – The name of the register to store the samples.
+  *   **distribution** – The distribution to draw samples from.
+
+  **Attributes Summary**
+
+  |                                                                                                                                                                                    |                                              |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
+  | [`outgoing_register_type`](#samplomatic.samplex.nodes.DistributionSamplingNode.outgoing_register_type "samplomatic.samplex.nodes.DistributionSamplingNode.outgoing_register_type") | The virtual gate type of outgoing registers. |
+
+  **Methods Summary**
+
+  |                                                                                                                                                                 |                                                                         |
+  | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+  | [`get_style`](#samplomatic.samplex.nodes.DistributionSamplingNode.get_style "samplomatic.samplex.nodes.DistributionSamplingNode.get_style")()                   | Return the style of this node when plotted.                             |
+  | [`instantiates`](#samplomatic.samplex.nodes.DistributionSamplingNode.instantiates "samplomatic.samplex.nodes.DistributionSamplingNode.instantiates")()          | Return a manifest of new virtual registers that this node instantiates. |
+  | [`sample`](#samplomatic.samplex.nodes.DistributionSamplingNode.sample "samplomatic.samplex.nodes.DistributionSamplingNode.sample")(registers, rng, inputs, ...) | Sample this node.                                                       |
+
+  **Attributes Documentation**
+
+  ### outgoing\_register\_type
+
+  <Attribute id="samplomatic.samplex.nodes.DistributionSamplingNode.outgoing_register_type" />
+
+  **Methods Documentation**
+
+  ### get\_style
+
+  <Function id="samplomatic.samplex.nodes.DistributionSamplingNode.get_style" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplex/nodes/distribution_sampling_node.py#L58-L64" signature="get_style()">
+    Return the style of this node when plotted.
+  </Function>
+
+  ### instantiates
+
+  <Function id="samplomatic.samplex.nodes.DistributionSamplingNode.instantiates" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplex/nodes/distribution_sampling_node.py#L41-L45" signature="instantiates() → dict[str, tuple[int, VirtualType]]">
+    Return a manifest of new virtual registers that this node instantiates.
+
+    <Admonition title="Note" type="note">
+      *   To change the type or size of a register, both instantiate and remove it.
+      *   Do not specify `reads_from()` or `writes_to()` for an instantiated register, these powers are implicit.
+    </Admonition>
+  </Function>
+
+  ### sample
+
+  <Function id="samplomatic.samplex.nodes.DistributionSamplingNode.sample" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplex/nodes/distribution_sampling_node.py#L47-L49" signature="sample(registers, rng, inputs, num_randomizations)">
+    Sample this node.
+
+    **Parameters**
+
+    *   **registers** – Where to sample into.
+    *   **rng** – A randomness generator.
+    *   **inputs** – Inputs of the sampling program.
+    *   **num\_randomizations** – How many randomizations to draw.
+  </Function>
+</Class>
+

@@ -1,0 +1,77 @@
+---
+title: CollectZ2ToOutputNode (latest version)
+description: API reference for samplomatic.samplex.nodes.CollectZ2ToOutputNode in the latest version of samplomatic
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: samplomatic.samplex.nodes.CollectZ2ToOutputNode
+---
+
+# CollectZ2ToOutputNode
+
+<Class id="samplomatic.samplex.nodes.CollectZ2ToOutputNode" isDedicatedPage={true} github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplex/nodes/collect_z2_to_output_node.py#L25-L89" signature="samplomatic.samplex.nodes.CollectZ2ToOutputNode(register_name: str, subsystem_idxs: Sequence[int], output_name: str, output_idxs: Sequence[str])" modifiers="class">
+  Bases: [`CollectionNode`](samplex-nodes-collection-node "samplomatic.samplex.nodes.collection_node.CollectionNode")
+
+  Reads from [`Z2Register`](virtual-registers-z-2-register "samplomatic.virtual_registers.Z2Register")s and writes to [`SamplexOutput`](samplex-samplex-output "samplomatic.samplex.SamplexOutput").
+
+  **Parameters**
+
+  *   **register\_name** – The name of the register to read from.
+  *   **subsystem\_idxs** – The subsystems to read from.
+  *   **output\_name** – The name of the output to write to.
+  *   **output\_idxs** – The indices of the output to write to.
+
+  **Methods Summary**
+
+  |                                                                                                                                                                                             |                                                                                  |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+  | [`collect`](#samplomatic.samplex.nodes.CollectZ2ToOutputNode.collect "samplomatic.samplex.nodes.CollectZ2ToOutputNode.collect")(registers, outputs, rng)                                    | Collect.                                                                         |
+  | [`get_style`](#samplomatic.samplex.nodes.CollectZ2ToOutputNode.get_style "samplomatic.samplex.nodes.CollectZ2ToOutputNode.get_style")()                                                     | Return the style of this node when plotted.                                      |
+  | [`outputs_to`](#samplomatic.samplex.nodes.CollectZ2ToOutputNode.outputs_to "samplomatic.samplex.nodes.CollectZ2ToOutputNode.outputs_to")()                                                  | Return the set of names of outputs this node mutates.                            |
+  | [`reads_from`](#samplomatic.samplex.nodes.CollectZ2ToOutputNode.reads_from "samplomatic.samplex.nodes.CollectZ2ToOutputNode.reads_from")()                                                  | Return a manifest of which virtual register values this node needs to read from. |
+  | [`validate_and_update`](#samplomatic.samplex.nodes.CollectZ2ToOutputNode.validate_and_update "samplomatic.samplex.nodes.CollectZ2ToOutputNode.validate_and_update")(register\_descriptions) | Validate provided register descriptions are compatible, update with changes.     |
+
+  **Methods Documentation**
+
+  ### collect
+
+  <Function id="samplomatic.samplex.nodes.CollectZ2ToOutputNode.collect" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplex/nodes/collect_z2_to_output_node.py#L63-L68" signature="collect(registers, outputs, rng)">
+    Collect.
+
+    **Parameters**
+
+    *   **registers** – Registers to collect from.
+    *   **outputs** – Where to output.
+    *   **rng** – A randomness generator.
+  </Function>
+
+  ### get\_style
+
+  <Function id="samplomatic.samplex.nodes.CollectZ2ToOutputNode.get_style" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplex/nodes/collect_z2_to_output_node.py#L79-L89" signature="get_style()">
+    Return the style of this node when plotted.
+  </Function>
+
+  ### outputs\_to
+
+  <Function id="samplomatic.samplex.nodes.CollectZ2ToOutputNode.outputs_to" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplex/nodes/collect_z2_to_output_node.py#L50-L51" signature="outputs_to()">
+    Return the set of names of outputs this node mutates.
+  </Function>
+
+  ### reads\_from
+
+  <Function id="samplomatic.samplex.nodes.CollectZ2ToOutputNode.reads_from" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplex/nodes/collect_z2_to_output_node.py#L47-L48" signature="reads_from()">
+    Return a manifest of which virtual register values this node needs to read from.
+  </Function>
+
+  ### validate\_and\_update
+
+  <Function id="samplomatic.samplex.nodes.CollectZ2ToOutputNode.validate_and_update" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplex/nodes/collect_z2_to_output_node.py#L53-L61" signature="validate_and_update(register_descriptions)">
+    Validate provided register descriptions are compatible, update with changes.
+
+    This method can be used by a samplex to determine when a node execution order has well-defined dependencies before sampling begins.
+
+    **Parameters**
+
+    **register\_descriptions** – A map from existing register names to their size and type.
+  </Function>
+</Class>
+

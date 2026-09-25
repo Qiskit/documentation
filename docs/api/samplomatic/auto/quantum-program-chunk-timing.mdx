@@ -1,0 +1,100 @@
+---
+title: ChunkTiming (latest version)
+description: API reference for samplomatic.quantum_program.ChunkTiming in the latest version of samplomatic
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: samplomatic.quantum_program.ChunkTiming
+---
+
+# ChunkTiming
+
+<Class id="samplomatic.quantum_program.ChunkTiming" isDedicatedPage={true} github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/quantum_program/quantum_program_result.py#L62-L166" signature="samplomatic.quantum_program.ChunkTiming(spans: Iterable[ChunkSpan])" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
+
+  A collection of chunk timing information for a [`QuantumProgramResult`](quantum-program-quantum-program-result "samplomatic.quantum_program.QuantumProgramResult").
+
+  This class is a readonly list-like containing [`ChunkSpan`](quantum-program-chunk-span "samplomatic.quantum_program.ChunkSpan") objects, where each span represents a single execution chunk on the backend and contains timing information and a description of which parts of the [`QuantumProgram`](quantum-program-quantum-program "samplomatic.quantum_program.QuantumProgram") were executed in that chunk.
+
+  To iterate over chunks:
+
+  ```python
+  chunk_timings = job.result().timing
+  for chunk in chunk_timings:
+      print(chunk)
+  ```
+
+  To draw the timings for a single result:
+
+  ```python
+  chunk_timings.draw()
+  ```
+
+  To draw the timings for several results on one plot:
+
+  ```python
+  from samplomatic.visualization.draw_chunk_timings import draw_chunk_timings
+
+  draw_chunk_timings(
+      chunk_timings1,
+      chunk_timings2,
+      names=["job 1", "job 2"],
+      common_start=True,
+  )
+  ```
+
+  **Attributes Summary**
+
+  |                                                                                                                    |                                                               |
+  | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------- |
+  | [`duration`](#samplomatic.quantum_program.ChunkTiming.duration "samplomatic.quantum_program.ChunkTiming.duration") | The total duration from first start to last stop, in seconds. |
+  | [`start`](#samplomatic.quantum_program.ChunkTiming.start "samplomatic.quantum_program.ChunkTiming.start")          | The start time of the earliest chunk, in UTC.                 |
+  | [`stop`](#samplomatic.quantum_program.ChunkTiming.stop "samplomatic.quantum_program.ChunkTiming.stop")             | The stop time of the latest chunk, in UTC.                    |
+
+  **Methods Summary**
+
+  |                                                                                                                                                |                                        |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+  | [`draw`](#samplomatic.quantum_program.ChunkTiming.draw "samplomatic.quantum_program.ChunkTiming.draw")(\[name, normalize\_y, line\_width, tz]) | Draw timing information on a bar plot. |
+
+  **Attributes Documentation**
+
+  ### duration
+
+  <Attribute id="samplomatic.quantum_program.ChunkTiming.duration">
+    The total duration from first start to last stop, in seconds.
+  </Attribute>
+
+  ### start
+
+  <Attribute id="samplomatic.quantum_program.ChunkTiming.start">
+    The start time of the earliest chunk, in UTC.
+  </Attribute>
+
+  ### stop
+
+  <Attribute id="samplomatic.quantum_program.ChunkTiming.stop">
+    The stop time of the latest chunk, in UTC.
+  </Attribute>
+
+  **Methods Documentation**
+
+  ### draw
+
+  <Function id="samplomatic.quantum_program.ChunkTiming.draw" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/quantum_program/quantum_program_result.py#L138-L166" signature="draw(name: str | None = None, normalize_y: bool = False, line_width: int = 4, tz: timezone | None = None) → PlotlyFigure">
+    Draw timing information on a bar plot.
+
+    To draw chunk timings with additional options like `common_start`, or to draw timings of several jobs on the same axis, consider calling `draw_chunk_timings()` directly.
+
+    **Parameters**
+
+    *   **name** – A label for this set of chunks.
+    *   **normalize\_y** – Whether to display the y-axis units as a percentage of work complete, rather than cumulative elements completed.
+    *   **line\_width** – The thickness of line segments.
+    *   **tz** – The timezone to use for displaying times. `None` (default) uses the local system timezone. Pass `datetime.timezone.utc` to display times in UTC.
+
+    **Returns**
+
+    A plotly figure.
+  </Function>
+</Class>
+

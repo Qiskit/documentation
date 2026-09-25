@@ -1,0 +1,28 @@
+---
+title: find_unique_box_instructions (latest version)
+description: API reference for samplomatic.utils.find_unique_box_instructions in the latest version of samplomatic
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: samplomatic.utils.find_unique_box_instructions
+---
+
+<span id="find-unique-box-instructions" />
+
+# find\_unique\_box\_instructions
+
+<Function id="samplomatic.utils.find_unique_box_instructions" isDedicatedPage={true} github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/utils/find_unique_box_instructions.py#L102-L132" signature="samplomatic.utils.find_unique_box_instructions(instructions: Iterable[CircuitInstruction], undress_boxes: bool = True, normalize_annotations: Callable[[Iterable[Annotation]], list[Annotation]] | None = None) → list[CircuitInstruction]">
+  Return instructions that contains unique boxes.
+
+  This function iterates through the given `instructions`, identifying those that contain a `BoxOp` operation and comparing them based on their content and annotations. It returns a list of instructions that contains unique boxes. Optionally, it allows undressing the boxes before comparison, as well as normalizing their annotations to ignore irrelevant fields.
+
+  **Parameters**
+
+  *   **instructions** – The instructions to iterate through.
+  *   **undress\_boxes** – Whether to call the `undress_box()` method on each box before comparison.
+  *   **normalize\_annotations** – A callable mapping annotations to annotations, which is applied to the annotations of each box before comparison. If `None`, it discards every annotation that is not of type `Twirl` and `InjectNoise`, and it resets the `modifier_ref` field of `InjectNoise` annotations to the default value.
+
+  **Returns**
+
+  A list of unique instructions.
+</Function>
+

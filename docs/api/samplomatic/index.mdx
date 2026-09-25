@@ -1,0 +1,212 @@
+---
+title: Samplomatic API documentation (latest version)
+description: Index of all the modules in the latest version of samplomatic.
+---
+
+<span id="module-samplomatic" />
+
+# API Reference
+
+Samplomatic
+
+## Functions
+
+|                                                              |                                                                      |
+| ------------------------------------------------------------ | -------------------------------------------------------------------- |
+| [`build`](auto/build "samplomatic.build")(circuit\[, debug]) | Build a circuit template and samplex for the given boxed-up circuit. |
+
+## Classes
+
+|                                                                                                     |                                                            |
+| --------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
+| [`ChangeBasis`](auto/change-basis "samplomatic.ChangeBasis")(\[decomposition, mode, ref, dressing]) | Directive to add basis changing gates.                     |
+| [`InjectNoise`](auto/inject-noise "samplomatic.InjectNoise")(ref\[, modifier\_ref, site])           | Directive to inject noise into a `box` instruction.        |
+| [`Tag`](auto/tag "samplomatic.Tag")(\[ref])                                                         | Annotation to tag and instruction with a string reference. |
+| [`Twirl`](auto/twirl "samplomatic.Twirl")(\[group, dressing, decomposition])                        | Directive to twirl the contents of a `box` instruction.    |
+
+## Submodules
+
+*   [samplomatic.aliases](aliases)
+
+*   [samplomatic.annotations](annotations)
+
+    *   [ChangeBasisMode](auto/annotations-change-basis-mode)
+    *   [DecompositionMode](auto/annotations-decomposition-mode)
+    *   [DressingMode](auto/annotations-dressing-mode)
+    *   [GroupMode](auto/annotations-group-mode)
+    *   [InjectLocalClifford](auto/annotations-inject-local-clifford)
+    *   [InjectionSite](auto/annotations-injection-site)
+    *   [samplomatic.ChangeBasis](auto/change-basis)
+    *   [samplomatic.InjectNoise](auto/inject-noise)
+    *   [samplomatic.Tag](auto/tag)
+    *   [samplomatic.Twirl](auto/twirl)
+
+*   [samplomatic.builders](builders)
+
+    *   [pre\_build](auto/builders-pre-build)
+    *   [samplomatic.build](auto/build)
+
+*   [samplomatic.constants](constants)
+
+    *   [Direction](auto/constants-direction)
+
+*   [samplomatic.distributions](distributions)
+
+    *   [BalancedUniformPauli](auto/distributions-balanced-uniform-pauli)
+    *   [Distribution](auto/distributions-distribution)
+    *   [HaarU2](auto/distributions-haar-u-2)
+    *   [UniformC1](auto/distributions-uniform-c-1)
+    *   [UniformLocalC1](auto/distributions-uniform-local-c-1)
+    *   [UniformPauli](auto/distributions-uniform-pauli)
+    *   [UniformPauliSubset](auto/distributions-uniform-pauli-subset)
+
+*   [samplomatic.exceptions](exceptions)
+
+    *   [BuildError](auto/exceptions-build-error)
+    *   [DeserializationError](auto/exceptions-deserialization-error)
+    *   [ParameterError](auto/exceptions-parameter-error)
+    *   [SamplexBuildError](auto/exceptions-samplex-build-error)
+    *   [SamplexConstructionError](auto/exceptions-samplex-construction-error)
+    *   [SamplexError](auto/exceptions-samplex-error)
+    *   [SamplexInputError](auto/exceptions-samplex-input-error)
+    *   [SamplexRuntimeError](auto/exceptions-samplex-runtime-error)
+    *   [SerializationError](auto/exceptions-serialization-error)
+    *   [SynthError](auto/exceptions-synth-error)
+    *   [TemplateBuildError](auto/exceptions-template-build-error)
+    *   [VirtualGateError](auto/exceptions-virtual-gate-error)
+
+*   [samplomatic.graph\_utils](graph-utils)
+
+    *   [find\_unreachable\_nodes](auto/graph-utils-find-unreachable-nodes)
+    *   [get\_clusters](auto/graph-utils-get-clusters)
+    *   [replace\_edges\_with\_one\_edge](auto/graph-utils-replace-edges-with-one-edge)
+    *   [replace\_nodes\_with\_one\_node](auto/graph-utils-replace-nodes-with-one-node)
+    *   [NodeCandidate](auto/graph-utils-node-candidate)
+
+*   [samplomatic.partition](partition)
+
+    *   [Partition](auto/partition-partition)
+
+*   [samplomatic.pre\_samplex](pre-samplex)
+
+    *   [DanglerMatch](auto/pre-samplex-dangler-match)
+    *   [PreChangeBasis](auto/pre-samplex-pre-change-basis)
+    *   [PreCollect](auto/pre-samplex-pre-collect)
+    *   [PreEdge](auto/pre-samplex-pre-edge)
+    *   [PreEmit](auto/pre-samplex-pre-emit)
+    *   [PreInjectNoise](auto/pre-samplex-pre-inject-noise)
+    *   [PreMeasure](auto/pre-samplex-pre-measure)
+    *   [PreNode](auto/pre-samplex-pre-node)
+    *   [PrePropagate](auto/pre-samplex-pre-propagate)
+    *   [PrePropagateKey](auto/pre-samplex-pre-propagate-key)
+    *   [PreSamplex](auto/pre-samplex-pre-samplex)
+
+*   [samplomatic.quantum\_program](quantum-program)
+
+    *   [ChunkPart](auto/quantum-program-chunk-part)
+    *   [ChunkSpan](auto/quantum-program-chunk-span)
+    *   [ChunkTiming](auto/quantum-program-chunk-timing)
+    *   [CircuitItem](auto/quantum-program-circuit-item)
+    *   [QuantumProgram](auto/quantum-program-quantum-program)
+    *   [QuantumProgramItem](auto/quantum-program-quantum-program-item)
+    *   [QuantumProgramItemResult](auto/quantum-program-quantum-program-item-result)
+    *   [QuantumProgramResult](auto/quantum-program-quantum-program-result)
+    *   [SamplexItem](auto/quantum-program-samplex-item)
+
+*   [samplomatic.samplex](samplex)
+
+    *   [ParameterExpressionTable](auto/samplex-parameter-expression-table)
+
+    *   [Samplex](auto/samplex-samplex)
+
+    *   [SamplexOutput](auto/samplex-samplex-output)
+
+    *   [samplomatic.samplex.nodes](samplex-nodes)
+
+        *   [ChangeBasisNode](auto/samplex-nodes-change-basis-node)
+        *   [CollectTemplateValues](auto/samplex-nodes-collect-template-values)
+        *   [CollectZ2ToOutputNode](auto/samplex-nodes-collect-z-2-to-output-node)
+        *   [CollectionNode](auto/samplex-nodes-collection-node)
+        *   [CombineRegistersNode](auto/samplex-nodes-combine-registers-node)
+        *   [ConversionNode](auto/samplex-nodes-conversion-node)
+        *   [DistributionSamplingNode](auto/samplex-nodes-distribution-sampling-node)
+        *   [EvaluationNode](auto/samplex-nodes-evaluation-node)
+        *   [InjectNoiseNode](auto/samplex-nodes-inject-noise-node)
+        *   [LeftMultiplicationNode](auto/samplex-nodes-left-multiplication-node)
+        *   [LeftU2ParametricMultiplicationNode](auto/samplex-nodes-left-u-2-parametric-multiplication-node)
+        *   [Node](auto/samplex-nodes-node)
+        *   [PauliPastCliffordNode](auto/samplex-nodes-pauli-past-clifford-node)
+        *   [PropagateLocalC1Node](auto/samplex-nodes-propagate-local-c-1-node)
+        *   [PropagateLocalPauliNode](auto/samplex-nodes-propagate-local-pauli-node)
+        *   [RightMultiplicationNode](auto/samplex-nodes-right-multiplication-node)
+        *   [RightU2ParametricMultiplicationNode](auto/samplex-nodes-right-u-2-parametric-multiplication-node)
+        *   [SamplingNode](auto/samplex-nodes-sampling-node)
+        *   [SliceRegisterNode](auto/samplex-nodes-slice-register-node)
+        *   [TwirlSamplingNode](auto/samplex-nodes-twirl-sampling-node)
+        *   [U2ParametricMultiplicationNode](auto/samplex-nodes-u-2-parametric-multiplication-node)
+
+*   [samplomatic.serialization](serialization)
+
+    *   [samplex\_from\_json](auto/serialization-samplex-from-json)
+    *   [samplex\_to\_json](auto/serialization-samplex-to-json)
+
+*   [samplomatic.synths](synths)
+
+    *   [get\_synth](auto/synths-get-synth)
+    *   [RzRxSynth](auto/synths-rz-rx-synth)
+    *   [RzSxSynth](auto/synths-rz-sx-synth)
+    *   [Synth](auto/synths-synth)
+
+*   [samplomatic.tensor\_interface](tensor-interface)
+
+    *   [PauliLindbladMapSpecification](auto/tensor-interface-pauli-lindblad-map-specification)
+    *   [Specification](auto/tensor-interface-specification)
+    *   [TensorInterface](auto/tensor-interface-tensor-interface)
+    *   [TensorSpecification](auto/tensor-interface-tensor-specification)
+
+*   [samplomatic.transpiler](transpiler)
+
+    *   [generate\_boxing\_pass\_manager](auto/transpiler-generate-boxing-pass-manager)
+
+    *   [samplomatic.transpiler.passes](transpiler-passes)
+
+        *   [AbsorbSingleQubitGates](auto/transpiler-passes-absorb-single-qubit-gates)
+        *   [AddInjectNoise](auto/transpiler-passes-add-inject-noise)
+        *   [AddTags](auto/transpiler-passes-add-tags)
+        *   [AddTerminalRightDressedBoxes](auto/transpiler-passes-add-terminal-right-dressed-boxes)
+        *   [GroupGatesIntoBoxes](auto/transpiler-passes-group-gates-into-boxes)
+        *   [GroupMeasIntoBoxes](auto/transpiler-passes-group-meas-into-boxes)
+        *   [InlineBoxes](auto/transpiler-passes-inline-boxes)
+        *   [samplomatic.transpiler.passes.insert\_noops](transpiler-passes-insert-noops)
+
+*   [samplomatic.utils](utils)
+
+    *   [count\_unique\_box\_instructions](auto/utils-count-unique-box-instructions)
+    *   [deprecate\_arg](auto/utils-deprecate-arg)
+    *   [extend\_annotations](auto/utils-extend-annotations)
+    *   [filter\_annotations](auto/utils-filter-annotations)
+    *   [find\_unique\_box\_instructions](auto/utils-find-unique-box-instructions)
+    *   [get\_annotation](auto/utils-get-annotation)
+    *   [map\_annotations](auto/utils-map-annotations)
+    *   [replace\_annotations](auto/utils-replace-annotations)
+    *   [strip\_annotations](auto/utils-strip-annotations)
+    *   [unbox](auto/utils-unbox)
+    *   [undress\_box](auto/utils-undress-box)
+    *   [validate\_literals](auto/utils-validate-literals)
+    *   [BoxKey](auto/utils-box-key)
+    *   [FrozenDict](auto/utils-frozen-dict)
+
+*   [samplomatic.virtual\_registers](virtual-registers)
+
+    *   [C1Register](auto/virtual-registers-c-1-register)
+    *   [GroupRegister](auto/virtual-registers-group-register)
+    *   [PauliRegister](auto/virtual-registers-pauli-register)
+    *   [U2Register](auto/virtual-registers-u-2-register)
+    *   [VirtualRegister](auto/virtual-registers-virtual-register)
+    *   [VirtualType](auto/virtual-registers-virtual-type)
+    *   [Z2Register](auto/virtual-registers-z-2-register)
+
+*   [samplomatic.visualization](visualization)
+
+    *   [plot\_graph](auto/visualization-plot-graph)
+

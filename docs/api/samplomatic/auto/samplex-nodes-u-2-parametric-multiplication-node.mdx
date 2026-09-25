@@ -1,0 +1,71 @@
+---
+title: U2ParametricMultiplicationNode (latest version)
+description: API reference for samplomatic.samplex.nodes.U2ParametricMultiplicationNode in the latest version of samplomatic
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: samplomatic.samplex.nodes.U2ParametricMultiplicationNode
+---
+
+# U2ParametricMultiplicationNode
+
+<Class id="samplomatic.samplex.nodes.U2ParametricMultiplicationNode" isDedicatedPage={true} github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplex/nodes/u2_param_multiplication_node.py#L27-L93" signature="samplomatic.samplex.nodes.U2ParametricMultiplicationNode(operand: Literal['rz', 'rx'], register_name: str, param_idxs: list[int])" modifiers="class">
+  Bases: [`EvaluationNode`](samplex-nodes-evaluation-node "samplomatic.samplex.nodes.evaluation_node.EvaluationNode")
+
+  Abstract parent node for nodes doing multiplication on a [`U2Register`](virtual-registers-u-2-register "samplomatic.virtual_registers.U2Register").
+
+  The node stores a parametric representation of a one-qubit gate or gates from the original circuit to perform multiplication on a registry.
+
+  Limited to the gates `rz` or `rx`, and all gates within the node are of the same type.
+
+  **Parameters**
+
+  *   **operand** – The gate type, given as a string.
+  *   **register\_name** – The name of the register the operation is applied to.
+  *   **param\_idxs** – List of `ParamIndex` for the parameter expressions specifying the gate arguments. List order must match the order subsystems in the registry.
+
+  **Raises**
+
+  *   [**SamplexConstructionError**](exceptions-samplex-construction-error "samplomatic.exceptions.SamplexConstructionError") – if param\_idxs is empty.
+  *   [**SamplexConstructionError**](exceptions-samplex-construction-error "samplomatic.exceptions.SamplexConstructionError") – if operand is not `rz` or `rx`.
+
+  **Attributes Summary**
+
+  |                                                                                                                                                                                                |                                                                                   |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+  | [`outgoing_register_type`](#samplomatic.samplex.nodes.U2ParametricMultiplicationNode.outgoing_register_type "samplomatic.samplex.nodes.U2ParametricMultiplicationNode.outgoing_register_type") | The virtual gate type of outgoing registers.                                      |
+  | [`parameter_idxs`](#samplomatic.samplex.nodes.U2ParametricMultiplicationNode.parameter_idxs "samplomatic.samplex.nodes.U2ParametricMultiplicationNode.parameter_idxs")                         | Which evaluated parameter expressions this node needs access to at sampling time. |
+
+  **Methods Summary**
+
+  |                                                                                                                                                           |                                                                                 |
+  | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+  | [`get_style`](#samplomatic.samplex.nodes.U2ParametricMultiplicationNode.get_style "samplomatic.samplex.nodes.U2ParametricMultiplicationNode.get_style")() | Return the style of this node when plotted.                                     |
+  | [`writes_to`](#samplomatic.samplex.nodes.U2ParametricMultiplicationNode.writes_to "samplomatic.samplex.nodes.U2ParametricMultiplicationNode.writes_to")() | Return a manifest of which virtual register values this node needs to write to. |
+
+  **Attributes Documentation**
+
+  ### outgoing\_register\_type
+
+  <Attribute id="samplomatic.samplex.nodes.U2ParametricMultiplicationNode.outgoing_register_type" />
+
+  ### parameter\_idxs
+
+  <Attribute id="samplomatic.samplex.nodes.U2ParametricMultiplicationNode.parameter_idxs">
+    Which evaluated parameter expressions this node needs access to at sampling time.
+  </Attribute>
+
+  **Methods Documentation**
+
+  ### get\_style
+
+  <Function id="samplomatic.samplex.nodes.U2ParametricMultiplicationNode.get_style" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplex/nodes/u2_param_multiplication_node.py#L71-L77" signature="get_style()">
+    Return the style of this node when plotted.
+  </Function>
+
+  ### writes\_to
+
+  <Function id="samplomatic.samplex.nodes.U2ParametricMultiplicationNode.writes_to" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplex/nodes/u2_param_multiplication_node.py#L88-L89" signature="writes_to() → dict[str, tuple[set[int], type[VirtualType]]]">
+    Return a manifest of which virtual register values this node needs to write to.
+  </Function>
+</Class>
+

@@ -1,0 +1,158 @@
+---
+title: Partition (latest version)
+description: API reference for samplomatic.partition.Partition in the latest version of samplomatic
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: samplomatic.partition.Partition
+---
+
+# Partition
+
+<Class id="samplomatic.partition.Partition" isDedicatedPage={true} github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/partition.py#L30-L219" signature="samplomatic.partition.Partition(num_elements_per_part: int, parts: Iterable[tuple[ElementT, ...]] | None = None)" modifiers="class">
+  Bases: [`Generic`](https://docs.python.org/3/library/typing.html#typing.Generic)\[`ElementT`]
+
+  A partition of a sequence of elements into equally-sized, non-overlapping subsets.
+
+  The [`Partition`](#samplomatic.partition.Partition "samplomatic.partition.Partition") class preserves the insertion order of the parts, as well as the order of the elements within the parts.
+
+  **Parameters**
+
+  *   **num\_elements\_per\_part** – How many elements each part must have.
+  *   **parts** – `None`, or the parts to initialize with.
+
+  **Methods Summary**
+
+  |                                                                                                                                  |                                                                                   |
+  | -------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+  | [`add`](#samplomatic.partition.Partition.add "samplomatic.partition.Partition.add")(part)                                        | Add a new part to this partition.                                                 |
+  | [`copy`](#samplomatic.partition.Partition.copy "samplomatic.partition.Partition.copy")()                                         | Copy this instance.                                                               |
+  | [`difference`](#samplomatic.partition.Partition.difference "samplomatic.partition.Partition.difference")(subtracted)             | Return the difference with respect to subtracted.                                 |
+  | [`from_elements`](#samplomatic.partition.Partition.from_elements "samplomatic.partition.Partition.from_elements")(elements)      | Construct a new instance in the special case that `num_elements_per_part` is one. |
+  | [`get_indices`](#samplomatic.partition.Partition.get_indices "samplomatic.partition.Partition.get_indices")(other)               | Get the indices of the parts of `other` in this partition.                        |
+  | [`intersection`](#samplomatic.partition.Partition.intersection "samplomatic.partition.Partition.intersection")(other\[, strict]) | Return a new partition that is the intersection with the other.                   |
+  | [`overlaps_with`](#samplomatic.partition.Partition.overlaps_with "samplomatic.partition.Partition.overlaps_with")(elements)      | Whether any iterable of elements overlaps with these elements.                    |
+  | [`restrict`](#samplomatic.partition.Partition.restrict "samplomatic.partition.Partition.restrict")(required)                     | Restrict to those parts with containment in the required set.                     |
+  | [`union`](#samplomatic.partition.Partition.union "samplomatic.partition.Partition.union")(\*all\_partitions)                     | Take the union of one or more partitions.                                         |
+
+  **Methods Documentation**
+
+  ### add
+
+  <Function id="samplomatic.partition.Partition.add" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/partition.py#L150-L166" signature="add(part: tuple[ElementT, ...])">
+    Add a new part to this partition.
+
+    **Parameters**
+
+    **part** – The part to add.
+
+    **Raises**
+
+    *   [**BuildError**](exceptions-build-error "samplomatic.exceptions.BuildError") – If the part has the incorrect size.
+    *   [**BuildError**](exceptions-build-error "samplomatic.exceptions.BuildError") – If the part partially overlaps an existing part.
+  </Function>
+
+  ### copy
+
+  <Function id="samplomatic.partition.Partition.copy" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/partition.py#L66-L68" signature="copy() → T">
+    Copy this instance.
+  </Function>
+
+  ### difference
+
+  <Function id="samplomatic.partition.Partition.difference" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/partition.py#L96-L104" signature="difference(subtracted: set[ElementT]) → Partition">
+    Return the difference with respect to subtracted.
+
+    Order is maintained of those remaining parts.
+  </Function>
+
+  ### from\_elements
+
+  <Function id="samplomatic.partition.Partition.from_elements" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/partition.py#L168-L178" signature="from_elements(elements: Iterable[ElementT]) → T" modifiers="classmethod">
+    Construct a new instance in the special case that `num_elements_per_part` is one.
+
+    **Parameters**
+
+    **elements** – The elements for each subsystem.
+
+    **Returns**
+
+    A new partition where each part is an element from `elements`.
+  </Function>
+
+  ### get\_indices
+
+  <Function id="samplomatic.partition.Partition.get_indices" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/partition.py#L70-L84" signature="get_indices(other: T) → ndarray[int64]">
+    Get the indices of the parts of `other` in this partition.
+
+    **Parameters**
+
+    **other** – Some other partition whose elements are present in this partition.
+
+    **Returns**
+
+    A list of indices indicating the position of the parts of `other` in this partition.
+  </Function>
+
+  ### intersection
+
+  <Function id="samplomatic.partition.Partition.intersection" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/partition.py#L117-L148" signature="intersection(other: Partition, strict: bool = False) → Partition">
+    Return a new partition that is the intersection with the other.
+
+    The order of this partition is maintained, whereas the order of the other partition is irrelevant.
+
+    **Parameters**
+
+    *   **other** – The other partition to take the intersection with.
+    *   **strict** – Whether to error on partial overlaps.
+
+    **Raises**
+
+    *   [**BuildError**](exceptions-build-error "samplomatic.exceptions.BuildError") – If the two partitions have different numbers of elements per part.
+    *   [**BuildError**](exceptions-build-error "samplomatic.exceptions.BuildError") – If `strict` is `True` and `other` contains a part that partially overlaps with this partition.
+  </Function>
+
+  ### overlaps\_with
+
+  <Function id="samplomatic.partition.Partition.overlaps_with" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/partition.py#L106-L115" signature="overlaps_with(elements: Iterable[ElementT]) → bool">
+    Whether any iterable of elements overlaps with these elements.
+
+    **Parameters**
+
+    **elements** – Any iterable of elements to check against.
+
+    **Returns**
+
+    Whether there is any overlap.
+  </Function>
+
+  ### restrict
+
+  <Function id="samplomatic.partition.Partition.restrict" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/partition.py#L86-L94" signature="restrict(required: set[ElementT]) → Partition">
+    Restrict to those parts with containment in the required set.
+
+    Order is maintained of those remaining parts.
+  </Function>
+
+  ### union
+
+  <Function id="samplomatic.partition.Partition.union" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/partition.py#L180-L219" signature="union(*all_partitions: T) → T" modifiers="classmethod">
+    Take the union of one or more partitions.
+
+    Order is maintained with earlier `all_partitions` taking precedence.
+
+    **Parameters**
+
+    **all\_partitions** – The partitions to take the union of.
+
+    **Returns**
+
+    The union of all the partitions.
+
+    **Raises**
+
+    *   [**BuildError**](exceptions-build-error "samplomatic.exceptions.BuildError") – If no partitions are given.
+    *   [**BuildError**](exceptions-build-error "samplomatic.exceptions.BuildError") – If the `num_elements_per_part` are incompatible.
+    *   [**BuildError**](exceptions-build-error "samplomatic.exceptions.BuildError") – If a partition partially overlaps another, or is reordered.
+  </Function>
+</Class>
+

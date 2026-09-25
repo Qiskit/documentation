@@ -1,0 +1,36 @@
+---
+title: CircuitItem (latest version)
+description: API reference for samplomatic.quantum_program.CircuitItem in the latest version of samplomatic
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: samplomatic.quantum_program.CircuitItem
+---
+
+# CircuitItem
+
+<Class id="samplomatic.quantum_program.CircuitItem" isDedicatedPage={true} github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/quantum_program/quantum_program.py#L76-L132" signature="samplomatic.quantum_program.CircuitItem(circuit: QuantumCircuit, *, circuit_arguments: ndarray | None = None, chunk_size: int | None = None)" modifiers="class">
+  Bases: [`QuantumProgramItem`](quantum-program-quantum-program-item "samplomatic.quantum_program.quantum_program.QuantumProgramItem")
+
+  An item of a [`QuantumProgram`](quantum-program-quantum-program "samplomatic.quantum_program.QuantumProgram") containing a circuit and its arguments.
+
+  **Parameters**
+
+  *   **circuit** – The circuit to be executed.
+  *   **circuit\_arguments** – A real-valued array of parameter values for the circuit. The last axis is intrinsic with size equal to the number of circuit parameters. Leading axes are extrinsic and define the sweep grid. For example, shape `(5, 3, n)` means 5×3=15 configurations for a circuit with `n` parameters.
+  *   **chunk\_size** – The maximum number of bound circuits in each shot loop execution, or `None` to use a server-side heuristic to optimize speed. When not executing in a session, the server-side heuristic is always used and this value is ignored.
+
+  **Attributes Summary**
+
+  |                                                                                                           |                                                                                        |
+  | --------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+  | [`shape`](#samplomatic.quantum_program.CircuitItem.shape "samplomatic.quantum_program.CircuitItem.shape") | The extrinsic shape of this item, i.e. the broadcasted extrinsic shapes of all inputs. |
+
+  **Attributes Documentation**
+
+  ### shape
+
+  <Attribute id="samplomatic.quantum_program.CircuitItem.shape">
+    The extrinsic shape of this item, i.e. the broadcasted extrinsic shapes of all inputs.
+  </Attribute>
+</Class>
+
