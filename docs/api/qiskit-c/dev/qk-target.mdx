@@ -630,7 +630,7 @@ The Target C API currently only supports additions of `QkGate` instances with ei
   **Parameters**
 
   *   **target** – A pointer to the `QkTarget`.
-  *   **target\_entry** – A pointer to the `QkTargetEntry`. The pointer gets freed when added to the `QkTarget`.
+  *   **target\_entry** – A pointer to the `QkTargetEntry`. This function takes ownership of the entry and frees it, regardless of the returned `QkExitCode`.
 
   **Returns**
 
