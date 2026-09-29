@@ -8,7 +8,7 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDec
 
 # PadDynamicalDecoupling
 
-<Class id="qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDecoupling" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/transpiler/passes/scheduling/dynamical_decoupling.py#L48-L611" signature="PadDynamicalDecoupling(*args, **kwargs)" modifiers="class">
+<Class id="qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDecoupling" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/transpiler/passes/scheduling/dynamical_decoupling.py#L47-L603" signature="PadDynamicalDecoupling(*args, **kwargs)" modifiers="class">
   Bases: [`BlockBasePadder`](transpiler-passes-scheduling-block-base-padder "qiskit_ibm_runtime.transpiler.passes.scheduling.block_base_padder.BlockBasePadder")
 
   Dynamical decoupling insertion pass for IBM dynamic circuit backends.
@@ -22,25 +22,27 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDec
   from qiskit.transpiler import PassManager, InstructionDurations
   from qiskit.visualization import timeline_drawer
 
+  from qiskit_ibm_runtime.fake_provider import FakeMarrakesh
   from qiskit_ibm_runtime.transpiler.passes.scheduling import ALAPScheduleAnalysis
   from qiskit_ibm_runtime.transpiler.passes.scheduling import PadDynamicalDecoupling
 
+  backend = FakeMarrakesh()
+
   circ = QuantumCircuit(4)
-  circ.h(0)
-  circ.cx(0, 1)
-  circ.cx(1, 2)
-  circ.cx(2, 3)
+  circ.x(0)
+  circ.cz(0, 1)
+  circ.cz(1, 2)
+  circ.cz(2, 3)
   circ.measure_all()
-  durations = InstructionDurations(
-      [("h", 0, 50), ("cx", [0, 1], 700), ("reset", None, 10),
-       ("cx", [1, 2], 200), ("cx", [2, 3], 300),
-       ("x", None, 50), ("measure", None, 1000)]
-  )
 
   # balanced X-X sequence on all qubits
   dd_sequence = [XGate(), XGate()]
-  pm = PassManager([ALAPScheduleAnalysis(durations),
-                    PadDynamicalDecoupling(durations, dd_sequence)])
+  pm = PassManager(
+      [
+          ALAPScheduleAnalysis(target=backend.target),
+          PadDynamicalDecoupling(dd_sequence, target=backend.target)
+      ]
+  )
   circ_dd = pm.run(circ)
   circ_dd.draw('mpl', style="iqp")
   ```
@@ -59,8 +61,13 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDec
   spacings.append(1 - sum(spacings))
   pm = PassManager(
       [
-          ALAPScheduleAnalysis(durations),
-          PadDynamicalDecoupling(durations, dd_sequence, qubits=[0], spacings=spacings),
+          ALAPScheduleAnalysis(target=backend.target),
+          PadDynamicalDecoupling(
+              dd_sequence,
+              qubits=[0],
+              spacings=spacings,
+              target=backend.target,
+          ),
       ]
   )
   circ_dd = pm.run(circ)
@@ -74,8 +81,6 @@ python_api_name: qiskit_ibm_runtime.transpiler.passes.scheduling.PadDynamicalDec
   </Admonition>
 
   **Parameters**
-
-  *   **durations** – Durations of instructions to be used in scheduling.
 
   *   **dd\_sequences** – Sequence of gates to apply in idle spots. Alternatively a list of gate sequences may be supplied that will preferentially be inserted if there is a delay of sufficient duration. This may be tuned by the optionally supplied `sequence_min_length_ratios`.
 
