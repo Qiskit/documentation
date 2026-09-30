@@ -163,8 +163,16 @@ function rewriteApiDocsLinks(results: HtmlToMdResultWithUrl[], pkg: Pkg) {
           const targetPkg = pkg.isCApi() ? pythonSiblingPkg : pkg.name;
           const targetUsesKebab =
             pkg.kebabCaseAndShortenUrls && targetPkg !== "qiskit";
+          // `page` may include a nested folder, e.g. `generated/qiskit_pkg.Foo`.
+          // Kebab-case only the final segment so folder separators survive —
+          // kebabCase() itself would otherwise turn `generated/foo` into
+          // `generated-foo`.
+          const pageParts = page.split("/");
           const kebabPage = targetUsesKebab
-            ? kebabCaseAndShortenPage(page, targetPkg)
+            ? [
+                ...pageParts.slice(0, -1),
+                kebabCaseAndShortenPage(pageParts.at(-1)!, targetPkg),
+              ].join("/")
             : page;
           return `](${pythonApiBase}/${kebabPage}${anchor ?? ""})`;
         },
@@ -178,6 +186,25 @@ function rewriteApiDocsLinks(results: HtmlToMdResultWithUrl[], pkg: Pkg) {
           "g",
         ),
         `](${apiBase}/release-notes$1)`,
+      )
+      // Addon API reference pages link back to guides with paths relative to
+      // the sphinx source tree (e.g. `../../guides/formalism#anchor`).
+      // Rewrite these to the guide's absolute path under docs/addons.
+      // For C API packages the guides live under the companion Python package
+      // (`qiskit-fermions-c` → `docs/addons/qiskit-fermions/guides/…`), so use
+      // the Python sibling rather than `pkg.name`.
+      .replace(
+        /\]\((?:\.\.\/)*guides\/([^)#]+)(#[^)]+)?\)/g,
+        (match, page, anchor) => {
+          if (!pkg.isAddon()) return match;
+          // The guide pages on disk use kebab-case slugs (the addon TOC's
+          // hrefToSlug kebab-cases them too), so a source name like
+          // `1d_fermi_hubbard` must become `1-d-fermi-hubbard` to resolve.
+          const slug = pkg.kebabCaseAndShortenUrls
+            ? kebabCaseAndShortenPage(page, pythonSiblingPkg)
+            : page;
+          return `](${DOCS_BASE_PATH}/addons/${pythonSiblingPkg}/guides/${slug}${anchor ?? ""})`;
+        },
       );
   }
 }

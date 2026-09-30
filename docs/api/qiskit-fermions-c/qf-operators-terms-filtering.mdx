@@ -24,12 +24,13 @@ python_api_name: Filtering Functions
   </Admonition>
 
   ```c
-  1QfFCIDump *fcidump = qf_fcidump_from_file("molecule.fcidump");
-  2QfFermionOperator *op = qf_ferm_op_from_fcidump(fcidump);
-  3
-  4QfFermionOperator *normal = qf_ferm_op_normal_ordered(op, NULL);
-  5
-  6qf_ferm_op_filter_diagonal_terms(normal);
+  1QfFCIDump *fcidump = NULL;
+  2qf_fcidump_from_file("molecule.fcidump", &fcidump);
+  3QfFermionOperator *op = qf_ferm_op_from_fcidump(fcidump);
+  4
+  5QfFermionOperator *normal = qf_ferm_op_normal_ordered(op, NULL);
+  6
+  7qf_ferm_op_filter_diagonal_terms(normal);
   ```
 
   <Admonition title="Note" type="note">

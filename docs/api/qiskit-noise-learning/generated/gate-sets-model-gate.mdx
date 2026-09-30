@@ -1,0 +1,124 @@
+---
+title: ModelGate (latest version)
+description: API reference for qiskit_noise_learning.gate_sets.ModelGate in the latest version of qiskit-noise-learning
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_noise_learning.gate_sets.ModelGate
+---
+
+<span id="qiskit-noise-learning-gate-sets-modelgate" />
+
+# qiskit\_noise\_learning.gate\_sets.ModelGate
+
+<Class id="qiskit_noise_learning.gate_sets.ModelGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/gate_sets/model_gate.py" signature="qiskit_noise_learning.gate_sets.ModelGate(name: str, cliffords: Iterable[tuple[tuple[int, ...], Clifford]] | None = None, qubit_idxs: Iterable[int] | None = None, meas_idxs: Iterable[int] = (), prep_idxs: Iterable[int] = (), latex_str: str | None = None)" modifiers="class">
+  Bases: [`Gate`](gate-sets-gate "qiskit_noise_learning.gate_sets.gate.Gate")
+
+  A model for a gate of the form Clifford - MCM - reset.
+
+  **Parameters**
+
+  *   **cliffords** – An iterable of tuples of physical qubit indices and `Clifford`s corresponding to the ideal Clifford layer. The order of the iterable should start with the first applied Clifford and proceed temporally, and `None` is interpreted as the identity.
+  *   **qubit\_idxs** – The physical qubit indices.
+  *   **meas\_idxs** – The physical qubit indices that this gate measures.
+  *   **prep\_idxs** – The physical qubit indices that this gate prepares, or resets.
+  *   **latex\_str** – An optional LaTeX string for rendering this gate.
+
+  **Raises**
+
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If both `cliffords` and `qubit_idxs` are not specified.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If any of the elements of `cliffords` have mismatched length of qubit indices and number of qubits of the Clifford.
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit_noise_learning.gate_sets.ModelGate.__init__" signature="__init__(name: str, cliffords: Iterable[tuple[tuple[int, ...], Clifford]] | None = None, qubit_idxs: Iterable[int] | None = None, meas_idxs: Iterable[int] = (), prep_idxs: Iterable[int] = (), latex_str: str | None = None)" />
+
+  ## Methods
+
+  |                                                                                                                                                              |                                                                   |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------- |
+  | [`__init__`](#qiskit_noise_learning.gate_sets.ModelGate.__init__ "qiskit_noise_learning.gate_sets.ModelGate.__init__")(name\[, cliffords, qubit\_idxs, ...]) |                                                                   |
+  | [`clifford_propagate`](#qiskit_noise_learning.gate_sets.ModelGate.clifford_propagate "qiskit_noise_learning.gate_sets.ModelGate.clifford_propagate")(...)    | Given a Pauli, propagate it through the ideal Clifford operation. |
+
+  ## Attributes
+
+  |                                                                                                                                                               |                                                                                                                                        |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+  | [`clifford`](#qiskit_noise_learning.gate_sets.ModelGate.clifford "qiskit_noise_learning.gate_sets.ModelGate.clifford")                                        | The overall Clifford operation for this gate.                                                                                          |
+  | [`cliffords`](#qiskit_noise_learning.gate_sets.ModelGate.cliffords "qiskit_noise_learning.gate_sets.ModelGate.cliffords")                                     | A list of tuples of qubit indices and a Clifford that acts on them.                                                                    |
+  | [`constituent_gate_idxs`](#qiskit_noise_learning.gate_sets.ModelGate.constituent_gate_idxs "qiskit_noise_learning.gate_sets.ModelGate.constituent_gate_idxs") | Iterator over tuples of physical indices that specify where constituent gates act.                                                     |
+  | `gate_idxs`                                                                                                                                                   | The physical indices where this gate undergoes unitary action.                                                                         |
+  | `idling_idxs`                                                                                                                                                 | The physical qubit indices that this gate is idling on.                                                                                |
+  | `label`                                                                                                                                                       | A string label for use in plotter legends.                                                                                             |
+  | `latex_str`                                                                                                                                                   | A LaTeX string for this gate.                                                                                                          |
+  | `math_label`                                                                                                                                                  | A string label for use within latex math mode.                                                                                         |
+  | `meas_idxs`                                                                                                                                                   | The physical qubit indices that this gate measures.                                                                                    |
+  | [`model_gate`](#qiskit_noise_learning.gate_sets.ModelGate.model_gate "qiskit_noise_learning.gate_sets.ModelGate.model_gate")                                  | Return a [`ModelGate`](#qiskit_noise_learning.gate_sets.ModelGate "qiskit_noise_learning.gate_sets.ModelGate") representing this gate. |
+  | `name`                                                                                                                                                        | The gate name.                                                                                                                         |
+  | `num_qubits`                                                                                                                                                  | The number of qubits this gate acts on.                                                                                                |
+  | `prep_idxs`                                                                                                                                                   | The physical qubit indices that this gate prepares (or resets).                                                                        |
+  | `qubit_idxs`                                                                                                                                                  | The physical qubit indices this gate acts on.                                                                                          |
+  | `sorted_meas_idxs`                                                                                                                                            | The indices of the measured qubits in increasing order.                                                                                |
+  | `sorted_prep_idxs`                                                                                                                                            | The indices of the reset qubits in increasing order.                                                                                   |
+
+  ### clifford
+
+  <Attribute id="qiskit_noise_learning.gate_sets.ModelGate.clifford">
+    Type: [`Clifford`](/docs/api/qiskit/qiskit.quantum_info.Clifford)
+
+    The overall Clifford operation for this gate.
+  </Attribute>
+
+  ### cliffords
+
+  <Attribute id="qiskit_noise_learning.gate_sets.ModelGate.cliffords">
+    Type: [`list`](https://docs.python.org/3/library/stdtypes.html#list)\[[`tuple`](https://docs.python.org/3/library/stdtypes.html#tuple)\[[`tuple`](https://docs.python.org/3/library/stdtypes.html#tuple)\[[`int`](https://docs.python.org/3/library/functions.html#int), ...], [`Clifford`](/docs/api/qiskit/qiskit.quantum_info.Clifford)]]
+
+    A list of tuples of qubit indices and a Clifford that acts on them.
+
+    The list is in temporal order. Each element contains the qubit indices that the corresponding Clifford acts on.
+  </Attribute>
+
+  ### model\_gate
+
+  <Attribute id="qiskit_noise_learning.gate_sets.ModelGate.model_gate">
+    Type: [`Self`](https://docs.python.org/3/library/typing.html#typing.Self)
+
+    Return a [`ModelGate`](#qiskit_noise_learning.gate_sets.ModelGate "qiskit_noise_learning.gate_sets.ModelGate") representing this gate.
+  </Attribute>
+
+  ### constituent\_gate\_idxs
+
+  <Attribute id="qiskit_noise_learning.gate_sets.ModelGate.constituent_gate_idxs">
+    Type: [`Iterator`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterator)\[[`tuple`](https://docs.python.org/3/library/stdtypes.html#tuple)\[[`int`](https://docs.python.org/3/library/functions.html#int), ...]]
+
+    Iterator over tuples of physical indices that specify where constituent gates act.
+
+    Some subclasses may not have a meaningful notion of what a “constituent gate” is, because they don’t choose to represent unitary action by some seperable representation. The only contract they need to obey is that the union of all yielded integers is equal to [`gate_idxs`](gate-sets-gate#gate_idxs "qiskit_noise_learning.gate_sets.Gate.gate_idxs").
+  </Attribute>
+
+  ### clifford\_propagate
+
+  <Function id="qiskit_noise_learning.gate_sets.ModelGate.clifford_propagate" signature="clifford_propagate(pauli: QubitSparsePauli, inverse: bool = False) → QubitSparsePauli" extraSignatures={["clifford_propagate(pauli: PhasedQubitSparsePauli, inverse: bool = False) → PhasedQubitSparsePauli"]}>
+    Given a Pauli, propagate it through the ideal Clifford operation.
+
+    If `inverse == False` (the default), then this method returns $C P C^\dagger$, and otherwise returns $C^\dagger P C$.
+
+    If the input is a phaseless Pauli type, the propagation will be phaseless.
+
+    Note that the Clifford will be applied to on `self.qubit_idxs`.
+
+    **Parameters**
+
+    *   **pauli** – The Pauli to propagate.
+    *   **inverse** – Whether to apply the gate or its inverse.
+
+    **Returns**
+
+    The propagated result, which has the same type as the input.
+
+    **Raises**
+
+    [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError) – If invalid type supplied.
+  </Function>
+</Class>
+

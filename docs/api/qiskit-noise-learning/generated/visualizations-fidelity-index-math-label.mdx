@@ -1,0 +1,32 @@
+---
+title: fidelity_index_math_label (latest version)
+description: API reference for qiskit_noise_learning.visualizations.fidelity_index_math_label in the latest version of qiskit-noise-learning
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit_noise_learning.visualizations.fidelity_index_math_label
+---
+
+<span id="qiskit-noise-learning-visualizations-fidelity-index-math-label" />
+
+# qiskit\_noise\_learning.visualizations.fidelity\_index\_math\_label
+
+<Function id="qiskit_noise_learning.visualizations.fidelity_index_math_label" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/visualizations/fidelity_math_labels.py" signature="qiskit_noise_learning.visualizations.fidelity_index_math_label(gate_set: GateSet, fidelity_index: FidelityIndex, style: Literal['transition', 'formula'] = 'transition', noise_site: Mapping[str, Literal['before', 'after']] | None = None, qubit_labels: Mapping[int, str] | None = None) → str">
+  Return a math-mode LaTeX label for a fidelity index.
+
+  **Parameters**
+
+  *   **gate\_set** – The gate set the fidelity index belongs to, used to look up the gate’s [`math_label`](gate-sets-gate#math_label "qiskit_noise_learning.gate_sets.Gate.math_label").
+  *   **fidelity\_index** – The fidelity index to label.
+  *   **style** – Either `"transition"` (shows input $\to$ output Pauli) or `"formula"` (shows the index data [`pauli`](sequences-fidelity-index#pauli "qiskit_noise_learning.sequences.FidelityIndex.pauli") alongside the $Z$ exponents $x$ and $y$, displayed as the qubit indices on which they are non-zero, i.e. [`in_z_idxs`](sequences-fidelity-index#in_z_idxs "qiskit_noise_learning.sequences.FidelityIndex.in_z_idxs") and [`out_z_idxs`](sequences-fidelity-index#out_z_idxs "qiskit_noise_learning.sequences.FidelityIndex.out_z_idxs")).
+  *   **noise\_site** – An optional mapping from gate name to `"before"` or `"after"`, indicating the gate noise is modelled as a Pauli-channel occuring either before or after the gate. This simplifies the `style="formula"` label to only display the Pauli passing through the Pauli channel.
+  *   **qubit\_labels** – An optional mapping from qubit index to a display symbol, used to relabel the qubit subscripts (e.g. `{25: "i", 26: "j"}` renders `X_{25}` as `X_{i}`). Indices absent from the mapping render as their integer value.
+
+  **Returns**
+
+  A math-mode LaTeX label.
+
+  **Raises**
+
+  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If `style` is not `"transition"` or `"formula"`.
+</Function>
+

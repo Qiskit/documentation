@@ -1,0 +1,155 @@
+---
+title: Path (latest version)
+description: API reference for qiskit_noise_learning.sequences.Path in the latest version of qiskit-noise-learning
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_noise_learning.sequences.Path
+---
+
+<span id="qiskit-noise-learning-sequences-path" />
+
+# qiskit\_noise\_learning.sequences.Path
+
+<Class id="qiskit_noise_learning.sequences.Path" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/sequences/path.py" signature="qiskit_noise_learning.sequences.Path(start_fragment: Iterable[T], repeatable_fragment: Iterable[T], end_fragment: Iterable[T], fragment_depth: int | None = None)" modifiers="class">
+  Bases: `BaseSequence`\[[`FidelityIndex`](sequences-fidelity-index "qiskit_noise_learning.sequences.fidelity_index.FidelityIndex")]
+
+  A sequence of fidelity indices.
+
+  **Parameters**
+
+  *   **start\_fragment** – The start of the sequence.
+  *   **repeatable\_fragment** – The repeatable middle of the sequence.
+  *   **end\_fragment** – The end of the sequence.
+  *   **fragment\_depth** – The number of repetitions of the repeatable fragment.
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit_noise_learning.sequences.Path.__init__" signature="__init__(start_fragment: Iterable[T], repeatable_fragment: Iterable[T], end_fragment: Iterable[T], fragment_depth: int | None = None)" />
+
+  ## Methods
+
+  |                                                                                                                                                                      |                                                                                           |
+  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit_noise_learning.sequences.Path.__init__ "qiskit_noise_learning.sequences.Path.__init__")(start\_fragment, ...\[, fragment\_depth])               |                                                                                           |
+  | `bind_at`(fragment\_depth)                                                                                                                                           | Return a new instance with the same fragments bound to the fragment depth.                |
+  | [`extend_permutations`](#qiskit_noise_learning.sequences.Path.extend_permutations "qiskit_noise_learning.sequences.Path.extend_permutations")(instruction\_sequence) | Return an instruction sequence with extended permutations to traverse self.               |
+  | [`fragment_sign_flips`](#qiskit_noise_learning.sequences.Path.fragment_sign_flips "qiskit_noise_learning.sequences.Path.fragment_sign_flips")(instruction\_sequence) | Whether the instruction sequence fragments flip the observable sign when traversing self. |
+  | [`is_traversed_by`](#qiskit_noise_learning.sequences.Path.is_traversed_by "qiskit_noise_learning.sequences.Path.is_traversed_by")(instruction\_sequence)             | Whether or not this path is traversed by the instruction sequence.                        |
+  | [`to_instruction_sequence`](#qiskit_noise_learning.sequences.Path.to_instruction_sequence "qiskit_noise_learning.sequences.Path.to_instruction_sequence")()          | Return a minimally-specified instruction sequence that traverses this path.               |
+  | `unbind`()                                                                                                                                                           | Return a new instance with the same fragments but fragment depth set to `None`.           |
+
+  ## Attributes
+
+  |                                                                                                                                                                                               |                                                       |
+  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
+  | `end_fragment`                                                                                                                                                                                | The ending fragment.                                  |
+  | [`end_fragment_observable_idxs`](#qiskit_noise_learning.sequences.Path.end_fragment_observable_idxs "qiskit_noise_learning.sequences.Path.end_fragment_observable_idxs")                      | The observable indices of the end fragment.           |
+  | `fragment_depth`                                                                                                                                                                              | The number of repetitions of the repeatable fragment. |
+  | `is_unbound`                                                                                                                                                                                  | Whether the sequence is unbound.                      |
+  | `repeatable_fragment`                                                                                                                                                                         | The repeatable fragment.                              |
+  | [`repeatable_fragment_observable_idxs`](#qiskit_noise_learning.sequences.Path.repeatable_fragment_observable_idxs "qiskit_noise_learning.sequences.Path.repeatable_fragment_observable_idxs") | The observable indices of the repeatable fragment.    |
+  | `start_fragment`                                                                                                                                                                              | The starting fragment.                                |
+  | [`start_fragment_observable_idxs`](#qiskit_noise_learning.sequences.Path.start_fragment_observable_idxs "qiskit_noise_learning.sequences.Path.start_fragment_observable_idxs")                | The observable indices of the start fragment.         |
+
+  ### start\_fragment\_observable\_idxs
+
+  <Attribute id="qiskit_noise_learning.sequences.Path.start_fragment_observable_idxs">
+    Type: [`list`](https://docs.python.org/3/library/stdtypes.html#list)\[[`list`](https://docs.python.org/3/library/stdtypes.html#list)\[[`int`](https://docs.python.org/3/library/functions.html#int)]]
+
+    The observable indices of the start fragment.
+  </Attribute>
+
+  ### repeatable\_fragment\_observable\_idxs
+
+  <Attribute id="qiskit_noise_learning.sequences.Path.repeatable_fragment_observable_idxs">
+    Type: [`list`](https://docs.python.org/3/library/stdtypes.html#list)\[[`list`](https://docs.python.org/3/library/stdtypes.html#list)\[[`int`](https://docs.python.org/3/library/functions.html#int)]]
+
+    The observable indices of the repeatable fragment.
+  </Attribute>
+
+  ### end\_fragment\_observable\_idxs
+
+  <Attribute id="qiskit_noise_learning.sequences.Path.end_fragment_observable_idxs">
+    Type: [`list`](https://docs.python.org/3/library/stdtypes.html#list)\[[`list`](https://docs.python.org/3/library/stdtypes.html#list)\[[`int`](https://docs.python.org/3/library/functions.html#int)]]
+
+    The observable indices of the end fragment.
+  </Attribute>
+
+  ### extend\_permutations
+
+  <Function id="qiskit_noise_learning.sequences.Path.extend_permutations" signature="extend_permutations(instruction_sequence: InstructionSequence) → InstructionSequence | None">
+    Return an instruction sequence with extended permutations to traverse self.
+
+    Given an `instruction_sequence`, this method attempts to extend its definition by constructing a new instruction sequence with the same structure as the input, but for which the [`PartialPauliPermutation`](sequences-partial-pauli-permutation "qiskit_noise_learning.sequences.PartialPauliPermutation")s are extended to specify the minimal superset of mappings required to traverse this path. If this is not possible, the function will return `None`, indicating that the procedure failed.
+
+    In terms of the specific algorithm, when encountering a [`PartialPauliPermutation`](sequences-partial-pauli-permutation "qiskit_noise_learning.sequences.PartialPauliPermutation") while jointly iterating through `self` and `instruction_sequence`, this method will attempt to extend the permutation to map the current Pauli in the path to the Pauli in the next relevant [`FidelityIndex`](sequences-fidelity-index "qiskit_noise_learning.sequences.FidelityIndex"). Note that this can lead to failures in instances when multiple permutations occur in a row, even if it is technically possible to find a super instruction sequence that traverses the path.
+
+    **Parameters**
+
+    **instruction\_sequence** – The base instruction sequence.
+
+    **Returns**
+
+    The extended instruction sequence, or `None` if an extension is not possible.
+
+    **Raises**
+
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If the transitions of `self` do not start and end with the identity.
+  </Function>
+
+  ### is\_traversed\_by
+
+  <Function id="qiskit_noise_learning.sequences.Path.is_traversed_by" signature="is_traversed_by(instruction_sequence: InstructionSequence) → bool">
+    Whether or not this path is traversed by the instruction sequence.
+
+    Whether or not a [`Path`](#qiskit_noise_learning.sequences.Path "qiskit_noise_learning.sequences.Path") is traversed by an [`InstructionSequence`](sequences-instruction-sequence "qiskit_noise_learning.sequences.InstructionSequence") is determined on a fragment-by-fragment basis.
+
+    Requires the path starts and ends at the identity.
+
+    **Parameters**
+
+    **instruction\_sequence** – The instruction sequence.
+
+    **Returns**
+
+    Whether or not the path is traversed.
+
+    **Raises**
+
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If the path does not start and end at the identity.
+  </Function>
+
+  ### fragment\_sign\_flips
+
+  <Function id="qiskit_noise_learning.sequences.Path.fragment_sign_flips" signature="fragment_sign_flips(instruction_sequence: InstructionSequence) → tuple[bool, bool]">
+    Whether the instruction sequence fragments flip the observable sign when traversing self.
+
+    Requires the path starts and ends at the identity. This method ignores the fragment depths of the path and instruction sequence, operating only on the fragment structure.
+
+    **Parameters**
+
+    **instruction\_sequence** – An instruction sequence that traverses this path.
+
+    **Returns**
+
+    A tuple of booleans, the first indicating whether the combined action of the start and end fragments flip the sign, and the second indicating whether the repeatable fragment flips the sign.
+
+    **Raises**
+
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If the path does not satisfy the assumptions.
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If the instruction sequence does not traverse the path.
+  </Function>
+
+  ### to\_instruction\_sequence
+
+  <Function id="qiskit_noise_learning.sequences.Path.to_instruction_sequence" signature="to_instruction_sequence() → InstructionSequence">
+    Return a minimally-specified instruction sequence that traverses this path.
+
+    The single-qubit Clifford layers between gate set elements are given as [`PartialPauliPermutation`](sequences-partial-pauli-permutation "qiskit_noise_learning.sequences.PartialPauliPermutation")s specifying only the mappings required to traverse this path. The fragment depth of the returned instruction sequence is `self.fragment_depth`.
+
+    **Returns**
+
+    An instruction sequence traversing this path.
+  </Function>
+</Class>
+

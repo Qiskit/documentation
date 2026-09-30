@@ -1,0 +1,326 @@
+---
+title: GateFolding (latest version)
+description: API reference for qiskit_mitigation.zne.GateFolding in the latest version of qiskit-mitigation
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_mitigation.zne.GateFolding
+---
+
+# GateFolding
+
+<Class id="qiskit_mitigation.zne.GateFolding" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-mitigation/tree/stable/0.1/qiskit_mitigation/zne/gate_folding.py#L142-L1000" signature="GateFolding" modifiers="class">
+  Bases: [`MitigationTask`](/docs/api/qiskit-mitigation/mitigation-task#qiskit_mitigation.MitigationTask "qiskit_mitigation.mitigation_task.MitigationTask")
+
+  Calculates expectation values of observables using Zero Noise Extrapolation (ZNE) with gate folding mitigation method.
+
+  The class enables preparing a QuantumProgram with circuit mitigated using ZNE with gate folding method, that can be executed on hardware using the Executor, and post process the results to calculate mitigated expectation values of given observables. The task parameters should be given as input to the prepare function, and the relevant variables needed for post-processing are saved internally:
+
+  ```python
+  gf_task = GateFolding()
+  program = gf_task.prepare(circuit=circuit,
+                         observables=observables,
+                         parameters=parameter_values,
+                         noise_factors=noise_factors_array,
+                         extrapolator=extrapolators_list)
+  job = executor.run(program)
+  results = job.result()
+  mitigated_result = gf_task.postprocess(results)
+  ```
+
+  To calculate expectation values of a loaded job result, a GateFolding task can be created from the job results with all the internal variables needed for post-processing. Alternatively, the variables required for post-processing can be given as input directly to the `compute_expectation_value` static method. Example for running post-processing for a loaded result:
+
+  ```python
+  gf_task = GateFolding()
+  program = gf_task.prepare(circuit=circuit,
+                         observables=observables,
+                         parameters=parameter_values,
+                         noise_factors=noise_factors_array,
+                         extrapolator=extrapolators_list)
+  job_id = executor.run(program).job_id
+
+  job = service.job(job_id)
+  results = job.result()
+  gf_task = load_tasks_from_result(results)[0]
+  mitigated_result = gf_task.postprocess(results)
+  ```
+
+  Instantiate a GateFolding task.
+
+  ## Attributes
+
+  ### VERSION
+
+  <Attribute id="qiskit_mitigation.zne.GateFolding.VERSION">
+    Default value: `'0.1'`
+  </Attribute>
+
+  ## Methods
+
+  ### compute\_expectation\_value
+
+  <Function id="qiskit_mitigation.zne.GateFolding.compute_expectation_value" github="https://github.com/Qiskit/qiskit-mitigation/tree/stable/0.1/qiskit_mitigation/mitigation_task.py#L888-L998" signature="compute_expectation_value(item_result, observables, param_shape=None, param_basis_pairs=None, meas_bases=None, broadcast_obs_and_params=False, measure_noise_data=None)" modifiers="static">
+    Process expectation values for a single item result.
+
+    This function can be used to calculate expectation values for a single unmitigated item result without instantiating a new class instance.
+
+    **Parameters**
+
+    *   **item\_result** ([*QuantumProgramItemResult*](https://qiskit.github.io/samplomatic/api/auto/samplomatic.quantum_program.QuantumProgramItemResult.html#samplomatic.quantum_program.QuantumProgramItemResult "(in samplomatic)")) – The item result.
+    *   **observables** ([*ObservablesArray*](/docs/api/qiskit/qiskit.primitives.ObservablesArray)  *|*[*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp)*]*) – The observables to calculate expectation values for.
+    *   **param\_shape** ([*tuple*](https://docs.python.org/3/builtins/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/builtins/functions.html#int)*, ...] | None*) – The shape of the parameter values.
+    *   **param\_basis\_pairs** ([*list*](https://docs.python.org/3/builtins/stdtypes.html#list)*\[*[*tuple*](https://docs.python.org/3/builtins/stdtypes.html#tuple)*\[*[*tuple*](https://docs.python.org/3/builtins/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/builtins/functions.html#int)*, ...],* [*str*](https://docs.python.org/3/builtins/stdtypes.html#str)*]] | None*) – The map between params ndindexes to measure basis.
+    *   **meas\_bases** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*Pauli*](/docs/api/qiskit/qiskit.quantum_info.Pauli)*] |* [*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*str*](https://docs.python.org/3/builtins/stdtypes.html#str)*] |* [*PauliList*](/docs/api/qiskit/qiskit.quantum_info.PauliList) *| None*) – A list of the measured Pauli bases. The `i` th item is a measurement basis assumed to correspond to the `i` th slice of the data in `item_result`.
+    *   **broadcast\_obs\_and\_params** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) – Whether to broadcast observables and parameter values.
+    *   **measure\_noise\_data** ([*PauliLindbladMap*](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap)  *|*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray) *| None*) – Measurement noise calibration data for TREX mitigation.
+
+    **Returns**
+
+    A PubResult which contains `evs` and `std` as fields in its data, where `evs` are expectation values, and `std` are the standard deviation of the expectation values. If `broadcast_obs_and_params` is set to True, the data will contain also a `twirl_stds` field which is the standard deviation between different randomizations.
+
+    **Raises**
+
+    *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If `item_result` has no `'_meas'` key.
+    *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If `item_result['_meas']` has invalid number of axes.
+    *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If `param_shape` and `observables.shape` cannot be broadcasted against each other.
+
+    **Return type**
+
+    [*PubResult*](/docs/api/qiskit/qiskit.primitives.PubResult)
+  </Function>
+
+  ### compute\_expectation\_value\_gate\_folding
+
+  <Function id="qiskit_mitigation.zne.GateFolding.compute_expectation_value_gate_folding" github="https://github.com/Qiskit/qiskit-mitigation/tree/stable/0.1/qiskit_mitigation/zne/gate_folding.py#L799-L1000" signature="compute_expectation_value_gate_folding(item_results, observables, param_shape, param_basis_pairs, noise_factors, extrapolator, extrapolated_noise_factors=None, meas_bases=None, broadcast_obs_and_params=False, measure_noise_data=None, custom_fit=None)" modifiers="static">
+    Process expectation values for a single item result.
+
+    This function can be used to calculate expectation values for a single gate\_folding mitigated item result without instantiating a new class instance.
+
+    **Parameters**
+
+    *   **item\_results** ([*list*](https://docs.python.org/3/builtins/stdtypes.html#list)*\[*[*QuantumProgramItemResult*](https://qiskit.github.io/samplomatic/api/auto/samplomatic.quantum_program.QuantumProgramItemResult.html#samplomatic.quantum_program.QuantumProgramItemResult "(in samplomatic)")*]*) – List of the item results - one for each noise factor.
+
+    *   **observables** ([*ObservablesArray*](/docs/api/qiskit/qiskit.primitives.ObservablesArray)  *|*[*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp)*]*) – The observables to calculate expectation values for.
+
+    *   **param\_shape** ([*tuple*](https://docs.python.org/3/builtins/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/builtins/functions.html#int)*, ...] | None*) – The shape of the parameter values.
+
+    *   **param\_basis\_pairs** ([*list*](https://docs.python.org/3/builtins/stdtypes.html#list)*\[*[*tuple*](https://docs.python.org/3/builtins/stdtypes.html#tuple)*\[*[*tuple*](https://docs.python.org/3/builtins/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/builtins/functions.html#int)*, ...],* [*str*](https://docs.python.org/3/builtins/stdtypes.html#str)*]] | None*) – The map between params ndindexes to measure basis.
+
+    *   **noise\_factors** ([*list*](https://docs.python.org/3/builtins/stdtypes.html#list)*\[*[*float*](https://docs.python.org/3/builtins/functions.html#float)*]*) – The noise factors that were used to amplify the noise.
+
+    *   **extrapolated\_noise\_factors** ([*float*](https://docs.python.org/3/builtins/functions.html#float)  *|*[*int*](https://docs.python.org/3/builtins/functions.html#int)  *|*[*list*](https://docs.python.org/3/builtins/stdtypes.html#list)*\[*[*float*](https://docs.python.org/3/builtins/functions.html#float)*] | None*) – Noise factors to evaluate the fits at.
+
+    *   **extrapolator** ([*list*](https://docs.python.org/3/builtins/stdtypes.html#list)*\[*[*Literal*](https://docs.python.org/3/library/typing.html#typing.Literal)*\['linear', 'exponential', 'double\_exponential', 'polynomial\_degree\_1', 'polynomial\_degree\_2', 'polynomial\_degree\_3', 'polynomial\_degree\_4', 'polynomial\_degree\_5', 'polynomial\_degree\_6', 'polynomial\_degree\_7', 'fallback', 'custom']]*) –
+
+        The extrapolator model or models to use. Models will be tried in priority order. Supported models (each fits the named function of the noise factor `x`):
+
+        *   `"linear"`: `a + b*x`
+        *   `"polynomial_degree_k"` (1 \<= k \<= 7): a degree-k polynomial
+        *   `"exponential"`: `a*exp(b*x)`
+        *   `"double_exponential"`: `a*exp(b*x) + c*exp(d*x)` (rates constrained to decay)
+        *   `"fallback"`: no fit; the measured value at the lowest noise factor
+        *   `custom`: The custom extrapolation function given in `custom_fit` parameter
+
+    *   **meas\_bases** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*Pauli*](/docs/api/qiskit/qiskit.quantum_info.Pauli)*] |* [*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*str*](https://docs.python.org/3/builtins/stdtypes.html#str)*] |* [*PauliList*](/docs/api/qiskit/qiskit.quantum_info.PauliList) *| None*) – A list of the measured Pauli bases. The `i` th item is a measurement basis assumed to correspond to the `i` th slice of the data in each of the `item_results`.
+
+    *   **broadcast\_obs\_and\_params** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) – Whether to broadcast observables and parameter values.
+
+    *   **measure\_noise\_data** ([*PauliLindbladMap*](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap)  *|*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray) *| None*) – Measurement noise calibration data for TREX mitigation. Can be either a PauliLindbladMap of a noise model learned upfront, or a result of a calibration circuit.
+
+    *   **custom\_fit** ([*tuple*](https://docs.python.org/3/builtins/stdtypes.html#tuple)*\[*[*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[...],* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)*],* [*list*](https://docs.python.org/3/builtins/stdtypes.html#list)*\[*[*float*](https://docs.python.org/3/builtins/functions.html#float)*],* [*tuple*](https://docs.python.org/3/builtins/stdtypes.html#tuple)*\[*[*float*](https://docs.python.org/3/builtins/functions.html#float)*, ...] |* [*tuple*](https://docs.python.org/3/builtins/stdtypes.html#tuple)*\[*[*list*](https://docs.python.org/3/builtins/stdtypes.html#list)*\[*[*float*](https://docs.python.org/3/builtins/functions.html#float)*], ...]] | None*) – A custom fitting function that will be used for extrapolation. Should include a tuple in the form of: `(function, p_0, bounds)`. The function should take the independent variable as the first argument and the parameters to fit as separate remaining arguments. p\_0 is an array of the initial guess for the parameters, and bounds are the bounds on the parameters. These parameters will be sent as arguments for `scipy.optimize.curve_fit` function.
+
+    **Returns**
+
+    *   `evs`: expectation values evaluated at the zero noise point.
+
+    *   `std`: the standard deviations of the extrapolated expectation values evaluated at the zero noise point.
+
+    *   `evs_noise_factors`: expectation values calculated at the noise\_factors points.
+
+    *   `stds_noise_factors`: standard deviations calculated at the noise\_factors points.
+
+    *   **`stds_twirl_noise_factors`: standard deviations between different randomizations calculated at the**
+
+        noise\_factors points.
+
+    *   **`evs_extrapolated`: expectation values evaluated at the extrapolated\_noise\_factors points.**
+
+        Set to None if `extrapolated_noise_factors` is None.
+
+    *   **`stds_extrapolated`: standard deviations calculated at the extrapolated\_noise\_factors points.**
+
+        Set to None if `extrapolated_noise_factors` is None.
+
+    The PubResult will also contain a `selected_extrapolators` field in the metadata, which is the valid extrapolators used to extrapolate the data for each observable term for the zero noise extrapolation point.
+
+    **Return type**
+
+    A PubResult which contains the following fields
+
+    **Raises**
+
+    *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If one of the `item_results` has no `'_meas'` key.
+    *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If one of the `item_results`’ `'_meas'` data has an invalid number of axes.
+    *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If `param_shape` and `observables.shape` cannot be broadcasted against each other.
+    *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If `noise_factors` is under-specified for any extrapolator.
+  </Function>
+
+  ### create\_instance\_from\_passthrough\_data
+
+  <Function id="qiskit_mitigation.zne.GateFolding.create_instance_from_passthrough_data" github="https://github.com/Qiskit/qiskit-mitigation/tree/stable/0.1/qiskit_mitigation/zne/gate_folding.py#L752-L797" signature="create_instance_from_passthrough_data(passthrough, trex=None)" modifiers="static">
+    Create a GateFolding instance from a passthrough dictionary loaded from a quantum program execution result.
+
+    **Parameters**
+
+    *   **passthrough** ([*dict*](https://docs.python.org/3/builtins/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/builtins/stdtypes.html#str)*,* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*]*) – Passthrough\_data dictionary loaded from a quantum program execution result.
+    *   **trex** ([*TREX*](/docs/api/qiskit-mitigation/trex#qiskit_mitigation.TREX "qiskit_mitigation.trex.TREX") *| None*) – A TREX instance containing a calibration circuit results executed in the same quantum program. Should remain `None` in case TREX mitigation was not used or a TREX calibration was not executed as part of thq same quantum program.
+
+    **Returns**
+
+    A GateFolding instance.
+
+    **Return type**
+
+    [*GateFolding*](#qiskit_mitigation.zne.GateFolding "qiskit_mitigation.zne.gate_folding.GateFolding")
+  </Function>
+
+  ### find\_unique\_layers
+
+  <Function id="qiskit_mitigation.zne.GateFolding.find_unique_layers" github="https://github.com/Qiskit/qiskit-mitigation/tree/stable/0.1/qiskit_mitigation/mitigation_task.py#L566-L586" signature="find_unique_layers(circuit, custom_boxing_options=None)">
+    Return the unique boxed layers of the given circuit using the given boxing options.
+
+    **Parameters**
+
+    *   **circuit** ([*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit)) – The circuit to found its unique layers.
+    *   **custom\_boxing\_options** ([*dict*](https://docs.python.org/3/builtins/stdtypes.html#dict) *| None*) – The custom boxing options that will be used by `generate_boxing_pass_manager()` function.
+
+    **Returns**
+
+    Unique boxed layers of the given circuit.
+
+    **Return type**
+
+    [list](https://docs.python.org/3/builtins/stdtypes.html#list)\[[*CircuitInstruction*](/docs/api/qiskit/qiskit.circuit.CircuitInstruction)]
+  </Function>
+
+  ### postprocess
+
+  <Function id="qiskit_mitigation.zne.GateFolding.postprocess" github="https://github.com/Qiskit/qiskit-mitigation/tree/stable/0.1/qiskit_mitigation/zne/gate_folding.py#L417-L506" signature="postprocess(results, measure_noise_data=None, *, noise_factors=None, extrapolator=None, extrapolated_noise_factors=None, custom_fit=None)">
+    Process expectation values for a single GateFolding task result.
+
+    **Parameters**
+
+    *   **results** ([*list*](https://docs.python.org/3/builtins/stdtypes.html#list)*\[*[*QuantumProgramItemResult*](https://qiskit.github.io/samplomatic/api/auto/samplomatic.quantum_program.QuantumProgramItemResult.html#samplomatic.quantum_program.QuantumProgramItemResult "(in samplomatic)")*] |* [*QuantumProgramResult*](https://qiskit.github.io/samplomatic/api/auto/samplomatic.quantum_program.QuantumProgramResult.html#samplomatic.quantum_program.QuantumProgramResult "(in samplomatic)")) – The execution results. Can be either the entire results object or the gate folding mitigated items of this task. If TREX calibration task is added to the quantum program, its results will be used to compute the measure noise data if the entire results object is provided.
+
+    *   **noise\_factors** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*float*](https://docs.python.org/3/builtins/functions.html#float)*] | None*) – The noise factors that were used to amplify the noise.
+
+    *   **extrapolated\_noise\_factors** ([*list*](https://docs.python.org/3/builtins/stdtypes.html#list)*\[*[*float*](https://docs.python.org/3/builtins/functions.html#float)*] | None*) – Noise factors to evaluate the fits at.
+
+    *   **extrapolator** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*Literal*](https://docs.python.org/3/library/typing.html#typing.Literal)*\['linear', 'exponential', 'double\_exponential', 'polynomial\_degree\_1', 'polynomial\_degree\_2', 'polynomial\_degree\_3', 'polynomial\_degree\_4', 'polynomial\_degree\_5', 'polynomial\_degree\_6', 'polynomial\_degree\_7', 'fallback', 'custom']] | None*) –
+
+        The extrapolator model or models to use. Models will be tried in priority order. Supported models (each fits the named function of the noise factor `x`):
+
+        *   `"linear"`: `a + b*x`
+        *   `"polynomial_degree_k"` (1 \<= k \<= 7): a degree-k polynomial
+        *   `"exponential"`: `a*exp(b*x)`
+        *   `"double_exponential"`: `a*exp(b*x) + c*exp(d*x)` (rates constrained to decay)
+        *   `"fallback"`: no fit; the measured value at the lowest noise factor
+        *   `custom`: The custom extrapolation function given in `custom_fit` parameter
+
+    *   **measure\_noise\_data** ([*PauliLindbladMap*](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap)  *|*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray) *| None*) – Measurement noise calibration data for TREX mitigation. Can be either a PauliLindbladMap of a noise model learned upfront, or a result of a calibration circuit.
+
+    *   **custom\_fit** ([*tuple*](https://docs.python.org/3/builtins/stdtypes.html#tuple)*\[*[*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[...],* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)*],* [*list*](https://docs.python.org/3/builtins/stdtypes.html#list)*\[*[*float*](https://docs.python.org/3/builtins/functions.html#float)*],* [*tuple*](https://docs.python.org/3/builtins/stdtypes.html#tuple)*\[*[*float*](https://docs.python.org/3/builtins/functions.html#float)*, ...] |* [*tuple*](https://docs.python.org/3/builtins/stdtypes.html#tuple)*\[*[*list*](https://docs.python.org/3/builtins/stdtypes.html#list)*\[*[*float*](https://docs.python.org/3/builtins/functions.html#float)*], ...]] | None*) – A custom fitting function that will be used for extrapolation. Should include a tuple in the form of: `(function, p_0, bounds)`. The function should take the independent variable as the first argument and the parameters to fit as separate remaining arguments. p\_0 is an array of the initial guess for the parameters, and bounds are the bounds on the parameters. These parameters will be sent as arguments for `scipy.optimize.curve_fit` function.
+
+    **Returns**
+
+    *   `evs`: expectation values evaluated at the zero noise point.
+
+    *   `std`: the standard deviations of the extrapolated expectation values evaluated at the zero noise point.
+
+    *   `evs_noise_factors`: expectation values calculated at the noise\_factors points.
+
+    *   `stds_noise_factors`: standard deviations calculated at the noise\_factors points.
+
+    *   **`stds_twirl_noise_factors`: standard deviations between different randomizations calculated at the**
+
+        noise\_factors points.
+
+    *   **`evs_extrapolated`: expectation values evaluated at the extrapolated\_noise\_factors points.**
+
+        Set to None if `extrapolated_noise_factors` is None.
+
+    *   **`stds_extrapolated`: standard deviations calculated at the extrapolated\_noise\_factors points.**
+
+        Set to None if `extrapolated_noise_factors` is None.
+
+    The PubResult will also contain a `selected_extrapolators` field in the metadata, which is the valid extrapolators used to extrapolate the data for each observable term for the zero noise extrapolation point.
+
+    **Return type**
+
+    A PubResult which contains the following fields
+
+    **Raises**
+
+    *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If one of the task’s item results has no `'_meas'` key.
+    *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If one of the item results’ `'_meas'` data has an invalid number of axes.
+    *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If `param_shape` and `observables.shape` cannot be broadcasted against each other.
+  </Function>
+
+  ### prepare
+
+  <Function id="qiskit_mitigation.zne.GateFolding.prepare" github="https://github.com/Qiskit/qiskit-mitigation/tree/stable/0.1/qiskit_mitigation/zne/gate_folding.py#L249-L415" signature="prepare(circuit, observables, parameters, custom_boxing_options=None, shots_per_randomization=64, num_randomizations=128, broadcast_obs_and_params=False, trex=None, quantum_program=None, *, folding_method='random', noise_factors=(1, 3, 5), extrapolator=None, extrapolated_noise_factors=None)">
+    Creates a `QuantumProgram` with GateFolding mitigated item for executing via Executor.
+
+    Creates an item for a `QuantumProgram`, that can be executed via Executor and is GateFolding mitigated (amplifies the noise using gate folding techniques and extrapolates to the zero noise point). If a `quantum_program` is provided, the new item will be added to the existing program, otherwise, a new program will be created, containing only the created item. If `broadcast_obs_and_params` is True, the observables and parameters will be broadcasted using the samplomatic broadcasting rules, to allow attaching some of the parameters to some of the observables. Otherwise, every parameter will be executed for each observable (outer product of the parameters and observables). Note that the post-processing of an outer product is usually faster.
+
+    **Parameters**
+
+    *   **circuit** ([*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit)) – The quantum circuit.
+
+    *   **observables** ([*ObservablesArray*](/docs/api/qiskit/qiskit.primitives.ObservablesArray)  *|*[*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp)*]*) – The observables to calculate their expectation values.
+
+    *   **parameters** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray) *| None*) – The parameters of a parametric circuit.
+
+    *   **custom\_boxing\_options** ([*dict*](https://docs.python.org/3/builtins/stdtypes.html#dict) *| None*) – The custom boxing options that will be used by `generate_boxing_pass_manager()` function.
+
+    *   **shots\_per\_randomization** ([*int*](https://docs.python.org/3/builtins/functions.html#int)) – The number of shots per randomization.
+
+    *   **num\_randomizations** ([*int*](https://docs.python.org/3/builtins/functions.html#int)) – The number of randomizations.
+
+    *   **broadcast\_obs\_and\_params** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) – Whether to broadcast observables and parameters.
+
+    *   **trex** ([*TREX*](/docs/api/qiskit-mitigation/trex#qiskit_mitigation.TREX "qiskit_mitigation.trex.TREX") *| None*) – A TREX mitigation instance that will be used to mitigate readout errors.
+
+    *   **quantum\_program** ([*QuantumProgram*](https://qiskit.github.io/samplomatic/api/auto/samplomatic.quantum_program.QuantumProgram.html#samplomatic.quantum_program.QuantumProgram "(in samplomatic)") *| None*) – The quantum program to add an item for. If None, a new program will be created.
+
+    *   **folding\_method** ([*Literal*](https://docs.python.org/3/library/typing.html#typing.Literal)*\['random', 'front', 'back']*) –
+
+        The technique to use to fold the 2-qubit gates to amplify the noise. If the noise factor requires amplifying only a subset of the gates, then these gates are selected according to the method:
+
+        *   `"random"` (default): the gates are chosen randomly.
+        *   `"front"`: the gates are selected from the front of the topologically ordered DAG circuit.
+        *   `"back"`: the gates are selected from the back of the topologically ordered DAG circuit.
+
+    *   **noise\_factors** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*float*](https://docs.python.org/3/builtins/functions.html#float)  *|*[*int*](https://docs.python.org/3/builtins/functions.html#int)*]*) – The noise factors to use for amplifying the noise.
+
+    *   **extrapolator** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*Literal*](https://docs.python.org/3/library/typing.html#typing.Literal)*\['linear', 'exponential', 'double\_exponential', 'polynomial\_degree\_1', 'polynomial\_degree\_2', 'polynomial\_degree\_3', 'polynomial\_degree\_4', 'polynomial\_degree\_5', 'polynomial\_degree\_6', 'polynomial\_degree\_7', 'fallback', 'custom']] | None*) –
+
+        The extrapolator model or models planned to be used in post-processing. Used in preparation to validate that enough noise factors are present for a valid fit using these extrapolators. If `None`, not validation will be done. Supported models (each fits the named function of the noise factor `x`):
+
+        *   `"linear"`: `a + b*x`
+        *   `"polynomial_degree_k"` (1 \<= k \<= 7): a degree-k polynomial
+        *   `"exponential"`: `a*exp(b*x)`
+        *   `"double_exponential"`: `a*exp(b*x) + c*exp(d*x)` (rates constrained to decay)
+        *   `"fallback"`: no fit; the measured value at the lowest noise factor
+
+    *   **extrapolated\_noise\_factors** ([*list*](https://docs.python.org/3/builtins/stdtypes.html#list)*\[*[*float*](https://docs.python.org/3/builtins/functions.html#float)*] | None*) – The noise factors to evaluate the fits at planned to be used in post-processing. Used for saving the data for easy post-processing. Can be overwritten in the post-processing.
+
+    **Returns**
+
+    A `QuantumProgram` with GateFolding mitigated item that can be executed via Executor.
+
+    **Return type**
+
+    [*QuantumProgram*](https://qiskit.github.io/samplomatic/api/auto/samplomatic.quantum_program.QuantumProgram.html#samplomatic.quantum_program.QuantumProgram "(in samplomatic)")
+  </Function>
+</Class>
+

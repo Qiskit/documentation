@@ -1,0 +1,150 @@
+---
+title: GateSet (latest version)
+description: API reference for qiskit_noise_learning.gate_sets.GateSet in the latest version of qiskit-noise-learning
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_noise_learning.gate_sets.GateSet
+---
+
+<span id="qiskit-noise-learning-gate-sets-gateset" />
+
+# qiskit\_noise\_learning.gate\_sets.GateSet
+
+<Class id="qiskit_noise_learning.gate_sets.GateSet" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/gate_sets/gate_set.py" signature="qiskit_noise_learning.gate_sets.GateSet(num_qubits: int, qubit_subset: Iterable[int] | None = None, target: Target | None = None, name: str | None = None, latex_str: str | None = None)" modifiers="class">
+  Bases: [`Mapping`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping)\[[`str`](https://docs.python.org/3/library/stdtypes.html#str), `GateType`]
+
+  A mapping of names to gates with qubit metadata.
+
+  **Parameters**
+
+  *   **num\_qubits** – How many qubits the QPU of interest has.
+  *   **qubit\_subset** – A subset of `range(num_qubits)` specifying the region of interest of the QPU. All gates added must act within this subset. By default, contains all qubits.
+  *   **target** – An optional `Target` against which operations will be validated whenever gates are added to the gate set. Its number of qubits must match `num_qubits` if both are present.
+  *   **name** – Name for this gate set. If `None`, [`name`](#qiskit_noise_learning.gate_sets.GateSet.name "qiskit_noise_learning.gate_sets.GateSet.name") falls back to the class name.
+  *   **latex\_str** – An optional LaTeX string for rendering this gate set.
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit_noise_learning.gate_sets.GateSet.__init__" signature="__init__(num_qubits: int, qubit_subset: Iterable[int] | None = None, target: Target | None = None, name: str | None = None, latex_str: str | None = None)" />
+
+  ## Methods
+
+  |                                                                                                                                                                |                                                  |
+  | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
+  | [`__init__`](#qiskit_noise_learning.gate_sets.GateSet.__init__ "qiskit_noise_learning.gate_sets.GateSet.__init__")(num\_qubits\[, qubit\_subset, target, ...]) |                                                  |
+  | [`add_gate`](#qiskit_noise_learning.gate_sets.GateSet.add_gate "qiskit_noise_learning.gate_sets.GateSet.add_gate")(gate)                                       | Add a gate to the gate set.                      |
+  | [`draw`](#qiskit_noise_learning.gate_sets.GateSet.draw "qiskit_noise_learning.gate_sets.GateSet.draw")()                                                       | Draw the device topology with per-gate coloring. |
+  | `get`(k\[,d])                                                                                                                                                  |                                                  |
+  | `items`()                                                                                                                                                      |                                                  |
+  | `keys`()                                                                                                                                                       |                                                  |
+  | `values`()                                                                                                                                                     |                                                  |
+
+  ## Attributes
+
+  |                                                                                                                                      |                                                                                                                                |
+  | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
+  | [`label`](#qiskit_noise_learning.gate_sets.GateSet.label "qiskit_noise_learning.gate_sets.GateSet.label")                            | A string label for use in plotter legends.                                                                                     |
+  | [`latex_str`](#qiskit_noise_learning.gate_sets.GateSet.latex_str "qiskit_noise_learning.gate_sets.GateSet.latex_str")                | A LaTeX string for this gate set.                                                                                              |
+  | [`math_label`](#qiskit_noise_learning.gate_sets.GateSet.math_label "qiskit_noise_learning.gate_sets.GateSet.math_label")             | A string label for use within latex math mode.                                                                                 |
+  | [`model_gate_set`](#qiskit_noise_learning.gate_sets.GateSet.model_gate_set "qiskit_noise_learning.gate_sets.GateSet.model_gate_set") | Return a [`ModelGateSet`](gate-sets-model-gate-set "qiskit_noise_learning.gate_sets.ModelGateSet") representing this gate set. |
+  | [`name`](#qiskit_noise_learning.gate_sets.GateSet.name "qiskit_noise_learning.gate_sets.GateSet.name")                               | Name for this gate set, defaulting to the class name.                                                                          |
+  | [`num_qubits`](#qiskit_noise_learning.gate_sets.GateSet.num_qubits "qiskit_noise_learning.gate_sets.GateSet.num_qubits")             | The total number of qubits of the device this gateset acts on.                                                                 |
+  | [`qubit_subset`](#qiskit_noise_learning.gate_sets.GateSet.qubit_subset "qiskit_noise_learning.gate_sets.GateSet.qubit_subset")       | The indices of the subset of device qubits that all gates act on.                                                              |
+  | [`target`](#qiskit_noise_learning.gate_sets.GateSet.target "qiskit_noise_learning.gate_sets.GateSet.target")                         | The target of this gateset, if one exists.                                                                                     |
+
+  ### model\_gate\_set
+
+  <Attribute id="qiskit_noise_learning.gate_sets.GateSet.model_gate_set" modifiers="abstract property">
+    Type: [`ModelGateSet`](gate-sets-model-gate-set "qiskit_noise_learning.gate_sets.ModelGateSet")
+
+    Return a [`ModelGateSet`](gate-sets-model-gate-set "qiskit_noise_learning.gate_sets.ModelGateSet") representing this gate set.
+  </Attribute>
+
+  ### name
+
+  <Attribute id="qiskit_noise_learning.gate_sets.GateSet.name">
+    Type: [`str`](https://docs.python.org/3/library/stdtypes.html#str)
+
+    Name for this gate set, defaulting to the class name.
+  </Attribute>
+
+  ### latex\_str
+
+  <Attribute id="qiskit_noise_learning.gate_sets.GateSet.latex_str">
+    Type: [`str`](https://docs.python.org/3/library/stdtypes.html#str)
+
+    A LaTeX string for this gate set.
+  </Attribute>
+
+  ### label
+
+  <Attribute id="qiskit_noise_learning.gate_sets.GateSet.label">
+    Type: [`str`](https://docs.python.org/3/library/stdtypes.html#str)
+
+    A string label for use in plotter legends.
+  </Attribute>
+
+  ### math\_label
+
+  <Attribute id="qiskit_noise_learning.gate_sets.GateSet.math_label">
+    Type: [`str`](https://docs.python.org/3/library/stdtypes.html#str)
+
+    A string label for use within latex math mode.
+  </Attribute>
+
+  ### num\_qubits
+
+  <Attribute id="qiskit_noise_learning.gate_sets.GateSet.num_qubits">
+    Type: [`int`](https://docs.python.org/3/library/functions.html#int)
+
+    The total number of qubits of the device this gateset acts on.
+  </Attribute>
+
+  ### qubit\_subset
+
+  <Attribute id="qiskit_noise_learning.gate_sets.GateSet.qubit_subset">
+    Type: [`frozenset`](https://docs.python.org/3/library/stdtypes.html#frozenset)\[[`int`](https://docs.python.org/3/library/functions.html#int)]
+
+    The indices of the subset of device qubits that all gates act on.
+  </Attribute>
+
+  ### target
+
+  <Attribute id="qiskit_noise_learning.gate_sets.GateSet.target">
+    Type: [`Target`](/docs/api/qiskit/qiskit.transpiler.Target) | [`None`](https://docs.python.org/3/library/constants.html#None)
+
+    The target of this gateset, if one exists.
+  </Attribute>
+
+  ### add\_gate
+
+  <Function id="qiskit_noise_learning.gate_sets.GateSet.add_gate" signature="add_gate(gate: GateType)">
+    Add a gate to the gate set.
+
+    **Parameters**
+
+    **gate** – The gate to add.
+
+    **Raises**
+
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If the gate acts on some qubits outside of the valid range, or if the gate name is already used in the gate set.
+  </Function>
+
+  ### draw
+
+  <Function id="qiskit_noise_learning.gate_sets.GateSet.draw" signature="draw() → InteractiveFigure">
+    Draw the device topology with per-gate coloring.
+
+    Each gate’s 2-qubit interactions are drawn as colored edges on the device coupling graph. Gates that act only on single qubits (such as preparation and measurement) are shown as shaped markers on the relevant nodes.
+
+    **Returns**
+
+    The figure, with toggleable legends.
+
+    **Raises**
+
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If [`target`](#qiskit_noise_learning.gate_sets.GateSet.target "qiskit_noise_learning.gate_sets.GateSet.target") is `None`.
+    *   [**ImportError**](https://docs.python.org/3/library/exceptions.html#ImportError) – If `matplotlib` is not installed.
+  </Function>
+</Class>
+

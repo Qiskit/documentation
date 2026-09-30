@@ -1,0 +1,60 @@
+---
+title: FlipPostSelect (latest version)
+description: API reference for qiskit_noise_learning.analysis.FlipPostSelect in the latest version of qiskit-noise-learning
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_noise_learning.analysis.FlipPostSelect
+---
+
+<span id="qiskit-noise-learning-analysis-flippostselect" />
+
+# qiskit\_noise\_learning.analysis.FlipPostSelect
+
+<Class id="qiskit_noise_learning.analysis.FlipPostSelect" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/analysis/flip_post_select.py" signature="qiskit_noise_learning.analysis.FlipPostSelect(creg_pair_identifier: Callable[[list[str]], Iterator[tuple[str, str]]] | None = None, mode: Literal['node', 'edge'] = 'edge')" modifiers="class">
+  Bases: [`AnalysisStage`](analysis-analysis-stage "qiskit_noise_learning.analysis.analysis_pipeline.AnalysisStage")
+
+  Apply a mask to raw data based on bit flips across measurement outcomes.
+
+  This post selection stage is based on identifying successful bit flips on the same qubit(s) between two measurements. It can be configured to operate in one of two modes:
+
+  *   `"node"`: Shots are discarded if at least one bit failed to flip.
+  *   `"edge"`: Shots are discarded if there exists a pair of neighbouring qubits in the measurement for which both bits failed to flip.
+
+  **Parameters**
+
+  *   **creg\_pair\_identifier** – A callable that, given a list of present creg names, returns an iterator over pairs of creg names for which to do the flip-based post selection on. Defaults to returning pairs of cregs with names of the form `"*"` and `"*_ps"`.
+  *   **mode** – Post-selection mode; either `"node"` or `"edge"`.
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit_noise_learning.analysis.FlipPostSelect.__init__" signature="__init__(creg_pair_identifier: Callable[[list[str]], Iterator[tuple[str, str]]] | None = None, mode: Literal['node', 'edge'] = 'edge')" />
+
+  ## Methods
+
+  |                                                                                                                                                                 |                                                                                                                             |
+  | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit_noise_learning.analysis.FlipPostSelect.__init__ "qiskit_noise_learning.analysis.FlipPostSelect.__init__")(\[creg\_pair\_identifier, mode]) |                                                                                                                             |
+  | `run`(fit)                                                                                                                                                      | Run this stage, returning a new [`Fit`](analysis-fit "qiskit_noise_learning.analysis.Fit") with the output level populated. |
+
+  ## Attributes
+
+  |                                                                                                                                            |                                   |
+  | ------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------- |
+  | `creg_pair_identifier`                                                                                                                     |                                   |
+  | [`input_level`](#qiskit_noise_learning.analysis.FlipPostSelect.input_level "qiskit_noise_learning.analysis.FlipPostSelect.input_level")    | The data level this stage reads.  |
+  | `mode`                                                                                                                                     |                                   |
+  | [`output_level`](#qiskit_noise_learning.analysis.FlipPostSelect.output_level "qiskit_noise_learning.analysis.FlipPostSelect.output_level") | The data level this stage writes. |
+
+  ### input\_level
+
+  <Attribute id="qiskit_noise_learning.analysis.FlipPostSelect.input_level">
+    The data level this stage reads.
+  </Attribute>
+
+  ### output\_level
+
+  <Attribute id="qiskit_noise_learning.analysis.FlipPostSelect.output_level">
+    The data level this stage writes.
+  </Attribute>
+</Class>
+

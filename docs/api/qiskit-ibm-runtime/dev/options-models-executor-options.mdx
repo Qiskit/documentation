@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.options_models.ExecutorOptions
 
 # qiskit\_ibm\_runtime.options\_models.ExecutorOptions
 
-<Class id="qiskit_ibm_runtime.options_models.ExecutorOptions" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/options_models/executor.py#L23-L36" signature="ExecutorOptions" modifiers="pydantic model">
+<Class id="qiskit_ibm_runtime.options_models.ExecutorOptions" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/options_models/executor.py#L23-L44" signature="ExecutorOptions" modifiers="pydantic model">
   Bases: `BaseOptionsModel`
 
   Options for the executor.
@@ -50,10 +50,22 @@ python_api_name: qiskit_ibm_runtime.options_models.ExecutorOptions
     Experimental options that are passed to the executor.
   </Attribute>
 
+  ### max\_execution\_time
+
+  <Attribute id="qiskit_ibm_runtime.options_models.ExecutorOptions.max_execution_time" modifiers="field">
+    Type: `int` | `None`
+
+    Default value: `None`
+
+    Maximum execution time in seconds.
+
+    This value bounds system execution time (not wall clock time). System execution time is the amount of time that the system is dedicated to processing your job. If a job exceeds this time limit, it is forcibly cancelled.
+  </Attribute>
+
   ### simulator
 
   <Attribute id="qiskit_ibm_runtime.options_models.ExecutorOptions.simulator" modifiers="field">
-    Type: [`SimulatorOptions`](options-simulator-options "qiskit_ibm_runtime.options.SimulatorOptions")
+    Type: [`SimulatorOptions`](options-models-simulator-options "qiskit_ibm_runtime.options_models.SimulatorOptions")
 
     Default value: `SimulatorOptions(angle_decimals=5, layer_noise_model=None, seed_simulator=None, warn_absent=True)`
 
