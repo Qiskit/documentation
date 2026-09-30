@@ -517,7 +517,7 @@ Here we can choose to perform an additional step. When we have all the bitstring
 
 Since nitrogen can only have seven $\alpha$ and seven $\beta$ electrons, any bitstrings that have more or fewer than seven 1s in the first and the second half of the output can be discarded. We define a function that checks if the bitstrings are valid, and if not, discards them. Once we filter out the spurious bitstrings, the rest are sent into the diagonalization scheme. Use the `PRUNE` flag below to switch between the two behaviors.
 
-Keep in mind that pruning is only one of several choices that shape the final subspace, alongside the number of circuits, the set of evolution times, and diagonal-term filtering. Comparing a pruned run against an unpruned one is only informative if everything else is held fixed; the [C++ companion](https://github.com/Qiskit/documentation/tree/main/docs/tutorials/assets/sqdrift/cpp) discusses this in more detail, since it postselects rather than recovers and also differs in those other parameters.
+Keep in mind that pruning is only one of several choices that shape the final subspace, alongside the number of circuits, the set of evolution times, and diagonal-term filtering. Comparing a pruned run against an unpruned one is only informative if everything else is held fixed; the C++ tab discusses this in more detail, since it postselects rather than recovers and also differs in those other parameters.
 
 ```python
 name = "fcidump_files/N2_sto_3g"
@@ -794,16 +794,16 @@ Error:            5.0453460619e-04 Ha
   </TabItem>
   <TabItem value="cpp" label="C++">
 
-## Learning outcomes
+## Learning outcomes (C++)
 - Learn how to create smaller depth circuits as compared to Trotterization
 - Walk through an end-to-end workflow for ground state estimation using qDRIFT and SQD
 - Learn how to use `qiskit-fermions` in tandem with other Qiskit addons to implement such a workflow
 
-## Prerequisites
+## Prerequisites (C++)
 - Read the [Sample-based quantum diagonalization (SQD)](/docs/addons/qiskit-addon-sqd) overview
 - Read the [Sample-based Krylov Quantum Diagonalization (SKQD)](/learning/courses/quantum-diagonalization-algorithms/skqd) lesson
 
-## Background
+## Background (C++)
 
 [SqDRIFT](https://arxiv.org/abs/2508.02578) is a variant of SKQD that replaces the need to choose an ansatz from which to sample bitstrings with an ensemble of time-evolution circuits constructed directly from the target Hamiltonian. This is achieved by subsampling smaller time-evolution operators from the Hamiltonian based on its coefficients, which is known as the qDRIFT Trotterization method.
 
@@ -843,11 +843,11 @@ so the series $(k_1, \ldots, k_n)$ is a random sequence of term indices drawn fr
 
 This tutorial shows how to generate an ensemble of such randomized circuits. After we have created these circuits, similar to how we create a Krylov subspace for different operators, we sample bitstrings from multiple such operators with different time parameters. This ensures a higher overlap between the ground state vectors and sampled bitstrings.
 
-## Requirements
+## Requirements (C++)
 
 This implementation runs on IBM Quantum hardware and uses an external SBD executable for classical diagonalization. It does not include the Python simulator example.
 
-Follow the [C++ build instructions](https://github.com/Qiskit/documentation/blob/main/docs/tutorials/assets/sqdrift/cpp/BUILD_INSTRUCTIONS.md) to install the compiler, CMake, Rust, Boost, and the Qiskit dependencies. The final SBD step additionally requires MPI, OpenMP, and BLAS/LAPACK. Windows is not currently supported by this companion.
+Follow the [C++ build instructions](https://github.com/Qiskit/documentation/blob/main/docs/tutorials/assets/sqdrift/cpp/BUILD_INSTRUCTIONS.md) to install the compiler, CMake, Rust, Boost, and the Qiskit dependencies. The final SBD step additionally requires MPI, OpenMP, and BLAS/LAPACK. Windows is not currently supported by this implementation.
 
 Use the complete [C++ source](https://github.com/Qiskit/documentation/blob/main/docs/tutorials/assets/sqdrift/cpp/SqDRIFT.cpp) and [CMake project](https://github.com/Qiskit/documentation/blob/main/docs/tutorials/assets/sqdrift/cpp/CMakeLists.txt) from the repository. Keep the adjacent `fcidump_files` directory when downloading the example. From a checkout of the documentation repository, build with:
 
@@ -859,7 +859,7 @@ cmake --build build --config Release
 
 Before running, follow the platform-specific library-path instructions in the build guide. Run `./SqDRIFT` from `docs/tutorials/assets/sqdrift/cpp` so that it can find `../fcidump_files/N2_sto_3g`.
 
-## Setup
+## Setup (C++)
 
 The snippets below are excerpts from the complete [SqDRIFT.cpp program](https://github.com/Qiskit/documentation/blob/main/docs/tutorials/assets/sqdrift/cpp/SqDRIFT.cpp). Build and run that file as a single program.
 
@@ -887,11 +887,11 @@ Get your token from: https://quantum.ibm.com/
 
 > **Note:** A missing or malformed config file causes an unhelpful Rust `unwrap()` panic at startup rather than a clean error. Double-check the key name (`default-ibm-quantum-platform`) and channel value (`ibm_quantum_platform`) — the old `ibm_quantum` channel is never read by this client.
 
-## Implementation
+## Implementation (C++)
 
-### Step 1: Map classical inputs to a quantum problem
+### Step 1: Map classical inputs to a quantum problem (C++)
 
-### Load molecular Hamiltonian
+#### Load the molecular Hamiltonian
 
 ```cpp
 char filename[] = "../fcidump_files/N2_sto_3g";
@@ -918,20 +918,20 @@ std::cout << "✓ Loaded N2 molecule (" << norb << " orbitals, "
 
 Loads the N₂ molecule Hamiltonian from an FCIDump file. The number of qubits equals twice the number of orbitals (spin-up and spin-down).
 
-### 2. Create and normal order Hamiltonian
+#### Create and normal-order the Hamiltonian
 
 ```cpp
-// 2. Create and normal order Hamiltonian
+// Create and normal order Hamiltonian
 QfFermionOperator* hamiltonian = qf_ferm_op_from_fcidump(fcidump);
 QfFermionOperator* normal_ordered = qf_ferm_op_normal_ordered(hamiltonian, nullptr);
 ```
 
 Converts the FCIDump data into a fermionic operator and applies normal ordering to simplify the operator structure.
 
-### 3. Group terms by electronic structure
+#### Group terms by electronic structure
 
 ```cpp
-// 3. Group terms by electronic structure
+// Group terms by electronic structure
 QfExitCode exit_code = qf_ferm_op_group_terms_by_electronic_structure(
     normal_ordered, num_modes, false
 );
@@ -943,7 +943,7 @@ if (exit_code != QfExitCode_Success) {
 uint32_t num_groups = qf_ferm_op_num_groups(normal_ordered);
 std::cout << "Grouped into " << num_groups << " groups" << std::endl;
 
-// 4. Split into group operators
+// Split into group operators
 QfFermionOperator** group_ops = new QfFermionOperator*[num_groups];
 qf_ferm_op_split_out_groups(normal_ordered, nullptr, 0, group_ops);
 ```
@@ -952,14 +952,14 @@ qf_ferm_op_split_out_groups(normal_ordered, nullptr, 0, group_ops);
 Grouped into 1902 groups
 ```
 Groups related Hamiltonian terms by electronic structure before constructing their evolution circuits.
-### 4. Calculate sampling weights, then normalize and map to qubit operators
+#### Calculate sampling weights, then normalize and map to qubit operators
 
 **Order matters here.** Normalization rescales every coefficient to unit magnitude *in place*, so the sampling weights must be computed first. If normalization runs first, every $|c_j|$ reads back as exactly `1.0` and each group's weight collapses into a bare count of its terms — the sampling distribution would then be driven by group size rather than by the physical coefficients.
 
-Each group's weight is the **mean** absolute coefficient, matching the Python SqDRIFT reference. Using the sum instead would make $\lambda$ scale with group size, which in turn skews the evolution time $t_k = \lambda\tau/n$.
+Each group's weight is the **mean** absolute coefficient, matching the Python tab. Using the sum instead would make $\lambda$ scale with group size, which in turn skews the evolution time $t_k = \lambda\tau/n$.
 
 ```cpp
-// 5. Calculate sampling weights BEFORE normalization.
+// Calculate sampling weights BEFORE normalization.
 std::vector<double> weights(num_groups);
 double total_weight = 0.0;
 
@@ -979,7 +979,7 @@ for (uint32_t i = 0; i < num_groups; i++) {
 
 std::cout << "Total weight (λ): " << total_weight << std::endl;
 
-// 6. Normalize the evolution operators term-by-term, now that the sampling
+// Normalize the evolution operators term-by-term, now that the sampling
 // weights above have already captured the original magnitudes.
 for (uint32_t i = 0; i < num_groups; i++) {
     QkComplex64* coeffs;
@@ -1015,9 +1015,9 @@ Mapped all 1902 normalized groups to qubit operators
 
 The weight $\lambda_i = \frac{1}{|G_i|}\sum_{j \in G_i} |c_{ij}|$ is the mean absolute coefficient over the terms of group $G_i$, read from the original coefficients. Normalization then rescales each fermionic term to unit magnitude before the Jordan-Wigner transformation, preserving only its phase/sign in the evolved operator. This matches qDRIFT's normalized-term evolution: coefficient magnitudes determine sampling probabilities via $\lambda$, while the circuit evolution uses the normalized term so large coefficients are not counted twice.
 
-### 5. SqDRIFT sampling
+#### Sample operator sets
 ```cpp
-// 7. SqDRIFT Sampling: Create operator sets
+// SqDRIFT Sampling: Create operator sets
     const int num_circuits = 100;    // Number of circuits to create
     const int ops_per_circuit = 10;  // Operators per circuit
     const double time_step = 1;    // Time step for evolution
@@ -1040,10 +1040,10 @@ The weight $\lambda_i = \frac{1}{|G_i|}\sum_{j \in G_i} |c_{ij}|$ is the mean ab
 
 Generates 100 random circuits, each containing 10 operators sampled from the weighted distribution. This creates the ensemble of qDRIFT circuits.
 
-### Step 2: Optimize problem for quantum hardware execution
+### Step 2: Optimize problem for quantum hardware execution (C++)
 
 ```cpp
-    // 8. Create Suzuki-Trotter circuits by composing all operators
+    // Create Suzuki-Trotter circuits by composing all operators
     std::vector<Qiskit::circuit::QuantumCircuit> circuits;
     circuits.reserve(num_circuits);
 
@@ -1167,16 +1167,16 @@ Generating 100 circuits with 10 operators each...
 ```
 For each sampled operator, creates a Suzuki-Trotter evolution circuit with time $t_k = \frac{\lambda \tau}{n}$, where $n$ is the number of operators sampled per circuit and $\tau$ is the time step. Because each sampled group was normalized term-by-term before mapping, this evolution applies only the phase/sign of each term during the rotation; the magnitudes contribute through the sampling distribution only. The Hartree-Fock initial state is prepared by applying X gates to qubits 0-6 and 10-16 (7 electrons in each spin sector). Each evolution circuit's instructions are manually appended to the main circuit using the C++ API.
 
-### Step 3: Execute using Qiskit primitives
+### Step 3: Execute using Qiskit primitives (C++)
 
 ```cpp
 std::cout << "\n Connecting to IBM Quantum Cloud..." << std::endl;
 
-// 1. Initialize IBM Quantum service using qiskit-cpp
+// Initialize IBM Quantum service using qiskit-cpp
 Qiskit::service::QiskitRuntimeService service;
 std::cout << "✓ Connected to IBM Quantum" << std::endl;
 
-// 2. Get backend
+// Get backend
 const std::string backend_name = "ibm_fez";
 auto backend = service.backend(backend_name);
 
@@ -1188,14 +1188,14 @@ if (backend.name().empty()) {
 
 std::cout << "✓ Selected backend: " << backend.name() << std::endl;
 
-// 3. Create sampler primitive
+// Create sampler primitive
 const int32_t shots = 100;  // Number of shots per circuit
 Qiskit::primitives::BackendSamplerV2 sampler(backend, shots);
 
 std::cout << "\n Submitting " << num_circuits << " circuits ("
             << shots << " shots each)..." << std::endl;
 
-// 4. Submit one job per circuit.
+// Submit one job per circuit.
 std::vector<std::shared_ptr<Qiskit::primitives::BasePrimitiveJob>> jobs;
 
 for (int i = 0; i < num_circuits; i++) {
@@ -1211,7 +1211,7 @@ for (int i = 0; i < num_circuits; i++) {
 
 std::cout << "\n⏳ Waiting for " << num_circuits << " jobs to complete..." << std::endl;
 
-// 5. Collect results — poll each job and extract bitstrings
+// Collect results — poll each job and extract bitstrings
 std::vector<boost::dynamic_bitset<>> all_bitstrings;
 
 for (int i = 0; i < num_circuits; i++) {
@@ -1251,16 +1251,16 @@ std::cout << "\n✓ Collected " << all_bitstrings.size()
 
 Connects to IBM Quantum, selects the backend by name, and submits one job per circuit. Each job is polled independently; bitstrings are collected from `result[0]` of each job — no per-shot printing.
 
-The hardware results quoted in this README come from a run on `ibm_pittsburgh` (100 circuits × 100 shots), with `backend_name` changed from the default `ibm_fez`. The saved samples were postprocessed with the corrected determinant bit ordering shown below. Hardware noise varies between runs, so your counts and final energy will differ.
+The hardware results quoted on this page come from a run on `ibm_pittsburgh` (100 circuits × 100 shots), with `backend_name` changed from the default `ibm_fez`. The saved samples were postprocessed with the corrected determinant bit ordering shown below. Hardware noise varies between runs, so your counts and final energy will differ.
 
 > **Changing the backend:** Change `backend_name` in `SqDRIFT.cpp` to target a different device; `service.backends()` lists what your account can reach.
 
-### Step 4: Post-process and return result in desired classical format
+### Step 4: Post-process and return result in desired classical format (C++)
 
-### Post-process results
+#### Postselect bitstrings and write CI strings
 
 ```cpp
-// Step 1.5: Postselect bitstrings by Hamming weight (derived from FCIDump NELEC)
+// Postselect bitstrings by Hamming weight (derived from FCIDump NELEC)
 std::vector<double> bitstring_weights(all_bitstrings.size(), 1.0);
 auto [filtered_bitstrings, filtered_weights] = Qiskit::addon::sqd::postselect_bitstrings(
     all_bitstrings,
@@ -1273,7 +1273,7 @@ std::cout << "✓ Postselected " << filtered_bitstrings.size()
           << " bitstrings with Hamming weight ("
           << n_alpha << "," << n_beta << ")" << std::endl;
 
-// Step 2: Convert bitstrings to CI strings using SQD addon
+// Convert bitstrings to CI strings using SQD addon
 auto ci_strings = Qiskit::addon::sqd::bitstrings_to_ci_strings_symmetrize_spin(
     filtered_bitstrings,
     std::nullopt  // No dimension limit
@@ -1281,7 +1281,7 @@ auto ci_strings = Qiskit::addon::sqd::bitstrings_to_ci_strings_symmetrize_spin(
 
 std::cout << "✓ Generated " << ci_strings.size() << " CI strings" << std::endl;
 
-// Step 3: Write CI strings to file for SBD
+// Write CI strings to file for SBD
 std::ofstream alpha_file("alphadets_from_sqd.txt");
 for (const auto& ci_string : ci_strings) {
     std::string bitstr;
@@ -1305,35 +1305,9 @@ std::cout << " Ready for SBD diagonalization!" << std::endl;
 ```
 Postselects bitstrings with the correct Hamming weight (n_alpha spin-up, n_beta spin-down electrons, derived from the FCIDump `NELEC` field), converts them to Configuration Interaction (CI) strings using spin symmetrization, and writes them to `alphadets_from_sqd.txt` for subsequent Selected Basis Diagonalization.
 
-#### How this differs from the Python SqDRIFT tutorial
-
-The two examples differ in several respects at once, not only in how they treat bad-symmetry bitstrings, so they are not expected to produce identical energies:
-
-| | This C++ companion | Python SqDRIFT tutorial |
-|---|---|---|
-| Bad-symmetry bitstrings | **Discarded** by `postselect_bitstrings` on Hamming weight | **Repaired** by iterative configuration recovery |
-| Loop structure | Single pass: sample → postselect → diagonalize once | Outer loop: diagonalize, read orbital occupancies, recover configurations, re-diagonalize |
-| Circuit count | 100 circuits (`num_circuits = 100`) | 400 circuits (200 per evolution time) |
-| Evolution times | A single $\tau$ (`time_step = 1`) | Two times, `times = [1.0, 10.0]` |
-| Diagonal terms | Kept in the sampled operator | Removed by `filter_diagonal_terms`, changing the sampling distribution and the circuits |
-| Term ordering | Grouped only | `canonical_order` applied before grouping for reproducibility |
-| Diagonalization solver | **SBD** (`diag`, external MPI/OpenMP binary) | `qiskit-addon-sqd` in-process solver |
-
-Each of these affects the sampled subspace, and therefore the energy, independently. The larger circuit ensemble and the second, longer evolution time both broaden the set of configurations the Python example explores — sampling at more than one time is what gives SqDRIFT its Krylov-like coverage of the low-energy space, so a single-time run explores less of it. Filtering diagonal terms changes which operators are available to the sampler and the relative weights it draws from, so the two runs are not even sampling the same distribution.
-
-On postselection specifically: it is a strict filter, so a shot with the wrong particle number is dropped outright. In the run recorded above that is most of the data — 1137 of 10000 shots survived the (7,7) Hamming-weight check, about 11%, which then collapsed into just 49 distinct α-determinants. Configuration recovery instead uses average orbital occupancies from a previous diagonalization to flip bits and *repair* such a shot into a symmetry-valid one, recycling shots that postselection discards. That feedback makes it inherently iterative — `recover_configurations` in `qiskit-addon-sqd-hpc` requires an `avg_occupancies` argument that only exists once a diagonalization has run.
-
-The observable outcome of this particular C++ run is a subspace of 49 α-determinants and an energy of `-107.5109` Ha. For this Hamiltonian the exact answer is available for comparison: the full α-determinant space for 7 electrons in 10 orbitals is only $\binom{10}{7} = 120$ strings, so feeding all 120 to the same `diag` binary gives the exact FCI energy `-107.6482` Ha. This run therefore sits about `0.1373` Ha above the exact result while spanning 49 of the 120 available α-determinants. Since SQD is variational in the selected subspace, a smaller subspace can only give an equal or higher energy, so an incomplete subspace is the most direct reading of the gap.
-
-Note that this exact-FCI check is only possible because the example is small; it is not part of the SqDRIFT workflow, and for system sizes where SQD is actually needed no such reference exists. It is used here purely to quantify how much of the space this run recovered.
-
-If you compare against the Python tutorial instead, **that comparison is not controlled**, so a difference should not be attributed to the absence of configuration recovery alone: the circuit count, the single evolution time, diagonal-term filtering, and hardware noise all differ simultaneously and all influence the subspace. Isolating the effect of any one of them would mean holding the others fixed — for example, running both paths with the same circuit count, the same set of evolution times, and the same treatment of diagonal terms, and toggling only recovery.
-
-Useful levers if you want to close the gap: raise `shots`, `num_circuits`, or `ops_per_circuit`; sample at more than one `time_step`; and add a recovery loop on top of `Qiskit::addon::sqd::recover_configurations`. Each widens or repairs the surviving subspace, and adding a recovery loop is the natural next extension of this tutorial.
-
-### 9. Cleanup
+#### Clean up resources
 ```cpp
-// 6. Cleanup
+// Cleanup
 // circuits vector will be automatically cleaned up (RAII)
 // Free qubit operators
 for (uint32_t i = 0; i < num_groups; i++) {
@@ -1353,11 +1327,9 @@ return 0;
 
 Properly frees all allocated memory and resources. The C++ `std::vector<QuantumCircuit>` is automatically cleaned up via RAII. Manually frees qubit operators, fermionic operators, and the FCIDump data.
 
-### 10. Run the diagonalization scheme
-
 Now that we have created the basis for projecting our Hamiltonian over, we can proceed with the diagonalization process to obtain the ground state estimate.
 
-#### Step 1 — Build the SBD `diag` binary
+#### Build the SBD `diag` binary
 
 CMake fetches SBD as source-only into `deps/sbd/` (the main build intentionally skips compiling it). The SBD app uses a plain `Makefile`, and SBD itself requires **MPI, OpenMP, and BLAS/LAPACK** — so plain `make` is not sufficient until those are installed and the app's `Configuration` file matches your toolchain.
 
@@ -1424,14 +1396,14 @@ CCFLAGS= -std=c++17 -fopenmp -O3
 SYSLIB= -llapack -lblas
 ```
 
-#### Step 2 — Run SqDRIFT to generate CI strings
+#### Run SqDRIFT to generate CI strings
 
 ```bash
 ./SqDRIFT
 # Writes alphadets_from_sqd.txt in the project root
 ```
 
-#### Step 3 — Run the diagonalization
+#### Run the diagonalization
 
 ```bash
 cd deps/sbd/apps/chemistry_tpb_selected_basis_diagonalization
@@ -1487,6 +1459,32 @@ cd ../../../..
 ```
 
 The `Energy = -107.5108722590187` line is the ground-state estimate over the sampled subspace.
+
+#### How this differs from the Python tab
+
+The two examples differ in several respects at once, not only in how they treat bad-symmetry bitstrings, so they are not expected to produce identical energies:
+
+| | C++ tab | Python tab |
+|---|---|---|
+| Bad-symmetry bitstrings | **Discarded** by `postselect_bitstrings` on Hamming weight | **Repaired** by iterative configuration recovery |
+| Loop structure | Single pass: sample → postselect → diagonalize once | Outer loop: diagonalize, read orbital occupancies, recover configurations, re-diagonalize |
+| Circuit count | 100 circuits (`num_circuits = 100`) | 400 circuits (200 per evolution time) |
+| Evolution times | A single $\tau$ (`time_step = 1`) | Two times, `times = [1.0, 10.0]` |
+| Diagonal terms | Kept in the sampled operator | Removed by `filter_diagonal_terms`, changing the sampling distribution and the circuits |
+| Term ordering | Grouped only | `canonical_order` applied before grouping for reproducibility |
+| Diagonalization solver | **SBD** (`diag`, external MPI/OpenMP binary) | `qiskit-addon-sqd` in-process solver |
+
+Each of these affects the sampled subspace, and therefore the energy, independently. The larger circuit ensemble and the second, longer evolution time both broaden the set of configurations the Python example explores — sampling at more than one time is what gives SqDRIFT its Krylov-like coverage of the low-energy space, so a single-time run explores less of it. Filtering diagonal terms changes which operators are available to the sampler and the relative weights it draws from, so the two runs are not even sampling the same distribution.
+
+On postselection specifically: it is a strict filter, so a shot with the wrong particle number is dropped outright. In the run recorded above that is most of the data — 1137 of 10000 shots survived the (7,7) Hamming-weight check, about 11%, which then collapsed into just 49 distinct α-determinants. Configuration recovery instead uses average orbital occupancies from a previous diagonalization to flip bits and *repair* such a shot into a symmetry-valid one, recycling shots that postselection discards. That feedback makes it inherently iterative — `recover_configurations` in `qiskit-addon-sqd-hpc` requires an `avg_occupancies` argument that only exists once a diagonalization has run.
+
+The observable outcome of this particular C++ run is a subspace of 49 α-determinants and an energy of `-107.5109` Ha. For this Hamiltonian the exact answer is available for comparison: the full α-determinant space for 7 electrons in 10 orbitals is only $\binom{10}{7} = 120$ strings, so feeding all 120 to the same `diag` binary gives the exact FCI energy `-107.6482` Ha. This run therefore sits about `0.1373` Ha above the exact result while spanning 49 of the 120 available α-determinants. Since SQD is variational in the selected subspace, a smaller subspace can only give an equal or higher energy, so an incomplete subspace is the most direct reading of the gap.
+
+Note that this exact-FCI check is only possible because the example is small; it is not part of the SqDRIFT workflow, and for system sizes where SQD is actually needed no such reference exists. It is used here purely to quantify how much of the space this run recovered.
+
+If you compare against the Python tab instead, **that comparison is not controlled**, so a difference should not be attributed to the absence of configuration recovery alone: the circuit count, the single evolution time, diagonal-term filtering, and hardware noise all differ simultaneously and all influence the subspace. Isolating the effect of any one of them would mean holding the others fixed — for example, running both paths with the same circuit count, the same set of evolution times, and the same treatment of diagonal terms, and toggling only recovery.
+
+Useful levers if you want to close the gap: raise `shots`, `num_circuits`, or `ops_per_circuit`; sample at more than one `time_step`; and add a recovery loop on top of `Qiskit::addon::sqd::recover_configurations`. Each widens or repairs the surviving subspace, and adding a recovery loop is the natural next extension of this tutorial.
 
   </TabItem>
 </Tabs>
