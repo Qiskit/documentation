@@ -5,6 +5,7 @@ from textwrap import dedent
 from qiskit_docs_notebook_normalizer import (
     normalize_notebook,
     changes_made,
+    determine_image_folder,
 )
 from qiskit_docs_notebook_normalizer.cell_output_data import (
     RasterImage,
@@ -307,3 +308,15 @@ def test_katex_noop():
     nb = nbformat.reads(nb_source, 4)
     result = normalize_notebook(nb, Path("public/root"))
     assert not changes_made(result)
+
+
+def test_determine_image_folder():
+    assert determine_image_folder(Path("docs/guides/my-notebook.ipynb")) == Path(
+        "public/docs/images/guides/my-notebook/extracted-outputs"
+    )
+    assert determine_image_folder(
+        Path("learning/courses/my-course/lesson.ipynb")
+    ) == Path("public/learning/images/courses/my-course/lesson/extracted-outputs")
+    assert determine_image_folder(
+        Path("tutorial-sources/my-tutorial/my-tutorial.ipynb")
+    ) == Path("public/docs/images/tutorials/my-tutorial/extracted-outputs")

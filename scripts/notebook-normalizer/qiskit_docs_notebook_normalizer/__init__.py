@@ -142,7 +142,17 @@ def determine_image_folder(nb_path: Path) -> Path:
         docs/guides/my-notebook.ipynb
     Should have its images extracted to:
         public/docs/images/guides/my-notebook/extracted-outputs/
+
+    Notebooks in tutorial-sources/ back an MDX tutorial without being
+    published, so their images go where that tutorial's images live:
+        tutorial-sources/my-tutorial/my-tutorial.ipynb
+    Should have its images extracted to:
+        public/docs/images/tutorials/my-tutorial/extracted-outputs/
     """
+    if nb_path.parts[0] == "tutorial-sources":
+        return Path(
+            "public", "docs", "images", "tutorials", nb_path.stem, "extracted-outputs"
+        )
     return Path(
         "public",
         nb_path.parts[0],  # i.e. "docs" or "learning"

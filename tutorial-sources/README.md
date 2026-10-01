@@ -9,3 +9,5 @@ When you add a notebook here, also:
 - Add it to `scripts/config/notebook-testing.toml`.
 - Add an owner for it in `qiskit_bot.yaml`.
 - Link to it from the page it backs, and note in that page that the two must stay in sync.
+
+Images extracted from a notebook here go to `public/docs/images/tutorials/<notebook name>/extracted-outputs/`, so the MDX page can reference them like any other tutorial image.
