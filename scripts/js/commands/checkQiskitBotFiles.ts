@@ -49,6 +49,7 @@ const ALLOWED_NONEXISTENT_FILES: Set<string> = new Set([]);
 
 const GLOBS = [
   "{docs,learning}/**/*.{ipynb,mdx}",
+  "tutorial-sources/**/*.ipynb",
   "!docs/api/**/*",
   "docs/api/functions/**",
   "!docs/addons/**/*",

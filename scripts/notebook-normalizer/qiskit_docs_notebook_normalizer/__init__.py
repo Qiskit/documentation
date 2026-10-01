@@ -23,6 +23,7 @@ from .cell_output_data import remove_circuit_drawing_html, remove_inline_katex_e
 NOTEBOOK_PATHS = chain(
     Path("docs").rglob("*.ipynb"),
     Path("learning").rglob("*.ipynb"),
+    Path("tutorial-sources").rglob("*.ipynb"),
 )
 
 
