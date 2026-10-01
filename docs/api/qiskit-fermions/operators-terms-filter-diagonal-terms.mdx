@@ -1,0 +1,50 @@
+---
+title: filter_diagonal_terms (latest version)
+description: API reference for qiskit_fermions.operators.terms.filter_diagonal_terms in the latest version of qiskit-fermions
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit_fermions.operators.terms.filter_diagonal_terms
+---
+
+<span id="filter-diagonal-terms" />
+
+# filter\_diagonal\_terms
+
+<Function id="qiskit_fermions.operators.terms.filter_diagonal_terms" isDedicatedPage={true} signature="filter_diagonal_terms(op)">
+  Filters out the terms of an operator that are diagonal in the occupation-number basis.
+
+  This removes every term from the provided [`FermionOperator`](operators-fermion-operator "qiskit_fermions.operators.FermionOperator") that is a product of number operators ($a^\dagger_i a_i$). This includes the constant term (a product of zero number operators), single number operators, as well as higher-order products such as $n_i n_j = a^\dagger_i a^\dagger_j a_j a_i$.
+
+  <Admonition title="Hint" type="note">
+    A major motivation for filtering such terms arises during the time evolution of operators, where such diagonal terms, do not affect the time evolution besides introducing a global phase. Consequently, bitstrings sampled from a time evolved state remain unaffected. Removing them is therefore recommended, for example when preparing an electronic-structure Hamiltonian for the qDRIFT time evolution used by SqDRIFT, as it avoids an otherwise unnecessary sampling overhead.
+  </Admonition>
+
+  <Admonition title="Caution" type="note">
+    The provided operator *must* be normal-ordered! This is an underlying assumption of the implementation that is *not* being verified. See [`normal_ordered()`](operators-fermion-operator#normal_ordered "qiskit_fermions.operators.FermionOperator.normal_ordered") for how to get an operator of that form.
+  </Admonition>
+
+  <Admonition title="Note" type="note">
+    The operator is modified *in place*. If it tracks group indices (see [`groups`](operators-fermion-operator#groups "qiskit_fermions.operators.FermionOperator.groups")), surviving terms retain their relative grouping but the group indices are reassigned to a contiguous range starting from 0. You must therefore *not* rely on the specific group index of any term being preserved across a call to this function.
+  </Admonition>
+
+  ```pycon
+  >>> from qiskit_fermions.operators import FermionOperator
+  >>> from qiskit_fermions.operators.terms.filtering import filter_diagonal_terms
+  >>> op = FermionOperator.from_dict(
+  ...     {
+  ...         (): 1.0,  # constant (diagonal)
+  ...         ((True, 0), (False, 0)): 2.0,  # n_0 (diagonal)
+  ...         ((True, 0), (True, 1), (False, 1), (False, 0)): 3.0,  # n_0 n_1 (diagonal)
+  ...         ((True, 0), (False, 1)): 4.0,  # a†_0 a_1 (off-diagonal)
+  ...     }
+  ... )
+  >>> filter_diagonal_terms(op)
+  >>> list(op.iter_terms())
+  [([(True, 0), (False, 1)], (4+0j))]
+  ```
+
+  **Parameters**
+
+  **op** – the normal-ordered operator whose diagonal terms to filter out.
+</Function>
+

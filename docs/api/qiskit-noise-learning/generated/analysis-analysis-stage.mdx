@@ -1,0 +1,75 @@
+---
+title: AnalysisStage (latest version)
+description: API reference for qiskit_noise_learning.analysis.AnalysisStage in the latest version of qiskit-noise-learning
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_noise_learning.analysis.AnalysisStage
+---
+
+<span id="qiskit-noise-learning-analysis-analysisstage" />
+
+# qiskit\_noise\_learning.analysis.AnalysisStage
+
+<Class id="qiskit_noise_learning.analysis.AnalysisStage" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/analysis/analysis_pipeline.py" signature="qiskit_noise_learning.analysis.AnalysisStage" modifiers="class">
+  Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC)
+
+  Abstract base for a stage in the analysis pipeline.
+
+  Each stage declares the data level it consumes ([`input_level`](#qiskit_noise_learning.analysis.AnalysisStage.input_level "qiskit_noise_learning.analysis.AnalysisStage.input_level")) and produces ([`output_level`](#qiskit_noise_learning.analysis.AnalysisStage.output_level "qiskit_noise_learning.analysis.AnalysisStage.output_level")). Stages may skip intermediate levels, e.g. going directly from `RawData` to `DecayData`.
+
+  To implement a stage, subclass this and override `_run()`. The public [`run()`](#qiskit_noise_learning.analysis.AnalysisStage.run "qiskit_noise_learning.analysis.AnalysisStage.run") method handles shallow-copying the [`Fit`](analysis-fit "qiskit_noise_learning.analysis.Fit") container and marking skipped levels; `_run()` receives the copy and may mutate it in place.
+
+  [`input_level`](#qiskit_noise_learning.analysis.AnalysisStage.input_level "qiskit_noise_learning.analysis.AnalysisStage.input_level") and [`output_level`](#qiskit_noise_learning.analysis.AnalysisStage.output_level "qiskit_noise_learning.analysis.AnalysisStage.output_level") can be declared as class attributes:
+
+  ```python
+  class MyStage(AnalysisStage):
+      input_level = RawData
+      output_level = ObservableData
+
+      def _run(self, fit):
+          fit[ObservableData] = compute(fit[RawData])
+  ```
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit_noise_learning.analysis.AnalysisStage.__init__" signature="__init__()" />
+
+  ## Methods
+
+  |                                                                                                                                |                                                                                                                             |
+  | ------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit_noise_learning.analysis.AnalysisStage.__init__ "qiskit_noise_learning.analysis.AnalysisStage.__init__")() |                                                                                                                             |
+  | [`run`](#qiskit_noise_learning.analysis.AnalysisStage.run "qiskit_noise_learning.analysis.AnalysisStage.run")(fit)             | Run this stage, returning a new [`Fit`](analysis-fit "qiskit_noise_learning.analysis.Fit") with the output level populated. |
+
+  ## Attributes
+
+  |                                                                                                                                          |                                   |
+  | ---------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------- |
+  | [`input_level`](#qiskit_noise_learning.analysis.AnalysisStage.input_level "qiskit_noise_learning.analysis.AnalysisStage.input_level")    | The data level this stage reads.  |
+  | [`output_level`](#qiskit_noise_learning.analysis.AnalysisStage.output_level "qiskit_noise_learning.analysis.AnalysisStage.output_level") | The data level this stage writes. |
+
+  ### input\_level
+
+  <Attribute id="qiskit_noise_learning.analysis.AnalysisStage.input_level" modifiers="abstract property">
+    Type: [`type`](https://docs.python.org/3/library/functions.html#type)\[[`LeveledData`](data-leveled-data "qiskit_noise_learning.data.leveled_data.LeveledData")]
+
+    The data level this stage reads.
+  </Attribute>
+
+  ### output\_level
+
+  <Attribute id="qiskit_noise_learning.analysis.AnalysisStage.output_level" modifiers="abstract property">
+    Type: [`type`](https://docs.python.org/3/library/functions.html#type)\[[`LeveledData`](data-leveled-data "qiskit_noise_learning.data.leveled_data.LeveledData")]
+
+    The data level this stage writes.
+  </Attribute>
+
+  ### run
+
+  <Function id="qiskit_noise_learning.analysis.AnalysisStage.run" signature="run(fit: Fit | LeveledData) → Fit">
+    Run this stage, returning a new [`Fit`](analysis-fit "qiskit_noise_learning.analysis.Fit") with the output level populated.
+
+    Shallow-copies `fit`, marks any `Absent` intermediate levels as `Skipped`, calls `_run()` on the copy, and returns it. The original `fit` is not modified.
+  </Function>
+</Class>
+

@@ -1,0 +1,40 @@
+---
+title: edge_vertex_to_majorana (latest version)
+description: API reference for qiskit_fermions.mappers.library.edge_vertex_to_majorana in the latest version of qiskit-fermions
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit_fermions.mappers.library.edge_vertex_to_majorana
+---
+
+<span id="edge-vertex-to-majorana" />
+
+# edge\_vertex\_to\_majorana
+
+<Function id="qiskit_fermions.mappers.library.edge_vertex_to_majorana" isDedicatedPage={true} signature="edge_vertex_to_majorana(inter_op)">
+  Map an [`EdgeVertexOperator`](operators-edge-vertex-operator "qiskit_fermions.operators.EdgeVertexOperator") to a [`MajoranaOperator`](operators-majorana-operator "qiskit_fermions.operators.MajoranaOperator").
+
+  **Parameters**
+
+  **inter\_op** – the edge-vertex operator to map.
+
+  **Returns**
+
+  The mapped majorana operator.
+
+  ## Definition
+
+  This function decomposes the edge-vertex operators in terms of the majorana operators as defined [here](operators-edge-vertex-operator#edgevertexoperator-definition).
+
+  ## Usage
+
+  ```pycon
+  >>> from qiskit_fermions.mappers.library import edge_vertex_to_majorana
+  >>> from qiskit_fermions.operators import EdgeVertexOperator
+  >>> inter_op = EdgeVertexOperator.from_dict({((0, 0),): 1, ((1, 2),): 2})
+  >>> maj_op = edge_vertex_to_majorana(inter_op)
+  >>> print(format(maj_op.normal_ordered().simplify()))
+    0.000000e0 +1.000000e0j * (γ'0 γ0)
+    0.000000e0 +2.000000e0j * (γ2 γ1)
+  ```
+</Function>
+

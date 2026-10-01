@@ -1,0 +1,39 @@
+---
+title: SupportsMajoranaOperator (latest version)
+description: API reference for qiskit_fermions.protocols.SupportsMajoranaOperator in the latest version of qiskit-fermions
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_fermions.protocols.SupportsMajoranaOperator
+---
+
+# SupportsMajoranaOperator
+
+<Class id="qiskit_fermions.protocols.SupportsMajoranaOperator" isDedicatedPage={true} signature="SupportsMajoranaOperator(*args, **kwargs)" modifiers="class">
+  Bases: [`Protocol`](https://docs.python.org/3/library/typing.html#typing.Protocol)
+
+  An equivalent of the [`SupportsFermionOperator`](protocols-supports-fermion-operator "qiskit_fermions.protocols.SupportsFermionOperator") protocol, targeting Majorana operators.
+
+  See [`majorana_operator()`](mappers-library-majorana-operator "qiskit_fermions.mappers.library.majorana_operator") for the type-agnostic helper function dispatching to the method below.
+
+  ```pycon
+  >>> from qiskit_fermions.operators import FermionOperator
+  >>> fer_op = FermionOperator.from_dict({((True, 0), (False, 0)): 1})
+  >>> maj_op = fer_op._majorana_operator_()
+  >>> print(format(maj_op.normal_ordered().simplify()))
+   5.000000e-1 +0.000000e0j * ()
+    0.000000e0-5.000000e-1j * (γ'0 γ0)
+  ```
+
+  **Protocol Methods**
+
+  ### \_majorana\_operator\_
+
+  <Function id="qiskit_fermions.protocols.SupportsMajoranaOperator._majorana_operator_" signature="_majorana_operator_()">
+    Converts this operator into a [`MajoranaOperator`](operators-majorana-operator "qiskit_fermions.operators.MajoranaOperator") instance.
+
+    **Return type**
+
+    [MajoranaOperator](operators-majorana-operator "qiskit_fermions.operators.MajoranaOperator")
+  </Function>
+</Class>
+

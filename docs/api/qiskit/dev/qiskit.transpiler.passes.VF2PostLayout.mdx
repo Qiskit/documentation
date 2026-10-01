@@ -40,15 +40,15 @@ python_api_name: qiskit.transpiler.passes.VF2PostLayout
   **Parameters**
 
   *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – A target representing the backend device to run `VF2PostLayout` on.
-  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int)) – Sets the seed of the PRNG. -1 Means no node shuffling.
-  *   **call\_limit** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The number of state visits to attempt in each execution of VF2.
-  *   **time\_limit** ([*float*](https://docs.python.org/3/library/functions.html#float)) – The total time limit in seconds to run `VF2PostLayout`
-  *   **strict\_direction** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Whether the pass is configured to follow the strict direction in the coupling graph. If this is set to false, the pass will treat any edge in the coupling graph as a weak edge and the interaction graph will be undirected. For the purposes of evaluating layouts the avg error rate for each qubit and 2q link will be used. This enables the pass to be run prior to basis translation and work with any 1q and 2q operations. However, if `strict_direction=True` the pass expects the input [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") object to [`run()`](#qiskit.transpiler.passes.VF2PostLayout.run "qiskit.transpiler.passes.VF2PostLayout.run") to be in the target set of instructions.
-  *   **max\_trials** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The maximum number of trials to run VF2 to find a layout. A value of `0` (the default) means ‘unlimited’.
+  *   **seed** ([*int*](https://docs.python.org/3/builtins/functions.html#int)) – Sets the seed of the PRNG. -1 Means no node shuffling.
+  *   **call\_limit** ([*int*](https://docs.python.org/3/builtins/functions.html#int)) – The number of state visits to attempt in each execution of VF2.
+  *   **time\_limit** ([*float*](https://docs.python.org/3/builtins/functions.html#float)) – The total time limit in seconds to run `VF2PostLayout`
+  *   **strict\_direction** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) – Whether the pass is configured to follow the strict direction in the coupling graph. If this is set to false, the pass will treat any edge in the coupling graph as a weak edge and the interaction graph will be undirected. For the purposes of evaluating layouts the avg error rate for each qubit and 2q link will be used. This enables the pass to be run prior to basis translation and work with any 1q and 2q operations. However, if `strict_direction=True` the pass expects the input [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") object to [`run()`](#qiskit.transpiler.passes.VF2PostLayout.run "qiskit.transpiler.passes.VF2PostLayout.run") to be in the target set of instructions.
+  *   **max\_trials** ([*int*](https://docs.python.org/3/builtins/functions.html#int)) – The maximum number of trials to run VF2 to find a layout. A value of `0` (the default) means ‘unlimited’.
 
   **Raises**
 
-  [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError) – At runtime, if `target` isn’t provided.
+  [**TypeError**](https://docs.python.org/3/builtins/exceptions.html#TypeError) – At runtime, if `target` isn’t provided.
 
   ## Attributes
 
@@ -79,7 +79,7 @@ python_api_name: qiskit.transpiler.passes.VF2PostLayout
 
     *   **passmanager\_ir** (*IR*) – Qiskit IR to optimize.
     *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
-    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[*[*Task*](qiskit.passmanager.Task "qiskit.passmanager.base_tasks.Task")*, IR\_OUT,* [*PropertySet*](qiskit.passmanager.PropertySet "qiskit.passmanager.compilation_status.PropertySet")*,* [*float*](https://docs.python.org/3/library/functions.html#float)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*], None] | None*) – A callback function which is called per execution of optimization task.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[*[*Task*](qiskit.passmanager.Task "qiskit.passmanager.base_tasks.Task")*, IR\_OUT,* [*PropertySet*](qiskit.passmanager.PropertySet "qiskit.passmanager.compilation_status.PropertySet")*,* [*float*](https://docs.python.org/3/builtins/functions.html#float)*,* [*int*](https://docs.python.org/3/builtins/functions.html#int)*], None] | None*) – A callback function which is called per execution of optimization task.
 
     **Returns**
 
@@ -87,7 +87,7 @@ python_api_name: qiskit.transpiler.passes.VF2PostLayout
 
     **Return type**
 
-    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[*IR\_OUT*, [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+    [tuple](https://docs.python.org/3/builtins/stdtypes.html#tuple)\[*IR\_OUT*, [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
   </Function>
 
   ### name
@@ -97,7 +97,7 @@ python_api_name: qiskit.transpiler.passes.VF2PostLayout
 
     **Return type**
 
-    [str](https://docs.python.org/3/library/stdtypes.html#str)
+    [str](https://docs.python.org/3/builtins/stdtypes.html#str)
   </Function>
 
   ### run

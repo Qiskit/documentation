@@ -332,6 +332,28 @@ test("subdirectory section has correct child URLs", async () => {
   );
 });
 
+test("has-children with flat (non-subdirectory) children produces correct URLs", async () => {
+  const { artifactDir } = await makeTestDirs([
+    { href: "#", title: "Home" },
+    {
+      href: "install.html",
+      title: "Installation",
+      children: [
+        { href: "install-c.html", title: "C" },
+        { href: "install-py.html", title: "Python" },
+      ],
+    },
+  ]);
+
+  const pkg = await makePkg();
+  const toc = await generateAddonToc(pkg, artifactDir);
+  const main = toc.children[0];
+
+  const install = main.children?.find((c) => c.title === "Installation");
+  expect(install?.children?.[0].url).toBe("/docs/addons/my-addon/install-c");
+  expect(install?.children?.[1].url).toBe("/docs/addons/my-addon/install-py");
+});
+
 test("external link in main section is passed through unchanged", async () => {
   const { artifactDir } = await makeTestDirs([
     { href: "#", title: "Home" },

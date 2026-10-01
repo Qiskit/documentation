@@ -22,7 +22,12 @@ import remarkGfm from "remark-gfm";
 import remarkMdx from "remark-mdx";
 import remarkStringify from "remark-stringify";
 
-import { removePart, removePrefix, removeSuffix } from "../stringUtils.js";
+import {
+  getLastPartFromFullIdentifier,
+  removePart,
+  removePrefix,
+  removeSuffix,
+} from "../stringUtils.js";
 import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
 import { remarkStringifyOptions } from "./commonParserConfig.js";
 import { ObjectsInv } from "./objectsInv.js";
@@ -104,7 +109,7 @@ export function normalizeUrl(
 
   // The C API uses the same artifact as the Python API, but all its pages are
   // located under the `cdoc` folder.
-  const pythonApiFolders = ["stubs", "apidocs", "apidoc"];
+  const pythonApiFolders = ["stubs", "apidocs", "apidoc", "pydoc"];
   const addQiskitPrefix =
     kwargs.pkgName == "qiskit-c" &&
     pythonApiFolders.some((f) => url.split("/").includes(f));
@@ -120,10 +125,24 @@ export function normalizeUrl(
       "#",
     );
     const page = removeSuffix(pageWithHtml, ".html");
-    // Strip the Sphinx C domain prefix (e.g. `c.qk_circuit_new` → `qk_circuit_new`)
-    const normalizedHash = hash ? removePrefix(hash, "c.") : undefined;
+    // The C API anchors are generated with getLastPartFromFullIdentifier (the last
+    // dot-separated segment), so the Sphinx C domain hash must be reduced the same way:
+    //   `c.qk_circuit_new`                  → `qk_circuit_new`   (strip the `c.` domain prefix)
+    //   `c.QfExitCode.QfExitCode_ValueError` → `QfExitCode_ValueError`  (drop the enum scope too)
+    const normalizedHash = hash
+      ? getLastPartFromFullIdentifier(hash)
+      : undefined;
     const pageAndHash = normalizedHash ? `${page}#${normalizedHash}` : page;
-    return `${kwargs.pkgOutputDir.replace("qiskit", "qiskit-c")}/${pageAndHash}`;
+    // The C API package is always named `{pkgName}-c` (`qiskit` → `qiskit-c`,
+    // `qiskit-fermions` → `qiskit-fermions-c`).  Replace the package-name segment rather
+    // than substituting the literal `qiskit`: a plain `.replace("qiskit", "qiskit-c")`
+    // rewrites the *first* match, turning `qiskit-fermions` into `qiskit-c-fermions`.
+    // Replacing `pkgName` also preserves any version subdirectory (e.g. `.../qiskit/dev`).
+    const cApiOutputDir = kwargs.pkgOutputDir.replace(
+      kwargs.pkgName,
+      `${kwargs.pkgName}-c`,
+    );
+    return `${cApiOutputDir}/${pageAndHash}`;
   }
 
   // TODO (#3375): Investigate if we can make this case more generic.

@@ -1,0 +1,41 @@
+---
+title: noise (latest version)
+description: API reference for qiskit_mitigation.noise in the latest version of qiskit-mitigation
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit_mitigation.noise
+---
+
+<span id="module-qiskit_mitigation.noise" />
+
+<span id="noise-qiskit-mitigation-noise" />
+
+# Noise
+
+`qiskit_mitigation.noise`
+
+Functionality for specifying and transforming quantum noise.
+
+### create\_postselected\_noise\_mask
+
+<Function id="qiskit_mitigation.noise.create_postselected_noise_mask" github="https://github.com/Qiskit/qiskit-mitigation/tree/stable/0.1/qiskit_mitigation/noise.py#L47-L108" signature="create_postselected_noise_mask(noisy_circuit, noise_maps, detectors)">
+  Identify generators in `noise_maps` that anticommute with one or more `detectors`.
+
+  Each detector, given as a Pauli operator at the end of `noisy_circuit` is evolved backward through the circuit. At each [`InjectNoise`](https://qiskit.github.io/samplomatic/api/auto/samplomatic.InjectNoise.html#samplomatic.InjectNoise "(in samplomatic)") site, a generator that anticommutes with some evolved detector gets scale `0`; a surviving generator gets `1`.
+
+  **Parameters**
+
+  *   **noisy\_circuit** ([*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit)) – A circuit of box instructions. Box instructions may contain Clifford instructions, and any non-Clifford instructions they contain must commute with all `detectors`. `InjectNoise` annotations should be used to denote noisy layers in the circuit, and each `InjectNoise` reference ID should be a key in `noise_maps`.
+  *   **detectors** ([*PauliList*](/docs/api/qiskit/qiskit.quantum_info.PauliList)  *|*[*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*Pauli*](/docs/api/qiskit/qiskit.quantum_info.Pauli)  *|*[*str*](https://docs.python.org/3/builtins/stdtypes.html#str)*]*) – Pauli detectors defined at the end of `noisy_circuit` on all qubits.
+  *   **noise\_maps** ([*dict*](https://docs.python.org/3/builtins/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/builtins/stdtypes.html#str)*,* [*PauliLindbladMap*](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap)*]*) – A mapping from each unique `InjectNoise` reference ID to the Pauli-Lindblad noise associated with that circuit layer.
+
+  **Returns**
+
+  *   A `dict` mapping each noisy box’s `InjectNoise.modifier_ref` to a `0`/`1` array aligned with that box’s `noise_maps` generators, ready to use as samplomatic `local_scales`
+  *   The sampling cost $\gamma^2 = e^{(4 \sum \lambda \cdot \text{mask})}$ of inverting only the surviving generators with PEC.
+
+  **Return type**
+
+  [tuple](https://docs.python.org/3/builtins/stdtypes.html#tuple)\[[dict](https://docs.python.org/3/builtins/stdtypes.html#dict)\[[str](https://docs.python.org/3/builtins/stdtypes.html#str), [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)], [float](https://docs.python.org/3/builtins/functions.html#float)]
+</Function>
+

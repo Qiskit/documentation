@@ -41,6 +41,14 @@ One of the representations listed under "Accepted problem formats".
     - Example: `"ibm_fez"`
 </Attribute>
 
+### `constraint`
+
+<Attribute attributeTypeHint="dict[tuple, int]" attributeValue="None">
+    Optional Hamming-weight constraints for the problem variables. Each constraint specifies a group of variables that must sum to exactly 1 (that is, exactly one variable in the group is 1 and the rest are 0). If not provided, the solver treats the problem as unconstrained and searches over all possible bitstrings. You do not need to constrain every variable &mdash; variables left out of `constraint` remain unconstrained, so partially constrained problems are supported. Keys are tuples of variable indices, or variable names when using a polynomial `problem` input.
+    - Required: No
+    - Example: `{("n[0,0]", "n[0,1]", "n[0,2]"): 1}`
+</Attribute>
+
 
 ### Options
 

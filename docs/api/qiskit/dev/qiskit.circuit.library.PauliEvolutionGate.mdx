@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.PauliEvolutionGate
 
 # PauliEvolutionGate
 
-<Class id="qiskit.circuit.library.PauliEvolutionGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/pauli_evolution.py#L31-L332" signature="qiskit.circuit.library.PauliEvolutionGate(operator, time=1.0, label=None, synthesis=None)" modifiers="class">
+<Class id="qiskit.circuit.library.PauliEvolutionGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/pauli_evolution.py#L31-L336" signature="qiskit.circuit.library.PauliEvolutionGate(operator, time=1.0, label=None, synthesis=None)" modifiers="class">
   Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
   Time-evolution of an operator consisting of Paulis.
@@ -66,15 +66,19 @@ $$
        └──────────────────────────┘
   ```
 
+  <Admonition title="Warning" type="caution">
+    The transpiler might silently drop the `synthesis` strategy during optimization, for example, if two Pauli evolution gates are merged.
+  </Admonition>
+
   References:
 
   \[1] G. Li et al. Paulihedral: A Generalized Block-Wise Compiler Optimization Framework For Quantum Simulation Kernels (2021). [arXiv:2109.03371](https://arxiv.org/abs/2109.03371)
 
   **Parameters**
 
-  *   **operator** ([*qiskit.quantum\_info.Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *|*[*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")  *|*[*SparseObservable*](qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*qiskit.quantum\_info.Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *|*[*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")  *|*[*SparseObservable*](qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable")*]*) – The operator to evolve. Can also be provided as list of non-commuting operators where the elements are sums of commuting operators. For example: `[XY + YX, ZZ + ZI + IZ, YY]`.
+  *   **operator** ([*qiskit.quantum\_info.Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *|*[*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")  *|*[*SparseObservable*](qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable")  *|*[*list*](https://docs.python.org/3/builtins/stdtypes.html#list)*\[*[*qiskit.quantum\_info.Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *|*[*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")  *|*[*SparseObservable*](qiskit.quantum_info.SparseObservable "qiskit.quantum_info.SparseObservable")*]*) – The operator to evolve. Can also be provided as list of non-commuting operators where the elements are sums of commuting operators. For example: `[XY + YX, ZZ + ZI + IZ, YY]`.
   *   **time** (*ParameterValueType*) – The evolution time.
-  *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – A label for the gate to display in visualizations. Per default, the label is set to `exp(-it <operators>)` where `<operators>` is the sum of the Paulis. Note that the label does not include any coefficients of the Paulis. See the class docstring for an example.
+  *   **label** ([*str*](https://docs.python.org/3/builtins/stdtypes.html#str) *| None*) – A label for the gate to display in visualizations. Per default, the label is set to `exp(-it <operators>)` where `<operators>` is the sum of the Paulis. Note that the label does not include any coefficients of the Paulis. See the class docstring for an example.
   *   **synthesis** ([*EvolutionSynthesis*](qiskit.synthesis.EvolutionSynthesis "qiskit.synthesis.EvolutionSynthesis") *| None*) – A synthesis strategy. If None, the default synthesis is the Lie-Trotter product formula with a single repetition.
 
   ## Attributes
@@ -205,8 +209,8 @@ $$
 
     **Parameters**
 
-    *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)) – List of quantum bit arguments.
-    *   **cargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)) – List of classical bit arguments.
+    *   **qargs** ([*list*](https://docs.python.org/3/builtins/stdtypes.html#list)) – List of quantum bit arguments.
+    *   **cargs** ([*list*](https://docs.python.org/3/builtins/stdtypes.html#list)) – List of classical bit arguments.
 
     **Returns**
 
@@ -218,12 +222,12 @@ $$
 
     **Return type**
 
-    [*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[list](https://docs.python.org/3/library/stdtypes.html#list), [list](https://docs.python.org/3/library/stdtypes.html#list)]]
+    [*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)\[[tuple](https://docs.python.org/3/builtins/stdtypes.html#tuple)\[[list](https://docs.python.org/3/builtins/stdtypes.html#list), [list](https://docs.python.org/3/builtins/stdtypes.html#list)]]
   </Function>
 
   ### control
 
-  <Function id="qiskit.circuit.library.PauliEvolutionGate.control" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/pauli_evolution.py#L248-L309" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=None)">
+  <Function id="qiskit.circuit.library.PauliEvolutionGate.control" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/pauli_evolution.py#L252-L313" signature="control(num_ctrl_qubits=1, label=None, ctrl_state=None, annotated=None)">
     Return the controlled version of itself.
 
     The outcome is the specified controlled version of $e^{-itH}$. The returned gate represents $e^{-it H_C}$, where $H_C$ is the original operator $H$, tensored with $|0\rangle\langle 0|$ and $|1\rangle\langle 1|$ projectors (depending on the control state).
@@ -232,10 +236,10 @@ $$
 
     **Parameters**
 
-    *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)) – Number of controls to add. Defaults to `1`.
-    *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – A label for the resulting Pauli evolution gate, to display in visualizations. Per default, the label is set to `exp(-it <operators>)` where `<operators>` is the sum of the Paulis. Note that the label does not include any coefficients of the Paulis. See the class docstring for an example.
-    *   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int)  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – The control state of the gate, specified either as an integer or a bitstring (e.g. `"110"`). If `None`, defaults to the all-ones state `2**num_ctrl_qubits - 1`.
-    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool) *| None*) – Ignored.
+    *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/builtins/functions.html#int)) – Number of controls to add. Defaults to `1`.
+    *   **label** ([*str*](https://docs.python.org/3/builtins/stdtypes.html#str) *| None*) – A label for the resulting Pauli evolution gate, to display in visualizations. Per default, the label is set to `exp(-it <operators>)` where `<operators>` is the sum of the Paulis. Note that the label does not include any coefficients of the Paulis. See the class docstring for an example.
+    *   **ctrl\_state** ([*int*](https://docs.python.org/3/builtins/functions.html#int)  *|*[*str*](https://docs.python.org/3/builtins/stdtypes.html#str) *| None*) – The control state of the gate, specified either as an integer or a bitstring (e.g. `"110"`). If `None`, defaults to the all-ones state `2**num_ctrl_qubits - 1`.
+    *   **annotated** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool) *| None*) – Ignored.
 
     **Returns**
 
@@ -253,7 +257,7 @@ $$
 
     **Parameters**
 
-    **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – name to be given to the copied circuit, if `None` then the name stays the same.
+    **name** ([*str*](https://docs.python.org/3/builtins/stdtypes.html#str)) – name to be given to the copied circuit, if `None` then the name stays the same.
 
     **Returns**
 
@@ -266,12 +270,12 @@ $$
 
   ### inverse
 
-  <Function id="qiskit.circuit.library.PauliEvolutionGate.inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/pauli_evolution.py#L224-L226" signature="inverse(annotated=False)">
+  <Function id="qiskit.circuit.library.PauliEvolutionGate.inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/pauli_evolution.py#L228-L230" signature="inverse(annotated=False)">
     Return the inverse, which is obtained by flipping the sign of the evolution time.
 
     **Parameters**
 
-    **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool))
+    **annotated** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool))
   </Function>
 
   ### is\_parameterized
@@ -282,15 +286,15 @@ $$
 
   ### power
 
-  <Function id="qiskit.circuit.library.PauliEvolutionGate.power" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/pauli_evolution.py#L228-L243" signature="power(exponent, annotated=False)">
+  <Function id="qiskit.circuit.library.PauliEvolutionGate.power" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/pauli_evolution.py#L232-L247" signature="power(exponent, annotated=False)">
     Raise this gate to the power of `exponent`.
 
     The outcome represents $e^{-i tp H}$ where $p$ equals `exponent`.
 
     **Parameters**
 
-    *   **exponent** ([*float*](https://docs.python.org/3/library/functions.html#float)) – The power to raise the gate to.
-    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Not applicable to this class. Usually, when this is `True` we return an [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") with a power modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, we can efficiently represent powers of Pauli evolutions as [`PauliEvolutionGate`](#qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate"), which is used here.
+    *   **exponent** ([*float*](https://docs.python.org/3/builtins/functions.html#float)) – The power to raise the gate to.
+    *   **annotated** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) – Not applicable to this class. Usually, when this is `True` we return an [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation") with a power modifier set instead of a concrete [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate"). However, we can efficiently represent powers of Pauli evolutions as [`PauliEvolutionGate`](#qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate"), which is used here.
 
     **Returns**
 
@@ -308,7 +312,7 @@ $$
 
     **Parameters**
 
-    **n** ([*int*](https://docs.python.org/3/library/functions.html#int)) – Number of times to repeat the instruction
+    **n** ([*int*](https://docs.python.org/3/builtins/functions.html#int)) – Number of times to repeat the instruction
 
     **Returns**
 
@@ -356,12 +360,12 @@ $$
 
     **Return type**
 
-    [bool](https://docs.python.org/3/library/functions.html#bool)
+    [bool](https://docs.python.org/3/builtins/functions.html#bool)
   </Function>
 
   ### to\_matrix
 
-  <Function id="qiskit.circuit.library.PauliEvolutionGate.to_matrix" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/pauli_evolution.py#L185-L222" signature="to_matrix()">
+  <Function id="qiskit.circuit.library.PauliEvolutionGate.to_matrix" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/pauli_evolution.py#L189-L226" signature="to_matrix()">
     Return the matrix $e^{-it H}$ as `numpy.ndarray`.
 
     **Returns**
@@ -370,7 +374,7 @@ $$
 
     **Raises**
 
-    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If the `time` parameters is not numeric.
+    [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If the `time` parameters is not numeric.
 
     **Return type**
 
@@ -387,16 +391,16 @@ $$
 
   ### validate\_parameter
 
-  <Function id="qiskit.circuit.library.PauliEvolutionGate.validate_parameter" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/pauli_evolution.py#L315-L320" signature="validate_parameter(parameter)">
+  <Function id="qiskit.circuit.library.PauliEvolutionGate.validate_parameter" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/pauli_evolution.py#L319-L324" signature="validate_parameter(parameter)">
     Gate parameters should be int, float, or ParameterExpression
 
     **Parameters**
 
-    **parameter** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit._accelerate.circuit.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float))
+    **parameter** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit._accelerate.circuit.ParameterExpression")  *|*[*float*](https://docs.python.org/3/builtins/functions.html#float))
 
     **Return type**
 
-    [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit._accelerate.circuit.ParameterExpression") | [float](https://docs.python.org/3/library/functions.html#float)
+    [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit._accelerate.circuit.ParameterExpression") | [float](https://docs.python.org/3/builtins/functions.html#float)
   </Function>
 </Class>
 

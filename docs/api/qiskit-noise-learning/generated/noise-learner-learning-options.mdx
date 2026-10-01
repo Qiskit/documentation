@@ -1,0 +1,133 @@
+---
+title: LearningOptions (latest version)
+description: API reference for qiskit_noise_learning.noise_learner.LearningOptions in the latest version of qiskit-noise-learning
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_noise_learning.noise_learner.LearningOptions
+---
+
+<span id="qiskit-noise-learning-noise-learner-learningoptions" />
+
+# qiskit\_noise\_learning.noise\_learner.LearningOptions
+
+<Class id="qiskit_noise_learning.noise_learner.LearningOptions" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/noise_learner/learning_options.py" signature="qiskit_noise_learning.noise_learner.LearningOptions(*, num_randomizations: Annotated[int, Ge(ge=1)] = 32, shots_per_randomizations: Annotated[int, Ge(ge=1)] = 128, fragment_depths: list[int] = [0, 1, 2, 4, 16, 32], k_locality: Annotated[int, Ge(ge=0)] = 2, path_generator: Literal['even_depth'] = 'even_depth', analyzer: Literal['standard'] = 'standard')" modifiers="class">
+  Bases: `BaseModel`
+
+  Options for the noise learner.
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit_noise_learning.noise_learner.LearningOptions.__init__" signature="__init__(**data: Any) → None">
+    Create a new model by parsing and validating input data from keyword arguments.
+
+    Raises \[ValidationError]\[pydantic\_core.ValidationError] if the input data cannot be validated to form a valid model.
+
+    self is explicitly positional-only to allow self as a field name.
+  </Function>
+
+  ## Methods
+
+  |                                                                                                                                                      |                                                                                                    |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit_noise_learning.noise_learner.LearningOptions.__init__ "qiskit_noise_learning.noise_learner.LearningOptions.__init__")(\*\*data) | Create a new model by parsing and validating input data from keyword arguments.                    |
+  | `construct`(\[\_fields\_set])                                                                                                                        |                                                                                                    |
+  | `copy`(\*\[, include, exclude, update, deep])                                                                                                        | Returns a copy of the model.                                                                       |
+  | `dict`(\*\[, include, exclude, by\_alias, ...])                                                                                                      |                                                                                                    |
+  | `from_orm`(obj)                                                                                                                                      |                                                                                                    |
+  | `json`(\*\[, include, exclude, by\_alias, ...])                                                                                                      |                                                                                                    |
+  | `model_construct`(\[\_fields\_set])                                                                                                                  | Creates a new instance of the Model class with validated data.                                     |
+  | `model_copy`(\*\[, update, deep])                                                                                                                    | !!! abstract "Usage Documentation"                                                                 |
+  | `model_dump`(\*\[, mode, include, exclude, ...])                                                                                                     | !!! abstract "Usage Documentation"                                                                 |
+  | `model_dump_json`(\*\[, indent, ensure\_ascii, ...])                                                                                                 | !!! abstract "Usage Documentation"                                                                 |
+  | `model_json_schema`(by\_alias, ref\_template, ...)                                                                                                   | Generates a JSON schema for a model class.                                                         |
+  | `model_parametrized_name`(params)                                                                                                                    | Compute the class name for parametrizations of generic classes.                                    |
+  | `model_post_init`(context, /)                                                                                                                        | Override this method to perform additional initialization after \_\_init\_\_ and model\_construct. |
+  | `model_rebuild`(\*\[, force, raise\_errors, ...])                                                                                                    | Try to rebuild the pydantic-core schema for the model.                                             |
+  | `model_validate`(obj, \*\[, strict, extra, ...])                                                                                                     | Validate a pydantic model instance.                                                                |
+  | `model_validate_json`(json\_data, \*\[, strict, ...])                                                                                                | !!! abstract "Usage Documentation"                                                                 |
+  | `model_validate_strings`(obj, \*\[, strict, ...])                                                                                                    | Validate the given object with string data against the Pydantic model.                             |
+  | `parse_file`(path, \*\[, content\_type, ...])                                                                                                        |                                                                                                    |
+  | `parse_obj`(obj)                                                                                                                                     |                                                                                                    |
+  | `parse_raw`(b, \*\[, content\_type, encoding, ...])                                                                                                  |                                                                                                    |
+  | `schema`(\[by\_alias, ref\_template])                                                                                                                |                                                                                                    |
+  | `schema_json`(\*\[, by\_alias, ref\_template])                                                                                                       |                                                                                                    |
+  | `update_forward_refs`(\*\*localns)                                                                                                                   |                                                                                                    |
+  | `validate`(value)                                                                                                                                    |                                                                                                    |
+
+  ## Attributes
+
+  |                                                                                                                                                                                            |                                                                                                               |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------- |
+  | `model_computed_fields`                                                                                                                                                                    |                                                                                                               |
+  | [`model_config`](#qiskit_noise_learning.noise_learner.LearningOptions.model_config "qiskit_noise_learning.noise_learner.LearningOptions.model_config")                                     | Configuration for the model, should be a dictionary conforming to \[ConfigDict]\[pydantic.config.ConfigDict]. |
+  | `model_extra`                                                                                                                                                                              | Get extra fields set during validation.                                                                       |
+  | `model_fields`                                                                                                                                                                             |                                                                                                               |
+  | `model_fields_set`                                                                                                                                                                         | Returns the set of fields that have been explicitly set on this model instance.                               |
+  | [`num_randomizations`](#qiskit_noise_learning.noise_learner.LearningOptions.num_randomizations "qiskit_noise_learning.noise_learner.LearningOptions.num_randomizations")                   | The number of randomizations to use per learning circuit.                                                     |
+  | [`shots_per_randomizations`](#qiskit_noise_learning.noise_learner.LearningOptions.shots_per_randomizations "qiskit_noise_learning.noise_learner.LearningOptions.shots_per_randomizations") | The number of shots to use per randomization.                                                                 |
+  | [`fragment_depths`](#qiskit_noise_learning.noise_learner.LearningOptions.fragment_depths "qiskit_noise_learning.noise_learner.LearningOptions.fragment_depths")                            | The fragment depths to use (number of repetitions of each path's repeatable fragment).                        |
+  | [`k_locality`](#qiskit_noise_learning.noise_learner.LearningOptions.k_locality "qiskit_noise_learning.noise_learner.LearningOptions.k_locality")                                           | The locality of the terms to include in the noise model.                                                      |
+  | [`path_generator`](#qiskit_noise_learning.noise_learner.LearningOptions.path_generator "qiskit_noise_learning.noise_learner.LearningOptions.path_generator")                               | The path generator to use.                                                                                    |
+  | [`analyzer`](#qiskit_noise_learning.noise_learner.LearningOptions.analyzer "qiskit_noise_learning.noise_learner.LearningOptions.analyzer")                                                 | The analyzer to use.                                                                                          |
+
+  ### num\_randomizations
+
+  <Attribute id="qiskit_noise_learning.noise_learner.LearningOptions.num_randomizations">
+    Type: [`int`](https://docs.python.org/3/library/functions.html#int)
+
+    The number of randomizations to use per learning circuit.
+  </Attribute>
+
+  ### shots\_per\_randomizations
+
+  <Attribute id="qiskit_noise_learning.noise_learner.LearningOptions.shots_per_randomizations">
+    Type: [`int`](https://docs.python.org/3/library/functions.html#int)
+
+    The number of shots to use per randomization.
+  </Attribute>
+
+  ### fragment\_depths
+
+  <Attribute id="qiskit_noise_learning.noise_learner.LearningOptions.fragment_depths">
+    Type: [`list`](https://docs.python.org/3/library/stdtypes.html#list)\[[`int`](https://docs.python.org/3/library/functions.html#int)]
+
+    The fragment depths to use (number of repetitions of each path’s repeatable fragment).
+  </Attribute>
+
+  ### model\_config
+
+  <Attribute id="qiskit_noise_learning.noise_learner.LearningOptions.model_config">
+    Default value: `{}`
+
+    Configuration for the model, should be a dictionary conforming to \[ConfigDict]\[pydantic.config.ConfigDict].
+  </Attribute>
+
+  ### k\_locality
+
+  <Attribute id="qiskit_noise_learning.noise_learner.LearningOptions.k_locality">
+    Type: [`int`](https://docs.python.org/3/library/functions.html#int)
+
+    The locality of the terms to include in the noise model.
+  </Attribute>
+
+  ### path\_generator
+
+  <Attribute id="qiskit_noise_learning.noise_learner.LearningOptions.path_generator">
+    Type: [`Literal`](https://docs.python.org/3/library/typing.html#typing.Literal)\[`'even_depth'`]
+
+    The path generator to use.
+
+    By default, the generator produces even depth paths for each gate for which to learn the noise.
+  </Attribute>
+
+  ### analyzer
+
+  <Attribute id="qiskit_noise_learning.noise_learner.LearningOptions.analyzer">
+    Type: [`Literal`](https://docs.python.org/3/library/typing.html#typing.Literal)\[`'standard'`]
+
+    The analyzer to use.
+
+    By default, the analyzer pipeline first computes observables, then curve fits exponentials, and finally uses non-negative least squares to solve for model parameters.
+  </Attribute>
+</Class>
+

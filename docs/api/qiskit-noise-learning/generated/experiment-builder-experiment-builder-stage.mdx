@@ -1,0 +1,65 @@
+---
+title: ExperimentBuilderStage (latest version)
+description: API reference for qiskit_noise_learning.experiment_builder.ExperimentBuilderStage in the latest version of qiskit-noise-learning
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_noise_learning.experiment_builder.ExperimentBuilderStage
+---
+
+<span id="qiskit-noise-learning-experiment-builder-experimentbuilderstage" />
+
+# qiskit\_noise\_learning.experiment\_builder.ExperimentBuilderStage
+
+<Class id="qiskit_noise_learning.experiment_builder.ExperimentBuilderStage" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/experiment_builder/experiment_builder_stage.py" signature="qiskit_noise_learning.experiment_builder.ExperimentBuilderStage" modifiers="class">
+  Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC)
+
+  Abstract base for a stage in the experiment-building pipeline.
+
+  Each stage takes an [`Experiment`](experiment-builder-experiment "qiskit_noise_learning.experiment_builder.Experiment") and returns a new [`Experiment`](experiment-builder-experiment "qiskit_noise_learning.experiment_builder.Experiment") with additional fields populated or existing fields transformed.
+
+  Subclasses declare which [`Experiment`](experiment-builder-experiment "qiskit_noise_learning.experiment_builder.Experiment") fields they require via the `required_fields` class attribute, and which fields they populate (can take form `None` to a non-`None` value) via `populates_fields`. The public [`run()`](#qiskit_noise_learning.experiment_builder.ExperimentBuilderStage.run "qiskit_noise_learning.experiment_builder.ExperimentBuilderStage.run") method validates that the required fields are not `None` before dispatching to `_run()`.
+
+  [`ExperimentBuilder`](experiment-builder-experiment-builder "qiskit_noise_learning.experiment_builder.ExperimentBuilder") uses `populates_fields` to compute its aggregate `required_fields`: a stage’s requirement is satisfied if a preceding stage populates that field.
+
+  **Parameters**
+
+  *   **required\_fields** – Tuple of [`Experiment`](experiment-builder-experiment "qiskit_noise_learning.experiment_builder.Experiment") property names that must be non-`None` before this stage can execute.
+  *   **populates\_fields** – Tuple of [`Experiment`](experiment-builder-experiment "qiskit_noise_learning.experiment_builder.Experiment") property names that this stage populates on the returned [`Experiment`](experiment-builder-experiment "qiskit_noise_learning.experiment_builder.Experiment").
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit_noise_learning.experiment_builder.ExperimentBuilderStage.__init__" signature="__init__()" />
+
+  ## Methods
+
+  |                                                                                                                                                                      |                                                  |
+  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
+  | [`__init__`](#qiskit_noise_learning.experiment_builder.ExperimentBuilderStage.__init__ "qiskit_noise_learning.experiment_builder.ExperimentBuilderStage.__init__")() |                                                  |
+  | [`run`](#qiskit_noise_learning.experiment_builder.ExperimentBuilderStage.run "qiskit_noise_learning.experiment_builder.ExperimentBuilderStage.run")(experiment)      | Validate required fields, then apply this stage. |
+
+  ## Attributes
+
+  |                    |   |
+  | ------------------ | - |
+  | `populates_fields` |   |
+  | `required_fields`  |   |
+
+  ### run
+
+  <Function id="qiskit_noise_learning.experiment_builder.ExperimentBuilderStage.run" signature="run(experiment: Experiment) → Experiment">
+    Validate required fields, then apply this stage.
+
+    **Parameters**
+
+    **experiment** – The input experiment.
+
+    **Returns**
+
+    A new [`Experiment`](experiment-builder-experiment "qiskit_noise_learning.experiment_builder.Experiment") with this stage’s transformations applied.
+
+    **Raises**
+
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If any field listed in `required_fields` is `None`.
+  </Function>
+</Class>
+

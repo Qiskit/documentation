@@ -1,0 +1,111 @@
+---
+title: PositivityMinSolve (latest version)
+description: API reference for qiskit_noise_learning.analysis.PositivityMinSolve in the latest version of qiskit-noise-learning
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_noise_learning.analysis.PositivityMinSolve
+---
+
+<span id="qiskit-noise-learning-analysis-positivityminsolve" />
+
+# qiskit\_noise\_learning.analysis.PositivityMinSolve
+
+<Class id="qiskit_noise_learning.analysis.PositivityMinSolve" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/analysis/model_solve.py" signature="qiskit_noise_learning.analysis.PositivityMinSolve(coefficients: dict[str, float], epsilon: Callable[[LinearSystemData], float] | None = None, deltas: Callable[[LinearSystemData], Mapping[Hashable, float]] | None = None, weights: Callable[[LinearSystemData], IndexedMatrix] | None = None, non_negative: bool = False)" modifiers="class">
+  Bases: `ModelSolve`
+
+  Solves for the [`ModelData`](data-model-data "qiskit_noise_learning.data.ModelData") while minimizing Pauli-Lindblad rate positivity.
+
+  Requires that the [`Fit`](analysis-fit "qiskit_noise_learning.analysis.Fit") uses a [`PauliLindbladModel`](models-pauli-lindblad-model "qiskit_noise_learning.models.PauliLindbladModel").
+
+  For a gate set $\mathcal{G}$, let $\{r_{G, P}\}$ denote the Pauli-Lindblad rates over gate-dependent generator sets $\mathcal{K}(G)$, $A$ the design matrix and $b$ the observed data. For the user-specified algorithm parameters:
+
+  *   Gate coefficients $\{c_G \in \mathbb{R} : G \in \mathcal{G}\}$,
+  *   Global fit bound $\epsilon > 0$, and
+  *   Local fit bounds $\delta_P$ for each path $P$ measured in the design matrix,
+
+  this class solves the convex optimization problem:
+
+$$
+\min \sum_{G \in \mathcal{G}} c_G \sum_{P \in \mathcal{K}(G)} \max(0, r_{P, G})
+$$
+
+  subject to:
+
+  *   $\|W (A r - b)\|_2 \leq \epsilon$
+  *   $|(Ar - b)_i| \leq \delta_i$ for each row $i$
+  *   $r \geq 0$ (optional)
+
+  See `ModelSolve` for more details about the general responsibility of a model solver in this library.
+
+  The constraint bounds are specified as **policies**: callables that receive the solve-time [`LinearSystemData`](analysis-linear-system-data "qiskit_noise_learning.analysis.LinearSystemData") and return the corresponding bound.
+
+  **Parameters**
+
+  *   **coefficients** – Per-gate coefficients for the objective function, as a mapping from gate name to float.
+  *   **epsilon** – Policy returning the tolerance for the overall weighted L2 norm constraint. At least one of `epsilon` or `deltas` must be provided.
+  *   **deltas** – Policy returning per-row tolerances as a mapping from [`Path`](sequences-path "qiskit_noise_learning.sequences.Path") to float. It must cover every row of the linear system, since a row absent from the mapping would be left unconstrained. At least one of `epsilon` or `deltas` must be provided.
+  *   **weights** – Policy returning the weight matrix `W` for the L2 constraint as an [`IndexedMatrix`](math-indexed-matrix "qiskit_noise_learning.math.IndexedMatrix") whose row and column indices are [`Path`](sequences-path "qiskit_noise_learning.sequences.Path") objects. Defaults to identity. A row or column of the linear system absent from `W` is weighted zero, which drops its residual from the norm. Only used when `epsilon` is provided.
+  *   **non\_negative** – Whether to enforce `x >= 0`.
+
+  **Raises**
+
+  *   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError) – If `epsilon`, `deltas` or `weights` is given as a fixed value rather than a policy. Use [`from_constants()`](#qiskit_noise_learning.analysis.PositivityMinSolve.from_constants "qiskit_noise_learning.analysis.PositivityMinSolve.from_constants") for fixed values.
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – At solve time, if the `deltas` or `weights` policy produces a label that is not a row of the linear system, or if `deltas` omits one.
+  *   [**RuntimeError**](https://docs.python.org/3/library/exceptions.html#RuntimeError) – At solve time, if the convex solver does not return a solution, for instance because the constraints are infeasible.
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit_noise_learning.analysis.PositivityMinSolve.__init__" signature="__init__(coefficients: dict[str, float], epsilon: Callable[[LinearSystemData], float] | None = None, deltas: Callable[[LinearSystemData], Mapping[Hashable, float]] | None = None, weights: Callable[[LinearSystemData], IndexedMatrix] | None = None, non_negative: bool = False)" />
+
+  ## Methods
+
+  |                                                                                                                                                                                                           |                                                                                                                             |
+  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit_noise_learning.analysis.PositivityMinSolve.__init__ "qiskit_noise_learning.analysis.PositivityMinSolve.__init__")(coefficients\[, epsilon, deltas, ...])                             |                                                                                                                             |
+  | [`from_constants`](#qiskit_noise_learning.analysis.PositivityMinSolve.from_constants "qiskit_noise_learning.analysis.PositivityMinSolve.from_constants")(coefficients\[, epsilon, ...])                   | Construct from fixed constant bounds instead of data-driven policies.                                                       |
+  | [`from_data_scaled_deltas`](#qiskit_noise_learning.analysis.PositivityMinSolve.from_data_scaled_deltas "qiskit_noise_learning.analysis.PositivityMinSolve.from_data_scaled_deltas")(coefficients\[, ...]) | Build with a delta-only policy based on statistical uncertainty of observables.                                             |
+  | `run`(fit)                                                                                                                                                                                                | Run this stage, returning a new [`Fit`](analysis-fit "qiskit_noise_learning.analysis.Fit") with the output level populated. |
+
+  ## Attributes
+
+  |                |                                   |
+  | -------------- | --------------------------------- |
+  | `input_level`  | The data level this stage reads.  |
+  | `output_level` | The data level this stage writes. |
+
+  ### from\_constants
+
+  <Function id="qiskit_noise_learning.analysis.PositivityMinSolve.from_constants" signature="from_constants(coefficients: dict[str, float], epsilon: float | None = None, deltas: Mapping[Path, float] | None = None, weights: IndexedMatrix | None = None, non_negative: bool = False) → Self" modifiers="classmethod">
+    Construct from fixed constant bounds instead of data-driven policies.
+
+    Each supplied constant is wrapped in a policy that ignores the data and returns it. See the class docstring for the meaning of each argument; here they are fixed values rather than callables.
+  </Function>
+
+  ### from\_data\_scaled\_deltas
+
+  <Function id="qiskit_noise_learning.analysis.PositivityMinSolve.from_data_scaled_deltas" signature="from_data_scaled_deltas(coefficients: dict[str, float], scale: float = 1.0, non_negative: bool = False) → Self" modifiers="classmethod">
+    Build with a delta-only policy based on statistical uncertainty of observables.
+
+    Each row’s tolerance is set from that row’s own statistical uncertainty and its exponential-fit goodness-of-fit. For row $i$, with statistical `1`-sigma `sigma_b` and the reduced chi-squared `chi2_red` read from the `"reduced_chi_squared"` entry of `row_diagnostics`:
+
+$$
+\begin{split}\mathrm{inflation}_i &= \max(1, \sqrt{\mathrm{chi2\_red}_i}) \\
+\delta_i &= \mathrm{scale} \cdot \mathrm{inflation}_i \cdot \sigma_{b, i}\end{split}
+$$
+
+    Setting `delta_i` proportional to `sigma` follows the Morozov discrepancy principle (allow about `scale` standard deviations of slack). Because `curve_fit` reports `sigma_b` with `absolute_sigma=True`, it is blind to model mismatch; the `sqrt(chi2_red)` factor loosens rows whose exponential fit is poor, and the `max(1, .)` clamp means mismatch can only loosen a row, never tighten it below its statistical uncertainty. Rows with an undefined `chi2_red` (`nan`, e.g. averaged rows), and every row when the system carries no `"reduced_chi_squared"` diagnostic at all, get no inflation. If the model cannot be fit within the resulting tolerances the solve reports an infeasible problem, and `scale` is the knob that loosens every row at once.
+
+    A row whose uncertainty is non-positive or non-finite carries no statistical information to scale by, so rather than being treated as an extremely precise row it is assigned the median tolerance of the rows that do have a usable uncertainty. This keeps such a row in the fit at a typical scale without letting it constrain the solution as a near-equality, and no row’s tolerance ever depends on another row’s uncertainty except through this substitution.
+
+    **Parameters**
+
+    *   **coefficients** – Per-gate coefficients for the objective function, as a mapping from gate name to float.
+    *   **scale** – Multiplier on the per-row tolerance, in units of (inflated) standard deviations.
+    *   **non\_negative** – Whether to enforce `x >= 0`.
+
+    **Raises**
+
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – At solve time, if no row of the linear system has a positive, finite uncertainty, leaving nothing to derive tolerances from.
+  </Function>
+</Class>
+
