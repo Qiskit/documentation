@@ -1,0 +1,173 @@
+---
+title: EstimatorOptions (dev version)
+description: API reference for qiskit_ibm_runtime.options_models.EstimatorOptions in the dev version of qiskit-ibm-runtime
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_ibm_runtime.options_models.EstimatorOptions
+---
+
+<span id="qiskit-ibm-runtime-options-models-estimatoroptions" />
+
+# qiskit\_ibm\_runtime.options\_models.EstimatorOptions
+
+<Class id="qiskit_ibm_runtime.options_models.EstimatorOptions" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/options_models/estimator.py#L30-L102" signature="EstimatorOptions" modifiers="pydantic model">
+  Bases: `BaseOptionsModel`
+
+  Options for the client-side Estimator.
+
+  **Config**
+
+  *   **validate\_assignment**: *bool = True*
+  *   **extra**: *str = forbid*
+
+  ### default\_precision
+
+  <Attribute id="qiskit_ibm_runtime.options_models.EstimatorOptions.default_precision" modifiers="field">
+    Type: `Annotated`\[`float`, `Field`(`gt``=``0`)]
+
+    Default value: `0.015625`
+
+    The default precision to use for any PUB or `run()` call that does not specify one.
+
+    The default precision for expectation value estimates if not specified in the PUBs or in the run method.
+
+    The default value of `0.015625`, equivalent to `4096**-0.5`, represents the precision expected from `4096` shots in the presence of i.i.d. noise.
+
+    **Constraints**
+
+    *   **gt** = 0
+  </Attribute>
+
+  ### default\_shots
+
+  <Attribute id="qiskit_ibm_runtime.options_models.EstimatorOptions.default_shots" modifiers="field">
+    Type: `Annotated`\[`int`, `Field`(`ge``=``0`)] | `None`
+
+    Default value: `None`
+
+    The total number of shots to use per circuit per configuration.
+
+    <Admonition title="Note" type="note">
+      If set, this value overrides [`default_precision`](#qiskit_ibm_runtime.options_models.EstimatorOptions.default_precision "qiskit_ibm_runtime.options_models.EstimatorOptions.default_precision").
+    </Admonition>
+
+    A configuration is a combination of a specific parameter value binding set and a physical measurement basis. A physical measurement basis groups together some collection of qubit-wise commuting observables for some specific circuit/parameter value set to create a single measurement with basis rotations that is inserted into hardware executions.
+
+    If twirling is enabled, the value of this option will be divided over circuit randomizations, with a smaller number of shots per randomization. See the [`twirling`](#qiskit_ibm_runtime.options_models.EstimatorOptions.twirling "qiskit_ibm_runtime.options_models.EstimatorOptions.twirling") options.
+  </Attribute>
+
+  ### dynamical\_decoupling
+
+  <Attribute id="qiskit_ibm_runtime.options_models.EstimatorOptions.dynamical_decoupling" modifiers="field">
+    Type: [`DynamicalDecouplingOptions`](options-models-dynamical-decoupling-options "qiskit_ibm_runtime.options_models.DynamicalDecouplingOptions")
+
+    Default value: `DynamicalDecouplingOptions(enable=False, sequence_type='XX', extra_slack_distribution='middle', scheduling_method='alap', skip_reset_qubits=False)`
+
+    Dynamical decoupling options.
+  </Attribute>
+
+  ### environment
+
+  <Attribute id="qiskit_ibm_runtime.options_models.EstimatorOptions.environment" modifiers="field">
+    Type: [`EnvironmentOptions`](options-models-environment-options "qiskit_ibm_runtime.options_models.EnvironmentOptions")
+
+    Default value: `EnvironmentOptions(log_level='WARNING', job_tags=[], private=False, max_execution_time=None, image=None)`
+
+    Options related to the execution environment.
+  </Attribute>
+
+  ### execution
+
+  <Attribute id="qiskit_ibm_runtime.options_models.EstimatorOptions.execution" modifiers="field">
+    Type: [`ExecutionOptions`](options-models-execution-options "qiskit_ibm_runtime.options_models.ExecutionOptions")
+
+    Default value: `ExecutionOptions(init_qubits=True, rep_delay=None, scheduler_timing=False, stretch_values=False)`
+
+    Execution options.
+  </Attribute>
+
+  ### experimental
+
+  <Attribute id="qiskit_ibm_runtime.options_models.EstimatorOptions.experimental" modifiers="field">
+    Type: `dict`
+
+    Default value: `{}`
+
+    Experimental options.
+  </Attribute>
+
+  ### max\_execution\_time
+
+  <Attribute id="qiskit_ibm_runtime.options_models.EstimatorOptions.max_execution_time" modifiers="field">
+    Type: `int` | `None`
+
+    Default value: `None`
+
+    Maximum execution time in seconds.
+
+    This value bounds system execution time (not wall clock time). System execution time is the amount of time that the system is dedicated to processing your job. If a job exceeds this time limit, it is forcibly cancelled.
+  </Attribute>
+
+  ### resilience
+
+  <Attribute id="qiskit_ibm_runtime.options_models.EstimatorOptions.resilience" modifiers="field">
+    Type: [`ResilienceOptions`](options-models-resilience-options "qiskit_ibm_runtime.options_models.ResilienceOptions")
+
+    Default value: `ResilienceOptions(measure_mitigation=None, measure_noise_learning=MeasureNoiseLearningOptions(num_randomizations='auto'), pec_mitigation=False, pec=PecOptions(max_overhead=100, noise_gain='auto'), zne_mitigation=None, zne=ZneOptions(amplifier='gate_folding', noise_factors='auto', extrapolator=('exponential', 'linear'), extrapolated_noise_factors='auto'), layer_noise_model=None)`
+
+    Advanced resilience options to fine-tune the resilience strategy.
+  </Attribute>
+
+  ### resilience\_level
+
+  <Attribute id="qiskit_ibm_runtime.options_models.EstimatorOptions.resilience_level" modifiers="field">
+    Type: `Literal`\[`0`, `1`, `2`]
+
+    Default value: `1`
+
+    How much resilience to build against errors.
+
+    Higher levels generate more accurate results, at the expense of longer processing times. The supported values are:
+
+    *   0: No mitigation.
+    *   1: Minimal mitigation costs. Mitigate error associated with readout errors.
+    *   2: Medium mitigation costs. Typically reduces bias in estimators but is not guaranteed to be zero bias.
+
+    Refer to the [Configure error mitigation for IBM Quantum Compute (formerly Qiskit Runtime)](/docs/guides/configure-error-mitigation) guide for more information about the error mitigation methods used at each level.
+  </Attribute>
+
+  ### simulator
+
+  <Attribute id="qiskit_ibm_runtime.options_models.EstimatorOptions.simulator" modifiers="field">
+    Type: [`SimulatorOptions`](options-models-simulator-options "qiskit_ibm_runtime.options_models.SimulatorOptions")
+
+    Default value: `SimulatorOptions(angle_decimals=5, layer_noise_model=None, seed_simulator=None, warn_absent=True)`
+
+    Options related to local mode simulations.
+  </Attribute>
+
+  ### twirling
+
+  <Attribute id="qiskit_ibm_runtime.options_models.EstimatorOptions.twirling" modifiers="field">
+    Type: [`TwirlingOptions`](options-models-twirling-options "qiskit_ibm_runtime.options_models.TwirlingOptions")
+
+    Default value: `TwirlingOptions(enable_gates=None, enable_measure=None, group='pauli', num_randomizations='auto', shots_per_randomization='auto', strategy='active-accum')`
+
+    Twirling options.
+  </Attribute>
+
+  ### update
+
+  <Function id="qiskit_ibm_runtime.options_models.EstimatorOptions.update" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/options_models/base.py#L46-L54" signature="update(**kwargs)">
+    Update the options.
+
+    **Parameters**
+
+    **kwargs** (*Any*)
+
+    **Return type**
+
+    None
+  </Function>
+</Class>
+

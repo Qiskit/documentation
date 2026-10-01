@@ -1,0 +1,119 @@
+---
+title: SamplerOptions (dev version)
+description: API reference for qiskit_ibm_runtime.options_models.SamplerOptions in the dev version of qiskit-ibm-runtime
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_ibm_runtime.options_models.SamplerOptions
+---
+
+<span id="qiskit-ibm-runtime-options-models-sampleroptions" />
+
+# qiskit\_ibm\_runtime.options\_models.SamplerOptions
+
+<Class id="qiskit_ibm_runtime.options_models.SamplerOptions" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/options_models/sampler.py#L25-L55" signature="SamplerOptions" modifiers="pydantic model">
+  Bases: `BaseOptionsModel`
+
+  Options for the client-side Sampler.
+
+  **Config**
+
+  *   **validate\_assignment**: *bool = True*
+  *   **extra**: *str = forbid*
+
+  ### default\_shots
+
+  <Attribute id="qiskit_ibm_runtime.options_models.SamplerOptions.default_shots" modifiers="field">
+    Type: `int` | `None`
+
+    Default value: `4096`
+
+    The default number of shots to use if none are specified in the PUBs or in the run method.
+  </Attribute>
+
+  ### dynamical\_decoupling
+
+  <Attribute id="qiskit_ibm_runtime.options_models.SamplerOptions.dynamical_decoupling" modifiers="field">
+    Type: [`DynamicalDecouplingOptions`](options-models-dynamical-decoupling-options "qiskit_ibm_runtime.options_models.DynamicalDecouplingOptions")
+
+    Default value: `DynamicalDecouplingOptions(enable=False, sequence_type='XX', extra_slack_distribution='middle', scheduling_method='alap', skip_reset_qubits=False)`
+
+    Suboptions for dynamical decoupling.
+  </Attribute>
+
+  ### environment
+
+  <Attribute id="qiskit_ibm_runtime.options_models.SamplerOptions.environment" modifiers="field">
+    Type: [`EnvironmentOptions`](options-models-environment-options "qiskit_ibm_runtime.options_models.EnvironmentOptions")
+
+    Default value: `EnvironmentOptions(log_level='WARNING', job_tags=[], private=False, max_execution_time=None, image=None)`
+
+    Options related to the execution environment.
+  </Attribute>
+
+  ### execution
+
+  <Attribute id="qiskit_ibm_runtime.options_models.SamplerOptions.execution" modifiers="field">
+    Type: [`SamplerExecutionOptions`](options-models-sampler-execution-options "qiskit_ibm_runtime.options_models.SamplerExecutionOptions")
+
+    Default value: `SamplerExecutionOptions(init_qubits=True, rep_delay=None, scheduler_timing=False, stretch_values=False, meas_type='classified')`
+
+    Execution options.
+  </Attribute>
+
+  ### experimental
+
+  <Attribute id="qiskit_ibm_runtime.options_models.SamplerOptions.experimental" modifiers="field">
+    Type: `dict`
+
+    Default value: `{}`
+
+    Experimental options.
+  </Attribute>
+
+  ### max\_execution\_time
+
+  <Attribute id="qiskit_ibm_runtime.options_models.SamplerOptions.max_execution_time" modifiers="field">
+    Type: `int` | `None`
+
+    Default value: `None`
+
+    Maximum execution time in seconds.
+
+    This value bounds system execution time (not wall clock time). System execution time is the amount of time that the system is dedicated to processing your job. If a job exceeds this time limit, it is forcibly cancelled.
+  </Attribute>
+
+  ### simulator
+
+  <Attribute id="qiskit_ibm_runtime.options_models.SamplerOptions.simulator" modifiers="field">
+    Type: [`SimulatorOptions`](options-models-simulator-options "qiskit_ibm_runtime.options_models.SimulatorOptions")
+
+    Default value: `SimulatorOptions(angle_decimals=5, layer_noise_model=None, seed_simulator=None, warn_absent=True)`
+
+    Options related to local mode simulations.
+  </Attribute>
+
+  ### twirling
+
+  <Attribute id="qiskit_ibm_runtime.options_models.SamplerOptions.twirling" modifiers="field">
+    Type: [`TwirlingOptions`](options-models-twirling-options "qiskit_ibm_runtime.options_models.TwirlingOptions")
+
+    Default value: `TwirlingOptions(enable_gates=None, enable_measure=None, group='pauli', num_randomizations='auto', shots_per_randomization='auto', strategy='active-accum')`
+
+    Pauli twirling options.
+  </Attribute>
+
+  ### update
+
+  <Function id="qiskit_ibm_runtime.options_models.SamplerOptions.update" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/options_models/base.py#L46-L54" signature="update(**kwargs)">
+    Update the options.
+
+    **Parameters**
+
+    **kwargs** (*Any*)
+
+    **Return type**
+
+    None
+  </Function>
+</Class>
+
