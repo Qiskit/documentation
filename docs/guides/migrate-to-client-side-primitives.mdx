@@ -79,6 +79,7 @@ from qiskit_ibm_runtime.options_models import SamplerOptions, EstimatorOptions
 | More pre- and post-processing now happens on the client side, so `sampler.run()` and `job.result()` might take longer than before. | Enable INFO logging to follow the progress of client-side processing. See [Enable INFO logging](#enable-info-logging). |
 | Circuit metadata is copied into result metadata. The data types allowed in result metadata are now limited to `str`, `float`, `int`, `bool`, and lists or dictionaries of those types. | If you need other data types, encode them as a string first (for example, with base64). |
 | Options classes (`options_models.SamplerOptions` and so on) are now Pydantic models instead of dataclasses, so they can no longer be converted to Python dictionaries by using `asdict()`. | Use `options.model_dump()` instead. |
+| Options classes that previously had the `V2` suffix (`ExecutionOptionsV2` and so on) no longer do, since V1 primitives are no longer supported. | Remove the `V2` suffix of these options classes: replace `ExecutionOptionsV2` with `ExecutionOptions`, `ResilienceOptionsV2` with `ResilienceOptions`, and `SamplerExecutionOptionsV2` with `SamplerExecutionOptions`. |
 | If `twirling` is enabled and `shots` (in the PUBs or in `run()`), `shots_per_randomization`, and `num_randomizations` are **all** specified, then `num_randomizations * shots_per_randomization` takes precedence over `shots`. | Omit `num_randomizations` and `shots_per_randomization` if you want the `shots` value to be used. |
 | Some input validation has moved to the server side and now raises `RuntimeError` instead of `IBMInputValueError`. | Update the exception types your code catches. |
 | Mixed shot values in a single job are no longer supported. | Submit a separate job for each shot value. See [Job splitting](#job-splitting) for considerations. |
@@ -92,6 +93,7 @@ from qiskit_ibm_runtime.options_models import SamplerOptions, EstimatorOptions
 | More pre- and post-processing now happens on the client side, so `estimator.run()` and `job.result()` might take longer than before. | Enable INFO logging to follow the progress of client-side processing. See [Enable INFO logging](#enable-info-logging). |
 | Circuit metadata is copied into result metadata. The data types allowed in result metadata are now limited to `str`, `float`, `int`, `bool`, and lists or dictionaries of those types. | If you need other data types, encode them as a string first (for example, with base64). |
 | Options classes (`options_models.EstimatorOptions` and so on) are now Pydantic models instead of dataclasses, so they can no longer be converted to Python dictionaries using `asdict()`. | Use `options.model_dump()` instead. |
+| Options classes that have `V2` suffix before (`ExecutionOptionsV2` and so on) no longer do, since V1 primitives are no longer supported. | Remove the `V2` suffix of these options classes: replace `ExecutionOptionsV2` with `ExecutionOptions` and `ResilienceOptionsV2` with `ResilienceOptions`. |
 | All input options are returned in result metadata, rather than a selected subset. | None — this is informational. |
 | Some input validation has moved to the server side and now raises `RuntimeError` instead of `IBMInputValueError`. | Update the exception types your code catches. |
 | No more implicit noise learning for PEA and PEC. Measurement noise learning for TREX is still supported. | Learn the noise models separately and pass them to Estimator. See [Perform explicit noise learning for PEA and PEC](#perform-explicit-noise-learning-for-pea-and-pec). |
@@ -127,7 +129,7 @@ or your code will fail. Measurement noise learning for TREX is unaffected and co
 
 Similarly, if your code uses `NoiseLearner` and passes the resulting noise model to server-side Estimator, you need to [migrate to `NoiseLearnerV3`](/docs/guides/migrate-to-noise-learner-v3). Do NOT use the older `NoiseLearner`, which is incompatible with the new Estimator.
 
-All of the noise learning options in the server-side Estimator ([`LayerNoiseLearningOptions`](/docs/api/qiskit-ibm-runtime/options-layer-noise-learning-options)) map directly to the `NoiseLearnerV3` option ([`NoiseLearnerV3Options`](/docs/api/qiskit-ibm-runtime/options-models-noise-learner-v3-options)), with the exception of `max_layers_to_learn`. The number of layers to learn is instead based on the number of layers passed to `NoiseLearnerV3`.
+All of the noise learning options in the server-side Estimator (`LayerNoiseLearningOptions`) map directly to the `NoiseLearnerV3` option ([`NoiseLearnerV3Options`](/docs/api/qiskit-ibm-runtime/options-models-noise-learner-v3-options)), with the exception of `max_layers_to_learn`. The number of layers to learn is instead based on the number of layers passed to `NoiseLearnerV3`.
 
 For example:
 
@@ -243,7 +245,7 @@ Before submitting to hardware, you can validate the migrated code against a `Fak
 backend to catch any syntax errors early. Note the following details about local testing mode:
 
 - **It does not reproduce hardware results.** Local noisy simulation does not perfectly
-  replicate real device noise, and therefore the outputs might differ. Running does validate 
+  replicate real device noise, and therefore the outputs might differ. Running does validate
   that the option paths and value types are correct.
 - `NoiseLearnerV3` has **no local testing mode**: its `mode` accepts only a real `Backend`,
 `Session`, or `Batch`, so you cannot exercise the noise-learning step against a fake
