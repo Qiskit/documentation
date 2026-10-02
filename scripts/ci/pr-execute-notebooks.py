@@ -33,7 +33,7 @@ import sys
 import subprocess
 from pathlib import Path
 
-CONTENT_DIRECTORIES = ["docs", "learning", "tutorial-sources"]
+CONTENT_DIRECTORIES = ["docs", "learning"]
 
 all_changed_files = Path(".github/outputs/changed-files.txt").read_text().split("\n")
 
