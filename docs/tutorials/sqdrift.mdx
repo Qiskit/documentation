@@ -5,7 +5,7 @@ in_page_toc_min_heading_level: 1
 in_page_toc_max_heading_level: 1
 ---
 
-{/* cspell:ignore cisolver ECORE combinatorially multiset sqdrift BLAS nullptr cerr endl cout nullopt ofstream bitstr RAII LAPACK fopenmp openblas mpicxx CCFLAGS SYSLIB lomp libopenmpi libomp libblas liblapack CCCOM llapack lblas adetfile mult */}
+{/* cspell:ignore rustup cisolver ECORE combinatorially multiset sqdrift BLAS nullptr cerr endl cout nullopt ofstream bitstr RAII LAPACK fopenmp openblas mpicxx CCFLAGS SYSLIB lomp libopenmpi libomp libblas liblapack CCCOM llapack lblas adetfile mult */}
 
 {/* Keep the Python code blocks in sync with assets/sqdrift/sqdrift.ipynb.
     The C++ walkthrough is adapted from assets/sqdrift/cpp/README.md;
@@ -319,6 +319,8 @@ After term grouping, it samples the operators based on their weights. For each o
 $$
 W_{h_i} = |c_i| / \lambda
 $$
+
+Because the terms were grouped in Step 1, each $h_i$ here is a whole group: $c_i$ is the mean absolute coefficient of the terms in group $i$, and each term in the group is evolved with its coefficient reduced to its sign.
 
 **Fermionic and hardware-native optimizations**
 
@@ -857,9 +859,9 @@ This tutorial shows how to generate an ensemble of such randomized circuits. Aft
 
 This implementation runs on IBM Quantum hardware and uses an external SBD executable for classical diagonalization. It does not include the Python simulator example.
 
-Follow the [C++ build instructions](https://github.com/Qiskit/documentation/blob/main/docs/tutorials/assets/sqdrift/cpp/BUILD_INSTRUCTIONS.md) to install the compiler, CMake, Rust, Boost, and the Qiskit dependencies. The final SBD step additionally requires MPI, OpenMP, and BLAS/LAPACK. Windows is not currently supported by this implementation.
+Follow the [C++ build instructions](https://github.com/Qiskit/documentation/blob/main/docs/tutorials/assets/sqdrift/cpp/BUILD_INSTRUCTIONS.md) to install the compiler, CMake, Rust, Boost, and the Qiskit dependencies. Install Rust with [rustup](https://rustup.rs/): the Qiskit dependencies pin their own Rust version, which rustup downloads automatically, but a Rust installed from Homebrew or a Linux package manager might be too old. The final SBD step additionally requires MPI, OpenMP, and BLAS/LAPACK. Windows is not currently supported by this implementation.
 
-Use the complete [C++ source](https://github.com/Qiskit/documentation/blob/main/docs/tutorials/assets/sqdrift/cpp/SqDRIFT.cpp) and [CMake project](https://github.com/Qiskit/documentation/blob/main/docs/tutorials/assets/sqdrift/cpp/CMakeLists.txt) from the repository. Keep the adjacent `fcidump_files` directory when downloading the example. From a checkout of the documentation repository, build with:
+Use the complete [C++ source](https://github.com/Qiskit/documentation/blob/main/docs/tutorials/assets/sqdrift/cpp/SqDRIFT.cpp) and [CMake project](https://github.com/Qiskit/documentation/blob/main/docs/tutorials/assets/sqdrift/cpp/CMakeLists.txt) from the repository. Keep the adjacent `fcidump_files` directory when downloading the example. From a checkout of the documentation repository, build with the following commands. The first build downloads and compiles all dependencies and takes several minutes.
 
 ```bash
 cd docs/tutorials/assets/sqdrift/cpp
@@ -867,7 +869,7 @@ cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 cmake --build build --config Release
 ```
 
-Before running, follow the platform-specific library-path instructions in the build guide. Run `./SqDRIFT` from `docs/tutorials/assets/sqdrift/cpp` so that it can find `../fcidump_files/N2_sto_3g`.
+The build writes the `SqDRIFT` executable to `docs/tutorials/assets/sqdrift/cpp` (the project root), not to `build/`. Run `./SqDRIFT` from the project root so that it can find `../fcidump_files/N2_sto_3g`. All other commands in this tab also run from the project root unless they say otherwise. If `./SqDRIFT` fails with a missing shared library error, follow the platform-specific library-path instructions in the build guide; on macOS, the executable usually runs without them.
 
 ## Setup (C++)
 
@@ -875,7 +877,7 @@ The snippets below are excerpts from the complete [SqDRIFT.cpp program](https://
 
 Before running SqDRIFT, ensure your IBM Quantum API token is configured for the **IBM Cloud platform** (the previous IBM Quantum Network platform is retired and will cause a startup panic).
 
-The easiest way to create a correctly-formatted config file is via Python:
+If you have Python with `qiskit-ibm-runtime` installed, the easiest way to create a correctly formatted config file is:
 
 ```python
 from qiskit_ibm_runtime import QiskitRuntimeService
@@ -893,7 +895,7 @@ This writes `~/.qiskit/qiskit-ibm.json` (Linux/macOS) or `%USERPROFILE%\.qiskit\
 }
 ```
 
-Get your token from: https://quantum.ibm.com/
+Get your API key from [IBM Quantum Platform](https://quantum.cloud.ibm.com/).
 
 > **Note:** A missing or malformed config file causes an unhelpful Rust `unwrap()` panic at startup rather than a clean error. Double-check the key name (`default-ibm-quantum-platform`) and channel value (`ibm_quantum_platform`) — the old `ibm_quantum` channel is never read by this client.
 
@@ -966,7 +968,7 @@ Groups related Hamiltonian terms by electronic structure before constructing the
 
 **Order matters here.** Normalization rescales every coefficient to unit magnitude *in place*, so the sampling weights must be computed first. If normalization runs first, every $|c_j|$ reads back as exactly `1.0` and each group's weight collapses into a bare count of its terms — the sampling distribution would then be driven by group size rather than by the physical coefficients.
 
-Each group's weight is the **mean** absolute coefficient, matching the Python tab. Using the sum instead would make $\lambda$ scale with group size, which in turn skews the evolution time $t_k = \lambda\tau/n$.
+Each group's weight is the **mean** absolute coefficient of its terms. The Python tab's `QDriftTrotterization` pass uses the same weight for a grouped Hamiltonian. Using the sum instead would make $\lambda$ scale with group size, which in turn skews the evolution time $t_k = \lambda\tau/n$.
 
 ```cpp
 // Calculate sampling weights BEFORE normalization.
@@ -1048,9 +1050,16 @@ The weight $\lambda_i = \frac{1}{|G_i|}\sum_{j \in G_i} |c_{ij}|$ is the mean ab
     }
 ```
 
-Generates 100 random circuits, each containing 10 operators sampled from the weighted distribution. This creates the ensemble of qDRIFT circuits.
+**Output:**
+```
+ Generating 100 circuits with 10 operators each...
+```
 
-### Step 2: Optimize problem for quantum hardware execution (C++)
+Draws the operator sets for 100 random circuits, each containing 10 groups sampled from the weighted distribution. The next step turns these sets into the ensemble of qDRIFT circuits.
+
+### Step 2: Build the qDRIFT circuits (C++)
+
+In the C++ version, this step builds the circuits from the sampled operator sets. Transpilation for the target backend happens in Step 3, immediately before each circuit is submitted.
 
 ```cpp
     // Create Suzuki-Trotter circuits by composing all operators
@@ -1162,7 +1171,6 @@ Generates 100 random circuits, each containing 10 operators sampled from the wei
 ``` 
 **Output:**
 ```
-Generating 100 circuits with 10 operators each...
   Created 10/100 circuits
   Created 20/100 circuits
   Created 30/100 circuits
@@ -1175,6 +1183,9 @@ Generating 100 circuits with 10 operators each...
   Created 100/100 circuits
 ✓ Created all 100 Suzuki-Trotter circuits
 ```
+
+The complete program then prints circuit statistics and the operator indices of circuit 0, which are omitted here.
+
 For each sampled operator, creates a Suzuki-Trotter evolution circuit with time $t_k = \frac{\lambda \tau}{n}$, where $n$ is the number of operators sampled per circuit and $\tau$ is the time step. Because each sampled group was normalized term-by-term before mapping, this evolution applies only the phase/sign of each term during the rotation; the magnitudes contribute through the sampling distribution only. The Hartree-Fock initial state is prepared by applying X gates to qubits 0-6 and 10-16 (7 electrons in each spin sector). Each evolution circuit's instructions are manually appended to the main circuit using the C++ API.
 
 ### Step 3: Execute using Qiskit primitives (C++)
@@ -1251,17 +1262,22 @@ std::cout << "\n✓ Collected " << all_bitstrings.size()
             << " total bitstrings from all circuits" << std::endl;
 ```
 
+Connects to IBM Quantum, selects the backend by name, transpiles each circuit for that backend, and submits **one job per circuit**: 100 separate Sampler jobs of 100 shots each on a 20-qubit register. It then polls each job until it finishes and collects the bitstrings from `result[0]`. Every job uses QPU time and waits in the queue separately, so expect this step to take much longer than a single batched job.
+
+The hardware results quoted on this page come from a run on `ibm_pittsburgh` (100 circuits × 100 shots), with `backend_name` changed from the default `ibm_fez`. The saved samples were postprocessed with the corrected determinant bit ordering shown in Step 4. Hardware noise varies between runs, so your counts and final energy will differ.
+
 **Output:**
 ```
+ Connecting to IBM Quantum Cloud...
 ✓ Connected to IBM Quantum
 ✓ Selected backend: ibm_pittsburgh
+
+ Submitting 100 circuits (100 shots each)...
+
 ⏳ Waiting for 100 jobs to complete...
+
 ✓ Collected 10000 total bitstrings from all circuits
 ```
-
-Connects to IBM Quantum, selects the backend by name, and submits one job per circuit. Each job is polled independently; bitstrings are collected from `result[0]` of each job — no per-shot printing.
-
-The hardware results quoted on this page come from a run on `ibm_pittsburgh` (100 circuits × 100 shots), with `backend_name` changed from the default `ibm_fez`. The saved samples were postprocessed with the corrected determinant bit ordering shown below. Hardware noise varies between runs, so your counts and final energy will differ.
 
 > **Changing the backend:** Change `backend_name` in `SqDRIFT.cpp` to target a different device; `service.backends()` lists what your account can reach.
 
@@ -1307,7 +1323,6 @@ std::cout << " Ready for SBD diagonalization!" << std::endl;
 ```
 **Output:**
 ```
-✓ Collected 10000 total bitstrings from all circuits
 ✓ Postselected 1137 bitstrings with Hamming weight (7,7)
 ✓ Generated 49 CI strings
 ✓ Wrote 49 CI strings to alphadets_from_sqd.txt
@@ -1337,7 +1352,7 @@ return 0;
 
 Properly frees all allocated memory and resources. The C++ `std::vector<QuantumCircuit>` is automatically cleaned up via RAII. Manually frees qubit operators, fermionic operators, and the FCIDump data.
 
-Now that we have created the basis for projecting our Hamiltonian over, we can proceed with the diagonalization process to obtain the ground state estimate.
+Now that we have created the basis for projecting our Hamiltonian over, we can proceed with the diagonalization process to obtain the ground state estimate. Run the following commands from the project root, `docs/tutorials/assets/sqdrift/cpp`.
 
 #### Build the SBD `diag` binary
 
@@ -1407,6 +1422,8 @@ SYSLIB= -llapack -lblas
 ```
 
 #### Run SqDRIFT to generate CI strings
+
+If you already ran `./SqDRIFT` through Steps 1–4, `alphadets_from_sqd.txt` already exists in the project root and you can skip this step. Otherwise, run it from the project root:
 
 ```bash
 ./SqDRIFT
@@ -1483,6 +1500,12 @@ The two examples differ in several respects at once, not only in how they treat 
 | Diagonal terms | Kept in the sampled operator | Removed by `filter_diagonal_terms`, changing the sampling distribution and the circuits |
 | Term ordering | Grouped only | `canonical_order` applied before grouping for reproducibility |
 | Diagonalization solver | **SBD** (`diag`, external MPI/OpenMP binary) | `qiskit-addon-sqd` in-process solver |
+| Backend | Fixed by name (`backend_name = "ibm_fez"`; the run on this page used `ibm_pittsburgh`) | `least_busy` operational backend with enough qubits |
+| Transpilation | Each circuit separately, optimization level 2 | All circuits together, optimization level 3 |
+| Job submission | 100 jobs, one circuit each | One Sampler job containing all 400 circuits |
+| Simulator run | None; hardware only | Noiseless simulator example before the hardware run |
+
+Both versions use the same Hamiltonian, group its terms by electronic structure, weight each group by the mean absolute coefficient of its terms, start from the Hartree-Fock state, sample 10 groups per circuit, and take 100 shots per circuit.
 
 Each of these affects the sampled subspace, and therefore the energy, independently. The larger circuit ensemble and the second, longer evolution time both broaden the set of configurations the Python example explores — sampling at more than one time is what gives SqDRIFT its Krylov-like coverage of the low-energy space, so a single-time run explores less of it. Filtering diagonal terms changes which operators are available to the sampler and the relative weights it draws from, so the two runs are not even sampling the same distribution.
 
