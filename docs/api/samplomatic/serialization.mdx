@@ -1,0 +1,68 @@
+---
+title: serialization (latest version)
+description: API reference for samplomatic.serialization in the latest version of samplomatic
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: samplomatic.serialization
+---
+
+<span id="module-samplomatic.serialization" />
+
+<span id="samplomatic-serialization" />
+
+# samplomatic.serialization
+
+Samplex serialization.
+
+[`Samplex`](auto/samplex-samplex "samplomatic.samplex.Samplex") objects can be serialized to and from JSON via [`samplex_to_json()`](auto/serialization-samplex-to-json "samplomatic.serialization.samplex_to_json") and [`samplex_from_json()`](auto/serialization-samplex-from-json "samplomatic.serialization.samplex_from_json"). The underlying format is a JSON node-link representation of the samplex graph, produced by [`rustworkx.node_link_json()`](https://www.rustworkx.org/apiref/rustworkx.node_link_json.html#rustworkx.node_link_json). Graph attributes encode data model elements that live outside the graph itself (e.g. parameter tables and I/O specifications), and node attributes encode the [`Node`](auto/samplex-nodes-node "samplomatic.samplex.nodes.Node") type and its data. Samplexes have no edge attributes.
+
+```python
+from samplomatic.serialization import samplex_to_json, samplex_from_json
+
+# save to a file
+samplex_to_json(samplex, filename="my_samplex.json")
+
+# or get a string
+json_str = samplex_to_json(samplex)
+
+# load from a string
+samplex = samplex_from_json(json_str)
+```
+
+## Versioning
+
+Every serialized samplex encodes a Samplex Serialization Version (SSV), a single integer that tracks changes to the serialization format independently of the package version. The constant `SSV` is the latest version known to the current package.
+
+The SSV history is summarized in the following table:
+
+| SSV | Package version | Changes                                                                                                                                                                                                                                                                                                                                          |
+| --- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 1   | 0.12.0          | Initial SSV system; baseline serialization of all node and register types.                                                                                                                                                                                                                                                                       |
+| 2   | 0.14.0          | Added [`C1Register`](auto/virtual-registers-c-1-register "samplomatic.virtual_registers.C1Register") serialization; updated `BasisChange` format.                                                                                                                                                                                                |
+| 3   | 0.17.0          | Added [`PropagateLocalC1Node`](auto/samplex-nodes-propagate-local-c-1-node "samplomatic.samplex.nodes.PropagateLocalC1Node") and `DistributionSamplingNode` serialization; added dedicated distribution serialization, including the new `BalancedPauli`, `UniformLocalC1` and `UniformPauliSubset` classes; updated `TwirlSamplingNode` format. |
+| 4   | 0.18.0          | Added `PropagateLocalPauliNode` and support for RZZ in `PauliPastCliffordNode`, `PropagateLocalC1Node`, and `UniformLocalC1`; added lookup table store infrastructure to the serialization header.                                                                                                                                               |
+
+### Backwards compatibility
+
+A samplex written at a given SSV can be loaded by any package version whose `SSV` is greater than or equal to the one encoded in the file. In general, upgrading samplomatic should preserve your ability to load previously saved samplexes, though support for very old SSVs may eventually be dropped.
+
+Loading a samplex written with a *future* SSV (i.e. by a newer version of samplomatic than you have installed) will raise [`SerializationError`](auto/exceptions-serialization-error "samplomatic.exceptions.SerializationError").
+
+### Writing at an older SSV
+
+By default, [`samplex_to_json()`](auto/serialization-samplex-to-json "samplomatic.serialization.samplex_to_json") writes at the latest `SSV`. You can pass an earlier `ssv` to produce output that is loadable by older versions of samplomatic:
+
+```python
+# write in a format compatible with samplomatic 0.12.0+
+samplex_to_json(samplex, filename="old_format.json", ssv=1)
+```
+
+This will raise [`SerializationError`](auto/exceptions-serialization-error "samplomatic.exceptions.SerializationError") if the samplex contains types that were introduced after the requested SSV (e.g. a [`C1Register`](auto/virtual-registers-c-1-register "samplomatic.virtual_registers.C1Register") cannot be written at SSV 1).
+
+## Functions
+
+|                                                                                                                       |                                    |
+| --------------------------------------------------------------------------------------------------------------------- | ---------------------------------- |
+| [`samplex_from_json`](auto/serialization-samplex-from-json "samplomatic.serialization.samplex_from_json")(json\_data) | Load a samplex from a json string. |
+| [`samplex_to_json`](auto/serialization-samplex-to-json "samplomatic.serialization.samplex_to_json")()                 | Dump a samplex to json.            |
+
