@@ -105,7 +105,7 @@ async function checkMdxAndToc(
 }
 
 async function checkNotebooks(configPath: string): Promise<void> {
-  const paths = await globby("{docs,learning,tutorial-sources}/**/*.ipynb");
+  const paths = await globby("{docs,learning}/**/*.ipynb");
   let allGood = true;
   await pMap(paths, async (path) => {
     const text = await readMarkdown(path, { includeCodeCellSourceCode: true });
