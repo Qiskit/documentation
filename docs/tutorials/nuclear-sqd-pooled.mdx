@@ -5,7 +5,7 @@ in_page_toc_min_heading_level: 1
 in_page_toc_max_heading_level: 1
 ---
 
-{/* cspell:ignore antisymmetrized antisymmetry Arvidsson Brookhaven Clebsch coarray coarrays Condon ctest dets eigh facecolor fontsize frameon Gordan gxpf Honma labelsize Malrieu markeredgecolor markeredgewidth Mizusaki Mkhize multiconfigurational multiplets Nesbet operatorname Otsuka Rancurel recoupling Shukur snt spes substate substates tbme tbmes textcoords usda USDA USDB virtuals wavefunctions xytext Yordanov zorder */}
+{/* cspell:ignore antisymmetrized antisymmetry Arvidsson Brookhaven Clebsch coarray coarrays Condon ctest dets eigh facecolor fontsize frameon Gordan gxpf Honma labelsize LAPACK Malrieu markeredgecolor markeredgewidth Mizusaki Mkhize multiconfigurational multiplets Nesbet operatorname Otsuka Rancurel recoupling Shukur snt spes substate substates tbme tbmes textcoords usda USDA USDB virtuals wavefunctions xytext Yordanov zorder */}
 
 {/* Keep the Python tab in sync with assets/nuclear_sqd_pooled/nuclear-sqd-pooled.ipynb.
     The Fortran tab is adapted from assets/nuclear_sqd_pooled/fortran/README.md;
@@ -2757,11 +2757,67 @@ The Fortran sources, interaction data, CMake project, and build instructions are
 
 </Admonition>
 
-This tab shows how to build and run the Fortran implementation of this workflow. The application builds an ensemble of excitation circuits, samples determinants on IBM Quantum&reg; hardware, filters them by nuclear symmetries, and diagonalizes the Hamiltonian in the selected subspace. For the physics behind each step, see the Python tab and the [Appendix](#appendix). The Fortran version makes some different choices from the Python tab; [Differences from the Python tab](#differences-from-the-python-tab) lists them.
+## Learning outcomes (Fortran)
 
-This implementation is adapted from the nuclear shell-model application in [qiskit-fortran](https://github.com/Qiskit/qiskit-fortran), the Fortran bindings for Qiskit. Build and run the version in the Fortran directory linked in the preceding note rather than the upstream application, because it includes corrections to interaction mass scaling and antisymmetrized pair-exchange phases.
+- Build and run a Qiskit workflow from Fortran, using the Qiskit C library and the [qiskit-fortran](https://github.com/Qiskit/qiskit-fortran) bindings.
+- Learn how a nuclear shell-model Hamiltonian, tabulated in a $J$-coupled basis of orbitals, becomes a qubit Hamiltonian in the $m$-scheme, where one qubit is one single-particle state.
+- Build a fixed, non-variational excitation ensemble whose excitations are ranked by second-order perturbation theory and whose angles are seeded from two-level mixing, so there is no classical optimization loop.
+- Filter sampled bitstrings by exact nuclear quantum numbers and diagonalize the Hamiltonian in the selected subspace to get a variational upper bound.
+- Check the build locally against an exact reference before submitting jobs to IBM Quantum&reg; hardware.
+
+## Prerequisites (Fortran)
+
+Before starting, review the following topics:
+
+- Modern Fortran (modules and derived types) and building projects with CMake.
+- [Sample-based quantum diagonalization](/docs/addons/qiskit-addon-sqd), and [Sample-based quantum diagonalization of a chemistry Hamiltonian](/docs/tutorials/sample-based-quantum-diagonalization), the electronic-structure counterpart of this tutorial.
+- [Introduction to primitives](/docs/guides/primitives).
+- Second quantization and the Jordan-Wigner mapping.
+
+## Background (Fortran)
+
+The nuclear shell model treats a nucleus as a few *valence* nucleons moving in a small set of single-particle orbitals above an inert *core*, interacting through an empirical two-body force fitted to measured spectra. Its computational cost is combinatorial: the basis is every way of distributing the valence protons and neutrons over the available states, and this growth limits the model spaces accessible to exact diagonalization.
+
+Pooled sample-based quantum diagonalization (pooled SQD) [\[1\]](#references) splits that problem in two. A quantum circuit is used only to *propose* which basis states matter. It is measured in the computational basis, and each measured bitstring names one Slater determinant. The Hamiltonian is then built and diagonalized classically in the span of those determinants. Because the classical step is an exact diagonalization inside a subspace, it returns a variational upper bound on the true ground-state energy.
+
+Noise changes *which* determinants the circuit proposes, but it does not enter the classical Hamiltonian. A shot that violates a conserved quantity is discarded, and a shot that survives is a legitimate basis vector however it was produced. Noise therefore costs subspace quality, not correctness. Nuclear structure provides several exact quantum numbers for this check: a physical determinant must carry the right number of valence protons *and* valence neutrons, the right total angular-momentum projection $M_J$, and the right parity.
+
+![The 24-qubit sd-shell register: three proton orbitals and three neutron orbitals, each split into 2j+1 magnetic substates, one qubit per substate, with the reference determinant of neon-20 filled on the maximal magnetic substates of the 0d5/2 orbital.](/docs/images/tutorials/nuclear-sqd-pooled/sd-shell-register.svg)
+
+The Fortran application uses the same register as the Python tab. Every qubit is one $m$-scheme single-particle state $(n, \ell, j, m_j, t_z)$, and $|1\rangle$ means occupied. Protons come first, then neutrons; within a species, orbitals follow the order of the interaction file; within an orbital, $m_j$ descends. The $^{20}\mathrm{Ne}$ example in this tab uses this 24-qubit $sd$-shell register.
+
+The Hamiltonian is a one-body term plus a two-body interaction,
+
+$$
+H = \sum_{p} \varepsilon_p\, a_p^\dagger a_p
+  + \tfrac{1}{4}\sum_{pqrs} \langle pq \| rs \rangle\, a_p^\dagger a_q^\dagger a_s a_r ,
+$$
+
+where $p,q,r,s$ label $m$-scheme states. The interaction file tabulates two-body matrix elements in the $J$-coupled basis of orbitals, and the application recovers each $m$-scheme element $\langle pq \| rs \rangle$ by Clebsch-Gordan recoupling. The regression test in [Check the workflow locally](#check-the-workflow-locally) confirms that this produces the same Hamiltonian as the Python tab.
+
+### The Fortran workflow
+
+1. **Reference determinant.** Fill the lowest single-particle-energy $(+m_j, -m_j)$ pairs of each species, which gives $M_J = 0$.
+2. **Excitation pool.** Generate the single and double excitations of the reference allowed by angular-momentum coupling, rank them by a second-order perturbation-theory score, $V^2/|\Delta|$, and seed each with its two-level mixing angle.
+3. **Circuit ensemble.** Each circuit prepares the reference and applies the next slice of the ranked pool: Givens rotations for single excitations and qubit-excitation gates for double excitations. With the default of 16 excitations per circuit, 11 circuits cover the whole double-excitation pool for $^{20}\mathrm{Ne}$.
+4. **Sample.** Transpile each circuit and sample it on a QPU.
+5. **Filter.** Keep only shots with the right proton number, neutron number, $M_J$, and parity, and discard the rest.
+6. **Diagonalize.** Build the Hamiltonian in the span of the unique kept determinants, pooled across all circuits, and diagonalize it with LAPACK to get a variational upper bound. Alternatively, diagonalize each circuit's samples separately.
+
+Each step maps to a source file in the Fortran directory:
+
+| Step | Source |
+|---|---|
+| Read the interaction and recouple to the $m$-scheme | `physics/usdb_reader.f90`, `physics/clebsch_gordan.f90`, `physics/orbital_registry.f90` |
+| Rank and seed the excitation pool | `nuclear_pool.f90`, `nuclear_selection.f90` |
+| Build the circuits | `circuit/nuclear_ansatz.f90`, `nuclear_gates.f90` |
+| Sample, filter, and diagonalize | `circuit/nuclear_shell_driver.f90`, `physics/symmetry_filter.f90`, `physics/exact_solver.f90` |
+
+The Fortran workflow differs from the Python tab in several choices, such as how it picks the reference determinant and how it handles samples with the wrong symmetry. [Differences from the Python tab](#differences-from-the-python-tab) lists them.
 
 ## Requirements (Fortran)
+
+This implementation is adapted from the nuclear shell-model application in [qiskit-fortran](https://github.com/Qiskit/qiskit-fortran), the Fortran bindings for Qiskit. Build and run the version in the Fortran directory linked in the preceding note rather than the upstream application, because it includes corrections to interaction mass scaling and antisymmetrized pair-exchange phases.
 
 Follow the [build instructions](https://github.com/Qiskit/documentation/blob/main/docs/tutorials/assets/nuclear_sqd_pooled/fortran/BUILD_INSTRUCTIONS.md) to build the Qiskit C library, the Fortran bindings, and this application. The build instructions set `NUCLEAR_SRC` to the Fortran directory and `NUCLEAR_DEPS` to a separate directory for the dependencies; the commands in this tab use those variables. Use the same Fortran compiler for the bindings and the application, because module files are compiler-specific. Building the Qiskit C library (`make c`) takes several minutes.
 
@@ -2839,6 +2895,7 @@ Both versions build the same shell-model Hamiltonian from the USDA interaction, 
 | Reference determinant | Fills the lowest single-particle-energy $(+m_j, -m_j)$ pairs of each species: $-28.644723$ MeV for $^{20}\mathrm{Ne}$ | Searches all paired fillings for the lowest diagonal energy: $-29.765549$ MeV for $^{20}\mathrm{Ne}$ |
 | Circuit angles | Exact two-level mixing angle, $\theta = \tfrac{1}{2}\operatorname{atan2}(2V, \Delta)$ | First-order amplitude, $t = V/\Delta$ |
 | Samples with the wrong symmetry | Discarded by the symmetry filter | Repaired by self-consistent configuration recovery |
+| Subspace | Unique kept determinants; whole shots are filtered on proton number, neutron number, $M_J$, and parity | Products of sampled proton and neutron half-configurations in the target $M_J$ and parity sector |
 | Diagonalization | Pooled across all circuits, or per step | Pooled, inside the configuration-recovery loop |
 | Backend | Named with `--backend`, otherwise the least busy backend | `least_busy` backend with at least 40 qubits |
 | Transpilation | Each circuit separately, optimization level 0 | All circuits together, optimization level 3 |
