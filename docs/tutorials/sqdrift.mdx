@@ -78,13 +78,13 @@ This tutorial shows how to generate an ensemble of such randomized circuits. Aft
 Before starting this tutorial, make sure you have installed
 - A Python (>=3.10) virtual environment
 - pip>=25.1
-- qiskit ~= 2.5
-- qiskit-fermions==0.1.0 (Note that the name is plural)
+- `qiskit` ~= 2.5
+- `qiskit-fermions`==0.1.0 (Note that the name is plural)
 - numpy
 - pyscf
-- qiskit-aer
-- qiskit-ibm-runtime
-- qiskit-addon-sqd
+- `qiskit-aer`
+- `qiskit-ibm-runtime`
+- `qiskit-addon-sqd`
 
 You can install all required packages with:
 ```
@@ -859,7 +859,7 @@ This tutorial shows how to generate an ensemble of such randomized circuits. Aft
 
 ## Requirements (C++)
 
-This implementation runs on IBM Quantum hardware and uses an external SBD executable for classical diagonalization. It does not include the Python simulator example.
+This implementation runs on IBM Quantum&reg; hardware and uses an external SBD executable for classical diagonalization. It does not include the Python simulator example.
 
 Follow the [C++ build instructions](https://github.com/Qiskit/documentation/blob/main/docs/tutorials/assets/sqdrift/cpp/BUILD_INSTRUCTIONS.md) to install the compiler, CMake, Rust, Boost, and the Qiskit dependencies. Install Rust with [rustup](https://rustup.rs/): the Qiskit dependencies pin their own Rust version, which rustup downloads automatically, but a Rust installed from Homebrew or a Linux package manager might be too old. The final SBD step additionally requires MPI, OpenMP, and BLAS/LAPACK. Windows is not currently supported by this implementation.
 
@@ -877,7 +877,7 @@ The build writes the `SqDRIFT` executable to `docs/tutorials/assets/sqdrift/cpp`
 
 The snippets below are excerpts from the complete [SqDRIFT.cpp program](https://github.com/Qiskit/documentation/blob/main/docs/tutorials/assets/sqdrift/cpp/SqDRIFT.cpp). Build and run that file as a single program.
 
-Before running SqDRIFT, ensure your IBM Quantum API token is configured for the **IBM Cloud platform** (the previous IBM Quantum Network platform is retired and will cause a startup panic).
+Before running SqDRIFT, ensure your IBM Quantum API token is configured for **IBM Cloud Platform**.
 
 If you have Python with `qiskit-ibm-runtime` installed, the easiest way to create a correctly formatted config file is:
 
@@ -899,7 +899,7 @@ This writes `~/.qiskit/qiskit-ibm.json` (Linux/macOS) or `%USERPROFILE%\.qiskit\
 
 Get your API key from [IBM Quantum Platform](https://quantum.cloud.ibm.com/).
 
-> **Note:** A missing or malformed config file causes an unhelpful Rust `unwrap()` panic at startup rather than a clean error. Double-check the key name (`default-ibm-quantum-platform`) and channel value (`ibm_quantum_platform`) — the old `ibm_quantum` channel is never read by this client.
+**Note:** A missing or malformed config file causes an unhelpful Rust `unwrap()` panic at startup rather than a clean error. Double-check the key name (`default-ibm-quantum-platform`) and channel value (`ibm_quantum_platform`) if you encounter a problem.
 
 ## Implementation (C++)
 
@@ -930,7 +930,7 @@ std::cout << "✓ Loaded N2 molecule (" << norb << " orbitals, "
 ✓ Loaded N2 molecule (10 orbitals, 20 qubits, 14 electrons)
 ```
 
-Loads the N₂ molecule Hamiltonian from an FCIDump file. The number of qubits equals twice the number of orbitals (spin-up and spin-down).
+Loads the $N_2$ molecule Hamiltonian from an FCIDump file. The number of qubits equals twice the number of orbitals (spin-up and spin-down).
 
 #### Create and normal-order the Hamiltonian
 
@@ -1188,14 +1188,14 @@ In the C++ version, this step builds the circuits from the sampled operator sets
 
 The complete program then prints circuit statistics and the operator indices of circuit 0, which are omitted here.
 
-For each sampled operator, creates a Suzuki-Trotter evolution circuit with time $t_k = \frac{\lambda \tau}{n}$, where $n$ is the number of operators sampled per circuit and $\tau$ is the time step. Because each sampled group was normalized term-by-term before mapping, this evolution applies only the phase/sign of each term during the rotation; the magnitudes contribute through the sampling distribution only. The Hartree-Fock initial state is prepared by applying X gates to qubits 0-6 and 10-16 (7 electrons in each spin sector). Each evolution circuit's instructions are manually appended to the main circuit using the C++ API.
+For each sampled operator, creates a Suzuki-Trotter evolution circuit with time $t_k = \frac{\lambda \tau}{n}$, where $n$ is the number of operators sampled per circuit and $\tau$ is the time step. Because each sampled group was normalized term-by-term before mapping, this evolution applies only the phase/sign of each term during the rotation; the magnitudes contribute through the sampling distribution only. The Hartree-Fock initial state is prepared by applying X gates to qubits 0-6 and 10-16 (seven electrons in each spin sector). Each evolution circuit's instructions are manually appended to the main circuit using the C++ API.
 
 ### Step 3: Execute using Qiskit primitives (C++)
 
 ```cpp
 std::cout << "\n Connecting to IBM Quantum Cloud..." << std::endl;
 
-// Initialize IBM Quantum service using qiskit-cpp
+// Initialize IBM Quantum Compute Service using qiskit-cpp
 Qiskit::service::QiskitRuntimeService service;
 std::cout << "✓ Connected to IBM Quantum" << std::endl;
 
@@ -1281,7 +1281,7 @@ The hardware results quoted on this page come from a run on `ibm_pittsburgh` (10
 ✓ Collected 10000 total bitstrings from all circuits
 ```
 
-> **Changing the backend:** Change `backend_name` in `SqDRIFT.cpp` to target a different device; `service.backends()` lists what your account can reach.
+**Changing the backend:** Change `backend_name` in `SqDRIFT.cpp` to target a different device; `service.backends()` lists what your account can reach.
 
 ### Step 4: Post-process and return result in desired classical format (C++)
 
@@ -1358,9 +1358,9 @@ Now that we have created the basis for projecting our Hamiltonian over, we can p
 
 #### Build the SBD `diag` binary
 
-CMake fetches SBD as source-only into `deps/sbd/` (the main build intentionally skips compiling it). The SBD app uses a plain `Makefile`, and SBD itself requires **MPI, OpenMP, and BLAS/LAPACK** — so plain `make` is not sufficient until those are installed and the app's `Configuration` file matches your toolchain.
+CMake fetches SBD as source-only into `deps/sbd/` (the main build intentionally skips compiling it). The SBD app uses a plain `Makefile`, and SBD itself requires **MPI, OpenMP, and BLAS/LAPACK** &mdash; so plain `make` is not sufficient until those are installed and the app's `Configuration` file matches your toolchain.
 
-The `Makefile` reads its compiler and link flags from the `Configuration` file in the same directory. The version shipped upstream is tuned for one specific macOS/Homebrew layout and **will not build as-is** on a stock machine — most notably `-I/opt/homebrew/opt/llvm/include` does not contain `omp.h` (it lives in a version-specific clang resource directory), and Apple's own `clang++` rejects `-fopenmp` outright:
+The `Makefile` reads its compiler and link flags from the `Configuration` file in the same directory. The version shipped upstream is tuned for one specific macOS/Homebrew layout and **will not build as-is** on a stock machine &mdash; most notably `-I/opt/homebrew/opt/llvm/include` does not contain `omp.h` (it lives in a version-specific clang resource directory), and Apple's `clang++` rejects `-fopenmp` outright:
 
 ```
 clang++: error: unsupported option '-fopenmp'
@@ -1406,11 +1406,11 @@ cd ../../../..
 
 A successful build prints the two compile/link lines and leaves a `diag` binary next to the `Makefile`. One `ld: warning: ignoring duplicate libraries: '-lomp'` is harmless.
 
-> **Intel macOS:** Homebrew's prefix is `/usr/local` rather than `/opt/homebrew`, so substitute it in both preceding paths.
+**Intel macOS:** Homebrew's prefix is `/usr/local` rather than `/opt/homebrew`, so substitute it in both preceding paths.
 
 ##### Linux (Ubuntu/Debian) — untested
 
-The following prerequisites cover MPI, OpenMP, and BLAS/LAPACK. GCC supports `-fopenmp` natively, so no compiler override is needed. This has **not** been verified on Linux; treat it as a starting point:
+The following prerequisites cover MPI, OpenMP, and BLAS/LAPACK. GCC supports `-fopenmp` natively, so no compiler override is needed. This has **not** been verified on Linux:
 
 ```bash
 sudo apt install -y libopenmpi-dev libomp-dev libblas-dev liblapack-dev
@@ -1489,7 +1489,7 @@ cd ../../../..
 
 The `Energy = -107.5108722590187` line is the ground-state estimate over the sampled subspace.
 
-#### How this differs from the Python tab
+#### How this differs from the Python example
 
 The two examples differ in several respects at once, not only in how they treat bad-symmetry bitstrings, so they are not expected to produce identical energies:
 
@@ -1528,9 +1528,8 @@ Useful levers if you want to close the gap: raise `shots`, `num_circuits`, or `o
 
 <Admonition type="note" title="Recommendations">
 
-If you found this work interesting, you might be interested in the following material:
-- [Sample-based Krylov quantum diagonalization of a fermionic lattice model](/docs/tutorials/sample-based-krylov-quantum-diagonalization) - a related tutorial using time-evolution circuits instead of a variational ansatz.
-- [Sample-based quantum diagonalization of a chemistry Hamiltonian](/docs/tutorials/sample-based-quantum-diagonalization) - a tutorial on how to construct a local unitary cluster Jastrow (LUCJ) circuit for quantum chemistry simulation.
-- The [SqDRIFT](https://arxiv.org/abs/2508.02578) paper - the literature that this tutorial is based upon. (Note that some of the optimizations discussed in this paper are currently a work in progress, and this tutorial is subject to change in the future based on the evolution of the used libraries.)
+- [Sample-based Krylov quantum diagonalization of a fermionic lattice model](/docs/tutorials/sample-based-krylov-quantum-diagonalization) &mdash; a related tutorial using time-evolution circuits instead of a variational ansatz.
+- [Sample-based quantum diagonalization of a chemistry Hamiltonian](/docs/tutorials/sample-based-quantum-diagonalization) &mdash; a tutorial on how to construct a local unitary cluster Jastrow (LUCJ) circuit for quantum chemistry simulation.
+- The [SqDRIFT](https://arxiv.org/abs/2508.02578) paper &mdash; the literature that this tutorial is based upon. (Note that some of the optimizations discussed in this paper are currently a work in progress, and this tutorial is subject to change in the future based on the evolution of the used libraries.)
 
 </Admonition>
