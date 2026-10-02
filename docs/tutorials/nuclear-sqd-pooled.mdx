@@ -7,8 +7,8 @@ in_page_toc_max_heading_level: 1
 
 {/* cspell:ignore antisymmetrized antisymmetry Arvidsson Brookhaven Clebsch coarray coarrays Condon ctest dets eigh facecolor fontsize frameon Gordan gxpf Honma labelsize LAPACK Malrieu markeredgecolor markeredgewidth Mizusaki Mkhize multiconfigurational multiplets Nesbet operatorname Otsuka Rancurel recoupling Shukur snt spes substate substates tbme tbmes textcoords usda USDA USDB virtuals wavefunctions xytext Yordanov zorder */}
 
-{/* Keep the Python tab in sync with assets/nuclear_sqd_pooled/nuclear-sqd-pooled.ipynb.
-    The Fortran tab is adapted from assets/nuclear_sqd_pooled/fortran/README.md;
+{/* Keep the Python example in sync with assets/nuclear_sqd_pooled/nuclear-sqd-pooled.ipynb.
+    The Fortran example is adapted from assets/nuclear_sqd_pooled/fortran/README.md;
     its source and build instructions are in the same directory. */}
 
 # Pooled sample-based quantum diagonalization of a nuclear Hamiltonian
@@ -30,7 +30,7 @@ in_page_toc_max_heading_level: 1
   a qubit Hamiltonian in the $m$-scheme, where one qubit is one single-particle state.
 - Build a fixed, non-variational excitation ansatz whose angles come from second-order
   perturbation theory, so there is no classical optimization loop.
-- Compare qubit and fermionic excitations and measure how the choice affects the ensemble’s
+- Compare qubit and fermionic excitations and measure how the choice affects the ensemble's
   two-qubit depth.
 - Run self-consistent configuration recovery with `qiskit-addon-sqd` when the conserved
   quantities are nucleon numbers, $M_J$, and parity rather than electron numbers and spin.
@@ -169,7 +169,7 @@ run it.
 
 This section imports the tools and defines the shell-model helpers the workflow needs, in the order
 the workflow uses them. The physics behind each one is derived in the [Appendix](#appendix); the
-comments describe each function’s role in the workflow.
+comments describe each function's role in the workflow.
 
 Two interaction files are unpacked first. Both are published parameter sets, embedded here so the
 notebook is self-contained: `usda.snt` is the USDA $sd$-shell Hamiltonian [\[2\]](#references) and
@@ -839,7 +839,7 @@ def excitation_ansatz(
 
 ### The depth budget and the circuit ensemble
 
-A single deep circuit containing every ranked excitation can exceed the hardware’s coherence time. Spreading the pool
+A single deep circuit containing every ranked excitation can exceed the hardware's coherence time. Spreading the pool
 over an *ensemble* of shallow circuits and pooling their shots into one determinant set turns Step 2
 into a packing problem: each excitation has a measured cost, each circuit has a budget, and the
 question is how much of the ranked pool fits.
@@ -1397,7 +1397,7 @@ correlation energy to find   -10.706782 MeV
 
 Next, construct the operator pool. Applying the two selection rules gives an important result: for this reference, in this model space, **there are no allowed single excitations at all**.
 
-The reason is specific and checkable. A $1p1h$ excitation conserves $M_J$ only if the particle state
+A $1p1h$ excitation conserves $M_J$ only if the particle state
 has the same $m_j$ as the hole. The reference occupies the two states of largest $|m_j|$ in the
 lowest orbital ($m_j = \pm 5/2$ of $0d_{5/2}$), and no other orbital in the $sd$ shell reaches
 $|m_j| = 5/2$, since $0d_{3/2}$ stops at $3/2$ and $1s_{1/2}$ at $1/2$. Therefore, no single excitation
@@ -1645,7 +1645,7 @@ Submit one job per problem, with the whole ensemble as a single list of circuits
 measurement twirling and dynamical decoupling are enabled to reduce the effects of hardware noise.
 Their benefit depends on the circuit and backend.
 
-Each job’s ID is printed. Use `service.job("JOB_ID")` to retrieve the completed job and its
+Each job's ID is printed. Use `service.job("JOB_ID")` to retrieve the completed job and its
 results without using additional QPU time.
 
 ```python
@@ -2786,7 +2786,7 @@ Noise changes *which* determinants the circuit proposes, but it does not enter t
 
 ![The 24-qubit sd-shell register: three proton orbitals and three neutron orbitals, each split into 2j+1 magnetic substates, one qubit per substate, with the reference determinant of neon-20 filled on the maximal magnetic substates of the 0d5/2 orbital.](/docs/images/tutorials/nuclear-sqd-pooled/sd-shell-register.svg)
 
-The Fortran application uses the same register as the Python tab. Every qubit is one $m$-scheme single-particle state $(n, \ell, j, m_j, t_z)$, and $|1\rangle$ means occupied. Protons come first, then neutrons; within a species, orbitals follow the order of the interaction file; within an orbital, $m_j$ descends. The $^{20}\mathrm{Ne}$ example in this tab uses this 24-qubit $sd$-shell register.
+The Fortran application uses the same register as the Python example. Every qubit is one $m$-scheme single-particle state $(n, \ell, j, m_j, t_z)$, and $|1\rangle$ means occupied. Protons come first, then neutrons; within a species, orbitals follow the order of the interaction file; within an orbital, $m_j$ descends. The $^{20}\mathrm{Ne}$ example here uses this 24-qubit $sd$-shell register.
 
 The Hamiltonian is a one-body term plus a two-body interaction,
 
@@ -2795,7 +2795,7 @@ H = \sum_{p} \varepsilon_p\, a_p^\dagger a_p
   + \tfrac{1}{4}\sum_{pqrs} \langle pq \| rs \rangle\, a_p^\dagger a_q^\dagger a_s a_r ,
 $$
 
-where $p,q,r,s$ label $m$-scheme states. The interaction file tabulates two-body matrix elements in the $J$-coupled basis of orbitals, and the application recovers each $m$-scheme element $\langle pq \| rs \rangle$ by Clebsch-Gordan recoupling. The regression test in [Check the workflow locally](#check-the-workflow-locally) confirms that this produces the same Hamiltonian as the Python tab.
+where $p,q,r,s$ label $m$-scheme states. The interaction file tabulates two-body matrix elements in the $J$-coupled basis of orbitals, and the application recovers each $m$-scheme element $\langle pq \| rs \rangle$ by Clebsch-Gordan recoupling. The regression test in [Check the workflow locally](#check-the-workflow-locally) confirms that this produces the same Hamiltonian as the Python example.
 
 ### The Fortran workflow
 
@@ -2815,17 +2815,17 @@ Each step maps to a source file in the Fortran directory:
 | Build the circuits | `circuit/nuclear_ansatz.f90`, `nuclear_gates.f90` |
 | Sample, filter, and diagonalize | `circuit/nuclear_shell_driver.f90`, `physics/symmetry_filter.f90`, `physics/exact_solver.f90` |
 
-The Fortran workflow differs from the Python tab in several choices, such as how it picks the reference determinant and how it handles samples with the wrong symmetry. [Differences from the Python tab](#differences-from-the-python-tab) lists them.
+The Fortran workflow differs from the Python example in several choices, such as how it picks the reference determinant and how it handles samples with the wrong symmetry. [Differences from the Python example](#differences-from-the-python-example) lists them.
 
 ## Requirements (Fortran)
 
 This implementation is adapted from the nuclear shell-model application in [qiskit-fortran](https://github.com/Qiskit/qiskit-fortran), the Fortran bindings for Qiskit. Build and run the version in the Fortran directory linked in the preceding note rather than the upstream application, because it includes corrections to interaction mass scaling and antisymmetrized pair-exchange phases.
 
-Follow the [build instructions](https://github.com/Qiskit/documentation/blob/main/docs/tutorials/assets/nuclear_sqd_pooled/fortran/BUILD_INSTRUCTIONS.md) to build the Qiskit C library, the Fortran bindings, and this application. The build instructions set `NUCLEAR_SRC` to the Fortran directory and `NUCLEAR_DEPS` to a separate directory for the dependencies; the commands in this tab use those variables. Use the same Fortran compiler for the bindings and the application, because module files are compiler-specific. Building the Qiskit C library (`make c`) takes several minutes.
+Follow the [build instructions](https://github.com/Qiskit/documentation/blob/main/docs/tutorials/assets/nuclear_sqd_pooled/fortran/BUILD_INSTRUCTIONS.md) to build the Qiskit C library, the Fortran bindings, and this application. The build instructions set `NUCLEAR_SRC` to the Fortran directory and `NUCLEAR_DEPS` to a separate directory for the dependencies; the commands in this example use those variables. Use the same Fortran compiler for the bindings and the application, because module files are compiler-specific. Building the Qiskit C library (`make c`) takes several minutes.
 
-The Runtime support described in the build instructions is optional. You need it only to submit hardware jobs; the local checks and saved-bitstring processing work without it.
+The Quantum Compute Client support described in the build instructions is optional. You need it only to submit hardware jobs; the local checks and saved-bitstring processing work without it.
 
-The build produces `nuclear_shell_driver` in `$NUCLEAR_SRC/build` and copies `data/USDB.snt` beside it. Despite its filename, that file contains the **USDA** interaction, as its header states. The supplied example describes two valence protons and two valence neutrons in the $sd$ shell, which is $^{20}\mathrm{Ne}$, the same nucleus as the Python tab's small-scale hardware example.
+The build produces `nuclear_shell_driver` in `$NUCLEAR_SRC/build` and copies `data/USDB.snt` beside it. Despite its filename, that file contains the **USDA** interaction, as its header states. The supplied example describes two valence protons and two valence neutrons in the $sd$ shell, which is $^{20}\mathrm{Ne}$, the same nucleus as the Python small-scale hardware example.
 
 ## Check the workflow locally
 
@@ -2835,7 +2835,7 @@ First, run the Hamiltonian regression test:
 ctest --test-dir "$NUCLEAR_SRC/build" --output-on-failure
 ```
 
-The test builds the complete 640-determinant basis for $^{20}\mathrm{Ne}$, diagonalizes it, and checks that the ground-state energy is $-40.472331$ MeV, the exact energy in the Python tab. Passing confirms that the Fortran application builds the same Hamiltonian as the Python tab. Because SQD diagonalizes in a subspace of this basis, no run of this application can report an energy below $-40.472331$ MeV for $^{20}\mathrm{Ne}$; the closer a run gets, the better its sampled subspace.
+The test builds the complete 640-determinant basis for $^{20}\mathrm{Ne}$, diagonalizes it, and checks that the ground-state energy is $-40.472331$ MeV, the exact energy in the Python example. Passing confirms that the Fortran application builds the same Hamiltonian as the Python example. Because SQD diagonalizes in a subspace of this basis, no run of this application can report an energy below $-40.472331$ MeV for $^{20}\mathrm{Ne}$; the closer a run gets, the better its sampled subspace.
 
 Next, run the driver without hardware from the build directory:
 
@@ -2865,7 +2865,7 @@ The second command reads the `bitstrings_stepNN.txt` files written by the first,
 
 ## Run on hardware
 
-These commands assume you have already [saved your IBM Quantum Platform credentials locally](/docs/guides/save-credentials). The pinned Runtime client reads `~/.qiskit/qiskit-ibm.json`; use an account named `default`, `default-ibm-quantum-platform`, or `default-ibm-cloud`. Do not put API keys in tutorial files.
+These commands assume you have already [saved your IBM Quantum Platform credentials locally](/docs/guides/save-credentials). The pinned Quantum Compute client reads `~/.qiskit/qiskit-ibm.json`; use an account named `default`, `default-ibm-quantum-platform`, or `default-ibm-cloud`. Do not put API keys in tutorial files.
 
 From `$NUCLEAR_SRC/build`, run:
 
@@ -2874,7 +2874,7 @@ From `$NUCLEAR_SRC/build`, run:
   --protons 2 --neutrons 2 --circuits 11 --shots 4096
 ```
 
-Choose a backend available to your account with enough qubits for the model space; without `--backend`, the driver uses the least busy backend. The driver transpiles each circuit, submits it as its own Sampler job, and waits for that job to finish before building the next circuit. The command shown therefore runs 11 jobs one after another, each with 4,096 shots on a 24-qubit register, and uses QPU time for each. If a job does not complete, the driver skips it and leaves its samples out of the pool. The driver also writes the returned samples to `bitstrings_stepNN.txt` files, which you can reprocess per step as shown in the previous section. Counts and energies depend on the samples and device noise.
+Choose a backend available to your account with enough qubits for the model space; without `--backend`, the driver uses the least-busy backend. The driver transpiles each circuit, submits it as its own Sampler job, and waits for that job to finish before building the next circuit. The command shown therefore runs 11 jobs one after another, each with 4,096 shots on a 24-qubit register, and uses QPU time for each. If a job does not complete, the driver skips it and leaves its samples out of the pool. The driver also writes the returned samples to `bitstrings_stepNN.txt` files, which you can reprocess per step as shown in the previous section. Counts and energies depend on the samples and device noise.
 
 Use `./nuclear_shell_driver --help` for the full option list. To use another interaction, supply `--snt /absolute/path/to/interaction.snt` and the corresponding valence nucleon counts. Only the $sd$-shell interaction is included; `--shell pf` requires a separately supplied `gxpf1.snt` file.
 
@@ -2888,23 +2888,23 @@ Use `./nuclear_shell_driver --help` for the full option list. To use another int
 
 A multi-image run requires an appropriate coarray runtime and build configuration; launching the single-image binary with multiple processes does not enable distributed execution.
 
-## Differences from the Python tab
+## Differences from the Python example
 
 Both versions build the same shell-model Hamiltonian from the USDA interaction, which the regression test confirms for $^{20}\mathrm{Ne}$. They differ in how they choose the circuits and process the samples, so independently sampled runs are not expected to produce the same energy:
 
-| | Fortran tab | Python tab |
+| | Fortran example | Python example |
 |---|---|---|
 | Reference determinant | Fills the lowest single-particle-energy $(+m_j, -m_j)$ pairs of each species: $-28.644723$ MeV for $^{20}\mathrm{Ne}$ | Searches all paired fillings for the lowest diagonal energy: $-29.765549$ MeV for $^{20}\mathrm{Ne}$ |
 | Circuit angles | Exact two-level mixing angle, $\theta = \tfrac{1}{2}\operatorname{atan2}(2V, \Delta)$ | First-order amplitude, $t = V/\Delta$ |
 | Samples with the wrong symmetry | Discarded by the symmetry filter | Repaired by self-consistent configuration recovery |
 | Subspace | Unique kept determinants; whole shots are filtered on proton number, neutron number, $M_J$, and parity | Products of sampled proton and neutron half-configurations in the target $M_J$ and parity sector |
 | Diagonalization | Pooled across all circuits, or per step | Pooled, inside the configuration-recovery loop |
-| Backend | Named with `--backend`, otherwise the least busy backend | `least_busy` backend with at least 40 qubits |
+| Backend | Named with `--backend`, otherwise the least-busy backend | `least_busy` backend with at least 40 qubits |
 | Transpilation | Each circuit separately, optimization level 0 | All circuits together, optimization level 3 |
 | Job submission | One job per circuit, one after another | One Sampler job per ensemble |
 | Example run | 11 circuits × 4,096 shots for $^{20}\mathrm{Ne}$ | 16 circuits × 10,000 shots each for $^{20}\mathrm{Ne}$, $^{44}\mathrm{Ti}$, and $^{48}\mathrm{Cr}$ |
 
-The [Appendix](#appendix) explains why the Python tab searches for its reference determinant and uses the first-order amplitude. The Fortran application keeps the simpler choices, so its starting point is higher in energy for $^{20}\mathrm{Ne}$, and its circuits seed different amplitudes. Because it discards rather than repairs samples with the wrong symmetry, low sample retention can also limit the accuracy of a Fortran result even though the Hamiltonian is correct.
+The [Appendix](#appendix) explains why the Python example searches for its reference determinant and uses the first-order amplitude. The Fortran application keeps the simpler choices, so its starting point is higher in energy for $^{20}\mathrm{Ne}$, and its circuits seed different amplitudes. Because it discards rather than repairs samples with the wrong symmetry, low sample retention can also limit the accuracy of a Fortran result even though the Hamiltonian is correct.
 
 </TabItem>
 </Tabs>
@@ -2917,7 +2917,7 @@ This section explains the reasoning behind the helpers introduced in the [Setup]
 
 Empirical shell-model interactions are fitted at one mass and applied across a chain of isotopes, with
 the two-body matrix elements scaled as $(A/A_{\mathrm{ref}})^{p}$. Both interaction files carry
-$p = -0.3$, with $A_{\mathrm{ref}} = 18$ for the USD family and $42$ for GXPF1. On the two-body header
+$p = -0.3$, with $A_{\mathrm{ref}} = 18$ for the USD family and $42$ for GXPF1. Note that on the two-body header
 line of a `.snt` file, those two numbers sit where an oscillator frequency and a core energy would
 plausibly go, which makes them easy to misread; reading the exponent as a constant core energy adds a
 spurious offset to every diagonal element *and* drops the rescaling, changing the correlation energy by
@@ -2931,7 +2931,7 @@ detect a constant offset applied to all energies.
 The obvious reference is the determinant that fills the lowest single-particle energies. It is not the
 lowest-energy determinant, because the diagonal of Equation (1) includes the two-body term
 $\sum_{i<j} \langle ij \| ij \rangle$, and the pairing interaction strongly prefers occupying
-time-reversed $(+m_j, -m_j)$ partners in the *largest* available $|m_j|$. In the $sd$ shell that is the
+time-reversed $(+m_j, -m_j)$ partners in the *largest* available $|m_j|$. In the $sd$ shell, that is the
 difference between the $m_j = \pm 1/2$ pair and the $m_j = \pm 5/2$ pair of $0d_{5/2}$, and it is worth
 about 1 MeV; in the $pf$ shell, it is worth closer to 2. Because the reference energy defines the zero of the
 "correlation energy recovered" metric, a poor choice inflates that metric and gives a less accurate
@@ -2951,7 +2951,7 @@ choice for an *isolated* pair of levels. In this ansatz, several dozen excitatio
 in sequence on the same reference, so optimizing each block separately does not necessarily
 optimize the composite circuit.
 
-The circuit’s role determines the choice of angle. Since
+The circuit's role determines the choice of angle. Since
 $|\tfrac{1}{2}\arctan(2x)| \le |x|$ for every real $x$, the exact angle is always *smaller* in
 magnitude than the first-order amplitude $t = V/\Delta$, and therefore always leaves *more* amplitude
 on the reference determinant. A circuit that keeps more amplitude on the reference returns the
