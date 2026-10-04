@@ -78,7 +78,7 @@ target different users:
     first and might not be ported to Sampler. If you rely on access to the
     latest features, Executor is the more future-proof choice.
     - The base Qiskit package does not yet provide
-a base class for the Executor primitive (it does for`SamplerV2`).
+a base class for the Executor primitive (it does for `Sampler`).
     </Admonition>
 
 ## Conceptual mapping
@@ -87,7 +87,7 @@ The following table demonstrates how Sampler concepts map to Executor.
 
 | Concept                | Sampler                                   | Executor                                                        |
 | ---------------------- | ----------------------------------------- | --------------------------------------------------------------- |
-| Import                 | `from qiskit_ibm_runtime import SamplerV2`| `from qiskit_ibm_runtime import Executor`                       |
+| Import                 | `from qiskit_ibm_runtime.executor_sampler import Sampler` (or `SamplerV2`)| `from qiskit_ibm_runtime import Executor`                       |
 | Input                  | List of [PUBs](/docs/guides/primitive-input-output#overview-of-pubs) (tuples)                 | A `QuantumProgram` of `QuantumProgramItem` objects          |
 | Circuit and parameters    | `(circuit, params, shots)` tuple          | `program.append_circuit_item(circuit, circuit_arguments=...)`   |
 | Twirling | `TwirlingOptions`                      | Explicit through annotated boxes and a samplex (`append_samplex_item`) |
@@ -131,7 +131,7 @@ pip install qiskit qiskit-ibm-runtime samplomatic
 
 **Sampler:**
 ```python
-from qiskit_ibm_runtime import SamplerV2 as Sampler
+from qiskit_ibm_runtime.executor_sampler import Sampler
 ```
 
 **Executor:**
@@ -411,7 +411,8 @@ There is no equivalent step in Sampler because it undoes twirling for you.
 import numpy as np
 from qiskit.circuit import QuantumCircuit
 from qiskit.transpiler import generate_preset_pass_manager
-from qiskit_ibm_runtime import QiskitRuntimeService, SamplerV2 as Sampler
+from qiskit_ibm_runtime import QiskitRuntimeService
+from qiskit_ibm_runtime.executor_sampler import Sampler
 
 # 1. Account + backend
 service = QiskitRuntimeService()
