@@ -118,7 +118,7 @@ jobs:
         with:
           step: finish
           token: ${{ github.token }}
-          env: ${{ steps.deployment.outputs.env }}
+          env: ${{ steps.deployment.outputs.env || 'pr_preview' }}
           status: ${{ job.status }}
           deployment_id: ${{ steps.deployment.outputs.deployment_id }}
           env_url: ${{ env.PR_PREVIEW_URL }}

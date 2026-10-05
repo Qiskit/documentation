@@ -75,7 +75,7 @@ jobs:
     name: Lint
     runs-on: ubuntu-latest
     needs: [decide-jobs]
-    if: github.repository_owner == 'Qiskit'
+    if: github.repository_owner == 'Qiskit' && !failure() && !cancelled()
     steps:
       - uses: actions/checkout@v4
       - name: Set up Node.js
