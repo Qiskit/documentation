@@ -1,0 +1,44 @@
+---
+title: BoxKey (latest version)
+description: API reference for samplomatic.utils.BoxKey in the latest version of samplomatic
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: samplomatic.utils.BoxKey
+---
+
+# BoxKey
+
+<Class id="samplomatic.utils.BoxKey" isDedicatedPage={true} github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/utils/box_key.py#L26-L143" signature="samplomatic.utils.BoxKey(instruction: CircuitInstruction)" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
+
+  An immutable snapshot of an instruction that owns a box, suitable for comparison and hashing.
+
+  Instances of this class can be used, for example, as keys for a dictionary or as elements of a set. Mutating the original box does not mutate this class.
+
+  At construction time, this class computes a standardized, immutable form of the instruction, which is then used when comparing two instances of this class, or when hashing one. In particular, this form is chosen so that properties such as instruction order within topological layers of the box, or order of symmetric instructions like `"cz"` are not relevant; we do not want `cz(0, 1)` and `cz(1, 0)`, for example, to result in inequality or distinct hashes.
+
+  Annotation comparison is unordered. It is assumed that all annotation types present are hashable (and consequently, immutable). Behavior is not defined when multiple equal annotations are present.
+
+  **Parameters**
+
+  **instruction** – The instruction to create an immutable snapshot of.
+
+  **Raises**
+
+  [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If the instruction does not own a `BoxOp`.
+
+  **Attributes Summary**
+
+  |                                                                                         |                                                             |
+  | --------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+  | [`hexdigest`](#samplomatic.utils.BoxKey.hexdigest "samplomatic.utils.BoxKey.hexdigest") | Cross-platform, process independent hex digest of this box. |
+
+  **Attributes Documentation**
+
+  ### hexdigest
+
+  <Attribute id="samplomatic.utils.BoxKey.hexdigest">
+    Cross-platform, process independent hex digest of this box.
+  </Attribute>
+</Class>
+
