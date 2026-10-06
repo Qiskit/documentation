@@ -517,7 +517,7 @@ Setting `"custom_functions": {"permissions": []}` equivalently clears custom fun
 
 To confirm that the instance has the correct Qiskit Functions configuration, use `GET /entitlements` from the Qiskit Runtime API instead of the Resource Controller. The Resource Controller's stored state might be stale if account-level changes updated the instance outside of the Resource Controller.
 
-The `Service-CRN` header and the `apikey` authorization are unchanged, but the response is shaped differently. `GET /entitlements` returns one element per requested instance in an `instance_entitlements` array, so read a single instance's entitlements from the first element:
+`GET /entitlements` returns one element per requested instance in an `instance_entitlements` array, so read a single instance's entitlements from the first element:
 
 ```json
 {"instance_entitlements": [{"instance_crn": "<CRN>", "functions": [], "custom_functions": {"permissions": []}}]}
