@@ -1,0 +1,40 @@
+---
+title: map_annotations (latest version)
+description: API reference for samplomatic.utils.map_annotations in the latest version of samplomatic
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: samplomatic.utils.map_annotations
+---
+
+<span id="map-annotations" />
+
+# map\_annotations
+
+<Function id="samplomatic.utils.map_annotations" isDedicatedPage={true} github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/utils/map_annotations.py#L20-L60" signature="samplomatic.utils.map_annotations(circuit: QuantumCircuit, fn: Callable[[list[Annotation]], list[Annotation]]) → QuantumCircuit">
+  Return a new circuit where each box’s annotations are replaced by `fn(annotations)`.
+
+  The callable receives the current list of annotations on the box and must return a new list of annotations to use. Non-box instructions are copied unchanged, and the original circuit is not mutated.
+
+  **Parameters**
+
+  *   **circuit** – The circuit whose box annotations to transform.
+  *   **fn** – A callable that receives a box’s annotation list and returns the replacement list.
+
+  **Returns**
+
+  A new circuit with transformed annotations on every box.
+
+  ```python
+  from qiskit.circuit import QuantumCircuit
+  from samplomatic import Twirl, InjectNoise
+  from samplomatic.utils import map_annotations, strip_annotations
+
+  circuit = QuantumCircuit(2)
+  with circuit.box([Twirl(), InjectNoise("ref")]):
+      circuit.cx(0, 1)
+
+  # Keep only Twirl annotations
+  filtered = map_annotations(circuit, lambda anns: [a for a in anns if isinstance(a, Twirl)])
+  ```
+</Function>
+

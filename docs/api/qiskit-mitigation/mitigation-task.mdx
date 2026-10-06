@@ -86,7 +86,7 @@ python_api_name: qiskit_mitigation.MitigationTask
     *   **num\_randomizations** ([*int*](https://docs.python.org/3/builtins/functions.html#int)) – The number of randomizations.
     *   **broadcast\_obs\_and\_params** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) – Whether to broadcast observables and parameters.
     *   **trex** ([*TREX*](trex#qiskit_mitigation.TREX "qiskit_mitigation.trex.TREX") *| None*) – A TREX mitigation instance that will be used to mitigate readout errors.
-    *   **quantum\_program** ([*QuantumProgram*](https://qiskit.github.io/samplomatic/api/auto/samplomatic.quantum_program.QuantumProgram.html#samplomatic.quantum_program.QuantumProgram "(in samplomatic)") *| None*) – The quantum program to add an item for. If None, a new program will be created.
+    *   **quantum\_program** ([*QuantumProgram*](/docs/api/samplomatic/auto/quantum-program-quantum-program#samplomatic.quantum_program.QuantumProgram "(in samplomatic)") *| None*) – The quantum program to add an item for. If None, a new program will be created.
 
     **Returns**
 
@@ -94,7 +94,7 @@ python_api_name: qiskit_mitigation.MitigationTask
 
     **Return type**
 
-    [*QuantumProgram*](https://qiskit.github.io/samplomatic/api/auto/samplomatic.quantum_program.QuantumProgram.html#samplomatic.quantum_program.QuantumProgram "(in samplomatic)")
+    [*QuantumProgram*](/docs/api/samplomatic/auto/quantum-program-quantum-program#samplomatic.quantum_program.QuantumProgram "(in samplomatic)")
   </Function>
 
   ##### postprocess
@@ -104,7 +104,7 @@ python_api_name: qiskit_mitigation.MitigationTask
 
     **Parameters**
 
-    *   **results** ([*QuantumProgramItemResult*](https://qiskit.github.io/samplomatic/api/auto/samplomatic.quantum_program.QuantumProgramItemResult.html#samplomatic.quantum_program.QuantumProgramItemResult "(in samplomatic)")  *|*[*QuantumProgramResult*](https://qiskit.github.io/samplomatic/api/auto/samplomatic.quantum_program.QuantumProgramResult.html#samplomatic.quantum_program.QuantumProgramResult "(in samplomatic)")) – The execution results. Can be either the entire results object or the item result of this task. If TREX calibration task is added to the quantum program, its results will be used to compute the measure noise data if the entire results object is provided.
+    *   **results** ([*QuantumProgramItemResult*](/docs/api/samplomatic/auto/quantum-program-quantum-program-item-result#samplomatic.quantum_program.QuantumProgramItemResult "(in samplomatic)")  *|*[*QuantumProgramResult*](/docs/api/samplomatic/auto/quantum-program-quantum-program-result#samplomatic.quantum_program.QuantumProgramResult "(in samplomatic)")) – The execution results. Can be either the entire results object or the item result of this task. If TREX calibration task is added to the quantum program, its results will be used to compute the measure noise data if the entire results object is provided.
     *   **measure\_noise\_data** ([*PauliLindbladMap*](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap)  *|*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray) *| None*) – The learned measurement noise data to use for TREX mitigation. If None and a calibration task is present the quantum program, the measure noise will be computed from the calibration task results if the entire results object is provided.
 
     **Returns**
@@ -131,7 +131,7 @@ python_api_name: qiskit_mitigation.MitigationTask
 
     **Parameters**
 
-    *   **item\_result** ([*QuantumProgramItemResult*](https://qiskit.github.io/samplomatic/api/auto/samplomatic.quantum_program.QuantumProgramItemResult.html#samplomatic.quantum_program.QuantumProgramItemResult "(in samplomatic)")) – The item result.
+    *   **item\_result** ([*QuantumProgramItemResult*](/docs/api/samplomatic/auto/quantum-program-quantum-program-item-result#samplomatic.quantum_program.QuantumProgramItemResult "(in samplomatic)")) – The item result.
     *   **observables** ([*ObservablesArray*](/docs/api/qiskit/qiskit.primitives.ObservablesArray)  *|*[*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp)*]*) – The observables to calculate expectation values for.
     *   **param\_shape** ([*tuple*](https://docs.python.org/3/builtins/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/builtins/functions.html#int)*, ...] | None*) – The shape of the parameter values.
     *   **param\_basis\_pairs** ([*list*](https://docs.python.org/3/builtins/stdtypes.html#list)*\[*[*tuple*](https://docs.python.org/3/builtins/stdtypes.html#tuple)*\[*[*tuple*](https://docs.python.org/3/builtins/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/builtins/functions.html#int)*, ...],* [*str*](https://docs.python.org/3/builtins/stdtypes.html#str)*]] | None*) – The map between params ndindexes to measure basis.

@@ -1,0 +1,80 @@
+---
+title: PrePropagateKey (latest version)
+description: API reference for samplomatic.pre_samplex.PrePropagateKey in the latest version of samplomatic
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: samplomatic.pre_samplex.PrePropagateKey
+---
+
+# PrePropagateKey
+
+<Class id="samplomatic.pre_samplex.PrePropagateKey" isDedicatedPage={true} github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/pre_samplex/graph_data.py#L368-L412" signature="samplomatic.pre_samplex.PrePropagateKey(mode: InstructionMode, operation_name: str, direction: Direction, is_parameterized: bool, commutant_twirl: bool = False)" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
+
+  A key used to identify the “type” of `PrePropagate` nodes for clustering purposes.
+
+  The key includes only properties of the node for which a difference between two nodes would make the nodes unmergeable. This, however, doesn’t automatically mean that a matching key makes nodes mergable. Other considerations in determining the mergeability include the subsystems and predecessor nodes.
+
+  **Attributes Summary**
+
+  |                                                                                                                                            |                                                              |
+  | ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------ |
+  | [`commutant_twirl`](#samplomatic.pre_samplex.PrePropagateKey.commutant_twirl "samplomatic.pre_samplex.PrePropagateKey.commutant_twirl")    | Whether this operation should be twirled with its commutant. |
+  | [`direction`](#samplomatic.pre_samplex.PrePropagateKey.direction "samplomatic.pre_samplex.PrePropagateKey.direction")                      | The direction of the `PrePropagate` node.                    |
+  | [`is_parameterized`](#samplomatic.pre_samplex.PrePropagateKey.is_parameterized "samplomatic.pre_samplex.PrePropagateKey.is_parameterized") | Whether or not the operation is parameterized.               |
+  | [`mode`](#samplomatic.pre_samplex.PrePropagateKey.mode "samplomatic.pre_samplex.PrePropagateKey.mode")                                     | The mode of the `PrePropagate` node.                         |
+  | [`operation_name`](#samplomatic.pre_samplex.PrePropagateKey.operation_name "samplomatic.pre_samplex.PrePropagateKey.operation_name")       | The name of the operation of the `PrePropagate` node.        |
+
+  **Attributes Documentation**
+
+  ### commutant\_twirl
+
+  <Attribute id="samplomatic.pre_samplex.PrePropagateKey.commutant_twirl">
+    Type: [`bool`](https://docs.python.org/3/builtins/functions.html#bool)
+
+    Default value: `False`
+
+    Whether this operation should be twirled with its commutant.
+  </Attribute>
+
+  ### direction
+
+  <Attribute id="samplomatic.pre_samplex.PrePropagateKey.direction">
+    Type: [`Direction`](constants-direction "samplomatic.constants.Direction")
+
+    Default value: `<dataclasses._MISSING_TYPE object>`
+
+    The direction of the `PrePropagate` node.
+  </Attribute>
+
+  ### is\_parameterized
+
+  <Attribute id="samplomatic.pre_samplex.PrePropagateKey.is_parameterized">
+    Type: [`bool`](https://docs.python.org/3/builtins/functions.html#bool)
+
+    Default value: `<dataclasses._MISSING_TYPE object>`
+
+    Whether or not the operation is parameterized.
+  </Attribute>
+
+  ### mode
+
+  <Attribute id="samplomatic.pre_samplex.PrePropagateKey.mode">
+    Type: `InstructionMode`
+
+    Default value: `<dataclasses._MISSING_TYPE object>`
+
+    The mode of the `PrePropagate` node.
+  </Attribute>
+
+  ### operation\_name
+
+  <Attribute id="samplomatic.pre_samplex.PrePropagateKey.operation_name">
+    Type: [`str`](https://docs.python.org/3/builtins/stdtypes.html#str)
+
+    Default value: `<dataclasses._MISSING_TYPE object>`
+
+    The name of the operation of the `PrePropagate` node.
+  </Attribute>
+</Class>
+

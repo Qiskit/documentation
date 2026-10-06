@@ -1,0 +1,47 @@
+---
+title: quantum_program (latest version)
+description: API reference for samplomatic.quantum_program in the latest version of samplomatic
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: samplomatic.quantum_program
+---
+
+<span id="module-samplomatic.quantum_program" />
+
+<span id="samplomatic-quantum-program" />
+
+# samplomatic.quantum\_program
+
+Quantum Programs.
+
+## Overview
+
+A [`QuantumProgram`](auto/quantum-program-quantum-program "samplomatic.quantum_program.QuantumProgram") is an ordered collection of items, where each item pairs a single circuit with the parameter data used to bind it. The program bundles these items together with shared settings such as the number of `shots`, the classical-register measurement level, and optional noise maps, so that a whole family of related circuits can be described as one object.
+
+Every item is a [`QuantumProgramItem`](auto/quantum-program-quantum-program-item "samplomatic.quantum_program.QuantumProgramItem"), which comes in two flavors depending on how the circuit’s parameters are supplied:
+
+*   A [`CircuitItem`](auto/quantum-program-circuit-item "samplomatic.quantum_program.CircuitItem") holds a circuit together with an explicit array of `circuit_arguments`. This is the natural choice when the parameter values are already known, for instance a parameter sweep laid out on a grid.
+*   A [`SamplexItem`](auto/quantum-program-samplex-item "samplomatic.quantum_program.SamplexItem") holds a circuit together with a [`Samplex`](auto/samplex-samplex "samplomatic.samplex.Samplex") that *generates* the circuit’s parameters. This is the natural choice for randomized circuits, such as Pauli twirling, where the concrete parameter values are drawn on demand rather than fixed in advance.
+
+### Shapes and broadcasting
+
+Each item has a [`shape`](auto/quantum-program-quantum-program-item#shape "samplomatic.quantum_program.QuantumProgramItem.shape"), obtained by broadcasting the *extrinsic* shapes of its inputs. Input arrays split their axes into extrinsic axes (leftmost, defining the sweep grid) and intrinsic axes (rightmost, fixed by the data type). For example, `circuit_arguments` for a circuit with `n` parameters has intrinsic shape `(n,)`, so an array of shape `(5, 3, n)` has extrinsic shape `(5, 3)`. For a [`SamplexItem`](auto/quantum-program-samplex-item "samplomatic.quantum_program.SamplexItem"), the `shape` argument can enlarge the extrinsic grid beyond what the samplex arguments imply, with the extra axes enumerating independent randomizations.
+
+### Results
+
+The [`QuantumProgramResult`](auto/quantum-program-quantum-program-result "samplomatic.quantum_program.QuantumProgramResult") class collects the results associated with a program. This class mirrors the program’s structure: it holds one [`QuantumProgramItemResult`](auto/quantum-program-quantum-program-item-result "samplomatic.quantum_program.QuantumProgramItemResult") per program item, in the same order. Each item result behaves like a mapping from output names to arrays, and carries per-item metadata alongside the shared, program-level metadata stored on the [`QuantumProgramResult`](auto/quantum-program-quantum-program-result "samplomatic.quantum_program.QuantumProgramResult").
+
+## Classes
+
+|                                                                                                                                                      |                                                                                                                                                                           |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`ChunkPart`](auto/quantum-program-chunk-part "samplomatic.quantum_program.ChunkPart")(idx\_item, size)                                              | A description of the contents of a single part of an execution chunk.                                                                                                     |
+| [`ChunkSpan`](auto/quantum-program-chunk-span "samplomatic.quantum_program.ChunkSpan")(start, stop, parts)                                           | Timing information about a single chunk of execution.                                                                                                                     |
+| [`ChunkTiming`](auto/quantum-program-chunk-timing "samplomatic.quantum_program.ChunkTiming")(spans)                                                  | A collection of chunk timing information for a [`QuantumProgramResult`](auto/quantum-program-quantum-program-result "samplomatic.quantum_program.QuantumProgramResult").  |
+| [`CircuitItem`](auto/quantum-program-circuit-item "samplomatic.quantum_program.CircuitItem")(circuit, \*\[, circuit\_arguments, ...])                | An item of a [`QuantumProgram`](auto/quantum-program-quantum-program "samplomatic.quantum_program.QuantumProgram") containing a circuit and its arguments.                |
+| [`QuantumProgram`](auto/quantum-program-quantum-program "samplomatic.quantum_program.QuantumProgram")(shots\[, items, noise\_maps, ...])             | A quantum runtime executable.                                                                                                                                             |
+| [`QuantumProgramItem`](auto/quantum-program-quantum-program-item "samplomatic.quantum_program.QuantumProgramItem")(circuit\[, chunk\_size])          | An item of a [`QuantumProgram`](auto/quantum-program-quantum-program "samplomatic.quantum_program.QuantumProgram").                                                       |
+| [`QuantumProgramItemResult`](auto/quantum-program-quantum-program-item-result "samplomatic.quantum_program.QuantumProgramItemResult")(result)        | A container to store results for a single item of a [`QuantumProgram`](auto/quantum-program-quantum-program "samplomatic.quantum_program.QuantumProgram").                |
+| [`QuantumProgramResult`](auto/quantum-program-quantum-program-result "samplomatic.quantum_program.QuantumProgramResult")(data\[, passthrough\_data]) | A container to store results from executing a [`QuantumProgram`](auto/quantum-program-quantum-program "samplomatic.quantum_program.QuantumProgram").                      |
+| [`SamplexItem`](auto/quantum-program-samplex-item "samplomatic.quantum_program.SamplexItem")(circuit, samplex, \*\[, ...])                           | An item of a [`QuantumProgram`](auto/quantum-program-quantum-program "samplomatic.quantum_program.QuantumProgram") containing a circuit and samplex to feed it arguments. |
+

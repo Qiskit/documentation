@@ -1,0 +1,77 @@
+---
+title: PreEdge (latest version)
+description: API reference for samplomatic.pre_samplex.PreEdge in the latest version of samplomatic
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: samplomatic.pre_samplex.PreEdge
+---
+
+# PreEdge
+
+<Class id="samplomatic.pre_samplex.PreEdge" isDedicatedPage={true} github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/pre_samplex/graph_data.py#L69-L96" signature="samplomatic.pre_samplex.PreEdge(subsystems: Partition[int], direction: Direction, force_register_copy: bool = False)" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
+
+  Edge data on a samplex builder’s graph.
+
+  **Attributes Summary**
+
+  |                                                                                                                                     |                                                                                 |
+  | ----------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+  | [`direction`](#samplomatic.pre_samplex.PreEdge.direction "samplomatic.pre_samplex.PreEdge.direction")                               | Whether the edge is moving forwards or backwards in circuit-time.               |
+  | [`force_register_copy`](#samplomatic.pre_samplex.PreEdge.force_register_copy "samplomatic.pre_samplex.PreEdge.force_register_copy") | Whether the edge should force the receiving node to get a copy of the register. |
+  | [`subsystems`](#samplomatic.pre_samplex.PreEdge.subsystems "samplomatic.pre_samplex.PreEdge.subsystems")                            | The subsystems that virtual gates act on.                                       |
+
+  **Methods Summary**
+
+  |                                                                                                                                       |                                                                                                                                       |
+  | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+  | [`add_subsystems`](#samplomatic.pre_samplex.PreEdge.add_subsystems "samplomatic.pre_samplex.PreEdge.add_subsystems")(new\_subsystems) | Add subsystems to an existing `PreEdge`                                                                                               |
+  | [`get_style`](#samplomatic.pre_samplex.PreEdge.get_style "samplomatic.pre_samplex.PreEdge.get_style")()                               | Summarizes the style of this node when plotted via [`plot_graph()`](visualization-plot-graph "samplomatic.visualization.plot_graph"). |
+
+  **Attributes Documentation**
+
+  ### direction
+
+  <Attribute id="samplomatic.pre_samplex.PreEdge.direction">
+    Type: [`Direction`](constants-direction "samplomatic.constants.Direction")
+
+    Default value: `<dataclasses._MISSING_TYPE object>`
+
+    Whether the edge is moving forwards or backwards in circuit-time.
+  </Attribute>
+
+  ### force\_register\_copy
+
+  <Attribute id="samplomatic.pre_samplex.PreEdge.force_register_copy">
+    Type: [`bool`](https://docs.python.org/3/builtins/functions.html#bool)
+
+    Default value: `False`
+
+    Whether the edge should force the receiving node to get a copy of the register.
+  </Attribute>
+
+  ### subsystems
+
+  <Attribute id="samplomatic.pre_samplex.PreEdge.subsystems">
+    Type: [`Partition`](partition-partition "samplomatic.partition.Partition")\[[`int`](https://docs.python.org/3/builtins/functions.html#int)]
+
+    Default value: `<dataclasses._MISSING_TYPE object>`
+
+    The subsystems that virtual gates act on.
+  </Attribute>
+
+  **Methods Documentation**
+
+  ### add\_subsystems
+
+  <Function id="samplomatic.pre_samplex.PreEdge.add_subsystems" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/pre_samplex/graph_data.py#L93-L96" signature="add_subsystems(new_subsystems: Partition[int])">
+    Add subsystems to an existing `PreEdge`
+  </Function>
+
+  ### get\_style
+
+  <Function id="samplomatic.pre_samplex.PreEdge.get_style" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/pre_samplex/graph_data.py#L82-L91" signature="get_style() → EdgeStyle">
+    Summarizes the style of this node when plotted via [`plot_graph()`](visualization-plot-graph "samplomatic.visualization.plot_graph").
+  </Function>
+</Class>
+
