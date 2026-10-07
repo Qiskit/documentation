@@ -1,0 +1,37 @@
+---
+title: passes (latest version)
+description: API reference for samplomatic.transpiler.passes in the latest version of samplomatic
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: samplomatic.transpiler.passes
+---
+
+<span id="module-samplomatic.transpiler.passes" />
+
+<span id="samplomatic-transpiler-passes" />
+
+# samplomatic.transpiler.passes
+
+Transpiler passes
+
+## Classes
+
+|                                                                                                                                                                            |                                                                                                                                    |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| [`AbsorbSingleQubitGates`](auto/transpiler-passes-absorb-single-qubit-gates "samplomatic.transpiler.passes.AbsorbSingleQubitGates")(\*args, \*\*kwargs)                    | Absorb all chains of single-qubit gates that are left of a box instruction into the box.                                           |
+| [`AddInjectNoise`](auto/transpiler-passes-add-inject-noise "samplomatic.transpiler.passes.AddInjectNoise")(\*args, \*\*kwargs)                                             | Inserts [`InjectNoise`](auto/inject-noise "samplomatic.InjectNoise") annotations to all the unique boxes with twirling annotation. |
+| [`AddTags`](auto/transpiler-passes-add-tags "samplomatic.transpiler.passes.AddTags")(\*args, \*\*kwargs)                                                                   | Inserts [`Tag`](auto/tag "samplomatic.Tag") annotations to all box instructions.                                                   |
+| [`AddTerminalRightDressedBoxes`](auto/transpiler-passes-add-terminal-right-dressed-boxes "samplomatic.transpiler.passes.AddTerminalRightDressedBoxes")(\*args, \*\*kwargs) | Add right-dressed boxes to collect uncollected virtual gates emitted by left-dressed boxes.                                        |
+| [`GroupGatesIntoBoxes`](auto/transpiler-passes-group-gates-into-boxes "samplomatic.transpiler.passes.GroupGatesIntoBoxes")(\*args, \*\*kwargs)                             | Collect the two-qubit gates in a circuit inside left-dressed boxes.                                                                |
+| [`GroupMeasIntoBoxes`](auto/transpiler-passes-group-meas-into-boxes "samplomatic.transpiler.passes.GroupMeasIntoBoxes")(\*args, \*\*kwargs)                                | Collect the measurements in a circuit inside boxes.                                                                                |
+| [`InlineBoxes`](auto/transpiler-passes-inline-boxes "samplomatic.transpiler.passes.InlineBoxes")(\*args, \*\*kwargs)                                                       | Inline every box in the input circuit by replacing it with its content.                                                            |
+
+## Submodules
+
+*   [samplomatic.transpiler.passes.insert\_noops](transpiler-passes-insert-noops)
+
+    *   [AddNoops](auto/transpiler-passes-insert-noops-add-noops)
+    *   [AddNoopsActiveAccum](auto/transpiler-passes-insert-noops-add-noops-active-accum)
+    *   [AddNoopsActiveCircuit](auto/transpiler-passes-insert-noops-add-noops-active-circuit)
+    *   [AddNoopsAll](auto/transpiler-passes-insert-noops-add-noops-all)
+

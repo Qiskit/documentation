@@ -1,0 +1,102 @@
+---
+title: ExecutorCircuitGenerator (latest version)
+description: API reference for qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator in the latest version of qiskit-noise-learning
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator
+---
+
+<span id="qiskit-noise-learning-circuit-generator-executorcircuitgenerator" />
+
+# qiskit\_noise\_learning.circuit\_generator.ExecutorCircuitGenerator
+
+<Class id="qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/circuit_generator/executor_circuit_generator.py" signature="qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator(gate_set: QiskitGateSet, creg_prefix: str = 'meas', local_clifford_ref_prefix: str = 'c', pass_manager: PassManager | None = None)" modifiers="class">
+  Bases: `CircuitGenerator`\[[`QuantumProgram`](/docs/api/qiskit-ibm-runtime/quantum-program-quantum-program "(in Qiskit Runtime IBM Client)"), [`ExecutorDataMapper`](circuit-generator-executor-data-mapper "qiskit_noise_learning.circuit_generator.executor_data_mapper.ExecutorDataMapper"), [`QuantumProgramResult`](/docs/api/qiskit-ibm-runtime/results-quantum-program-result "(in Qiskit Runtime IBM Client)")]
+
+  A circuit generator that converts sequences of Qiskit gates into a samplex items.
+
+  **Parameters**
+
+  *   **gate\_set** – The Qiskit gate set that this generator constructs against.
+  *   **creg\_prefix** – The prefix assigned to all creg names used in instruction sequence measurements. Defaults to `"meas"`.
+  *   **local\_clifford\_ref\_prefix** – The prefix assigned to all local Clifford parameter references in template circuits. Defaults to `"c"`.
+  *   **pass\_manager** – An optional `PassManager` to apply to all template circuits produced by [`ExecutorCircuitGenerator.generate()`](#qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator.generate "qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator.generate").
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator.__init__" signature="__init__(gate_set: QiskitGateSet, creg_prefix: str = 'meas', local_clifford_ref_prefix: str = 'c', pass_manager: PassManager | None = None)" />
+
+  ## Methods
+
+  |                                                                                                                                                                                                                                          |                                                                                      |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+  | [`__init__`](#qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator.__init__ "qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator.__init__")(gate\_set\[, creg\_prefix, ...])                                    |                                                                                      |
+  | [`collect`](#qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator.collect "qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator.collect")(result, data\_mapper)                                                  | Coerce data from a specific execution framework into a canonical form.               |
+  | [`generate`](#qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator.generate "qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator.generate")(experiment)                                                         | Generate a new experimental task from the provided experiment.                       |
+  | [`generate_samplex_item`](#qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator.generate_samplex_item "qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator.generate_samplex_item")(instruction\_sequences, ...) | Generate a samplex item from instruction sequences with the same structure.          |
+  | [`generate_samplex_items`](#qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator.generate_samplex_items "qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator.generate_samplex_items")(...)                      | Generate samplex items from instruction sequences.                                   |
+  | `partition`(sequences)                                                                                                                                                                                                                   | Partition the positions of instruction sequences that can share a generation output. |
+
+  ## Attributes
+
+  |                                                                                                                                                                      |                                                 |
+  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
+  | [`gate_set`](#qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator.gate_set "qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator.gate_set") | The gate set this generator constructs against. |
+
+  ### gate\_set
+
+  <Attribute id="qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator.gate_set">
+    Type: [`QiskitGateSet`](gate-sets-qiskit-gate-set "qiskit_noise_learning.gate_sets.qiskit_gate_set.QiskitGateSet")
+
+    The gate set this generator constructs against.
+  </Attribute>
+
+  ### collect
+
+  <Function id="qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator.collect" signature="collect(result, data_mapper)" modifiers="static">
+    Coerce data from a specific execution framework into a canonical form.
+  </Function>
+
+  ### generate
+
+  <Function id="qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator.generate" signature="generate(experiment)">
+    Generate a new experimental task from the provided experiment.
+  </Function>
+
+  ### generate\_samplex\_items
+
+  <Function id="qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator.generate_samplex_items" signature="generate_samplex_items(instruction_sequences: list[InstructionSequence], num_randomizations: int) → tuple[list[SamplexItem], ExecutorDataMapper]">
+    Generate samplex items from instruction sequences.
+
+    **Parameters**
+
+    *   **instruction\_sequences** – The instruction sequences to generate circuits for.
+    *   **num\_randomizations** – The number of randomizations per sequence.
+
+    **Returns**
+
+    A tuple of samplex items and a data mapper.
+  </Function>
+
+  ### generate\_samplex\_item
+
+  <Function id="qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator.generate_samplex_item" signature="generate_samplex_item(instruction_sequences: list[InstructionSequence], num_randomizations: int) → tuple[SamplexItem, list[str], dict[str, ndarray[int]]]">
+    Generate a samplex item from instruction sequences with the same structure.
+
+    **Parameters**
+
+    *   **instruction\_sequences** – The similar instruction sequences to generate.
+    *   **num\_randomizations** – The number of randomizations per sequence.
+
+    **Returns**
+
+    A samplex item where the order of the arguments correspond to the order of `instruction_sequences`, an ordered list of creg names, and a dictionary mapping creg names to the ordered list of qubit indices they measure.
+
+    **Raises**
+
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If `instruction_sequences` is empty.
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If any of the instruction sequences is not complete.
+    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If any of the instruction sequences have different structure.
+  </Function>
+</Class>
+

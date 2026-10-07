@@ -1,0 +1,105 @@
+---
+title: ApplyGate (latest version)
+description: API reference for qiskit_noise_learning.sequences.ApplyGate in the latest version of qiskit-noise-learning
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_noise_learning.sequences.ApplyGate
+---
+
+<span id="qiskit-noise-learning-sequences-applygate" />
+
+# qiskit\_noise\_learning.sequences.ApplyGate
+
+<Class id="qiskit_noise_learning.sequences.ApplyGate" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/sequences/apply_gate.py" signature="qiskit_noise_learning.sequences.ApplyGate(gate_name: str)" modifiers="class">
+  Bases: `Instruction`
+
+  An instruction that applies a fixed gate.
+
+  **Parameters**
+
+  **gate\_name** – The name of the gate to apply.
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit_noise_learning.sequences.ApplyGate.__init__" signature="__init__(gate_name: str)" />
+
+  ## Methods
+
+  |                                                                                                                                                          |                                                               |
+  | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
+  | [`__init__`](#qiskit_noise_learning.sequences.ApplyGate.__init__ "qiskit_noise_learning.sequences.ApplyGate.__init__")(gate\_name)                       |                                                               |
+  | [`complete`](#qiskit_noise_learning.sequences.ApplyGate.complete "qiskit_noise_learning.sequences.ApplyGate.complete")()                                 | Returns self.                                                 |
+  | [`is_mergeable_with`](#qiskit_noise_learning.sequences.ApplyGate.is_mergeable_with "qiskit_noise_learning.sequences.ApplyGate.is_mergeable_with")(other) | Whether or not this apply gate is mergeable with another one. |
+  | [`merge`](#qiskit_noise_learning.sequences.ApplyGate.merge "qiskit_noise_learning.sequences.ApplyGate.merge")(other)                                     | Merge self and other into a single instruction.               |
+
+  ## Attributes
+
+  |                                                                                                                                             |                                                                      |
+  | ------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
+  | [`gate_name`](#qiskit_noise_learning.sequences.ApplyGate.gate_name "qiskit_noise_learning.sequences.ApplyGate.gate_name")                   | The name of the gate to apply.                                       |
+  | [`is_complete`](#qiskit_noise_learning.sequences.ApplyGate.is_complete "qiskit_noise_learning.sequences.ApplyGate.is_complete")             | Apply gate instructions are always complete.                         |
+  | [`structure_token`](#qiskit_noise_learning.sequences.ApplyGate.structure_token "qiskit_noise_learning.sequences.ApplyGate.structure_token") | A hashable summary of this instruction that constrains mergeability. |
+
+  ### gate\_name
+
+  <Attribute id="qiskit_noise_learning.sequences.ApplyGate.gate_name">
+    Type: [`str`](https://docs.python.org/3/library/stdtypes.html#str)
+
+    The name of the gate to apply.
+  </Attribute>
+
+  ### is\_complete
+
+  <Attribute id="qiskit_noise_learning.sequences.ApplyGate.is_complete">
+    Type: [`bool`](https://docs.python.org/3/library/functions.html#bool)
+
+    Apply gate instructions are always complete.
+  </Attribute>
+
+  ### structure\_token
+
+  <Attribute id="qiskit_noise_learning.sequences.ApplyGate.structure_token">
+    Type: [`Hashable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Hashable)
+
+    A hashable summary of this instruction that constrains mergeability.
+
+    This token serves as a cheap check of non-mergeability: instructions with unequal structure tokens are never mergeable. The token must therefore distinguish instruction types from one another.
+  </Attribute>
+
+  ### complete
+
+  <Function id="qiskit_noise_learning.sequences.ApplyGate.complete" signature="complete() → Self">
+    Returns self.
+  </Function>
+
+  ### is\_mergeable\_with
+
+  <Function id="qiskit_noise_learning.sequences.ApplyGate.is_mergeable_with" signature="is_mergeable_with(other: Instruction) → bool">
+    Whether or not this apply gate is mergeable with another one.
+
+    Mergeability of two [`ApplyGate`](#qiskit_noise_learning.sequences.ApplyGate "qiskit_noise_learning.sequences.ApplyGate") instructions is based on equality of the gate names.
+
+    **Parameters**
+
+    **other** – The other instruction to check mergeablitity with.
+
+    **Returns**
+
+    Whether this instruction is mergeable with the other.
+  </Function>
+
+  ### merge
+
+  <Function id="qiskit_noise_learning.sequences.ApplyGate.merge" signature="merge(other)">
+    Merge self and other into a single instruction.
+
+    **Parameters**
+
+    **other** – The other instruction to merge with.
+
+    **Returns**
+
+    Some instruction (possibly the same instance) that simultaneously implements the action of this instruction and the other instruction.
+  </Function>
+</Class>
+

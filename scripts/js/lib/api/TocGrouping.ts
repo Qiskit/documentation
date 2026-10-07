@@ -242,6 +242,12 @@ export const QISKIT_RUNTIME_GROUPING: TocGrouping = {
       untranslatable: true,
     },
     {
+      moduleId: "qiskit_ibm_runtime.circuit.library",
+      title: "qiskit_ibm_runtime.circuit.library",
+      kind: "module",
+      untranslatable: true,
+    },
+    {
       moduleId: "qiskit_ibm_runtime.debug_tools",
       title: "qiskit_ibm_runtime.debug_tools",
       kind: "module",
@@ -250,6 +256,18 @@ export const QISKIT_RUNTIME_GROUPING: TocGrouping = {
     {
       moduleId: "qiskit_ibm_runtime.execution_span",
       title: "qiskit_ibm_runtime.execution_span",
+      kind: "module",
+      untranslatable: true,
+    },
+    {
+      moduleId: "qiskit_ibm_runtime.executor_estimator",
+      title: "qiskit_ibm_runtime.executor_estimator",
+      kind: "module",
+      untranslatable: true,
+    },
+    {
+      moduleId: "qiskit_ibm_runtime.executor_sampler",
+      title: "qiskit_ibm_runtime.executor_sampler",
       kind: "module",
       untranslatable: true,
     },

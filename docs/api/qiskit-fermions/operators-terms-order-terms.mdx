@@ -13,7 +13,7 @@ python_api_name: qiskit_fermions.operators.terms.order_terms
 <Function id="qiskit_fermions.operators.terms.order_terms" isDedicatedPage={true} signature="order_terms(op, key, *, reverse=False)">
   Returns a copy of an operator with its terms reordered by a user-provided key.
 
-  Unlike [`canonical_order()`](operators-terms-canonical-order "qiskit_fermions.operators.terms.canonical_order"), which imposes a single fixed, coefficient-independent order, this function lets you sort the terms by any criterion you like: the `key` function is applied to each term exactly as [`sorted()`](https://docs.python.org/3/library/functions.html#sorted) would, and the terms are rebuilt into a new operator of the same type in the resulting order. This is useful whenever the *order* of the terms matters for a downstream computation (e.g. randomized product-formula sampling), since it gives you a deterministic, reproducible order independent of how the operator happened to be assembled.
+  Unlike [`canonical_order()`](operators-terms-canonical-order "qiskit_fermions.operators.terms.canonical_order"), which imposes a single fixed, coefficient-independent order, this function lets you sort the terms by any criterion you like: the `key` function is applied to each term exactly as [`sorted()`](https://docs.python.org/3/builtins/functions.html#sorted) would, and the terms are rebuilt into a new operator of the same type in the resulting order. This is useful whenever the *order* of the terms matters for a downstream computation (e.g. randomized product-formula sampling), since it gives you a deterministic, reproducible order independent of how the operator happened to be assembled.
 
   The terms themselves are left untouched – this only reorders them, it does not simplify or normal-order the operator. This works for any of the built-in operator types implementing the [`OperatorTrait`](operators-operator-trait "qiskit_fermions.operators.OperatorTrait") protocol; the returned operator is of the same type as the input.
 
@@ -38,8 +38,8 @@ python_api_name: qiskit_fermions.operators.terms.order_terms
   **Parameters**
 
   *   **op** ([*OperatorTrait*](operators-operator-trait "qiskit_fermions.operators.operator_trait.OperatorTrait")) – the operator whose terms to reorder.
-  *   **key** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*],* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*]*) – a function of a single term, used exactly as the `key` argument of [`sorted()`](https://docs.python.org/3/library/functions.html#sorted). It receives each term as the tuple described in the note above.
-  *   **reverse** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – if `True`, the terms are sorted in descending order of `key`.
+  *   **key** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[*[*tuple*](https://docs.python.org/3/builtins/stdtypes.html#tuple)*],* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*]*) – a function of a single term, used exactly as the `key` argument of [`sorted()`](https://docs.python.org/3/builtins/functions.html#sorted). It receives each term as the tuple described in the note above.
+  *   **reverse** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) – if `True`, the terms are sorted in descending order of `key`.
 
   **Returns**
 

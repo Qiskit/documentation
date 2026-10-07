@@ -1,0 +1,35 @@
+---
+title: gate_set_topology (latest version)
+description: API reference for qiskit_noise_learning.visualizations.gate_set_topology in the latest version of qiskit-noise-learning
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit_noise_learning.visualizations.gate_set_topology
+---
+
+<span id="qiskit-noise-learning-visualizations-gate-set-topology" />
+
+# qiskit\_noise\_learning.visualizations.gate\_set\_topology
+
+<Function id="qiskit_noise_learning.visualizations.gate_set_topology" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/visualizations/gate_set_topology.py" signature="qiskit_noise_learning.visualizations.gate_set_topology(gate_set: GateSet[Gate]) → InteractiveFigure">
+  Draw the device topology with per-gate coloring.
+
+  Gates with 2-qubit interactions are drawn as colored edges on the device coupling graph. Gates that act only on individual qubits (such as preparation and measurement) are shown as colored arcs around the relevant nodes, with one arc sector per gate per qubit. The arc sectors are arranged so that the first gate in the set occupies the right-hand side of the circle (angle 0), and subsequent gates proceed counter-clockwise. Qubits that are idling in a given gate receive a slightly transparent arc.
+
+  Two legends switch what is shown: one per gate, and one per kind of mark. Gates that only prepare or only measure open switched off, since they touch every qubit at once and would otherwise bury the rest; their legend entry brings them back.
+
+  Qubits are placed in the device’s conventional layout where it has one, and laid out from its coupling graph otherwise. A target that constrains connectivity nowhere – an ideal or all-to-all device – has no topology to draw and no graph to lay out from, so its qubits are drawn without edges, in the conventional layout if its size has one.
+
+  **Parameters**
+
+  **gate\_set** – The gate set to visualize. Must have a non-`None` [`target`](gate-sets-gate-set#target "qiskit_noise_learning.gate_sets.GateSet.target") so that qubit coordinates and the device topology can be determined.
+
+  **Returns**
+
+  The figure.
+
+  **Raises**
+
+  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If `gate_set.target` is `None`, or if the device’s size is not one of the conventionally drawn ones and its target constrains connectivity nowhere, leaving no coupling graph to derive a layout from.
+  *   [**ImportError**](https://docs.python.org/3/library/exceptions.html#ImportError) – If `matplotlib` is not installed.
+</Function>
+
