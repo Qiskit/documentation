@@ -81,6 +81,7 @@ export async function processHtml(
   removePublicMembersRubric($main);
   removeMatplotlibFigCaptions($main);
   handleSphinxDesignCards($, $main);
+  handleSphinxDesignTabs($, $main);
   addLanguageClassToCodeBlocks($, $main, options);
   replaceViewcodeLinksWithGitHub($, $main, determineGithubUrl);
   updateRedirectedExternalLinks($, $main, externalRedirects);
@@ -261,6 +262,46 @@ export function handleSphinxDesignCards(
     const $quote = $(quote);
     $quote.replaceWith($quote.children());
   });
+}
+
+/**
+ * Converts sphinx-design `tab-set` directives into custom `<tabs>` and `<tabitem>`
+ * elements, which htmlToMd turns into the `Tabs` and `TabItem` MDX components.
+ *
+ * The tab-set HTML is a flat list of `input`, `label` and `div.sd-tab-content`
+ * siblings, so we pair each label with the content that follows it.
+ */
+export function handleSphinxDesignTabs(
+  $: CheerioAPI,
+  $main: Cheerio<any>,
+): void {
+  // Document order puts outer tab sets first. Reversing processes nested sets first.
+  $main
+    .find(".sd-tab-set")
+    .toArray()
+    .reverse()
+    .forEach((tabSet) => {
+      const $tabSet = $(tabSet);
+      $tabSet.find("button.copybtn").remove();
+
+      const $tabs = $("<tabs></tabs>");
+      $tabSet.children("label.sd-tab-label").each((_, label) => {
+        const $label = $(label);
+        const labelText = $label.text().trim();
+        const syncId = $label.attr("data-sync-id");
+        const syncGroup = $label.attr("data-sync-group");
+        const value =
+          syncId ?? labelText.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+
+        if (syncGroup && !$tabs.attr("group")) $tabs.attr("group", syncGroup);
+        $("<tabitem></tabitem>")
+          .attr("value", value)
+          .attr("label", labelText)
+          .append($label.next(".sd-tab-content").contents())
+          .appendTo($tabs);
+      });
+      $tabSet.replaceWith($tabs);
+    });
 }
 
 function detectLanguage(
