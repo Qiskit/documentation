@@ -67,9 +67,12 @@ Build the pinned Runtime C library:
 ```bash
 git clone https://github.com/Qiskit/qiskit-ibm-runtime-c.git "$NUCLEAR_DEPS/qiskit-ibm-runtime-c"
 git -C "$NUCLEAR_DEPS/qiskit-ibm-runtime-c" checkout --detach 46a1065bbadcdf5f9561f908a76502673da0b7d5
+cd "$NUCLEAR_DEPS/qiskit-ibm-runtime-c"
 cargo build --manifest-path "$NUCLEAR_DEPS/qiskit-ibm-runtime-c/crates/client/Cargo.toml" \
   --release --locked --target-dir "$NUCLEAR_DEPS/qiskit-ibm-runtime-c/build/cargo"
 ```
+
+Run `cargo build` from the `qiskit-ibm-runtime-c` directory, as shown. Cargo reads that repository's `.cargo/config.toml` only from there, and without its linker settings the build fails with undefined `qk_` symbols on macOS.
 
 Reconfigure and rebuild the Fortran bindings with Runtime support:
 

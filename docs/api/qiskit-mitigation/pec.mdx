@@ -86,7 +86,7 @@ python_api_name: qiskit_mitigation.PEC
     *   **num\_randomizations** ([*int*](https://docs.python.org/3/builtins/functions.html#int)) – The number of randomizations.
     *   **broadcast\_obs\_and\_params** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) – Whether to broadcast observables and parameters.
     *   **trex** ([*TREX*](trex#qiskit_mitigation.TREX "qiskit_mitigation.trex.TREX") *| None*) – A TREX mitigation instance that will be used to mitigate readout errors.
-    *   **quantum\_program** ([*QuantumProgram*](https://qiskit.github.io/samplomatic/api/auto/samplomatic.quantum_program.QuantumProgram.html#samplomatic.quantum_program.QuantumProgram "(in samplomatic)") *| None*) – The quantum program to add an item for. If None, a new program will be created.
+    *   **quantum\_program** ([*QuantumProgram*](/docs/api/samplomatic/auto/quantum-program-quantum-program#samplomatic.quantum_program.QuantumProgram "(in samplomatic)") *| None*) – The quantum program to add an item for. If None, a new program will be created.
     *   **noise\_maps** ([*dict*](https://docs.python.org/3/builtins/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/builtins/stdtypes.html#str)*,* [*PauliLindbladMap*](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap)*] | None*) – A mapping between layer ref to a noise model to use for PEC mitigation method. The dict might contain layers not present in the given circuit, but must contain all the mitigated layers. Assumes that the unique layers used for noise learning were extracted using the `find_unique_layers` method with the same custom boxing options.
     *   **scale\_randomizations\_by\_gamma** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) – Whether to automatically scale the number of randomizations by gamma\*\*2.
     *   **noise\_gain** ([*float*](https://docs.python.org/3/builtins/functions.html#float)  *|*[*Literal*](https://docs.python.org/3/library/typing.html#typing.Literal)*\['auto']*) – The fraction of noise to keep after the mitigation. A value of `0` corresponds to removing the full learned noise. A value of `1` corresponds to no removal of the learned noise. A value between `0` and `1` corresponds to partially removing the learned noise. A value greater than one corresponds to amplifying the learned noise. If `"auto"`, the value in the range `[0, 1]` will be chosen automatically by the formula `1 - log(max_overhead) / log(gamma^2)`.
@@ -98,7 +98,7 @@ python_api_name: qiskit_mitigation.PEC
 
     **Return type**
 
-    [*QuantumProgram*](https://qiskit.github.io/samplomatic/api/auto/samplomatic.quantum_program.QuantumProgram.html#samplomatic.quantum_program.QuantumProgram "(in samplomatic)")
+    [*QuantumProgram*](/docs/api/samplomatic/auto/quantum-program-quantum-program#samplomatic.quantum_program.QuantumProgram "(in samplomatic)")
   </Function>
 
   ##### postprocess
@@ -108,7 +108,7 @@ python_api_name: qiskit_mitigation.PEC
 
     **Parameters**
 
-    *   **results** ([*QuantumProgramItemResult*](https://qiskit.github.io/samplomatic/api/auto/samplomatic.quantum_program.QuantumProgramItemResult.html#samplomatic.quantum_program.QuantumProgramItemResult "(in samplomatic)")  *|*[*QuantumProgramResult*](https://qiskit.github.io/samplomatic/api/auto/samplomatic.quantum_program.QuantumProgramResult.html#samplomatic.quantum_program.QuantumProgramResult "(in samplomatic)")) – The execution results. Can be either the entire results object or the pec mitigated item result of this task. If TREX calibration task is added to the quantum program, its results will be used to compute the measure noise data if the entire results object is provided.
+    *   **results** ([*QuantumProgramItemResult*](/docs/api/samplomatic/auto/quantum-program-quantum-program-item-result#samplomatic.quantum_program.QuantumProgramItemResult "(in samplomatic)")  *|*[*QuantumProgramResult*](/docs/api/samplomatic/auto/quantum-program-quantum-program-result#samplomatic.quantum_program.QuantumProgramResult "(in samplomatic)")) – The execution results. Can be either the entire results object or the pec mitigated item result of this task. If TREX calibration task is added to the quantum program, its results will be used to compute the measure noise data if the entire results object is provided.
     *   **measure\_noise\_data** ([*PauliLindbladMap*](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap)  *|*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray) *| None*) – The learned measurement noise data to use for TREX mitigation. If None and a calibration task is present the quantum program, the measure noise will be computed from the calibration task results if the entire results object is provided.
 
     **Returns**
@@ -135,7 +135,7 @@ python_api_name: qiskit_mitigation.PEC
 
     **Parameters**
 
-    *   **item\_result** ([*QuantumProgramItemResult*](https://qiskit.github.io/samplomatic/api/auto/samplomatic.quantum_program.QuantumProgramItemResult.html#samplomatic.quantum_program.QuantumProgramItemResult "(in samplomatic)")) – The item result.
+    *   **item\_result** ([*QuantumProgramItemResult*](/docs/api/samplomatic/auto/quantum-program-quantum-program-item-result#samplomatic.quantum_program.QuantumProgramItemResult "(in samplomatic)")) – The item result.
     *   **observables** ([*ObservablesArray*](/docs/api/qiskit/qiskit.primitives.ObservablesArray)  *|*[*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp)*]*) – The observables to calculate expectation values for.
     *   **gamma** ([*float*](https://docs.python.org/3/builtins/functions.html#float)) – The gamma factor of the learned noise model for the executed circuit.
     *   **param\_shape** ([*tuple*](https://docs.python.org/3/builtins/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/builtins/functions.html#int)*, ...] | None*) – The shape of the parameter values.

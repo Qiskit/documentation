@@ -1,0 +1,37 @@
+---
+title: deprecate_arg (latest version)
+description: API reference for samplomatic.utils.deprecate_arg in the latest version of samplomatic
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: samplomatic.utils.deprecate_arg
+---
+
+<span id="deprecate-arg" />
+
+# deprecate\_arg
+
+<Function id="samplomatic.utils.deprecate_arg" isDedicatedPage={true} github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/utils/deprecation.py#L21-L76" signature="samplomatic.utils.deprecate_arg(name: str, *, since: str, additional_msg: str | None = None, deprecation_description: str | None = None, pending: bool = False, new_alias: str | None = None, predicate: Callable[[Any], bool] | None = None, removal_timeline: str = 'no earlier than 1 month after the release date') → Callable">
+  Return a decorator to indicate an argument has been deprecated in some way.
+
+  This decorator may be used multiple times on the same function, once per deprecated argument. It should be placed beneath other decorators like `@staticmethod` and property decorators.
+
+  <Admonition title="Note" type="note">
+    This is currently implemented as a thin wrapper around `qiskit.utils.deprecation()` where we hard-code the package name to samplomatic and lower the default removal timeline.
+  </Admonition>
+
+  **Parameters**
+
+  *   **name** – The name of the deprecated argument.
+  *   **since** – The version the deprecation started at. If the deprecation is pending, set the version to when that started; but later, when switching from pending to deprecated, update `since` to the new version.
+  *   **deprecation\_description** – What is being deprecated? E.g. “Setting my\_func()’s `my_arg` argument to `None`.” If not set, will default to “\{func\_name}’s argument `{name}`”.
+  *   **additional\_msg** – Put here any additional information, such as what to use instead (if `` `new_alias` `` is not set). For example, “Instead, use the argument new\_arg, which is similar but does not impact the circuit’s setup.”
+  *   **pending** – Set to `True` if the deprecation is still pending.
+  *   **new\_alias** – If the arg has simply been renamed, set this to the new name. The decorator will dynamically update the `kwargs` so that when the user sets the old arg, it will be passed in as the `new_alias` arg.
+  *   **predicate** – Only log the runtime warning if the predicate returns True. This is useful to deprecate certain values or types for an argument, e.g. `lambda my_arg: isinstance(my_arg, dict)`. Regardless of if a predicate is set, the runtime warning will only log when the user specifies the argument.
+  *   **removal\_timeline** – How soon can this deprecation be removed? Expects a value like “no sooner than 6 months after the latest release” or “in release 9.99”.
+
+  **Returns**
+
+  The decorated callable.
+</Function>
+

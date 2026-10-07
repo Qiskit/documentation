@@ -1,0 +1,78 @@
+---
+title: PauliPastCliffordNode (latest version)
+description: API reference for samplomatic.samplex.nodes.PauliPastCliffordNode in the latest version of samplomatic
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: samplomatic.samplex.nodes.PauliPastCliffordNode
+---
+
+# PauliPastCliffordNode
+
+<Class id="samplomatic.samplex.nodes.PauliPastCliffordNode" isDedicatedPage={true} github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplex/nodes/pauli_past_clifford_node.py#L106-L182" signature="samplomatic.samplex.nodes.PauliPastCliffordNode(op_name: str, register_name: str, subsystem_idxs: Sequence[Sequence[int]], *, lookup_table: ndarray | None = None)" modifiers="class">
+  Bases: [`EvaluationNode`](samplex-nodes-evaluation-node "samplomatic.samplex.nodes.evaluation_node.EvaluationNode")
+
+  A node that propagates a Pauli register past a Clifford gate.
+
+  **Parameters**
+
+  *   **op\_name** – The name of the Clifford gate.
+  *   **register\_name** – The name of the Pauli register to propagate.
+  *   **subsystem\_idxs** – The subsystems in the register. The expected format is that of a collection of subsystems of the same size, i.e., that of a 2D array where the left-most axes is over subsystems and the right-most axes is over qubits.
+
+  **Attributes Summary**
+
+  |                                                                                                                                                                              |                                              |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
+  | [`outgoing_register_type`](#samplomatic.samplex.nodes.PauliPastCliffordNode.outgoing_register_type "samplomatic.samplex.nodes.PauliPastCliffordNode.outgoing_register_type") | The virtual gate type of outgoing registers. |
+
+  **Methods Summary**
+
+  |                                                                                                                                                     |                                                                                  |
+  | --------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+  | [`evaluate`](#samplomatic.samplex.nodes.PauliPastCliffordNode.evaluate "samplomatic.samplex.nodes.PauliPastCliffordNode.evaluate")(registers, \*\_) | Evaluate this node.                                                              |
+  | [`get_style`](#samplomatic.samplex.nodes.PauliPastCliffordNode.get_style "samplomatic.samplex.nodes.PauliPastCliffordNode.get_style")()             | Return the style of this node when plotted.                                      |
+  | [`reads_from`](#samplomatic.samplex.nodes.PauliPastCliffordNode.reads_from "samplomatic.samplex.nodes.PauliPastCliffordNode.reads_from")()          | Return a manifest of which virtual register values this node needs to read from. |
+  | [`writes_to`](#samplomatic.samplex.nodes.PauliPastCliffordNode.writes_to "samplomatic.samplex.nodes.PauliPastCliffordNode.writes_to")()             | Return a manifest of which virtual register values this node needs to write to.  |
+
+  **Attributes Documentation**
+
+  ### outgoing\_register\_type
+
+  <Attribute id="samplomatic.samplex.nodes.PauliPastCliffordNode.outgoing_register_type" />
+
+  **Methods Documentation**
+
+  ### evaluate
+
+  <Function id="samplomatic.samplex.nodes.PauliPastCliffordNode.evaluate" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplex/nodes/pauli_past_clifford_node.py#L143-L149" signature="evaluate(registers, *_)">
+    Evaluate this node.
+
+    **Parameters**
+
+    *   **registers** – At least those registers needed by this node to read from or write to.
+    *   **parameter\_values** – Parameter values to use during evaluation.
+
+    **Raises**
+
+    [**SamplexRuntimeError**](exceptions-samplex-runtime-error "samplomatic.exceptions.SamplexRuntimeError") – If the number of parameter values received does not equal the number required by this node.
+  </Function>
+
+  ### get\_style
+
+  <Function id="samplomatic.samplex.nodes.PauliPastCliffordNode.get_style" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplex/nodes/pauli_past_clifford_node.py#L175-L182" signature="get_style()">
+    Return the style of this node when plotted.
+  </Function>
+
+  ### reads\_from
+
+  <Function id="samplomatic.samplex.nodes.PauliPastCliffordNode.reads_from" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplex/nodes/pauli_past_clifford_node.py#L151-L157" signature="reads_from()">
+    Return a manifest of which virtual register values this node needs to read from.
+  </Function>
+
+  ### writes\_to
+
+  <Function id="samplomatic.samplex.nodes.PauliPastCliffordNode.writes_to" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplex/nodes/pauli_past_clifford_node.py#L159-L165" signature="writes_to()">
+    Return a manifest of which virtual register values this node needs to write to.
+  </Function>
+</Class>
+

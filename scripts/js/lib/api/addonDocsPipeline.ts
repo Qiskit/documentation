@@ -164,6 +164,8 @@ async function determineFilePaths(
       "tutorials/**",
       "release-notes.html",
       "release_notes.html",
+      "release-notes/**",
+      "release_notes/**",
       ...SPHINX_INTERNALS,
       ...pkgIgnores,
     ],
