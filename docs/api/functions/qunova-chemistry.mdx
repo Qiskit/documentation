@@ -234,7 +234,6 @@ The function returns a dictionary with four keys and values. The keys and values
 | Key   | Value Type| Explanation   |
 |-----|---------------|---------------------------------------------------------------------------------------------------------------------------|
 | `"energy"`  | `float`   | The approximate ground state energy of the molecule. |
-| `"states"`  | `List[str]`   | The selected determinants that form the subspace used to solve for the energy. They are in alternating alpha-beta format. |
-| `"eigenvector"` | `List[float]` | The eigenvector corresponding to the ground state of the subspace composed of `"states"`.|
-| `"energy_variance"` | `float` | The energy variance of the ground state of the subspace composed of `"states"`, giving an indication of the quality of the solution. This value is non-negative and a lower value means that the ground state of the subspace more closely approximates an eigenstate of the system's Hamiltonian. |
+| `"results_file_name"` | `string` | The name of the hdf5 results file that can be downloaded using Qiskit Serverless. The file contains `"states"`, `"eigenvector"`, `"energy_history"`, `"final_energy"`, and `"final_energy_variance"`. |
+| `"energy_variance"` | `float` | The energy variance of the ground state of the subspace composed of the `"states"` saved in the results file, giving an indication of the quality of the solution. This value is non-negative and a lower value means that the ground state of the subspace more closely approximates an eigenstate of the system's Hamiltonian. |
 | `"energy_history"` | `List[float]` | The energies computed each iteration during the hybrid optimization process, in the same order that they were computed. Two energies are computed per iteration as part of the SPSA optimization process. |
