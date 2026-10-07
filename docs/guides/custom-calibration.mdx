@@ -23,7 +23,7 @@ These instructions are calibrated together with the standard instruction set, so
 | `measure_2` | Shorter measurement pulse | [Mid-circuit measurements](/docs/guides/execute-dynamic-circuits#midcircuitmeasure-method) | [`MidCircuitMeasure`](/docs/api/qiskit-ibm-runtime/circuit-library-mid-circuit-measure) (v0.43.0 or later) | Heron, Nighthawk r2 |
 | `reset_2` | Shorter conditional reset pulse that uses `measure_2` | Mid-circuit qubit reset | [`MidCircuitReset`](/docs/api/qiskit-ibm-runtime/circuit-library-mid-circuit-reset) (v0.49.0 or later) | Heron |
 | `measure_reset` | Measurement like `measure` that also resets the qubit* | Measure and reset a qubit | [`MeasureReset`](/docs/api/qiskit-ibm-runtime/circuit-library-measure-reset) (v0.50.0 or later) | Heron, Nighthawk r2 |
-| `measure_reset_2` | Shorter measurement like `measure_2` that also resets the qubit* | Measure and reset a qubit mid-circuit | [`MeasureReset(name="measure_reset_2")`](/docs/api/qiskit-ibm-runtime/circuit-library-measure-reset) (v0.50.0 or later) | Heron, Nighthawk r2 |
+| `measure_reset_2` | Shorter measurement like `measure_2` that also resets the qubit* | Measure and reset a qubit mid-circuit | Initialize [`MeasureReset`](/docs/api/qiskit-ibm-runtime/circuit-library-measure-reset) with `name="measure_reset_2"` (v0.50.0 or later) | Heron, Nighthawk r2 |
 | `xslow` | Bit-flip (X) gate with an extended duration | [Postselection](/docs/guides/post-selection) and error mitigation. It is the default value of the [`x_pulse_type`](/docs/api/qiskit-ibm-runtime/options-models-post-selection-options#x_pulse_type) post-selection option. | [`XSlowGate`](/docs/api/qiskit-ibm-runtime/circuit-library-x-slow-gate#xslowgate) (v0.50.0 or later) | All |
 
 \* On Heron processors, the reset is conditional on the measurement result. On Nighthawk r2 processors, the reset is unconditional.
@@ -39,7 +39,7 @@ backend = service.backend("<backend_name>")
 print(backend.supported_instructions)
 ```
 
-Or use the following code to find all backends that support `<instruction>`:
+To find all backends that support an instruction, use:
 
 ```python
 service = QiskitRuntimeService()
@@ -73,7 +73,7 @@ Alternative calibrations are not available on all QPUs.
 
 ### Slow gate calibrations
 
-Slow gate calibrations calibrate the `cz` gate to be slower than in the default calibration. Slower `cz` gates may improve performance large-scale observable estimation workflows with error mitigation, but they also increase the total duration of your circuit, which causes some additional decoherence.
+Slow gate calibrations tune the `cz` gate to be slower than in the default calibration. Slower `cz` gates may improve performance for large-scale observable estimation workflows with error mitigation, but they also increase the total duration of your circuit, which causes some additional decoherence.
 
 On Heron processors, slow gate calibrations are also available with two modes of two-level system (TLS) bias control:
 
@@ -84,12 +84,12 @@ Nighthawk processors do not use TLS bias, so they have a single slow gate calibr
 
 | Calibration ID | Processor family | TLS bias | Recommended for |
 | --- | --- | --- | --- |
-| None (default calibration) | All | DC (Heron) | General use. Especially recommended for workloads whose bitstrings can be classically distilled, such as peaked circuits and [SQD or SKQD](/learning/courses/integrating-quantum-and-high-performance-computing/sqd-skqd) workflows, and for workloads with [error detection](/docs/en/tutorials/spacetime-codes). |
+| None (default calibration) | All | DC (Heron) | General use. Especially recommended for workloads whose bitstrings can be classically distilled, such as peaked circuits and [SQD or SKQD](/learning/courses/integrating-quantum-and-high-performance-computing/sqd-skqd) workflows, and for workloads with [error detection](/docs/tutorials/spacetime-codes). |
 | `slow_gates_dc` | Heron | DC | Large-scale observable estimation workflows, especially those that use heuristic error mitigation such as zero-noise extrapolation (ZNE). |
 | `slow_gates_ac` | Heron | AC | Workflows that require stable error rates over long sessions. Strongly recommended for workflows that involve noise learning, such as probabilistic error amplification (PEA) and probabilistic error cancellation (PEC). |
 | `slow_gates` | Nighthawk | Not applicable | Observable estimation workflows that use error mitigation, such as ZNE, PEA, and PEC. |
 
-Example:
+For example:
 
 ```python
 from qiskit_ibm_runtime import QiskitRuntimeService
@@ -106,18 +106,6 @@ backend = service.backend("ibm_phoenix", calibration_id="slow_gates")
 <Admonition type="tip">
 When you use `slow_gates_ac`, submit all jobs in the workflow to a single [session](/docs/guides/run-jobs-session) so that they run while the device's noise remains stable.
 </Admonition>
-
-```python
-from qiskit_ibm_runtime import QiskitRuntimeService, Session
-from qiskit_ibm_runtime.executor_estimator import Estimator
-
-service = QiskitRuntimeService()
-backend = service.backend("<backend_name>", calibration_id="slow_gates_ac")
-
-with Session(backend=backend) as session:
-    estimator = Estimator(mode=session)
-    # Submit all jobs in the workflow, such as noise learning and estimation, here
-```
 
 #### Check gate durations
 
