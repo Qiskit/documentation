@@ -15,9 +15,16 @@
 // Addon TOCs have a fixed shape built from the Sphinx sidebar tree in index.html:
 //   1. A "main" section (unnamed) from the primary <ul class="current"> toctree.
 //   2. Optional captioned sections (e.g. "Tutorials") from <p class="caption"> groups.
-//   3. An "API reference" section: external items from the sphinx caption's <ul>
-//      (excluding "release notes") are replaced by a local /docs/api/{pkg} link,
-//      plus any release-notes entry from the sphinx caption.
+//   3. An "API reference" section from its <p class="caption"> group.
+//
+// Entries are mapped as follows:
+//   - External links (e.g. absolute https://quantum.cloud.ibm.com/docs/api/{pkg}
+//     URLs) pass through unchanged.
+//   - Internal links into an API folder (stubs/, apidocs/, apidoc/, pydoc/) become
+//     /docs/api/{pkg}; links into cdoc/ become /docs/api/{pkg}-c. Their children
+//     are dropped, since the API TOC (generateToc.ts) owns that subtree.
+//   - The release-notes entry becomes /docs/api/{pkg}/release-notes.
+//   - Everything else becomes a page under /docs/addons/{pkg}.
 //
 // Called by addonDocsPipeline.ts; for API doc TOCs see generateToc.ts.
 
@@ -28,7 +35,11 @@ import { load } from "cheerio";
 
 import { Pkg } from "./Pkg.js";
 import { TocEntry } from "./generateToc.js";
-import { DOCS_BASE_PATH } from "./paths.js";
+import {
+  C_API_BASE_PATH,
+  DOCS_BASE_PATH,
+  PYTHON_API_FOLDERS,
+} from "./paths.js";
 import { kebabCaseAndShortenPage } from "./normalizeResultUrls.js";
 
 type AddonTocSection = TocEntry & { collapsible?: boolean };
@@ -144,6 +155,14 @@ function parseTocUl(
       return;
     }
 
+    // The API reference is published separately under /docs/api/. Link to its
+    // landing page and ignore any children Sphinx rendered for it.
+    const apiUrl = apiReferenceUrl(href, pkg);
+    if (apiUrl) {
+      entries.push({ title, url: apiUrl });
+      return;
+    }
+
     // href="#" means "this page" (index.html) in Sphinx when current-page is active
     if (href === "#") {
       entries.push({ title, url: addonUrlBase });
@@ -175,6 +194,28 @@ function parseTocUl(
   });
 
   return entries;
+}
+
+/**
+ * Returns the /docs/api/ landing page for an internal href pointing into one of
+ * the artifact's API folders, or undefined if the href is not an API page.
+ */
+function apiReferenceUrl(href: string, pkg: Pkg): string | undefined {
+  const folder = href.split("/")[0];
+  if (PYTHON_API_FOLDERS.includes(folder)) {
+    return `${DOCS_BASE_PATH}/api/${pkg.name}`;
+  }
+  if (folder === C_API_BASE_PATH) {
+    // The C API package is always named `{pkgName}-c`.
+    const cPkgName = `${pkg.name}-c`;
+    if (!Pkg.VALID_NAMES.includes(cPkgName)) {
+      throw new Error(
+        `The ${pkg.name} sidebar links to ${href}, but there is no ${cPkgName} package for its C API reference.`,
+      );
+    }
+    return `${DOCS_BASE_PATH}/api/${cPkgName}`;
+  }
+  return undefined;
 }
 
 /** Converts a Sphinx HTML href filename to the kebab-case slug used in the output MDX. */
