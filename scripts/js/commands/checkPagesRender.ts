@@ -22,7 +22,7 @@ import { zxMain } from "../lib/zx.js";
 // These are expected to 404 in the cloud app due to being legacy only.
 const LEGACY_ONLY_PAGES: Set<string> = new Set([
   "docs/guides/setup-channel.mdx",
-  "docs/guides/estimate-job-run-time.mdx",
+  "docs/ibm-quantum-compute/estimate-job-run-time.mdx",
 ]);
 
 const PORT = 3000;

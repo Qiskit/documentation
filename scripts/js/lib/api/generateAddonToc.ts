@@ -63,7 +63,7 @@ export async function generateAddonToc(
   ];
 
   return {
-    parentUrl: "/docs/guides/addons",
+    parentUrl: pkg.addonTocParentUrl,
     parentLabel: "Documentation",
     title: `${pkg.title} ${pkg.version}`,
     collapsed: true,
