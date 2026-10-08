@@ -366,6 +366,30 @@ test("API reference caption: cdoc entry without a {pkg}-c package throws", async
   );
 });
 
+test("release-notes entry is matched by href even when renamed", async () => {
+  const { artifactDir } = await makeTestDirs(
+    [{ href: "#", title: "Home" }],
+    [
+      {
+        caption: "API reference",
+        items: [
+          { href: "release-notes.html", title: "Changelog" },
+          { href: "release_notes.html", title: "What's new" },
+        ],
+      },
+    ],
+  );
+
+  const pkg = await makePkg();
+  const toc = await generateAddonToc(pkg, artifactDir);
+  const apiSection = toc.children.find((c) => c.title === "API reference");
+
+  expect(apiSection?.children).toEqual([
+    { title: "Changelog", url: "/docs/api/my-addon/release-notes" },
+    { title: "What's new", url: "/docs/api/my-addon/release-notes" },
+  ]);
+});
+
 test("sidebar order is preserved exactly", async () => {
   const { artifactDir } = await makeTestDirs([
     { href: "#", title: "Home" },

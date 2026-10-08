@@ -23,7 +23,8 @@
 //   - Internal links into an API folder (stubs/, apidocs/, apidoc/, pydoc/) become
 //     /docs/api/{pkg}; links into cdoc/ become /docs/api/{pkg}-c. Their children
 //     are dropped, since the API TOC (generateToc.ts) owns that subtree.
-//   - The release-notes entry becomes /docs/api/{pkg}/release-notes.
+//   - The release-notes entry (matched by title or href) becomes
+//     /docs/api/{pkg}/release-notes.
 //   - Everything else becomes a page under /docs/addons/{pkg}.
 //
 // Called by addonDocsPipeline.ts; for API doc TOCs see generateToc.ts.
@@ -147,7 +148,11 @@ function parseTocUl(
     }
 
     // Release notes live under /docs/api/, not in the addon content tree.
-    if (title.toLowerCase() === "release notes") {
+    // Match by href too, so a renamed entry (e.g. "Changelog") still works.
+    if (
+      title.toLowerCase() === "release notes" ||
+      /^release[_-]notes\.html(#.*)?$/.test(href)
+    ) {
       entries.push({
         title,
         url: `${DOCS_BASE_PATH}/api/${pkg.name}/release-notes`,
