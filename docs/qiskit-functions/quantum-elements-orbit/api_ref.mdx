@@ -15,7 +15,7 @@ description: "API reference for Quantum Elements Orbit, including inputs, output
     />
 </CardGroup>
 
-Quantum Elements Orbit is a Qiskit Function that prepares quantum circuits for a selected IBM Quantum&reg; backend, inserts dynamical decoupling (DD) into scheduled idle windows, and runs the resulting workload through an IBM Quantum primitive. Workloads can run as one Quantum Compute job or be partitioned across child jobs in a server-side `qiskit-ibm-runtime` batch. Orbit accepts Sampler and Estimator PUBs and returns a standard [`PrimitiveResult`](/docs/api/qiskit/qiskit.primitives.PrimitiveResult) with Orbit-specific metadata attached to the top-level result and to each [Primitive Unified Bloc (PUB)](/docs/guides/primitive-input-output) result.
+Quantum Elements Orbit is a Qiskit Function that prepares quantum circuits for a selected IBM Quantum&reg; backend, inserts dynamical decoupling (DD) into scheduled idle windows, and runs the resulting workload through an IBM Quantum primitive. Workloads can run as one Quantum Compute job or be partitioned across child jobs in a server-side `qiskit-ibm-runtime` batch. Orbit accepts Sampler and Estimator PUBs and returns a standard [`PrimitiveResult`](/docs/api/qiskit/qiskit.primitives.PrimitiveResult) with Orbit-specific metadata attached to the top-level result and to each [Primitive Unified Bloc (PUB)](/docs/qiskit/primitive-input-output) result.
 
 <Admonition type="note" title="Default behavior">
   If `backend_name` is omitted, Orbit selects an eligible least-busy IBM Quantum backend available to IBM Quantum Compute Service. If `options` is omitted or `None`, Orbit uses its built-in defaults: transpile and schedule circuits, insert the default DD strategy, submit to the service, and attach DD insertion metadata to the result.
@@ -57,8 +57,8 @@ One or more PUBs matching the selected primitive.
 - Valid input types: Iterable of Sampler PUB-like objects or iterable of Estimator PUB-like objects
 
 Each PUB must match the selected primitive's input contract.
-- For `primitive="sampler"`: each PUB follows the [Sampler PUB](/docs/guides/primitive-input-output#sampler-pub) shape, such as `(circuit, parameter_values, shots)`.
-- For `primitive="estimator"`: each PUB follows the [Estimator PUB](/docs/guides/primitive-input-output#estimator-pub) shape, such as `(circuit, observables, parameter_values, precision)`.
+- For `primitive="sampler"`: each PUB follows the [Sampler PUB](/docs/qiskit/primitive-input-output#sampler-pub) shape, such as `(circuit, parameter_values, shots)`.
+- For `primitive="estimator"`: each PUB follows the [Estimator PUB](/docs/qiskit/primitive-input-output#estimator-pub) shape, such as `(circuit, observables, parameter_values, precision)`.
 - Circuits do not need to be ISA circuits in the default `options.transpilation_mode="optimize"` path; Orbit transpiles and schedules them internally.
 </Attribute>
 
@@ -372,7 +372,7 @@ Default target precision used for Estimator PUBs that do not specify precision e
 
 <Attribute attributeTypeHint="dict">
 
-[IBM Quantum primitive options](/docs/guides/runtime-options-overview) passed through to the underlying SamplerV2 or EstimatorV2 primitive.
+[IBM Quantum primitive options](/docs/ibm-quantum-compute/runtime-options-overview) passed through to the underlying SamplerV2 or EstimatorV2 primitive.
 - Required: No
 - Default value: `{"resilience_level": 0, "dynamical_decoupling": {"enable": false}}`
 - Valid input types: `dict`
@@ -500,14 +500,14 @@ The value is specified in seconds.
 
 <Attribute attributeTypeHint="dict or None" attributeValue="None">
 
-Server-side [`qiskit-ibm-runtime` batch](/docs/guides/run-jobs-batch) configuration.
+Server-side [`qiskit-ibm-runtime` batch](/docs/ibm-quantum-compute/run-jobs-batch) configuration.
 - Required: No
 - Default value: `None`
 - Valid input types: `dict` or `None`
 
 - When omitted or `None`, Orbit submits all prepared PUBs as one Quantum Compute primitive job.
 - When supplied, Orbit partitions the prepared PUBs in input order, creates the authenticated batch inside the remote Function, submits all child jobs, closes the batch, and then collects and merges the child results in the original PUB order.
-- Batch mode is intended for independent workloads whose PUBs are known up front, such as parameter sweeps or curve generation. Use [session mode](/docs/guides/run-jobs-session) instead when later inputs depend on earlier results.
+- Batch mode is intended for independent workloads whose PUBs are known up front, such as parameter sweeps or curve generation. Use [session mode](/docs/ibm-quantum-compute/run-jobs-session) instead when later inputs depend on earlier results.
 - Batch mode requires execution on a real IBM Quantum backend and is incompatible with `preview=True` or `simulator=True`.
 - The configuration must be JSON serializable. Do not create a local `qiskit_ibm_runtime.Batch` object and pass it to `orbit.run(...)`; a caller-created batch cannot control the asynchronous Qiskit Function execution environment.
 - If the PUB count is less than or equal to `max_pubs_per_job`, Orbit creates one child job and the batch provides no partition parallelism.

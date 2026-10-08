@@ -97,14 +97,14 @@ Find the latest package release summaries and platform updates from IBM Quantum&
       * Long-range entanglement preparation  
       * Complex conditional logic based on measurement outcomes
 
-    To use the store instruction, first ensure you're running the latest version of `qiskit-ibm-runtime` (`pip install --upgrade qiskit-ibm-runtime`), then see the [documentation](/docs/guides/classical-feedforward-and-control-flow#store) for more information and an example.
+    To use the store instruction, first ensure you're running the latest version of `qiskit-ibm-runtime` (`pip install --upgrade qiskit-ibm-runtime`), then see the [documentation](/docs/qiskit/classical-feedforward-and-control-flow#store) for more information and an example.
 
-    *Note that before submitting jobs, you should verify compatibility with each primitive's options in the documentation*: [Sampler options](/docs/guides/sampler-options) | [Estimator options](/docs/guides/estimator-options) | [Executor options](/docs/guides/executor-options)
+    *Note that before submitting jobs, you should verify compatibility with each primitive's options in the documentation*: [Sampler options](/docs/ibm-quantum-compute/sampler-options) | [Estimator options](/docs/ibm-quantum-compute/estimator-options) | [Executor options](/docs/ibm-quantum-compute/executor-options)
 
 ## April 2026
 <span id="classroom-accounts"></span>
 ### Classroom accounts
-- **New Classroom Accounts**: Professors can now request a [Classroom Account](/docs/guides/classroom-accounts) to manage and facilitate access for their students. With Classroom Accounts, students can use Open Plan resources without needing to provide personal credit card information.
+- **New Classroom Accounts**: Professors can now request a [Classroom Account](/docs/ibm-quantum-platform/classroom-accounts) to manage and facilitate access for their students. With Classroom Accounts, students can use Open Plan resources without needing to provide personal credit card information.
   - **New export options now available in IBM Quantum**: Introducing new export capabilities that make it easier for account administrators to analyze, share, and work with their data.
 
     - New in the [Analytics](https://quantum.cloud.ibm.com/analytics) page:
@@ -190,7 +190,7 @@ Find the latest package release summaries and platform updates from IBM Quantum&
 
   To provide more flexibility for users, we have expanded the allowable repetition delay time range from 20-500 &#181;s to 20-2000 &#181;s on our Heron and Eagle QPUs. The Nighthawk QPU delay time range continues to be 1000-4000 &#181;s as previously announced. Note that if you choose to increase repetition delay (`rep_delay`), it will have a direct impact on your execution time and capacity consumption, but it might improve the fidelity of certain circuits. The default `rep_delay` remains unchanged on all QPUs.
 
-  You can find more information about repetition delay time, including how to change it, in [Qubit initialization](/docs/guides/repetition-rate-execution).
+  You can find more information about repetition delay time, including how to change it, in [Qubit initialization](/docs/ibm-quantum-compute/repetition-rate-execution).
 
 ## January 2026
 
@@ -221,7 +221,7 @@ Find the latest package release summaries and platform updates from IBM Quantum&
       - All archived instances are neatly organized under a dedicated "Archived" tab.
       - Administrators can reactivate an instance at any time.
 
-  - [**Directed execution model.**](/docs/guides/directed-execution-model) This new execution model allows you to fine-tune error mitigation and other techniques without sacrificing performance by providing the ingredients to capture design intents on the client side, and shifting the costly generation of circuit variants to the server side. For example, you can use the [Samplomatic library](/docs/addons/samplomatic/index) to define the exact layers in your circuits to apply Pauli-twirling and to inject noise. The new [Executor primitive](/docs/guides/directed-execution-model#executor-primitive) will then follow your directives to generate and execute the randomized circuit variants in Qiskit Runtime.
+  - [**Directed execution model.**](/docs/ibm-quantum-compute/directed-execution-model) This new execution model allows you to fine-tune error mitigation and other techniques without sacrificing performance by providing the ingredients to capture design intents on the client side, and shifting the costly generation of circuit variants to the server side. For example, you can use the [Samplomatic library](/docs/addons/samplomatic/index) to define the exact layers in your circuits to apply Pauli-twirling and to inject noise. The new [Executor primitive](/docs/ibm-quantum-compute/directed-execution-model#executor-primitive) will then follow your directives to generate and execute the randomized circuit variants in Qiskit Runtime.
 
 ## Previous updates
 
@@ -299,7 +299,7 @@ A reminder that `ibm_brisbane` will retire on 3 Nov 2025, so plan your experimen
 
   Additional features will be rolled out later this year.
 
-  See  [Classical feedforward and control flow](/docs/guides/classical-feedforward-and-control-flow) and [Deferred timing resolution using stretch](/docs/guides/stretch) for more information and code examples.
+  See  [Classical feedforward and control flow](/docs/qiskit/classical-feedforward-and-control-flow) and [Deferred timing resolution using stretch](/docs/qiskit/stretch) for more information and code examples.
 </AccordionItem>
 <AccordionItem title="Third Quarter">
 
@@ -400,7 +400,7 @@ If you would like to retrieve job data from important workloads run on this QPU,
 - Launched two new QPUs: ibm_aachen (eu-de region) and ibm_kingston (us-east region)
 - Individuals who can view the analytics page can now filter the data to view information per plan.
 - Administrators can now more easily add multiple individuals to an access group due to the addition of an existing account members table.
-- Premium plan instance administrators can set the instance allocation as a usage limit, so that usage in those instances cannot exceed the time alloted. See the [Set instance allocation limits](/docs/guides/allocation-limits) guide for instructions.
+- Premium plan instance administrators can set the instance allocation as a usage limit, so that usage in those instances cannot exceed the time alloted. See the [Set instance allocation limits](/docs/ibm-quantum-platform/allocation-limits) guide for instructions.
 - Note that the sunset date for IBM Quantum Platform Classic has been set for 1 July 2025.
 
 #### 9 April 2025
@@ -412,7 +412,7 @@ View the systems you have access to with your selected instance in the [Compute 
 <AccordionItem title="First quarter">
 
 #### 27 March 2025
-- **Cost limits for Pay-As-You-Go Plan** - Pay-As-You-Go Plan users with sufficient access can now view and edit [maximum cost limits](/docs/guides/manage-cost#cost-limit) for their instances.
+- **Cost limits for Pay-As-You-Go Plan** - Pay-As-You-Go Plan users with sufficient access can now view and edit [maximum cost limits](/docs/ibm-quantum-platform/manage-cost#cost-limit) for their instances.
 
 - **Job management updates** - Now only administrators can delete workloads created by other users in an account, and collaborators will only be able to delete their own workloads.
 
@@ -455,7 +455,7 @@ Be sure to retrieve any job data from important past jobs before these QPUs are 
 
 <span id="new-version-dynamic-circuits"></span>
 #### 2 February 2025
-- Starting 2 June 2025 and continuing through the year, IBM Quantum will begin a gradual rollout of new features to [dynamic circuits](/docs/guides/classical-feedforward-and-control-flow) that will enable them at the utility scale.
+- Starting 2 June 2025 and continuing through the year, IBM Quantum will begin a gradual rollout of new features to [dynamic circuits](/docs/qiskit/classical-feedforward-and-control-flow) that will enable them at the utility scale.
 Improvements include the following:
 
   - A 75x speedup in execution by using the Gen3 engine stack

@@ -9,21 +9,21 @@ description: How to initialize your IBM Quantum Compute Service account, instant
 Before using the IBM Quantum&reg; Compute Service, you have to initialize (instantiate) your account by submitting (loading) credentials.  These credentials can be manually submitted each time you initialize IBM Quantum Compute Service, or you can save them for reuse.
 
 <Admonition type="note" title="Notes">
-      * If you are using a public computer or other untrusted environment, follow the instructions in [Initialize the service in an untrusted environment](/docs/guides/cloud-setup-untrusted) instead.
-      * Follow [these instructions](/docs/guides/cloud-setup-rest-api) if you want to connect by using the REST API instead of using Qiskit.
-      * If necessary, use [this information](/docs/guides/quickstart-steps-org#firewall) to configure your firewall to enable access to the IBM Quantum API endpoints.
+      * If you are using a public computer or other untrusted environment, follow the instructions in [Initialize the service in an untrusted environment](/docs/ibm-quantum-platform/cloud-setup-untrusted) instead.
+      * Follow [these instructions](/docs/ibm-quantum-platform/cloud-setup-rest-api) if you want to connect by using the REST API instead of using Qiskit.
+      * If necessary, use [this information](/docs/ibm-quantum-platform/quickstart-steps-org#firewall) to configure your firewall to enable access to the IBM Quantum API endpoints.
 </Admonition>
 
 ## Before you begin
 
 Ensure that you have completed these steps:
 
-1. Ensure that you are a member of an IBM Cloud account.  See [Set up your IBM Cloud account](/docs/guides/cloud-setup) for instructions.
+1. Ensure that you are a member of an IBM Cloud account.  See [Set up your IBM Cloud account](/docs/ibm-quantum-platform/cloud-setup) for instructions.
 2. Create (or have access to) at least one instance. Follow these steps to verify:
     1. Log in to [IBM Quantum Platform](https://quantum.cloud.ibm.com).
     1. Make sure that the correct account and region are selected in the account switcher in the header.
-    1. If you have one or more instances shown, you're done with this step. Otherwise, [create an instance](/docs/guides/instances#add-instance).
-1. Ensure you are working in an active Python environment with the [Qiskit SDK and `qiskit-ibm-runtime` installed](/docs/guides/install-qiskit#local).
+    1. If you have one or more instances shown, you're done with this step. Otherwise, [create an instance](/docs/ibm-quantum-platform/instances#add-instance).
+1. Ensure you are working in an active Python environment with the [Qiskit SDK and `qiskit-ibm-runtime` installed](/docs/qiskit/install-qiskit#local).
 1. Activate the Python virtual environment and run Python in your virtual environment.
 
 
@@ -77,7 +77,7 @@ Although the `instance` input parameter is optional, it is recommended that you 
 <span id="saved"></span>
 ### Quick start path: Specify saved credentials
 
-If you have already saved your credentials, use the following code to apply your default credentials. For instructions to save credentials, see [Save your access credentials](/docs/guides/save-credentials).
+If you have already saved your credentials, use the following code to apply your default credentials. For instructions to save credentials, see [Save your access credentials](/docs/ibm-quantum-platform/save-credentials).
 
 ```python
 from qiskit_ibm_runtime import QiskitRuntimeService
@@ -131,7 +131,7 @@ service = QiskitRuntimeService(name="<name_of_saved_credentials>")
 
     service = QiskitRuntimeService()
     ```
-- If you are persistently getting the error "401 Unauthorized", you might be trying to use a [bearer token](/docs/guides/cloud-setup-untrusted#authenticate-to-the-rest-api-in-an-untrusted-environment) instead of your API key.
+- If you are persistently getting the error "401 Unauthorized", you might be trying to use a [bearer token](/docs/ibm-quantum-platform/cloud-setup-untrusted#authenticate-to-the-rest-api-in-an-untrusted-environment) instead of your API key.
 
 <span id="auto-select"></span>
 ### Automatically select the instance
@@ -143,7 +143,7 @@ If you provide a token but **don't provide an instance CRN** when instantiating 
 - **`tags`**: The instance tags. Accepts a list of tag name strings.
 
 <Admonition type="note">
-You can set up your [saved credentials](/docs/guides/save-credentials) to automatically select an instance.
+You can set up your [saved credentials](/docs/ibm-quantum-platform/save-credentials) to automatically select an instance.
 </Admonition>
 
 The instance is found and used in this order:
@@ -199,9 +199,9 @@ service = QiskitRuntimeService(channel="local")
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
-   - [Create and manage instances](/docs/guides/instances).
-   - [Initialize the service in an untrusted environment](/docs/guides/cloud-setup-untrusted).
-   - [Set up to use IBM Quantum Platform with REST API](/docs/guides/cloud-setup-rest-api).
+   - [Create and manage instances](/docs/ibm-quantum-platform/instances).
+   - [Initialize the service in an untrusted environment](/docs/ibm-quantum-platform/cloud-setup-untrusted).
+   - [Set up to use IBM Quantum Platform with REST API](/docs/ibm-quantum-platform/cloud-setup-rest-api).
    - Follow the steps in the [Run your first circuit on hardware](/docs/guides/hello-world) guide to write and run a quantum program.
 
 </Admonition>
