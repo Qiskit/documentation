@@ -31,6 +31,8 @@ Qiskit/documentation uses the following labels to help non-maintainers find issu
 
 7. Refer to the [README](./README.md), [style guide](./style-guide.md), and guide to [writing in mdx format](./mdx-guide.md) to be sure your contribution conforms to this repository's requirements.
 
+> Note that we can't run the Execute notebooks check on pull requests from forks, so if your PR edits code that needs to go through this check, we will merge it into a new branch created by a maintainer with write access. Your authorship will continue to be attached to your commits.
+
 ## Use of generative AI
 
 > [!NOTE]
