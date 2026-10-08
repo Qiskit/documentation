@@ -1,0 +1,125 @@
+---
+title: Overview of noise management techniques
+description: Discover tools that help manage noise through the available error mitigation and suppression techniques
+
+---
+{/* cspell:ignore lightcones */}
+
+# Overview of noise management techniques
+
+When executing quantum workloads, there are multiple ways to reduce the impact of noise. The open-source Qiskit addons provide error mitigation and suppression techniques that integrate directly into your development workflow, while IBM Quantum Compute Service applies advanced error mitigation strategies automatically when jobs are submitted for execution. This page indexes all available tools and features across both options to help you choose the right approach to manage noise when building quantum workloads.
+
+
+## Manage noise for expectation value estimation
+Use the following addons to manage noise when building quantum workloads that estimate expectation values of observables.
+
+<CardGroup>
+    <Card
+      title="Twirled readout error extinction (TREX)"
+      description="Mitigate the effects of measurement errors by randomly substituting them with a twirled measurement sequence."
+      href="/docs/guides/error-mitigation-and-suppression-techniques#twirled-readout-error-extinction-trex"
+      analyticsName="Documentation page: TREX"
+      linkText="Learn more"
+    />
+    <Card
+      title="Zero-noise extrapolation (ZNE)"
+      description="Error mitigation technique that computes the expectation value at different noise levels, and then estimates the ideal result by extrapolating the noisy expectation value results to the zero-noise limit."
+      href="/docs/guides/error-mitigation-and-suppression-techniques#zero-noise-extrapolation-zne"
+      analyticsName="Documentation page: ZNE"
+      linkText="Learn more"
+    />
+    <Card
+      title="Probabilistic error amplification (PEA)"
+      description="ZNE technique that involves running preliminary experiments to learn a twirled noise model of the circuit, then uses this model to perform a more accurate error amplification."
+      href="/docs/guides/error-mitigation-and-suppression-techniques#probabilistic-error-amplification-pea"
+      analyticsName="Documentation page: PEA"
+      linkText="Learn more"
+    />
+    <Card
+      title="Probabilistic error cancellation (PEC)"
+      description="Returns an unbiased estimate of the expectation value, at the expense of greater overhead than other techniques such as ZNE. It extrapolates output of the ideal circuit by executing different noisy circuit instances."
+      href="/docs/guides/error-mitigation-and-suppression-techniques#probabilistic-error-cancellation-pec"
+      analyticsName="Documentation page: PEC"
+      linkText="Learn more"
+    />
+  <Card
+      title="Propagated noise absorption"
+      description="Mitigate expectation values by measuring a target observable that has absorbed noise model information."
+      href="/docs/addons/qiskit-addon-pna"
+      analyticsName="Documentation page: PNA"
+      linkText="Browse documentation"
+    />
+
+</CardGroup>
+
+## Manage noise for sampling results
+These techniques are useful for managing noise on sampling results.
+
+<CardGroup>
+
+    <Card
+      title="Postselection with bit-flip checks"
+      description="Filter out non-Markovian noise in sampled bitstrings by incorporating bit-flip checks into a circuit."
+      href="https://github.com/Qiskit/qiskit-addon-utils/blob/main/docs/how_tos/postselection_with_bit_flip_checks.ipynb"
+      analyticsName="Documentation page for post-selection"
+      linkText="Read the documentation"
+    />
+
+    <Card
+      title="Matrix-free Measurement Mitigation (M3)"
+      description="Mitigate measurement errors by processing in a reduced subspace defined by noisy bitstrings."
+      href="https://qiskit.github.io/qiskit-addon-mthree/"
+      analyticsName="Documentation page: M3"
+      linkText="Browse documentation"
+    />
+
+</CardGroup>
+
+
+## Post-selected quantum error correction
+
+<CardGroup>
+
+    <Card
+      title="Paulice"
+      description="Boost the fidelity of sampled distributions using hardware-efficient Pauli checks based on spacetime codes."
+      href="/docs/addons/qiskit-addon-paulice"
+      analyticsName="Documentation page: Paulice"
+      linkText="Browse documentation"
+    />
+
+</CardGroup>
+
+
+## Error suppression
+
+### FIXME Cards for DD and Twirling
+
+
+## Optimize circuits for hardware execution
+These capabilities are useful for reducing circuit depth and typically come with an increased sampling overhead.
+<CardGroup>
+    <Card
+      title="Operator backpropagation"
+      description="Reduce circuit depth in expectation value estimations by backpropagating observables through the circuit."
+      href="/docs/addons/qiskit-addon-obp"
+      analyticsName="Documentation page: OBP"
+      linkText="Browse documentation"
+    />
+
+</CardGroup>
+
+
+## Supporting capabilities
+Use these capabilities to support and compose your workflows that leverage other addons.
+<CardGroup>
+
+    <Card
+      title="Pauli propagation"
+      description="A framework to approximate operator evolution, which can be used to simulate expectation values and implement error mitigation techniques, such as propagated noise absorption (PNA) and shaded lightcones."
+      href="/docs/addons/pauli-prop/"
+      analyticsName="Documentation page: pauli propagation"
+      linkText="Browse documentation"
+    />
+</CardGroup>
+

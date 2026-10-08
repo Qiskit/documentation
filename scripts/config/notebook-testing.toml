@@ -10,41 +10,41 @@ test-strategies.ci = {}
 test-strategies.extended = {}
 test-strategies.hardware = { patch = "qiskit-ibm-runtime-open" }
 notebooks = [
-  "docs/guides/DAG-representation.ipynb",
-  "docs/guides/bit-ordering.ipynb",
-  "docs/guides/build-noise-models.ipynb",
-  "docs/guides/circuit-library.ipynb",
-  "docs/guides/classical-feedforward-and-control-flow.ipynb",
-  "docs/guides/common-parameters.ipynb",
-  "docs/guides/construct-circuits.ipynb",
-  "docs/guides/create-transpiler-plugin.ipynb",
-  "docs/guides/custom-backend.ipynb",
-  "docs/guides/custom-transpiler-pass.ipynb",
-  "docs/guides/defaults-and-configuration-options.ipynb",
-  "docs/guides/dynamical-decoupling-pass-manager.ipynb",
-  "docs/guides/execution-modes-rest-api.ipynb",
-  "docs/guides/qpu-information.ipynb",
-  "docs/guides/interoperate-qiskit-qasm2.ipynb",
-  "docs/guides/interoperate-qiskit-qasm3.ipynb",
-  "docs/guides/max-execution-time.ipynb",
-  "docs/guides/measure-qubits.ipynb",
-  "docs/guides/operator-class.ipynb",
-  "docs/guides/operators-overview.ipynb",
-  "docs/guides/plot-quantum-states.ipynb",
+  "docs/qiskit/DAG-representation.ipynb",
+  "docs/qiskit/bit-ordering.ipynb",
+  "docs/qiskit/build-noise-models.ipynb",
+  "docs/qiskit/circuit-library.ipynb",
+  "docs/qiskit/classical-feedforward-and-control-flow.ipynb",
+  "docs/qiskit/common-parameters.ipynb",
+  "docs/qiskit/construct-circuits.ipynb",
+  "docs/qiskit/create-transpiler-plugin.ipynb",
+  "docs/qiskit/custom-backend.ipynb",
+  "docs/qiskit/custom-transpiler-pass.ipynb",
+  "docs/qiskit/defaults-and-configuration-options.ipynb",
+  "docs/qiskit/dynamical-decoupling-pass-manager.ipynb",
+  "docs/ibm-quantum-compute/execution-modes-rest-api.ipynb",
+  "docs/ibm-quantum-compute/qpu-information.ipynb",
+  "docs/qiskit/interoperate-qiskit-qasm2.ipynb",
+  "docs/qiskit/interoperate-qiskit-qasm3.ipynb",
+  "docs/ibm-quantum-compute/max-execution-time.ipynb",
+  "docs/qiskit/measure-qubits.ipynb",
+  "docs/qiskit/operator-class.ipynb",
+  "docs/qiskit/operators-overview.ipynb",
+  "docs/qiskit/plot-quantum-states.ipynb",
   "docs/guides/quick-start.ipynb",
-  "docs/guides/repetition-rate-execution.ipynb",
-  "docs/guides/represent-quantum-computers.ipynb",
-  "docs/guides/save-circuits.ipynb",
-  "docs/guides/set-optimization.ipynb",
-  "docs/guides/simulate-stabilizer-circuits.ipynb",
-  "docs/guides/simulate-with-qiskit-aer.ipynb",
-  "docs/guides/simulate-with-qiskit-sdk-primitives.ipynb",
-  "docs/guides/specify-observables-pauli.ipynb",
-  "docs/guides/synthesize-unitary-operators.ipynb",
-  "docs/guides/transpile-with-pass-managers.ipynb",
-  "docs/guides/transpiler-plugins.ipynb",
-  "docs/guides/transpiler-stages.ipynb",
-  "docs/guides/visualize-circuits.ipynb",
+  "docs/ibm-quantum-compute/repetition-rate-execution.ipynb",
+  "docs/qiskit/represent-quantum-computers.ipynb",
+  "docs/qiskit/save-circuits.ipynb",
+  "docs/qiskit/set-optimization.ipynb",
+  "docs/qiskit/simulate-stabilizer-circuits.ipynb",
+  "docs/qiskit/simulate-with-qiskit-aer.ipynb",
+  "docs/qiskit/simulate-with-qiskit-sdk-primitives.ipynb",
+  "docs/qiskit/specify-observables-pauli.ipynb",
+  "docs/qiskit/synthesize-unitary-operators.ipynb",
+  "docs/qiskit/transpile-with-pass-managers.ipynb",
+  "docs/qiskit/transpiler-plugins.ipynb",
+  "docs/qiskit/transpiler-stages.ipynb",
+  "docs/qiskit/visualize-circuits.ipynb",
 ]
 
 # Mock the following notebooks using a 6-qubit local simulator
@@ -52,7 +52,7 @@ notebooks = [
 test-strategies.ci = { patch = "qiskit-fake-provider", num_qubits = 6 }
 test-strategies.extended = { patch = "qiskit-fake-provider", num_qubits = 6 }
 test-strategies.hardware = { patch = "qiskit-ibm-runtime-open" }
-notebooks = ["docs/guides/visualize-results.ipynb"]
+notebooks = ["docs/qiskit/visualize-results.ipynb"]
 
 # Mock the following notebooks in our extended checks using IBM Quantum's
 # test-eagle device, which returns nonsense results. Use this to test notebooks
@@ -66,18 +66,18 @@ test-strategies.extended = { patch = "qiskit-ibm-runtime", backend = "test_eagle
 test-strategies.hardware = { patch = "qiskit-ibm-runtime-open" }
 notebooks = [
   "docs/guides/fractional-gates.ipynb",
-  "docs/guides/executor-examples.ipynb",
-  "docs/guides/executor-input-output.ipynb",
+  "docs/ibm-quantum-compute/executor-examples.ipynb",
+  "docs/ibm-quantum-compute/executor-input-output.ipynb",
   "docs/guides/execute-dynamic-circuits.ipynb",
-  "docs/guides/estimator-rest-api.ipynb",
-  "docs/guides/get-started-with-executor.ipynb",
-  "docs/guides/executor-options.ipynb",
-  "docs/guides/primitives.ipynb",
-  "docs/guides/primitive-input-output.ipynb",
-  "docs/guides/add-job-tags.ipynb",
+  "docs/ibm-quantum-compute/estimator-rest-api.ipynb",
+  "docs/ibm-quantum-compute/get-started-with-executor.ipynb",
+  "docs/ibm-quantum-compute/executor-options.ipynb",
+  "docs/qiskit/primitives.ipynb",
+  "docs/qiskit/primitive-input-output.ipynb",
+  "docs/ibm-quantum-compute/add-job-tags.ipynb",
   "docs/guides/qiskit-runtime-circuit-timing.ipynb",
-  "docs/guides/visualize-circuit-timing.ipynb",
-  "docs/guides/circuit-transpilation-settings.ipynb",
+  "docs/qiskit/visualize-circuit-timing.ipynb",
+  "docs/qiskit/circuit-transpilation-settings.ipynb",
 ]
 
 # Only run the following notebooks in our fortnightly cron job on real hardware.
@@ -93,42 +93,42 @@ notebooks = [
   # Temporarily excluded until the testing environment recognizes the
   # client-side primitives in qiskit-ibm-runtime 0.50.0 (executor_estimator /
   # executor_sampler modules).
-  "docs/guides/estimator-noise-management.ipynb",
-  "docs/guides/sampler-noise-management.ipynb",
-  "docs/guides/error-mitigation-and-suppression-techniques.ipynb",
-  "docs/guides/local-testing-mode.ipynb",
-  "docs/guides/debug-qiskit-runtime-jobs.ipynb",
-  "docs/guides/estimator-examples.ipynb",
-  "docs/guides/estimator-input-output.ipynb",
-  "docs/guides/estimator-options.ipynb",
-  "docs/guides/get-started-with-estimator.ipynb",
-  "docs/guides/get-started-with-sampler.ipynb",
-  "docs/guides/run-jobs-batch.ipynb",
-  "docs/guides/run-jobs-session.ipynb",
-  "docs/guides/sampler-examples.ipynb",
-  "docs/guides/sampler-input-output.ipynb",
-  "docs/guides/sampler-options.ipynb",
+  "docs/ibm-quantum-compute/estimator-noise-management.ipynb",
+  "docs/ibm-quantum-compute/sampler-noise-management.ipynb",
+  "docs/ibm-quantum-compute/error-mitigation-and-suppression-techniques.ipynb",
+  "docs/ibm-quantum-compute/local-testing-mode.ipynb",
+  "docs/ibm-quantum-compute/debug-qiskit-runtime-jobs.ipynb",
+  "docs/ibm-quantum-compute/estimator-examples.ipynb",
+  "docs/ibm-quantum-compute/estimator-input-output.ipynb",
+  "docs/ibm-quantum-compute/estimator-options.ipynb",
+  "docs/ibm-quantum-compute/get-started-with-estimator.ipynb",
+  "docs/ibm-quantum-compute/get-started-with-sampler.ipynb",
+  "docs/ibm-quantum-compute/run-jobs-batch.ipynb",
+  "docs/ibm-quantum-compute/run-jobs-session.ipynb",
+  "docs/ibm-quantum-compute/sampler-examples.ipynb",
+  "docs/ibm-quantum-compute/sampler-input-output.ipynb",
+  "docs/ibm-quantum-compute/sampler-options.ipynb",
   "docs/guides/hello-world.ipynb",
   # noise-learning was previously in cron-job-only (timed out under test-eagle);
   # restore it there once runtime 0.50.0 is recognized.
-  "docs/guides/noise-learning.ipynb",
+  "docs/ibm-quantum-compute/noise-learning.ipynb",
 
   # Addon notebooks require the addon packages and are not run in standard CI
   "docs/addons/**/*.ipynb",
 
   # qiskit-ibm-transpiler conflicts with qiskit-serverless~=0.35.x so cannot be installed
-  "docs/guides/ai-transpiler-passes.ipynb",
+  "docs/qiskit/ai-transpiler-passes.ipynb",
 
   # These Qiskit Functions are not accessible in the test environment
-  "docs/guides/parity-twine-optimizer.ipynb",
-  "docs/guides/aqarios-constrained-quantum-optimizer.ipynb",
-  "docs/guides/algorithmiq-tem.ipynb",
+  "docs/qiskit-functions/parity-twine-optimizer/guides/get-started.ipynb",
+  "docs/qiskit-functions/aqarios-constrained-quantum-optimizer/guides/get-started.ipynb",
+  "docs/qiskit-functions/algorithmiq-tem/guides/get-started.ipynb",
   "docs/guides/functions-get-started.ipynb",
-  "docs/guides/multiverse-computing-singularity.ipynb",
-  "docs/guides/qunova-chemistry.ipynb",
-  "docs/guides/qedma-qesem.ipynb",
-  "docs/guides/q-ctrl-optimization-solver.ipynb",
-  "docs/guides/q-ctrl-performance-management.ipynb",
+  "docs/qiskit-functions/multiverse-computing-singularity/guides/get-started.ipynb",
+  "docs/qiskit-functions/qunova-chemistry/guides/get-started.ipynb",
+  "docs/qiskit-functions/qedma-qesem/guides/get-started.ipynb",
+  "docs/qiskit-functions/q-ctrl-optimization-solver/guides/get-started.ipynb",
+  "docs/qiskit-functions/q-ctrl-performance-management/guides/get-started.ipynb",
 
   # Test fixture — not real content
   "scripts/js/lib/api/testdata/**/*.ipynb",
@@ -142,7 +142,7 @@ notebooks = [
   "docs/guides/function-template-aqc-trotter.ipynb",
 
   # Only works in runtime 0.41.1
-  "docs/guides/monitor-job.ipynb",
+  "docs/ibm-quantum-compute/monitor-job.ipynb",
 
   # The code was split out into a new notebook so doesn't need to be tested
   "docs/guides/functions.ipynb",
@@ -153,17 +153,17 @@ notebooks = [
   "docs/guides/serverless-manage-resources.ipynb",
 
   # This notebook is failing.  It requires runtime .46 but there's a dependency conflict when we try to update it.
-  "docs/guides/save-jobs.ipynb",
+  "docs/ibm-quantum-compute/save-jobs.ipynb",
 
   # This notebook might work but we didn't have time to test it before merging
-  "docs/guides/kipu-optimization.ipynb",
-  "docs/guides/global-data-quantum-optimizer.ipynb",
-  "docs/guides/colibritd-pde.ipynb",
+  "docs/qiskit-functions/kipu-optimization/guides/get-started.ipynb",
+  "docs/qiskit-functions/global-data-quantum-optimizer/guides/get-started.ipynb",
+  "docs/qiskit-functions/colibritd-pde/guides/get-started.ipynb",
 
   # These notebooks have code snippets which are embedded in cloud/legacy tags
   #  and can't be run until we convert them to testable snippets
-  "docs/guides/retired-qpus.ipynb",
-  "docs/guides/estimate-job-run-time.ipynb",
+  "docs/ibm-quantum-compute/retired-qpus.ipynb",
+  "docs/ibm-quantum-compute/estimate-job-run-time.ipynb",
   "docs/guides/serverless-port-code.ipynb",
 
   # We never run tutorials notebooks
@@ -173,7 +173,7 @@ notebooks = [
   # QRMI submits directly to hardware and is not covered by Runtime mocks.
   "docs/tutorials/run-quantum-workloads-with-qrmi.ipynb",
   "docs/tutorials/quantum-elements-orbit-qft-with-dynamic-circuits.ipynb",
-  "docs/guides/quantum-elements-orbit.ipynb",
+  "docs/qiskit-functions/quantum-elements-orbit/guides/get-started.ipynb",
   "docs/tutorials/loop-string-hadron-dynamics.ipynb",
   "docs/tutorials/implicit-solvent-calculations.ipynb",
   "docs/tutorials/simulate-kicked-ising-tem.ipynb",

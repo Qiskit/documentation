@@ -157,6 +157,20 @@ test("minimal addon: only index and install, no captioned sections", async () =>
   });
 });
 
+test("uses the package's addonTocParentUrl", async () => {
+  const { artifactDir } = await makeTestDirs([
+    { href: "#", title: "My Addon" },
+  ]);
+
+  const pkg = new Pkg({
+    ...(await makePkg()),
+    addonTocParentUrl: "/docs/guides/hamiltonian-simulation",
+  });
+  const toc = await generateAddonToc(pkg, artifactDir);
+
+  expect(toc.parentUrl).toEqual("/docs/guides/hamiltonian-simulation");
+});
+
 test("full shape with Tutorials and API reference captions", async () => {
   const { artifactDir } = await makeTestDirs(
     [

@@ -1,0 +1,102 @@
+---
+title: "QUICK-PDE: A Qiskit Function by ColibriTD"
+description: "The QUICK-PDE function solves domain-specific partial differential equations using ColibriTD's H-DES algorithm, which can solve complex multi-physics problems."
+---
+
+{/* cspell:ignore CMAES, Hypoelastic, edgecolor, royalblue, rstride, cstride, colibritd, xlabel, ylabel, zlabel, Jaffali, Pressureless, Colorplot, viridis, fontsize, fontweight */}
+
+# QUICK-PDE: A Qiskit Function by ColibriTD
+
+*See the [API reference](/docs/qiskit-functions/colibritd-pde/api_ref)*
+
+<Admonition type="note">
+  Qiskit Functions are an experimental feature available to IBM Quantum&reg; Premium Plan, Flex Plan, and On-Prem (via IBM Quantum Platform API) Plan users. They are in preview release status and subject to change.
+</Admonition>
+
+## Overview
+
+The Partial Differential Equation (PDE) solver presented here is part of our Quantum Innovative Computing Kit (QUICK) platform (QUICK-PDE), and is packaged as a Qiskit Function. With the QUICK-PDE function, you can solve domain-specific partial differential equations on IBM Quantum QPUs. This function is based on the algorithm described in [ColibriTD's H-DES description paper](https://arxiv.org/abs/2410.01130). This algorithm can solve complex multi-physics problems, starting with Computational Fluid Dynamics (CFD) and Materials Deformation (MD), and other use cases coming soon.
+
+To tackle the differential equations, the trial solutions are encoded as linear combinations of orthogonal functions (typically Chebyshev polynomials, and more specifically $2^n$ of them where $n$ is the number of qubits encoding your function), parametrized by the angles of a Variable Quantum Circuit (VQC). The ansatz generates a state encoding the function, which is evaluated by observables whose combinations allow for evaluating the function at all points. You can then evaluate the loss function in which the differential equations are encoded, and fine-tune the angles in a hybrid loop, as shown in the following. The trial solutions get gradually closer to the actual solutions until you reach a satisfactory result.
+
+![Workflow of the QUICK-PDE function](/docs/images/guides/colibritd-equation-solver/diagram.svg)
+
+In addition to this hybrid loop, you can also chain together different optimizers. This is useful when you want a global optimizer to find a good set of angles, and then a more fine-tuned optimizer to follow a gradient to the best set of neighboring angles. In the case of computational fluid dynamics (CFD), the default optimization sequence produces the best results - but in the case of material deformation (MD), while the default provides good results, you can configure it further for problem-specific benefits.
+
+Note for each variable of the function, we specify number of qubits (which you can play with). By stacking 10 identical circuits and evaluating the 10 identical observables on different qubits throughout one big circuit, you can noise-mitigate within the CMA optimization process, relying on the noise learner method, and significantly reduce the number of shots needed.
+
+### Computational fluid dynamics
+
+**The inviscid Burgers' equation** models flowing non-viscous fluids as follows:
+
+$$\frac{\partial u}{\partial t} + u\frac{\partial u}{\partial x} = 0,$$
+
+$u$ represents the fluid speed field. This use-case has a temporal boundary condition: you can select the initial condition and then allow the system to relax. Currently, the only accepted initial conditions are linear functions: $ax + b$. The analytical solution is:
+
+$$u(t, x) = \frac{ax + b}{at + 1}.$$
+
+**The pressureless Euler equations** model compressible inviscid fluid flow with damping as follows:
+
+$$\frac{\partial g}{\partial t} + u\frac{\partial g}{\partial x} + g\frac{\partial u}{\partial x} = 0,$$
+
+$$u\frac{\partial g}{\partial t} + g\frac{\partial u}{\partial t} + u^2\frac{\partial g}{\partial x} + 2gu\frac{\partial u}{\partial x} + \frac{\mu}{(1+t)^{\lambda}} g u = 0,$$
+
+$g$ represents the density field, $u$ the velocity field and $\mu$ a damping coefficient. In our formulation, we pose $\lambda = 1$, so it will not be used as a parameter in the following. This use-case has temporal boundary conditions: $g(0, x) = e^{-x}$ and $u(0, x) = x$. The analytical solution is:
+
+$$g(t, x) = \frac{1-\mu}{(1+t)^{1-\mu} - \mu} \exp\!\left(\frac{(\mu-1)\, x}{(1+t)^{1-\mu} - \mu}\right),$$
+
+$$u(t, x) = \frac{(1-\mu)\, x}{\left((1+t)^{1-\mu} - \mu\right)(1+t)^{\mu}}.$$
+
+The arguments for CFD's differential equations are on a fixed grid, as follows:
+
+- $t$ is between 0 and 0.95 with 41 sample points. $x$ is between 0 and 0.95 with 41 sample points.
+
+### Material deformation
+
+This use case focuses on **hypoelastic deformation with the one-dimensional tensile test**, in which a bar fixed in space is pulled at its other extremity. We describe the problem as follows:
+
+$$u' - \frac{\sigma}{3K} - \frac{2}{\sqrt{3}}\epsilon_0\left(\frac{\sigma'}{\sigma_0\sqrt{3}}\right)^n = 0,$$
+
+$$\sigma' - b = 0,$$
+
+$K$ represents the bulk modulus of the material being stretched, $n$ the exponent of a power law, $b$ the force per unit mass, $\epsilon_0$ the proportional stress limit, $\sigma_0$ the proportional strain limit, $u$ the stress function, and $\sigma$ the strain function. The analytical solution is:
+
+$$\sigma(x) = \sigma_0 - bx,$$
+
+$$u(x) = -\frac{3^{-(3+n)/2}}{2bK(1+n)\,\sigma_0^{n}}\Biggl[3^{(1+n)/2}b^2\sigma_0^n(1+n)x^2 - 2\cdot 3^{(1+n)/2}b\sigma_0^n(1+n)\sigma_0 x - 12\epsilon_0 K\sigma_0^{1+n}$$
+$$- 12b\epsilon_0 K\sigma_0^n x\left(\frac{-bx+\sigma_0}{\sigma_0}\right)^n + 12\epsilon_0 K\sigma_0^{n+1}\left(\frac{-bx+\sigma_0}{\sigma_0}\right)^n - 12\epsilon_0 K \sigma_0^{1+n}\Biggr],$$
+
+where $\sigma_0 = g(0)$ is the boundary condition on the strain at $x=0$.
+
+The considered bar is of unitary length. This use-case has a boundary condition for surface stress $t$, or the amount of work needed to stretch the bar.
+
+The arguments for MD's differential equations are on a fixed grid, as follows:
+
+- $x$ is between 0 and 1 with 30 sample points.
+
+## Benchmarks
+
+The following table presents statistics on various runs of our function.
+
+| Example                        | Number of qubits | Initialization        | Error     | Total time (min) | Runtime usage (min) |
+| ------------------------------ | ---------------- | --------------------- | --------- | ---------------- | ------------------- |
+| Inviscid Burgers' equation     | 50               | `PHYSICALLY_INFORMED` | $10^{-2}$ | 66               | 25                  |
+| Pressureless Euler's equations | 70               | `PHYSICALLY_INFORMED` | $10^{-2}$ | 48               | 34                  |
+| Hypoelastic 1D tensile test    | 18               | `RANDOM`              | $10^{-2}$ | 123              | 100                 |
+
+## Get started
+
+To learn how to load the function and run it, see [Get started with QUICK-PDE](/docs/qiskit-functions/colibritd-pde/guides/get-started).
+
+## Get support
+
+For support, contact qiskit-function-support@colibritd.com.
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+- Fill out the form to [request access to the QUICK-PDE function](https://forms.cloud.microsoft/e/3Wi9cbjQPK).
+- Visit the [API reference](/docs/qiskit-functions/colibritd-pde/api_ref) for this Qiskit Function.
+- Try modeling a flowing non-viscous fluid using QUICK-PDE in the [tutorial](/docs/tutorials/colibritd-pde).
+- Review [Jaffali, H., et al. (2025).  H-DES: a Quantum-Classical Hybrid Differential Equation Solver. arXiv preprint arXiv:2410.01130](https://arxiv.org/abs/2410.01130).
+</Admonition>
