@@ -86,7 +86,7 @@ leading to a roughly 3x overhead.
 
 You can enable ZNE the following ways:
     - The [Qiskit Mitigation](/docs/api/qiskit-mitigation/zne) addon for Qiskit
-    - The [IBM Quantum Compute resilience option](/docs/api/qiskit-ibm-runtime/options-models-resilience-options) if using IBM Quantum Estimator
+    - The [`zne_mitigation` option](/docs/api/qiskit-ibm-runtime/options-models-resilience-options#zne_mitigation) if using IBM Quantum Estimator
     - The [resilience level](/docs/guides/estimator-noise-management#resilience) if using IBM Quantum Estimator
 
 <span id="pea"></span>
@@ -106,11 +106,10 @@ For utility-scale experiments, PEA is often the best choice.
 
 Because PEA is a ZNE noise amplification technique, you also need to enable ZNE. You can enable PEA and ZNE  the following ways:
     - The [Qiskit Mitigation](/docs/api/qiskit-mitigation/zne) addon for Qiskit
-    - The [IBM Quantum Compute resilience option](/docs/api/qiskit-ibm-runtime/options-models-resilience-options) if using IBM Quantum Estimator
-    - The [resilience level](/docs/guides/estimator-noise-management#resilience) if using IBM Quantum Estimator
+    - The [`zne_mitigation` option](/docs/api/qiskit-ibm-runtime/options-models-resilience-options#zne_mitigation) with [`pea`](/docs/en/api/qiskit-ibm-runtime/options-models-zne-options#amplifier) as the amplifier if using IBM Quantum Estimator
 
 <Admonition type="note" title="Noise learning required">
-If you are using the new client-side Estimator introduced in `qiskit-ibm-runtime` v0.50.0, a separate noise-learning job is required to use ZNE.
+If you are using the new client-side Estimator introduced in `qiskit-ibm-runtime` v0.50.0, a separate noise-learning job is required to use PEA.
 See [Migrate from server-side to client-side Sampler and Estimator](/docs/guides/migrate-to-client-side-primitives) for more information.
 </Admonition>
 
@@ -135,7 +134,7 @@ The sampling overhead is a multiplicative factor on the number of shots required
 
 You can enable PEC  the following ways:
     - The [Qiskit Mitigation](/docs/api/qiskit-mitigation/pec) addon for Qiskit
-    - The [IBM Quantum Compute resilience option](/docs/api/qiskit-ibm-runtime/options-models-resilience-options) if using IBM Quantum Estimator
+    - The [`pec_mitigation` option](/docs/api/qiskit-ibm-runtime/options-models-resilience-options#pec_mitigation) if using IBM Quantum Estimator
 
 <Admonition type="note" title="Noise learning required">
 If you are using the new client-side Estimator introduced in `qiskit-ibm-runtime` v0.50.0, a separate noise-learning job is required to use PEC.
