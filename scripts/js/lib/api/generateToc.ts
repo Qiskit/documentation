@@ -74,7 +74,7 @@ export function generateToc(pkg: Pkg, results: HtmlToMdResultWithUrl[]): Toc {
     collapsed: true,
     untranslatable: true,
     ...(pkg.hasAddonDocs && {
-      parentUrl: `/docs/addons/${pkg.name}`,
+      parentUrl: `/docs/addons/${pkg.pythonSiblingName()}`,
       parentLabel: pkg.title,
     }),
   };
