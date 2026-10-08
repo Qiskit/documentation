@@ -200,9 +200,12 @@ const PAGE_LINK_EXTENSIONS = [".ipynb", ".html", ".rst", ".md"];
  * `../how_tos/foo.html#Some-heading`) to its IQP URL. The link is resolved
  * against the notebook's location in the artifact, like Sphinx does.
  *
+ * Pure fragments (`#Some-heading`) link to a heading in the same notebook, so
+ * only their anchor is converted.
+ *
  * Returns undefined for links to leave unchanged: absolute URLs, site-absolute
- * paths, pure fragments, links to files that aren't pages, and links to pages
- * that the pipeline doesn't publish.
+ * paths, links to files that aren't pages, and links to pages that the
+ * pipeline doesn't publish.
  */
 export function resolveRelativeNotebookLink(
   url: string,
@@ -210,9 +213,8 @@ export function resolveRelativeNotebookLink(
   pkg: Pkg,
   ingestedPages: Set<string>,
 ): string | undefined {
-  if (isAbsoluteUrl(url) || url.startsWith("/") || url.startsWith("#")) {
-    return undefined;
-  }
+  if (isAbsoluteUrl(url) || url.startsWith("/")) return undefined;
+  if (url.startsWith("#")) return `#${nbsphinxAnchorToIqp(url.slice(1))}`;
   const hashIndex = url.indexOf("#");
   const target = hashIndex === -1 ? url : url.slice(0, hashIndex);
   const anchor = hashIndex === -1 ? undefined : url.slice(hashIndex + 1);
@@ -257,10 +259,16 @@ export function resolveRelativeNotebookLink(
     `${pkg.outputDir(`${DOCS_BASE_PATH}/addons`)}/${page}`,
     pkg,
   ).replace(/\/index$/, "");
-  // nbsphinx heading anchors keep the heading's case and punctuation
-  // (`1.-Prepare-the-inputs`), but IQP slugs headings (`1-prepare-the-inputs`).
-  // Slugging the nbsphinx anchor gives the IQP one.
-  return anchor ? `${pageUrl}#${slug(anchor)}` : pageUrl;
+  return anchor ? `${pageUrl}#${nbsphinxAnchorToIqp(anchor)}` : pageUrl;
+}
+
+/**
+ * nbsphinx heading anchors keep the heading's case and punctuation
+ * (`1.-Prepare-the-inputs`), but IQP slugs headings (`1-prepare-the-inputs`).
+ * Slugging the nbsphinx anchor gives the IQP one.
+ */
+function nbsphinxAnchorToIqp(anchor: string): string {
+  return slug(anchor);
 }
 
 function removeExtension(path: string): string {

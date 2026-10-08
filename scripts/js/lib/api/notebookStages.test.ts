@@ -124,12 +124,18 @@ test.describe("resolveRelativeNotebookLink", () => {
     expect(resolve("missing.ipynb")).toBeUndefined();
   });
 
-  test("absolute URLs, site-absolute paths, and pure fragments are left alone", () => {
+  test("absolute URLs and site-absolute paths are left alone", () => {
     expect(
       resolve("https://quantum.cloud.ibm.com/docs/guides/foo.html"),
     ).toBeUndefined();
     expect(resolve("/docs/addons/my-addon/guides/quickstart")).toBeUndefined();
-    expect(resolve("#Configuration-options")).toBeUndefined();
+  });
+
+  test("pure fragments are converted to IQP heading anchors", () => {
+    expect(resolve("#Configuration-options")).toBe("#configuration-options");
+    expect(resolve("#1.-Prepare-the-inputs-for-SLC")).toBe(
+      "#1-prepare-the-inputs-for-slc",
+    );
   });
 
   test("links to files that aren't pages are left alone", () => {
