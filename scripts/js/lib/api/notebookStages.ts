@@ -15,9 +15,11 @@
 // shared stages so that any future pipeline needing notebook handling can
 // reuse them without duplication.
 
-import { dirname, parse, relative } from "path";
+import { dirname, parse, posix, relative } from "path";
 import { readFile, writeFile } from "fs/promises";
 
+import { slug } from "github-slugger";
+import isAbsoluteUrl from "is-absolute-url";
 import { mkdirp } from "mkdirp";
 import { visit, EXIT } from "unist-util-visit";
 
@@ -25,7 +27,9 @@ import { Image } from "./HtmlToMdResult.js";
 import { ObjectsInv } from "./objectsInv.js";
 import { Pkg } from "./Pkg.js";
 import { kebabCaseAndShortenPage } from "./normalizeResultUrls.js";
-import { relativizeLink } from "./updateLinks.js";
+import { normalizeUrl, relativizeLink } from "./updateLinks.js";
+import { rewriteApiDocsLink } from "./pipelineStages.js";
+import { C_API_BASE_PATH, DOCS_BASE_PATH } from "./paths.js";
 import { transformSpecialCaseUrl } from "./specialCaseResults.js";
 import { parseMarkdown, extractHeadingText } from "../markdownUtils.js";
 import { NotebookCell, NotebookWithUrl } from "./Notebooks.js";
@@ -42,16 +46,21 @@ export async function readNotebooks(
     const notebook = JSON.parse(raw);
     const { dir, name } = parse(`${outputPath}/${file}`);
     const url = `/${relative(docsBaseFolder, dir)}/${name}`;
-    results.push({ ...notebook, url });
+    results.push({ ...notebook, url, sourcePath: file });
   }
   return results;
 }
 
 /**
- * Rewrite markdown-cell links in each notebook: relativize old doc URLs and
+ * Rewrite markdown-cell links in each notebook: relativize old doc URLs,
  * resolve `qiskit.github.io/{pkg}/stubs/...` links via the published-API
- * inventories. Then prepend a frontmatter cell with a title extracted from
- * the first markdown h1.
+ * inventories, and resolve relative links (e.g. `quickstart.ipynb`) to their
+ * IQP URLs. Then prepend a frontmatter cell with a title extracted from the
+ * first markdown h1.
+ *
+ * `ingestedFiles` lists the artifact-relative paths of every file the
+ * pipeline publishes, so that relative links to unpublished pages can be
+ * detected.
  */
 export function processNotebooks(
   notebooks: NotebookWithUrl[],
@@ -59,7 +68,9 @@ export function processNotebooks(
   allInvs: Map<string, ObjectsInv>,
   pkg: Pkg,
   imageDestination: string,
+  ingestedFiles: string[],
 ): NotebookWithUrl[] {
+  const ingestedPages = new Set(ingestedFiles.map(removeExtension));
   return notebooks.map((notebook) => {
     const processedCells = notebook.cells.map((cell) => {
       if (cell.cell_type !== "markdown") return cell;
@@ -68,6 +79,13 @@ export function processNotebooks(
         objectsInv,
         allInvs,
         imageDestination,
+        (url) =>
+          resolveRelativeNotebookLink(
+            url,
+            notebook.sourcePath,
+            pkg,
+            ingestedPages,
+          ),
       );
       const source = stripInlineStyles(linked);
       return { ...cell, source };
@@ -121,7 +139,7 @@ export async function writeNotebooks(
   docsBaseFolder: string,
   notebooks: NotebookWithUrl[],
 ): Promise<void> {
-  for (const { url, ...notebook } of notebooks) {
+  for (const { url, sourcePath: _sourcePath, ...notebook } of notebooks) {
     const normalizedUrl = normalizeNotebookUrl(url, pkg);
     const path = `${docsBaseFolder}${normalizedUrl}.ipynb`;
     await mkdirp(dirname(path));
@@ -147,6 +165,7 @@ function rewriteNotebookLinks(
   objectsInv: ObjectsInv,
   allInvs: Map<string, ObjectsInv>,
   imageDestination: string,
+  resolveRelative: (url: string) => string | undefined,
 ): string {
   const rewrite = (line: string) => {
     return line.replace(
@@ -159,6 +178,7 @@ function rewriteNotebookLinks(
         if (relativized) url = relativized.url;
         const stub = objectsInv.resolveStubUrl(url, allInvs);
         if (stub) url = stub;
+        if (!relativized && !stub) url = resolveRelative(url) ?? url;
         return `[${text}](${url})`;
       },
     );
@@ -168,6 +188,84 @@ function rewriteNotebookLinks(
     ? source.map(rewrite)
     : rewrite(source);
   return Array.isArray(rewritten) ? rewritten.join("") : rewritten;
+}
+
+// nbsphinx lets notebooks link to other notebooks and to .rst pages; MyST
+// projects may also link to .md pages. Sphinx replaces all of them with .html
+// links in its rendered output.
+const PAGE_LINK_EXTENSIONS = [".ipynb", ".html", ".rst", ".md"];
+
+/**
+ * Map a relative link in a notebook (e.g. `quickstart.ipynb` or
+ * `../how_tos/foo.html#Some-heading`) to its IQP URL. The link is resolved
+ * against the notebook's location in the artifact, like Sphinx does.
+ *
+ * Returns undefined for links to leave unchanged: absolute URLs, site-absolute
+ * paths, pure fragments, links to files that aren't pages, and links to pages
+ * that the pipeline doesn't publish.
+ */
+export function resolveRelativeNotebookLink(
+  url: string,
+  notebookPath: string,
+  pkg: Pkg,
+  ingestedPages: Set<string>,
+): string | undefined {
+  if (isAbsoluteUrl(url) || url.startsWith("/") || url.startsWith("#")) {
+    return undefined;
+  }
+  const hashIndex = url.indexOf("#");
+  const target = hashIndex === -1 ? url : url.slice(0, hashIndex);
+  const anchor = hashIndex === -1 ? undefined : url.slice(hashIndex + 1);
+  const { ext } = posix.parse(target);
+  if (!PAGE_LINK_EXTENSIONS.includes(ext)) return undefined;
+
+  const resolved = posix.join(posix.dirname(notebookPath), target);
+  if (resolved.startsWith("../")) {
+    console.warn(
+      `Leaving link ${url} in ${notebookPath} unchanged: it points outside the artifact.`,
+    );
+    return undefined;
+  }
+  const page = removeExtension(resolved);
+
+  // Links into the API reference or release notes get the same mapping as
+  // links in HTML pages: rewriteApiDocsLinks, then normalizeUrl (which also
+  // handles the C API's `cdoc/` folder).
+  const pageWithAnchor = anchor ? `${page}#${anchor}` : page;
+  const apiUrl = page.startsWith(`${C_API_BASE_PATH}/`)
+    ? pageWithAnchor
+    : rewriteApiDocsLink(pageWithAnchor, pkg);
+  if (apiUrl) {
+    return normalizeUrl(apiUrl, {}, new Set(), {
+      kebabCaseAndShorten: pkg.kebabCaseAndShortenUrls,
+      pkgName: pkg.name,
+      pkgOutputDir: pkg.apiOutputDir(DOCS_BASE_PATH),
+    });
+  }
+
+  if (!ingestedPages.has(page)) {
+    console.warn(
+      `Leaving link ${url} in ${notebookPath} unchanged: ${page} is not published as part of ${pkg.name}.`,
+    );
+    return undefined;
+  }
+
+  // Normalize the same way as when the page is written (normalizeNotebookUrl
+  // for notebooks; normalizeResultUrls and specialCaseResults do the same for
+  // HTML pages). An index page is served at its directory's URL.
+  const pageUrl = normalizeNotebookUrl(
+    `${pkg.outputDir(`${DOCS_BASE_PATH}/addons`)}/${page}`,
+    pkg,
+  ).replace(/\/index$/, "");
+  // nbsphinx heading anchors keep the heading's case and punctuation
+  // (`1.-Prepare-the-inputs`), but IQP slugs headings (`1-prepare-the-inputs`).
+  // Slugging the nbsphinx anchor gives the IQP one.
+  return anchor ? `${pageUrl}#${slug(anchor)}` : pageUrl;
+}
+
+function removeExtension(path: string): string {
+  const { ext } = posix.parse(path);
+  return ext ? path.slice(0, -ext.length) : path;
 }
 
 /**
