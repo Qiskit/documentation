@@ -15,7 +15,7 @@ Qiskit/documentation uses the following labels to help non-maintainers find issu
 - [good first issue](https://github.com/Qiskit/documentation/pulls?q=is%3Apr+state%3Aopen+label%3A%22good+first+issue+%F0%9F%90%A3%22) - these issues are typically the simplest available to work on, ideal for newcomers.
 - [help wanted](https://github.com/Qiskit/documentation/pulls?q=is%3Apr+state%3Aopen+label%3A%22help+wanted%22) - these issues are generally more complex than good first issues. These are a great option for experienced contributors looking for something a bit more challenging.
 
-## How do I indicate interest in working on an issue?
+## Indicate interest and open a PR if assigned
 
 1. Find an issue with one of the labels indicated above. **Note that if an issue does not have one of those labels and you request to work on it, it may take longer for us to respond to your request, since we have not gotten internal pre-approval to delegate that work.**
 
