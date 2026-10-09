@@ -25,7 +25,7 @@ These instructions are calibrated with the standard instruction set, so you don'
 | `reset_2` | Shorter conditional reset pulse that uses `measure_2` | Mid-circuit qubit reset | [`MidCircuitReset`](/docs/api/qiskit-ibm-runtime/circuit-library-mid-circuit-reset) (v0.49.0 or later) | Heron |
 | `measure_reset` | Measurement like `measure` that also resets the qubit* | Measure and reset a qubit | [`MeasureReset`](/docs/api/qiskit-ibm-runtime/circuit-library-measure-reset) (v0.50.0 or later) | Heron, Nighthawk r2 |
 | `measure_reset_2` | Shorter measurement like `measure_2` that also resets the qubit* | Measure and reset a qubit mid-circuit | Initialize [`MeasureReset`](/docs/api/qiskit-ibm-runtime/circuit-library-measure-reset) with `name="measure_reset_2"` (v0.50.0 or later) | Heron, Nighthawk r2 |
-| `xslow` | Bit-flip (X) gate with an extended duration | [Postselection](/docs/guides/docs/addons/qiskit-mitigation/guides/postselection-with-non-markovian-error-checks) and error mitigation. It is the default value of the x_pulse_type option in post-selection passes cvvvvvvvvvvvvvvvvvvvvvvvvvn265
+| `xslow` | Bit-flip (X) gate with an extended duration | [Postselection](/docs/guides/docs/addons/qiskit-mitigation/guides/postselection-with-non-markovian-error-checks) and error mitigation. It is the default value of the `x_pulse_type` option in [postselection passes](/docs/api/qiskit-mitigation/postselection-passes) | All |
 . | [`XSlowGate`](/docs/api/qiskit-ibm-runtime/circuit-library-x-slow-gate#xslowgate) (v0.50.0 or later) | All |
 
 \* On Heron processors, the reset is conditional on the measurement result. On Nighthawk r2 processors, the reset is unconditional.
