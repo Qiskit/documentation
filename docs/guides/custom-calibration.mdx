@@ -9,14 +9,15 @@ By default, the quantum gates and readout operations on IBM&reg; quantum compute
 
 Specially calibrated instructions come in two forms, and you access them differently:
 
-- [**Instructions with different signatures**](#instructions-with-different-signatures) are calibrated alongside the standard instructions in the default calibration, so you add them to your circuits like any other instruction. They are usually identified by a suffix, such as `measure_2`.
+- [**Instructions with different signatures**](#different) are calibrated alongside the standard instructions in the default calibration, so you add them to your circuits like any other instruction. They are usually identified by a suffix, such as `measure_2`.
 - [**Alternative calibrations**](#alternative-calibrations) replace parts of the default calibration with differently tuned parameters. You select one by passing a `calibration_id` when you retrieve the backend.
 
 To learn how IBM quantum computers are calibrated, see [Monitor, calibrate, and benchmark](/docs/guides/calibration-jobs).
 
+<span id="different" />
 ## Instructions with different signatures
 
-These instructions are calibrated together with the standard instruction set, so you don't need to do anything special to retrieve a backend that supports them. To use one, add the corresponding `qiskit-ibm-runtime` instruction to your circuit.
+These instructions are calibrated with the standard instruction set, so you don't need to do anything special to retrieve a backend that supports them. To use one, add the corresponding `qiskit-ibm-runtime` instruction to your circuit.
 
 | Instruction | Description | Typical use case | Use in Qiskit | Processor family |
 | --- | --- | --- | --- | --- |
@@ -24,7 +25,8 @@ These instructions are calibrated together with the standard instruction set, so
 | `reset_2` | Shorter conditional reset pulse that uses `measure_2` | Mid-circuit qubit reset | [`MidCircuitReset`](/docs/api/qiskit-ibm-runtime/circuit-library-mid-circuit-reset) (v0.49.0 or later) | Heron |
 | `measure_reset` | Measurement like `measure` that also resets the qubit* | Measure and reset a qubit | [`MeasureReset`](/docs/api/qiskit-ibm-runtime/circuit-library-measure-reset) (v0.50.0 or later) | Heron, Nighthawk r2 |
 | `measure_reset_2` | Shorter measurement like `measure_2` that also resets the qubit* | Measure and reset a qubit mid-circuit | Initialize [`MeasureReset`](/docs/api/qiskit-ibm-runtime/circuit-library-measure-reset) with `name="measure_reset_2"` (v0.50.0 or later) | Heron, Nighthawk r2 |
-| `xslow` | Bit-flip (X) gate with an extended duration | [Postselection](/docs/guides/post-selection) and error mitigation. It is the default value of the [`x_pulse_type`](/docs/api/qiskit-ibm-runtime/options-models-post-selection-options#x_pulse_type) post-selection option. | [`XSlowGate`](/docs/api/qiskit-ibm-runtime/circuit-library-x-slow-gate#xslowgate) (v0.50.0 or later) | All |
+| `xslow` | Bit-flip (X) gate with an extended duration | [Postselection](/docs/guides/docs/addons/qiskit-mitigation/guides/postselection-with-non-markovian-error-checks) and error mitigation. It is the default value of the x_pulse_type option in post-selection passes cvvvvvvvvvvvvvvvvvvvvvvvvvn265
+. | [`XSlowGate`](/docs/api/qiskit-ibm-runtime/circuit-library-x-slow-gate#xslowgate) (v0.50.0 or later) | All |
 
 \* On Heron processors, the reset is conditional on the measurement result. On Nighthawk r2 processors, the reset is unconditional.
 
@@ -73,12 +75,12 @@ Alternative calibrations are not available on all QPUs.
 
 ### Slow gate calibrations
 
-Slow gate calibrations tune the `cz` gate to be slower than in the default calibration. Slower `cz` gates may improve performance for large-scale observable estimation workflows with error mitigation, but they also increase the total duration of your circuit, which causes some additional decoherence.
+Slow gate calibrations tune the `cz` gate to be slower than in the default calibration. Slower `cz` gates might improve performance for large-scale observable estimation workflows with error mitigation, but they also increase the total duration of your circuit, which causes some additional decoherence.
 
 On Heron processors, slow gate calibrations are also available with two modes of two-level system (TLS) bias control:
 
 - **DC TLS bias** is optimized for the best instantaneous performance. The default calibration uses DC TLS bias.
-- **AC TLS bias** modulates the TLS bias to stabilize device errors over time, which keeps the device's noise model stable during lengthy workflows. See page 52 of [Observable Estimation in the Absence of Classical Verification](https://arxiv.org/pdf/2607.25998#page=52) for details.
+- **AC TLS bias** modulates the TLS bias to stabilize device errors over time, which keeps the device's noise model stable during lengthy workflows. See "Noise stablization" in [Observable Estimation in the Absence of Classical Verification](https://arxiv.org/pdf/2607.25998#page=52) for details.
 
 Nighthawk processors do not use TLS bias, so they have a single slow gate calibration.
 
@@ -109,13 +111,15 @@ When you use `slow_gates_ac`, submit all jobs in the workflow to a single [sessi
 
 #### Check gate durations
 
-Because slow gate calibrations increase `cz` gate durations, compare the durations against the default calibration to understand the effect on your circuit. Use the backend's target to find the duration, in seconds, of the `cz` gate on a particular pair of qubits:
+Because slow gate calibrations increase `cz` gate durations, compare the durations against the default calibration to understand the effect on your circuit. Use the backend's target to find the duration, in seconds, of the `cz` gate on a specific pair of qubits:
 
 ```python
 default_backend = service.backend("<backend_name>")
-slow_backend = service.backend("<backend_name>", calibration_id="slow_gates_ac")  # Or slow_gates_dc, or slow_gates on Nighthawk
+slow_backend = service.backend(
+    "<backend_name>", calibration_id="slow_gates_ac"
+) # Or slow_gates_dc, or slow_gates on Nighthawk
 
-qubits = (0, 1)  # Replace with a connected qubit pair on the backend
+qubits = (0, 1) # Replace with a connected qubit pair on the backend
 print(default_backend.target["cz"][qubits].duration)
 print(slow_backend.target["cz"][qubits].duration)
 ```
