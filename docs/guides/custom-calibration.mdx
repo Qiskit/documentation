@@ -1,0 +1,135 @@
+---
+title: Specially calibrated instructions
+description: Use gates and readout instructions on IBM QPUs that are calibrated differently from the default set, such as slow gates and shorter measurements
+---
+
+# Specially calibrated instructions
+
+By default, the quantum gates and readout operations on IBM&reg; quantum computers are calibrated for optimal performance across general use cases. Some workloads, however, benefit from instructions whose parameters are tuned differently. For example, [`MidCircuitMeasure`](/docs/guides/execute-dynamic-circuits#midcircuitmeasure-method) (`measure_2`) is a readout operation tailored for measurements in the middle of a circuit, and slower `cz` gates can improve the results of some error mitigation workflows.
+
+Specially calibrated instructions come in two forms, and you access them differently:
+
+- [**Instructions with different signatures**](#different) are calibrated alongside the standard instructions in the default calibration, so you add them to your circuits like any other instruction. They are usually identified by a suffix, such as `measure_2`.
+- [**Alternative calibrations**](#alternative-calibrations) replace parts of the default calibration with differently tuned parameters. You select one by passing a `calibration_id` when you retrieve the backend.
+
+To learn how IBM quantum computers are calibrated, see [Monitor, calibrate, and benchmark](/docs/guides/calibration-jobs).
+
+<span id="different" />
+## Instructions with different signatures
+
+These instructions are calibrated with the standard instruction set, so you don't need to do anything special to retrieve a backend that supports them. To use one, add the corresponding `qiskit-ibm-runtime` instruction to your circuit.
+
+| Instruction | Description | Typical use case | Use in Qiskit | Processor family |
+| --- | --- | --- | --- | --- |
+| `measure_2` | Shorter measurement pulse | [Mid-circuit measurements](/docs/guides/execute-dynamic-circuits#midcircuitmeasure-method) | [`MidCircuitMeasure`](/docs/api/qiskit-ibm-runtime/circuit-library-mid-circuit-measure) (v0.43.0 or later) | Heron, Nighthawk r2 |
+| `reset_2` | Shorter conditional reset pulse that uses `measure_2` | Mid-circuit qubit reset | [`MidCircuitReset`](/docs/api/qiskit-ibm-runtime/circuit-library-mid-circuit-reset) (v0.49.0 or later) | Heron |
+| `measure_reset` | Measurement like `measure` that also resets the qubit* | Measure and reset a qubit | [`MeasureReset`](/docs/api/qiskit-ibm-runtime/circuit-library-measure-reset) (v0.50.0 or later) | Heron, Nighthawk r2 |
+| `measure_reset_2` | Shorter measurement like `measure_2` that also resets the qubit* | Measure and reset a qubit mid-circuit | Initialize [`MeasureReset`](/docs/api/qiskit-ibm-runtime/circuit-library-measure-reset) with `name="measure_reset_2"` (v0.50.0 or later) | Heron, Nighthawk r2 |
+| `xslow` | Bit-flip (X) gate with an extended duration | [Postselection](/docs/addons/qiskit-mitigation/guides/postselection-with-non-markovian-error-checks) and error mitigation. It is the default value of the `x_pulse_type` option in [postselection passes](/docs/api/qiskit-mitigation/postselection-passes) | All |
+. | [`XSlowGate`](/docs/api/qiskit-ibm-runtime/circuit-library-x-slow-gate#xslowgate) (v0.50.0 or later) | All |
+
+\* On Heron processors, the reset is conditional on the measurement result. On Nighthawk r2 processors, the reset is unconditional.
+
+Because these instructions are not supported on every backend, check the backend's supported instructions before you use them:
+
+```python
+from qiskit_ibm_runtime import QiskitRuntimeService
+
+service = QiskitRuntimeService()
+backend = service.backend("<backend_name>")
+
+print(backend.supported_instructions)
+```
+
+To find all backends that support an instruction, use:
+
+```python
+service = QiskitRuntimeService()
+backends = service.backends(filters=lambda b: "<instruction>" in b.supported_instructions)
+```
+
+Use `instruction_signatures` to see the signatures of these specially calibrated instructions:
+
+```python
+print(backend.configuration().instruction_signatures)
+```
+
+## Alternative calibrations
+
+Alternative calibrations replace parts of the default calibration with differently tuned parameters. Each alternative calibration has a calibration ID, and its availability depends on the QPU.
+
+To use an alternative calibration, pass its `calibration_id` when you retrieve the backend. The backend's target, and therefore the transpiler, uses the instruction properties from that calibration, and primitive jobs that you run on the backend execute with it.
+
+```python
+from qiskit_ibm_runtime import QiskitRuntimeService
+
+service = QiskitRuntimeService()
+backend = service.backend("<backend_name>", calibration_id="<calibration_id>")
+
+print(backend.calibration_id)
+```
+
+<Admonition type="note">
+Alternative calibrations are not available on all QPUs.
+</Admonition>
+
+### Slow gate calibrations
+
+Slow gate calibrations tune the `cz` gate to be slower than in the default calibration. Slower `cz` gates might improve performance for large-scale observable estimation workflows with error mitigation, but they also increase the total duration of your circuit, which causes some additional decoherence.
+
+On Heron processors, slow gate calibrations are also available with two modes of two-level system (TLS) bias control:
+
+- **DC TLS bias** is optimized for the best instantaneous performance. The default calibration uses DC TLS bias.
+- **AC TLS bias** modulates the TLS bias to stabilize device errors over time, which keeps the device's noise model stable during lengthy workflows. See "Noise stabilization" in [Observable Estimation in the Absence of Classical Verification](https://arxiv.org/pdf/2607.25998#page=52) for details.
+
+Nighthawk processors do not use TLS bias, so they have a single slow gate calibration.
+
+| Calibration ID | Processor family | TLS bias | Recommended for |
+| --- | --- | --- | --- |
+| None (default calibration) | All | DC (Heron) | General use. Especially recommended for workloads whose bitstrings can be classically distilled, such as peaked circuits and [SQD or SKQD](/learning/courses/integrating-quantum-and-high-performance-computing/sqd-skqd) workflows, and for workloads with [error detection](/docs/tutorials/spacetime-codes). |
+| `slow_gates_dc` | Heron | DC | Large-scale observable estimation workflows, especially those that use heuristic error mitigation such as zero-noise extrapolation (ZNE). |
+| `slow_gates_ac` | Heron | AC | Workflows that require stable error rates over long sessions. Strongly recommended for workflows that involve noise learning, such as probabilistic error amplification (PEA) and probabilistic error cancellation (PEC). |
+| `slow_gates` | Nighthawk | Not applicable | Observable estimation workflows that use error mitigation, such as ZNE, PEA, and PEC. |
+
+For example:
+
+```python
+from qiskit_ibm_runtime import QiskitRuntimeService
+
+service = QiskitRuntimeService()
+# On a Heron QPU
+backend = service.backend("ibm_kingston", calibration_id="slow_gates_ac")
+# backend = service.backend("ibm_kingston", calibration_id="slow_gates_dc")
+
+# On a Nighthawk QPU
+backend = service.backend("ibm_phoenix", calibration_id="slow_gates")
+```
+
+<Admonition type="tip">
+When you use `slow_gates_ac`, submit all jobs in the workflow to a single [session](/docs/guides/run-jobs-session) so that they run while the device's noise remains stable.
+</Admonition>
+
+#### Check gate durations
+
+Because slow gate calibrations increase `cz` gate durations, compare the durations against the default calibration to understand the effect on your circuit. Use the backend's target to find the duration, in seconds, of the `cz` gate on a specific pair of qubits:
+
+```python
+default_backend = service.backend("<backend_name>")
+slow_backend = service.backend(
+    "<backend_name>", calibration_id="slow_gates_ac"
+) # Or slow_gates_dc, or slow_gates on Nighthawk
+
+qubits = (0, 1) # Replace with a connected qubit pair on the backend
+print(default_backend.target["cz"][qubits].duration)
+print(slow_backend.target["cz"][qubits].duration)
+```
+
+Because the target reflects the selected calibration, transpile your circuits against the backend that uses the same `calibration_id` you plan to run on.
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+- Learn how to [execute dynamic circuits](/docs/guides/execute-dynamic-circuits) with mid-circuit measurements.
+- Use [postselection](/docs/addons/qiskit-mitigation/guides/postselection-with-non-markovian-error-checks) to filter out results affected by correlated noise.
+- Read about how IBM quantum computers are [monitored, calibrated, and benchmarked](/docs/guides/calibration-jobs).
+</Admonition>
