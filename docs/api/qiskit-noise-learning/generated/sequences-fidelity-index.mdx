@@ -8,7 +8,7 @@ description: Index of all the modules in the latest version of qiskit-noise-lear
 # qiskit\_noise\_learning.sequences.FidelityIndex
 
 <Class id="qiskit_noise_learning.sequences.FidelityIndex" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/sequences/fidelity_index.py" signature="qiskit_noise_learning.sequences.FidelityIndex(gate_name: str, pauli: QubitSparsePauli, in_z_idxs: frozenset[int], out_z_idxs: frozenset[int], input_pauli: QubitSparsePauli, output_pauli: QubitSparsePauli, sign_flip: bool, meas_idxs: frozenset[int])" modifiers="class">
-  Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
+  Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
 
   Index data for a fidelity in a Pauli-MCM-reset gate set.
 
@@ -54,7 +54,7 @@ description: Index of all the modules in the latest version of qiskit-noise-lear
   | --------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
   | [`gate_name`](#qiskit_noise_learning.sequences.FidelityIndex.gate_name "qiskit_noise_learning.sequences.FidelityIndex.gate_name")                   | The name of the gate.                                                        |
   | [`in_z_idxs`](#qiskit_noise_learning.sequences.FidelityIndex.in_z_idxs "qiskit_noise_learning.sequences.FidelityIndex.in_z_idxs")                   | The measured qubits carrying a $Z$ on the instrument input.                  |
-  | [`mask`](#qiskit_noise_learning.sequences.FidelityIndex.mask "qiskit_noise_learning.sequences.FidelityIndex.mask")                                  | The mask for marginalizing measurement outcomes.                             |
+  | [`meas_idxs`](#qiskit_noise_learning.sequences.FidelityIndex.meas_idxs "qiskit_noise_learning.sequences.FidelityIndex.meas_idxs")                   | The physical qubit indices measured by the gate.                             |
   | [`observable_idxs`](#qiskit_noise_learning.sequences.FidelityIndex.observable_idxs "qiskit_noise_learning.sequences.FidelityIndex.observable_idxs") | Qubit indices of the associated $Z$ observable in ascending order.           |
   | [`out_z_idxs`](#qiskit_noise_learning.sequences.FidelityIndex.out_z_idxs "qiskit_noise_learning.sequences.FidelityIndex.out_z_idxs")                | The measured and reset qubits carrying a $Z$ on the instrument output.       |
   | [`pauli`](#qiskit_noise_learning.sequences.FidelityIndex.pauli "qiskit_noise_learning.sequences.FidelityIndex.pauli")                               | The Pauli operator on the Clifford portion of the model gate.                |
@@ -75,7 +75,7 @@ description: Index of all the modules in the latest version of qiskit-noise-lear
 
     **Raises**
 
-    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If the provided data is inconsistent with the gate.
+    [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If the provided data is inconsistent with the gate.
   </Function>
 
   ### is\_valid\_for\_gate
@@ -108,13 +108,13 @@ description: Index of all the modules in the latest version of qiskit-noise-lear
 
     **Raises**
 
-    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If the pair of Pauli operators do not imply a valid [`FidelityIndex`](#qiskit_noise_learning.sequences.FidelityIndex "qiskit_noise_learning.sequences.FidelityIndex").
+    [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If the pair of Pauli operators do not imply a valid [`FidelityIndex`](#qiskit_noise_learning.sequences.FidelityIndex "qiskit_noise_learning.sequences.FidelityIndex").
   </Function>
 
   ### gate\_name
 
   <Attribute id="qiskit_noise_learning.sequences.FidelityIndex.gate_name">
-    Type: [`str`](https://docs.python.org/3/library/stdtypes.html#str)
+    Type: [`str`](https://docs.python.org/3/builtins/stdtypes.html#str)
 
     The name of the gate.
   </Attribute>
@@ -130,7 +130,7 @@ description: Index of all the modules in the latest version of qiskit-noise-lear
   ### in\_z\_idxs
 
   <Attribute id="qiskit_noise_learning.sequences.FidelityIndex.in_z_idxs">
-    Type: [`frozenset`](https://docs.python.org/3/library/stdtypes.html#frozenset)\[[`int`](https://docs.python.org/3/library/functions.html#int)]
+    Type: [`frozenset`](https://docs.python.org/3/builtins/stdtypes.html#frozenset)\[[`int`](https://docs.python.org/3/builtins/functions.html#int)]
 
     The measured qubits carrying a $Z$ on the instrument input.
   </Attribute>
@@ -138,15 +138,23 @@ description: Index of all the modules in the latest version of qiskit-noise-lear
   ### out\_z\_idxs
 
   <Attribute id="qiskit_noise_learning.sequences.FidelityIndex.out_z_idxs">
-    Type: [`frozenset`](https://docs.python.org/3/library/stdtypes.html#frozenset)\[[`int`](https://docs.python.org/3/library/functions.html#int)]
+    Type: [`frozenset`](https://docs.python.org/3/builtins/stdtypes.html#frozenset)\[[`int`](https://docs.python.org/3/builtins/functions.html#int)]
 
     The measured and reset qubits carrying a $Z$ on the instrument output.
+  </Attribute>
+
+  ### meas\_idxs
+
+  <Attribute id="qiskit_noise_learning.sequences.FidelityIndex.meas_idxs">
+    Type: [`frozenset`](https://docs.python.org/3/builtins/stdtypes.html#frozenset)\[[`int`](https://docs.python.org/3/builtins/functions.html#int)]
+
+    The physical qubit indices measured by the gate.
   </Attribute>
 
   ### sign\_flip
 
   <Attribute id="qiskit_noise_learning.sequences.FidelityIndex.sign_flip">
-    Type: [`bool`](https://docs.python.org/3/library/functions.html#bool)
+    Type: [`bool`](https://docs.python.org/3/builtins/functions.html#bool)
 
     Whether the transition associated with this fidelity involves a sign flip.
   </Attribute>
@@ -154,23 +162,15 @@ description: Index of all the modules in the latest version of qiskit-noise-lear
   ### transition
 
   <Attribute id="qiskit_noise_learning.sequences.FidelityIndex.transition">
-    Type: [`tuple`](https://docs.python.org/3/library/stdtypes.html#tuple)\[[`QubitSparsePauli`](/docs/api/qiskit/qiskit.quantum_info.QubitSparsePauli), [`QubitSparsePauli`](/docs/api/qiskit/qiskit.quantum_info.QubitSparsePauli)]
+    Type: [`tuple`](https://docs.python.org/3/builtins/stdtypes.html#tuple)\[[`QubitSparsePauli`](/docs/api/qiskit/qiskit.quantum_info.QubitSparsePauli), [`QubitSparsePauli`](/docs/api/qiskit/qiskit.quantum_info.QubitSparsePauli)]
 
     The phaseless Pauli operator transition associated with this fidelity index.
-  </Attribute>
-
-  ### mask
-
-  <Attribute id="qiskit_noise_learning.sequences.FidelityIndex.mask">
-    Type: [`ndarray`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)\[[`bool`](https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.bool)]
-
-    The mask for marginalizing measurement outcomes.
   </Attribute>
 
   ### observable\_idxs
 
   <Attribute id="qiskit_noise_learning.sequences.FidelityIndex.observable_idxs">
-    Type: [`list`](https://docs.python.org/3/library/stdtypes.html#list)\[[`int`](https://docs.python.org/3/library/functions.html#int)]
+    Type: [`list`](https://docs.python.org/3/builtins/stdtypes.html#list)\[[`int`](https://docs.python.org/3/builtins/functions.html#int)]
 
     Qubit indices of the associated $Z$ observable in ascending order.
   </Attribute>
