@@ -10,10 +10,10 @@ If you are new to contributing to this project, start by reading/reviewing the f
 
 ## Choose an issue to work on
 
-Qiskit/documentation uses the following labels to help non-maintainers find issues best suited to their interests and experience level. Issues with these labels are already approved by our maintaining team for delegation to outside contributors.
+Qiskit/documentation uses the following labels to help non-maintainers find issues best suited to their interests and experience level. Issues with these labels are already approved for delegation to outside contributors.
 
-- [good first issue](https://github.com/Qiskit/documentation/pulls?q=is%3Apr+state%3Aopen+label%3A%22good+first+issue+%F0%9F%90%A3%22) - these issues are typically the simplest available to work on, ideal for newcomers.
-- [help wanted](https://github.com/Qiskit/documentation/pulls?q=is%3Apr+state%3Aopen+label%3A%22help+wanted%22) - these issues are generally more complex than good first issues. These are a great option for experienced contributors looking for something a bit more challenging.
+- [good first issue](https://github.com/Qiskit/documentation/pulls?q=is%3Apr+state%3Aopen+label%3A%22good+first+issue+%F0%9F%90%A3%22) - These issues are typically the simplest available to work on, ideal for newcomers.
+- [help wanted](https://github.com/Qiskit/documentation/pulls?q=is%3Apr+state%3Aopen+label%3A%22help+wanted%22) - These issues are generally more complex than good first issues. These are a great option for experienced contributors looking for something a bit more challenging.
 
 ## Indicate interest and open a PR if assigned
 
@@ -27,7 +27,7 @@ Qiskit/documentation uses the following labels to help non-maintainers find issu
 
 5. **Note that if you begin working on a PR before the relevant issue is assigned to you, a maintainer might close the issue.**
 
-6. Any PR you open will automatically ping the maintainers once it is no longer in draft status. _Please do not ping maintainers unnecessarily._
+6. Any PR you open will automatically notify the maintainers once it is no longer in draft status. _Please do not ping maintainers unnecessarily._
 
 7. Refer to the [README](./README.md), [style guide](./style-guide.md), and guide to [writing in mdx format](./mdx-guide.md) to be sure your contribution conforms to this repository's requirements.
 
@@ -90,7 +90,7 @@ explain the same spirit as Qiskit's policy, as of 2026-08-18:
 - [Scientific Python Community Considerations around AI](https://blog.scientific-python.org/scientific-python/community-considerations-around-ai/)
 
 You can consult these documents for more explanations on what constitutes a "useful" contribution,
-what the concerns around generative-AI tooling are from a maintainer's perspective, and some
+concerns regarding generative-AI tooling from a maintainer's perspective, and some
 recommendations for using generative tooling effectively.
 
 ## Contributor Licensing Agreement
@@ -107,6 +107,6 @@ agreement. The [individual CLA](https://qisk.it/cla)
 document is available for review as a PDF.
 
 Note: If your contribution is part of your employment or your contribution
-is the property of your employer, then you will more than likely need to sign a
+is the property of your employer, then you probably need to sign a
 [corporate CLA](https://qisk.it/corporate-cla) too and
 email it to us at <qiskit@us.ibm.com>.
