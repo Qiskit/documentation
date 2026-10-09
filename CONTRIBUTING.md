@@ -74,7 +74,7 @@ As a rule of thumb: to be a useful contributor, you as a human should have put i
 
 If you, as a human, have not added value to the contribution beyond prompting an LLM, the contribution is not valuable to the project and will be rejected.
 
-LLM-generated code and prose tends to be over verbose, which transfers a lot of work to maintainers. You must make an effort to ensure all submissions are as simple and concise as possible.
+LLM-generated code and prose tends to be over verbose, which transfers a lot of work to maintainers. You must make an effort to ensure all submissions are as simple and concise as possible. Refer to the [Style guide](./style-guide.md) for further writing guidance.
 
 Generative-AI tooling _must not_ be used for any content generation on issues labeled "good first issue". These issues are expected to be simple, non-critical, and for newcomers to learn the process of contribution.
 
