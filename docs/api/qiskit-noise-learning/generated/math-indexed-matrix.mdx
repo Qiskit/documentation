@@ -10,49 +10,52 @@ python_api_name: qiskit_noise_learning.math.IndexedMatrix
 
 # qiskit\_noise\_learning.math.IndexedMatrix
 
-<Class id="qiskit_noise_learning.math.IndexedMatrix" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/math/indexed_matrix.py" signature="qiskit_noise_learning.math.IndexedMatrix(row_index_map: Mapping[RowIndex, int] | None = None, column_index_map: Mapping[ColumnIndex, int] | None = None, data: ndarray[float] | None = None)" modifiers="class">
+<Class id="qiskit_noise_learning.math.IndexedMatrix" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/math/indexed_matrix.py" signature="qiskit_noise_learning.math.IndexedMatrix(row_index_map: Mapping[RowIndex, int] | None = None, column_index_map: Mapping[ColumnIndex, int] | None = None, data: ndarray | sparray | None = None)" modifiers="class">
   Bases: [`Generic`](https://docs.python.org/3/library/typing.html#typing.Generic)\[`RowIndex`, `ColumnIndex`]
 
   A matrix with float entries and arbitrary row and column index data.
 
+  Entries are stored as a SciPy CSR array ([`data`](#qiskit_noise_learning.math.IndexedMatrix.data "qiskit_noise_learning.math.IndexedMatrix.data")). Obtain a dense representation via [`toarray()`](#qiskit_noise_learning.math.IndexedMatrix.toarray "qiskit_noise_learning.math.IndexedMatrix.toarray").
+
   **Parameters**
 
-  *   **row\_index\_map** – A mapping from row indices to the integer row axes of `data`.
-  *   **column\_index\_map** – A mapping from column indices to the integer column axes of `data`.
-  *   **data** – The array for the given row and column indices.
+  *   **row\_index\_map** – A mapping from row indices to the integer row axes of [`data`](#qiskit_noise_learning.math.IndexedMatrix.data "qiskit_noise_learning.math.IndexedMatrix.data").
+  *   **column\_index\_map** – A mapping from column indices to the integer column axes of [`data`](#qiskit_noise_learning.math.IndexedMatrix.data "qiskit_noise_learning.math.IndexedMatrix.data").
+  *   **data** – The array for the given row and column indices, dense or sparse.
 
   **Raises**
 
-  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If the shape of `data` is inconsistent with the values of `row_index_map` or `column_index_map`.
+  [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If the shape of `data` is inconsistent with the values of `row_index_map` or `column_index_map`.
 
   ### \_\_init\_\_
 
-  <Function id="qiskit_noise_learning.math.IndexedMatrix.__init__" signature="__init__(row_index_map: Mapping[RowIndex, int] | None = None, column_index_map: Mapping[ColumnIndex, int] | None = None, data: ndarray[float] | None = None)" />
+  <Function id="qiskit_noise_learning.math.IndexedMatrix.__init__" signature="__init__(row_index_map: Mapping[RowIndex, int] | None = None, column_index_map: Mapping[ColumnIndex, int] | None = None, data: ndarray | sparray | None = None)" />
 
   ## Methods
 
-  |                                                                                                                                                                                 |                                                                                                                                     |
-  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-  | [`__init__`](#qiskit_noise_learning.math.IndexedMatrix.__init__ "qiskit_noise_learning.math.IndexedMatrix.__init__")(\[row\_index\_map, column\_index\_map, data])              |                                                                                                                                     |
-  | [`add_rows`](#qiskit_noise_learning.math.IndexedMatrix.add_rows "qiskit_noise_learning.math.IndexedMatrix.add_rows")(row\_indices, rows\[, tol])                                | Add rows to the matrix.                                                                                                             |
-  | [`copy`](#qiskit_noise_learning.math.IndexedMatrix.copy "qiskit_noise_learning.math.IndexedMatrix.copy")()                                                                      | Return a copy of self.                                                                                                              |
-  | [`from_index_lists`](#qiskit_noise_learning.math.IndexedMatrix.from_index_lists "qiskit_noise_learning.math.IndexedMatrix.from_index_lists")(row\_indices, ...)                 | Construct from ordered lists of row and column indices.                                                                             |
-  | [`from_rows`](#qiskit_noise_learning.math.IndexedMatrix.from_rows "qiskit_noise_learning.math.IndexedMatrix.from_rows")(row\_indices, rows\[, tol])                             | Construct from row indices and their sparse [`IndexedVector`](math-indexed-vector "qiskit_noise_learning.math.IndexedVector") rows. |
-  | [`linearly_independent_rows`](#qiskit_noise_learning.math.IndexedMatrix.linearly_independent_rows "qiskit_noise_learning.math.IndexedMatrix.linearly_independent_rows")(\[tol]) | Return a submatrix containing a maximal set of linearly independent rows.                                                           |
+  |                                                                                                                                                                                 |                                                                                                                                      |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+  | [`__init__`](#qiskit_noise_learning.math.IndexedMatrix.__init__ "qiskit_noise_learning.math.IndexedMatrix.__init__")(\[row\_index\_map, column\_index\_map, data])              |                                                                                                                                      |
+  | [`add_rows`](#qiskit_noise_learning.math.IndexedMatrix.add_rows "qiskit_noise_learning.math.IndexedMatrix.add_rows")(row\_indices, rows\[, tol])                                | Add rows to the matrix.                                                                                                              |
+  | [`copy`](#qiskit_noise_learning.math.IndexedMatrix.copy "qiskit_noise_learning.math.IndexedMatrix.copy")()                                                                      | Return a copy of self.                                                                                                               |
+  | [`from_index_lists`](#qiskit_noise_learning.math.IndexedMatrix.from_index_lists "qiskit_noise_learning.math.IndexedMatrix.from_index_lists")(row\_indices, ...)                 | Construct from ordered lists of row and column indices.                                                                              |
+  | [`from_rows`](#qiskit_noise_learning.math.IndexedMatrix.from_rows "qiskit_noise_learning.math.IndexedMatrix.from_rows")(row\_indices, rows\[, tol])                             | Construct from row indices and their sparse [`IndexedVector`](math-indexed-vector "qiskit_noise_learning.math.IndexedVector") rows.  |
+  | [`linearly_independent_rows`](#qiskit_noise_learning.math.IndexedMatrix.linearly_independent_rows "qiskit_noise_learning.math.IndexedMatrix.linearly_independent_rows")(\[tol]) | Return a submatrix containing a maximal set of linearly independent rows.                                                            |
+  | [`toarray`](#qiskit_noise_learning.math.IndexedMatrix.toarray "qiskit_noise_learning.math.IndexedMatrix.toarray")()                                                             | Return the numerical data as a dense [`ndarray`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray). |
 
   ## Attributes
 
   |                                                                                                                                              |                                                                              |
   | -------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
   | [`column_index_map`](#qiskit_noise_learning.math.IndexedMatrix.column_index_map "qiskit_noise_learning.math.IndexedMatrix.column_index_map") | Dictionary mapping column indices to the column axis integer of `self.data`. |
-  | [`data`](#qiskit_noise_learning.math.IndexedMatrix.data "qiskit_noise_learning.math.IndexedMatrix.data")                                     | The numerical data.                                                          |
+  | [`data`](#qiskit_noise_learning.math.IndexedMatrix.data "qiskit_noise_learning.math.IndexedMatrix.data")                                     | The numerical data, as a SciPy CSR array.                                    |
   | [`rank`](#qiskit_noise_learning.math.IndexedMatrix.rank "qiskit_noise_learning.math.IndexedMatrix.rank")                                     | The rank of the matrix.                                                      |
   | [`row_index_map`](#qiskit_noise_learning.math.IndexedMatrix.row_index_map "qiskit_noise_learning.math.IndexedMatrix.row_index_map")          | Dictionary mapping row indices to the row axis integer of `self.data`.       |
   | [`shape`](#qiskit_noise_learning.math.IndexedMatrix.shape "qiskit_noise_learning.math.IndexedMatrix.shape")                                  | The shape of the matrix.                                                     |
 
   ### from\_index\_lists
 
-  <Function id="qiskit_noise_learning.math.IndexedMatrix.from_index_lists" signature="from_index_lists(row_indices: Sequence[RowIndex], column_indices: Sequence[ColumnIndex], data: ndarray[float]) → Self" modifiers="classmethod">
+  <Function id="qiskit_noise_learning.math.IndexedMatrix.from_index_lists" signature="from_index_lists(row_indices: Sequence[RowIndex], column_indices: Sequence[ColumnIndex], data: ndarray) → Self" modifiers="classmethod">
     Construct from ordered lists of row and column indices.
 
     **Parameters**
@@ -85,7 +88,7 @@ python_api_name: qiskit_noise_learning.math.IndexedMatrix
   ### row\_index\_map
 
   <Attribute id="qiskit_noise_learning.math.IndexedMatrix.row_index_map">
-    Type: [`dict`](https://docs.python.org/3/library/stdtypes.html#dict)\[`RowIndex`, [`int`](https://docs.python.org/3/library/functions.html#int)]
+    Type: [`dict`](https://docs.python.org/3/builtins/stdtypes.html#dict)\[`RowIndex`, [`int`](https://docs.python.org/3/builtins/functions.html#int)]
 
     Dictionary mapping row indices to the row axis integer of `self.data`.
   </Attribute>
@@ -93,7 +96,7 @@ python_api_name: qiskit_noise_learning.math.IndexedMatrix
   ### column\_index\_map
 
   <Attribute id="qiskit_noise_learning.math.IndexedMatrix.column_index_map">
-    Type: [`dict`](https://docs.python.org/3/library/stdtypes.html#dict)\[`ColumnIndex`, [`int`](https://docs.python.org/3/library/functions.html#int)]
+    Type: [`dict`](https://docs.python.org/3/builtins/stdtypes.html#dict)\[`ColumnIndex`, [`int`](https://docs.python.org/3/builtins/functions.html#int)]
 
     Dictionary mapping column indices to the column axis integer of `self.data`.
   </Attribute>
@@ -101,15 +104,21 @@ python_api_name: qiskit_noise_learning.math.IndexedMatrix
   ### data
 
   <Attribute id="qiskit_noise_learning.math.IndexedMatrix.data">
-    Type: [`ndarray`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)\[[`float`](https://docs.python.org/3/library/functions.html#float)]
+    Type: [`csr_array`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.csr_array.html#scipy.sparse.csr_array "(in SciPy v1.18.0)")
 
-    The numerical data.
+    The numerical data, as a SciPy CSR array. Use [`toarray()`](#qiskit_noise_learning.math.IndexedMatrix.toarray "qiskit_noise_learning.math.IndexedMatrix.toarray") for a dense copy.
   </Attribute>
+
+  ### toarray
+
+  <Function id="qiskit_noise_learning.math.IndexedMatrix.toarray" signature="toarray() → ndarray">
+    Return the numerical data as a dense [`ndarray`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray).
+  </Function>
 
   ### shape
 
   <Attribute id="qiskit_noise_learning.math.IndexedMatrix.shape">
-    Type: [`tuple`](https://docs.python.org/3/library/stdtypes.html#tuple)\[[`int`](https://docs.python.org/3/library/functions.html#int), [`int`](https://docs.python.org/3/library/functions.html#int)]
+    Type: [`tuple`](https://docs.python.org/3/builtins/stdtypes.html#tuple)\[[`int`](https://docs.python.org/3/builtins/functions.html#int), [`int`](https://docs.python.org/3/builtins/functions.html#int)]
 
     The shape of the matrix.
   </Attribute>
@@ -117,7 +126,7 @@ python_api_name: qiskit_noise_learning.math.IndexedMatrix
   ### rank
 
   <Attribute id="qiskit_noise_learning.math.IndexedMatrix.rank">
-    Type: [`int`](https://docs.python.org/3/library/functions.html#int)
+    Type: [`int`](https://docs.python.org/3/builtins/functions.html#int)
 
     The rank of the matrix.
   </Attribute>
@@ -135,8 +144,8 @@ python_api_name: qiskit_noise_learning.math.IndexedMatrix
 
     **Raises**
 
-    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If any row index is duplicated in `row_indices` or is already present in this instance.
-    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If the number of row indices does not match the number of rows.
+    *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If any row index is duplicated in `row_indices` or is already present in this instance.
+    *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If the number of row indices does not match the number of rows.
   </Function>
 
   ### linearly\_independent\_rows

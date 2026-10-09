@@ -19,6 +19,8 @@ python_api_name: qiskit_noise_learning.experiment_builder.AddPaths
 
   Subclasses should override `_generate_paths()` to yield paths computed from the experiment’s fidelity model or other data.
 
+  A path equal to one already in the experiment, or to one added earlier by this stage, is dropped, so that the experiment’s paths remain distinct.
+
   **Parameters**
 
   **path\_iterators** – One or more iterators of [`Path`](sequences-path "qiskit_noise_learning.sequences.Path") instances.

@@ -1,0 +1,47 @@
+---
+title: LeastSquaresSolve (latest version)
+description: API reference for qiskit_noise_learning.analysis.LeastSquaresSolve in the latest version of qiskit-noise-learning
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_noise_learning.analysis.LeastSquaresSolve
+---
+
+<span id="qiskit-noise-learning-analysis-leastsquaressolve" />
+
+# qiskit\_noise\_learning.analysis.LeastSquaresSolve
+
+<Class id="qiskit_noise_learning.analysis.LeastSquaresSolve" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/analysis/model_solve.py" signature="qiskit_noise_learning.analysis.LeastSquaresSolve(non_negative: bool = True, solver: Literal['cvxpy', 'scipy'] | None = None)" modifiers="class">
+  Bases: `ModelSolve`
+
+  Solves for [`ModelData`](data-model-data "qiskit_noise_learning.data.ModelData") by least squares, with optional non-negativity constraints.
+
+  Minimizes $\|A x - b\|_2^2$ over the design matrix `A` and target `b`. See `ModelSolve` for the general responsibility of a model solver in this library.
+
+  **Parameters**
+
+  *   **non\_negative** – Whether to constrain the solution to be non-negative (`x >= 0`). Defaults to `True`.
+  *   **solver** – Either `"cvxpy"` (default) or `"scipy"`. If `"cvxpy"` is requested but not installed, warns and falls back to `"scipy"`.
+
+  **Raises**
+
+  [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If `solver` is not `"cvxpy"` or `"scipy"`.
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit_noise_learning.analysis.LeastSquaresSolve.__init__" signature="__init__(non_negative: bool = True, solver: Literal['cvxpy', 'scipy'] | None = None)" />
+
+  ## Methods
+
+  |                                                                                                                                                                |                                                                                                                             |
+  | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit_noise_learning.analysis.LeastSquaresSolve.__init__ "qiskit_noise_learning.analysis.LeastSquaresSolve.__init__")(\[non\_negative, solver]) |                                                                                                                             |
+  | `run`(fit)                                                                                                                                                     | Run this stage, returning a new [`Fit`](analysis-fit "qiskit_noise_learning.analysis.Fit") with the output level populated. |
+
+  ## Attributes
+
+  |                |                                   |
+  | -------------- | --------------------------------- |
+  | `input_level`  | The data level this stage reads.  |
+  | `output_level` | The data level this stage writes. |
+</Class>
+

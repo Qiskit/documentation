@@ -1,22 +1,23 @@
 ---
-title: "Learn the noise model of a gate with NoiseLearner"
-description: "Learn the noise model of a gate with NoiseLearner for the latest version of Qiskit noise learning"
+title: "Learn the noise model of a gate"
+description: "Learn the noise model of a gate for the latest version of Qiskit noise learning"
 ---
 
-# Learn the noise model of a gate with NoiseLearner
+# Learn the noise model of a gate
 
-This guide demonstrates using [`NoiseLearner`](/docs/api/qiskit-noise-learning/generated/noise-learner-noise-learner#qiskit_noise_learning.noise_learner.NoiseLearner "qiskit_noise_learning.noise_learner.NoiseLearner") to learn a noise model for a unitary gate.
+This tutorial demonstrates learning a noise model for a unitary gate with a standard learning protocol accessible through the high-level protocol functions [`prepare_learning_program()`](/docs/api/qiskit-noise-learning/generated/protocols-prepare-learning-program#qiskit_noise_learning.protocols.prepare_learning_program "qiskit_noise_learning.protocols.prepare_learning_program") and [`process_learning_result()`](/docs/api/qiskit-noise-learning/generated/protocols-process-learning-result#qiskit_noise_learning.protocols.process_learning_result "qiskit_noise_learning.protocols.process_learning_result").
 
 1.  Define the gate
 2.  Set up local simulation
-3.  Run the learner
-4.  Read the results
+3.  Prepare the quantum program
+4.  Run the quantum program
+5.  Read the results
 
 <Admonition title="Running on real hardware" type="note">
   The circuits below are simulated locally, so this walkthrough needs no IBM Quantum® credentials. Two changes take it to a real device, each flagged again where it applies:
 
   *   **Step 1**: replace [`FakeMarrakesh`](/docs/api/qiskit-ibm-runtime/fake-provider-fake-marrakesh "(in Qiskit Runtime IBM Client)") with a real backend.
-  *   **Step 2**: skip it, and drop the `executor` argument in step 3.
+  *   **Step 2**: skip it, and submit through [`Executor`](/docs/api/qiskit-ibm-runtime/executor "(in Qiskit Runtime IBM Client)") in step 4.
 </Admonition>
 
 <span id="define-the-gate" />
@@ -114,51 +115,77 @@ executor = AerExecutor(
   Skip this step entirely.
 </Admonition>
 
-<span id="run-the-learner" />
+<span id="prepare-the-quantum-program" />
 
-## 3. Run the learner
+## 3. Prepare the quantum program
 
-[`LearningOptions`](/docs/api/qiskit-noise-learning/generated/noise-learner-learning-options#qiskit_noise_learning.noise_learner.LearningOptions "qiskit_noise_learning.noise_learner.LearningOptions") controls the shape of the experiment: how deep the twirled gate is repeated, and how many randomizations and shots are spent at each depth. Passing `executor` diverts the generated program to the simulator; leave it out and [`NoiseLearner`](/docs/api/qiskit-noise-learning/generated/noise-learner-noise-learner#qiskit_noise_learning.noise_learner.NoiseLearner "qiskit_noise_learning.noise_learner.NoiseLearner") submits to `backend` through IBM Quantum instead.
+Use [`prepare_learning_program()`](/docs/api/qiskit-noise-learning/generated/protocols-prepare-learning-program#qiskit_noise_learning.protocols.prepare_learning_program "qiskit_noise_learning.protocols.prepare_learning_program") to build the quantum program containin gthe learning experiments.
 
 ```python
-from qiskit_noise_learning.noise_learner import LearningOptions, NoiseLearner
+from qiskit_noise_learning.protocols import prepare_learning_program
 
-options = LearningOptions(
+program = prepare_learning_program(
+    backend,
+    [circuit[0]],
     fragment_depths=[2, 16, 64, 128],
     num_randomizations=50,
-    shots_per_randomizations=20,
+    shots_per_randomization=20,
 )
 
-learner = NoiseLearner(backend, options=options, executor=executor)
+print(f"Number of template circuits: {len(program.items)}")
+```
 
-job = learner.run([circuit[0]])
-result = job.result()
+```myst
+Number of template circuits: 5
+```
+
+<span id="run-the-quantum-program" />
+
+## 4. Run the quantum program
+
+Submit the quantum program to your backend of choice. Here, we use the simulated executor; to simulate against a real device use [`Executor`](/docs/api/qiskit-ibm-runtime/executor "(in Qiskit Runtime IBM Client)").
+
+```python
+result = executor.run(program).result()
 ```
 
 <Admonition title="Running on real hardware" type="note">
   ```python
-  learner = NoiseLearner(backend, options=options)
+  from qiskit_ibm_runtime import Executor
+
+  result = Executor(mode=backend).run(program).result()
   ```
 </Admonition>
 
 <span id="read-the-results" />
 
-## 4. Read the results
+## 5. Read the results
 
-Everything the analysis pipeline produced is reachable through [`fit`](/docs/api/qiskit-noise-learning/generated/noise-learner-noise-learner-result#qiskit_noise_learning.noise_learner.NoiseLearnerResult.fit "qiskit_noise_learning.noise_learner.NoiseLearnerResult.fit"). Use the fit to plot per-qubit-pair fidelity decays: both the data and the exponential fit.
+Process the result with [`process_learning_result()`](/docs/api/qiskit-noise-learning/generated/protocols-process-learning-result#qiskit_noise_learning.protocols.process_learning_result "qiskit_noise_learning.protocols.process_learning_result"), obstaining a [`Fit`](/docs/api/qiskit-noise-learning/generated/analysis-fit#qiskit_noise_learning.analysis.Fit "qiskit_noise_learning.analysis.Fit") object.
 
 ```python
-result.fit.plot_qubit_pair_decays(
+from qiskit_noise_learning.protocols import process_learning_result
+
+fit = process_learning_result(result)
+```
+
+Use the fit to plot per-qubit-pair fidelity decays: both the data and the exponential fit.
+
+```python
+fit.plot_qubit_pair_decays(
     pairs=cz_pairs,
     observable_type="means",
     exponential_fit=True,
 )
 ```
 
-Extract the learned noise from [`to_dict()`](/docs/api/qiskit-noise-learning/generated/noise-learner-noise-learner-result#qiskit_noise_learning.noise_learner.NoiseLearnerResult.to_dict "qiskit_noise_learning.noise_learner.NoiseLearnerResult.to_dict"): one [`PauliLindbladMap`](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap) per learned gate, keyed by the name from the `InjectNoise` annotation, and expressed in the backend’s own qubit indexing rather than that of the gate.
+Read out the learned noise, keyed by the name from the `InjectNoise` annotation.
 
 ```python
-learned = result.to_dict()["cz_gate"]
+from qiskit_noise_learning.models import split_pauli_lindblad_model
+
+pauli_lindblad_model = split_pauli_lindblad_model(fit.model).model
+learned = pauli_lindblad_model.to_pauli_lindblad_maps(fit.model_data)["cz_gate"]
 learned.num_terms
 ```
 
@@ -166,4 +193,3 @@ learned.num_terms
 144
 ```
 
-By default [`NoiseLearner`](/docs/api/qiskit-noise-learning/generated/noise-learner-noise-learner#qiskit_noise_learning.noise_learner.NoiseLearner "qiskit_noise_learning.noise_learner.NoiseLearner") fits a 2-local model, so the map carries a term for every Pauli supported on a connected pair of the gate’s qubits — 144 of them, of which only 24 were given a nonzero rate in step 2.
