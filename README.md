@@ -52,21 +52,7 @@ You can help the team prioritize already-open issues by doing the following:
 
 #### 4. Fix an open issue
 
-You can look through the open issues we have in this repo and address them with a PR. We recommend focusing on issues with the "good first issue" label.
-
-Before getting started on an issue, remember to do the following:
-
-1. Read the [Code of Conduct](https://quantum.cloud.ibm.com/docs/guides/code-of-conduct)
-2. Check for open, unassigned issues with the "good first issue" label
-3. Select an issue that is not already assigned to someone and leave a comment to request to be assigned
-
-Once you have an issue to work on, see the "How to work with this repo" section below to get going, then open a PR.
-
-Before opening a PR, remember to do the following:
-
-1. Check that you have addressed all the requirements from the original issue
-2. Run the quality control checks with `npm run check`
-3. Use the GitHub "fixes" notation to [link your PR to the issue](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue) you are addressing
+See our [Contribution policy](/CONTRIBUTING.md) for information on contributing fixes.
 
 ## Set up this repository
 
