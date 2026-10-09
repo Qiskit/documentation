@@ -20,23 +20,12 @@ import { readApiMinorVersion } from "../lib/apiVersions.js";
 import { File } from "../lib/links/InternalLink.js";
 import { FileBatch } from "../lib/links/FileBatch.js";
 import { QISKIT_REMOVED_PAGES } from "../lib/links/QiskitRemovedPages.js";
-
-// While these files don't exist in this repository, the link
-// checker should assume that they exist in production.
-const SYNTHETIC_FILES: string[] = [
-  "learning/index.mdx",
-  "docs/index.mdx",
-  "docs/errors.mdx",
-  "docs/api/qiskit-ibm-runtime/index.mdx",
-  "docs/api/qiskit-runtime-rest/index.mdx",
-  "docs/api/qiskit-runtime-rest/tags/jobs.mdx",
-  "docs/api/qiskit-transpiler-service-rest/index.mdx",
-  "docs/api/qiskit-runtime-rest/tags/usage.mdx",
-  "docs/api/qiskit-runtime-rest/tags/sessions.mdx",
-  "docs/api/qiskit-runtime-rest/tags/instances.mdx",
-  "docs/api/qiskit-runtime-rest/tags/backends.mdx",
-  "docs/api/qiskit-runtime-rest/index.mdx",
-];
+import {
+  SYNTHETIC_FILES,
+  findTocFiles,
+  loadTocTargetFiles,
+  checkTocFile,
+} from "../lib/tocFiles.js";
 
 interface Arguments {
   [x: string]: unknown;
@@ -44,6 +33,7 @@ interface Arguments {
   devApis: boolean;
   historicalApis: boolean;
   qiskitLegacyReleaseNotes: boolean;
+  toc: boolean;
 }
 
 const readArgs = (): Arguments => {
@@ -71,6 +61,13 @@ const readArgs = (): Arguments => {
       default: false,
       description: "Check the Qiskit release notes up until 0.45.",
     })
+    .option("toc", {
+      type: "boolean",
+      default: false,
+      description:
+        "Also check that every `url` in each _toc.json resolves to an " +
+        "existing page. Honors --current-apis for whether to include API TOCs.",
+    })
     .parseSync();
 };
 
@@ -93,11 +90,38 @@ async function main() {
     }
   }
 
+  if (args.toc && !(await checkTocFiles(args))) {
+    allGood = false;
+  }
+
   if (!allGood) {
     console.error("\nSome links appear broken 💔\n");
     process.exit(1);
   }
   console.log("\nNo links appear broken ✅\n");
+}
+
+/**
+ * Check that every `url` in each _toc.json resolves to a real page. Returns
+ * `true` if all TOC entries are valid. Shares its resolution logic with the
+ * standalone `check:toc` command via `scripts/js/lib/tocFiles.ts`.
+ */
+async function checkTocFiles(args: Arguments): Promise<boolean> {
+  console.log("\n\nChecking _toc.json entries");
+  const [tocFiles, existingFiles] = await Promise.all([
+    findTocFiles(args.currentApis),
+    loadTocTargetFiles(),
+  ]);
+
+  let allGood = true;
+  for (const tocFile of tocFiles) {
+    const error = await checkTocFile(tocFile, existingFiles);
+    if (error !== undefined) {
+      console.error(error);
+      allGood = false;
+    }
+  }
+  return allGood;
 }
 
 const QISKIT_REMOVED_PAGES_TO_LOAD = [
