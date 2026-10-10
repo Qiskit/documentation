@@ -117,6 +117,7 @@ export async function runAddonDocsPipeline(
     allObjectInvs,
     pkg,
     imageDestination,
+    files,
   );
   await writeNotebooks(pkg, docsBaseFolder, notebooks);
 
