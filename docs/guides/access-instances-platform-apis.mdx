@@ -370,7 +370,7 @@ for plan in resp.json()["plans"]:
 Each plan in the response includes a functions array and, if configured, a `custom_functions` object. These list the exact name, provider, business model, and permissions values you can grant to an instance under that plan.
 
 <Admonition type="note">
-`GET /accounts/{id}` shows what is available to grant at the account level. `GET /functions` (see [Verify the result](#verify-result)) shows what a specific instance has already been granted. Use the **account** endpoint to discover valid values, and the **functions** endpoint to confirm the result.
+`GET /accounts/{id}` shows what is available to grant at the account level. `GET /entitlements` (see [Verify the result](#verify-result)) shows what a specific instance has already been granted. Use the **account** endpoint to discover valid values, and the **entitlements** endpoint to confirm the result.
 </Admonition>
 
 ### Step 4: Configure functions access
@@ -515,13 +515,22 @@ Setting `"custom_functions": {"permissions": []}` equivalently clears custom fun
 <span id="verify-result" />
 ### Verify the result
 
-To confirm that the instance has the correct Qiskit Functions configuration, use `GET /functions` from the Qiskit Runtime API instead of the Resource Controller. The Resource Controller's stored state might be stale if account-level changes updated the instance outside of the Resource Controller.
+To confirm that the instance has the correct Qiskit Functions configuration, use `GET /entitlements` from the Qiskit Runtime API instead of the Resource Controller. The Resource Controller's stored state might be stale if account-level changes updated the instance outside of the Resource Controller.
+
+`GET /entitlements` returns one element per requested instance in an `instance_entitlements` array, so read a single instance's entitlements from the first element:
+
+```json
+{"instance_entitlements": [{"instance_crn": "<CRN>", "functions": [], "custom_functions": {"permissions": []}}]}
+```
+
+- `Service-CRN` accepts several CRNs separated by commas, so an admin can verify a batch of instances in one call.
+- Each element carries either entitlements or an `error`, never both. An absent `functions` or `custom_functions` field means the instance is not granted that entitlement.
 
 <Tabs>
   <TabItem value="curl" label="cURL">
     ```bash
 curl --request GET \
-  --url 'https://quantum.cloud.ibm.com/api/v1/functions' \
+  --url 'https://quantum.cloud.ibm.com/api/v1/entitlements' \
   --header 'Authorization: apikey <YOUR_API_KEY>' \
   --header 'Service-CRN: <YOUR_INSTANCE_CRN>'
     ```
@@ -531,7 +540,7 @@ curl --request GET \
     ```python
 # The Service-CRN header takes the raw CRN, not the URL-encoded form.
 resp = requests.get(
-    "https://quantum.cloud.ibm.com/api/v1/functions",
+    "https://quantum.cloud.ibm.com/api/v1/entitlements",
     headers={"Authorization": f"apikey {api_key}", "Service-CRN": crn},
     timeout=30,
 )
@@ -541,4 +550,4 @@ print(resp.json())
   </TabItem>
 </Tabs>
 
-The response lists the functions that the instance currently has access to.
+The first element of `instance_entitlements` shows what the instance currently has access to.
