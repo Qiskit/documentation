@@ -66,7 +66,13 @@ These calibrations are run simultaneously on qubits that require calibration.
 
 ## Benchmark
 
-Daily benchmarking gives a comprehensive view of quantum computer performance and generates the metrics sent to users through Qiskit. They help users choose qubits, optimize compilations, and better anticipate expected circuit performance. You can view reported numbers either programmatically or on the [Compute resources](https://quantum.cloud.ibm.com/computers) page (click any QPU to open its detailed information card). Find more details about each metric in the [documentation](/docs/guides/qpu-information).
+Daily benchmarking gives a comprehensive view of quantum computer performance and generates the metrics sent to users through Qiskit (such as in `backend.properties()`). They help users choose qubits, optimize compilations, and better anticipate expected circuit performance. You can view reported numbers either programmatically through Qiskit or on the [Compute resources](https://quantum.cloud.ibm.com/computers) page (click any QPU to open its detailed information card). Find more details about each metric in the [QPU information](/docs/guides/qpu-information) guide.
+
+<Admonition type="note" title="Benchmarking and characterization metrics vs. calibration parameters">
+The device-control parameters used to operate the QPU (such as pulse amplitudes, phases, frequencies, readout angles, and discrimination parameters) are not published directly to `backend.properties()`. Instead, `backend.properties()` reports the results of periodic benchmarking routines (including characterization measurements such as $T_1$ and $T_2$, as well as gate error rates and readout errors), with each property paired with the timestamp of when it was measured.
+
+The `last_update_date` attribute on `backend.properties()` (displayed as the "last calibration" timestamp in IBM Quantum Platform) records when the underlying device calibrations were last updated. Because calibrations are triggered dynamically throughout the day, `last_update_date` updates whenever a calibration occurs, independently of the per-property benchmark timestamps.
+</Admonition>
 
 <Admonition type="tip" title="Device drift">
 The impact of device drift (hardware performance that degrades over time) depends on many factors, such as when calibrations were last run, the specific experiment performed, any TLS activities, and so on. If a particular workload is very sensitive to device parameters' error values, you can perform a real-time device parameter benchmarking by following [this tutorial](/docs/tutorials/real-time-benchmarking-for-qubit-selection) in IBM Quantum Learning.
