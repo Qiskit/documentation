@@ -149,7 +149,7 @@ export async function postProcess(
 function rewriteApiDocsLinks(results: HtmlToMdResultWithUrl[], pkg: Pkg) {
   const apiBase = pkg.apiOutputDir(DOCS_BASE_PATH);
   // For C API packages, stubs/pydoc links point to the companion Python package.
-  const pythonSiblingPkg = pkg.isCApi() ? pkg.artifactPackageName : pkg.name;
+  const pythonSiblingPkg = pkg.pythonSiblingName();
   const pythonApiBase = apiBase.replace(pkg.name, pythonSiblingPkg);
   const githubIo = `https://qiskit.github.io/${pkg.name}`;
   for (const result of results) {
