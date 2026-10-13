@@ -549,6 +549,6 @@ print(entitlement)
   </TabItem>
 </Tabs>
 
-The response contains an `instance_entitlements` array with one element for each requested instance. For a single instance, inspect the first element to see its `functions` and `custom_functions` entitlements. If an instance cannot be checked, its element contains an `error` instead of entitlements. An absent `functions` or `custom_functions` field means that the instance is not granted that type.
+The response contains an `instance_entitlements` array with one element for each requested instance that includes the `instance_crn`. Inspect each element to see its `functions` and `custom_functions` entitlements. If an instance cannot be checked, its element contains an `error` instead of entitlements. An absent `functions` or `custom_functions` field means that the instance is not granted that type.
 
 The `Service-CRN` header accepts multiple instance CRNs separated by commas, so you can verify several instances in a single request.
