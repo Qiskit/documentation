@@ -10,7 +10,7 @@ python_api_name: qiskit_noise_learning.analysis.LinearSystemData
 
 # qiskit\_noise\_learning.analysis.LinearSystemData
 
-<Class id="qiskit_noise_learning.analysis.LinearSystemData" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/analysis/model_solve.py" signature="qiskit_noise_learning.analysis.LinearSystemData(A: ndarray, b: ndarray, sigma_b: ndarray, row_diagnostics: Mapping[str, ndarray], row_index_map: Mapping[RowIndex, int], column_index_map: Mapping[ColumnIndex, int], time_lb: datetime64, time_ub: datetime64)" modifiers="class">
+<Class id="qiskit_noise_learning.analysis.LinearSystemData" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/analysis/model_solve.py" signature="qiskit_noise_learning.analysis.LinearSystemData(A: ndarray | sparray, b: ndarray, sigma_b: ndarray, row_diagnostics: Mapping[str, ndarray], row_index_map: Mapping[RowIndex, int], column_index_map: Mapping[ColumnIndex, int], time_lb: datetime64, time_ub: datetime64)" modifiers="class">
   Bases: [`Generic`](https://docs.python.org/3/library/typing.html#typing.Generic)\[`RowIndex`, `ColumnIndex`]
 
   The linear system to solve and metadata in raw format.
@@ -23,7 +23,7 @@ python_api_name: qiskit_noise_learning.analysis.LinearSystemData
 
   **Parameters**
 
-  *   **A** – The matrix with shape `(m, n)`.
+  *   **A** – The matrix with shape `(m, n)`, as a dense or SciPy sparse array.
   *   **b** – The target vector length `m`.
   *   **sigma\_b** – Statistical `1`-sigma uncertainty on `b` per row, with length `m`.
   *   **row\_diagnostics** – Named per-row quantities recorded by the stages that produced `b`, each an array of length `m` holding `nan` for rows the quantity is undefined for. Keys are the metadata names used upstream; see [`from_fit()`](#qiskit_noise_learning.analysis.LinearSystemData.from_fit "qiskit_noise_learning.analysis.LinearSystemData.from_fit").
@@ -34,7 +34,7 @@ python_api_name: qiskit_noise_learning.analysis.LinearSystemData
 
   ### \_\_init\_\_
 
-  <Function id="qiskit_noise_learning.analysis.LinearSystemData.__init__" signature="__init__(A: ndarray, b: ndarray, sigma_b: ndarray, row_diagnostics: Mapping[str, ndarray], row_index_map: Mapping[RowIndex, int], column_index_map: Mapping[ColumnIndex, int], time_lb: datetime64, time_ub: datetime64) → None" />
+  <Function id="qiskit_noise_learning.analysis.LinearSystemData.__init__" signature="__init__(A: ndarray | sparray, b: ndarray, sigma_b: ndarray, row_diagnostics: Mapping[str, ndarray], row_index_map: Mapping[RowIndex, int], column_index_map: Mapping[ColumnIndex, int], time_lb: datetime64, time_ub: datetime64) → None" />
 
   ## Methods
 
@@ -61,7 +61,7 @@ python_api_name: qiskit_noise_learning.analysis.LinearSystemData
   ### row\_labels
 
   <Attribute id="qiskit_noise_learning.analysis.LinearSystemData.row_labels">
-    Type: [`list`](https://docs.python.org/3/library/stdtypes.html#list)\[`RowIndex`]
+    Type: [`list`](https://docs.python.org/3/builtins/stdtypes.html#list)\[`RowIndex`]
 
     Row labels, ordered by their row position in `A`.
   </Attribute>
@@ -69,7 +69,7 @@ python_api_name: qiskit_noise_learning.analysis.LinearSystemData
   ### column\_labels
 
   <Attribute id="qiskit_noise_learning.analysis.LinearSystemData.column_labels">
-    Type: [`list`](https://docs.python.org/3/library/stdtypes.html#list)\[`ColumnIndex`]
+    Type: [`list`](https://docs.python.org/3/builtins/stdtypes.html#list)\[`ColumnIndex`]
 
     Column labels, ordered by their column position in `A`.
   </Attribute>
