@@ -42,11 +42,11 @@ in_page_toc_max_heading_level: 2
 
 *   Added support for propagating Pauli twirls past single-qubit Clifford gates (`s`, `sx`, `sdg`, `sxdg`, and compositions with `h`) and through single-qubit rotations (`rz`, `p`, `rx`) at Clifford angles when they appear between entangling gates inside a `Twirl` box. ([#351](https://github.com/Qiskit/samplomatic/issues/351))
 
-*   Exposed three primitives that together let consumers of `build()` evaluate deterministic template parameters (e.g., `RZZ` angles) without invoking `Samplex.sample`:
+*   Exposed three primitives that together let `build()` consumers evaluate deterministic template parameters (for example, `RZZ` angles) without invoking `Samplex.sample`:
 
-    *   `Samplex.param_table` — return the underlying `ParameterExpressionTable`.
-    *   `Samplex.passthrough_params` — a tuple `(template_idxs, expression_idxs)` mapping each passthrough template parameter to its expression-table index.
-    *   `ParameterExpressionTable.evaluate` — gained an optional `indices` argument so callers can evaluate only a chosen subset of the table’s expressions.
+    *   `Samplex.param_table` — Return the underlying `ParameterExpressionTable`.
+    *   `Samplex.passthrough_params` — A tuple `(template_idxs, expression_idxs)` mapping each passthrough template parameter to its expression-table index.
+    *   `ParameterExpressionTable.evaluate` — Gained an optional `indices` argument so callers can evaluate only a chosen subset of the table’s expressions.
 
     ([#367](https://github.com/Qiskit/samplomatic/issues/367))
 
@@ -60,7 +60,7 @@ in_page_toc_max_heading_level: 2
 
 ### Improved
 
-*   Measurement twirling is now implemented using virtual gate propagation. A virtual Pauli is propagated past a measure by discarding its `z` component, while propagating its `x` component and recording it as a bit flip. Previously, measurement twirling was implemented by collecting bit flips associated with virtual gates exclusively in the right hand side of a left-dressed box. The new approach allows for more flexible measurement twirling, e.g., sequential measurements of the same qubit to different clbits in the same box and measurement twirling in right-dressed boxes. ([#369](https://github.com/Qiskit/samplomatic/issues/369))
+*   Measurement twirling is now implemented using virtual gate propagation. A virtual Pauli is propagated past a measure by discarding its `z` component, while propagating its `x` component and recording it as a bit flip. Previously, measurement twirling was implemented by collecting bit flips associated with virtual gates exclusively in the right hand side of a left-dressed box. The new approach allows for more flexible measurement twirling, for example, sequential measurements of the same qubit to different clbits in the same box and measurement twirling in right-dressed boxes. ([#369](https://github.com/Qiskit/samplomatic/issues/369))
 *   Removed the restriction of having a single entangler type when using `Group.local_c1`. ([#370](https://github.com/Qiskit/samplomatic/issues/370))
 
 <span id="id4" />
@@ -96,7 +96,7 @@ in_page_toc_max_heading_level: 2
 
 ### Fixed
 
-*   Fixed a per-sample sign error in samplex sampling that occurred when an `InjectLocalClifford`-annotated box body contained multiple parallel multi-qubit gates (e.g. `cz(0,1)` and `cz(2,3)` in the same box). The parallel-propagate merge optimization in `PreSamplex` re-created the merged node with a fresh high graph index, which caused the lowered `CombineRegistersNode` to receive its operands in the wrong order and silently apply the basis-change Clifford in the wrong position of the matrix product. ([#356](https://github.com/Qiskit/samplomatic/issues/356))
+*   Fixed a per-sample sign error in samplex sampling that occurred when an `InjectLocalClifford`-annotated box body contained multiple parallel multi-qubit gates (for example, `cz(0,1)` and `cz(2,3)` in the same box). The parallel-propagate merge optimization in `PreSamplex` re-created the merged node with a fresh high graph index, which caused the lowered `CombineRegistersNode` to receive its operands in the wrong order and silently apply the basis-change Clifford in the wrong position of the matrix product. ([#356](https://github.com/Qiskit/samplomatic/issues/356))
 
 <span id="id9" />
 
@@ -276,7 +276,7 @@ in_page_toc_max_heading_level: 2
 *   Changed the scope of the transpiler passes `GroupGatesIntoBoxes`, `GroupMeasIntoBoxes`, and `AddTerminalRightDressedBoxes`. Formerly, all three of these passes were responsible for discovering single-qubit gates in the input circuit and moving them into newly created boxes. Now, to simplify their implementations and make the pass manager more modular, these three passes no longer have this responsibility, which has instead been delegated to the new pass `AbsorbSingleQubitGates`. In particular, `GroupGatesIntoBoxes` and `GroupMeasIntoBoxes` are now responsible only for inserting new left-dressed boxes populated only with entangling and measurement instructions. Similarly, `AddTerminalRightDressedBoxes` inserts empty right-dressed boxes boxes. The `generate_boxing_pass_manager` function has been updated to include `AbsorbSingleQubitGates`. ([#237](https://github.com/Qiskit/samplomatic/issues/237))
 *   Changed the behaviour of the pass manager returned by `samplomatic.transpiler.generate_boxing_pass_manager` under default settings with respect to how it treats barriers. Before, it would discard all barriers before attempting to put entangling gates into boxes. Now, it discards barriers after entangling gates are put into boxes, but before single-qubit gates are moved into adjacent boxes. This means that barriers can effectively be used as hints to choose how to stratify entangling gates without constraining single-qubit gates to end up in their own boxes. This also has better interaction with the Qiskit transpiler in the case that the original circuit is programmed in terms of a different entangling gate than the target. See the new possible values of the argument `remove_barriers` for details. ([#238](https://github.com/Qiskit/samplomatic/issues/238))
 *   The `DataSerializer.serialize` now requires the SSV as an argument. ([#254](https://github.com/Qiskit/samplomatic/issues/254))
-*   Arguments to `samplomatic.transpiler.generate_boxing_pass_manager` are now required to be keyword arguments. Moreover, all string-valued selection arguments (e.g. `twirling_strategy`) are required to be specified as strings because the enum classes have been removed. ([#257](https://github.com/Qiskit/samplomatic/issues/257))
+*   Arguments to `samplomatic.transpiler.generate_boxing_pass_manager` are now required to be keyword arguments. Moreover, all string-valued selection arguments (for example, `twirling_strategy`) are required to be specified as strings because the enum classes have been removed. ([#257](https://github.com/Qiskit/samplomatic/issues/257))
 *   Changed the default `twirling_strategy` of `samplomatic.transpiler.generate_boxing_pass_manager` from `"active"` to `"active_circit"`. This was done because the latter is a safer default. Typically, when twirling, one wants to eliminate all coherent error on active qubits. The `"active"` strategy is only able to do this under certain assumptions about noise processes. ([#265](https://github.com/Qiskit/samplomatic/issues/265))
 
 <span id="id36" />
