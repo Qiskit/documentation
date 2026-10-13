@@ -34,7 +34,11 @@ import { ObjectsInv } from "./objectsInv.js";
 import { Pkg } from "./Pkg.js";
 import { transformSpecialCaseUrl } from "./specialCaseResults.js";
 import { kebabCaseAndShortenPage } from "./normalizeResultUrls.js";
-import { DOCS_BASE_PATH, C_API_BASE_PATH } from "./paths.js";
+import {
+  DOCS_BASE_PATH,
+  C_API_BASE_PATH,
+  PYTHON_API_FOLDERS,
+} from "./paths.js";
 
 export interface Link {
   url: string; // Where the link goes
@@ -109,12 +113,11 @@ export function normalizeUrl(
 
   // The C API uses the same artifact as the Python API, but all its pages are
   // located under the `cdoc` folder.
-  const pythonApiFolders = ["stubs", "apidocs", "apidoc", "pydoc"];
   const addQiskitPrefix =
     kwargs.pkgName == "qiskit-c" &&
-    pythonApiFolders.some((f) => url.split("/").includes(f));
+    PYTHON_API_FOLDERS.some((f) => url.split("/").includes(f));
 
-  url = removePart(url, "/", [...pythonApiFolders, ".."]);
+  url = removePart(url, "/", [...PYTHON_API_FOLDERS, ".."]);
 
   // Some packages link to the C API via relative `cdoc/` paths
   // (e.g. `../cdoc/qk-circuit.html#c.qk_circuit_new` in the Sphinx artifact, which
