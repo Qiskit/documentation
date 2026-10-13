@@ -1,0 +1,593 @@
+---
+title: Samplomatic release notes
+description: Changes made to Samplomatic
+in_page_toc_max_heading_level: 2
+---
+
+<span id="release-notes" />
+
+# Samplomatic release notes
+
+<span id="id1" />
+
+## 0.21.0 - 2026-08-25
+
+### Added
+
+*   Added the `strategy` argument to `GroupGatesIntoBoxes` to determine how to to assign two-qubit gates to boxes, allowing for new strategies like `"alap"`. The default behavior has not changed and corresponds to the `"asap"` strategy. This can also be specified with the new `boxing_strategy` argument of `generate_boxing_pass_manager`. ([#380](https://github.com/Qiskit/samplomatic/issues/380))
+*   Added support for `delay` in `GroupGatesIntoBoxes`, `GroupMeasIntoBoxes`, and `AddTerminalRightDressedBoxes`. Added support for `reset` in `GroupGatesIntoBoxes` and `AddTerminalRightDressedBoxes`. ([#381](https://github.com/Qiskit/samplomatic/issues/381))
+*   Added support for `Delay` operations with `Stretch` durations. ([#384](https://github.com/Qiskit/samplomatic/issues/384))
+*   Added `decomposition` argument to `AddTerminalRightDressedBoxes`. ([#392](https://github.com/Qiskit/samplomatic/issues/392))
+*   Added `samplomatic.quantum_program` module to store `QuantumProgram`, `QuantumProgramResults`, and all the related classes. ([#396](https://github.com/Qiskit/samplomatic/issues/396))
+
+### Fixed
+
+*   Fixed a crash in `generate_boxing_pass_manager` when the input circuit contained inline `GlobalPhaseGate` (or other zero-bit) instructions. The `GroupGatesIntoBoxes` and `GroupMeasIntoBoxes` passes now treat zero-qubit standard gates as pass-through and no longer fail on operations with empty `qargs` and `cargs` (such as a zero-width barrier). Note that, independently, `build()` does not and has never preserved `QuantumCircuit.global_phase` in the template circuit; this expected behavior is now documented in the `build()` docstring. ([#377](https://github.com/Qiskit/samplomatic/issues/377))
+*   Fixed `samplomatic.visualization.plot_graph()` to draw straight lines between nodes when the edge data is missing. Prior to this fix, it used a spline that sometimes ended up curved in strange ways. ([#378](https://github.com/Qiskit/samplomatic/issues/378))
+*   The `decomposition` argument now applies to terminal right dressed-boxes in `generate_boxing_pass_manager`. Previously, it would always use `rzsx`. ([#392](https://github.com/Qiskit/samplomatic/issues/392))
+*   When the boxing pass manager encounters an instruction whose name starts with `"meas"`, it treats it as a standard measurement instruction. ([#399](https://github.com/Qiskit/samplomatic/issues/399))
+*   Named reset instructions, such as `"reset_2"`, are now recognized by the boxing passes and by :class:`~.BoxKey`. ([#400](https://github.com/Qiskit/samplomatic/issues/400))
+
+<span id="id2" />
+
+## 0.20.0 - 2026-06-23
+
+### Deprecated
+
+*   The default value for the inject noise site for the `generate_boxing_pass_manager`, `AddInjectNoise`, and `InjectNoise` has been updated from `'before'` to `None`, which results in a future warning and sets the value to `'before'`. In a future release, the default will be updated to `'after'`. ([#372](https://github.com/Qiskit/samplomatic/issues/372))
+
+<span id="id3" />
+
+### Added
+
+*   Added support for propagating Pauli twirls past single-qubit Clifford gates (`s`, `sx`, `sdg`, `sxdg`, and compositions with `h`) and through single-qubit rotations (`rz`, `p`, `rx`) at Clifford angles when they appear between entangling gates inside a `Twirl` box. ([#351](https://github.com/Qiskit/samplomatic/issues/351))
+
+*   Exposed three primitives that together let consumers of `build()` evaluate deterministic template parameters (e.g., `RZZ` angles) without invoking `Samplex.sample`:
+
+    *   `Samplex.param_table` — return the underlying `ParameterExpressionTable`.
+    *   `Samplex.passthrough_params` — a tuple `(template_idxs, expression_idxs)` mapping each passthrough template parameter to its expression-table index.
+    *   `ParameterExpressionTable.evaluate` — gained an optional `indices` argument so callers can evaluate only a chosen subset of the table’s expressions.
+
+    ([#367](https://github.com/Qiskit/samplomatic/issues/367))
+
+*   Random phases are now applied to qubits after mid-circuit measurement twirling. ([#369](https://github.com/Qiskit/samplomatic/issues/369))
+
+*   Added reset twirling. Rather than propagating virtual registers, a reset in a twirl‑annotated box discards them and instead samples and injects a new random phase following the reset. ([#371](https://github.com/Qiskit/samplomatic/issues/371))
+
+### Changed
+
+*   Twirl emissions are now inserted at the easy-hard boundary of boxes with a `Twirl` annotation `"left"` dressing when building. Previously, they were inserted after the content of the box. ([#368](https://github.com/Qiskit/samplomatic/issues/368))
+
+### Improved
+
+*   Measurement twirling is now implemented using virtual gate propagation. A virtual Pauli is propagated past a measure by discarding its `z` component, while propagating its `x` component and recording it as a bit flip. Previously, measurement twirling was implemented by collecting bit flips associated with virtual gates exclusively in the right hand side of a left-dressed box. The new approach allows for more flexible measurement twirling, e.g., sequential measurements of the same qubit to different clbits in the same box and measurement twirling in right-dressed boxes. ([#369](https://github.com/Qiskit/samplomatic/issues/369))
+*   Removed the restriction of having a single entangler type when using `Group.local_c1`. ([#370](https://github.com/Qiskit/samplomatic/issues/370))
+
+<span id="id4" />
+
+### Fixed
+
+*   Fixed an issue when using `GroupMode.local_pauli` twirling where the fallback for Clifford gates to the Pauli group would not trigger when a fractional gate was also present. ([#370](https://github.com/Qiskit/samplomatic/issues/370))
+*   Fixed a bug where untwirled measurements in annotated boxes did not block leftwards virtual gate propagation. ([#373](https://github.com/Qiskit/samplomatic/issues/373))
+
+<span id="id5" />
+
+## 0.19.0 - 2026-05-19
+
+### Removed
+
+*   Removed the warn-on-import about beta versions. ([#353](https://github.com/Qiskit/samplomatic/issues/353))
+
+<span id="id6" />
+
+### Added
+
+*   Added support for `delay` instructions inside of `utils.BoxKey` objects. ([#350](https://github.com/Qiskit/samplomatic/issues/350))
+*   Added Pauli twirling for `rzz` instructions for non-zero Clifford angles. ([#356](https://github.com/Qiskit/samplomatic/issues/356))
+*   Added local C1 twirling support for `rzz` instructions for non-zero Clifford angles. Added the `local_pauli` twirling group mode. This group mode will twirl gates with the subgroup of Paulis that remain local Paulis under conjugation. In particular, this allows for twirling of parametric and non-Clifford `rzz` instructions. When an `rzz` is encountered, the samples are drawn from the Pauli subgroup that commutes with `rzz`. For Cliffords, it defaults back to the Pauli group. This mode is set by annotating a box with a `Twirl` that has `Twirl.group_mode = local_pauli` or by using a boxing pass manager with `twirling_group = local_pauli`. Added the `phase` group mode that samples uniformly from Paulis I and Z. ([#357](https://github.com/Qiskit/samplomatic/issues/357))
+
+<span id="id7" />
+
+### Changed
+
+*   Increased the SSV from 3 to 4. ([#357](https://github.com/Qiskit/samplomatic/issues/357))
+
+<span id="id8" />
+
+### Fixed
+
+*   Fixed a per-sample sign error in samplex sampling that occurred when an `InjectLocalClifford`-annotated box body contained multiple parallel multi-qubit gates (e.g. `cz(0,1)` and `cz(2,3)` in the same box). The parallel-propagate merge optimization in `PreSamplex` re-created the merged node with a fresh high graph index, which caused the lowered `CombineRegistersNode` to receive its operands in the wrong order and silently apply the basis-change Clifford in the wrong position of the matrix product. ([#356](https://github.com/Qiskit/samplomatic/issues/356))
+
+<span id="id9" />
+
+## 0.18.0 - 2026-04-09
+
+<span id="id10" />
+
+### Added
+
+*   Added the `add_tags` option to :func:`~samplomatic.transpiler.generate_boxing_pass_manager` and the :class:`~samplomatic.transpiler.passes.AddTags` transpiler pass. When enabled, a :class:`~samplomatic.annotations.Tag` annotation is automatically added to every box. Two modes are supported: `'unique_box'` assigns the same hash-based ref to structurally equivalent boxes, and `'unique_instance'` assigns a unique incrementing ref (`t0`, `t1`, …) to every box in the circuit. ([#342](https://github.com/Qiskit/samplomatic/issues/342))
+*   Added the `debug` option to `build()` that populates debug/trace information on samplex nodes, enabling users to trace nodes back to their originating box annotations. ([#345](https://github.com/Qiskit/samplomatic/issues/345))
+*   Added `map_annotations()`, `strip_annotations()`, `filter_annotations()`, `extend_annotations()`, and `replace_annotations()` utilities to `samplomtic.utils` for modifying annotations on existing circuits. ([#347](https://github.com/Qiskit/samplomatic/issues/347))
+
+<span id="id11" />
+
+### Improved
+
+*   Improved the two synthesizers `RzRxSynth` and `RzSxSynth` to always generate Clifford angles when given a U2 gate that is Clifford. It is only possible to end up with non-Clifford angles when the gate being synthesized is a Z rotation, or a pi-gate of some angle. Either case leads to a degree of freedom in how to distribute the angle between the first and last RZ gate of the synthesis. This was fixed by enforcing the last angle be 0 in both cases. ([#341](https://github.com/Qiskit/samplomatic/issues/341))
+
+<span id="id12" />
+
+### Fixed
+
+*   Fixed `samplomatic.utils.default_normalize_annotations()` to also keep `Tag` annotations, in addition to `InjectNoise` and `Twirl` annotations. ([#343](https://github.com/Qiskit/samplomatic/issues/343))
+
+<span id="id13" />
+
+## 0.17.1 - 2026-03-16
+
+<span id="id14" />
+
+### Fixed
+
+*   Fixed a serialization issue with `LeftMultiplicationNode` and `RightMultiplicationNode` where the current SSV was used when serializing the operand, causing backwards compatibility issues. ([#337](https://github.com/Qiskit/samplomatic/issues/337))
+
+<span id="id15" />
+
+## 0.17.0 - 2026-03-12
+
+<span id="id16" />
+
+### Removed
+
+*   Removed `TWIRLING_GROUPS` and `GroupLiteral` from `annotations` in favor of `GroupMode`. ([#300](https://github.com/Qiskit/samplomatic/issues/300))
+
+<span id="id17" />
+
+### Added
+
+*   Added `BalancedUniformPauli` distribution that ensures the same number of X/Y and I/Z are chosen on each qubit. ([#264](https://github.com/Qiskit/samplomatic/issues/264))
+*   Added `GroupMode` enum to configure the twirling distribution on `Twirl` annotations. ([#300](https://github.com/Qiskit/samplomatic/issues/300))
+*   Added serialization support for `BalancedUniformPauli` distribution (SSV 3). ([#301](https://github.com/Qiskit/samplomatic/issues/301))
+*   Added the local Clifford twirling group. This group twirls a two-qubit entangling gate with the subgroup of single-qubit Cliffords that remain single-qubit Clifford under conjugation. This feature is enabled by using a `Twirl` annotation with `GroupMode.LOCAL_C1` or `"local_c1"` as the group. To support new groups like the local Clifford twirling group, added the `twirling_group` keyword argument to the `generate_boxing_pass_manager` function with default `"pauli"`. Added the `PropagateLocalC1Node` and supporting lookup tables in the new `tables` module. Added the `UniformLocalC1` distribution. ([#308](https://github.com/Qiskit/samplomatic/issues/308))
+*   Added `samplomatic.utils.unbox()` utility function for inlining box operations from a circuit. ([#318](https://github.com/Qiskit/samplomatic/issues/318))
+*   Added the `Tag` annotation to provide trace information of a box on corresponding barriers after the `build` process. The same mechanism is used to include the `InjectNoise.ref` on corresponding barriers as well. ([#319](https://github.com/Qiskit/samplomatic/issues/319))
+*   Added the `UniformPauliSubset` distribution that samples from a given subset of Paulis. ([#332](https://github.com/Qiskit/samplomatic/issues/332))
+*   Added `DistributionSamplingNode` that samples from any distribution and places the result into a register. This differs from `TwirlSamplingNode` in that we do not instantiate a sample and inverse-sample pair, just a sample. ([#334](https://github.com/Qiskit/samplomatic/issues/334))
+
+<span id="id18" />
+
+### Changed
+
+*   Increased the default SSV from `2` to `3`. ([#336](https://github.com/Qiskit/samplomatic/issues/336))
+*   Changed `Twirl.group` parameter to accept `GroupMode` values instead of `VirtualType`. ([#300](https://github.com/Qiskit/samplomatic/issues/300))
+*   Updated minimum qiskit version to 2.3.0. ([#304](https://github.com/Qiskit/samplomatic/issues/304))
+*   Lookup tables for single-qubit Cliffords, `C1_LOOKUP_TABLE` and `C1_INVERSE_TABLE`, that were in the `virtual_registers.tables` submodule have been moved to the top-level `tables` module. ([#308](https://github.com/Qiskit/samplomatic/issues/308))
+*   SSV 3 serializes `Distribution`s using dedicated serializers. Previously, they were specified ad-hoc by the serializer of `TwirlSamplingNode`. ([#332](https://github.com/Qiskit/samplomatic/issues/332))
+
+<span id="id19" />
+
+### Improved
+
+*   Updated noise injection to use the new and improved method. ([#304](https://github.com/Qiskit/samplomatic/issues/304))
+*   Reduced the number of `SliceRegisterNode`s that `build()` puts into samplexes by eliminating those slices that act trivially on their inputs. ([#311](https://github.com/Qiskit/samplomatic/issues/311))
+
+<span id="id20" />
+
+### Fixed
+
+*   Fixed an issue where unsupported virtual types could be serialized for SSV 1. ([#315](https://github.com/Qiskit/samplomatic/issues/315))
+*   Made `BoxKey` hashing deterministic across Python processes by using SHA-256 instead of the built-in `hash()`, which is randomized by `PYTHONHASHSEED`. This caused `AddInjectNoise` to generate different `ref` names for identical boxes across runs, since it derived short hash keys from `BoxKey.__hash__`. Also fixed a bug in `AddInjectNoise._get_ref()` where the computed ref was not being cached correctly. It is expected that these bugs were only visible when this pass was being run in parallel by the qiskit pass manager. ([#322](https://github.com/Qiskit/samplomatic/issues/322))
+
+<span id="id21" />
+
+## 0.16.1 - 2026-01-22
+
+<span id="id22" />
+
+### Fixed
+
+*   Fixed handling of building of `BoxOp`s appended directly to a `qiskit.QuantumCircuit`. This fixes issues where the `BoxOp.body.qubits` are different than those on the containing circuit, and ensures arguments on a `Samplex` are in the correct order. ([#297](https://github.com/Qiskit/samplomatic/issues/297))
+
+<span id="id23" />
+
+## 0.16.0 - 2026-01-19
+
+<span id="id24" />
+
+### Added
+
+*   Added the `InjectNoise.site` attribute to specify whether the noise should be injected before or after the hard content of a dressed box. Added the `inject_noise_site` argument to the `generate_boxing_pass_manager` function to specify where noise should be injected. ([#280](https://github.com/Qiskit/samplomatic/issues/280))
+*   Added the `decomposition` argument to the `samplomatic.transpiler.generate_boxing_pass_manager()` function that causes all `Twirl` and `ChangeBasis` annotations added by the pass manager to have the specified dressing gate decomposition. The current allowed values are `'rzsx'` (default) and `'rzrx'`. The same argument was also added to the `GroupMeasIntoBoxes` pass, and the `GroupGatesIntoBoxes` pass similarly gained an argument `annotations`. ([#284](https://github.com/Qiskit/samplomatic/issues/284))
+*   Added the `num_bytes` attribute to `Specification`, `TensorSpecification`, and `PauliLindbladMapSpecification`, and the `num_bytes()` method to `TensorInterface`, to estimate memory usage for interface data. ([#289](https://github.com/Qiskit/samplomatic/issues/289))
+
+<span id="id25" />
+
+### Changed
+
+*   The constructor of the `GroupMeasIntoBoxes` transpiler pass now only accepts keyword arguments. ([#284](https://github.com/Qiskit/samplomatic/issues/284))
+*   The `ChangeBasis` annotation now accepts `dressing` and `mode` as independent arguments. Peviously, a `mode` of `prepare` would result in a `right` dressing, while a `measure` would result in a `left` dressing. ([#285](https://github.com/Qiskit/samplomatic/issues/285))
+*   The `AddInjectNoise` pass now generates references based on the hash of a box’s `BoxKey`, resulting in the same reference from run to run of the pass. Additionally, it increments individual modifier references starting from `0` in each run. ([#291](https://github.com/Qiskit/samplomatic/issues/291))
+
+<span id="id26" />
+
+### Fixed
+
+*   Fixed imports to not assume that the `typing` subpackage exists in the `numpy` namespace; the line `import numpy; numpy.typing` fails in some environments, whereas `import numpy.typing; numpy.typing` always succeeds under the current version restrictions. ([#286](https://github.com/Qiskit/samplomatic/issues/286))
+*   Fixed a bug where parametric gates with fixed parameters outside of boxes caused building to fail. ([#294](https://github.com/Qiskit/samplomatic/issues/294))
+
+<span id="id27" />
+
+## 0.15.0 - 2025-12-15
+
+<span id="id28" />
+
+### Added
+
+*   Added the `TemplateState.finalize` and `TemplateState.qubits` methods to facilitate constructing the template circuit as a `qiskit.dagcircuit.DAGCircuit` during the `build` process. ([#270](https://github.com/Qiskit/samplomatic/issues/270))
+*   Added the `Builder.yield_from_dag` method. This method provides an iteration order such that all of the easy gates and hard gates will be yielded topologically in two separate groups separated by a sentinel, defining the easy-hard boundary of a dressed box. ([#273](https://github.com/Qiskit/samplomatic/issues/273))
+*   Added the `InjectLocalClifford` annotation. This annotation allows for the specification of single-qubit Clifford frame changes at `Samplex.sample` time by adding a `local_clifford.ref` argument to its inputs. The input expects an integer array following the same convention as the `C1Register`. ([#275](https://github.com/Qiskit/samplomatic/issues/275))
+
+<span id="id29" />
+
+### Changed
+
+*   The `pre_build` function now constructs the template as a `qiskit.dagcircuit.DAGCircuit` as opposed to a `qiskit.QuantumCircuit`. Methods on `BoxBuilder`, `PassthroughBuilder`, `PreSamplex`, and `TemplateState` that previously had `qiskit.circuit.CircuitInstruction` in their signature now have `qiskit.dagcircuit.DAGOpNode` instead. The signature of the `build` function has not changed, but now calls the `TemplateState.finalize` method to construct the `qiskit.QuantumCircuit`. ([#270](https://github.com/Qiskit/samplomatic/issues/270))
+
+<span id="id30" />
+
+### Fixed
+
+*   Fixed the samplex serializer to encode all information in the header at the specified SSV, rather than encoding some of it at the most recent SSV irrespective of the specified version. ([#276](https://github.com/Qiskit/samplomatic/issues/276))
+
+<span id="id31" />
+
+## 0.14.0 - 2025-12-09
+
+<span id="id32" />
+
+### Removed
+
+*   Removed the `VirtualRegister.to_json_dict` and the `virtual_register_from_json` function. ([#223](https://github.com/Qiskit/samplomatic/issues/223))
+*   Removed support for Python 3.9 following its end-of-life date. ([#244](https://github.com/Qiskit/samplomatic/issues/244))
+*   The modules `.transpiler.noise_injection_strategies`, `.transpiler.twirling_strategies`, and their contents have been removed. These files contained enum classes for specifying arguments to some of the transpiler passes; these arguments must now be specified as strings. ([#257](https://github.com/Qiskit/samplomatic/issues/257))
+*   *Temporarily* removed support for `IfElseOp` instructions inside of boxes—we are in the middle of refactoring this to make it more general, but we cannot wait for it to be complete to make a new release. Please refrain from upgrading if this breaks your workflow, and apologies.
+
+<span id="id33" />
+
+### Deprecated
+
+*   Deprecated boolean values for the `remove_barriers` argument of `samplomatic.transpiler.generate_boxing_pass_manager`. Now, the four options are `'immediately'`, `'finally,`, `'after_stratification'`, and `'never'`, where `True` and `False` are equivalent to the first and last string values, respectively. The default value is `'after_stratification'` which is a change in behavior, but should be a better choice in most cases. ([#238](https://github.com/Qiskit/samplomatic/issues/238))
+
+<span id="id34" />
+
+### Added
+
+*   Added SSV `2` serializers for `BasisChange` and `ChangeBasisNode`. ([#223](https://github.com/Qiskit/samplomatic/issues/223))
+*   Added `C1Register`, a virtual register of single-qubit Cliffords, and the `UniformC1` distribution.
+*   Added `FiniteGroupRegister`. ([#224](https://github.com/Qiskit/samplomatic/issues/224))
+*   Added support to `samplomatic.utils.get_annotation` for specifying multiple annotation types. ([#237](https://github.com/Qiskit/samplomatic/issues/237))
+
+<span id="id35" />
+
+### Changed
+
+*   Increased the default SSV from `1` to `2`. ([#224](https://github.com/Qiskit/samplomatic/issues/224))
+*   Changed the scope of the transpiler passes `GroupGatesIntoBoxes`, `GroupMeasIntoBoxes`, and `AddTerminalRightDressedBoxes`. Formerly, all three of these passes were responsible for discovering single-qubit gates in the input circuit and moving them into newly created boxes. Now, to simplify their implementations and make the pass manager more modular, these three passes no longer have this responsibility, which has instead been delegated to the new pass `AbsorbSingleQubitGates`. In particular, `GroupGatesIntoBoxes` and `GroupMeasIntoBoxes` are now responsible only for inserting new left-dressed boxes populated only with entangling and measurement instructions. Similarly, `AddTerminalRightDressedBoxes` inserts empty right-dressed boxes boxes. The `generate_boxing_pass_manager` function has been updated to include `AbsorbSingleQubitGates`. ([#237](https://github.com/Qiskit/samplomatic/issues/237))
+*   Changed the behaviour of the pass manager returned by `samplomatic.transpiler.generate_boxing_pass_manager` under default settings with respect to how it treats barriers. Before, it would discard all barriers before attempting to put entangling gates into boxes. Now, it discards barriers after entangling gates are put into boxes, but before single-qubit gates are moved into adjacent boxes. This means that barriers can effectively be used as hints to choose how to stratify entangling gates without constraining single-qubit gates to end up in their own boxes. This also has better interaction with the Qiskit transpiler in the case that the original circuit is programmed in terms of a different entangling gate than the target. See the new possible values of the argument `remove_barriers` for details. ([#238](https://github.com/Qiskit/samplomatic/issues/238))
+*   The `DataSerializer.serialize` now requires the SSV as an argument. ([#254](https://github.com/Qiskit/samplomatic/issues/254))
+*   Arguments to `samplomatic.transpiler.generate_boxing_pass_manager` are now required to be keyword arguments. Moreover, all string-valued selection arguments (e.g. `twirling_strategy`) are required to be specified as strings because the enum classes have been removed. ([#257](https://github.com/Qiskit/samplomatic/issues/257))
+*   Changed the default `twirling_strategy` of `samplomatic.transpiler.generate_boxing_pass_manager` from `"active"` to `"active_circit"`. This was done because the latter is a safer default. Typically, when twirling, one wants to eliminate all coherent error on active qubits. The `"active"` strategy is only able to do this under certain assumptions about noise processes. ([#265](https://github.com/Qiskit/samplomatic/issues/265))
+
+<span id="id36" />
+
+## 0.13.0 - 2025-11-06
+
+<span id="id37" />
+
+### Changed
+
+*   A samplex built with `build` always returns `parameter_values` as an output. If it does not generate parameter values, the `parameter_values` will have shape `("num_randomizations", 0)`. Previously, `parameter_values` would not be included in its outputs. ([#225](https://github.com/Qiskit/samplomatic/issues/225))
+
+<span id="id38" />
+
+### Fixed
+
+*   Fixed a bug where the slicing indices of `SliceRegisterNodes` were wrong, causing circuits with non-standard ordering to sample incorrectly (particularly with `merge_parallel_pre_propagate_nodes` enabled). ([#229](https://github.com/Qiskit/samplomatic/issues/229))
+
+<span id="id39" />
+
+## 0.12.0 - 2025-11-03
+
+<span id="id40" />
+
+### Added
+
+*   Added a new serialization versioning system, the Samplex Serialization Version (SSV), that decouples the serialization version from the package version. The current version is stored in `samplomatic.ssv.SSV`. See the `samplomatic.serialization` module for details. ([#216](https://github.com/Qiskit/samplomatic/issues/216))
+*   Added a `Serializable` metaclass to record which classes should be serializable. ([#216](https://github.com/Qiskit/samplomatic/issues/216))
+*   Added `DataSerializer`, `TypeSerializer`, and `TypeSerializerMeta` to provide serialization for objects inheriting from `Serializable`. ([#216](https://github.com/Qiskit/samplomatic/issues/216))
+
+<span id="id41" />
+
+### Changed
+
+*   The samplex serialization functions `samplex_to_json` and `samplex_from_json` were moved to the `samplomatic.serialization` module. ([#216](https://github.com/Qiskit/samplomatic/issues/216))
+*   Classes that are serializable now inherit from `Serializable` rather than implementing `to_json`/`from_json` methods. A `TypeSerializer` with the corresponding type will then contain methods to serialize and deserialize the object. ([#216](https://github.com/Qiskit/samplomatic/issues/216))
+
+<span id="id42" />
+
+## 0.11.0 - 2025-10-28
+
+<span id="id43" />
+
+### Added
+
+*   Added the ability to provide inputs to `Samplex.sample()` as arbitrary mappings. ([#186](https://github.com/Qiskit/samplomatic/issues/186))
+
+<span id="id44" />
+
+### Changed
+
+*   Changed the serialization format of `qiskit.circuit.ParameterExpression`s within the samplex serializer. ([#185](https://github.com/Qiskit/samplomatic/issues/185))
+*   Negated the convention for what boolean outputs mean when sampling Pauli Lindblad maps with negative rates. Following this change, the `InjectNoiseNode` samplex node intentionally uses the opposite convention as :meth:`qiskit.quantum_info.PauliLindbladMap.signed_sample` for representing signs as boolean values. In particular, values written by this node now represent the parity of the number of non-trivial factors in the sampled error that arise from negative rates. In other words, when using the boolean written by this node to implement basic PEC, the sign used to correct expectation values should be `(-1)**bool_value`. ([#188](https://github.com/Qiskit/samplomatic/issues/188))
+
+<span id="id45" />
+
+### Fixed
+
+*   Fixed a bug that prevented `qiskit.circuit.ParameterExpression`s from being decoded when present in a samplex’ expression table. ([#185](https://github.com/Qiskit/samplomatic/issues/185))
+
+<span id="id46" />
+
+## 0.10.1 - 2025-10-22
+
+<span id="id47" />
+
+### Fixed
+
+*   Fixed a bug where the `build()` process was mishandling an optimization step in the case the base circuit contains multiple `rx` (or `rz`) gates in the same layer with distinct bound numeric values (e.g. `circuit.rx(0.123, 0)`). ([#179](https://github.com/Qiskit/samplomatic/issues/179))
+
+<span id="id48" />
+
+## 0.10.0 - 2025-10-20
+
+<span id="id49" />
+
+### Removed
+
+*   Removed the `NoiseModelRequirement` class and the associated method `Samplex.add_noise_requirement()` and attribute `Samplex.noise_requirements`. Instead, all noise model requirements are integrated into `Samplex.inputs()`. ([#164](https://github.com/Qiskit/samplomatic/issues/164))
+*   Removed `samplomatic.tensor_interface.ValueType`. ([#164](https://github.com/Qiskit/samplomatic/issues/164))
+
+<span id="id50" />
+
+### Added
+
+*   Added a new subclass `samplomatic.tensor_interface.PauliLindbladNoiseSpecification` of `samplomatic.tensor_interface.Specification`. ([#164](https://github.com/Qiskit/samplomatic/issues/164))
+*   Added the concept of `free_dimensions` to `samplomatic.tensor_inteface.Specification`, which comes with assocated methods and attributes. A free dimension is a string name of an integer quantity whose value is not known until values have been bound to the specification in a `samplomatic.tensor_interface.TensorInterface`, and all free dimensions with the same name in the interface need to have a consistent value or an error will be raised during binding. ([#164](https://github.com/Qiskit/samplomatic/issues/164))
+
+<span id="id51" />
+
+### Changed
+
+*   Throughout the library, the terms noise map and noise model have been replaced with the more descriptive Pauli Lindblad map. ([#126](https://github.com/Qiskit/samplomatic/issues/126))
+*   Replace `generate_boxing_pass_manager`’s argument `enable_measure` with `enable_measures`. ([#153](https://github.com/Qiskit/samplomatic/issues/153))
+*   The `twirling_strategy` of pass managers no longer supports `active-circuit` and `active-accum`, use `active_circuit` and `active_accum` instead. ([#156](https://github.com/Qiskit/samplomatic/issues/156))
+*   Overhauled how noise models are specified on the `Samplex`. Rates and Pauli lists that define Pauli Lindblad maps are no longer separated into the respective distinct entries `"noise_maps.rates.<ref>"` and `"noise_maps.paulis.<ref>"` of `Samplex.inputs()`. Instead, they are specified as a single entry `"pauli_lindblad_maps.<ref>"` that expects type `qiskit.quantum_info.PauliLindbladMap`. Moreover, `Samplex.noise_requirements` is removed (along with the concept of `NoiseModelRequirement`). Instead, the specification for `"pauli_lindblad_maps<ref>"` within `Samplex.inputs()` dictates the required number of qubits the noise model should act on, and the number of terms can be chosen at the time that `Samplex.sample()` is called so long as it is consistent. ([#164](https://github.com/Qiskit/samplomatic/issues/164))
+*   Converted `samplomatic.tensor_interface.Specification` to an abstract class. ([#164](https://github.com/Qiskit/samplomatic/issues/164))
+*   Changed `samplomatic.samplex.interfaces.SamplexOutput` to not construct empty data arrays on construction, it is now the caller’s responsibility to populate the data. This does not affect users of `Samplex.sample()`. ([#164](https://github.com/Qiskit/samplomatic/issues/164))
+*   The format returned by `samplomatic.samplex.samplex_serialization.samplex_to_json()` changed to accomodate the absense of noise requirements, and it (and the reverse function `samplex_from_json()`) are not backwards compatible with the previous minor version. ([#164](https://github.com/Qiskit/samplomatic/issues/164))
+*   Renamed `samplomatic.BasisTransform` to `samplomatic.ChangeBasis` in order to make all annotations start with a verb, and to consolidate all names around “change” rather than “transform”. Likewise, renamed `samplomatic.samplex.nodes.BasisTransformNode` to `samplomatic.samplex.nodes.ChangeBasisNode`.
+*   Renamed string literal option for from `"basis_transform"` to `"change_basis"` in both `samplomatic.transpiler.generate_boxing_pass_manager` and `samplomatic.transpiler.passes.GroupMeasIntoBoxes`. ([#172](https://github.com/Qiskit/samplomatic/issues/172))
+
+<span id="id52" />
+
+### Fixed
+
+*   Made `TwirlingStrategyLiteral` consistent with `TwirlingStrategy` enum by replacing `active-circuit` with `active_circuit` and `active-accum` and `active_accum`. ([#156](https://github.com/Qiskit/samplomatic/issues/156))
+*   Fixed the basis changing gates for `ChangeBasisNode` for Pauli Y. ([#161](https://github.com/Qiskit/samplomatic/issues/161))
+*   Fixed the ordering of `ChangeBasisNode` to conform with the rest of the library. ([#161](https://github.com/Qiskit/samplomatic/issues/161))
+
+<span id="id53" />
+
+## 0.9.0 - 2025-09-30
+
+<span id="id54" />
+
+### Added
+
+*   Added the `targets` input to the `AddInjectNoise` pass to specify boxes to add an `InjectNoise` annotation to.
+*   Added the `inject_noise_targets` input to `generate_boxing_pass_manager()` to trigger this ability in the boxing transpiler. ([#143](https://github.com/Qiskit/samplomatic/issues/143))
+*   Added a warning at import time about the beta status of this project. The warning should only be raised once per version, see `CONTRIBUTING.md` for details. ([#132](https://github.com/Qiskit/samplomatic/issues/132))
+
+<span id="id55" />
+
+### Changed
+
+*   Removed `NoiseInjectionStrategy.NONE` as it is now redundant with one of the supported values for `AddInjectNoise.targets`. ([#143](https://github.com/Qiskit/samplomatic/issues/143))
+
+<span id="id56" />
+
+### Fixed
+
+*   Fixed a bug where `Samplex.__str__()` would raise an error for samplexes that require a noise model. ([#124](https://github.com/Qiskit/samplomatic/issues/124))
+
+<span id="id57" />
+
+## 0.8.0 - 2025-09-22
+
+<span id="id58" />
+
+### Added
+
+*   Added `add_twirling`, `add_basis_transform`, and `prefix_ref` arguments to `GroupMeasIntoBoxes` to allow specifying what annotations should be placed on the boxes containing measurements. Added `measure_annotations` argument to the boxing passmanager to allow specifying what annotations should be placed on the boxes containing measurements. ([#96](https://github.com/Qiskit/samplomatic/issues/96))
+*   Added `InlineBoxes` pass to inline every box in the input circuit, replacing it with its content. ([#123](https://github.com/Qiskit/samplomatic/issues/123))
+
+<span id="id59" />
+
+### Changed
+
+*   Changed the minimal supported Python version to 3.9. ([#119](https://github.com/Qiskit/samplomatic/issues/119))
+*   Changed `parameter_values` output type of `Samplex.sample` from `np.float64` to `np.float32`. ([#120](https://github.com/Qiskit/samplomatic/issues/120))
+
+<span id="id60" />
+
+### Fixed
+
+*   Fixed a bug where `GroupGatesIntoBoxes` would group gates in a suboptimal way ([#110](https://github.com/Qiskit/samplomatic/issues/110))
+
+<span id="id61" />
+
+## 0.7.0 - 2025-09-15
+
+<span id="id62" />
+
+### Removed
+
+*   Removed the `PauliRegister.from_paulis` method. ([#14](https://github.com/Qiskit/samplomatic/issues/14))
+
+<span id="id63" />
+
+### Added
+
+*   Added a `width` argument to `TensorInterface.describe()` for text wrapping, and added this description to `Samplex.__str__()`. ([#104](https://github.com/Qiskit/samplomatic/issues/104))
+*   Added a `NoiseModelRequirement` class that describes a noise model required by a `Samplex` at sample time. Added a `Samplex.noise_models` property containing a dictionary of `NoiseModelRequirement`s. ([#112](https://github.com/Qiskit/samplomatic/issues/112))
+*   Added `InjectNoise` and `BasisTransform` to the top-level module, allowing, for example, `from samplomatic import InjectNoise, BasisTransform`. ([#117](https://github.com/Qiskit/samplomatic/issues/117))
+
+<span id="id64" />
+
+### Changed
+
+*   Measurement flips are now returned with shape `(num_randomizations, 1, num_qubits)` to facilitate processing against a shots axis. Previously, they would be returned as `(num_randomizations, num_qubits)`. ([#105](https://github.com/Qiskit/samplomatic/issues/105))
+*   In order to facilitate broadcasting, `Samplex.sample()` now expects an array of rates and a `qiskit.quantum_info.QubitSparsePauliList` for each noise reference. Previously, it expected a `qiskit.quantum_info.PauliLindbladMap`. This change is reflected in `Samplex.inputs()` which now requires a `qiskit.quantum_info.QubitSparsePauliList` for each element of `Samplex.noise_models`. The returned `TensorInterface` object then contains the bound `QubitSparsePauliList`s, as well as `TensorSpecification`s for the rates, the scale, and the local scales. ([#112](https://github.com/Qiskit/samplomatic/issues/112))
+
+<span id="id65" />
+
+### Fixed
+
+*   `Samplex.sample` arguments corresponding to `BasisTransform` and `InjectNoise` annotations are indexed in physical qubit order, in other words, the order of the qubits in the outer-most circuit, restricted to those used by the box. Previously, they followed the order of `CircuitInstruction.qubits`. ([#116](https://github.com/Qiskit/samplomatic/issues/116))
+
+<span id="id66" />
+
+### Improved
+
+*   The `ParameterExpressionTable.evaluate` method now uses `ParameterExpression.bind_all` to increase performance. ([#13](https://github.com/Qiskit/samplomatic/issues/13))
+*   The `InjectNoise.sample` now uses the `QubitSparsePauliList.to_dense_array` method for increased performance. ([#14](https://github.com/Qiskit/samplomatic/issues/14))
+
+<span id="id67" />
+
+## 0.6.0 - 2025-09-03
+
+<span id="id68" />
+
+### Added
+
+*   Added an `optional` field to `Specification`. ([#94](https://github.com/Qiskit/samplomatic/issues/94))
+
+<span id="id69" />
+
+### Changed
+
+*   Modified `undress_box` so that if the input box contains no `Twirl` annotation, it returns a copy of the box rather than the box itself. ([#98](https://github.com/Qiskit/samplomatic/issues/98))
+
+<span id="id70" />
+
+### Fixed
+
+*   Fixed a bug where the `modifier_ref`s of `InjectNoise` annotations were not being added to a samplex. ([#94](https://github.com/Qiskit/samplomatic/issues/94))
+*   Fixed a bug with imports for `numpy` versions older than `2.0.0`. ([#99](https://github.com/Qiskit/samplomatic/issues/99))
+
+<span id="id71" />
+
+## 0.5.0 - 2025-08-26
+
+<span id="id72" />
+
+### Added
+
+*   Added new boolean option `remove_barriers` to `generate_boxing_pass_manager()` that adds the `RemoveBarriers` pass to the returned pass manager when true. ([#88](https://github.com/Qiskit/samplomatic/issues/88))
+
+<span id="id73" />
+
+### Changed
+
+*   The pass manager returned by `generate_boxing_pass_manager()` now removes all pre-existing barriers, by default. ([#88](https://github.com/Qiskit/samplomatic/issues/88))
+
+<span id="id74" />
+
+## 0.4.0 - 2025-08-26
+
+<span id="id75" />
+
+### Added
+
+*   Added support for measurements after twirled measurements. ([#82](https://github.com/Qiskit/samplomatic/issues/82))
+
+<span id="id76" />
+
+### Changed
+
+*   Moved `num_randomizations` back to a kwarg of `Samplex.sample()`. This has flip-flopped a couple of times as we optimize workflow. ([#84](https://github.com/Qiskit/samplomatic/issues/84))
+
+<span id="id77" />
+
+### Fixed
+
+*   Fixed a bug in `TensorInterface.__getitem__` for non-string inputs where it was incorrectly attempting to slice arrays whose shape did not match the full broadcasted shape of the interface. ([#83](https://github.com/Qiskit/samplomatic/issues/83))
+*   Fixed serialization of `Samplex` by including the passthrough parameters field. Previously, this would result in inconsistent output parameter values when sampling from the same samplex with the same input arguments. ([#86](https://github.com/Qiskit/samplomatic/issues/86))
+
+<span id="id78" />
+
+## 0.3.0 - 2025-08-22
+
+<span id="id79" />
+
+### Removed
+
+*   Removed `samplomatic.samplex.interfaces.SamplexInput`, just use `samplomatic.tensor_interface.TensorInterface` instead. ([#79](https://github.com/Qiskit/samplomatic/issues/79))
+
+<span id="id80" />
+
+### Added
+
+*   Added the `broadcastable` attribute to `TensorSpecification`, with the behaviour that all broadcastable tensor values given to a `TensorInterface` are allowed to be mutually broadcastable. ([#79](https://github.com/Qiskit/samplomatic/issues/79))
+
+<span id="id81" />
+
+### Changed
+
+*   Measurement bit-flips included in the output of `Samplex.sample` are now stored per classical register rather than a single array, for example, the former single entry `"measurement_flips"` will now be two entries `"measurement_flips.alpha"` and `"measurement_flips.beta"` if the underlying circuit has two classical registers named `"alpha"` and `"beta"`. ([#78](https://github.com/Qiskit/samplomatic/issues/78))
+*   Renamed and moved `samplomatic.samplex.interfaces.Interface` to `samplomatic.tensor_interface.TensorInterface`. Likewise moved `Specification` and `TensorSpecification` to `samplomatic.tensor_interface`. Changed `Samplex.inputs()` to return a `TensorSpecification`, populated with what used to be the defaults of `SamplexInput`. ([#79](https://github.com/Qiskit/samplomatic/issues/79))
+
+<span id="id82" />
+
+## 0.2.0 - 2025-08-20
+
+<span id="id83" />
+
+### Added
+
+*   Added the `Samplex.inputs()` and `Samplex.outputs()` methods to query the required inputs and promised outputs of `Samplex.sample()`. ([#75](https://github.com/Qiskit/samplomatic/issues/75))
+
+<span id="id84" />
+
+### Changed
+
+*   Renamed the parameter `size` to `num_randomizations` in the `Samplex.sample()` method. ([#69](https://github.com/Qiskit/samplomatic/issues/69))
+*   The `build()` function now calls `Samplex.finalize()` so that it does not need to be called afterwards manually. Additionally, the `Samplex.finalize()` method now returns itself for chaining calls. ([#72](https://github.com/Qiskit/samplomatic/issues/72))
+*   The `Samplex.sample()` method now takes a `SamplexInput` as argument rather than keyword arguments. This object can be constructed with the new `Samplex.inputs()` method and only includes arguments pertinent to a given instance of `Samplex`. ([#75](https://github.com/Qiskit/samplomatic/issues/75))
+
+<span id="id85" />
+
+## 0.1.0 - 2025-08-15
+
+<span id="id86" />
+
+### Added
+
+*   Initial population of the library with features, including:
+
+    *   transpiler passes to aid in the boxing of circuits with annotations
+    *   the `samplomatic.Samplex` object and all necessary infrastructure to describe certain types of basic Pauli randomization and noise injection
+    *   certain but not comprehensive support for dynamic circuits
+    *   the `build()` method for interpretting boxed-up circuits into template/samplex pairs ([#38](https://github.com/Qiskit/samplomatic/issues/38))
+
