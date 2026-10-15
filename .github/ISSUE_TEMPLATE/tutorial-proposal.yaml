@@ -18,8 +18,8 @@ body:
     attributes:
       label: Tutorial type
       options:
-        - Applied
         - Foundational
+        - Applied
     validations:
       required: true
 
@@ -39,8 +39,8 @@ body:
   - type: input
     id: target
     attributes:
-      label: Problem class or open topic
-      description: For an Applied tutorial, name the problem class. For a Foundational tutorial, name the open topic, or describe the gap your new topic fills.
+      label: Open topic or problem class
+      description: For a Foundational tutorial, name the open topic. For an Applied tutorial, name the problem class. To propose a topic or problem class that is not listed, describe the gap it fills.
     validations:
       required: true
 
@@ -65,8 +65,8 @@ body:
     attributes:
       label: How it meets the requirements
       description: |
-        Applied: which state-of-the-art criteria it meets, and what is new if the problem class already has a tutorial.
-        Foundational: which Applied tutorial or problem class it leads to, and what it shows on hardware that a course does not.
+        Foundational: which step of the Applied tutorial or problem class listed for the topic it prepares readers for, and what it shows on hardware that a course does not.
+        Applied: which state-of-the-art criteria it meets, its method family, and, if the class already has a tutorial in that family, how yours improves on it.
     validations:
       required: true
 
@@ -90,7 +90,7 @@ body:
     id: baseline
     attributes:
       label: Classical baseline
-      description: The classical method you compare against. Required for quantum machine learning tutorials.
+      description: The classical method you compare against on the same instance. Required for Applied tutorials.
     validations:
       required: false
 
@@ -98,7 +98,7 @@ body:
     id: dependencies
     attributes:
       label: Dependencies
-      description: Packages beyond Qiskit, with versions. Only packages published on PyPI are accepted.
+      description: Packages beyond Qiskit, with pinned versions. Name any Qiskit ecosystem package here so that reviewers can approve it. Only packages published on PyPI are accepted.
     validations:
       required: false
 
