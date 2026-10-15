@@ -28,13 +28,15 @@ make c
 <Admonition title="Hint" type="note">
   On **Windows** only, you need to copy additional library files:
 
-  \[x] Windows
-
-  ```sh
-  cp target/release/qiskit_cext.dll dist/c/lib/qiskit_cext.dll
-  cp target/release/qiskit_cext.dll.lib dist/c/lib/qiskit_cext.dll.lib
-  cp target/release/qiskit_cext.dll.lib dist/c/lib/qiskit.dll.lib
-  ```
+  <Tabs group="tab">
+    <TabItem value="windows" label="Windows">
+      ```sh
+      cp target/release/qiskit_cext.dll dist/c/lib/qiskit_cext.dll
+      cp target/release/qiskit_cext.dll.lib dist/c/lib/qiskit_cext.dll.lib
+      cp target/release/qiskit_cext.dll.lib dist/c/lib/qiskit.dll.lib
+      ```
+    </TabItem>
+  </Tabs>
 </Admonition>
 
 Now you can follow the steps in the next section to compile the `qiskit-fermions` C API.
@@ -51,19 +53,21 @@ To get started, configure your shell environment with the locations of your comp
   This code uses the `build/qiskit` path from the code at the top of this page. Adjust the paths according to your setup.
 </Admonition>
 
-\[x] UNIX
+<Tabs group="tab">
+  <TabItem value="unix" label="UNIX">
+    ```sh
+    export QISKIT_LIB=$(find $(pwd)/build/qiskit/dist/c/lib -name "libqiskit.*")
+    export QISKIT_INCLUDE=$(pwd)/build/qiskit/dist/c/include
+    ```
+  </TabItem>
 
-```sh
-export QISKIT_LIB=$(find $(pwd)/build/qiskit/dist/c/lib -name "libqiskit.*")
-export QISKIT_INCLUDE=$(pwd)/build/qiskit/dist/c/include
-```
-
-\[ ] Windows
-
-```sh
-export QISKIT_LIB=$(find $(pwd)/build/qiskit/dist/c/lib -name "qiskit_cext.dll.lib")
-export QISKIT_INCLUDE=$(pwd)/build/qiskit/dist/c/include
-```
+  <TabItem value="windows" label="Windows">
+    ```sh
+    export QISKIT_LIB=$(find $(pwd)/build/qiskit/dist/c/lib -name "qiskit_cext.dll.lib")
+    export QISKIT_INCLUDE=$(pwd)/build/qiskit/dist/c/include
+    ```
+  </TabItem>
+</Tabs>
 
 Now, compile the `qiskit-fermions` C API:
 

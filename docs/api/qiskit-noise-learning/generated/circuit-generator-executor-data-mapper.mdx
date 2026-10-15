@@ -10,8 +10,8 @@ python_api_name: qiskit_noise_learning.circuit_generator.ExecutorDataMapper
 
 # qiskit\_noise\_learning.circuit\_generator.ExecutorDataMapper
 
-<Class id="qiskit_noise_learning.circuit_generator.ExecutorDataMapper" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/circuit_generator/executor_data_mapper.py" signature="qiskit_noise_learning.circuit_generator.ExecutorDataMapper(item_sequence_indices: list[list[int]], creg_names: list[list[str]], measurement_maps: list[dict[str, ndarray[int]]], instruction_sequences: list[InstructionSequence], num_randomizations: int, fidelity_model: LinearMap[Hashable, FidelityIndex] | None = None, paths: list[Path] | None = None, relations: set[tuple[int, int]] | None = None)" modifiers="class">
-  Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
+<Class id="qiskit_noise_learning.circuit_generator.ExecutorDataMapper" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/circuit_generator/executor/executor_data_mapper.py" signature="qiskit_noise_learning.circuit_generator.ExecutorDataMapper(item_sequence_indices: list[list[int]], item_creg_names: list[list[str]], item_clbit_qubit_idxs: list[dict[str, ndarray[int]]], instruction_sequences: list[InstructionSequence], num_randomizations: int, randomization_multipliers: list[int] | None = None, shots: int | None = None, fidelity_model: LinearMap[Hashable, FidelityIndex] | None = None, paths: list[Path] | None = None, relations: set[tuple[int, int]] | None = None)" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
 
   Map executor results into standard results.
 
@@ -20,67 +20,73 @@ python_api_name: qiskit_noise_learning.circuit_generator.ExecutorDataMapper
   **Parameters**
 
   *   **item\_sequence\_indices** – For each program item, an ordered list of instruction sequence indices. Position in the list corresponds to the configuration index within the result item.
-  *   **creg\_names** – The name of classical registers in each program item.
-  *   **measurement\_maps** – For each program item, a dictionary from creg names to an ordered array of measured qubit indices.
+  *   **item\_creg\_names** – The name of classical registers in each program item.
+  *   **item\_clbit\_qubit\_idxs** – For each program item, a dictionary from creg names to the physical qubit index measured into each of their classical bits, in classical bit order.
   *   **instruction\_sequences** – The instruction sequences associated with the data.
   *   **num\_randomizations** – The number of randomizations used per experiment.
+  *   **randomization\_multipliers** – Per-sequence randomization multipliers, parallel to `instruction_sequences`, so that sequence `i` uses `num_randomizations` times entry `i` randomizations.
+  *   **shots** – The number of shots per randomization.
   *   **fidelity\_model** – The fidelity model used in the experiment.
   *   **paths** – The analysis paths.
   *   **relations** – Path-to-sequence relations.
 
   ### \_\_init\_\_
 
-  <Function id="qiskit_noise_learning.circuit_generator.ExecutorDataMapper.__init__" signature="__init__(item_sequence_indices: list[list[int]], creg_names: list[list[str]], measurement_maps: list[dict[str, ndarray[int]]], instruction_sequences: list[InstructionSequence], num_randomizations: int, fidelity_model: LinearMap[Hashable, FidelityIndex] | None = None, paths: list[Path] | None = None, relations: set[tuple[int, int]] | None = None)" />
+  <Function id="qiskit_noise_learning.circuit_generator.ExecutorDataMapper.__init__" signature="__init__(item_sequence_indices: list[list[int]], item_creg_names: list[list[str]], item_clbit_qubit_idxs: list[dict[str, ndarray[int]]], instruction_sequences: list[InstructionSequence], num_randomizations: int, randomization_multipliers: list[int] | None = None, shots: int | None = None, fidelity_model: LinearMap[Hashable, FidelityIndex] | None = None, paths: list[Path] | None = None, relations: set[tuple[int, int]] | None = None)" />
 
   ## Methods
 
-  |                                                                                                                                                                                                     |   |
-  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | - |
-  | [`__init__`](#qiskit_noise_learning.circuit_generator.ExecutorDataMapper.__init__ "qiskit_noise_learning.circuit_generator.ExecutorDataMapper.__init__")(item\_sequence\_indices, creg\_names, ...) |   |
+  |                                                                                                                                                                                                |   |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | - |
+  | [`__init__`](#qiskit_noise_learning.circuit_generator.ExecutorDataMapper.__init__ "qiskit_noise_learning.circuit_generator.ExecutorDataMapper.__init__")(item\_sequence\_indices, ...\[, ...]) |   |
 
   ## Attributes
 
-  |                                                                                                                                                                                                 |                                                                                      |
-  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
-  | [`creg_names`](#qiskit_noise_learning.circuit_generator.ExecutorDataMapper.creg_names "qiskit_noise_learning.circuit_generator.ExecutorDataMapper.creg_names")                                  | List of names of the classical registers contained in the results.                   |
-  | [`fidelity_model`](#qiskit_noise_learning.circuit_generator.ExecutorDataMapper.fidelity_model "qiskit_noise_learning.circuit_generator.ExecutorDataMapper.fidelity_model")                      | The fidelity model used in the experiment.                                           |
-  | [`instruction_sequences`](#qiskit_noise_learning.circuit_generator.ExecutorDataMapper.instruction_sequences "qiskit_noise_learning.circuit_generator.ExecutorDataMapper.instruction_sequences") | The instruction sequences corresponding to the sequence indices in the sequence map. |
-  | [`item_sequence_indices`](#qiskit_noise_learning.circuit_generator.ExecutorDataMapper.item_sequence_indices "qiskit_noise_learning.circuit_generator.ExecutorDataMapper.item_sequence_indices") | Per program item, the instruction sequence indices corresponding to each config.     |
-  | [`measurement_maps`](#qiskit_noise_learning.circuit_generator.ExecutorDataMapper.measurement_maps "qiskit_noise_learning.circuit_generator.ExecutorDataMapper.measurement_maps")                | A per-program-item map from creg name to an ordered array of measured qubit indices. |
-  | [`num_randomizations`](#qiskit_noise_learning.circuit_generator.ExecutorDataMapper.num_randomizations "qiskit_noise_learning.circuit_generator.ExecutorDataMapper.num_randomizations")          | The number of randomizations used per experiment.                                    |
-  | [`paths`](#qiskit_noise_learning.circuit_generator.ExecutorDataMapper.paths "qiskit_noise_learning.circuit_generator.ExecutorDataMapper.paths")                                                 | The analysis paths.                                                                  |
-  | [`relations`](#qiskit_noise_learning.circuit_generator.ExecutorDataMapper.relations "qiskit_noise_learning.circuit_generator.ExecutorDataMapper.relations")                                     | Path-to-sequence relations.                                                          |
+  |                                                                                                                                                                                                             |                                                                                      |
+  | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+  | [`fidelity_model`](#qiskit_noise_learning.circuit_generator.ExecutorDataMapper.fidelity_model "qiskit_noise_learning.circuit_generator.ExecutorDataMapper.fidelity_model")                                  | The fidelity model used in the experiment.                                           |
+  | [`instruction_sequences`](#qiskit_noise_learning.circuit_generator.ExecutorDataMapper.instruction_sequences "qiskit_noise_learning.circuit_generator.ExecutorDataMapper.instruction_sequences")             | The instruction sequences corresponding to the sequence indices in the sequence map. |
+  | [`item_clbit_qubit_idxs`](#qiskit_noise_learning.circuit_generator.ExecutorDataMapper.item_clbit_qubit_idxs "qiskit_noise_learning.circuit_generator.ExecutorDataMapper.item_clbit_qubit_idxs")             | A per-program-item map from creg name to measured qubit indices.                     |
+  | [`item_creg_names`](#qiskit_noise_learning.circuit_generator.ExecutorDataMapper.item_creg_names "qiskit_noise_learning.circuit_generator.ExecutorDataMapper.item_creg_names")                               | List of names of the classical registers contained in the results.                   |
+  | [`item_sequence_indices`](#qiskit_noise_learning.circuit_generator.ExecutorDataMapper.item_sequence_indices "qiskit_noise_learning.circuit_generator.ExecutorDataMapper.item_sequence_indices")             | Per program item, the instruction sequence indices corresponding to each config.     |
+  | [`num_randomizations`](#qiskit_noise_learning.circuit_generator.ExecutorDataMapper.num_randomizations "qiskit_noise_learning.circuit_generator.ExecutorDataMapper.num_randomizations")                      | The base number of randomizations used per experiment.                               |
+  | [`paths`](#qiskit_noise_learning.circuit_generator.ExecutorDataMapper.paths "qiskit_noise_learning.circuit_generator.ExecutorDataMapper.paths")                                                             | The analysis paths.                                                                  |
+  | [`randomization_multipliers`](#qiskit_noise_learning.circuit_generator.ExecutorDataMapper.randomization_multipliers "qiskit_noise_learning.circuit_generator.ExecutorDataMapper.randomization_multipliers") | Per-sequence randomization multipliers, or `None` if unspecified.                    |
+  | [`relations`](#qiskit_noise_learning.circuit_generator.ExecutorDataMapper.relations "qiskit_noise_learning.circuit_generator.ExecutorDataMapper.relations")                                                 | Path-to-sequence relations.                                                          |
+  | [`shots`](#qiskit_noise_learning.circuit_generator.ExecutorDataMapper.shots "qiskit_noise_learning.circuit_generator.ExecutorDataMapper.shots")                                                             | The number of shots per randomization, or `None` if unspecified.                     |
 
   ### item\_sequence\_indices
 
   <Attribute id="qiskit_noise_learning.circuit_generator.ExecutorDataMapper.item_sequence_indices">
-    Type: [`list`](https://docs.python.org/3/library/stdtypes.html#list)\[[`list`](https://docs.python.org/3/library/stdtypes.html#list)\[[`int`](https://docs.python.org/3/library/functions.html#int)]]
+    Type: [`list`](https://docs.python.org/3/builtins/stdtypes.html#list)\[[`list`](https://docs.python.org/3/builtins/stdtypes.html#list)\[[`int`](https://docs.python.org/3/builtins/functions.html#int)]]
 
     Per program item, the instruction sequence indices corresponding to each config.
   </Attribute>
 
-  ### creg\_names
+  ### item\_creg\_names
 
-  <Attribute id="qiskit_noise_learning.circuit_generator.ExecutorDataMapper.creg_names">
-    Type: [`list`](https://docs.python.org/3/library/stdtypes.html#list)\[[`list`](https://docs.python.org/3/library/stdtypes.html#list)\[[`str`](https://docs.python.org/3/library/stdtypes.html#str)]]
+  <Attribute id="qiskit_noise_learning.circuit_generator.ExecutorDataMapper.item_creg_names">
+    Type: [`list`](https://docs.python.org/3/builtins/stdtypes.html#list)\[[`list`](https://docs.python.org/3/builtins/stdtypes.html#list)\[[`str`](https://docs.python.org/3/builtins/stdtypes.html#str)]]
 
     List of names of the classical registers contained in the results.
 
     The list at a given index corresponds to names expected in the data of the [`qiskit_ibm_runtime.results.QuantumProgramResult`](/docs/api/qiskit-ibm-runtime/results-quantum-program-result "(in Qiskit Runtime IBM Client)") at the same index.
   </Attribute>
 
-  ### measurement\_maps
+  ### item\_clbit\_qubit\_idxs
 
-  <Attribute id="qiskit_noise_learning.circuit_generator.ExecutorDataMapper.measurement_maps">
-    Type: [`list`](https://docs.python.org/3/library/stdtypes.html#list)\[[`dict`](https://docs.python.org/3/library/stdtypes.html#dict)\[[`str`](https://docs.python.org/3/library/stdtypes.html#str), [`ndarray`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)\[[`int`](https://docs.python.org/3/library/functions.html#int)]]]
+  <Attribute id="qiskit_noise_learning.circuit_generator.ExecutorDataMapper.item_clbit_qubit_idxs">
+    Type: [`list`](https://docs.python.org/3/builtins/stdtypes.html#list)\[[`dict`](https://docs.python.org/3/builtins/stdtypes.html#dict)\[[`str`](https://docs.python.org/3/builtins/stdtypes.html#str), [`ndarray`](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)\[[`int`](https://docs.python.org/3/builtins/functions.html#int)]]]
 
-    A per-program-item map from creg name to an ordered array of measured qubit indices.
+    A per-program-item map from creg name to measured qubit indices.
+
+    Entry `j` of a register’s array is the physical qubit index measured into its classical bit `j`.
   </Attribute>
 
   ### instruction\_sequences
 
   <Attribute id="qiskit_noise_learning.circuit_generator.ExecutorDataMapper.instruction_sequences">
-    Type: [`list`](https://docs.python.org/3/library/stdtypes.html#list)
+    Type: [`list`](https://docs.python.org/3/builtins/stdtypes.html#list)
 
     The instruction sequences corresponding to the sequence indices in the sequence map.
   </Attribute>
@@ -88,15 +94,35 @@ python_api_name: qiskit_noise_learning.circuit_generator.ExecutorDataMapper
   ### num\_randomizations
 
   <Attribute id="qiskit_noise_learning.circuit_generator.ExecutorDataMapper.num_randomizations">
-    Type: [`int`](https://docs.python.org/3/library/functions.html#int)
+    Type: [`int`](https://docs.python.org/3/builtins/functions.html#int)
 
-    The number of randomizations used per experiment.
+    The base number of randomizations used per experiment.
+
+    Where [`randomization_multipliers`](#qiskit_noise_learning.circuit_generator.ExecutorDataMapper.randomization_multipliers "qiskit_noise_learning.circuit_generator.ExecutorDataMapper.randomization_multipliers") is given, sequence `i` uses this count times entry `i` of those multipliers.
+  </Attribute>
+
+  ### randomization\_multipliers
+
+  <Attribute id="qiskit_noise_learning.circuit_generator.ExecutorDataMapper.randomization_multipliers">
+    Type: [`list`](https://docs.python.org/3/builtins/stdtypes.html#list)\[[`int`](https://docs.python.org/3/builtins/functions.html#int)] | [`None`](https://docs.python.org/3/builtins/constants.html#None)
+
+    Per-sequence randomization multipliers, or `None` if unspecified.
+
+    Entry `i` scales [`num_randomizations`](#qiskit_noise_learning.circuit_generator.ExecutorDataMapper.num_randomizations "qiskit_noise_learning.circuit_generator.ExecutorDataMapper.num_randomizations") for instruction sequence `i`.
+  </Attribute>
+
+  ### shots
+
+  <Attribute id="qiskit_noise_learning.circuit_generator.ExecutorDataMapper.shots">
+    Type: [`int`](https://docs.python.org/3/builtins/functions.html#int) | [`None`](https://docs.python.org/3/builtins/constants.html#None)
+
+    The number of shots per randomization, or `None` if unspecified.
   </Attribute>
 
   ### fidelity\_model
 
   <Attribute id="qiskit_noise_learning.circuit_generator.ExecutorDataMapper.fidelity_model">
-    Type: [`LinearMap`](math-linear-map "qiskit_noise_learning.math.linear_map.LinearMap")\[[`Hashable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Hashable), [`FidelityIndex`](sequences-fidelity-index "qiskit_noise_learning.sequences.fidelity_index.FidelityIndex")] | [`None`](https://docs.python.org/3/library/constants.html#None)
+    Type: [`LinearMap`](math-linear-map "qiskit_noise_learning.math.linear_map.LinearMap")\[[`Hashable`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Hashable), [`FidelityIndex`](sequences-fidelity-index "qiskit_noise_learning.sequences.fidelity_index.FidelityIndex")] | [`None`](https://docs.python.org/3/builtins/constants.html#None)
 
     The fidelity model used in the experiment.
   </Attribute>
@@ -104,7 +130,7 @@ python_api_name: qiskit_noise_learning.circuit_generator.ExecutorDataMapper
   ### paths
 
   <Attribute id="qiskit_noise_learning.circuit_generator.ExecutorDataMapper.paths">
-    Type: [`list`](https://docs.python.org/3/library/stdtypes.html#list)\[[`Path`](sequences-path "qiskit_noise_learning.sequences.path.Path")] | [`None`](https://docs.python.org/3/library/constants.html#None)
+    Type: [`list`](https://docs.python.org/3/builtins/stdtypes.html#list)\[[`Path`](sequences-path "qiskit_noise_learning.sequences.path.Path")] | [`None`](https://docs.python.org/3/builtins/constants.html#None)
 
     The analysis paths.
   </Attribute>
@@ -112,7 +138,7 @@ python_api_name: qiskit_noise_learning.circuit_generator.ExecutorDataMapper
   ### relations
 
   <Attribute id="qiskit_noise_learning.circuit_generator.ExecutorDataMapper.relations">
-    Type: [`set`](https://docs.python.org/3/library/stdtypes.html#set)\[[`tuple`](https://docs.python.org/3/library/stdtypes.html#tuple)\[[`int`](https://docs.python.org/3/library/functions.html#int), [`int`](https://docs.python.org/3/library/functions.html#int)]] | [`None`](https://docs.python.org/3/library/constants.html#None)
+    Type: [`set`](https://docs.python.org/3/builtins/stdtypes.html#set)\[[`tuple`](https://docs.python.org/3/builtins/stdtypes.html#tuple)\[[`int`](https://docs.python.org/3/builtins/functions.html#int), [`int`](https://docs.python.org/3/builtins/functions.html#int)]] | [`None`](https://docs.python.org/3/builtins/constants.html#None)
 
     Path-to-sequence relations.
   </Attribute>
