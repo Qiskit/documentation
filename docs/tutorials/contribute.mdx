@@ -1,0 +1,151 @@
+---
+title: Contribute a tutorial
+description: Learn which tutorials the community can contribute, the requirements for Foundational and Applied tutorials, and how to propose one
+---
+
+{/* cspell:ignore Birkhoff Floquet Polaron QOBLIB */}
+
+# Contribute a tutorial
+
+Qiskit tutorials on IBM Quantum&reg; Platform are open to community contributions. This page explains which tutorials you can contribute, what each kind of tutorial must show, and how to propose one.
+
+Every tutorial belongs to a domain (optimization, Hamiltonian simulation, quantum machine learning, or quantum information science) and is either Foundational or Applied:
+
+- **Foundational tutorials** teach the core ideas and canonical methods of a domain. They use well-known teaching problems, so that the method is the focus rather than the problem.
+- **Applied tutorials** are built around a specific goal: solving a particular problem from the working-group problem classes, or applying a specialized technique or tool in the setting where it can be used successfully. They assume strong familiarity with the fundamentals.
+
+## What you can contribute
+
+| Domain | Applied tutorials | Foundational tutorials |
+| --- | --- | --- |
+| Optimization | Open, for a [problem class](#problem-classes) | Open, for a listed [open topic](#open-foundational-topics) |
+| Hamiltonian simulation | Open, for a [problem class](#problem-classes) | Open, for a listed [open topic](#open-foundational-topics) |
+| Quantum machine learning | Open, for a [problem class](#problem-classes) | Open, for a listed [open topic](#open-foundational-topics) |
+| Quantum information science | Written by the IBM Quantum team | Open, for a listed [open topic](#open-foundational-topics) |
+
+The following are out of scope:
+
+- Applied quantum information science tutorials, which usually build on IBM tools in active development.
+- Content already covered in [IBM Quantum Learning](/learning) courses, such as introductions to standard textbook algorithms.
+- Tutorials that duplicate an existing tutorial. If you can improve an existing tutorial, open a pull request against it instead.
+
+## Requirements for all tutorials
+
+Every contributed tutorial must meet these requirements:
+
+- **Follows the tutorial template.** Include a usage estimate, learning outcomes, prerequisites, and the Qiskit patterns steps (map, optimize, execute, and post-process).
+- **Uses current Qiskit.** Use current Qiskit patterns and primitives, with no deprecated interfaces.
+- **Pins its dependencies.** Install only packages published on PyPI, with pinned versions. Put any custom code in the notebook rather than in a separate repository.
+- **Verifies a small instance.** Before you scale up, run a small instance and show that it matches a known answer (from exact diagonalization, an exact solver, an analytic result, or a published reference) within a tolerance that the tutorial states.
+- **Runs on hardware.** Run the workload on IBM Quantum hardware through the Qiskit Runtime primitives. State the error suppression and mitigation settings, and report the QPU time.
+
+## Requirements for Applied tutorials
+
+An Applied tutorial is a reference implementation of a state-of-the-art result, so it has a higher bar.
+
+- **State of the art.** The tutorial meets at least two of the following criteria:
+  - It is based on a paper published in a peer-reviewed journal within the past three years.
+  - It is the largest hardware demonstration of its problem.
+  - It uses advanced features, such as dynamic circuits or shaded lightcones.
+- **Tied to a problem class.** The tutorial solves a real instance from one of the [problem classes](#problem-classes) and reports that class's target quantity. If the class already has a tutorial, explain what is new: larger scale at the same accuracy, better accuracy at the same scale, much lower QPU cost, or a different method family.
+- **At scale.** The hardware run uses at least 50 qubits and a two-qubit depth of at least 50. A smaller run is acceptable only if the tutorial clearly meets the state-of-the-art bar.
+- **Reproducible.** Anyone can run the notebook unchanged on a current-generation IBM Quantum backend and get results within the tutorial's reported error bars.
+- **Compared against a classical baseline (quantum machine learning).** Report a classical model trained on the same data, with the same split and metric, even when the classical model performs better.
+
+## Requirements for Foundational tutorials
+
+A Foundational tutorial is where readers learn a domain, so it must be useful beyond a single example.
+
+- **Fills an open topic.** The tutorial covers one of the [open Foundational topics](#open-foundational-topics). To suggest a new topic, open a proposal and explain the gap it fills.
+- **Teaches a canonical method on a teaching problem.** Use the domain's [foundational problem](#foundational-problems), so that the method stays the focus.
+- **Leads somewhere.** End with a "Next steps" section that names the Applied tutorial or problem class the tutorial prepares readers for.
+- **Goes beyond a course.** Link to IBM Quantum Learning for the theory instead of repeating it. The tutorial's value is in running the method on hardware.
+- **Scales up.** After the small, verified instance, run the same workflow on hardware at around 50 qubits or more.
+- **Shows the trade-offs.** Show when the method works and when it breaks down (for example, how cost, noise sensitivity, or accuracy changes with size), and compare against a default or naive approach.
+- **Uses no vendor tools.** Use open-source Qiskit packages only, with no Qiskit Functions or licensed tools. Write code that readers can reuse in their own workflows.
+
+Reviewers check every Foundational proposal against three questions. A proposal must answer yes to all three:
+
+1. Does it lead to an Applied tutorial or a problem class?
+2. Does it show something on hardware that a course does not, such as a utility-scale run or a trade-off?
+3. Does it fill an open topic?
+
+### Foundational problems
+
+| Domain | Foundational problem |
+| --- | --- |
+| Optimization | Max-cut |
+| Hamiltonian simulation | The N<sub>2</sub> molecule in a minimal basis (chemistry), and the one-dimensional Heisenberg or Ising chain (spin and lattice models) |
+| Quantum machine learning | A small classification dataset with a classical baseline |
+| Quantum information science | Textbook protocols and states, such as Bell pairs and GHZ states |
+
+### Open Foundational topics
+
+| Domain | Topic | Leads to |
+| --- | --- | --- |
+| Quantum information science | Phase estimation at scale without vendor tools (for example, iterative phase estimation with dynamic circuits) | Energy estimation in Hamiltonian simulation |
+| Quantum information science | Device benchmarking with cross-entropy benchmarking and random circuit sampling | Quantum advantage experiments |
+| Quantum information science | Error correction beyond the repetition code, such as small stabilizer codes with syndrome extraction using dynamic circuits | [Low-overhead error detection with spacetime codes](/docs/tutorials/spacetime-codes) |
+| Quantum information science | Fidelity estimation and certification of large entangled states | Learning and certifying quantum states |
+| Quantum machine learning | Training and evaluating a quantum kernel classifier on a small dataset, with a classical baseline | Classification problem classes |
+
+Optimization and Hamiltonian simulation have no open Foundational topics yet. To suggest one, open a proposal and explain the gap it fills.
+
+## Problem classes
+
+Applied tutorials target the problem classes that the working groups use to track progress toward quantum advantage.
+
+<Accordion>
+<AccordionItem title="Optimization">
+
+Optimization tutorials target one of the ten problem classes in the [Quantum Optimization Benchmarking Library (QOBLIB)](https://arxiv.org/abs/2504.03832): market split, low autocorrelation binary sequences, minimum Birkhoff decomposition, Steiner tree packing, sports tournament scheduling, portfolio optimization, maximum independent set, network design, vehicle routing, and topology design.
+
+</AccordionItem>
+<AccordionItem title="Hamiltonian simulation">
+
+These classes are a draft proposal for the Hamiltonian Simulation Working Group and might change.
+
+| Problem class | Target quantity |
+| --- | --- |
+| Strongly correlated molecular ground states | Ground-state energy across geometries |
+| Nuclear shell-model ground states | Ground-state energy |
+| Electron-phonon dynamics | Polaron quench dynamics |
+| Lattice gauge real-time dynamics | String-breaking and hadron dynamics |
+| SYK scrambling (long-term target) | Out-of-time-order correlators and spectral form factor |
+| Frustrated magnets | Ground-state and finite-temperature observables |
+| Kicked and Floquet spin dynamics | Quench observables |
+| Symmetric spin dynamics | Dynamical structure factor |
+| Doped 2D Fermi-Hubbard dynamics | Charge and spin quench dynamics |
+| Quantum impurity models | Impurity Green's function |
+
+</AccordionItem>
+<AccordionItem title="Quantum machine learning">
+
+These classes are a draft proposal for the Quantum Machine Learning Working Group and might change.
+
+| Problem class | Target quantity |
+| --- | --- |
+| Quantum phase classification | Test accuracy versus sample count |
+| Quantum property prediction | Samples needed to reach a target error |
+| Hamiltonian learning | Parameter error versus samples |
+| Generative learning of hard distributions | Sampling fidelity or cross-entropy |
+| Group-structured classification | Test accuracy |
+| Quantum reservoir and extreme learning | Prediction error or test accuracy |
+| Real-world tabular classification | Accuracy versus a matched classical model |
+
+</AccordionItem>
+</Accordion>
+
+## How to propose a tutorial
+
+Contributions go through two stages, so that you get feedback before you write the full tutorial.
+
+1. **Propose.** Open a [tutorial proposal issue](https://github.com/Qiskit/documentation/issues/new?template=tutorial-proposal.yaml) in the Qiskit documentation repository. Proposals are public, so you can check what others are already working on. The IBM Quantum tutorials team reviews each proposal against these requirements, and a member of the relevant working group reviews the technical content.
+2. **Submit.** After your proposal is approved, open a pull request from your fork that adds the notebook. Follow the [contributing guide](https://github.com/Qiskit/documentation/blob/main/CONTRIBUTING.md), including signing the [Contributor License Agreement](https://qisk.it/cla).
+
+## Authorship and maintenance
+
+- **Credit.** Contributed tutorials show a byline at the top with the authors' names and affiliations and a link to the source paper. Tutorial cards show a community tag.
+- **Maintainer of record.** Each contributed tutorial also has a maintainer of record from the IBM Quantum team, who keeps it running as Qiskit changes.
+- **Breaking changes.** If a change breaks the tutorial, the authors have 30 days to respond to the issue. If it is still unresolved after the next major Qiskit release, the tutorial is archived.
+- **Existing community tutorials.** These requirements apply to new contributions. Community tutorials that are already published get the community tag, and are held to these requirements when they are next updated.
