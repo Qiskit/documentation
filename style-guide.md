@@ -50,6 +50,21 @@ IBM Quantum content follows IBM style guidelines, which include rules for ensuri
 - "and/or" is very hard to translate, so do not use
 - Don't rely only on color to describe something. Instead, use at least one other way (thickness, pattern, and so forth) to distinguish an item
 
+### Word choices that affect machine translation
+
+Much of our content is machine-translated, and some English constructions translate poorly or ambiguously. Prefer the clearer option in each case:
+
+- Avoid words that are both a noun and a verb without a clear signal of which you mean. For example, "Request access" (verb) versus "Submit a request" (noun). Add an article or restructure so the part of speech is unambiguous.
+- Avoid long strings of stacked nouns; the relationship between them is lost in translation. For example, use "the configuration file for the backend" rather than "the backend configuration file" when the grouping is ambiguous.
+- Keep "that" and "which" explicit rather than dropping them. For example, "the circuit that you built" translates more reliably than "the circuit you built".
+- Avoid idioms, colloquialisms, and metaphors (for example, "out of the box", "under the hood", "a handful of"). Use literal wording.
+- Avoid phrasal verbs when a single verb exists. For example, use "submit" rather than "send in", or "omit" rather than "leave out".
+- Keep pronoun references unambiguous. If "it" or "they" could point to more than one preceding noun, repeat the noun instead.
+- Avoid "once" to mean "after"; use "after" so it is not read as "one time".
+- Avoid "as" to mean "because"; use "because".
+- Do not use slashes to join words (for example, "input/output", "client/server"); spell out the relationship or use the full term on first use.
+- Keep sentences short and in a single clause where possible. Long, multi-clause sentences compound translation errors.
+
 ## Proper marking and attribution
 
 **All information needs to identify, mark, and attribute IBM and applicable third-party trademarks.** We do this the first time an IBM trademark appears on each page. See the [Copyright and trademark information](https://www.ibm.com/legal/copyright-trademark) page for more details.
