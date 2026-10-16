@@ -19,8 +19,8 @@ Every tutorial belongs to a domain (optimization, Hamiltonian simulation, quantu
 | Domain | Foundational tutorials | Applied tutorials |
 | --- | --- | --- |
 | [Optimization](#optimization) | No open topics yet | 10 problem classes |
-| [Hamiltonian simulation](#hamiltonian-simulation) | No open topics yet | 10 draft problem classes |
-| [Quantum machine learning](#quantum-machine-learning) | 1 open topic | 7 draft problem classes |
+| [Hamiltonian simulation](#hamiltonian-simulation) | No open topics yet | 10 problem classes |
+| [Quantum machine learning](#quantum-machine-learning) | 1 open topic | 7 problem classes |
 | [Quantum information science](#quantum-information-science) | 4 open topics | Written by the IBM Quantum team |
 
 The following are out of scope:
@@ -33,7 +33,7 @@ The following are out of scope:
 Every tutorial must:
 
 - Follow the tutorial template, and use current Qiskit with no deprecated interfaces.
-- Install every package from PyPI with a pinned version, use only the [approved quantum packages](#approved-quantum-packages), and keep custom code in the notebook.
+- Use only the [approved quantum packages](#approved-quantum-packages), pin every package version, and keep custom code in the notebook.
 - Verify a small instance against a known answer (exact, analytic, or published) within a stated tolerance before scaling up.
 - Run on IBM Quantum hardware through the Qiskit Runtime primitives, and report the error mitigation settings and QPU time.
 
@@ -45,21 +45,24 @@ Foundational and Applied tutorials also have their own requirements:
 | Value | The method is a step in the Applied tutorial or problem class listed for the topic, which the "Next steps" section links to | State of the art, meeting at least two of: a peer-reviewed paper from the past three years, the largest hardware demonstration of its problem, or advanced features such as dynamic circuits |
 | Hardware run | About 50 qubits or more | At least 50 qubits and a two-qubit depth of 50 (smaller only if clearly state of the art), reproducible within its error bars on any current-generation backend |
 | Compared against | A default or naive approach, showing how cost, noise sensitivity, or accuracy changes with size | A classical method on the same instance, such as an exact or heuristic solver, a tensor network method, or a matched classical model |
-| Tools | Open source only, with no Qiskit Functions or licensed tools | Any approved package, including Qiskit Functions |
 
 Each problem class accepts one community tutorial per method family. A new tutorial in a family that already has one replaces it only if it does better on scale, accuracy, or QPU cost.
 
+Qiskit Functions are welcome in any tutorial. A tutorial built around a vendor's Qiskit Function counts as Applied, but a Foundational tutorial can use a Function as one step of its workflow.
+
 ### Approved quantum packages
 
-The IBM Quantum team maintains this list. Classical packages, such as NumPy and SciPy, only need to be published on PyPI.
+The IBM Quantum team maintains this list. Install approved packages from PyPI, or from GitHub pinned to a release tag where the list says so. Classical packages, such as NumPy and SciPy, must be published on PyPI. To request a package that is not on the list, name it in your proposal and explain why you need it.
 
 | Area | Packages |
 | --- | --- |
-| Qiskit and IBM Quantum services | `qiskit`, `qiskit-ibm-runtime`, `qiskit-aer`, `qiskit-ibm-transpiler`, `qiskit-serverless` |
+| Qiskit and IBM Quantum services | `qiskit`, `qiskit-ibm-runtime`, `qiskit-aer`, `qiskit-serverless`, `qrmi` |
+| Compilation | `qiskit-ibm-transpiler`, `qiskit-basis-constructor` |
 | Qiskit addons | `qiskit-addon-aqc-tensor`, `qiskit-addon-cutting`, `qiskit-addon-mpf`, `qiskit-addon-obp`, `qiskit-addon-opt-mapper`, `qiskit-addon-pna`, `qiskit-addon-slc`, `qiskit-addon-sqd`, `qiskit-addon-utils` |
 | Error mitigation and noise | `samplomatic`, `qiskit-mitigation`, `qiskit-noise-learning`, `qiskit-paulice`, `mthree` |
-| Simulation and chemistry | `ffsim`, `qiskit-fermions`, `pauli-prop` |
-| Applied tutorials only | `qiskit-ibm-catalog` (Qiskit Functions) |
+| Benchmarking and characterization | `qiskit-experiments`, `gem-suite`, `qiskit-device-benchmarking` (from GitHub) |
+| Simulation, chemistry, and optimization | `ffsim`, `qiskit-fermions`, `pauli-prop`, `qaoa_training_pipeline` (from GitHub) |
+| Qiskit Functions | `qiskit-ibm-catalog`, plus any client package that a Function's provider requires, such as `qctrl-visualizer` or `luna-model` |
 
 ## Open topics and problem classes
 
@@ -71,37 +74,37 @@ Foundational tutorials use max-cut as the teaching problem. No Foundational topi
 
 Applied tutorials target one of the ten problem classes in the [Quantum Optimization Benchmarking Library (QOBLIB)](https://arxiv.org/abs/2504.03832):
 
-| Problem class | Description |
-| --- | --- |
-| Market split | Multi-dimensional subset sum |
-| Low autocorrelation binary sequences | Radar and communications sequence design |
-| Minimum Birkhoff decomposition | Doubly stochastic matrix decomposition |
-| Steiner tree packing | VLSI design and wire routing |
-| Sports tournament scheduling | Constraint satisfaction |
-| Portfolio optimization | Multi-period portfolios with transaction costs and short selling |
-| Maximum independent set | Unweighted maximum independent set on graphs |
-| Network design | Telecommunications network planning |
-| Vehicle routing | Vehicle routing with time windows and knapsack constraints |
-| Topology design | Graph golf (the degree-diameter problem) |
+| Problem class | Description | Existing tutorials |
+| --- | --- | --- |
+| Market split | Multi-dimensional subset sum | [Solve the Market Split problem with Kipu Quantum's Iskay Quantum Optimizer](/docs/tutorials/solve-market-split-problem-with-iskay-quantum-optimizer)<br/>[Solve the market split problem with the ParityQC Parity Twine Optimizer](/docs/tutorials/parity-twine-optimizer-ms) |
+| Low autocorrelation binary sequences | Radar and communications sequence design | None yet |
+| Minimum Birkhoff decomposition | Doubly stochastic matrix decomposition | None yet |
+| Steiner tree packing | VLSI design and wire routing | None yet |
+| Sports tournament scheduling | Constraint satisfaction | None yet |
+| Portfolio optimization | Multi-period portfolios with transaction costs and short selling | [Dynamic portfolio optimization with Global Data Quantum's Portfolio Optimizer](/docs/tutorials/global-data-quantum-optimizer) |
+| Maximum independent set | Unweighted maximum independent set on graphs | [Find the maximum independent set with Aqarios Constrained Quantum Optimizer](/docs/tutorials/find-the-maximum-independent-set-with-aqarios-constrained-quantum-optimizer) |
+| Network design | Telecommunications network planning | None yet |
+| Vehicle routing | Vehicle routing with time windows and knapsack constraints | None yet |
+| Topology design | Graph golf (the degree-diameter problem) | None yet |
 
 ### Hamiltonian simulation
 
 Foundational tutorials use one of two teaching problems: the N<sub>2</sub> molecule in a minimal basis for chemistry, or the one-dimensional Heisenberg or Ising chain for spin and lattice models. No Foundational topics are open yet.
 
-Applied tutorials target one of the following problem classes. These classes are a draft proposal for the Hamiltonian Simulation Working Group and might change.
+Applied tutorials target one of the following problem classes:
 
-| Problem class | Target quantity |
-| --- | --- |
-| Strongly correlated molecular ground states | Ground-state energy across geometries |
-| Nuclear shell-model ground states | Ground-state energy |
-| Electron-phonon dynamics | Polaron quench dynamics |
-| Lattice gauge real-time dynamics | String-breaking and hadron dynamics |
-| SYK scrambling (long-term target) | Out-of-time-order correlators and spectral form factor |
-| Frustrated magnets | Ground-state and finite-temperature observables |
-| Kicked and Floquet spin dynamics | Quench observables |
-| Symmetric spin dynamics | Dynamical structure factor |
-| Doped 2D Fermi-Hubbard dynamics | Charge and spin quench dynamics |
-| Quantum impurity models | Impurity Green's function |
+| Problem class | Target quantity | Existing tutorials |
+| --- | --- | --- |
+| Strongly correlated molecular ground states | Ground-state energy across geometries | [Sample-based quantum diagonalization of a chemistry Hamiltonian](/docs/tutorials/sample-based-quantum-diagonalization) (one geometry)<br/>[Dissociation PES curves with Qunova HiVQE](/docs/tutorials/qunova-hivqe) |
+| Nuclear shell-model ground states | Ground-state energy | [Pooled sample-based quantum diagonalization of a nuclear Hamiltonian](/docs/tutorials/nuclear-sqd-pooled) |
+| Electron-phonon dynamics | Polaron quench dynamics | None yet |
+| Lattice gauge real-time dynamics | String-breaking and hadron dynamics | [Observation of robust and coherent non-Abelian hadron dynamics on noisy quantum processors](/docs/tutorials/loop-string-hadron-dynamics) |
+| SYK scrambling (long-term target) | Out-of-time-order correlators and spectral form factor | None yet |
+| Frustrated magnets | Ground-state and finite-temperature observables | None yet |
+| Kicked and Floquet spin dynamics | Quench observables | [Simulation of kicked Ising Hamiltonian with dynamic circuits](/docs/tutorials/dc-hex-ising)<br/>[Transverse-Field Ising Model with Q-CTRL's Performance Management](/docs/tutorials/transverse-field-ising-model)<br/>[Simulate 2D tilted-field Ising with the QESEM function](/docs/tutorials/qedma-2d-ising-with-qesem)<br/>[Simulate a kicked Ising model with the TEM function](/docs/tutorials/simulate-kicked-ising-tem) |
+| Symmetric spin dynamics | Dynamical structure factor | [Simulate neutron scattering in quantum materials with quantum circuits](/docs/tutorials/simulate-neutron-scattering)<br/>[Simulate neutron scattering with an AQC + Trotter dynamics Serverless workflow](/docs/tutorials/simulate-neutron-scattering-with-a-serverless-workflow) |
+| Doped 2D Fermi-Hubbard dynamics | Charge and spin quench dynamics | None yet |
+| Quantum impurity models | Impurity Green's function | [Sample-based Krylov quantum diagonalization of a fermionic lattice model](/docs/tutorials/sample-based-krylov-quantum-diagonalization) (ground state only) |
 
 ### Quantum machine learning
 
@@ -111,17 +114,17 @@ Foundational tutorials use a small classification dataset with a classical basel
 | --- | --- |
 | Training and evaluating a quantum kernel classifier on a small dataset, with a classical baseline | Classification problem classes |
 
-Applied tutorials target one of the following problem classes. These classes are a draft proposal for the Quantum Machine Learning Working Group and might change.
+Applied tutorials target one of the following problem classes:
 
-| Problem class | Target quantity |
-| --- | --- |
-| Quantum phase classification | Test accuracy versus sample count |
-| Quantum property prediction | Samples needed to reach a target error |
-| Hamiltonian learning | Parameter error versus samples |
-| Generative learning of hard distributions | Sampling fidelity or cross-entropy |
-| Group-structured classification | Test accuracy |
-| Quantum reservoir and extreme learning | Prediction error or test accuracy |
-| Real-world tabular classification | Accuracy versus a matched classical model |
+| Problem class | Target quantity | Existing tutorials |
+| --- | --- | --- |
+| Quantum phase classification | Test accuracy versus sample count | None yet |
+| Quantum property prediction | Samples needed to reach a target error | None yet |
+| Hamiltonian learning | Parameter error versus samples | None yet |
+| Generative learning of hard distributions | Sampling fidelity or cross-entropy | None yet |
+| Group-structured classification | Test accuracy | None yet |
+| Quantum reservoir and extreme learning | Prediction error or test accuracy | None yet |
+| Real-world tabular classification | Accuracy versus a matched classical model | [Enhance feature classification using projected quantum kernels](/docs/tutorials/projected-quantum-kernels)<br/>[Hybrid quantum-enhanced ensemble classification (grid stability workflow)](/docs/tutorials/sml-classification) |
 
 ### Quantum information science
 
