@@ -1,0 +1,130 @@
+name: (Tutorials 📓) Propose a community tutorial
+description: Propose a new Foundational or Applied tutorial to contribute to the Qiskit tutorials
+title: "[Tutorial proposal] "
+labels: ["content 📄", "tutorial 📒", "needs triage 🤔"]
+assignees:
+  - henryzou50
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for proposing a tutorial! Before you start, read [Contribute a tutorial](https://quantum.cloud.ibm.com/docs/tutorials/contribute) for what can be contributed and the requirements for each kind of tutorial.
+
+        Search existing [tutorials](https://quantum.cloud.ibm.com/docs/tutorials) and [open proposals](https://github.com/Qiskit/documentation/issues?q=is%3Aissue+is%3Aopen+%22Tutorial+proposal%22) to avoid duplicates. The IBM Quantum tutorials team reviews each proposal, and a working-group member reviews the technical content. Wait for approval before you open a pull request.
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Tutorial type
+      options:
+        - Foundational
+        - Applied
+    validations:
+      required: true
+
+  - type: dropdown
+    id: domain
+    attributes:
+      label: Domain
+      description: Foundational optimization and Hamiltonian simulation tutorials, and Applied quantum information science tutorials, are written by the IBM Quantum team and are not open to contributions.
+      options:
+        - Optimization (Applied only)
+        - Hamiltonian simulation (Applied only)
+        - Quantum machine learning
+        - Quantum information science (Foundational only)
+    validations:
+      required: true
+
+  - type: input
+    id: target
+    attributes:
+      label: Open topic or problem class
+      description: For a Foundational tutorial, name the open topic. For an Applied tutorial, name the problem class. To propose a topic or problem class that is not listed, describe the gap it fills.
+    validations:
+      required: true
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What does the tutorial show, and what do readers learn?
+    validations:
+      required: true
+
+  - type: input
+    id: paper
+    attributes:
+      label: Source paper
+      description: Link to the paper the tutorial is based on, if any.
+    validations:
+      required: false
+
+  - type: textarea
+    id: bar
+    attributes:
+      label: How it meets the requirements
+      description: |
+        Foundational: which step of the Applied tutorial or problem class listed for the topic it prepares readers for, and what it shows on hardware that a course does not.
+        Applied: which state-of-the-art criteria it meets, its method family, and, if the class already has a tutorial in that family, how yours improves on it.
+    validations:
+      required: true
+
+  - type: textarea
+    id: circuits
+    attributes:
+      label: Circuit and hardware details
+      description: Number of qubits, two-qubit depth, two-qubit gate count, estimated QPU time, and how you plan to get access to IBM Quantum hardware.
+    validations:
+      required: true
+
+  - type: textarea
+    id: verification
+    attributes:
+      label: Verification plan
+      description: The small instance you plan to run, the known answer you compare against, and the tolerance.
+    validations:
+      required: true
+
+  - type: textarea
+    id: baseline
+    attributes:
+      label: Classical baseline
+      description: The classical method you compare against on the same instance. Required for Applied tutorials.
+    validations:
+      required: false
+
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies
+      description: Packages beyond Qiskit, with pinned versions. Quantum packages must be on the approved list on the Contribute a tutorial page, and classical packages must be published on PyPI. To request a package that is not on the list, name it here and explain why you need it.
+    validations:
+      required: false
+
+  - type: textarea
+    id: authors
+    attributes:
+      label: Authors and affiliations
+    validations:
+      required: true
+
+  - type: input
+    id: timeline
+    attributes:
+      label: Expected timeline
+      description: When you expect to open the pull request.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Confirm
+      options:
+        - label: I read the contribution requirements.
+          required: true
+        - label: I searched existing tutorials and proposals for duplicates.
+          required: true
+        - label: I agree to respond within 30 days if a change breaks the tutorial after it is published.
+          required: true
