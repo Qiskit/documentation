@@ -575,6 +575,7 @@ function _qiskitCRegexes(): FilesToIgnores {
       "/docs/api/qiskit-c/version#qiskit_version_minor",
       "/docs/api/qiskit-c/version#qiskit_version_patch",
     ],
+    "docs/api/qiskit-c/config.mdx": ["#c.QISKIT_PYTHON_EXTENSION"],
     "docs/api/qiskit-c/qk-transpiler.mdx": [
       "#structqktranspileoptions",
       "#c.qk_transpile",
@@ -582,7 +583,9 @@ function _qiskitCRegexes(): FilesToIgnores {
     "docs/api/qiskit-c/qk-dag.mdx": ["#structqkdagneighbors"],
     "docs/api/qiskit-c/qk-transpiler-passes.mdx": [
       "#c.qk_transpiler_pass_standalone_vf2_layout_average",
+      "#c.qk_transpiler_pass_standalone_optimize_1q_sequences",
     ],
+    "docs/api/qiskit-c/version.mdx": ["#c.qk_api_version"],
   };
 }
 
