@@ -1,0 +1,34 @@
+---
+title: Advanced techniques with Parity Twine Optimizer
+description: Set shots, post-processing, problem type, and transpile-only runs with the ParityQC Parity Twine Optimizer.
+---
+
+# Advanced techniques with Parity Twine Optimizer
+
+Use the following techniques to get the most out of the Parity Twine Optimizer. For every parameter and its default value, see the [API reference](/docs/api/functions/parity-twine-optimizer).
+
+## Choose the variable type
+
+Set `variable_type` to `"spin"` ($s \in \{-1, 1\}$) or `"binary"` ($x \in \{0, 1\}$) to match how you wrote the `problem` dictionary.
+
+## Choose a backend
+
+Use `catalog.backends()` to list the backends available to your instance, and pass one as `backend_name`. If you do not set `backend_name`, the least busy backend is chosen.
+
+## Check circuit metrics before you run
+
+Set the `transpile_only` option to `True` to transpile the circuit without running it on hardware. Only the `circuit_metrics` fields of the output are populated, so you can review the two-qubit gate count and depth for your problem first.
+
+## Set shots and post-processing
+
+- Use the `shots` option to set the number of shots. The default is `100000`.
+- Use the `postprocessing_level` option to turn classical post-processing on (`1`, the default) or off (`0`). Compare `before_postprocessing` and `after_postprocessing` in `solver_info` to see the effect.
+- For maximum independent set problems, set `problem_type` to `"mis"` to apply post-processing that exploits the MIS structure.
+
+## Tag jobs
+
+Use the `job_tags` option to attach a list of tags to each job, so that you can filter and find related jobs later.
+
+<Admonition type="note">
+  ParityQC: Add tuning guidance from your experience to this page.
+</Admonition>
