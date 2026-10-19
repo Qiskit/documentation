@@ -12,7 +12,9 @@ Qiskit tutorials on IBM Quantum&reg; Platform are open to community contribution
 Every tutorial belongs to a domain (optimization, Hamiltonian simulation, quantum machine learning, or quantum information science) and is either Foundational or Applied:
 
 - **Foundational tutorials** teach the core ideas and canonical methods of a domain. They use well-known teaching problems, so that the method is the focus rather than the problem.
-- **Applied tutorials** are built around a specific goal: solving a particular problem from the working-group problem classes, or applying a specialized technique or tool in the setting where it can be used successfully. They assume strong familiarity with the fundamentals.
+- **Applied tutorials** are built around a specific goal: solving a particular problem from the problem classes on this page, or applying a specialized technique or tool in the setting where it can be used successfully. They assume strong familiarity with the fundamentals.
+
+In short, Foundational tutorials show how to use a method or tool, and Applied tutorials show the best current results on a specific problem.
 
 ## What you can contribute
 
@@ -23,33 +25,21 @@ Every tutorial belongs to a domain (optimization, Hamiltonian simulation, quantu
 | [Quantum machine learning](#quantum-machine-learning) | 1 open topic | 7 problem classes |
 | [Quantum information science](#quantum-information-science) | 4 open topics | Written by the IBM Quantum team |
 
-The following are out of scope:
-
-- Foundational optimization and Hamiltonian simulation tutorials, so that contributions in those domains go to the problem classes.
-- Applied quantum information science tutorials, which usually build on IBM tools in active development.
-- Content that duplicates an [IBM Quantum Learning](/learning) course or an existing tutorial. To improve an existing tutorial, open a pull request against it instead.
-
 ## Requirements
 
 Every tutorial must:
 
-- Follow the tutorial template, and use current Qiskit with no deprecated interfaces.
-- Use only the [approved quantum packages](#approved-quantum-packages), pin every package version, and keep custom code in the notebook.
+- Follow the tutorial template, use current Qiskit with no deprecated interfaces, and cover something that [IBM Quantum Learning](/learning) courses and existing tutorials do not.
+- Use only the [approved quantum packages](#approved-quantum-packages), including Qiskit Functions, pin every package version, and keep custom code in the notebook.
 - Verify a small instance against a known answer (exact, analytic, or published) within a stated tolerance before scaling up.
-- Run on IBM Quantum hardware through the Qiskit Runtime primitives, and report the error mitigation settings and QPU time.
+- Run on IBM Quantum hardware at about 50 qubits or more, and report the error mitigation settings and QPU time.
 
-Foundational and Applied tutorials also have their own requirements:
+Beyond these, Foundational and Applied tutorials differ in what they cover and the bar they meet:
 
-| Requirement | Foundational | Applied |
-| --- | --- | --- |
-| Scope | An [open topic](#open-topics-and-problem-classes), taught on the topic's teaching problem | A real instance from a [problem class](#open-topics-and-problem-classes), reporting the class's target quantity |
-| Value | The method is a step in the Applied tutorial or problem class listed for the topic, which the "Next steps" section links to | State of the art, meeting at least two of: a peer-reviewed paper from the past three years, the largest hardware demonstration of its problem, or advanced features such as dynamic circuits |
-| Hardware run | About 50 qubits or more | At least 50 qubits and a two-qubit depth of 50 (smaller only if clearly state of the art), reproducible within its error bars on any current-generation backend |
-| Compared against | A default or naive approach, showing how cost, noise sensitivity, or accuracy changes with size | A classical method on the same instance, such as an exact or heuristic solver, a tensor network method, or a matched classical model |
+- **Foundational tutorials** teach how to use a method or tool on the teaching problem for an [open topic](#open-topics-and-problem-classes). They compare the method against a default approach as the problem grows, and end with a "Next steps" section that links to the Applied tutorial or problem class that the method leads to.
+- **Applied tutorials** solve a real instance from a [problem class](#open-topics-and-problem-classes), report its target quantity, and compare against a classical method on the same instance. They meet at least two of these state-of-the-art criteria: a peer-reviewed paper from the past three years, the largest hardware demonstration of the problem, or advanced features such as dynamic circuits. The hardware run uses a two-qubit depth of at least 50 unless the tutorial clearly meets the state-of-the-art bar, and anyone can reproduce it within its error bars on a current-generation backend. A tutorial built around a vendor's Qiskit Function is always Applied.
 
-Each problem class accepts one community tutorial per method family. A new tutorial in a family that already has one replaces it only if it does better on scale, accuracy, or QPU cost.
-
-Qiskit Functions are welcome in any tutorial. A tutorial built around a vendor's Qiskit Function counts as Applied, but a Foundational tutorial can use a Function as one step of its workflow.
+If a problem class already has a tutorial that uses your method, propose an improvement to that tutorial instead of a new one. Reviewers weigh the trade-offs, such as better scale at a higher QPU cost, and an accepted improvement updates the existing tutorial.
 
 ### Approved quantum packages
 
@@ -59,15 +49,15 @@ The IBM Quantum team maintains this list. Install approved packages from PyPI, o
 | --- | --- |
 | Qiskit and IBM Quantum services | `qiskit`, `qiskit-ibm-runtime`, `qiskit-aer`, `qiskit-serverless`, `qrmi` |
 | Compilation | `qiskit-ibm-transpiler`, `qiskit-basis-constructor` |
-| Qiskit addons | `qiskit-addon-aqc-tensor`, `qiskit-addon-cutting`, `qiskit-addon-mpf`, `qiskit-addon-obp`, `qiskit-addon-opt-mapper`, `qiskit-addon-pna`, `qiskit-addon-slc`, `qiskit-addon-sqd`, `qiskit-addon-utils` |
-| Error mitigation and noise | `samplomatic`, `qiskit-mitigation`, `qiskit-noise-learning`, `qiskit-paulice`, `mthree` |
+| Noise management | `samplomatic`, `qiskit-mitigation`, `qiskit-noise-learning`, `qiskit-paulice`, `mthree`, `qiskit-addon-cutting`, `qiskit-addon-obp`, `qiskit-addon-pna`, `qiskit-addon-slc` |
+| Simulation, chemistry, and optimization | `ffsim`, `qiskit-fermions`, `qiskit-addon-aqc-tensor`, `qiskit-addon-mpf`, `qiskit-addon-opt-mapper`, `qiskit-addon-sqd`, `qaoa_training_pipeline` (from GitHub) |
 | Benchmarking and characterization | `qiskit-experiments`, `gem-suite`, `qiskit-device-benchmarking` (from GitHub) |
-| Simulation, chemistry, and optimization | `ffsim`, `qiskit-fermions`, `pauli-prop`, `qaoa_training_pipeline` (from GitHub) |
+| Supporting tools | `qiskit-addon-utils`, `pauli-prop` |
 | Qiskit Functions | `qiskit-ibm-catalog`, plus any client package that a Function's provider requires, such as `qctrl-visualizer` or `luna-model` |
 
 ## Open topics and problem classes
 
-For each domain, this section lists the teaching problem and open topics for Foundational tutorials, and the problem classes for Applied tutorials. The working groups use these problem classes to track progress toward quantum advantage. To propose a problem class, or a quantum machine learning or quantum information science topic that is not listed, open a [proposal](#how-to-propose-a-tutorial) and explain the gap it fills.
+For each domain, this section lists the teaching problem and open topics for Foundational tutorials, and the problem classes for Applied tutorials. To propose a problem class, or a quantum machine learning or quantum information science topic that is not listed, open a [proposal](#how-to-propose-a-tutorial) and explain the gap it fills.
 
 ### Optimization
 
