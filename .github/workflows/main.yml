@@ -167,7 +167,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y imagemagick
-          sudo ln -s /usr/bin/convert /usr/bin/magick
+          command -v magick >/dev/null || sudo ln -s /usr/bin/convert /usr/bin/magick
       - name: Setup Python environment
         uses: ./.github/actions/set-up-notebook-testing
         with:
