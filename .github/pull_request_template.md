@@ -1,4 +1,6 @@
 <!--
+We strongly suggest you wait to begin working on a pull request until being assigned to an issue by a maintainer.
+
 Before opening a pull request, please review our contribution guides:
 - Contributing Guidelines: CONTRIBUTING.md (including important AI usage guidelines: CONTRIBUTING.md#use-of-generative-ai)
 - Style Guide: style-guide.md
