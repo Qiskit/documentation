@@ -117,6 +117,7 @@ function qiskitModuleToSection(module: string): string | undefined {
     hasPrefix(module, [
       "qiskit.converters",
       "qiskit.dagcircuit",
+      "qiskit.mir",
       "qiskit.passmanager",
       "qiskit.synthesis",
       "qiskit.synthesis",
@@ -163,7 +164,6 @@ function qiskitModuleToSection(module: string): string | undefined {
       "qiskit.capi",
       "qiskit.compiler",
       "qiskit.exceptions",
-      "qiskit.mir",
       "qiskit.qobj",
       "qiskit.tools",
       "qiskit.utils",
