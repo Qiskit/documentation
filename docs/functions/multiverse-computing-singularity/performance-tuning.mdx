@@ -1,0 +1,40 @@
+---
+title: Advanced techniques with Singularity Machine Learning - Classification
+description: Prototype on a simulator, size the ensemble, tune regularization, and choose a voting method with Singularity Machine Learning - Classification.
+---
+
+{/* cspell:ignore sparser */}
+
+# Advanced techniques with Singularity Machine Learning - Classification
+
+Use the following techniques to get the most out of Singularity Machine Learning - Classification. For every parameter and its default value, see the [API reference](/docs/api/functions/multiverse-computing-singularity).
+
+## Prototype on a simulator
+
+Set `optimizer_options={"simulator": True}` in the `create` or `create_fit_predict` action to run the QAOA optimization on a simulator instead of a QPU. The examples in the [get started guide](/docs/functions/multiverse-computing-singularity/get-started) use this setting. When your workflow is ready, remove it or set it to `False` to run on IBM&reg; QPUs.
+
+## Size the ensemble
+
+`num_learners` sets the size of the ensemble, which corresponds to the number of qubits used. Larger ensembles can lead to increased accuracy, as shown in the [benchmarks](/docs/functions/multiverse-computing-singularity#benchmarks). Use `learners_types`, `learners_proportions`, and `learners_options` to mix scikit-learn classifiers in the ensemble.
+
+## Tune regularization
+
+- `regularization_type` is `onsite` or `alpha`. Higher `onsite` values and lower `alpha` values lead to sparser ensembles.
+- Set `regularization` to `auto` to search for a regularization value that selects the ratio of learners given by `regularization_desired_ratio`.
+- Pass a list to `regularization_type` or `regularization` to train a model for each value and keep the best performing one.
+
+## Use validation data
+
+Pass `fit_params={"validation_data": (X_val, y_val)}` to the `fit` action, and set `optimization_data` to `train`, `validation`, or `both` to choose the data that the quantum optimization uses.
+
+## Choose a voting method
+
+Set `voting` to `hard` for majority voting, or to `soft` to average the learners' probabilities. Use `prob_threshold` to set the probability threshold, which defaults to `0.5`.
+
+## Make results repeatable
+
+Set `random_state` to control randomness, so that you can compare runs with different settings.
+
+<Admonition type="note">
+Multiverse Computing: add tuning guidance from your experience to this page, for example, recommended `optimizer_options` settings for QPU runs.
+</Admonition>

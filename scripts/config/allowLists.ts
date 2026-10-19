@@ -61,7 +61,6 @@ const IGNORE_TITLE_MISMATCHES: string[] = [
   "docs/guides/function-template-chemistry-workflow.ipynb", // ok
   "docs/guides/function-template-hamiltonian-simulation.ipynb", // ok
   "docs/guides/global-data-quantum-optimizer.ipynb", // ok
-  "docs/guides/multiverse-computing-singularity.ipynb", // ok
   "docs/guides/q-ctrl-optimization-solver.ipynb", // ok
   "docs/guides/q-ctrl-performance-management.ipynb", // ok
   "docs/guides/qedma-qesem.ipynb", // ok
