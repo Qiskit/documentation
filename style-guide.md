@@ -54,7 +54,6 @@ IBM Quantum content follows IBM style guidelines, which include rules for ensuri
 
 Much of our content is machine-translated, and some English constructions translate poorly or ambiguously. Prefer the clearer option in each case:
 
-
 - Keep "that" and "which" explicit. For example, "the circuit that you built" translates more reliably than "the circuit you built".
 - Avoid idioms, colloquialisms, and metaphors (for example, "out of the box", "under the hood", "a handful of"). Use literal wording.
 - Keep pronoun references unambiguous. If "it" or "they" could point to more than one preceding noun, repeat the noun instead.
