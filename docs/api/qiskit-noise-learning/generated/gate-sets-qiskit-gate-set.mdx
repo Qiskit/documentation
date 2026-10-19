@@ -35,7 +35,7 @@ python_api_name: qiskit_noise_learning.gate_sets.QiskitGateSet
 
   *   **num\_qubits** – How many qubits the QPU of interest has. If a `target` is provided, this field may be omitted.
   *   **target** – An optional `Target` against which operations will be validated whenever gates are added to the gate set. Its number of qubits must match `num_qubits` if both are present.
-  *   **qubit\_subset** – A subset of `range(num_qubits)` specifying the region of interest of the QPU. All gates added must act within this subset. By default, contains all qubits. When `add_default_spam` is `True`, the iteration order of this argument determines the qubit ordering of the default preparation and measurement gates.
+  *   **qubit\_subset** – A subset of `range(num_qubits)` specifying the region of interest of the QPU. All gates added must act within this subset. By default, contains all qubits.
   *   **add\_default\_spam** – Whether to initialize the gateset with gates that respectively implement state preparation (given name `"P"`) and state measurement (given name `"M"`) on all qubits in the region of interest.
   *   **name** – Name for this gate set. If `None`, `name` falls back to the class name.
   *   **latex\_str** – An optional LaTeX string for rendering this gate set.
@@ -85,7 +85,7 @@ python_api_name: qiskit_noise_learning.gate_sets.QiskitGateSet
   ### target
 
   <Attribute id="qiskit_noise_learning.gate_sets.QiskitGateSet.target">
-    Type: [`Target`](/docs/api/qiskit/qiskit.transpiler.Target) | [`None`](https://docs.python.org/3/library/constants.html#None)
+    Type: [`Target`](/docs/api/qiskit/qiskit.transpiler.Target) | [`None`](https://docs.python.org/3/builtins/constants.html#None)
 
     The target of this gateset, if one exists.
   </Attribute>
@@ -113,7 +113,7 @@ python_api_name: qiskit_noise_learning.gate_sets.QiskitGateSet
 
     **Raises**
 
-    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If the gate acts on some qubits outside of the valid range, or this gate set has a target and some member of the gate does not comply, or if the name is already used in the gate set.
+    [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If the gate acts on some qubits outside of the valid range, or this gate set has a target and some member of the gate does not comply, or if the name is already used in the gate set.
   </Function>
 
   ### add\_box\_as\_gate
@@ -151,7 +151,7 @@ python_api_name: qiskit_noise_learning.gate_sets.QiskitGateSet
 
     **Raises**
 
-    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If the provided instruction does not contain a [`qiskit.circuit.BoxOp`](/docs/api/qiskit/qiskit.circuit.BoxOp) operation, or if the instruction acts on non-physical qubits.
+    [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If the provided instruction does not contain a [`qiskit.circuit.BoxOp`](/docs/api/qiskit/qiskit.circuit.BoxOp) operation, or if the instruction acts on non-physical qubits.
   </Function>
 
   ### add\_circuit\_as\_gate
@@ -225,7 +225,7 @@ python_api_name: qiskit_noise_learning.gate_sets.QiskitGateSet
 
     **Parameters**
 
-    *   **qubit\_idxs** – The physical qubit indices to measure.
+    *   **qubit\_idxs** – The physical qubit indices to measure, in the order they are measured into classical bits. By default, the region of interest in ascending order.
     *   **operation\_type** – The type of measurement operation to apply on each qubit.
     *   **annotations** – The annotations that describe how to implement the measurement, or `None` to use the default annotations of [`QiskitGate`](gate-sets-qiskit-gate "qiskit_noise_learning.gate_sets.QiskitGate").
     *   **name** – The name of the gate, or `None` to have a name chosen for you.
