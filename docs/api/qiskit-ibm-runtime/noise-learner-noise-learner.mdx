@@ -8,7 +8,7 @@ python_api_name: qiskit_ibm_runtime.noise_learner.NoiseLearner
 
 # NoiseLearner
 
-<Class id="qiskit_ibm_runtime.noise_learner.NoiseLearner" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.49/qiskit_ibm_runtime/noise_learner/noise_learner.py#L48-L275" signature="NoiseLearner(mode=None, options=None)" modifiers="class">
+<Class id="qiskit_ibm_runtime.noise_learner.NoiseLearner" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.50/qiskit_ibm_runtime/noise_learner/noise_learner.py#L48-L287" signature="NoiseLearner(mode=None, options=None)" modifiers="class">
   Bases: `object`
 
   Class for executing noise learning experiments.
@@ -67,7 +67,7 @@ python_api_name: qiskit_ibm_runtime.noise_learner.NoiseLearner
 
       Refer to the [Qiskit Runtime documentation](/docs/guides/execution-modes) for more information about the execution modes.
 
-  *   **options** (*dict |* [*NoiseLearnerOptions*](options-noise-learner-options "qiskit_ibm_runtime.options.NoiseLearnerOptions")  *|*[*EstimatorOptions*](options-estimator-options "qiskit_ibm_runtime.options.EstimatorOptions") *| None*) – `NoiseLearnerOptions`. Alternatively, `EstimatorOptions` can be provided for convenience, in which case the estimator options get reformatted into noise learner options and all the irrelevant fields are ignored.
+  *   **options** (*dict |* [*NoiseLearnerOptions*](options-noise-learner-options "qiskit_ibm_runtime.options.NoiseLearnerOptions")  *|*[*options.EstimatorOptions*](options-estimator-options "qiskit_ibm_runtime.options.EstimatorOptions") *| None*) – `NoiseLearnerOptions`. Alternatively, [`EstimatorOptions`](options-estimator-options "qiskit_ibm_runtime.options.EstimatorOptions") can be provided for convenience, in which case the estimator options get reformatted into noise learner options and all the irrelevant fields are ignored.
 
   **References**
 
@@ -85,7 +85,7 @@ python_api_name: qiskit_ibm_runtime.noise_learner.NoiseLearner
 
   ### backend
 
-  <Function id="qiskit_ibm_runtime.noise_learner.NoiseLearner.backend" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.49/qiskit_ibm_runtime/noise_learner/noise_learner.py#L225-L227" signature="backend()">
+  <Function id="qiskit_ibm_runtime.noise_learner.NoiseLearner.backend" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.50/qiskit_ibm_runtime/noise_learner/noise_learner.py#L237-L239" signature="backend()">
     Return the backend the primitive query will be run on.
 
     **Return type**
@@ -95,14 +95,15 @@ python_api_name: qiskit_ibm_runtime.noise_learner.NoiseLearner
 
   ### run
 
-  <Function id="qiskit_ibm_runtime.noise_learner.NoiseLearner.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.49/qiskit_ibm_runtime/noise_learner/noise_learner.py#L140-L218" signature="run(circuits)">
+  <Function id="qiskit_ibm_runtime.noise_learner.NoiseLearner.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.50/qiskit_ibm_runtime/noise_learner/noise_learner.py#L141-L230" signature="run(circuits, dry_run=False)">
     Submit a request to the noise learner program.
 
     This function breaks the given list of circuits into a list of unique layers, following the strategy set by the `twirling_strategy` field specified in the `options` (see `NoiseLearnerOptions` for more details) and sorting them based on the number of times they occur in the various circuits. Then, it runs the noise learning experiment for as many layers as specified by the `max_layers_to_learn` field in the `options`, prioritizing layers that occur more frequently.
 
     **Parameters**
 
-    **circuits** (*Iterable\[QuantumCircuit | EstimatorPubLike]*) – An iterable of circuits to run the noise learner program for. Alternatively, estimator pub-like (primitive unified bloc) objects can be specified, such as tuples `(circuit, observables)` or `(circuit, observables, parameter_values)`. In this case, the pub-like objects are converted to a list of circuits, and all the other fields (such as `observables` and `parameter_values`) are ignored.
+    *   **circuits** (*Iterable\[QuantumCircuit | EstimatorPubLike]*) – An iterable of circuits to run the noise learner program for. Alternatively, estimator pub-like (primitive unified bloc) objects can be specified, such as tuples `(circuit, observables)` or `(circuit, observables, parameter_values)`. In this case, the pub-like objects are converted to a list of circuits, and all the other fields (such as `observables` and `parameter_values`) are ignored.
+    *   **dry\_run** (*bool*) – If `True`, performs a dry run without executing the job on a QPU. This mode can be used to validate the job, estimate usage consumption, and retrieve circuit timing metadata. Returned results preserve the expected schema but contain **randomized mock data** rather than actual or simulated measurement results. Unlike the fake backends, the processing of this dry run happens on the server-side, so the job may not finish immediately and access to this feature may be restricted.
 
     **Returns**
 

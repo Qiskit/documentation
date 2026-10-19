@@ -22,14 +22,23 @@ import remarkGfm from "remark-gfm";
 import remarkMdx from "remark-mdx";
 import remarkStringify from "remark-stringify";
 
-import { removePart, removePrefix, removeSuffix } from "../stringUtils.js";
+import {
+  getLastPartFromFullIdentifier,
+  removePart,
+  removePrefix,
+  removeSuffix,
+} from "../stringUtils.js";
 import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
 import { remarkStringifyOptions } from "./commonParserConfig.js";
 import { ObjectsInv } from "./objectsInv.js";
 import { Pkg } from "./Pkg.js";
 import { transformSpecialCaseUrl } from "./specialCaseResults.js";
 import { kebabCaseAndShortenPage } from "./normalizeResultUrls.js";
-import { DOCS_BASE_PATH, C_API_BASE_PATH } from "./paths.js";
+import {
+  DOCS_BASE_PATH,
+  C_API_BASE_PATH,
+  PYTHON_API_FOLDERS,
+} from "./paths.js";
 
 export interface Link {
   url: string; // Where the link goes
@@ -104,12 +113,11 @@ export function normalizeUrl(
 
   // The C API uses the same artifact as the Python API, but all its pages are
   // located under the `cdoc` folder.
-  const pythonApiFolders = ["stubs", "apidocs", "apidoc", "pydoc"];
   const addQiskitPrefix =
     kwargs.pkgName == "qiskit-c" &&
-    pythonApiFolders.some((f) => url.split("/").includes(f));
+    PYTHON_API_FOLDERS.some((f) => url.split("/").includes(f));
 
-  url = removePart(url, "/", [...pythonApiFolders, ".."]);
+  url = removePart(url, "/", [...PYTHON_API_FOLDERS, ".."]);
 
   // Some packages link to the C API via relative `cdoc/` paths
   // (e.g. `../cdoc/qk-circuit.html#c.qk_circuit_new` in the Sphinx artifact, which
@@ -120,10 +128,24 @@ export function normalizeUrl(
       "#",
     );
     const page = removeSuffix(pageWithHtml, ".html");
-    // Strip the Sphinx C domain prefix (e.g. `c.qk_circuit_new` → `qk_circuit_new`)
-    const normalizedHash = hash ? removePrefix(hash, "c.") : undefined;
+    // The C API anchors are generated with getLastPartFromFullIdentifier (the last
+    // dot-separated segment), so the Sphinx C domain hash must be reduced the same way:
+    //   `c.qk_circuit_new`                  → `qk_circuit_new`   (strip the `c.` domain prefix)
+    //   `c.QfExitCode.QfExitCode_ValueError` → `QfExitCode_ValueError`  (drop the enum scope too)
+    const normalizedHash = hash
+      ? getLastPartFromFullIdentifier(hash)
+      : undefined;
     const pageAndHash = normalizedHash ? `${page}#${normalizedHash}` : page;
-    return `${kwargs.pkgOutputDir.replace("qiskit", "qiskit-c")}/${pageAndHash}`;
+    // The C API package is always named `{pkgName}-c` (`qiskit` → `qiskit-c`,
+    // `qiskit-fermions` → `qiskit-fermions-c`).  Replace the package-name segment rather
+    // than substituting the literal `qiskit`: a plain `.replace("qiskit", "qiskit-c")`
+    // rewrites the *first* match, turning `qiskit-fermions` into `qiskit-c-fermions`.
+    // Replacing `pkgName` also preserves any version subdirectory (e.g. `.../qiskit/dev`).
+    const cApiOutputDir = kwargs.pkgOutputDir.replace(
+      kwargs.pkgName,
+      `${kwargs.pkgName}-c`,
+    );
+    return `${cApiOutputDir}/${pageAndHash}`;
   }
 
   // TODO (#3375): Investigate if we can make this case more generic.

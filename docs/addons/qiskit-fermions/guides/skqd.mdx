@@ -160,10 +160,10 @@ Keep the one-body part $H_1$ and the two-body part $H_2$ as separate operators r
 The basis change is a unitary similarity transform, so it leaves the spectrum untouched. Confirm the operator is correct by comparing its lowest eigenvalue in the $(\text{norb}, \text{nelec})$ sector against an exact diagonalization. The [`FermionOperator`](/docs/api/qiskit-fermions/operators-fermion-operator#qiskit_fermions.operators.FermionOperator "qiskit_fermions.operators.FermionOperator") exposes a SciPy [`LinearOperator`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.linalg.LinearOperator.html#scipy.sparse.linalg.LinearOperator "(in SciPy v1.18.0)") (backed by a native full configuration interaction (FCI) matrix-vector kernel), so it can be handed straight to [`scipy.sparse.linalg.eigsh()`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.linalg.eigsh.html#scipy.sparse.linalg.eigsh "(in SciPy v1.18.0)").
 
 ```python
+>>> import ffsim
 >>> import scipy.sparse.linalg
->>> from qiskit_fermions.linalg import linear_operator
 >>>
->>> linop = linear_operator(hamiltonian_momentum, norb, nelec)
+>>> linop = ffsim.linear_operator(hamiltonian_momentum, norb, nelec)
 >>> reference_energy, ground_state = scipy.sparse.linalg.eigsh(linop, k=1, which="SA")
 >>> reference_energy = reference_energy[0]
 >>> ground_state = ground_state[:, 0]
@@ -179,7 +179,7 @@ The payoff of the basis change is sparsity. To make it concrete, count how many 
 ...     return int(np.searchsorted(np.cumsum(weights), fraction) + 1)
 ...
 >>> # the same Hamiltonian in the position basis has an identical spectrum, but a dense ground state
->>> position_linop = linear_operator(hamiltonian_position, norb, nelec)
+>>> position_linop = ffsim.linear_operator(hamiltonian_position, norb, nelec)
 >>> position_energy, position_ground = scipy.sparse.linalg.eigsh(position_linop, k=1, which="SA")
 >>>
 >>> print(f"position-basis energy: {position_energy[0]:.6f}")
@@ -345,7 +345,6 @@ On hardware, you would run the transpiled circuits and measure. This is the nois
 A [`PrepareSlaterDeterminant`](/docs/api/qiskit-fermions/circuit-library-prepare-slater-determinant#qiskit_fermions.circuit.library.PrepareSlaterDeterminant "qiskit_fermions.circuit.library.PrepareSlaterDeterminant") gate is validate-then-rotate under simulation (it checks that the incoming state occupies its reference determinant, then applies the rotation). Therefore, the input is the plain occupation determinant: the lowest `nocc` modes filled per spin, with no rotation. The gate applies `reference_rotation` itself.
 
 ```python
->>> import ffsim
 >>> from collections import Counter
 >>>
 >>> reference = ffsim.slater_determinant(
@@ -441,5 +440,5 @@ This closes the SKQD loop. The momentum-basis circuits of steps 1–5 produce a 
 
 This guide ran the whole SKQD pipeline on a noiseless statevector simulator. On hardware, the transpiled `circuits` would be executed and measured in place of the statevector sampling in step 6, with the resulting counts feeding the step-7 diagonalization unchanged. Refer to the [Qiskit documentation](/docs/guides/intro-to-patterns) for help running circuits, and to the [SQD addon tutorials](/docs/addons/qiskit-addon-sqd/guides/overview) for information about the subspace-diagonalization post-processing, including its behavior on noisy samples, where configuration recovery does the most work.
 
-Read the [ffsim backend guide](ffsim#ffsim-backend-explanation) to understand why [`ffsim.apply_unitary()`](https://qiskit-community.github.io/ffsim/api/stubs/ffsim.apply_unitary.html#ffsim.apply_unitary "(in ffsim)") and [`ffsim.sample_state_vector()`](https://qiskit-community.github.io/ffsim/api/stubs/ffsim.sample_state_vector.html#ffsim.sample_state_vector "(in ffsim)") work natively on this package’s fermionic circuits, and why the fixed-particle-number sector used in step 6 makes the momentum-basis sparsity established in step 2 sample-efficient.
+Read the [ffsim relationship guide](ffsim#ffsim-relationship-explanation) to understand why [`ffsim.apply_unitary()`](https://qiskit-community.github.io/ffsim/api/stubs/ffsim.apply_unitary.html#ffsim.apply_unitary "(in ffsim)") and [`ffsim.sample_state_vector()`](https://qiskit-community.github.io/ffsim/api/stubs/ffsim.sample_state_vector.html#ffsim.sample_state_vector "(in ffsim)") work natively on this package’s fermionic circuits, and why the fixed-particle-number sector used in step 6 makes the momentum-basis sparsity established in step 2 sample-efficient.
 

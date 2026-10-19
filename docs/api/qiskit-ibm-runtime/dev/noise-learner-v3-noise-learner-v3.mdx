@@ -8,7 +8,7 @@ python_api_name: qiskit_ibm_runtime.noise_learner_v3.NoiseLearnerV3
 
 # NoiseLearnerV3
 
-<Class id="qiskit_ibm_runtime.noise_learner_v3.NoiseLearnerV3" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/noise_learner_v3/noise_learner_v3.py#L41-L177" signature="NoiseLearnerV3(mode=None, options=None)" modifiers="class">
+<Class id="qiskit_ibm_runtime.noise_learner_v3.NoiseLearnerV3" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/noise_learner_v3/noise_learner_v3.py#L40-L201" signature="NoiseLearnerV3(mode=None, options=None)" modifiers="class">
   Bases: `object`
 
   Class for executing noise learning experiments.
@@ -35,6 +35,16 @@ python_api_name: qiskit_ibm_runtime.noise_learner_v3.NoiseLearnerV3
 
   ## Attributes
 
+  ### mode
+
+  <Attribute id="qiskit_ibm_runtime.noise_learner_v3.NoiseLearnerV3.mode">
+    Return the execution mode used by this primitive.
+
+    **Returns**
+
+    Mode used by this primitive, or `None` if an execution mode is not used.
+  </Attribute>
+
   ### options
 
   <Attribute id="qiskit_ibm_runtime.noise_learner_v3.NoiseLearnerV3.options">
@@ -47,7 +57,7 @@ python_api_name: qiskit_ibm_runtime.noise_learner_v3.NoiseLearnerV3
 
   ### backend
 
-  <Function id="qiskit_ibm_runtime.noise_learner_v3.NoiseLearnerV3.backend" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/noise_learner_v3/noise_learner_v3.py#L175-L177" signature="backend()">
+  <Function id="qiskit_ibm_runtime.noise_learner_v3.NoiseLearnerV3.backend" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/noise_learner_v3/noise_learner_v3.py#L103-L105" signature="backend()">
     Return the backend the primitive query will be run on.
 
     **Return type**
@@ -57,7 +67,7 @@ python_api_name: qiskit_ibm_runtime.noise_learner_v3.NoiseLearnerV3
 
   ### run
 
-  <Function id="qiskit_ibm_runtime.noise_learner_v3.NoiseLearnerV3.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/noise_learner_v3/noise_learner_v3.py#L104-L173" signature="run(instructions)">
+  <Function id="qiskit_ibm_runtime.noise_learner_v3.NoiseLearnerV3.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/noise_learner_v3/noise_learner_v3.py#L116-L201" signature="run(instructions, dry_run=False)">
     Submit a request to the noise learner program.
 
     Two protocols are supported:
@@ -74,7 +84,8 @@ python_api_name: qiskit_ibm_runtime.noise_learner_v3.NoiseLearnerV3
 
     **Parameters**
 
-    **instructions** (*Iterable\[CircuitInstruction]*) – The instructions to learn the noise of.
+    *   **instructions** (*Iterable\[CircuitInstruction]*) – The instructions to learn the noise of.
+    *   **dry\_run** (*bool*) – If `True`, performs a dry run without executing the job on a QPU. This mode can be used to validate the job, estimate usage consumption, and retrieve circuit timing metadata. Returned results preserve the expected schema but contain **randomized mock data** rather than actual or simulated measurement results. Unlike the fake backends, the processing of this dry run happens on the server-side, so the job may not finish immediately and access to this feature may be restricted.
 
     **Returns**
 

@@ -1,0 +1,80 @@
+---
+title: NoiseLearner (latest version)
+description: API reference for qiskit_noise_learning.noise_learner.NoiseLearner in the latest version of qiskit-noise-learning
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_noise_learning.noise_learner.NoiseLearner
+---
+
+<span id="qiskit-noise-learning-noise-learner-noiselearner" />
+
+# qiskit\_noise\_learning.noise\_learner.NoiseLearner
+
+<Class id="qiskit_noise_learning.noise_learner.NoiseLearner" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/noise_learner/noise_learner.py" signature="qiskit_noise_learning.noise_learner.NoiseLearner(backend: BackendV2, options: LearningOptions | None = None, executor: ProgramExecutor | None = None)" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
+
+  A noise learner.
+
+  <Admonition title="Note" type="note">
+    The arguments `backend` and `executor` are redundant. This is a temporary measure to enable simulated execution with an [`AerExecutor`](aer-executor-aer-executor "qiskit_noise_learning.aer_executor.AerExecutor") instance, and is not a stable interface.
+  </Admonition>
+
+  **Parameters**
+
+  *   **backend** – The backend supplying the compilation target: the gate set, coupling map and qubit count that generated circuits are built against. When `executor` is given, this need not be the device the programs actually run on.
+  *   **options** – Learning options. If `None`, default options are used.
+  *   **executor** – Where generated programs are submitted. If `None` (default), a [`Executor`](/docs/api/qiskit-ibm-runtime/executor "(in Qiskit Runtime IBM Client)") in `backend`’s execution mode is used, so that programs run on `backend` itself.
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit_noise_learning.noise_learner.NoiseLearner.__init__" signature="__init__(backend: BackendV2, options: LearningOptions | None = None, executor: ProgramExecutor | None = None)" />
+
+  ## Methods
+
+  |                                                                                                                                                                     |                                                            |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
+  | [`__init__`](#qiskit_noise_learning.noise_learner.NoiseLearner.__init__ "qiskit_noise_learning.noise_learner.NoiseLearner.__init__")(backend\[, options, executor]) |                                                            |
+  | [`run`](#qiskit_noise_learning.noise_learner.NoiseLearner.run "qiskit_noise_learning.noise_learner.NoiseLearner.run")(instructions)                                 | Submit a job to learn the noise of the given instructions. |
+
+  ## Attributes
+
+  |                                                                                                                                   |                       |
+  | --------------------------------------------------------------------------------------------------------------------------------- | --------------------- |
+  | [`backend`](#qiskit_noise_learning.noise_learner.NoiseLearner.backend "qiskit_noise_learning.noise_learner.NoiseLearner.backend") | The backend.          |
+  | [`options`](#qiskit_noise_learning.noise_learner.NoiseLearner.options "qiskit_noise_learning.noise_learner.NoiseLearner.options") | The learning options. |
+
+  ### backend
+
+  <Attribute id="qiskit_noise_learning.noise_learner.NoiseLearner.backend">
+    Type: [`BackendV2`](/docs/api/qiskit/qiskit.providers.BackendV2)
+
+    The backend.
+  </Attribute>
+
+  ### options
+
+  <Attribute id="qiskit_noise_learning.noise_learner.NoiseLearner.options">
+    Type: [`LearningOptions`](noise-learner-learning-options "qiskit_noise_learning.noise_learner.learning_options.LearningOptions")
+
+    The learning options.
+  </Attribute>
+
+  ### run
+
+  <Function id="qiskit_noise_learning.noise_learner.NoiseLearner.run" signature="run(instructions: Sequence[CircuitInstruction]) → NoiseLearnerJob">
+    Submit a job to learn the noise of the given instructions.
+
+    **Parameters**
+
+    **instructions** – The instructions to learn the noise of. Each instruction should contain a [`BoxOp`](/docs/api/qiskit/qiskit.circuit.BoxOp) operation.
+
+    **Returns**
+
+    The submitted job. The result of the job is a [`NoiseLearnerResult`](noise-learner-noise-learner-result "qiskit_noise_learning.noise_learner.NoiseLearnerResult").
+
+    **Raises**
+
+    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If any instruction does not contain a `BoxOp`.
+  </Function>
+</Class>
+

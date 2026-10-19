@@ -25,8 +25,9 @@ import { Pkg, ReleaseNotesConfig } from "./Pkg.js";
 //
 // The fixture under `testdata/qiskit-addon-smoke/` covers the pipeline's key
 // concerns: article extraction, relative-apidocs link rewriting, cross-package
-// stub resolution via `ObjectsInv.loadPublishedApis`, notebook processing, and
-// image routing to `public/docs/images/addons/{pkg}/`.
+// stub resolution via `ObjectsInv.loadPublishedApis`, notebook processing
+// (including relative links between the `guides/` notebooks), and image routing
+// to `public/docs/images/addons/{pkg}/`.
 
 const FIXTURE_DIR = "scripts/js/lib/api/testdata/qiskit-addon-smoke";
 const PUBLISHED_APIS_SEED =

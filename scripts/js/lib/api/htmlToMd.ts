@@ -137,9 +137,25 @@ function prepareHandlers(meta: Metadata): Record<string, Handle> {
         return buildApiVersionAdmonition(node, handlers, "info");
       }
 
-      return node.properties.id && nodeClasses.includes("section")
+      // `math-wrapper` divs carry the anchor ID for numbered Sphinx equations
+      // (e.g. `id="equation-foo"`), which is otherwise dropped by the default
+      // div handler since it isn't a `section`.
+      return node.properties.id &&
+        (nodeClasses.includes("section") ||
+          nodeClasses.includes("math-wrapper"))
         ? [buildSpanId(node.properties.id), ...all(h, node)]
         : defaultHandlers.div(h, node);
+    },
+    tabs(h, node: any): any {
+      const tabs = buildJsxElement("Tabs", all(h, node));
+      maybeAddAttribute(tabs, "group", node.properties.group);
+      return tabs;
+    },
+    tabitem(h, node: any): any {
+      const tabItem = buildJsxElement("TabItem", all(h, node));
+      maybeAddAttribute(tabItem, "value", node.properties.value);
+      maybeAddAttribute(tabItem, "label", node.properties.label);
+      return tabItem;
     },
     class(h, node: any): any {
       return buildApiComponent(h, node);
@@ -264,7 +280,7 @@ function buildAdmonition(
       {
         type: "mdxJsxAttribute",
         name: "title",
-        value: toText(titleNode),
+        value: titleNode ? toText(titleNode) : "",
       },
       {
         type: "mdxJsxAttribute",
@@ -351,15 +367,12 @@ function remarkEscapeMathPipesInTables() {
   };
 }
 
-function buildApiComponent(h: H, node: any): any {
-  const componentName = capitalize(node.tagName);
+function buildJsxElement(name: string, children: any[]): any {
+  return { type: "mdxJsxFlowElement", name, attributes: [], children };
+}
 
-  const hastTree = {
-    type: "mdxJsxFlowElement",
-    name: componentName,
-    attributes: [],
-    children: all(h, node),
-  };
+function buildApiComponent(h: H, node: any): any {
+  const hastTree = buildJsxElement(capitalize(node.tagName), all(h, node));
 
   maybeAddAttribute(hastTree, "id", node.properties.id);
   maybeAddAttribute(hastTree, "name", node.properties.name);
