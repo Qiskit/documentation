@@ -15,11 +15,13 @@ Please review the Generative AI policy in CONTRIBUTING.md before submitting your
 ## Related issues
 
 <!-- Link related issues, e.g. Closes #123 -->
+
 Closes #
 
 ## Needed-by date (internal team members only)
 
 <!-- If applicable, specify the date by which these changes need to be merged. -->
+
 - **Needed-by date:**
 
 ## Checklist
