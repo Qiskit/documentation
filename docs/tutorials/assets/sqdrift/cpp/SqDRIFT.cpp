@@ -36,11 +36,11 @@ int main() {
     std::cout << "✓ Loaded N2 molecule (" << norb << " orbitals, "
               << num_qubits << " qubits, " << nelec << " electrons)" << std::endl;
 
-    // 2. Create and normal order Hamiltonian
+    // Create and normal order Hamiltonian
     QfFermionOperator* hamiltonian = qf_ferm_op_from_fcidump(fcidump);
     QfFermionOperator* normal_ordered = qf_ferm_op_normal_ordered(hamiltonian, nullptr);
 
-    // 3. Group terms by electronic structure
+    // Group terms by electronic structure
     QfExitCode exit_code = qf_ferm_op_group_terms_by_electronic_structure(
         normal_ordered, num_modes, false
     );
@@ -52,11 +52,11 @@ int main() {
     uint32_t num_groups = qf_ferm_op_num_groups(normal_ordered);
     std::cout << "Grouped into " << num_groups << " groups" << std::endl;
 
-    // 4. Split into group operators
+    // Split into group operators
     QfFermionOperator** group_ops = new QfFermionOperator*[num_groups];
     qf_ferm_op_split_out_groups(normal_ordered, nullptr, 0, group_ops);
 
-    // 5. Calculate sampling weights BEFORE normalization.
+    // Calculate sampling weights BEFORE normalization.
     //
     // Order matters: normalization rescales every coefficient to unit magnitude
     // in place, so the original magnitudes must be read out first or they are
@@ -85,7 +85,7 @@ int main() {
 
     std::cout << "Total weight (λ): " << total_weight << std::endl;
 
-    // 6. Normalize the evolution operators term-by-term, now that the sampling
+    // Normalize the evolution operators term-by-term, now that the sampling
     // weights above have already captured the original magnitudes. This keeps
     // only each term's phase/sign for the Trotter rotation, so a large
     // coefficient is not counted twice (once in sampling, once in evolution).
@@ -115,7 +115,7 @@ int main() {
     }
     std::cout << "Mapped all " << num_groups << " normalized groups to qubit operators" << std::endl;
 
-    // 7. SqDRIFT Sampling: Create operator sets
+    // SqDRIFT Sampling: Create operator sets
     const int num_circuits = 100;    // Number of circuits to create
     const int ops_per_circuit = 10;  // Operators per circuit
     const double time_step = 1;    // Time step for evolution
@@ -135,7 +135,7 @@ int main() {
         }
     }
 
-    // 8. Create Suzuki-Trotter circuits by composing all operators
+    // Create Suzuki-Trotter circuits by composing all operators
     std::vector<Qiskit::circuit::QuantumCircuit> circuits;
     circuits.reserve(num_circuits);
 
@@ -241,7 +241,7 @@ int main() {
 
     std::cout << "✓ Created all " << num_circuits << " Suzuki-Trotter circuits" << std::endl;
 
-    // 9. Display circuit statistics
+    // Display circuit statistics
     std::cout << "\n📊 Circuit Statistics:" << std::endl;
     std::cout << "  Number of circuits: " << num_circuits << std::endl;
     std::cout << "  Operators per circuit: " << ops_per_circuit << std::endl;
@@ -260,11 +260,11 @@ int main() {
 
     std::cout << "\n Connecting to IBM Quantum Cloud..." << std::endl;
 
-    // 1. Initialize IBM Quantum service using qiskit-cpp
+    // Initialize IBM Quantum service using qiskit-cpp
     Qiskit::service::QiskitRuntimeService service;
     std::cout << "✓ Connected to IBM Quantum" << std::endl;
 
-    // 2. Get backend
+    // Get backend
     const std::string backend_name = "ibm_fez";
     auto backend = service.backend(backend_name);
 
@@ -276,14 +276,14 @@ int main() {
 
     std::cout << "✓ Selected backend: " << backend.name() << std::endl;
 
-    // 3. Create sampler primitive
+    // Create sampler primitive
     const int32_t shots = 100;  // Number of shots per circuit
     Qiskit::primitives::BackendSamplerV2 sampler(backend, shots);
 
     std::cout << "\n Submitting " << num_circuits << " circuits ("
               << shots << " shots each)..." << std::endl;
 
-    // 4. Submit one job per circuit.
+    // Submit one job per circuit.
     std::vector<std::shared_ptr<Qiskit::primitives::BasePrimitiveJob>> jobs;
 
     for (int i = 0; i < num_circuits; i++) {
@@ -299,7 +299,7 @@ int main() {
 
     std::cout << "\n⏳ Waiting for " << num_circuits << " jobs to complete..." << std::endl;
 
-    // 5. Collect results — poll each job and extract bitstrings
+    // Collect results — poll each job and extract bitstrings
     std::vector<boost::dynamic_bitset<>> all_bitstrings;
 
     for (int i = 0; i < num_circuits; i++) {
@@ -328,7 +328,7 @@ int main() {
     std::cout << "\n✓ Collected " << all_bitstrings.size()
               << " total bitstrings from all circuits" << std::endl;
 
-    // Step 1.5: Postselect bitstrings by Hamming weight (derived from FCIDump NELEC)
+    // Postselect bitstrings by Hamming weight (derived from FCIDump NELEC)
     std::vector<double> bitstring_weights(all_bitstrings.size(), 1.0);
     auto [filtered_bitstrings, filtered_weights] = Qiskit::addon::sqd::postselect_bitstrings(
         all_bitstrings,
@@ -341,7 +341,7 @@ int main() {
               << " bitstrings with Hamming weight ("
               << n_alpha << "," << n_beta << ")" << std::endl;
 
-    // Step 2: Convert bitstrings to CI strings using SQD addon
+    // Convert bitstrings to CI strings using SQD addon
     auto ci_strings = Qiskit::addon::sqd::bitstrings_to_ci_strings_symmetrize_spin(
         filtered_bitstrings,
         std::nullopt  // No dimension limit
@@ -349,7 +349,7 @@ int main() {
 
     std::cout << "✓ Generated " << ci_strings.size() << " CI strings" << std::endl;
 
-    // Step 3: Write CI strings to file for SBD
+    // Write CI strings to file for SBD
     std::ofstream alpha_file("alphadets_from_sqd.txt");
     for (const auto& ci_string : ci_strings) {
         std::string bitstr;
@@ -363,7 +363,7 @@ int main() {
               << " CI strings to alphadets_from_sqd.txt" << std::endl;
     std::cout << " Ready for SBD diagonalization!" << std::endl;
 
-    // 6. Cleanup    
+    // Cleanup    
     for (uint32_t i = 0; i < num_groups; i++) {
         qk_obs_free(qubit_ops[i]);
     }

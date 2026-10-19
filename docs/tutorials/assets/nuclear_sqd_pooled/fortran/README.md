@@ -14,10 +14,10 @@ The build produces `nuclear_shell_driver` and copies `data/USDB.snt` beside it. 
 
 ## Check the local workflow
 
-Run from the companion's build directory:
+Run from the companion's build directory, where `NUCLEAR_SRC` is set as in the build instructions:
 
 ```bash
-cd build
+cd "$NUCLEAR_SRC/build"
 ./nuclear_shell_driver --protons 2 --neutrons 2 --circuits 3 --shots 256
 ```
 

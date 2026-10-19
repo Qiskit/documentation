@@ -15,3 +15,6 @@ export const DOCS_BASE_PATH = "/docs";
 
 // Folder in the Sphinx artifact that contains all C API docs.
 export const C_API_BASE_PATH = "cdoc" as const;
+
+// Folders in the Sphinx artifact that contain Python API docs.
+export const PYTHON_API_FOLDERS = ["stubs", "apidocs", "apidoc", "pydoc"];
