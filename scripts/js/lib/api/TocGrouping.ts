@@ -163,6 +163,7 @@ function qiskitModuleToSection(module: string): string | undefined {
       "qiskit.capi",
       "qiskit.compiler",
       "qiskit.exceptions",
+      "qiskit.mir",
       "qiskit.qobj",
       "qiskit.tools",
       "qiskit.utils",
