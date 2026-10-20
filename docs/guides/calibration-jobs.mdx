@@ -62,6 +62,40 @@ These calibrations are run simultaneously on qubits that require calibration.
 * Therefore, during long sessions, the quantum computer may experience reduced effective stability due to delayed or infrequent recalibration.
 * Two jobs submitted at the same time might run under different calibration sets, depending on timing.
 
+<span id="calibrate-in-session"></span>
+### Trigger a calibration in a session
+
+Although calibrations run periodically, the optimal parameters for gates and operations can drift faster than they are updated. To make sure the experiments in a [session](/docs/guides/run-jobs-session) use the most optimal parameters, you can trigger a calibration at the start of the session, or periodically during a long-running session.
+
+<Admonition type="note">
+- This feature requires `qiskit-ibm-runtime` v0.51.0 or later.
+- Currently, only readout angle calibration is supported. Additional calibration types, such as gate calibration, will be added in the future.
+</Admonition>
+
+To trigger a calibration, create a `Calibrator` in the session and call its `run()` method. Wait for the calibration to complete before you submit the jobs that should use the updated parameters.
+
+```python
+from qiskit_ibm_runtime import QiskitRuntimeService, Session
+from qiskit_ibm_runtime.calibrator import Calibrator
+from qiskit_ibm_runtime.executor_estimator import Estimator
+from qiskit_ibm_runtime.executor_sampler import Sampler
+
+service = QiskitRuntimeService()
+backend = service.least_busy(
+    operational=True, simulator=False
+)
+with Session(backend=backend) as session:
+    # Calibrate before running the main experiments
+    calibrator = Calibrator(session)
+    calibrator.run().result()
+
+    # Run the main experiments
+    sampler = Sampler()
+    estimator = Estimator()
+    sampler_job = sampler.run(...)
+    estimator_job = estimator.run(...)
+```
+
 
 
 ## Benchmark
