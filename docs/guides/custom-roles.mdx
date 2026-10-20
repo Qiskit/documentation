@@ -16,8 +16,8 @@ In addition to the pre-configured roles listed on the [Roles](https://cloud.ibm.
 This custom role grants quantum-specific roles to users.
 
 
-1. From [Manage → IAM → Roles](https://cloud.ibm.com/iam/roles), click `Create`.
-2. Enter a name, ID, description, and select `Qiskit Runtime` for the service.
+1. From [Manage → IAM → Roles](https://cloud.ibm.com/iam/roles), click `Create` (only visible for account administrators).
+2. Enter a name, ID, description, and select `Quantum Compute` for the service.
 3. Select the following roles, then click **Create**.
     * quantum-computing.device.read
     * quantum-computing.job.cancel
@@ -30,7 +30,7 @@ This custom role grants quantum-specific roles to users.
 
 ## Example: create a custom role for a user to view analytics only
 
-1. Go to [Manage → IAM → Roles](https://cloud.ibm.com/iam/roles) in IBM Cloud. Select the Qiskit Runtime service from the dropdown menu to see the roles that currently exist for this service.
+1. Go to [Manage → IAM → Roles](https://cloud.ibm.com/iam/roles) in IBM Cloud. Select Quantum Compute from the dropdown menu to see the roles that currently exist for this service.
 
 2. Click the **Create +** button.
 
@@ -40,7 +40,7 @@ This custom role grants quantum-specific roles to users.
 
 5. Enter a description for the custom role. In this example, an appropriate description might be "As an Analytics Viewer, you can view account analytics only."
 
-6. In the Service dropdown menu, choose Qiskit Runtime. A table appears that contains all the actions that you can map to the role.
+6. In the Service dropdown menu, choose Quantum Compute. A table appears that contains all the actions that you can map to the role.
 
 7. For this example, look for any actions that pertain to analytics, such as "Read usage filters for analytics" and "Read usage for analytics". Also include the "Read account configuration" action.
 To add the actions to your custom role, click Add at the end of the action's row.
@@ -49,7 +49,7 @@ To add the actions to your custom role, click Add at the end of the action's row
 
 9. Go to [Manage → IAM → Access groups](https://cloud.ibm.com/iam/groups). Click **Create +** to create a new access role. (It is recommended to create a new access group especially for this role, rather than add the role to your Public Access group, unless you want all your users to have the access granted by your custom role.) Once you have clicked **Create +** and named your new group (or, in the case of editing an existing access group, once you have clicked the name of the access group to edit), then click the Access tab. Click **Assign access +**.
 
-10. Under Service, select Qiskit Runtime, then click Next.
+10. Under Service, select Quantum Compute, then click Next.
 
 11. Under Resources, select All resources, then click Next. (Note that if you do not scope the access to all resources, the Analytics Viewer role will not be able to see analytics from all instances.)
 

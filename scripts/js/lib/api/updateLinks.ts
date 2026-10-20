@@ -22,13 +22,23 @@ import remarkGfm from "remark-gfm";
 import remarkMdx from "remark-mdx";
 import remarkStringify from "remark-stringify";
 
-import { removePart, removePrefix, removeSuffix } from "../stringUtils.js";
+import {
+  getLastPartFromFullIdentifier,
+  removePart,
+  removePrefix,
+  removeSuffix,
+} from "../stringUtils.js";
 import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
 import { remarkStringifyOptions } from "./commonParserConfig.js";
 import { ObjectsInv } from "./objectsInv.js";
+import { Pkg } from "./Pkg.js";
 import { transformSpecialCaseUrl } from "./specialCaseResults.js";
 import { kebabCaseAndShortenPage } from "./normalizeResultUrls.js";
-import { DOCS_BASE_PATH } from "./conversionPipeline.js";
+import {
+  DOCS_BASE_PATH,
+  C_API_BASE_PATH,
+  PYTHON_API_FOLDERS,
+} from "./paths.js";
 
 export interface Link {
   url: string; // Where the link goes
@@ -55,6 +65,19 @@ function lowerCaseIfMarkdownAnchor(url: string): string {
   }
   const newAnchor = anchor.toLowerCase();
   return `${base}#${newAnchor}`;
+}
+
+function hasDefinitionAncestor(node: any): boolean {
+  let current = node.parent;
+
+  while (current) {
+    if (current.type === "definition") {
+      return true;
+    }
+    current = current.parent;
+  }
+
+  return false;
 }
 
 export function normalizeUrl(
@@ -90,12 +113,40 @@ export function normalizeUrl(
 
   // The C API uses the same artifact as the Python API, but all its pages are
   // located under the `cdoc` folder.
-  const pythonApiFolders = ["stubs", "apidocs", "apidoc"];
   const addQiskitPrefix =
     kwargs.pkgName == "qiskit-c" &&
-    pythonApiFolders.some((f) => url.split("/").includes(f));
+    PYTHON_API_FOLDERS.some((f) => url.split("/").includes(f));
 
-  url = removePart(url, "/", [...pythonApiFolders, ".."]);
+  url = removePart(url, "/", [...PYTHON_API_FOLDERS, ".."]);
+
+  // Some packages link to the C API via relative `cdoc/` paths
+  // (e.g. `../cdoc/qk-circuit.html#c.qk_circuit_new` in the Sphinx artifact, which
+  // becomes `cdoc/qk-circuit.html#...` after the `..` is stripped above).
+  // Rewrite these to absolute paths pointing to the qiskit-c package.
+  if (url.startsWith(`${C_API_BASE_PATH}/`)) {
+    const [pageWithHtml, hash] = removePrefix(url, `${C_API_BASE_PATH}/`).split(
+      "#",
+    );
+    const page = removeSuffix(pageWithHtml, ".html");
+    // The C API anchors are generated with getLastPartFromFullIdentifier (the last
+    // dot-separated segment), so the Sphinx C domain hash must be reduced the same way:
+    //   `c.qk_circuit_new`                  → `qk_circuit_new`   (strip the `c.` domain prefix)
+    //   `c.QfExitCode.QfExitCode_ValueError` → `QfExitCode_ValueError`  (drop the enum scope too)
+    const normalizedHash = hash
+      ? getLastPartFromFullIdentifier(hash)
+      : undefined;
+    const pageAndHash = normalizedHash ? `${page}#${normalizedHash}` : page;
+    // The C API package is always named `{pkgName}-c` (`qiskit` → `qiskit-c`,
+    // `qiskit-fermions` → `qiskit-fermions-c`).  Replace the package-name segment rather
+    // than substituting the literal `qiskit`: a plain `.replace("qiskit", "qiskit-c")`
+    // rewrites the *first* match, turning `qiskit-fermions` into `qiskit-c-fermions`.
+    // Replacing `pkgName` also preserves any version subdirectory (e.g. `.../qiskit/dev`).
+    const cApiOutputDir = kwargs.pkgOutputDir.replace(
+      kwargs.pkgName,
+      `${kwargs.pkgName}-c`,
+    );
+    return `${cApiOutputDir}/${pageAndHash}`;
+  }
 
   // TODO (#3375): Investigate if we can make this case more generic.
   // The Qiskit C API sometimes links to the Python API. In those cases, we need to add the
@@ -164,6 +215,9 @@ export function normalizeUrl(
 }
 
 export function relativizeLink(link: Link): Link | undefined {
+  const rewritten = rewriteQiskitAddonLinks(link);
+  if (rewritten) return rewritten;
+
   const priorPrefixToNewPrefix = new Map([
     ["https://qiskit.org/documentation/apidoc/", "/api/qiskit"],
     ["https://qiskit.org/documentation/stubs/", "/api/qiskit"],
@@ -175,12 +229,12 @@ export function relativizeLink(link: Link): Link | undefined {
   const priorPrefix = Array.from(priorPrefixToNewPrefix.keys()).find((prefix) =>
     link.url.startsWith(prefix),
   );
-  if (!priorPrefix) {
-    return;
-  }
+  if (!priorPrefix) return;
+
   let [url, anchor] = link.url.split("#");
   url = removePrefix(url, priorPrefix);
   url = removeSuffix(url, ".html");
+
   if (anchor && anchor !== url) {
     url = `${url}#${anchor}`;
   }
@@ -191,6 +245,25 @@ export function relativizeLink(link: Link): Link | undefined {
   return { url: `/${relativeUrl}`, text: newText };
 }
 
+function rewriteQiskitAddonLinks(link: Link) {
+  if (!link.url.startsWith("https://qiskit.github.io/")) return;
+
+  // github.io stubs/apidocs URLs are looked up via objects.inv by the caller
+  if (/\/(stubs|apidocs|apidoc)\//.test(link.url)) return;
+
+  const rest = removePrefix(link.url, "https://qiskit.github.io/");
+  const [addonName, ...pathParts] = rest.split("#")[0].split("/");
+  if (!addonName || !Pkg.ADDON_NAMES.includes(addonName)) return;
+
+  const anchor = rest.includes("#") ? rest.split("#")[1] : undefined;
+  const pagePath = pathParts.map((s) => removeSuffix(s, ".html")).join("/");
+  const url = anchor
+    ? `/docs/addons/${addonName}/${pagePath}#${anchor}`
+    : `/docs/addons/${addonName}/${pagePath}`;
+  const newText = link.url === link.text ? url : undefined;
+  return { url, text: newText };
+}
+
 export async function updateLinks(
   results: HtmlToMdResultWithUrl[],
   kwargs: {
@@ -199,6 +272,7 @@ export async function updateLinks(
     pkgOutputDir: string;
   },
   maybeObjectsInv?: ObjectsInv,
+  allObjectInvs?: Map<string, ObjectsInv>,
 ): Promise<void> {
   const resultsByName = keyBy(results, (result) => result.meta.apiName!);
   const itemNames = new Set(keys(resultsByName));
@@ -210,20 +284,43 @@ export async function updateLinks(
       .use(remarkGfm)
       .use(remarkMdx)
       .use(() => async (tree: Root) => {
+        function isBracketedLiteralLink(textNode?: { value?: string }) {
+          if (!textNode?.value) {
+            return false;
+          }
+
+          const value = textNode.value.trim();
+          return value.startsWith("[") && value.endsWith("]");
+        }
+
         visit(tree, "link", (node) => {
           const textNode =
             node.children?.[0]?.type === "text"
               ? node.children?.[0]
               : undefined;
+
+          // ✅ NEW: Skip external links inside reference definitions
+          if (/^https?:\/\//.test(node.url) && hasDefinitionAncestor(node)) {
+            return;
+          }
+
           const relativizedLink = relativizeLink({
             url: node.url,
             text: textNode?.value,
           });
+
           if (relativizedLink) {
             node.url = relativizedLink.url;
             if (textNode && relativizedLink.text) {
               textNode.value = relativizedLink.text;
             }
+          }
+          const resolvedStub = maybeObjectsInv?.resolveStubUrl(
+            node.url,
+            allObjectInvs,
+          );
+          if (resolvedStub) {
+            node.url = resolvedStub;
           }
           node.url = normalizeUrl(node.url, resultsByName, itemNames, kwargs);
         });

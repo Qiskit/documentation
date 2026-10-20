@@ -1,0 +1,39 @@
+---
+title: EvaluationNode (latest version)
+description: API reference for samplomatic.samplex.nodes.EvaluationNode in the latest version of samplomatic
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: samplomatic.samplex.nodes.EvaluationNode
+---
+
+# EvaluationNode
+
+<Class id="samplomatic.samplex.nodes.EvaluationNode" isDedicatedPage={true} github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplex/nodes/evaluation_node.py#L24-L40" signature="samplomatic.samplex.nodes.EvaluationNode" modifiers="class">
+  Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC), [`Node`](samplex-nodes-node "samplomatic.samplex.nodes.node.Node")
+
+  A node that evaluates on an existing register state.
+
+  **Methods Summary**
+
+  |                                                                                                                                                    |                     |
+  | -------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------- |
+  | [`evaluate`](#samplomatic.samplex.nodes.EvaluationNode.evaluate "samplomatic.samplex.nodes.EvaluationNode.evaluate")(registers, parameter\_values) | Evaluate this node. |
+
+  **Methods Documentation**
+
+  ### evaluate
+
+  <Function id="samplomatic.samplex.nodes.EvaluationNode.evaluate" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplex/nodes/evaluation_node.py#L27-L40" signature="evaluate(registers: dict[str, VirtualRegister], parameter_values: ndarray)" modifiers="abstractmethod">
+    Evaluate this node.
+
+    **Parameters**
+
+    *   **registers** – At least those registers needed by this node to read from or write to.
+    *   **parameter\_values** – Parameter values to use during evaluation.
+
+    **Raises**
+
+    [**SamplexRuntimeError**](exceptions-samplex-runtime-error "samplomatic.exceptions.SamplexRuntimeError") – If the number of parameter values received does not equal the number required by this node.
+  </Function>
+</Class>
+

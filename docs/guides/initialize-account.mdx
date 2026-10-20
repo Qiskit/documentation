@@ -1,12 +1,12 @@
 ---
-title: Initialize your Qiskit Runtime service account
-description: How to initialize your Qiskit Runtime account, instantiate your account, and load saved credentials.
+title: Initialize your IBM Quantum Compute Service account
+description: How to initialize your IBM Quantum Compute Service account, instantiate your account, and load saved credentials.
 
 ---
 
-# Initialize your Qiskit Runtime service account
+# Initialize your IBM Quantum Compute Service account
 
-Before using Qiskit Runtime, you have to initialize (instantiate) your account by submitting (loading) credentials.  These credentials can be manually submitted each time you initialize the Qiskit Runtime service, or you can save them for reuse.
+Before using the IBM Quantum&reg; Compute Service, you have to initialize (instantiate) your account by submitting (loading) credentials.  These credentials can be manually submitted each time you initialize IBM Quantum Compute Service, or you can save them for reuse.
 
 <Admonition type="note" title="Notes">
       * If you are using a public computer or other untrusted environment, follow the instructions in [Initialize the service in an untrusted environment](/docs/guides/cloud-setup-untrusted) instead.
@@ -23,7 +23,7 @@ Ensure that you have completed these steps:
     1. Log in to [IBM Quantum Platform](https://quantum.cloud.ibm.com).
     1. Make sure that the correct account and region are selected in the account switcher in the header.
     1. If you have one or more instances shown, you're done with this step. Otherwise, [create an instance](/docs/guides/instances#add-instance).
-1. Ensure you are working in an active Python environment with the [Qiskit SDK and Qiskit Runtime installed](/docs/guides/install-qiskit#local).
+1. Ensure you are working in an active Python environment with the [Qiskit SDK and `qiskit-ibm-runtime` installed](/docs/guides/install-qiskit#local).
 1. Activate the Python virtual environment and run Python in your virtual environment.
 
 
@@ -34,19 +34,21 @@ Ensure that you have completed these steps:
 2. Optional: Find the instance you want to use from the [Instances](https://quantum.cloud.ibm.com/instances) page. Hover over its CRN, click the icon to copy it, then save it in a secure location so you can use it to identify the instance.
 
 
-## Connect Qiskit with your Qiskit Runtime service instance
+## Connect Qiskit with your IBM Quantum Compute Service instance
 
 <Admonition type="note">
 These instructions are designed for `qiskit_ibm_runtime` v0.42 or later. Some features are not enabled in earlier versions of `qiskit_ibm_runtime`. In these cases, you should always provide a value for `channel`, `token`, and `instance`, either explicitly or through a saved account.
 </Admonition>
 
-The basic code to connect Qiskit with your Qiskit Runtime service instance follows.  However, there are several different ways to customize the `QiskitRuntimeService` options, depending on your needs.  These options are described in the following sections.
+The basic code to connect Qiskit with your Quantum Compute instance follows.  However, there are several different ways to customize the `QiskitRuntimeService` options, depending on your needs.  These options are described in the following sections.
 
 ```python
 from qiskit_ibm_runtime import QiskitRuntimeService
 
 service = QiskitRuntimeService(channel=<channel>,
-            token=<your-API_KEY>, # Use the 44-character API_KEY you created and saved from the IBM Quantum Platform Home dashboard
+            # For `token`, use the 44-character API_KEY you created 
+            # and saved from the IBM Quantum Platform dashboard
+            token=<your-API_KEY>, 
             instance=<instance_CRN>)
 ```
 
@@ -57,12 +59,14 @@ The default channel is `ibm_quantum_platform`.  Because this is almost always th
 <span id="explicit"></span>
 ### Quick start path: Specify credentials explicitly
 
-The fastest way to get a `QiskitRuntimeService` instance running is the direct instantiation method: explicitly provide the API token (key) and CRN (instance identifier) every time you need to initialize the Qiskit Runtime service. See [Find your access credentials](#access-credentials) if necessary.
+The fastest way to get a `QiskitRuntimeService` instance running is the direct instantiation method: explicitly provide the API token (key) and CRN (instance identifier) every time you need to initialize IBM Quantum Compute Service. See [Find your access credentials](#access-credentials) if necessary.
 
 ```python
 from qiskit_ibm_runtime import QiskitRuntimeService
 
-service = QiskitRuntimeService(token=<cloud_api_key>, # Use the 44-character API_KEY you created and saved from the IBM Quantum Platform Home dashboard
+# For `token`, use the 44-character API_KEY you created 
+# and saved from the IBM Quantum Platform dashboard
+service = QiskitRuntimeService(token=<cloud_api_key>, 
             instance=<instance_CRN>)
 ```
 
@@ -146,7 +150,7 @@ The instance is found and used in this order:
 
 1. If your account only has access to one instance, it is selected by default.
 1. If saved credentials are being used and an instance was specified with the credentials, that instance is used. See [Considerations when loading saved credentials](#considerations-when-loading-saved-credentials).
-3. If your account has multiple instances that can access the requested QPU, the system uses your specified plan preferences to choose a plan and instance. For Qiskit Runtime v0.42 and later, free plans are prioritized by default.
+3. If your account has multiple instances that can access the requested QPU, the system uses your specified plan preferences to choose a plan and instance. For `qiskit-ibm-runtime` v0.42 and later, free plans are prioritized by default.
 2. If your account has access to multiple instances but only one can access the requested QPU, the instance with access is selected. If this instance is not associated with a free plan, a cost will be incurred.
 
 
@@ -173,13 +177,14 @@ service = QiskitRuntimeService(token=<your-API_KEY>, tags=['services'])
 In this example, the service searches all premium and open instances that are available to the account to find ones that can access the specified backend. If a backend is in both a Premium and an Open Plan instance, the Premium Plan instance is prioritized because `premium` is specified first in `plans_preference`.
 
 ```python
-service = QiskitRuntimeService(token=<your-API_KEY>, plans_preference=['premium', 'open'])
+service = QiskitRuntimeService(token=<your-API_KEY>, 
+    plans_preference=['premium', 'open'])
 ```
 
 #### Determine which instance was chosen
 The selected instance is returned as a warning. Additionally, you can run `service.active_instance()` to determine the active instance.
 
-### Local testing with Qiskit Runtime
+### Local testing with `qiskit-ibm-runtime`
 
 The `QiskitRuntimeService` class can be initialized with `channel=local` to perform local simulation. In this case, authentication is not required and there is no need to provide values for `token` or `instance`. Therefore, it is not recommended that you save a local account.  Instead, you can do direct instantiation:
 

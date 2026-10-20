@@ -1,0 +1,36 @@
+---
+title: IBM Quantum Compute client changelog
+description: The latest updates from IBM Quantum Compute client, including the latest package release summaries and platform updates.
+
+---
+
+# IBM Quantum Compute client v0.50.0
+
+<span id="runtime-50"></span>
+## September 2026
+
+- **The [directed execution model](/docs/guides/directed-execution-model) offers new tools for inspecting and customizing error mitigation workflow** &mdash; New tools have been built on top of the directed execution model framework, which was released earlier this year:
+
+  Together with [Samplomatic](/docs/addons/samplomatic/index), they make up the [directed execution model](/docs/guides/directed-execution-model), which provides full transparency and control to fine-tune your error mitigation workflow. The [Probabilistic error cancellation with shaded lightcones](/docs/addons/qiskit-addon-slc/guides/quickstart) tutorial, for example, demonstrates how this model is used to combine advanced techniques, including shaded lightcones, probabilistic error cancellation (PEC), Twirled Readout Error eXtinction (TREX), and [measurement-based postselection](/docs/addons/qiskit-mitigation/guides/postselection-with-non-markovian-error-checks), to further improve the result quality.
+  - [`qiskit-noise-learning`](/docs/addons/qiskit-noise-learning) is a toolkit for randomization-based quantum noise characterization. You can use it to construct a custom noise-learning experiment, validate it with local simulation, and analyze the raw results.
+
+  - [`qiskit-mitigation`](/docs/addons/qiskit-mitigation) is a package of quantum error mitigation methods for building mitigation pipelines with the new execution model. It includes implementations of well-known methods, including PEC, PEA, TREX, and gate-folding ZNE, as well as post-selection for filtering out non-Markovian errors.
+
+  - [`qiskit-ibm-runtime` v0.50.0](/docs/api/qiskit-ibm-runtime/release-notes#0500-2026-09-24) released **new client-side implementations of Sampler and Estimator** primitives that are built on top of this framework. These implementations allow you to inspect exactly how each error mitigation method is implemented and test them [locally](/docs/guides/local-testing-mode) before running them on an actual QPU. 
+
+    **How to upgrade to the new primitives:** Upgrading to the new primitives is designed to be low-friction, so in most cases, you only need to change your import statements &mdash; not the body of your code. See the [migration guide](/docs/guides/migrate-to-client-side-primitives) for full details.
+
+  - **New skills for agents** &mdash; Whether you are migrating to the new client-side Sampler and Estimator, or migrating old notebooks that still use V1 primitives, the migrate-qiskit-ibm-runtime skill in the [Qiskit/skills](https://github.com/Qiskit/skills) repository can simplify the task. This new open-source repository contains official, IBM-verified agent skills for building IBM Quantum and Qiskit workflows. We will be adding more skills to this repository in the near future.
+
+  - Lastly, check out the [PEC with logical noise models tutorial](/docs/tutorials/probabilistic-error-cancellation-with-logical-noise-models) for an example of stacking error detection and mitigation methods using these new tools.
+
+  The directed execution model, comprised of [Samplomatic](https://qiskit.github.io/samplomatic/) and [Executor](/docs/guides/get-started-with-executor), exposes the error mitigation logic applied to your workloads so that you have full control over the logic without sacrificing performance.
+
+
+
+{/* use text like this to point to the release notes when they aren't mentioned previously: */}
+{/*- For all updates, bug fixes, and new features, see the full [0.46.0 release notes](/docs/api/qiskit-ibm-runtime/release-notes#0460-2026-03-23).*/} 
+
+{/* use url format /api/qiskit-ibm-runtime/release-notes#0XYZ to link to the specific 0.XY.Z version of the release notes */}
+
+*To see the release notes for all versions, visit the [IBM Quantum Compute client release notes](/docs/api/qiskit-ibm-runtime/release-notes).*

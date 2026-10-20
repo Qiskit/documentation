@@ -1,0 +1,37 @@
+---
+title: filter_annotations (latest version)
+description: API reference for samplomatic.utils.filter_annotations in the latest version of samplomatic
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: samplomatic.utils.filter_annotations
+---
+
+<span id="filter-annotations" />
+
+# filter\_annotations
+
+<Function id="samplomatic.utils.filter_annotations" isDedicatedPage={true} github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/utils/map_annotations.py#L88-L114" signature="samplomatic.utils.filter_annotations(circuit: QuantumCircuit, keep: type[Annotation] | tuple[type[Annotation], ...]) → QuantumCircuit">
+  Return a new circuit keeping only annotations of the given type(s) on each box.
+
+  **Parameters**
+
+  *   **circuit** – The circuit whose box annotations to filter.
+  *   **keep** – Annotation type or tuple of types to retain.
+
+  **Returns**
+
+  A new circuit where each box’s annotations contain only instances of `keep`.
+
+  ```python
+  from qiskit.circuit import QuantumCircuit
+  from samplomatic import Twirl, InjectNoise
+  from samplomatic.utils import filter_annotations
+
+  circuit = QuantumCircuit(2)
+  with circuit.box([Twirl(), InjectNoise("ref")]):
+      circuit.cx(0, 1)
+
+  twirl_only = filter_annotations(circuit, Twirl)
+  ```
+</Function>
+

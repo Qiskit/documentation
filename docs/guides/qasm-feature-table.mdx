@@ -22,19 +22,19 @@ The meaning of the complete "supported" mark depends on the column:
 * *Qiskit SDK*: The feature can be parsed by [`qiskit.qasm3.loads`](/docs/api/qiskit/qasm3) (by using the `qiskit-qasm3-import` extension), represented in a [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit),
   and exported to OpenQASM 3 by [`qiskit.qasm3.dumps`](/docs/api/qiskit/qasm3#dumps).
 
-* *IBM Qiskit Runtime*: A circuit containing the corresponding Qiskit feature can be successfully executed on hardware through IBM&reg; Qiskit Runtime.
+* *IBM Quantum Compute Service*: A circuit containing the corresponding Qiskit feature can be successfully executed on hardware through IBM Quantum Compute Service.
 
 The meaning of "partial support" typically depends on the linked notes.
 
 <Admonition type="note">
-The most common method of submitting circuits to IBM Qiskit Runtime is to create the circuit in the Python-space interface to Qiskit SDK.
+The most common method of submitting circuits to IBM Quantum Compute Service is to create the circuit in the Python-space interface to Qiskit SDK.
 Circuits constructed and submitted in this manner do not need to be loaded from OpenQASM 3 files into Qiskit SDK.
 
-If you do not use OpenQASM 3 directly yourself, you can safely use features that are supported for representation in Qiskit SDK, export to OpenQASM 3, and submission to IBM Qiskit Runtime.
+If you do not use OpenQASM 3 directly yourself, you can safely use features that are supported for representation in Qiskit SDK, export to OpenQASM 3, and submission to IBM Quantum Compute Service.
 This includes features that cannot be loaded by Qiskit SDK from OpenQASM 3.
 </Admonition>
 
-| OpenQASM 3 Feature            | Qiskit SDK feature                   | Qiskit SDK | IBM Qiskit Runtime | Notes |
+| OpenQASM 3 Feature            | Qiskit SDK feature                   | Qiskit SDK | IBM Quantum Compute Service | Notes |
 |:------------------------------|:-------------------------------------|:----------:|:------------------:|:----- |
 | comments                      |                                      | ✅         | ✅                 | [1](#1)     |
 | QASM vstring                  |                                      | ✅         | ✅                 | [1](#1)     |

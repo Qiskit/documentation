@@ -17,13 +17,13 @@ python_api_name: qiskit.transpiler.passes.CollectCliffords
 
   **Parameters**
 
-  *   **do\_commutative\_analysis** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – if True, exploits commutativity relations between nodes.
-  *   **split\_blocks** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – if True, splits collected blocks into sub-blocks over disjoint qubit subsets.
-  *   **min\_block\_size** ([*int*](https://docs.python.org/3/library/functions.html#int)) – specifies the minimum number of gates in the block for the block to be collected.
-  *   **split\_layers** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – if True, splits collected blocks into sub-blocks over disjoint qubit subsets.
-  *   **collect\_from\_back** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – specifies if blocks should be collected started from the end of the circuit.
-  *   **matrix\_based** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – specifies whether to collect unitary gates which are Clifford gates only for certain parameters (based on their unitary matrix).
-  *   **max\_block\_width** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – specifies the maximum width of the block (that is, the number of qubits over which the block is defined) for the block to be collected.
+  *   **do\_commutative\_analysis** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) – if True, exploits commutativity relations between nodes.
+  *   **split\_blocks** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) – if True, splits collected blocks into sub-blocks over disjoint qubit subsets.
+  *   **min\_block\_size** ([*int*](https://docs.python.org/3/builtins/functions.html#int)) – specifies the minimum number of gates in the block for the block to be collected.
+  *   **split\_layers** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) – if True, splits collected blocks into layers of non-overlapping instructions (depth-1 sub-blocks).
+  *   **collect\_from\_back** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) – specifies if blocks should be collected started from the end of the circuit.
+  *   **matrix\_based** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) – specifies whether to collect unitary gates which are Clifford gates only for certain parameters (based on their unitary matrix).
+  *   **max\_block\_width** ([*int*](https://docs.python.org/3/builtins/functions.html#int) *| None*) – specifies the maximum width of the block (that is, the number of qubits over which the block is defined) for the block to be collected.
 
   ## Attributes
 
@@ -47,14 +47,14 @@ python_api_name: qiskit.transpiler.passes.CollectCliffords
 
   ### execute
 
-  <Function id="qiskit.transpiler.passes.CollectCliffords.execute" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/basepasses.py#L161-L180" signature="execute(passmanager_ir, state, callback=None)">
+  <Function id="qiskit.transpiler.passes.CollectCliffords.execute" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/basepasses.py#L162-L181" signature="execute(passmanager_ir, state, callback=None)">
     Execute optimization task for input Qiskit IR.
 
     **Parameters**
 
-    *   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) – Qiskit IR to optimize.
-    *   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
-    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable) *| None*) – A callback function which is called per execution of optimization task.
+    *   **passmanager\_ir** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit._accelerate.circuit.DAGCircuit")) – Qiskit IR to optimize.
+    *   **state** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit._accelerate.circuit.DAGCircuit")) – State associated with workflow execution by the pass manager itself.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[*[*Task*](qiskit.passmanager.Task "qiskit.passmanager.base_tasks.Task")*,* [*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit._accelerate.circuit.DAGCircuit")*,* [*PropertySet*](qiskit.passmanager.PropertySet "qiskit.passmanager.compilation_status.PropertySet")*,* [*float*](https://docs.python.org/3/builtins/functions.html#float)*,* [*int*](https://docs.python.org/3/builtins/functions.html#int)*], None] | None*) – A callback function which is called per execution of optimization task.
 
     **Returns**
 
@@ -62,17 +62,17 @@ python_api_name: qiskit.transpiler.passes.CollectCliffords
 
     **Return type**
 
-    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any), [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+    [tuple](https://docs.python.org/3/builtins/stdtypes.html#tuple)\[[*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit._accelerate.circuit.DAGCircuit"), [*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
   </Function>
 
   ### name
 
-  <Function id="qiskit.transpiler.passes.CollectCliffords.name" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/passmanager/base_tasks.py#L67-L69" signature="name()">
+  <Function id="qiskit.transpiler.passes.CollectCliffords.name" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/passmanager/base_tasks.py#L72-L74" signature="name()">
     Name of the pass.
 
     **Return type**
 
-    [str](https://docs.python.org/3/library/stdtypes.html#str)
+    [str](https://docs.python.org/3/builtins/stdtypes.html#str)
   </Function>
 
   ### run
@@ -91,7 +91,7 @@ python_api_name: qiskit.transpiler.passes.CollectCliffords
 
   ### update\_status
 
-  <Function id="qiskit.transpiler.passes.CollectCliffords.update_status" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/basepasses.py#L182-L190" signature="update_status(state, run_state)">
+  <Function id="qiskit.transpiler.passes.CollectCliffords.update_status" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/basepasses.py#L183-L191" signature="update_status(state, run_state)">
     Update workflow status.
 
     **Parameters**

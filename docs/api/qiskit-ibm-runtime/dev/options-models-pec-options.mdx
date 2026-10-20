@@ -1,0 +1,70 @@
+---
+title: PecOptions (dev version)
+description: API reference for qiskit_ibm_runtime.options_models.PecOptions in the dev version of qiskit-ibm-runtime
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_ibm_runtime.options_models.PecOptions
+---
+
+<span id="qiskit-ibm-runtime-options-models-pecoptions" />
+
+# qiskit\_ibm\_runtime.options\_models.PecOptions
+
+<Class id="qiskit_ibm_runtime.options_models.PecOptions" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/options_models/pec.py#L24-L48" signature="PecOptions" modifiers="pydantic model">
+  Bases: `BaseOptionsModel`
+
+  Probabalistic error cancellation mitigation options. This is only used by V2 Estimator.
+
+  **Config**
+
+  *   **validate\_assignment**: *bool = True*
+  *   **extra**: *str = forbid*
+
+  ### max\_overhead
+
+  <Attribute id="qiskit_ibm_runtime.options_models.PecOptions.max_overhead" modifiers="field">
+    Type: `Annotated`\[`float`, `Field`(`gt``=``0`)] | `None`
+
+    Default value: `100`
+
+    The maximum circuit sampling overhead allowed, or `None` for no maximum.
+
+    In order to remove the full learned noise, the number of randomizations should be multiplied by the sampling overhead, which is `gamma^2`.
+
+    The maximum overhead limits the sampling overhead allowed.
+  </Attribute>
+
+  ### noise\_gain
+
+  <Attribute id="qiskit_ibm_runtime.options_models.PecOptions.noise_gain" modifiers="field">
+    Type: `Annotated`\[`float`, `Field`(`ge``=``0`)] | `Literal`\[`'auto'`]
+
+    Default value: `'auto'`
+
+    The amount by which to scale the noise.
+
+    The amount by which to scale the noise, where:
+
+    *   A value of `0` corresponds to removing the full learned noise.
+    *   A value of `1` corresponds to no removal of the learned noise.
+    *   A value between `0` and `1` corresponds to partially removing the learned noise.
+    *   A value greater than one corresponds to amplifying the learned noise.
+
+    If `"auto"`, the value in the range `[0, 1]` will be chosen automatically for each input PUB by the formula `1 - log(max_overhead) / log(gamma^2)`.
+  </Attribute>
+
+  ### update
+
+  <Function id="qiskit_ibm_runtime.options_models.PecOptions.update" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/options_models/base.py#L46-L54" signature="update(**kwargs)">
+    Update the options.
+
+    **Parameters**
+
+    **kwargs** (*Any*)
+
+    **Return type**
+
+    None
+  </Function>
+</Class>
+

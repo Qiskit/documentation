@@ -18,6 +18,7 @@ import {
   htmlSignatureToMd,
   addExtraSignatures,
   createOpeningTag,
+  createMdxComponent,
   setMinimumHeadingLevel,
 } from "./generateApiComponents.js";
 import { CheerioDoc } from "../testUtils.js";
@@ -74,10 +75,8 @@ test.describe("createOpeningTag()", () => {
     };
 
     const tag = await createOpeningTag("Function", componentProps);
-    expect(tag).toEqual(`<Function 
+    expect(tag).toEqual(`<Function
     id='qiskit_ibm_runtime.Estimator.run'
-    attributeTypeHint='undefined'
-    attributeValue='undefined'
     isDedicatedPage='undefined'
     github='undefined'
     signature='Estimator.run(circuits, observables, parameter_values=None, **kwargs)'
@@ -95,10 +94,8 @@ test.describe("createOpeningTag()", () => {
     };
 
     const tag = await createOpeningTag("Function", componentProps);
-    expect(tag).toEqual(`<Function 
+    expect(tag).toEqual(`<Function
     id='qiskit_ibm_runtime.Estimator.run'
-    attributeTypeHint='undefined'
-    attributeValue='undefined'
     isDedicatedPage='undefined'
     github='undefined'
     signature='Estimator.run(circuits, observables, parameter_values=None, **kwargs)'
@@ -108,18 +105,14 @@ test.describe("createOpeningTag()", () => {
   `);
   });
 
-  test("Create Attribute tag with default value and type hint", async () => {
+  test("Create Attribute tag without type hint or value props", async () => {
     const componentProps = {
       id: "qiskit.circuit.QuantumCircuit.instance",
-      attributeTypeHint: "str | None",
-      attributeValue: "None",
     };
 
     const tag = await createOpeningTag("Attribute", componentProps);
-    expect(tag).toEqual(`<Attribute 
+    expect(tag).toEqual(`<Attribute
     id='qiskit.circuit.QuantumCircuit.instance'
-    attributeTypeHint='str | None'
-    attributeValue='None'
     isDedicatedPage='undefined'
     github='undefined'
     signature=''
@@ -135,10 +128,8 @@ test.describe("createOpeningTag()", () => {
     };
 
     const tag = await createOpeningTag("Class", componentProps);
-    expect(tag).toEqual(`<Class 
+    expect(tag).toEqual(`<Class
     id='qiskit.circuit.Sampler'
-    attributeTypeHint='undefined'
-    attributeValue='undefined'
     isDedicatedPage='undefined'
     github='undefined'
     signature=''
@@ -146,6 +137,99 @@ test.describe("createOpeningTag()", () => {
     extraSignatures='[]'
     >
   `);
+  });
+});
+
+test.describe("type and default in Attribute body", () => {
+  // Returns the MDX component string produced by createMdxComponent.
+  async function parseAttributeHtml(dt: string): Promise<string> {
+    const $ = load(`<div><dl class="py attribute">${dt}<dd></dd></dl></div>`);
+    const $dl = $("dl").first();
+    const $dt = $dl.find("dt").first();
+    const mdx = await createMdxComponent(
+      $,
+      [$dt],
+      $dl,
+      [],
+      undefined,
+      "attribute",
+      $dt.attr("id") ?? "",
+      { isCApi: false },
+    );
+    return mdx;
+  }
+
+  test("type hint with link appears in Attribute body", async () => {
+    const dt = `<dt id="qiskit_ibm_runtime.Executor.options">
+      <em class="property"><span class="pre">options</span><span class="p">:</span>
+      <a href="qiskit_ibm_runtime.options_models.ExecutorOptions#qiskit_ibm_runtime.options_models.ExecutorOptions">
+        <span class="pre">ExecutorOptions</span>
+      </a>
+      </em>
+      </dt>`;
+    const html = await parseAttributeHtml(dt);
+    expect(html).toContain(
+      `href="qiskit_ibm_runtime.options_models.ExecutorOptions`,
+    );
+    expect(html).toContain(`Type:`);
+  });
+
+  test("type and default value appear in Attribute body", async () => {
+    const dt = `<dt id="qiskit.transpiler.TranspileLayout.final_layout">
+      <em class="property"><span class="pre">final_layout</span><span class="p">:</span>
+      <a href="qiskit.transpiler.Layout#qiskit.transpiler.Layout">
+        <span class="pre">Layout</span>
+      </a>
+      <span class="pre">|</span>
+      <span class="pre">None</span>
+      </em>
+      <em class="property">
+      <span class="p">=</span>
+      <span class="pre">None</span>
+      </em>
+      </dt>`;
+    const html = await parseAttributeHtml(dt);
+    expect(html).toContain(`href="qiskit.transpiler.Layout`);
+    expect(html).toContain(`Type:`);
+    expect(html).toContain(`Default value:`);
+  });
+
+  test("attribute with no link still renders type in body", async () => {
+    const dt = `<dt id="qiskit_ibm_runtime.Executor.count">
+      <em class="property"><span class="pre">count</span><span class="p">:</span>
+      <span class="pre">int</span>
+      </em>
+      </dt>`;
+    const html = await parseAttributeHtml(dt);
+    expect(html).toContain(`int`);
+    expect(html).toContain(`Type:`);
+  });
+
+  test("heading is inserted before the Attribute tag", async () => {
+    const dt = `<dt id="qiskit.transpiler.TranspileLayout.final_layout">
+      <span class="sig-name descname"><span class="pre">final_layout</span></span>
+      <span class="property"><span class="p">:</span>
+        <a href="qiskit.transpiler.Layout.html#qiskit.transpiler.Layout"><span class="pre">Layout</span></a>
+      </span>
+      </dt>`;
+    const $ = load(`<div><dl class="py attribute">${dt}<dd></dd></dl></div>`);
+    const $dl = $("dl").first();
+    const $dt = $dl.find("dt").first();
+    await createMdxComponent(
+      $,
+      [$dt],
+      $dl,
+      [],
+      undefined,
+      "attribute",
+      $dt.attr("id") ?? "",
+      { isCApi: false },
+    );
+    const html = $("div").html() ?? "";
+    const headingPos = html.indexOf(`data-header-type="attribute-header"`);
+    const dlPos = html.indexOf(`<dl `);
+    expect(headingPos).toBeGreaterThanOrEqual(0);
+    expect(dlPos).toBeGreaterThan(headingPos);
   });
 });
 

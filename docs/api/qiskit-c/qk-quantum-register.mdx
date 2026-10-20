@@ -6,6 +6,8 @@ python_api_type: module
 python_api_name: QkQuantumRegister
 ---
 
+<span id="capi-quantum-register" />
+
 # QkQuantumRegister
 
 ```c
@@ -92,5 +94,122 @@ While circuits track registers, the registers themselves impart almost no behavi
   **Parameters**
 
   *   **reg** – A pointer to the register to free.
+</Function>
+
+### qk\_quantum\_register\_name
+
+<Function id="qk_quantum_register_name" signature="char *qk_quantum_register_name(const QkQuantumRegister *qreg)">
+  Get the name of a quantum register.
+
+  Returns a newly allocated C string containing the name of the quantum register.
+
+  <span id="group__QkQuantumRegister_1autotoc_md5" />
+
+  #### Example
+
+  ```c
+  QkQuantumRegister *qr = qk_quantum_register_new(5, "my_qreg");
+  char *name = qk_quantum_register_name(qr);
+  printf("Register name: %s\n", name);
+  qk_str_free(name);
+  qk_quantum_register_free(qr);
+  ```
+
+  <span id="group__QkQuantumRegister_1autotoc_md6" />
+
+  #### Safety
+
+  <span id="group__QkQuantumRegister_1autotoc_md6" />
+
+  Behavior is undefined if `qreg` is not a valid, non-null pointer to a `QkQuantumRegister`.
+
+  **Parameters**
+
+  *   **qreg** – A pointer to the quantum register.
+
+  **Returns**
+
+  A pointer to a newly allocated null-terminated string containing the register name. The caller must free this string using `qk_str_free`.
+</Function>
+
+### qk\_quantum\_register\_num\_bits
+
+<Function id="qk_quantum_register_num_bits" signature="size_t qk_quantum_register_num_bits(const QkQuantumRegister *qreg)">
+  Get the number of bits in a quantum register.
+
+  Returns the size (number of bits) of the quantum register.
+
+  <span id="group__QkQuantumRegister_1autotoc_md7" />
+
+  #### Example
+
+  ```c
+  QkQuantumRegister *qr = qk_quantum_register_new(5, "my_qreg");
+  size_t num_qubits = qk_quantum_register_num_bits(qr);
+  printf("Number of qubits: %zu\n", num_qubits);  // Prints: 5
+  qk_quantum_register_free(qr);
+  ```
+
+  <span id="group__QkQuantumRegister_1autotoc_md8" />
+
+  #### Safety
+
+  <span id="group__QkQuantumRegister_1autotoc_md8" />
+
+  Behavior is undefined if `qreg` is not a valid, non-null pointer to a `QkQuantumRegister`.
+
+  **Parameters**
+
+  *   **qreg** – A pointer to the quantum register.
+
+  **Returns**
+
+  The number of bits in the register.
+</Function>
+
+### qk\_quantum\_register\_circuit\_bits
+
+<Function id="qk_quantum_register_circuit_bits" signature="void qk_quantum_register_circuit_bits(const QkQuantumRegister *qreg, const QkCircuit *circuit, uint32_t *out_bits)">
+  Get the circuit bit indices for all qubits in a quantum register.
+
+  Outputs a mapping from each qubit in the quantum register to its corresponding index in the circuit’s qubit list. If a qubit from the register is not present in the circuit, its index in the mapping will be `UINT32_MAX`.
+
+  <span id="group__QkQuantumRegister_1autotoc_md9" />
+
+  #### Example
+
+  ```c
+  QkCircuit *qc = qk_circuit_new(2, 0);
+  QkQuantumRegister *qr = qk_quantum_register_new(3, "my_qreg");
+  qk_circuit_add_quantum_register(qc, qr);
+
+  uint32_t bit_indices[3];
+
+  qk_quantum_register_circuit_bits(qr, qc, bit_indices);
+
+  // bit_indices now contains [2, 3, 4] since all qubits are in the circuit
+  // and the circuit has 2 anonymous qubits
+
+  qk_quantum_register_free(qr);
+  qk_circuit_free(qc);
+  ```
+
+  <span id="group__QkQuantumRegister_1autotoc_md10" />
+
+  #### Safety
+
+  <span id="group__QkQuantumRegister_1autotoc_md10" />
+
+  Behavior is undefined if:
+
+  *   `qreg` is not a valid, non-null pointer to a `QkQuantumRegister`.
+  *   `circuit` is not a valid, non-null pointer to a `QkCircuit`.
+  *   `qreg` has one or more bits and `out_bits` is not an aligned, non-null pointer to an array with at least `qk_quantum_register_num_bits(qreg)` elements.
+
+  **Parameters**
+
+  *   **qreg** – A pointer to the quantum register to map.
+  *   **circuit** – A pointer to the circuit containing the qubits.
+  *   **out\_bits** – A pointer to an array where the mapped indices will be written. The array must be pre-allocated with at least `qk_quantum_register_num_bits` elements for `qreg`. Each element will contain either the circuit bit index or `UINT32_MAX` if the qubit is not in the circuit.
 </Function>
 

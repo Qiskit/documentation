@@ -19,6 +19,7 @@ import { Image } from "./HtmlToMdResult.js";
 import { Metadata, ApiObjectName, API_OBJECTS } from "./Metadata.js";
 import { createMdxComponent } from "./generateApiComponents.js";
 import { externalRedirects } from "../../../config/external-redirects.js";
+import { filenameToUri } from "cspell/dist/esm/util/fileHelper.js";
 
 export type ProcessedHtml = {
   html: string;
@@ -36,6 +37,7 @@ interface ProcessHtmlOptions {
   hasSeparateReleaseNotes: boolean;
   isCApi: boolean;
   hasRootNamespaceFile: boolean;
+  normalizeUrl?: (url: string) => string;
 }
 
 export async function processHtml(
@@ -58,21 +60,20 @@ export async function processHtml(
   const isIndex = fileName.endsWith("index.html");
   const isRoot =
     options.hasRootNamespaceFile && fileName.endsWith("/root.html");
-  const isIbmQuantumSchemasPage = fileName.endsWith(
-    "/ibm_quantum_schemas.html",
-  );
   const images = loadImages(
     $,
     $main,
     imageDestination,
     isReleaseNotes,
     hasSeparateReleaseNotes,
+    fileName,
   );
   if (isReleaseNotes) {
     renameAllH1s($, releaseNotesTitle);
   }
 
   // Warning: the sequence of operations often matters.
+  removeInternalImageReferenceLinks($, $main);
   removeHtmlExtensionsInRelativeLinks($, $main);
   if (options.isCApi) removeCDomainPrefixFromAnchors($, $main);
   removePermalinks($main);
@@ -80,6 +81,7 @@ export async function processHtml(
   removePublicMembersRubric($main);
   removeMatplotlibFigCaptions($main);
   handleSphinxDesignCards($, $main);
+  handleSphinxDesignTabs($, $main);
   addLanguageClassToCodeBlocks($, $main, options);
   replaceViewcodeLinksWithGitHub($, $main, determineGithubUrl);
   updateRedirectedExternalLinks($, $main, externalRedirects);
@@ -88,13 +90,10 @@ export async function processHtml(
   removeColonSpans($main);
   handleFootnotes($, $main);
   preserveMathBlockWhitespace($, $main);
+  expandTableRowspan($, $main);
 
   const meta: Metadata = {};
-  await processMembersAndSetMeta($, $main, meta, {
-    ...options,
-    isRoot,
-    isIbmQuantumSchemasPage,
-  });
+  await processMembersAndSetMeta($, $main, meta, { ...options, isRoot });
   if (options.isCApi) maybeSetCMetadata($main, meta, isReleaseNotes, isIndex);
   else maybeSetPythonModuleMetadata($, $main, meta);
 
@@ -110,16 +109,27 @@ export function loadImages(
   imageDestination: string,
   isReleaseNotes: boolean,
   hasSeparateReleaseNotes: boolean,
+  htmlFileName: string,
 ): Image[] {
   return $main
     .find("img")
     .toArray()
-    .filter((img) => $(img).attr("src"))
+    .filter((img) => {
+      const src = $(img).attr("src");
+      return src && !src.startsWith("http://") && !src.startsWith("https://");
+    })
     .map((img) => {
       const $img = $(img);
+      const src = $img.attr("src")!;
 
-      const fileName = $img.attr("src")!.split("/").pop()!;
+      const fileName = src.split("/").pop()!;
       const fileExtension = path.extname(fileName);
+
+      // Resolve the image's path relative to the artifact root so saveImages
+      // can find files in _static/ or other subdirectories, not just _images/.
+      const originSrc = path.normalize(
+        path.join(path.dirname(htmlFileName), src),
+      );
 
       // We convert PNG and JPG to AVIF for reduced file size. The image-copying
       // logic detects changed extensions and converts the files.
@@ -134,7 +144,7 @@ export function loadImages(
       }
 
       $img.attr("src", dest);
-      return { fileName, dest };
+      return { fileName, dest, originSrc };
     });
 }
 
@@ -152,9 +162,28 @@ export function removeHtmlExtensionsInRelativeLinks(
 }
 
 /**
- * Sphinx's C domain emits cross-reference hrefs like `#c.symbol_name`, but our
- * <Function> components use bare IDs (e.g. `symbol_name`). Strip the `c.` prefix
- * so the anchors resolve correctly.
+ * Sphinx wraps inline images in <a class="reference internal image-reference"> as a
+ * lightbox pattern. The href points to the raw image in the artifact (e.g. _images/foo.png)
+ * and is not rewritten by the pipeline, so rehype-remark produces [![alt](src)] with a
+ * dangling bracket. Unwrap these anchors so the image renders without a link.
+ */
+export function removeInternalImageReferenceLinks(
+  $: CheerioAPI,
+  $main: Cheerio<any>,
+): void {
+  $main.find("a.image-reference").each((_, link) => {
+    const $link = $(link);
+    const href = $link.attr("href");
+    if (href && !href.startsWith("http://") && !href.startsWith("https://")) {
+      $link.replaceWith($link.contents());
+    }
+  });
+}
+
+/**
+ * Sphinx's C domain emits cross-reference hrefs like `#c.symbol_name` (same-page)
+ * and `page.html#c.symbol_name` (cross-page), but our <Function> components use
+ * bare IDs (e.g. `symbol_name`). Strip the `c.` prefix so the anchors resolve correctly.
  */
 export function removeCDomainPrefixFromAnchors(
   $: CheerioAPI,
@@ -163,8 +192,8 @@ export function removeCDomainPrefixFromAnchors(
   $main.find("a").each((_, link) => {
     const $link = $(link);
     const href = $link.attr("href");
-    if (href && href.startsWith("#c.")) {
-      $link.attr("href", `#${href.slice(3)}`);
+    if (href && href.includes("#c.")) {
+      $link.attr("href", href.replace("#c.", "#"));
     }
   });
 }
@@ -235,16 +264,54 @@ export function handleSphinxDesignCards(
   });
 }
 
+/**
+ * Converts sphinx-design `tab-set` directives into custom `<tabs>` and `<tabitem>`
+ * elements, which htmlToMd turns into the `Tabs` and `TabItem` MDX components.
+ *
+ * The tab-set HTML is a flat list of `input`, `label` and `div.sd-tab-content`
+ * siblings, so we pair each label with the content that follows it.
+ */
+export function handleSphinxDesignTabs(
+  $: CheerioAPI,
+  $main: Cheerio<any>,
+): void {
+  // Document order puts outer tab sets first. Reversing processes nested sets first.
+  $main
+    .find(".sd-tab-set")
+    .toArray()
+    .reverse()
+    .forEach((tabSet) => {
+      const $tabSet = $(tabSet);
+      $tabSet.find("button.copybtn").remove();
+
+      const $tabs = $("<tabs></tabs>");
+      $tabSet.children("label.sd-tab-label").each((_, label) => {
+        const $label = $(label);
+        const labelText = $label.text().trim();
+        const syncId = $label.attr("data-sync-id");
+        const syncGroup = $label.attr("data-sync-group");
+        const value =
+          syncId ?? labelText.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+
+        if (syncGroup && !$tabs.attr("group")) $tabs.attr("group", syncGroup);
+        $("<tabitem></tabitem>")
+          .attr("value", value)
+          .attr("label", labelText)
+          .append($label.next(".sd-tab-content").contents())
+          .appendTo($tabs);
+      });
+      $tabSet.replaceWith($tabs);
+    });
+}
+
 function detectLanguage(
   $pre: Cheerio<any>,
   options: { isCApi: boolean },
 ): string | null {
   const defaultLanguage = options.isCApi ? "c" : "python";
   // Two levels up from `pre` should have class `highlight-<language>`
-  const detectedLanguage = $pre
-    .parent()
-    .parent()[0]
-    .attribs.class.match(/(?<=highlight-)\w+/);
+  const grandparentClass = $pre.parent().parent()[0]?.attribs?.class ?? "";
+  const detectedLanguage = grandparentClass.match(/(?<=highlight-)\w+/);
   if (!detectedLanguage) return defaultLanguage;
   const langName = detectedLanguage[0];
   if (langName === "none") return null;
@@ -378,16 +445,41 @@ export function removeColonSpans($main: Cheerio<any>): void {
 }
 
 export function handleFootnotes($: CheerioAPI, $main: Cheerio<any>): void {
-  $main
-    .find(".footnote, .footnote-reference, .footnote dt.label")
-    .toArray()
-    .forEach((footnote) => {
-      const $footnote = $(footnote);
-      const id = $footnote.attr("id");
-      if (id) {
-        $footnote.before(`<span id="${id}" class="target"></span>`);
-      }
-    });
+  // Docutils renders footnotes (`.. [1]`) and citations (`.. [Label]`) with different
+  // classes: `footnote`/`footnote-reference` versus `citation`/`citation-reference`.
+  // Both carry the `id` that in-page links target, so both must be preserved.
+  const preserveId = (el: any) => {
+    const $el = $(el);
+    const id = $el.attr("id");
+    if (id) {
+      $el.before(`<span id="${id}" class="target"></span>`);
+    }
+  };
+
+  // Definitions (and any reference elements that carry the dedicated classes).
+  const $definitions = $main.find(
+    ".footnote, .footnote-reference, .footnote dt.label, " +
+      ".citation, .citation-reference, .citation dt.label",
+  );
+  $definitions.toArray().forEach(preserveId);
+
+  // Some docutils versions render a named citation's *reference* as a plain
+  // internal-reference anchor (`<a class="reference internal" href="#jw-ferm"
+  // id="id3">`) rather than `.citation-reference`, so the selector above misses
+  // it and the `id` the definition's back-link targets (`[JW-ferm](#id3)`)
+  // disappears. Preserve internal-reference anchors whose href points at a
+  // footnote/citation definition.
+  const definitionIds = new Set<string>();
+  $main.find(".footnote, .citation").each((_, el) => {
+    const id = $(el).attr("id");
+    if (id) definitionIds.add(id);
+  });
+  $main.find("a.reference.internal[id]").each((_, el) => {
+    const href = $(el).attr("href");
+    if (href?.startsWith("#") && definitionIds.has(href.slice(1))) {
+      preserveId(el);
+    }
+  });
 }
 
 export async function processMembersAndSetMeta(
@@ -397,7 +489,8 @@ export async function processMembersAndSetMeta(
   options: {
     isCApi: boolean;
     isRoot: boolean;
-    isIbmQuantumSchemasPage: boolean;
+    fileName: string;
+    normalizeUrl?: (url: string) => string;
   },
 ): Promise<void> {
   // Some packages might include a root page where all the re-exports
@@ -410,9 +503,22 @@ export async function processMembersAndSetMeta(
 
   // qiskit-ibm-runtime documents the ibm-quantum-schemas package index page
   // manuall, so we create a synthetic module to add it to the left nav bar
-  if (options.isIbmQuantumSchemasPage) {
+  if (options.fileName.endsWith("/ibm_quantum_schemas.html")) {
     meta.apiType = "syntheticModule";
     meta.apiName = "IBM Quantum Schemas";
+    meta.untranslatable = true;
+    return;
+  }
+
+  // fermions transpiler.passes.plugins page uses .. currentmodule::  instead of .. automodule::
+  // so it  does not emits amodule-* anchor for maybeSetPythonModuleMetadata to detect
+  if (
+    options.fileName.endsWith(
+      "pydoc/qiskit_fermions.transpiler.passes.plugins.html",
+    )
+  ) {
+    meta.apiType = "syntheticModule";
+    meta.apiName = "Transpiler Pass Plugins";
     meta.untranslatable = true;
     return;
   }
@@ -526,6 +632,9 @@ export function preserveMathBlockWhitespace(
     .toArray()
     .map((el) => {
       const $el = $(el);
+      // Remove equation number labels — the anchor IDs are on the parent divs,
+      // not the eqno span, so links to equations still resolve correctly.
+      $el.find("span.eqno").remove();
       $el.replaceWith(`<pre class="math">${$el.html()}</pre>`);
     });
 }
@@ -548,6 +657,26 @@ export function updateModuleHeadings($: CheerioAPI, $main: Cheerio<any>): void {
       }
       $el.replaceWith(replacement);
     });
+}
+
+export function expandTableRowspan($: CheerioAPI, $main: Cheerio<any>): void {
+  $main.find("td[rowspan], th[rowspan]").each((_, el) => {
+    const $el = $(el);
+    const span = parseInt($el.attr("rowspan") ?? "1", 10);
+    $el.removeAttr("rowspan");
+    let $row = $el.closest("tr");
+    const colIndex = $row.children("td,th").index($el);
+    for (let i = 1; i < span; i++) {
+      $row = $row.next("tr");
+      const $cells = $row.children("td,th");
+      const clone = $el.clone();
+      if (colIndex >= $cells.length) {
+        $row.append(clone);
+      } else {
+        $cells.eq(colIndex).before(clone);
+      }
+    }
+  });
 }
 
 function getApiType($dl: Cheerio<any>): ApiObjectName | undefined {

@@ -1,0 +1,295 @@
+// This code is a Qiskit project.
+//
+// (C) Copyright IBM 2026.
+//
+// This code is licensed under the Apache License, Version 2.0. You may
+// obtain a copy of this license in the LICENSE file in the root directory
+// of this source tree or at http://www.apache.org/licenses/LICENSE-2.0.
+//
+// Any modifications or derivative works of this code must retain this
+// copyright notice, and modified files need to carry a notice indicating
+// that they have been altered from the originals.
+
+// Stages shared between the API docs pipeline (apiDocsPipeline.ts) and the
+// addon docs pipeline (addonDocsPipeline.ts). Each pipeline orchestrates these
+// stages differently; shared behavior lives here so the two pipelines do not
+// drift.
+
+import { dirname, join, parse, relative } from "path";
+import { readFile, writeFile } from "fs/promises";
+
+import { load } from "cheerio";
+import { mkdirp } from "mkdirp";
+import { uniqBy } from "lodash-es";
+
+import { Image, HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
+import { ObjectsInv } from "./objectsInv.js";
+import { Pkg } from "./Pkg.js";
+import addFrontMatter from "./addFrontMatter.js";
+import { dedupeHtmlIdsFromResults } from "./dedupeHtmlIds.js";
+import { handleReleaseNotesFile } from "./releaseNotes.js";
+import { mergeClassMembers } from "./mergeClassMembers.js";
+import {
+  normalizeResultUrls,
+  kebabCaseAndShortenPage,
+} from "./normalizeResultUrls.js";
+import { DOCS_BASE_PATH } from "./paths.js";
+import removeMathBlocksIndentation from "./removeMathBlocksIndentation.js";
+import { saveImages } from "./saveImages.js";
+import { specialCaseResults } from "./specialCaseResults.js";
+import { sphinxHtmlToMarkdown } from "./htmlToMd.js";
+import { updateLinks } from "./updateLinks.js";
+
+export async function convertHtmlToMarkdown(
+  pkg: Pkg,
+  artifactPath: string,
+  docsBaseFolder: string,
+  outputPath: string,
+  filePaths: string[],
+  imageDestination: string,
+  extractfrontMatter?: boolean,
+): Promise<HtmlToMdResultWithUrl[]> {
+  const results: HtmlToMdResultWithUrl[] = [];
+  for (const file of filePaths) {
+    const html = await readFile(join(artifactPath, file), "utf-8");
+    const result = await sphinxHtmlToMarkdown({
+      html,
+      fileName: file,
+      determineGithubUrl: pkg.determineGithubUrlFn(),
+      imageDestination,
+      releaseNotesTitle: pkg.releaseNotesTitle(),
+      hasSeparateReleaseNotes: pkg.hasSeparateReleaseNotes(),
+      isCApi: pkg.isCApi(),
+      hasRootNamespaceFile: pkg.hasRootNamespaceFile,
+      normalizeUrl: pkg.kebabCaseAndShortenUrls
+        ? (url: string) => kebabCaseAndShortenPage(url, pkg.name)
+        : undefined,
+    });
+
+    // Skip empty markdown (HTML redirects, etc.).
+    if (result.markdown == "") continue;
+
+    const { dir, name } = parse(`${outputPath}/${file}`);
+    const url = `/${relative(docsBaseFolder, dir)}/${name}`;
+
+    if (extractfrontMatter) {
+      // extracts front matter from html source rather than generating it in addFrontMatter.js
+      result.meta.hardcodedFrontmatter = extractHtmlFrontmatter(html, pkg, url);
+    }
+    results.push({ ...result, url });
+  }
+  return results;
+}
+
+/**
+ * Extract title/description frontmatter directly from the Sphinx HTML <h1>.
+ * Used by the addon pipeline (extractfrontMatter=true) so addon pages get
+ * human-readable titles rather than the auto-generated slugs that addFrontMatter.ts
+ * would derive from the URL.
+ */
+function extractHtmlFrontmatter(html: string, pkg: Pkg, url: string): string {
+  const $ = load(html);
+  const rawH1 = $("h1")
+    .first()
+    .clone()
+    .find("a.headerlink")
+    .remove()
+    .end()
+    .text()
+    .trim();
+  // processHtml.ts renames all <h1>s to pkg.releaseNotesTitle() for release
+  // notes pages, so use that value to keep frontmatter title in sync with the
+  // actual heading in the output markdown.
+  const isReleaseNotes = url.endsWith("/release-notes");
+  const h1 = isReleaseNotes ? pkg.releaseNotesTitle() : rawH1;
+  const isRootIndex = url.endsWith(`/${pkg.name}/index`);
+  const description = isRootIndex
+    ? `Documentation for the latest version of ${pkg.title}`
+    : `${h1} for the latest version of ${pkg.title}`;
+  return [`title: "${h1}"`, `description: "${description}"`].join("\n");
+}
+
+/**
+ * Apply the shared post-processing pipeline to a set of results.
+ * Order is load-bearing — both pipelines call the stages in this sequence.
+ */
+export async function postProcess(
+  pkg: Pkg,
+  initialResults: HtmlToMdResultWithUrl[],
+  objectsInv: ObjectsInv | undefined,
+  allInvs?: Map<string, ObjectsInv>,
+): Promise<HtmlToMdResultWithUrl[]> {
+  const results = await mergeClassMembers(initialResults);
+
+  normalizeResultUrls(results, {
+    kebabCaseAndShorten: pkg.kebabCaseAndShortenUrls,
+    pkgName: pkg.name,
+  });
+
+  specialCaseResults(results);
+  rewriteApiDocsLinks(results, pkg);
+
+  await updateLinks(
+    results,
+    {
+      kebabCaseAndShorten: pkg.kebabCaseAndShortenUrls,
+      pkgName: pkg.name,
+      pkgOutputDir: pkg.apiOutputDir(DOCS_BASE_PATH),
+    },
+    objectsInv,
+    allInvs,
+  );
+
+  await dedupeHtmlIdsFromResults(results);
+  removeMathBlocksIndentation(results);
+  addFrontMatter(results, pkg);
+  return results;
+}
+
+function rewriteApiDocsLinks(results: HtmlToMdResultWithUrl[], pkg: Pkg) {
+  for (const result of results) {
+    result.markdown = result.markdown.replace(
+      /\]\(([^)]+)\)/g,
+      (match, url) => {
+        const rewritten =
+          rewriteApiDocsLink(url, pkg) ?? rewriteGuidesLink(url, pkg);
+        return rewritten ? `](${rewritten})` : match;
+      },
+    );
+  }
+}
+
+/**
+ * Map a Sphinx-relative link into the package's API docs (`apidocs/`,
+ * `apidoc/`, `stubs/`, `pydoc/`) or release notes to its `/docs/api/...` URL.
+ * Returns undefined for any other link. The C API (`cdoc/`) is handled later,
+ * by `normalizeUrl` in updateLinks.ts.
+ *
+ * Also used by notebookStages.ts, so notebook links into the API behave like
+ * links from HTML pages.
+ */
+export function rewriteApiDocsLink(url: string, pkg: Pkg): string | undefined {
+  const apiBase = pkg.apiOutputDir(DOCS_BASE_PATH);
+  // For C API packages, stubs/pydoc links point to the companion Python package.
+  const pythonSiblingPkg = pkg.pythonSiblingName();
+  const pythonApiBase = apiBase.replace(pkg.name, pythonSiblingPkg);
+  const githubIo = `https://qiskit.github.io/${pkg.name}`;
+
+  const apiMatch = url.match(
+    /^(?:\.\.\/)*?(?:apidocs|apidoc|stubs|pydoc)\/([^#]+)(#.+)?$/,
+  );
+  if (apiMatch) {
+    const [, page, anchor] = apiMatch;
+    // Only kebab-case the page name when the target package uses kebab-case
+    // URLs. For C packages the sibling is the Python companion; for Python
+    // packages the sibling is the package itself.
+    const targetPkg = pkg.isCApi() ? pythonSiblingPkg : pkg.name;
+    const targetUsesKebab =
+      pkg.kebabCaseAndShortenUrls && targetPkg !== "qiskit";
+    // `page` may include a nested folder, e.g. `generated/qiskit_pkg.Foo`.
+    // Kebab-case only the final segment so folder separators survive —
+    // kebabCase() itself would otherwise turn `generated/foo` into
+    // `generated-foo`.
+    const pageParts = page.split("/");
+    const kebabPage = targetUsesKebab
+      ? [
+          ...pageParts.slice(0, -1),
+          kebabCaseAndShortenPage(pageParts.at(-1)!, targetPkg),
+        ].join("/")
+      : page;
+    return `${pythonApiBase}/${kebabPage}${anchor ?? ""}`;
+  }
+
+  // Release notes live under the API pipeline's output, even when
+  // referenced from addon guides/tutorials. Catches relative
+  // `release-notes.html`, github.io-absolute, and .html-less forms.
+  const releaseNotesMatch = url.match(
+    new RegExp(
+      `^(?:${githubIo}/|(?:\\.\\./)*?)release[_-]notes(?:\\.html)?(#.*)?$`,
+    ),
+  );
+  if (releaseNotesMatch) {
+    return `${apiBase}/release-notes${releaseNotesMatch[1] ?? ""}`;
+  }
+
+  return undefined;
+}
+
+/**
+ * Addon API reference pages link back to guides with paths relative to
+ * the sphinx source tree (e.g. `../../guides/formalism#anchor`).
+ * Rewrite these to the guide's absolute path under docs/addons.
+ * For C API packages the guides live under the companion Python package
+ * (`qiskit-fermions-c` → `docs/addons/qiskit-fermions/guides/…`), so use
+ * the Python sibling rather than `pkg.name`.
+ */
+function rewriteGuidesLink(url: string, pkg: Pkg): string | undefined {
+  if (!pkg.isAddon()) return undefined;
+  const match = url.match(/^(?:\.\.\/)*guides\/([^#]+)(#.+)?$/);
+  if (!match) return undefined;
+  const [, page, anchor] = match;
+  const pythonSiblingPkg = pkg.isCApi() ? pkg.artifactPackageName : pkg.name;
+  // The guide pages on disk use kebab-case slugs (the addon TOC's
+  // hrefToSlug kebab-cases them too), so a source name like
+  // `1d_fermi_hubbard` must become `1-d-fermi-hubbard` to resolve.
+  const slug = pkg.kebabCaseAndShortenUrls
+    ? kebabCaseAndShortenPage(page, pythonSiblingPkg)
+    : page;
+  return `${DOCS_BASE_PATH}/addons/${pythonSiblingPkg}/guides/${slug}${anchor ?? ""}`;
+}
+
+// ---------------------------------------------------------------------------
+// Writing outputs
+// ---------------------------------------------------------------------------
+
+/**
+ * Write each markdown result to disk at `<docsBaseFolder>/<result.url>.mdx`.
+ * Release notes are routed through `handleReleaseNotesFile` so the caller
+ * doesn't have to special-case them; the pipelines that don't produce release
+ * notes (addons excludes them via their glob) are unaffected.
+ */
+export async function writeMarkdownResults(
+  pkg: Pkg,
+  docsBaseFolder: string,
+  results: HtmlToMdResultWithUrl[],
+) {
+  for (const result of results) {
+    const path = `${docsBaseFolder}${result.url}.mdx`;
+    if (path.endsWith("release-notes.mdx")) {
+      if (!pkg.releaseNotesConfig.enabled) continue;
+
+      const shouldWriteResult = await handleReleaseNotesFile(result, pkg);
+      if (!shouldWriteResult) continue;
+    }
+
+    await mkdirp(dirname(path));
+    await writeFile(path, result.markdown);
+  }
+}
+
+/**
+ * Copy images referenced by the results from the artifact's `_images/` folder
+ * into `destFolder`. The caller owns the destination path, which is how the
+ * API pipeline and the addon pipeline route images to different locations
+ * under `public/docs/images/`.
+ */
+export async function copyImages(
+  pkg: Pkg,
+  artifactPath: string,
+  destFolder: string,
+  results: HtmlToMdResultWithUrl[],
+  extraImages: Image[] = [],
+) {
+  console.log("Saving images");
+  const allImages = uniqBy(
+    [...results.flatMap((result) => result.images), ...extraImages],
+    (image) => image.fileName,
+  );
+  await saveImages(
+    allImages,
+    `${artifactPath}/_images`,
+    destFolder,
+    pkg,
+    artifactPath,
+  );
+}

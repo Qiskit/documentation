@@ -76,7 +76,7 @@ cmake ..
 make
 ```
 
-By default, the `CMakeLists.txt` file expects the Slurm header file (`slurm.h`) to be located in `/usr/include/slurm`, but this can be customized as shown below.
+By default, the `CMakeLists.txt` file expects the Slurm header file (`slurm.h`) to be located in `/usr/include/slurm`, but this can be customized as follows.
 
 ```shell-session
 SLURM_INCLUDE_DIRS=<directory containing slurm/slurm.h> cmake ..
@@ -96,9 +96,12 @@ You can use the available optional arguments to add environment variables to the
 ```bash
 --env:{variable name}={value}
 ```
-For example, when interacting with quantum resources via an HTTP proxy, the environment variables `http_proxy`, `https_proxy`, and `no_proxy` are required. These can be added as shown below.
+For example, when interacting with quantum resources via an HTTP proxy, the environment variables `http_proxy`, `https_proxy`, and `no_proxy` are required. These can be added as follows.
 ```bash
-optional /usr/lib64/slurm/spank_qrmi.so /etc/slurm/qrmi_config.json --env:http_proxy=http://192.168.1.128:3128 --env:https_proxy=http://192.168.1.128:3128
+optional /usr/lib64/slurm/spank_qrmi.so /etc/slurm/qrmi_config.json \
+  --env:http_proxy=http://192.168.1.128:3128 \
+  --env:https_proxy=http://192.168.1.128:3128
+
 ```
 </Admonition>
 For the allocator node, your don't need to specify the path to qrmi_config.json, as in the following.

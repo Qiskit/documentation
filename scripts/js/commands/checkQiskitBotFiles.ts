@@ -51,6 +51,7 @@ const GLOBS = [
   "{docs,learning}/**/*.{ipynb,mdx}",
   "!docs/api/**/*",
   "docs/api/functions/**",
+  "!docs/addons/**/*",
 ];
 
 async function main() {

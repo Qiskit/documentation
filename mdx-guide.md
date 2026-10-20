@@ -184,19 +184,6 @@ By default, the title is the `type` capitalized. You can customize it by setting
 </Admonition>
 ```
 
-We also have a specialized admonition for Qiskit Code Assistant prompt suggestions. Warning: avoid a trailing comma on the last entry in `prompts`!
-
-```mdx
-<CodeAssistantAdmonition
-  tagLine="Need help? Try asking Qiskit Code Assistant."
-  prompts={[
-    "# Print the version of Qiskit we're using",
-    "# Return True if the version of Qiskit is 1.0 or greater",
-    "# Install Qiskit 1.0.2"
-  ]}
-/>
-```
-
 ### Accordions
 
 Sometimes called "twisties", accordions contain hidden content that is uncovered when a user clicks them. There are two parts to this component:

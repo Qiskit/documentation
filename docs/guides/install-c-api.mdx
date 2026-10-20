@@ -2,12 +2,11 @@
 title: Install the Qiskit C API
 description: How to install and use the Qiskit C API as standalone library
 ---
-{/* cspell:ignore pythonlib */}
+{/* cspell:ignore pythonlib, winget, QGSS, miniconda, miniforge, mambaforge, vcvars, vswhere, cand */}
 
 # Install the Qiskit C API
 
-This guide describes how to install and use the Qiskit C API. To see how to extend your
-Qiskit Python workflow with C, read [Extend Python with the Qiskit C API](/docs/guides/c-extension-for-python).
+This guide describes how to install and use the Qiskit C API. After the install is complete, read [Extend Python with the Qiskit C API](/docs/guides/c-extension-for-python).
 
 The following example builds an observable with C:
 ```c
@@ -40,7 +39,7 @@ int main(int argc, char *argv[]) {
     return 0;
 }
 ```
-
+<span id="unix"></span>
 ## UNIX-like
 
 This section provides build instructions for UNIX-like systems.
@@ -51,8 +50,8 @@ Compilation requires the following tools:
 * A Rust compiler: see for example the [guide on installing Qiskit from source](/docs/guides/install-qiskit-source)
 * A C compiler: for example, GCC on Linux and Clang on MacOS. Qiskit's C API is compatible with a compiler conforming to the [C11](https://en.wikipedia.org/wiki/C11_(C_standard_revision)) standard.
 * [`cbindgen`](https://github.com/mozilla/cbindgen): a tool to create the C header, which you can install with `cargo install cbindgen`
-    Note that running the tool from the command line should be enabled, which might require exporting your `PATH` variable to include `/path/to/.cargo/bin`
-* Python library installed (Python 3.9+): The Python library is required during dynamic linking. Notice that Python is not used at runtime and the interpreter is never initialized; only some symbols from `libpython` need to be defined. See [this issue](https://github.com/Qiskit/qiskit/issues/14240) for more details
+   Running the tool from the command line should be enabled, which might require exporting your `PATH` variable to include `/path/to/.cargo/bin`.
+* Python library installed (Python 3.9+): The Python library is required during dynamic linking. Notice that Python is not used at runtime and the interpreter is never initialized; only some symbols from `libpython` need to be defined. See [this issue](https://github.com/Qiskit/qiskit/issues/14240) for more details.
 * (GNU) Make: this is optional but is recommended to use automated install processes.
 
 This code verifies that everything has been installed:
@@ -121,39 +120,485 @@ boundaries: [0, 3] }
 
 This section provides build instructions for Windows systems.
 
+There are two independent ways to use the C API on Windows:
+
+* **Build Python extension modules** that use the Qiskit C API. Follow Steps 1-5. This path uses the C headers shipped with the `qiskit` Python package and does not require Rust or cbindgen.
+* **Build the standalone C library** to link against from a pure C program, as is done in the [UNIX-like](#unix) section. Complete Step 1, then skip to [Build the standalone library](#build-the-standalone-library), which lists its additional requirements.
+
 ### Requirements
 
-Compilation requires the following tools:
+- Administrator rights are required for some steps.
+- 5-8 GB free disk space.
+- A C compiler: Microsoft Visual C++ (MSVC), installed in Step 1.
+- A 64-bit Python installation (3.10 or later), installed in Step 1.
+
+### Before you begin
+
+Create your workspace.  This should be a short path on a local drive. Do not use OneDrive-synced folders (such as Documents or Desktop), network drives, or paths with spaces or non-ASCII characters. If your user name contains non-English characters, don't put it under your user folder.
+
+Examples of good workspace paths: `C:\workspace`, `D:\workspace`, `C:\Users\john\workspace`
+
+### Step 1. Install the prerequisites
+
+<Accordion>
+<AccordionItem title="MSVC Build Tools (C compiler) — install this first">
+This is a large download (2-5 GB, 10-30 min). Install it first so you know immediately whether your computer is compatible.
+
+<Admonition type="note">
+Requires administrator rights.
+</Admonition>
+
+**Option A — `winget`** 
+Open a PowerShell terminal and run the following:
+
+```powershell
+winget install Microsoft.VisualStudio.2022.BuildTools --override "--add Microsoft.VisualStudio.Workload.VCTools --includeRecommended --passive --wait"
+```
+
+The terminal appears frozen while the installer runs.  This is normal and will take 10-30 minutes. Check your taskbar for a "Visual Studio Installer" window.
+
+If `winget` is not recognized, update [App Installer](https://apps.microsoft.com/detail/9nblggh4nns1) from the Microsoft Store, or use Option B.
+
+**Option B — manual download**
+Open the [Visual Studio Build Tools for C++](https://visualstudio.microsoft.com/visual-cpp-build-tools/) website and click Download Build Tools.  Run the executable to start the install.
+
+When the Installing Visual Studio window opens, on the Workloads tab, choose "Desktop development with C++". See the [Install C and C++ support in Visual Studio](https://learn.microsoft.com/en-us/cpp/build/vscpp-step-0-installation?view=msvc-170#step-4---choose-workloads) page for further details. 
+</AccordionItem>
+<AccordionItem title="VS Code">
+Download VS Code from the [Visual Studio Code](https://code.visualstudio.com/) site, or run `winget install Microsoft.VisualStudio.Code`. Run the downloaded executable file to install VS Code.
+
+After it is installed, continue with these steps:
+1. Open VS Code
+2. Click File → Open Folder, then select your workspace (for example, `C:\workspace`).
+3. Click Terminal → New terminal to open a PowerShell terminal.
+4. Click the Extensions icon on the left or press Ctrl+Shift+X. In the Extensions window, search for and install `ms-python.python`, `ms-toolsai.jupyter`, and `ms-vscode.cpptools`.
+
+Run the rest of the commands in this guide in the VS Code terminal, unless otherwise instructed. The VS Code terminal defaults to PowerShell, preventing mix-ups with the Windows built-in command window. 
+
+Set the workspace variable.  For example, if your workspace is called `workspace`, run the following:
+
+```powershell
+$WORKSPACE = "C:\workspace"   # change to your workspace path
+mkdir $WORKSPACE -Force
+cd $WORKSPACE
+```
+</AccordionItem>
+<AccordionItem title="Python 3.12 (recommended version)">
+Python 3.12 is recommended because it has the best wheel availability for `qiskit-aer` and other dependencies. 3.10 and 3.11 also work, but 3.13 or later might lack pre-built wheels for some packages.
+
+Open the VS Code terminal and run the following code to detect a suitable version of Python:
+
+```powershell
+# ── Pre-checks ───────────────────────────────────────────────────────────────
+if ($env:CONDA_DEFAULT_ENV -or $env:CONDA_PREFIX) {
+    Write-Warning "Conda is active. Run 'conda deactivate' first, or open a new terminal."
+    return
+}
+if ($env:VIRTUAL_ENV) {
+    Write-Warning "A virtual environment is active: $env:VIRTUAL_ENV — run 'deactivate' first."
+    return
+}
+
+# ── Detect Python ────────────────────────────────────────────────────────────
+$PYTHON_EXE = $null
+try {
+    $ver  = (py -3 --version 2>&1) -replace "Python ", ""
+    $bits = py -3 -c "import platform; print(platform.architecture()[0])"
+    $path = py -3 -c "import sys; print(sys.executable)"
+    if ($path -match "(?i)(anaconda|miniconda|miniforge|mambaforge|[/\\]conda[/\\]|[/\\]envs[/\\])") {
+        Write-Host "Skipping conda-managed Python at: $path"
+    } elseif ([version]$ver -ge [version]"3.10" -and $bits -eq "64bit") {
+        $PYTHON_EXE = $path
+        Write-Host "Python $ver (64-bit) found: $PYTHON_EXE"
+    } else {
+        Write-Host "Skipping ($ver, $bits) — need 3.10+ 64-bit"
+    }
+} catch {}
+if (-not $PYTHON_EXE) {
+    try {
+        $ver  = (python --version 2>&1) -replace "Python ", ""
+        $bits = python -c "import platform; print(platform.architecture()[0])"
+        $path = python -c "import sys; print(sys.executable)"
+        if ($path -match "(?i)(anaconda|miniconda|miniforge|mambaforge|[/\\]conda[/\\]|[/\\]envs[/\\])") {
+            Write-Host "Skipping conda-managed Python at: $path"
+        } elseif ([version]$ver -ge [version]"3.10" -and $bits -eq "64bit") {
+            $PYTHON_EXE = $path
+            Write-Host "Python $ver (64-bit) found: $PYTHON_EXE"
+        } else {
+            Write-Host "Skipping ($ver, $bits) — need 3.10+ 64-bit"
+        }
+    } catch {}
+}
+
+# Install Python 3.12 if it wasn't found.
+if (-not $PYTHON_EXE) {
+    Write-Host "Not found. Installing Python 3.12..."
+    winget install Python.Python.3.12
+    Write-Host "Close and reopen the terminal, then rerun this snippet."
+}
+if ($PYTHON_EXE -and ($PYTHON_EXE -match '[^\x20-\x7E]')) {
+    Write-Warning "Python path has non-ASCII characters. Keep your workspace on an ASCII path."
+}
+if ($PYTHON_EXE) { Write-Host "`$PYTHON_EXE = '$PYTHON_EXE'" }
+```
+
+If the download didn't work, or you prefer manual download, comment out the code lines that install Python 3.12, then download Python 3.12 from the [Python](https://www.python.org/downloads/) website.  Run the executable to install Python.  Select "Add Python to PATH" during the install, then rerun the above snippet to make sure it's being found.
+
+<Admonition type="note" title="Notes">
+- Do NOT use the Microsoft Store Python because it lacks C headers. If `python` opens the Microsoft Store, disable the alias by going to Windows Settings → Apps → Advanced app settings → App execution aliases.
+
+- Anaconda users: run `conda deactivate` until the (base) prefix disappears. If it won't go away, open a new terminal in VS Code.
+</Admonition> 
+</AccordionItem>
+
+<AccordionItem title="Git (optional)">
+    Only needed if you clone lab repositories.  Run `winget install Git.Git`.
+</AccordionItem>
+
+</Accordion>
+
+### Step 2 - Set up the Python virtual environment with Qiskit
+
+<Accordion>
+<AccordionItem title="Reset the VS Code terminal">
+Open the VS Code terminal and reset it:
+
+```powershell
+$WORKSPACE = "C:\workspace"   # change to your workspace path
+if (-not $PYTHON_EXE) {
+    if (Get-Command py -ErrorAction SilentlyContinue) { $PYTHON_EXE = py -3 -c "import sys; print(sys.executable)" }
+    elseif (Get-Command python -ErrorAction SilentlyContinue) { $PYTHON_EXE = python -c "import sys; print(sys.executable)" }
+    else { Write-Host "Python not found — complete Step 1.3 first." ; return }
+    Write-Host "`$PYTHON_EXE = '$PYTHON_EXE'"
+}
+```
+</AccordionItem>
+<AccordionItem title="Create and activate a virtual environment">
+Allow script execution (once per user), then create the virtual environment:
+
+```powershell
+Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
+cd $WORKSPACE
+& $PYTHON_EXE -m venv .venv --prompt workspace
+.\.venv\Scripts\Activate.ps1
+```
+
+If activation shows a red error about "scripts disabled", the `Set-ExecutionPolicy` line was not run.  Run it manually, then retry.
+
+Your prompt should now show `(workspace)`. 
+
+Verify:
+
+```powershell
+Get-Command python | Select-Object -First 1 -ExpandProperty Source
+# → workspace\.venv\Scripts\python.exe
+```
+</AccordionItem>
+<AccordionItem title="Install packages">
+```powershell
+python -m pip install --upgrade pip setuptools wheel
+pip install "qiskit[visualization]>=2.4.2"
+pip install --prefer-binary qiskit-ibm-runtime qiskit-aer
+pip install notebook ipykernel ipywidgets  # optional: run the following Python steps in Jupyter
+```
+
+`--prefer-binary` avoids compiling `qiskit-aer` from source. If `qiskit-aer` still fails, try `pip install qiskit-aer --only-binary=:all:` or skip it.  `qiskit-aer` is optional and is only needed for local simulation.
+
+<Admonition type="note">
+Do NOT run `pip install --upgrade qiskit` after setup. Upgrading to a new minor version breaks C extensions built against the old one.
+</Admonition>
+</AccordionItem>
+</Accordion>
+
+### Step 3 - Load the MSVC environment
+
+Run the following code in each new Python session (for example, each time you restart a Jupyter kernel). It locates and loads the MSVC developer environment automatically so you don't need the x64 built-in command prompt.
+
+The example in this documentation builds C extension modules by using `setuptools` with MSVC. Generally, you define `QISKIT_PYTHON_EXTENSION`, include `qiskit.h`, and call `qk_import()` in your init function. Only headers from `qiskit.capi.get_include()` are needed at build time — no library is linked. See [Extend Qiskit in Python with C](/docs/guides/c-extension-for-python) for details.
+
+<Accordion>
+  <AccordionItem title="Load the MSVC environment">
+
+```python
+import os, sys, subprocess, glob, shutil
+
+def load_msvc_env():
+    if os.name != "nt":
+        return "Not Windows — the system C compiler is used as-is."
+    if shutil.which("cl"):
+        return "cl.exe is already available in this kernel."
+
+    pf86 = os.environ.get("ProgramFiles(x86)", r"C:\Program Files (x86)")
+    pf = os.environ.get("ProgramFiles", r"C:\Program Files")
+    vcvars = None
+
+    vswhere = os.path.join(pf86, "Microsoft Visual Studio", "Installer", "vswhere.exe")
+    if os.path.isfile(vswhere):
+        # vswhere outputs UTF-8 regardless of system locale
+        inst = subprocess.run(
+            [vswhere, "-latest", "-products", "*",
+             "-requires", "Microsoft.VisualStudio.Component.VC.Tools.x86.x64",
+             "-property", "installationPath"],
+            capture_output=True, text=True, encoding="utf-8").stdout.strip()
+        if inst:
+            cand = os.path.join(inst, "VC", "Auxiliary", "Build", "vcvars64.bat")
+            if os.path.isfile(cand):
+                vcvars = cand
+
+    if not vcvars:
+        pat = os.path.join("Microsoft Visual Studio", "*", "*",
+                           "VC", "Auxiliary", "Build", "vcvars64.bat")
+        hits = glob.glob(os.path.join(pf86, pat)) + glob.glob(os.path.join(pf, pat))
+        if hits:
+            vcvars = sorted(hits)[-1]
+
+    if not vcvars:
+        return ("Could not find vcvars64.bat. Install MSVC Build Tools (Step 1.3), "
+                "or launch Jupyter from the x64 Native Tools Command Prompt.")
+
+    # cmd.exe outputs in the OEM codepage (cp437/cp850/etc.), not the ANSI codepage
+    out = subprocess.run(f'"{vcvars}" >nul 2>&1 && set',
+                         capture_output=True, text=True, encoding="oem", shell=True).stdout
+    for line in out.splitlines():
+        if "=" in line:
+            k, _, v = line.partition("=")
+            os.environ[k] = v
+
+    return ("Loaded MSVC from:\n  " + vcvars) if shutil.which("cl") \
+        else "Ran vcvars64.bat but cl.exe is still not found — check your MSVC install."
+
+print(load_msvc_env())
+print("cl.exe on PATH:", shutil.which("cl") is not None)
+```
+</AccordionItem>
+<AccordionItem title="Verify the setup">
+Verify that the setup worked:
+
+```python
+import importlib.util, shutil
+
+checks = {
+    "setuptools": importlib.util.find_spec("setuptools") is not None,
+    "wheel":      importlib.util.find_spec("wheel") is not None,
+    "cl.exe":     shutil.which("cl") is not None,
+}
+for name, ok in checks.items():
+    print(f"  [{'PASS' if ok else 'FAIL':>4}] {name}")
+
+if not checks["cl.exe"]:
+    print("\n  cl.exe is not on PATH. rerun the cell above to load the MSVC environment.")
+elif all(checks.values()):
+    print("\n  Toolchain ready. Continue to the smoke test.")
+```
+</AccordionItem>
+</Accordion>
+### Step 4 - Smoke test: Build a C extension
+
+Run the following code.  It writes source files to `_smoke_pkg/`, builds a C extension against the Qiskit C API, and imports the result. If it prints "SMOKE TEST PASSED", your toolchain is ready.
+
+The package follows the [Extend Qiskit in Python with C](/docs/guides/c-extension-for-python) process and uses functions from the [Qiskit C API reference](/docs/api/qiskit-c).
+
+<Accordion>
+  <AccordionItem title="Smoke test code">
+
+```python
+import sys, subprocess, pathlib, importlib
+
+root = pathlib.Path("_smoke_pkg")
+pkg = root / "src" / "qgss_smoke"
+pkg.mkdir(parents=True, exist_ok=True)
+
+(root / "pyworkspace.toml").write_text("""
+[build-system]
+requires = ["setuptools", "qiskit>=2.4.2"]
+build-backend = "setuptools.build_meta"
+
+[workspace]
+name = "qgss_smoke"
+version = "0.0.1"
+dependencies = ["qiskit>=2.4.2"]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+""".lstrip())
+
+(root / "setup.py").write_text("""
+import qiskit
+from setuptools import setup, Extension
+
+core_ext = Extension(
+    name="qgss_smoke._core",
+    sources=["src/qgss_smoke/_coremodule.c"],
+    include_dirs=[qiskit.capi.get_include()],
+)
+setup(ext_modules=[core_ext])
+""".lstrip())
+
+(pkg / "__init__.py").write_text("from . import _core\nbuild_demo = _core.build_demo\n")
+
+(pkg / "_coremodule.c").write_text("""
+#define QISKIT_PYTHON_EXTENSION
+#include <Python.h>
+#include <qiskit.h>
+#include <stdint.h>
+
+static PyObject *build_demo(PyObject *self, PyObject *args) {
+    QkCircuit *qc = qk_circuit_new(2, 0);
+    uint32_t q0[1] = {0};
+    qk_circuit_gate(qc, QkGate_H, q0, NULL);
+    uint32_t q1[1] = {1};
+    qk_circuit_gate(qc, QkGate_X, q1, NULL);
+    return qk_circuit_to_python_full(qc);
+}
+
+static PyMethodDef core_methods[] = {
+    {"build_demo", build_demo, METH_NOARGS, "Build a 2-qubit demo circuit in C."},
+    {NULL, NULL, 0, NULL},
+};
+static struct PyModuleDef core_module = {
+    .m_base = PyModuleDef_HEAD_INIT,
+    .m_name = "_core",
+    .m_methods = core_methods,
+};
+PyMODINIT_FUNC PyInit__core(void) {
+    if (qk_import() < 0) {
+        return NULL;
+    }
+    return PyModuleDef_Init(&core_module);
+}
+""".lstrip())
+
+# On Windows, an imported .pyd is file-locked by the OS. Drop the module from
+# sys.modules BEFORE pip install --force-reinstall, otherwise pip fails with
+# WinError 32 ("file in use") trying to overwrite the locked .pyd.
+if "qgss_smoke._core" in sys.modules:
+    del sys.modules["qgss_smoke._core"]
+if "qgss_smoke" in sys.modules:
+    del sys.modules["qgss_smoke"]
+
+r = subprocess.run(
+    [sys.executable, "-m", "pip", "install", "--no-build-isolation",
+     "--force-reinstall", "--quiet", str(root.resolve())],
+    capture_output=True, text=True,
+)
+if r.returncode != 0:
+    output = (r.stderr + r.stdout).strip()
+    print("BUILD FAILED:\n")
+    print(output)
+    if "WinError 32" in output or "being used by another process" in output:
+        print("\n--- TIP ---")
+        print("The .pyd file is locked because it was previously imported in this kernel.")
+        print("Restart the kernel (Ctrl+Shift+P → 'Jupyter: Restart Kernel'), then rerun")
+        print("the Step 3 MSVC cell first, then this cell again.")
+    elif "cl.exe" in output.lower() or "vcvars" in output.lower() or "cannot find" in output.lower():
+        print("\n--- TIP ---")
+        print("The compiler was not found. rerun the Step 3 cell to load the MSVC environment.")
+else:
+    importlib.invalidate_caches()
+    import qgss_smoke
+    from qiskit import QuantumCircuit
+
+    qc = qgss_smoke.build_demo()
+    ops = dict(qc.count_ops())
+    ok = isinstance(qc, QuantumCircuit) and ops.get("h") == 1 and ops.get("x") == 1
+
+    print("Returned object is a QuantumCircuit:", isinstance(qc, QuantumCircuit))
+    print("Gates built in C:", ops)
+    print("\nSMOKE TEST PASSED — your Windows toolchain can build Qiskit C extensions."
+          if ok else "\nSomething is off — check the gates above.")
+```
+</AccordionItem>
+</Accordion>
+### Step 5 — Configure VS Code (optional)
+
+For ease of use, you can follow this process to set up IntelliSense for C files and auto-select the Python interpreter.
+
+<Accordion>
+  <AccordionItem title="Make the .vscode directory">
+In the VS Code terminal, run the following code:
+
+```powershell
+mkdir $WORKSPACE\.vscode -Force
+```
+</AccordionItem>
+<AccordionItem title="Make the settings file">
+Create `.vscode/settings.json` in your workspace by running this code:
+
+```json
+{
+    "python.defaultInterpreterPath": "${workspaceFolder}/.venv/Scripts/python.exe",
+    "python.terminal.activateEnvironment": true,
+    "jupyter.notebookFileRoot": "${workspaceFolder}"
+}
+```
+</AccordionItem>
+<AccordionItem title="Make the properties file">
+The following code prints the JSON that you need to paste into `.vscode/c_cpp_properties.json`:
+
+```python
+import qiskit.capi
+
+inc = qiskit.capi.get_include().replace("\\", "/")
+print(".vscode/c_cpp_properties.json — create this file with the content below:\n")
+print('{')
+print('    "version": 4,')
+print('    "configurations": [')
+print('        {')
+print('            "name": "Win32",')
+print(f'            "includePath": ["{inc}"],')
+print('            "defines": ["QISKIT_PYTHON_EXTENSION"],')
+print('            "compilerPath": "cl.exe",')
+print('            "cStandard": "c11",')
+print('            "intelliSenseMode": "windows-msvc-x64"')
+print('        }')
+print('    ]')
+print('}')
+```
+</AccordionItem>
+<AccordionItem title="Make the VS Code extensions file">
+In VS Code, create `.vscode/extensions.json` with this content:
+
+```json
+{
+    "recommendations": ["ms-python.python", "ms-toolsai.jupyter", "ms-vscode.cpptools"]
+}
+```
+</AccordionItem>
+</Accordion>
+### Build the standalone library
+
+This section builds the standalone C library, which is only needed if you want to compile and link pure C programs, as described in the [UNIX-like](#unix) section. In addition to the Step 1 prerequisites, this requires the following tools:
+
 * A Rust compiler: see for example the [guide on installing Qiskit from source](https://github.com/Qiskit/qiskit/blob/main/CONTRIBUTING.md#installing-qiskit-from-source)
-* A C compiler: for example, MSVC and the native command prompt offering the ``cl`` command
-* A Python installation, with access to both ``python3.lib`` and ``python3.dll``
-* [`cbindgen`](https://github.com/mozilla/cbindgen): a tool to create the C header, which you can install with `cargo install cbindgen`
-    Note that running the tool from the command line should be enabled, which might require updating your `PATH` variable to include the cargo path.
-
-### Build
-
-First, compile the `qiskit_cext` dynamic library, by running the following in Qiskit root
-```bash
-set PATH="\path\to\pythonlib";%PATH%
+* [`cbindgen`](https://github.com/mozilla/cbindgen): a tool to create the C header, which you can install with `cargo install cbindgen`.
+    Running the tool from the command line should be enabled, which might require updating your `PATH` variable to include the cargo path.
+* A Python installation with access to both ``python3.lib`` and ``python3.dll``
+* A clone of the [Qiskit repository](https://github.com/Qiskit/qiskit) (`git clone https://github.com/Qiskit/qiskit.git`)
+<Accordion>
+<AccordionItem title="Build the standalone library">
+First, compile the `qiskit_cext` dynamic library, by running the following in the VS Code (PowerShell) terminal in Qiskit root:
+```powershell
+$env:PATH = "\path\to\pythonlib;" + $env:PATH
 cargo rustc --release --crate-type cdylib -p qiskit-cext
 ```
 This will generate the ``.dll`` dynamic library and associated ``.dll.lib`` file in `target/release`.
 Next, generate the header with
-```bash
+```powershell
 cbindgen --crate qiskit-cext --output dist\c\include\qiskit.h
 ```
-This will write the MSVC-compatible header in ``dist\c\include``.
+This writes the MSVC-compatible header in ``dist\c\include``.
 
 Now you can use `cl` to compile the C program. To ensure the compiler finds the qiskit library,
-we include `target\release` in the `PATH` variable.
-```bash
-set PATH="\path\to\target\release";%PATH%
+ include `target\release` in the `PATH` variable.
+```powershell
+$env:PATH = "\path\to\target\release;" + $env:PATH
 cl example.c qiskit_cext.dll.lib -I\path\to\dist\c\include
 ```
 
-Before running, you have to include the path to your ``python3.dll``.
-```bash
-set PATH="\path\to\python3-dll";%PATH%
+Before running, include the path to your ``python3.dll``.
+
+```powershell
+$env:PATH = "\path\to\python3-dll;" + $env:PATH
 .\example.exe
 ```
 should then print
@@ -166,3 +611,84 @@ bit_terms: [X, Y, Z],
 indices: [0, 1, 2], 
 boundaries: [0, 3] }
 ```
+</AccordionItem>
+</Accordion>
+### Troubleshooting
+<Accordion>
+<AccordionItem title="`winget` is not recognized">
+Update the [App Installer](https://apps.microsoft.com/detail/9nblggh4nns1) from the Microsoft Store, or use the relevant manual download links
+</AccordionItem>
+<AccordionItem title="`cl` is not recognized">
+Rerun the MSVC load cell (Step 3), or use the x64 Native Tools Command Prompt
+</AccordionItem>
+<AccordionItem title="`python` opens Microsoft Store">
+Go to Settings → Apps → Advanced app settings → App execution aliases and turn off `python.exe`
+</AccordionItem>
+<AccordionItem title="`.ps1 cannot be loaded` / scripts disabled">
+Run `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned` then retry
+</AccordionItem>
+<AccordionItem title="`cannot open file 'qiskit.h'`">
+Run `python -c "import qiskit.capi; print(qiskit.capi.get_include())"` and confirm the path exists
+</AccordionItem>
+<AccordionItem title="`qiskit.capi` not found">
+Run `pip install "qiskit[visualization]~=2.4.2"`
+</AccordionItem>
+<AccordionItem title="`qiskit-aer` build fails">
+Run `pip install qiskit-aer --only-binary=:all:`. If that also fails, use Python 3.12 or skip aer, which is optional
+</AccordionItem>
+<AccordionItem title="Build runs but import fails with a version error">
+The built Qiskit C extension and the installed Qiskit version must have the same version.  Reinstall Qiskit with `pip install "qiskit~=2.4.2"`
+</AccordionItem>
+<AccordionItem title="I rebuilt the C but the circuit did not change">
+A C extension cannot be re-imported live. Restart the kernel, rerun the MSVC commands (Step 3), then rebuild
+</AccordionItem>
+<AccordionItem title="PowerShell script was blocked">
+`Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`
+</AccordionItem>
+<AccordionItem title="Path length errors">
+Use a short root path on C:\ (for example, `C:\workspace`, or the path you set in the setup step), or enable Long Paths: Settings → System → For developers → Long Paths
+</AccordionItem>
+<AccordionItem title="Conda is active (the prompt shows `(base)`) or builds behave oddly after using Anaconda">
+Run `conda deactivate` until `CONDA_DEFAULT_ENV` and `CONDA_PREFIX` are both gone from the environment. Check with `$env:CONDA_PREFIX`. If they persist, open a fresh PowerShell (not an Anaconda prompt) and retry from Step 2.
+</AccordionItem>
+<AccordionItem title="The virtual environment was created from a conda-managed Python (check the `home =` line in `.venv\pyvenv.cfg`)">
+The virtual environment inherited conda's C runtime and cannot be fixed in place. Delete it, download Python 3.12 from the [Python](https://www.python.org/downloads/) website, and rebuild. Run `Remove-Item -Recurse -Force .venv`, then rerun the Python detection snippet in Step 1 to set `$PYTHON_EXE`, then recreate the virtual environment (Step 2).
+</AccordionItem>
+<AccordionItem title="`DLL load failed` on import">
+Conda is likely leaking into the virtual environment. Check both of the issues immediately above this. Also verify that Python is 64-bit: `python -c "import platform; print(platform.architecture())"`
+</AccordionItem>
+<AccordionItem title="Build fails with garbled paths or `C1083`">
+Your username or workspace path contains non-ASCII characters. Move the workspace to a short ASCII-only path (for example, `C:\workspace`)
+</AccordionItem>
+<AccordionItem title="Build or import randomly fails, works on retry">
+The workspace folder is synced by OneDrive. Move it to a local path like `C:\workspace`
+</AccordionItem>
+<AccordionItem title="Build interrupted midway (for example, there was a power loss)">
+Delete the `_smoke_pkg` folder in your workspace, rerun the MSVC load cell, then rerun the smoke test cell
+</AccordionItem>
+<AccordionItem title="`pip install` fails with SSL certificate error">
+Your network uses a proxy that intercepts HTTPS. Try running `pip install --trusted-host pypi.org --trusted-host files.pythonhosted.org qiskit` or ask your network administrator for the proxy CA certificate
+</AccordionItem>
+<AccordionItem title="Windows Defender quarantines the `.pyd` file">
+Add your workspace's `.venv` and `_smoke_pkg` folders to Defender exclusions by going to Windows Security → Virus & threat protection → Manage settings → Exclusions
+</AccordionItem>
+<AccordionItem title="VS Build Tools cannot be installed (no admin rights)">
+Administrator access is required. Ask your IT department for access
+</AccordionItem>
+<AccordionItem title="`WinError 32` / file in use during rebuild">
+The .pyd is locked by the running kernel. Restart the kernel (Ctrl+Shift+P → Jupyter: Restart Kernel), rerun Step 3, then rebuild
+</AccordionItem>
+<AccordionItem title="Commands silently do nothing (no error, no output)">
+You might be in cmd.exe instead of PowerShell. Check your prompt: PowerShell shows `PS C:\>`, cmd shows `C:\>`. Open PowerShell from Start Menu or Win+X
+</AccordionItem>
+<AccordionItem title="MSVC install appears stuck">
+The `--passive --wait` flags block PowerShell while the installer runs in the background. Check your taskbar for a "Visual Studio Installer" window. It can take 10-30 minutes to install
+</AccordionItem>
+</Accordion>
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+  - Learn how to [extend Python with the Qiskit C API](/docs/guides/c-extension-for-python).
+  - [Install Qiskit](/docs/guides/install-qiskit).
+  - Explore the [Qiskit C API reference](/docs/api/qiskit-c).
+</Admonition>
