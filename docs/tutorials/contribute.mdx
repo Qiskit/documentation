@@ -18,12 +18,14 @@ In short, Foundational tutorials show how to use a method or tool, and Applied t
 
 ## What you can contribute
 
+Every domain is open to both Foundational and Applied contributions:
+
 | Domain | Foundational tutorials | Applied tutorials |
 | --- | --- | --- |
-| [Optimization](#optimization) | Written by the IBM Quantum team | 10 problem classes |
-| [Hamiltonian simulation](#hamiltonian-simulation) | Written by the IBM Quantum team | 10 problem classes |
-| [Quantum machine learning](#quantum-machine-learning) | 1 open topic | 7 problem classes |
-| [Quantum information science](#quantum-information-science) | 4 open topics | Written by the IBM Quantum team |
+| [Optimization](#optimization) | Max-cut | 10 problem classes |
+| [Hamiltonian simulation](#hamiltonian-simulation) | Ground-state energy of three model systems | 10 problem classes |
+| [Quantum machine learning](#quantum-machine-learning) | Classification of a small dataset | 7 problem classes |
+| [Quantum information science](#quantum-information-science) | Your own teaching problem, with 4 suggested topics | Specialized techniques at scale |
 
 ## Requirements
 
@@ -36,8 +38,8 @@ Every tutorial must:
 
 Beyond these, Foundational and Applied tutorials differ in what they cover and the bar they meet:
 
-- **Foundational tutorials** teach how to use a method or tool on the teaching problem for an [open topic](#open-topics-and-problem-classes). They compare the method against a default approach as the problem grows, and end with a "Next steps" section that links to the Applied tutorial or problem class that the method leads to.
-- **Applied tutorials** solve a real instance from a [problem class](#open-topics-and-problem-classes), report its target quantity, and compare against a classical method on the same instance. They meet at least two of these state-of-the-art criteria: a peer-reviewed paper from the past three years, the largest hardware demonstration of the problem, or advanced features such as dynamic circuits. The hardware run uses a two-qubit depth of at least 50 unless the tutorial clearly meets the state-of-the-art bar, and anyone can reproduce it within its error bars on a current-generation backend. A tutorial built around a vendor's Qiskit Function is always Applied.
+- **Foundational tutorials** teach how to use a method or tool on the domain's [foundational problem class](#problem-classes). They compare the method against a default approach as the problem grows, and end with a "Next steps" section that links to the Applied tutorial or problem class that the method leads to.
+- **Applied tutorials** solve a real instance from a [problem class](#problem-classes) and report its target quantity, or, in quantum information science, apply a specialized technique to a workload at scale. They compare against a classical method on the same instance, and meet at least two of these state-of-the-art criteria: a peer-reviewed paper from the past three years, the largest hardware demonstration of the problem, or advanced features such as dynamic circuits. The hardware run uses a two-qubit depth of at least 50 unless the tutorial clearly meets the state-of-the-art bar, and anyone can reproduce it within its error bars on a current-generation backend. A tutorial built around a vendor's Qiskit Function is always Applied.
 
 If a problem class already has a tutorial that uses your method, propose an improvement to that tutorial instead of a new one. Reviewers weigh the trade-offs, such as better scale at a higher QPU cost, and an accepted improvement updates the existing tutorial.
 
@@ -55,13 +57,15 @@ The IBM Quantum team maintains this list. Install approved packages from PyPI, o
 | Supporting tools | `qiskit-addon-utils`, `pauli-prop` |
 | Qiskit Functions | `qiskit-ibm-catalog`, plus any client package that a Function's provider requires, such as `qctrl-visualizer` or `luna-model` |
 
-## Open topics and problem classes
+## Problem classes
 
-For each domain, this section lists the teaching problem and open topics for Foundational tutorials, and the problem classes for Applied tutorials. To propose a problem class, or a quantum machine learning or quantum information science topic that is not listed, open a [proposal](#how-to-propose-a-tutorial) and explain the gap it fills.
+For each domain, this section lists the foundational problem class for Foundational tutorials and the problem classes for Applied tutorials, with the tutorials that already cover each one. To propose a new problem class or topic, open a [proposal](#how-to-propose-a-tutorial) and explain the gap it fills.
 
 ### Optimization
 
-Foundational tutorials use max-cut as the teaching problem. They are written by the IBM Quantum team, so community contributions target the problem classes below.
+| Foundational problem class | Leads to | Existing tutorials |
+| --- | --- | --- |
+| Max-cut | The QOBLIB problem classes below, such as maximum independent set | [Quantum approximate optimization algorithm](/docs/tutorials/quantum-approximate-optimization-algorithm)<br/>[Advanced techniques for QAOA](/docs/tutorials/advanced-techniques-for-qaoa)<br/>[Warm-start QAOA with the Optimization Mapper Qiskit addon](/docs/tutorials/warm-start-qaoa)<br/>[Pauli correlation encoding to reduce Max-Cut requirements](/docs/tutorials/pauli-correlation-encoding-for-qaoa) |
 
 Applied tutorials target one of the ten problem classes in the [Quantum Optimization Benchmarking Library (QOBLIB)](https://arxiv.org/abs/2504.03832):
 
@@ -80,13 +84,15 @@ Applied tutorials target one of the ten problem classes in the [Quantum Optimiza
 
 ### Hamiltonian simulation
 
-Foundational tutorials use one of two teaching problems: the N<sub>2</sub> molecule in a minimal basis for chemistry, or the one-dimensional Heisenberg or Ising chain for spin and lattice models. They are written by the IBM Quantum team, so community contributions target the problem classes below.
+| Foundational problem class | Leads to | Existing tutorials |
+| --- | --- | --- |
+| Ground-state energy of the N<sub>2</sub> molecule in a minimal basis, the one-dimensional Heisenberg chain, or the one-dimensional Ising chain | Strongly correlated molecular ground states and nuclear shell-model ground states | [Sample-based quantum diagonalization of a chemistry Hamiltonian](/docs/tutorials/sample-based-quantum-diagonalization)<br/>[SqDRIFT algorithm for ground state estimation](/docs/tutorials/sqdrift)<br/>[Krylov quantum diagonalization of lattice Hamiltonians](/docs/tutorials/krylov-quantum-diagonalization)<br/>[Ground-state energy estimation of the Heisenberg chain with VQE](/docs/tutorials/spin-chain-vqe) |
 
 Applied tutorials target one of the following problem classes:
 
 | Problem class | Target quantity | Existing tutorials |
 | --- | --- | --- |
-| Strongly correlated molecular ground states | Ground-state energy across geometries | [Sample-based quantum diagonalization of a chemistry Hamiltonian](/docs/tutorials/sample-based-quantum-diagonalization) (one geometry)<br/>[Dissociation PES curves with Qunova HiVQE](/docs/tutorials/qunova-hivqe) |
+| Strongly correlated molecular ground states | Ground-state energy across geometries | [Dissociation PES curves with Qunova HiVQE](/docs/tutorials/qunova-hivqe) |
 | Nuclear shell-model ground states | Ground-state energy | [Pooled sample-based quantum diagonalization of a nuclear Hamiltonian](/docs/tutorials/nuclear-sqd-pooled) |
 | Electron-phonon dynamics | Polaron quench dynamics | None yet |
 | Lattice gauge real-time dynamics | String-breaking and hadron dynamics | [Observation of robust and coherent non-Abelian hadron dynamics on noisy quantum processors](/docs/tutorials/loop-string-hadron-dynamics) |
@@ -99,11 +105,11 @@ Applied tutorials target one of the following problem classes:
 
 ### Quantum machine learning
 
-Foundational tutorials use a small classification dataset with a classical baseline as the teaching problem. One Foundational topic is open:
+| Foundational problem class | Leads to | Existing tutorials |
+| --- | --- | --- |
+| Classification of a small dataset, with a classical baseline | Group-structured classification and real-world tabular classification | [Quantum kernel training](/docs/tutorials/quantum-kernel-training) |
 
-| Open topic | Leads to |
-| --- | --- |
-| Training and evaluating a quantum kernel classifier on a small dataset, with a classical baseline | Classification problem classes |
+A suggested Foundational topic is training and evaluating a quantum kernel classifier on a small dataset, with a classical baseline.
 
 Applied tutorials target one of the following problem classes:
 
@@ -119,9 +125,11 @@ Applied tutorials target one of the following problem classes:
 
 ### Quantum information science
 
-Quantum information science has no problem classes, and its Applied tutorials are written by the IBM Quantum team. Foundational tutorials are open for the following topics only, and each topic names its own teaching problem.
+Quantum information science has no problem classes yet. A Foundational tutorial names its own teaching problem in the proposal, and an Applied tutorial applies a specialized technique, such as an advanced error mitigation or error correction method, to a workload at scale.
 
-| Open topic | Teaching problem | Leads to |
+The following Foundational topics fill known gaps in the catalog:
+
+| Suggested topic | Teaching problem | Leads to |
 | --- | --- | --- |
 | Phase estimation at scale without vendor tools, for example iterative phase estimation with dynamic circuits | The one-dimensional transverse-field Ising chain, whose energies are known exactly | Energy estimation in Hamiltonian simulation |
 | Device benchmarking with cross-entropy benchmarking and random circuit sampling | Random circuits, simulated exactly at small sizes | Quantum advantage experiments |
