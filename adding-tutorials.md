@@ -58,7 +58,7 @@ At Stage 2, reviewers check the finished notebook against the same criteria, and
 
 - It matches the approved proposal, or explains what changed.
 - The small instance agrees with the known answer within the stated tolerance.
-- The hardware results are saved in the notebook, with error bars for Applied tutorials.
+- The notebook shows the hardware results, with error bars for Applied tutorials.
 - `./check` passes, and the docs content team has copyedited the notebook.
 
 ## Writing the notebook
@@ -82,7 +82,6 @@ At Stage 2, reviewers check the finished notebook against the same criteria, and
 
 - Show the small-instance comparison against the known answer in the output, and state the tolerance in the text.
 - For the hardware run, report the backend, the number of qubits, the two-qubit depth and two-qubit gate count after transpilation, the number of shots, the error suppression and mitigation settings, and the QPU time.
-- Save the hardware outputs in the notebook. Tutorials that run on hardware are not executed in CI.
 
 ## Review process
 
@@ -107,7 +106,7 @@ At Stage 2, reviewers check the finished notebook against the same criteria, and
 2. Move images to `public/docs/images/tutorials/<your-tutorial-name>/`, in `.avif` or `.svg` format. Reference them without the `public` part of the path.
 3. Add the tutorial to `docs/tutorials/_toc.json` and `docs/tutorials/index.mdx`.
 4. Add the owners to `qiskit_bot.yaml`: you and the maintainer of record from the IBM Quantum team.
-5. Add the notebook to `scripts/config/notebook-testing.toml`. Tutorials that run on hardware usually go in the `groups.exclude` group. A maintainer confirms the group during review.
+5. Add the notebook to `scripts/config/notebook-testing.toml`. A maintainer confirms which test group it belongs in during review.
 6. Run `./fix` and `./check`, and fix any problems they report, including spelling.
 7. Preview the page locally with `./start`, and check that it displays correctly.
 
