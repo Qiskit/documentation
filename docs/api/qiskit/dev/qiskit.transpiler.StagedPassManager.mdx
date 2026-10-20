@@ -8,7 +8,7 @@ python_api_name: qiskit.transpiler.StagedPassManager
 
 # StagedPassManager
 
-<Class id="qiskit.transpiler.StagedPassManager" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passmanager.py#L233-L440" signature="qiskit.transpiler.StagedPassManager(stages=None, **kwargs)" modifiers="class">
+<Class id="qiskit.transpiler.StagedPassManager" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passmanager.py#L235-L442" signature="qiskit.transpiler.StagedPassManager(stages=None, **kwargs)" modifiers="class">
   Bases: [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.passmanager.PassManager")
 
   A pass manager pipeline built from individual stages.
@@ -28,7 +28,7 @@ python_api_name: qiskit.transpiler.StagedPassManager
     For backwards compatibility the relative positioning of these default stages will remain stable moving forward. However, new stages may be added to the default stage list in between current stages. For example, in a future release a new phase, something like `logical_optimization`, could be added immediately after the existing `init` stage in the default stage list. This would preserve compatibility for pre-existing `StagedPassManager` users as the relative positions of the stage are preserved so the behavior will not change between releases.
   </Admonition>
 
-  These stages will be executed in order and any stage set to `None` will be skipped. If a stage is provided multiple times (i.e. at different relative positions), the associated passes, including pre and post, will run once per declaration. If a [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager") input is being used for more than 1 stage here (for example in the case of a `Pass` that covers both Layout and Routing) you will want to set that to the earliest stage in sequence that it covers.
+  These stages will be executed in order and any stage set to `None` will be skipped. If a stage is provided multiple times (i.e. at different relative positions), the associated passes, including pre and post, will run once per declaration. If a [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager") input is being used for more than 1 stage here (for example in the case of a [`Pass`](/docs/api/qiskit/dev/passmanager#qiskit.passmanager.Pass "qiskit.passmanager.Pass") that covers both Layout and Routing) you will want to set that to the earliest stage in sequence that it covers.
 
   Initialize a new StagedPassManager object
 
@@ -66,7 +66,7 @@ python_api_name: qiskit.transpiler.StagedPassManager
 
   ### append
 
-  <Function id="qiskit.transpiler.StagedPassManager.append" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passmanager.py#L370-L374" signature="append(passes)">
+  <Function id="qiskit.transpiler.StagedPassManager.append" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passmanager.py#L372-L376" signature="append(passes)">
     Append a Pass Set to the schedule of passes.
 
     **Parameters**
@@ -84,7 +84,7 @@ python_api_name: qiskit.transpiler.StagedPassManager
 
   ### draw
 
-  <Function id="qiskit.transpiler.StagedPassManager.draw" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passmanager.py#L422-L440" signature="draw(filename=None, style=None, raw=False)">
+  <Function id="qiskit.transpiler.StagedPassManager.draw" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passmanager.py#L424-L442" signature="draw(filename=None, style=None, raw=False)">
     Draw the staged pass manager.
 
     <Admonition title="Warning" type="caution">
@@ -100,7 +100,7 @@ python_api_name: qiskit.transpiler.StagedPassManager
 
   ### remove
 
-  <Function id="qiskit.transpiler.StagedPassManager.remove" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passmanager.py#L384-L385" signature="remove(index)">
+  <Function id="qiskit.transpiler.StagedPassManager.remove" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passmanager.py#L386-L387" signature="remove(index)">
     Removes a particular pass in the scheduler.
 
     **Parameters**
@@ -118,7 +118,7 @@ python_api_name: qiskit.transpiler.StagedPassManager
 
   ### replace
 
-  <Function id="qiskit.transpiler.StagedPassManager.replace" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passmanager.py#L376-L381" signature="replace(index, passes)">
+  <Function id="qiskit.transpiler.StagedPassManager.replace" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passmanager.py#L378-L383" signature="replace(index, passes)">
     Replace a particular pass in the scheduler.
 
     **Parameters**
@@ -133,7 +133,7 @@ python_api_name: qiskit.transpiler.StagedPassManager
 
   ### run
 
-  <Function id="qiskit.transpiler.StagedPassManager.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passmanager.py#L406-L416" signature="run(circuits, output_name=None, callback=None, num_processes=None, *, property_set=None)">
+  <Function id="qiskit.transpiler.StagedPassManager.run" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passmanager.py#L408-L418" signature="run(circuits, output_name=None, callback=None, num_processes=None, *, property_set=None)">
     Run all the passes on the specified `circuits`.
 
     **Parameters**
@@ -191,7 +191,7 @@ python_api_name: qiskit.transpiler.StagedPassManager
 
   ### to\_flow\_controller
 
-  <Function id="qiskit.transpiler.StagedPassManager.to_flow_controller" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passmanager.py#L418-L420" signature="to_flow_controller()">
+  <Function id="qiskit.transpiler.StagedPassManager.to_flow_controller" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/transpiler/passmanager.py#L420-L422" signature="to_flow_controller()">
     Linearize this manager into a single [`FlowControllerLinear`](qiskit.passmanager.FlowControllerLinear "qiskit.passmanager.FlowControllerLinear"), so that it can be nested inside another pass manager.
 
     **Returns**

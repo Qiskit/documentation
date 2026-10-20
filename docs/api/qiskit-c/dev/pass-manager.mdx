@@ -41,11 +41,11 @@ Qiskit contains generic infrastructure for defining pass managers, passes and IR
 
   These are the valid values for `QkVtableEntry::slot` and the associated function-pointer types required for the `table` argument of `qk_ir_handle_new`.
 
-  <span id="group__pass-manager_1autotoc_md550" />
+  <span id="group__pass-manager_1autotoc_md556" />
 
   #### Safety
 
-  <span id="group__pass-manager_1autotoc_md550" />
+  <span id="group__pass-manager_1autotoc_md556" />
 
   All functions, including the destructor, must be callable from any thread.
 
@@ -73,11 +73,11 @@ Qiskit contains generic infrastructure for defining pass managers, passes and IR
 
   These are the valid values for `QkVtableEntry::slot` and the associated function-pointer types required for the `table` argument of `qk_pass_new`.
 
-  <span id="group__pass-manager_1autotoc_md551" />
+  <span id="group__pass-manager_1autotoc_md557" />
 
   #### Safety
 
-  <span id="group__pass-manager_1autotoc_md551" />
+  <span id="group__pass-manager_1autotoc_md557" />
 
   All functions, including the destructor, must be callable from any thread.
 
@@ -94,11 +94,11 @@ Qiskit contains generic infrastructure for defining pass managers, passes and IR
     void *run(void *this, void *ir, QkPassContext *context, QkCompilationError **error);
     ```
 
-    <span id="group__pass-manager_1autotoc_md559" />
+    <span id="group__pass-manager_1autotoc_md565" />
 
     ##### Implementation
 
-    <span id="group__pass-manager_1autotoc_md559" />
+    <span id="group__pass-manager_1autotoc_md565" />
 
     This implements the pass behavior. `this` will be equal to a value passed to `qk_pass_new` with this vtable. `ir` will point to owned data of the type specified by the vtable’s `ir_in` field. It is the responsibility of the implementer to ensure `ir` is freed, if necessary.
 
@@ -131,11 +131,11 @@ Qiskit contains generic infrastructure for defining pass managers, passes and IR
 
   These passes can be added to instances of `QkPassManager` using `qk_passmanager_push_pass`.
 
-  <span id="group__pass-manager_1autotoc_md552" />
+  <span id="group__pass-manager_1autotoc_md558" />
 
   #### Safety
 
-  <span id="group__pass-manager_1autotoc_md552" />
+  <span id="group__pass-manager_1autotoc_md558" />
 
   The `this` data pointer must be safe to send and share between threads. All methods in the `QkPassVtable` must be safely callable from any thread.
 </Class>
@@ -175,11 +175,11 @@ Qiskit contains generic infrastructure for defining pass managers, passes and IR
 <Function id="qk_compilation_error_new" signature="QkCompilationError *qk_compilation_error_new(const char *msg)">
   Create a new compilation error with a fixed message.
 
-  <span id="group__pass-manager_1autotoc_md326" />
+  <span id="group__pass-manager_1autotoc_md332" />
 
   #### Safety
 
-  <span id="group__pass-manager_1autotoc_md326" />
+  <span id="group__pass-manager_1autotoc_md332" />
 
   `msg` must point to nul-terminated bytes.
 
@@ -201,11 +201,11 @@ Qiskit contains generic infrastructure for defining pass managers, passes and IR
 
   The return value must be freed with `qk_str_free`.
 
-  <span id="group__pass-manager_1autotoc_md327" />
+  <span id="group__pass-manager_1autotoc_md333" />
 
   #### Safety
 
-  <span id="group__pass-manager_1autotoc_md327" />
+  <span id="group__pass-manager_1autotoc_md333" />
 
   Behavior is undefined if `error` does not point to a valid `QkCompilationError`.
 
@@ -225,11 +225,11 @@ Qiskit contains generic infrastructure for defining pass managers, passes and IR
 
   Does nothing if `error` is null.
 
-  <span id="group__pass-manager_1autotoc_md328" />
+  <span id="group__pass-manager_1autotoc_md334" />
 
   #### Safety
 
-  <span id="group__pass-manager_1autotoc_md328" />
+  <span id="group__pass-manager_1autotoc_md334" />
 
   Behavior is undefined is `error` is neither null nor points to a valid owned `CompilationError`.
 
@@ -247,11 +247,11 @@ Qiskit contains generic infrastructure for defining pass managers, passes and IR
 
   If you want the handle for a built-in Qiskit type, see `qk_ir_handle_builtin`.
 
-  <span id="group__pass-manager_1autotoc_md329" />
+  <span id="group__pass-manager_1autotoc_md335" />
 
   #### Safety
 
-  <span id="group__pass-manager_1autotoc_md329" />
+  <span id="group__pass-manager_1autotoc_md335" />
 
   Behavior is undefined if any of the following are violated:
 
@@ -291,11 +291,11 @@ Qiskit contains generic infrastructure for defining pass managers, passes and IR
 
   Does nothing if the pointer is null.
 
-  <span id="group__pass-manager_1autotoc_md330" />
+  <span id="group__pass-manager_1autotoc_md336" />
 
   #### Safety
 
-  <span id="group__pass-manager_1autotoc_md330" />
+  <span id="group__pass-manager_1autotoc_md336" />
 
   Behavior is undefined if `handle` is not null and does not point to a valid owned `QkIrHandle` object.
 
@@ -311,11 +311,11 @@ Qiskit contains generic infrastructure for defining pass managers, passes and IR
 
   Once you have the output of this function, you create instances of the pass by combining it with a data pointer using `qk_pass_new`.
 
-  <span id="group__pass-manager_1autotoc_md331" />
+  <span id="group__pass-manager_1autotoc_md337" />
 
   #### Safety
 
-  <span id="group__pass-manager_1autotoc_md331" />
+  <span id="group__pass-manager_1autotoc_md337" />
 
   Behavior is undefined if any of the following are violated:
 
@@ -346,11 +346,11 @@ Qiskit contains generic infrastructure for defining pass managers, passes and IR
 
   Does nothing if `vtable` is `NULL`.
 
-  <span id="group__pass-manager_1autotoc_md332" />
+  <span id="group__pass-manager_1autotoc_md338" />
 
   #### Safety
 
-  <span id="group__pass-manager_1autotoc_md332" />
+  <span id="group__pass-manager_1autotoc_md338" />
 
   Behavior is undefined if `vtable` is not null or a valid owned reference to a `PassVtable`.
 
@@ -366,11 +366,11 @@ Qiskit contains generic infrastructure for defining pass managers, passes and IR
 
   The result pass object is typically then given to `qk_passmanager_push_pass`, or a related method.
 
-  <span id="group__pass-manager_1autotoc_md333" />
+  <span id="group__pass-manager_1autotoc_md339" />
 
   #### Safety
 
-  <span id="group__pass-manager_1autotoc_md333" />
+  <span id="group__pass-manager_1autotoc_md339" />
 
   Behavior is undefined if any of the following are violated:
 
@@ -394,11 +394,11 @@ Qiskit contains generic infrastructure for defining pass managers, passes and IR
 
   You typically do not need to call this, because the pass-manager building functions steal ownership of `QkPass` arguments.
 
-  <span id="group__pass-manager_1autotoc_md334" />
+  <span id="group__pass-manager_1autotoc_md340" />
 
   #### Safety
 
-  <span id="group__pass-manager_1autotoc_md334" />
+  <span id="group__pass-manager_1autotoc_md340" />
 
   Behavior is undefined if `pass` is not either null or a valid owned pointer to a `QkPass`.
 
@@ -424,11 +424,11 @@ Qiskit contains generic infrastructure for defining pass managers, passes and IR
 <Function id="qk_passmanager_free" signature="void qk_passmanager_free(QkPassManager *pm)">
   Free the pass manager.
 
-  <span id="group__pass-manager_1autotoc_md335" />
+  <span id="group__pass-manager_1autotoc_md341" />
 
   #### Safety
 
-  <span id="group__pass-manager_1autotoc_md335" />
+  <span id="group__pass-manager_1autotoc_md341" />
 
   Behavior is undefined if `pm` is not either null or a valid pointer to a `QkPassManager`.
 
@@ -442,11 +442,11 @@ Qiskit contains generic infrastructure for defining pass managers, passes and IR
 <Function id="qk_passmanager_push_pass" signature="QkExitCode qk_passmanager_push_pass(QkPassManager *pm, QkPass *pass)">
   Push a pass onto the pass manager.
 
-  <span id="group__pass-manager_1autotoc_md336" />
+  <span id="group__pass-manager_1autotoc_md342" />
 
   #### Safety
 
-  <span id="group__pass-manager_1autotoc_md336" />
+  <span id="group__pass-manager_1autotoc_md342" />
 
   Behavior is undefined if any of the following are violated:
 
@@ -470,18 +470,18 @@ Qiskit contains generic infrastructure for defining pass managers, passes and IR
 
   `ir_in_handle` and `ir_out_handle` must match the type expectations of the pipeline. This function will return `NULL` and (optionally) set the error state if this is violated.
 
-  <span id="group__pass-manager_1autotoc_md337" />
+  <span id="group__pass-manager_1autotoc_md343" />
 
   #### Safety
 
-  <span id="group__pass-manager_1autotoc_md337" />
+  <span id="group__pass-manager_1autotoc_md343" />
 
   Behavior is undefined if any of the following are violated:
 
-  *   `pm` is a valid pointer to `QkPassManager`.
+  *   `pm` is a valid pointer to a `QkPassManager`.
   *   `ir` is an owning data pointer of the type indicated by `ir_in_handle`.
-  *   `ir_in_handle` points a valid `IrHandle`.
-  *   `ir_out_handle` points a valid `IrHandle`.
+  *   `ir_in_handle` points to a valid `IrHandle`.
+  *   `ir_out_handle` points to a valid `IrHandle`.
   *   `error` is either null, or points to a storage location valid for a single write of one `QkCompilationError *`.
 
   **Parameters**

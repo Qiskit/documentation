@@ -5,7 +5,7 @@ description: "Build a learning experiment for the latest version of Qiskit noise
 
 # Build a learning experiment
 
-This guide demonstrates how to build a standard learning experiment from scratch, and use it to learn a model from simulated noisy data.
+This tutorial demonstrates how to build a standard learning experiment from scratch, and use it to learn a model from simulated noisy data.
 
 1.  Define a gate set on a ring of qubits
 2.  Choose a 2-local Pauli-Lindblad model
@@ -148,13 +148,13 @@ Design matrix rank: 120
 
 ## 4. Generate circuits
 
-Compile the experiment with an [`ExecutorCircuitGenerator`](/docs/api/qiskit-noise-learning/generated/circuit-generator-executor-circuit-generator#qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator "qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator"), generating a [`QuantumProgram`](/docs/api/qiskit-ibm-runtime/quantum-program-quantum-program "(in Qiskit Runtime IBM Client)") — one parameterized template circuit per fragment depth — together with a data mapper that records how to interpret results.
+Compile the experiment with an [`ExecutorCircuitGenerator`](/docs/api/qiskit-noise-learning/generated/circuit-generator-executor-circuit-generator#qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator "qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator"), generating a [`QuantumProgram`](/docs/api/qiskit-ibm-runtime/quantum-program-quantum-program "(in Qiskit Runtime IBM Client)") — one parameterized template circuit per fragment depth.
 
 ```python
 from qiskit_noise_learning.circuit_generator import ExecutorCircuitGenerator
 
 circuit_generator = ExecutorCircuitGenerator(gate_set)
-quantum_program, data_mapper = circuit_generator.generate(experiment)
+quantum_program = circuit_generator.generate(experiment)
 
 print(f"Number of template circuits: {len(quantum_program.items)}")
 ```
@@ -169,7 +169,7 @@ Draw a template circuit to inspect.
 quantum_program.items[0].circuit.draw("mpl", idle_wires=False, fold=False)
 ```
 
-![../\_images/cbfeb7989573772757ac81e9b3a0665f8a0513450d76bfc5ab63e24f40c6b8f6.png](/docs/images/addons/qiskit-noise-learning/cbfeb7989573772757ac81e9b3a0665f8a0513450d76bfc5ab63e24f40c6b8f6.avif)
+![../\_images/dcdaa347d38e1035a0396479bb23edae0b60dfe36ef934e052f8f8b1377174a3.png](/docs/images/addons/qiskit-noise-learning/dcdaa347d38e1035a0396479bb23edae0b60dfe36ef934e052f8f8b1377174a3.avif)
 
 <span id="set-up-local-simulation" />
 
@@ -177,7 +177,7 @@ quantum_program.items[0].circuit.draw("mpl", idle_wires=False, fold=False)
 
 An [`AerExecutor`](/docs/api/qiskit-noise-learning/generated/aer-executor-aer-executor#qiskit_noise_learning.aer_executor.AerExecutor "qiskit_noise_learning.aer_executor.AerExecutor") runs a program on a local Aer simulator, injecting Pauli-Lindblad noise at the barriers Samplomatic places around each twirled gate.
 
-Unlike the hand-picked noise of the [`NoiseLearner`](/docs/api/qiskit-noise-learning/generated/noise-learner-noise-learner#qiskit_noise_learning.noise_learner.NoiseLearner "qiskit_noise_learning.noise_learner.NoiseLearner") guide, give *every one* of the model’s 168 generators an independent random rate. The model’s generators are already exactly the Paulis to put in a [`PauliLindbladMap`](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap), so pair each one with a rate and build the map per gate directly:
+Unlike the hand-picked noise of the [protocol guide](learning-protocol), give *every one* of the model’s 168 generators an independent random rate. The model’s generators are already exactly the Paulis to put in a [`PauliLindbladMap`](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap), so pair each one with a rate and build the map per gate directly:
 
 ```python
 import numpy as np
@@ -234,11 +234,11 @@ executor = AerExecutor(
 
 ## 6. Run the program
 
-Run the program, then pair the returned bitstrings with the data mapper using [`collect()`](/docs/api/qiskit-noise-learning/generated/circuit-generator-executor-circuit-generator#qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator.collect "qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator.collect"), which produces a [`Fit`](/docs/api/qiskit-noise-learning/generated/analysis-fit#qiskit_noise_learning.analysis.Fit "qiskit_noise_learning.analysis.Fit") — the container the analysis stages read from and write to.
+Run the program, then format the results with [`collect()`](/docs/api/qiskit-noise-learning/generated/circuit-generator-executor-circuit-generator#qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator.collect "qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator.collect"), to produce a [`Fit`](/docs/api/qiskit-noise-learning/generated/analysis-fit#qiskit_noise_learning.analysis.Fit "qiskit_noise_learning.analysis.Fit") — the container the analysis stages read from and write to.
 
 ```python
 job = executor.run(quantum_program)
-fit = circuit_generator.collect(job.result(), data_mapper)
+fit = circuit_generator.collect(job.result())
 ```
 
 <Admonition title="Running on real hardware" type="note">
@@ -259,16 +259,16 @@ Build an analysis pipeline around nonnegative least squares fitting of the model
 from qiskit_noise_learning.analysis import (
     ComputeObservables,  # computes observables from raw data
     CurveFitObservables,  # performs exponential fitting
-    NNLSSolve,  # solves model with nonnegative least squares
+    LeastSquaresSolve,  # solves model with (nonnegative) least squares
 )
 
-analyzer = ComputeObservables() + CurveFitObservables() + NNLSSolve()
+analyzer = ComputeObservables() + CurveFitObservables() + LeastSquaresSolve()
 
 fit = analyzer.run(fit)
 ```
 
 ```myst
-/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages/qiskit_noise_learning/analysis/model_solve.py:244: UserWarning: 3 of 156 row(s) of the linear system have a non-positive or non-finite uncertainty, so they carry no usable statistical weight. Positions in LinearSystemData.row_labels: 145, 146, 147.
+/home/kaelyn/projects/open-source/notes/qiskit-noise-learning/qiskit_noise_learning/analysis/model_solve.py:250: UserWarning: 12 of 156 row(s) of the linear system have a non-positive or non-finite uncertainty, so they carry no usable statistical weight. Positions in LinearSystemData.row_labels: 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, and 2 more.
   system = LinearSystemData.from_fit(fit)
 ```
 
@@ -291,3 +291,4 @@ fit.plot_qubit_pair_decays(
     model_prediction=True,
 )
 ```
+

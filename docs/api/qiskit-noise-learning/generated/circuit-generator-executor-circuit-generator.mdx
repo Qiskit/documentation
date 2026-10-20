@@ -10,8 +10,8 @@ python_api_name: qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerato
 
 # qiskit\_noise\_learning.circuit\_generator.ExecutorCircuitGenerator
 
-<Class id="qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/circuit_generator/executor_circuit_generator.py" signature="qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator(gate_set: QiskitGateSet, creg_prefix: str = 'meas', local_clifford_ref_prefix: str = 'c', pass_manager: PassManager | None = None)" modifiers="class">
-  Bases: `CircuitGenerator`\[[`QuantumProgram`](/docs/api/qiskit-ibm-runtime/quantum-program-quantum-program "(in Qiskit Runtime IBM Client)"), [`ExecutorDataMapper`](circuit-generator-executor-data-mapper "qiskit_noise_learning.circuit_generator.executor_data_mapper.ExecutorDataMapper"), [`QuantumProgramResult`](/docs/api/qiskit-ibm-runtime/results-quantum-program-result "(in Qiskit Runtime IBM Client)")]
+<Class id="qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/circuit_generator/executor/executor_circuit_generator.py" signature="qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator(gate_set: QiskitGateSet, creg_prefix: str = 'meas', local_clifford_ref_prefix: str = 'c', pass_manager: PassManager | None = None)" modifiers="class">
+  Bases: `CircuitGenerator`\[[`QuantumProgram`](/docs/api/qiskit-ibm-runtime/quantum-program-quantum-program "(in Qiskit Runtime IBM Client)"), [`QuantumProgramResult`](/docs/api/qiskit-ibm-runtime/results-quantum-program-result "(in Qiskit Runtime IBM Client)")]
 
   A circuit generator that converts sequences of Qiskit gates into a samplex items.
 
@@ -20,7 +20,9 @@ python_api_name: qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerato
   *   **gate\_set** – The Qiskit gate set that this generator constructs against.
   *   **creg\_prefix** – The prefix assigned to all creg names used in instruction sequence measurements. Defaults to `"meas"`.
   *   **local\_clifford\_ref\_prefix** – The prefix assigned to all local Clifford parameter references in template circuits. Defaults to `"c"`.
-  *   **pass\_manager** – An optional `PassManager` to apply to all template circuits produced by [`ExecutorCircuitGenerator.generate()`](#qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator.generate "qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator.generate").
+  *   **pass\_manager** – An optional `PassManager` to apply to all template circuits produced by [`ExecutorCircuitGenerator.generate()`](#qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator.generate "qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator.generate"). Pass managers should not modify the details of the existing circuit (e.g. re-order qubits or rename measurements).
+
+  Pure preparation gates (those with `prep_idxs` and no operations) at the beginning of an instruction sequence are not explicitly included as a box in the template circuit. Instead, any single-qubit gates (e.g. basis rotation) associated with preparation are absorbed into the subsequent box’s left-dressing.
 
   ### \_\_init\_\_
 
@@ -31,7 +33,7 @@ python_api_name: qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerato
   |                                                                                                                                                                                                                                          |                                                                                      |
   | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
   | [`__init__`](#qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator.__init__ "qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator.__init__")(gate\_set\[, creg\_prefix, ...])                                    |                                                                                      |
-  | [`collect`](#qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator.collect "qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator.collect")(result, data\_mapper)                                                  | Coerce data from a specific execution framework into a canonical form.               |
+  | [`collect`](#qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator.collect "qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator.collect")(result)                                                                | Coerce data from a specific execution framework into a canonical form.               |
   | [`generate`](#qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator.generate "qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator.generate")(experiment)                                                         | Generate a new experimental task from the provided experiment.                       |
   | [`generate_samplex_item`](#qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator.generate_samplex_item "qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator.generate_samplex_item")(instruction\_sequences, ...) | Generate a samplex item from instruction sequences with the same structure.          |
   | [`generate_samplex_items`](#qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator.generate_samplex_items "qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator.generate_samplex_items")(...)                      | Generate samplex items from instruction sequences.                                   |
@@ -53,7 +55,7 @@ python_api_name: qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerato
 
   ### collect
 
-  <Function id="qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator.collect" signature="collect(result, data_mapper)" modifiers="static">
+  <Function id="qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator.collect" signature="collect(result)" modifiers="static">
     Coerce data from a specific execution framework into a canonical form.
   </Function>
 
@@ -83,6 +85,8 @@ python_api_name: qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerato
   <Function id="qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator.generate_samplex_item" signature="generate_samplex_item(instruction_sequences: list[InstructionSequence], num_randomizations: int) → tuple[SamplexItem, list[str], dict[str, ndarray[int]]]">
     Generate a samplex item from instruction sequences with the same structure.
 
+    Every twirled box must be left-dressed: the accumulated `PartialPauliPermutation` is emitted as each box’s left-dressing local Clifford, so a right-dressed twirl is not supported and raises.
+
     **Parameters**
 
     *   **instruction\_sequences** – The similar instruction sequences to generate.
@@ -90,13 +94,14 @@ python_api_name: qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerato
 
     **Returns**
 
-    A samplex item where the order of the arguments correspond to the order of `instruction_sequences`, an ordered list of creg names, and a dictionary mapping creg names to the ordered list of qubit indices they measure.
+    A samplex item where the order of the arguments correspond to the order of `instruction_sequences`, an ordered list of creg names, and a dictionary mapping creg names to the physical qubit index measured into each of their classical bits, in classical bit order.
 
     **Raises**
 
-    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If `instruction_sequences` is empty.
-    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If any of the instruction sequences is not complete.
-    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If any of the instruction sequences have different structure.
+    *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If `instruction_sequences` is empty.
+    *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If any of the instruction sequences is not complete.
+    *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If any of the instruction sequences have different structure.
+    *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If a twirled box is not left-dressed.
   </Function>
 </Class>
 
