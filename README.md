@@ -207,7 +207,7 @@ with the package versions so users can reproduce the results. Do not add
 anything else to this cell as the contents of the cell will be completely
 overwritten when it's next executed.
 
-It will also update during the cron jobs.
+The package versions will also update during the cron jobs.
 
 ### Execute notebooks
 
