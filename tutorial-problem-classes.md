@@ -4,7 +4,7 @@
 
 This page defines the Hamiltonian simulation and quantum machine learning problem classes listed on [Contribute a tutorial](https://quantum.cloud.ibm.com/docs/tutorials/contribute). Optimization problem classes come from the [Quantum Optimization Benchmarking Library (QOBLIB)](https://arxiv.org/abs/2504.03832). Reviewers use these definitions to check whether a proposal fits a class, as described in the [guide to adding tutorials](adding-tutorials.md).
 
-- **Foundational problem classes** group the systems or data that are useful for teaching a domain's methods. Each one names a teaching instance that can be checked against a known answer, how to scale it up, and the Applied work it leads to.
+- **Foundational problem classes** group the systems or data that are useful for teaching a domain's methods. Each one names a teaching instance that can be checked against a known answer, how to scale it up, and where it leads next.
 - **Applied problem classes** are problems that are promising for quantum advantage. Each one names its target quantity, the classical reference to compare against, and what counts as a real instance.
 
 Values marked _to be defined_ are still being set.
