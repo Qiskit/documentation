@@ -1,0 +1,46 @@
+---
+title: Dynamic-typing system (dev version)
+description: API reference for Dynamic-typing system in the dev version of qiskit-c
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: Dynamic-typing system
+---
+
+<span id="capi-dynamic-types" />
+
+# Dynamic-typing system
+
+Several places in Qiskit allow the runtime definition of additional types and behavior. These use a consistent set of dynamic-typing methods and helpers to declare and interact with such objects.
+
+### QkVtableEntry
+
+<Class id="QkVtableEntry" signature="struct QkVtableEntry">
+  An entry in a vtable for defining objects with custom behavior.
+
+  This same structure is used in several places when defining “custom behavior” for objects dynamically at runtime of your C program. The valid values of `slot`, `flag` and the function-pointer type of `ptr` will vary based on the context you are passing it to.
+
+  Typically, you will defining program statics of tables of these, terminating in the sentinel value `{-1, 0, NULL}`. Various Qiskit C API functions will take arguments of this form, and return a “vtable” handle back, which can then be used to define “instances” of the object with this attached behavior.
+
+  #### uint32\_t slot
+
+  <Attribute id="slot">
+    The “slot” of the function, or the sentinel `(uint32_t)-1` to mark the final array entry.
+
+    This is typically set to some `enum` value, where the particular `enum` varies depending on which vtable you are defining.
+  </Attribute>
+
+  #### uint32\_t flags
+
+  <Attribute id="flags">
+    Any additional “flags” for the particular table entry. These will typically be or’d (`|`) together, and the valid set of flags will be documented by the table user.
+  </Attribute>
+
+  #### void \*ptr
+
+  <Attribute id="ptr">
+    A function pointer implementing the correct signature for the combination of the `slot` and `flags`.
+
+    This can be `NULL` only in the case of `slots` being the sentinel `-1`.
+  </Attribute>
+</Class>
+

@@ -11,9 +11,9 @@
 // that they have been altered from the originals.
 
 import { expect, test } from "@playwright/test";
-import { parseMarkdown } from "./markdownUtils";
 
-import { collectHeadingTitleMismatch } from "./markdownTitles";
+import { parseMarkdown } from "./markdownUtils.js";
+import { collectHeadingTitleMismatch } from "./markdownTitles.js";
 
 const assert = async (
   markdown: string,

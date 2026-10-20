@@ -16,7 +16,7 @@ import { getLastPartFromFullIdentifier } from "../stringUtils.js";
 import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
 import { Pkg } from "./Pkg.js";
 import type { TocGrouping } from "./TocGrouping.js";
-import { DOCS_BASE_PATH } from "./conversionPipeline.js";
+import { DOCS_BASE_PATH } from "./paths.js";
 import { groupByMajorVersion } from "./releaseNotes.js";
 
 export type TocEntry = {
@@ -26,6 +26,7 @@ export type TocEntry = {
   isNew?: string;
   isNewDate?: string;
   useDivider?: boolean;
+  untranslatable?: boolean;
 };
 
 type Toc = {
@@ -33,6 +34,9 @@ type Toc = {
   subtitle?: string;
   children: TocEntry[];
   collapsed: boolean;
+  untranslatable?: boolean;
+  parentUrl?: string;
+  parentLabel?: string;
 };
 
 export function generateToc(pkg: Pkg, results: HtmlToMdResultWithUrl[]): Toc {
@@ -68,6 +72,11 @@ export function generateToc(pkg: Pkg, results: HtmlToMdResultWithUrl[]): Toc {
     title: pkg.title,
     children: orderedEntries,
     collapsed: true,
+    untranslatable: true,
+    ...(pkg.hasAddonDocs && {
+      parentUrl: `/docs/addons/${pkg.pythonSiblingName()}`,
+      parentLabel: pkg.title,
+    }),
   };
 }
 
@@ -115,6 +124,10 @@ function generateTocModules(modules: HtmlToMdResultWithUrl[]): TocEntry[] {
       title: module.meta.apiName!,
       // Remove the final /index from the url
       url: `${DOCS_BASE_PATH}${module.url.replace(/\/index$/, "")}`,
+      untranslatable:
+        module.meta.apiType == "syntheticModule"
+          ? module.meta.untranslatable
+          : true,
     }),
   );
 }
@@ -137,6 +150,7 @@ function addItemsToModules(
       const itemTocEntry: TocEntry = {
         title: getLastPartFromFullIdentifier(item.meta.apiName!),
         url: `${DOCS_BASE_PATH}${item.url}`,
+        untranslatable: true,
       };
       itemModule.children.push(itemTocEntry);
     }
@@ -192,6 +206,7 @@ function groupAndSortModules(
       const module = tocModulesByTitle.get(entry.moduleId);
       if (!module) return;
       module.title = entry.title;
+      module.untranslatable = entry.untranslatable;
       result.push(module);
     } else {
       const modules = sectionsToModules.get(entry.name);
@@ -200,6 +215,7 @@ function groupAndSortModules(
         title: entry.name,
         // Within a section, sort alphabetically.
         children: orderEntriesByTitle(modules),
+        untranslatable: entry.untranslatable,
       });
     }
   });
@@ -216,7 +232,7 @@ function ensureIndexPage(
   pkg: Pkg,
   tocModules: TocEntry[],
 ): TocEntry | undefined {
-  const docsFolder = pkg.outputDir(`${DOCS_BASE_PATH}/`);
+  const docsFolder = pkg.apiOutputDir(`${DOCS_BASE_PATH}/`);
   return tocModules.some((entry) => entry.url === docsFolder)
     ? undefined
     : {

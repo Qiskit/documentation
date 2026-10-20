@@ -16,8 +16,8 @@ import { hideBin } from "yargs/helpers";
 import { firefox, Page } from "playwright";
 import fs from "fs/promises";
 
-import { readMarkdown } from "../lib/markdownReader";
-import { hasInlineMath, removeFileExtension } from "../lib/katexRenderUtils";
+import { readMarkdown } from "../lib/markdownReader.js";
+import { hasInlineMath, removeFileExtension } from "../lib/katexRenderUtils.js";
 
 // This list contains files with inline math expressions that should be
 // fixed to avoid any possible overflow.

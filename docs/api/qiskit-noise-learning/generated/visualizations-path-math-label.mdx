@@ -1,0 +1,29 @@
+---
+title: path_math_label (latest version)
+description: API reference for qiskit_noise_learning.visualizations.path_math_label in the latest version of qiskit-noise-learning
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit_noise_learning.visualizations.path_math_label
+---
+
+<span id="qiskit-noise-learning-visualizations-path-math-label" />
+
+# qiskit\_noise\_learning.visualizations.path\_math\_label
+
+<Function id="qiskit_noise_learning.visualizations.path_math_label" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/visualizations/fidelity_math_labels.py" signature="qiskit_noise_learning.visualizations.path_math_label(gate_set: GateSet, path: Path, style: Literal['transition', 'formula'] = 'transition', noise_site: Mapping[str, Literal['before', 'after']] | None = None, repeatable_only: bool = False, qubit_labels: Mapping[int, str] | None = None) → str">
+  Return a math-mode LaTeX label for a path.
+
+  **Parameters**
+
+  *   **gate\_set** – The gate set the path’s fidelity indices belong to, used to look up each gate’s [`math_label`](gate-sets-gate#math_label "qiskit_noise_learning.gate_sets.Gate.math_label").
+  *   **path** – The path to label.
+  *   **style** – The style to use for each fidelity index label. `"transition"` displays the Pauli operator transitions induced by each gate, and `"formula"` displays the fidelity label formula associated with this path.
+  *   **noise\_site** – An optional noise-site mapping forwarded to [`fidelity_index_math_label()`](visualizations-fidelity-index-math-label "qiskit_noise_learning.visualizations.fidelity_index_math_label") for the `"formula"` style (see that function for details).
+  *   **repeatable\_only** – If `True`, only render the repeatable fragment without brackets or fragment-depth exponent.
+  *   **qubit\_labels** – An optional mapping from qubit index to a display symbol, used to relabel the qubit subscripts (e.g. `{25: "i", 26: "j"}` renders `X_{25}` as `X_{i}`). Indices absent from the mapping render as their integer value.
+
+  **Returns**
+
+  A math-mode LaTeX label.
+</Function>
+

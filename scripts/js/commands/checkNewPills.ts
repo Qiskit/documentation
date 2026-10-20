@@ -12,8 +12,8 @@
 
 import { globby } from "globby";
 
-import { readJsonFile } from "../lib/fs";
-import { collectNewPills, NewPillEntry } from "../lib/newPills";
+import { readJsonFile } from "../lib/fs.js";
+import { collectNewPills, NewPillEntry } from "../lib/newPills.js";
 
 const TODAY = new Date();
 

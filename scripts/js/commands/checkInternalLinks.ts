@@ -26,21 +26,16 @@ import { QISKIT_REMOVED_PAGES } from "../lib/links/QiskitRemovedPages.js";
 const SYNTHETIC_FILES: string[] = [
   "learning/index.mdx",
   "docs/index.mdx",
-  "docs/admin/analytics.mdx",
   "docs/errors.mdx",
   "docs/api/qiskit-ibm-runtime/index.mdx",
-  "docs/api/qiskit-ibm-runtime/tags/jobs.mdx",
+  "docs/api/qiskit-runtime-rest/index.mdx",
+  "docs/api/qiskit-runtime-rest/tags/jobs.mdx",
   "docs/api/qiskit-transpiler-service-rest/index.mdx",
-  "docs/api/qiskit-ibm-runtime/tags/usage.mdx",
-  "docs/api/qiskit-ibm-runtime/tags/sessions.mdx",
+  "docs/api/qiskit-runtime-rest/tags/usage.mdx",
+  "docs/api/qiskit-runtime-rest/tags/sessions.mdx",
   "docs/api/qiskit-runtime-rest/tags/instances.mdx",
   "docs/api/qiskit-runtime-rest/tags/backends.mdx",
   "docs/api/qiskit-runtime-rest/index.mdx",
-  "announcements/product-updates/2024-02-14-qiskit-runtime-primitives-update.mdx",
-  "announcements/product-updates.mdx",
-  "announcements/index.mdx",
-  "announcements/product-updates/2025-03-03-new-version-dynamic-circuits.mdx",
-  "announcements/product-updates/2025-09-25-new-dynamic-circuits.mdx",
 ];
 
 interface Arguments {
@@ -134,21 +129,16 @@ const QISKIT_GLOBS_TO_LOAD = [
   "docs/guides/qiskit-sdk-version-strategy.mdx",
   "docs/guides/qiskit-backendv1-to-v2.mdx",
   "docs/guides/install-qiskit.mdx",
-  "docs/api/qiskit-c/index.mdx",
-  "docs/api/qiskit-c/2.1/index.mdx",
-  "docs/api/qiskit-c/2.1/qk-complex-64.mdx",
-  "docs/api/qiskit-c/2.2/qk-transpiler.mdx",
-  "docs/api/qiskit-c/2.2/qk-transpiler-passes.mdx",
-  "docs/api/qiskit-c/2.2/qk-target-entry.mdx",
-  "docs/api/qiskit-c/2.2/qk-obs.mdx",
-  "docs/api/qiskit-c/2.2/qk-circuit.mdx",
-  "docs/api/qiskit-c/2.2/qk-obs-term.mdx",
-  "docs/api/qiskit-c/2.2/qk-target.mdx",
   "docs/api/qiskit-ibm-runtime/estimator-v2.mdx",
   "docs/api/qiskit-ibm-runtime/runtime-service.mdx",
+  // Qiskit sometimes links to the C API, so we load every
+  // qiskit-c latest version page to avoid having errors in the future.
+  "docs/api/qiskit-c/*",
 ];
 // This is reused amongst all the addons to make this config less verbose.
-const ADDON_GLOBS_TO_LOAD = ["docs/api/qiskit/*.mdx"];
+// It includes the addon guide pages (docs/addons/**) since historical addon
+// API docs may link to them,
+const ADDON_GLOBS_TO_LOAD = ["docs/api/qiskit/*.mdx", "docs/addons/**/*.mdx"];
 
 async function determineFileBatches(args: Arguments): Promise<FileBatch[]> {
   const currentBatch = await determineCurrentDocsFileBatch(args);
@@ -267,8 +257,15 @@ async function determineCurrentDocsFileBatch(
 }
 
 async function determineDevFileBatches(): Promise<FileBatch[]> {
+  const qiskitDevGlobsToLoad = [
+    ...QISKIT_GLOBS_TO_LOAD,
+    // Qiskit sometimes links to the C API, so we load every
+    // qiskit-c dev version page.
+    "docs/api/qiskit-c/dev/*",
+  ];
+
   const projects: [string, string[]][] = [
-    ["qiskit", QISKIT_GLOBS_TO_LOAD],
+    ["qiskit", qiskitDevGlobsToLoad],
     ["qiskit-ibm-runtime", RUNTIME_GLOBS_TO_LOAD],
   ];
 
@@ -318,6 +315,12 @@ async function determineHistoricalFileBatches(
       `public/docs/api/${projectName}/${folder.name}/objects.inv`,
     ];
     const toLoad = [...extraGlobsToLoad];
+
+    // Qiskit sometimes links to the C API, so we load every
+    // qiskit-c historical page for the specific qiskit version we check.
+    if (projectName == "qiskit") {
+      toLoad.push(`docs/api/qiskit-c/${folder.name}/*`);
+    }
 
     // Also check the release note file for this version, if the package has
     // separate release notes per version.

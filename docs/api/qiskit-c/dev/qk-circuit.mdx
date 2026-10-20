@@ -6,6 +6,8 @@ python_api_type: module
 python_api_name: QkCircuit
 ---
 
+<span id="capi-circuit" />
+
 # QkCircuit
 
 ```c
@@ -100,7 +102,7 @@ The circuit C API currently only supports creating circuits that contain operati
     A pointer to an array of clbit indices this instruction operates on.
   </Attribute>
 
-  #### double \*params
+  #### QkParam \*\*params
 
   <Attribute id="params">
     A pointer to an array of parameter values for this instruction.
@@ -122,6 +124,124 @@ The circuit C API currently only supports creating circuits that contain operati
 
   <Attribute id="num_params">
     The number of parameters for this instruction.
+  </Attribute>
+</Class>
+
+### QkCircuitInstructionView
+
+<Class id="QkCircuitInstructionView" signature="struct QkCircuitInstructionView">
+  A non-owning view of a `QkCircuit` or `QkDag` instruction.
+
+  This represents all the same information as a `QkCircuitInstruction`, but all the pointer-typed fields are raw views onto data borrowed from the respective `QkCircuit` or `QkDag`. All pointers are invalidated by any mutation or freeing of the underlying object.
+
+  As the data is all borrowed from the native Rust representations without allocation, there are various complications to accessing the data from C. See the “Usage notes” section below for detail.
+
+  This is typically created by `qk_circuit_view_instruction` and `qk_dag_view_instruction`.
+
+  It is undefined behavior to mutate any data pointed to by this struct.
+
+  <span id="structQkCircuitInstructionView_1autotoc_md561" />
+
+  #### Usage notes
+
+  <span id="structQkCircuitInstructionView_1autotoc_md561" />
+
+  The `name` field is *not* nul-terminated, unlike normal C strings. It may also include arbitrary UTF-8 encoded data. You cannot safely use this member with most C string functions. To do string comparisons, consider using `strncmp` with `name_len` as the limit. To use the string in `printf`-like format specifiers, you must use the variable-width specifier form, such as:
+
+  ```c
+  QkCircuitInstructionView view;
+  qk_circuit_view_instruction(qc, 0, &view);
+  printf("name: '%*s'\n", view.name_len, view.name);
+  ```
+
+  In order to iterate through the `params` field, you must call `qk_param_stride` at runtime to discover the width of the `QkParam` field, and then offset the pointer by a byte offset. For example:
+
+  ```c
+  QkCircuitInstructionView view;
+  qk_circuit_view_instruction(qc, 0, &view);
+  size_t el_size = qk_param_stride();
+  for (size_t i=0; i < view.num_params; i++) {
+  const QkParam *p = (const QkParam *)((const char *)view.params + i*el_size);
+  // ... do something with `p` ...
+  }
+  ```
+
+  #### const char \*name
+
+  <Attribute id="name">
+    The `name_len` UTF-8 encoded bytes that represent the instruction name. This is not nul-terminated; you must take care to use functions like `strncmp` bounded by `name_len`
+  </Attribute>
+
+  #### const uint32\_t \*qubits
+
+  <Attribute id="qubits">
+    The qubits used by the instruction.
+  </Attribute>
+
+  #### const uint32\_t \*clbits
+
+  <Attribute id="clbits">
+    The clbits used by the instruction.
+  </Attribute>
+
+  #### const QkParam \*params
+
+  <Attribute id="params">
+    An array of `num_params` `QkParam` instances. Offset the pointer by `qk_param_stride` bytes to iterate through valid `*const QkParam` instances; you cannot use regular pointer arithmetic because the size of `QkParam` is not specified in the compile-time API.
+  </Attribute>
+
+  #### size\_t name\_len
+
+  <Attribute id="name_len">
+    How many bytes the non-nul-terminated UTF-8 string in `name` is.
+  </Attribute>
+
+  #### uint32\_t num\_qubits
+
+  <Attribute id="num_qubits">
+    The number of elements of `qubits`.
+  </Attribute>
+
+  #### uint32\_t num\_clbits
+
+  <Attribute id="num_clbits">
+    The number of elements of `clbits`.
+  </Attribute>
+
+  #### size\_t num\_params
+
+  <Attribute id="num_params">
+    The number of elements of `params`.
+  </Attribute>
+</Class>
+
+### QkCircuitDrawerConfig
+
+<Class id="QkCircuitDrawerConfig" signature="struct QkCircuitDrawerConfig">
+  The configuration options for the `qk_circuit_draw` function.
+
+  #### bool bundle\_cregs
+
+  <Attribute id="bundle_cregs">
+    If `true`, bundles classical registers into single wires.
+  </Attribute>
+
+  #### bool merge\_wires
+
+  <Attribute id="merge_wires">
+    If `true`, merges the bottom and top lines of adjacent wires.
+  </Attribute>
+
+  #### size\_t fold
+
+  <Attribute id="fold">
+    Sets the line length for wrapping the rendered text. Use 0 to auto-detect console width. Use `SIZE_MAX` to effectively skip wrapping altogether.
+  </Attribute>
+
+  #### size\_t barrier\_label\_len
+
+  <Attribute id="barrier_label_len">
+    Sets the number of characters to display for barrier labels. If this number is exceeded, the label is truncated at that number and ‘…’ is appended. Use 0 to apply the default of 16 characters.
   </Attribute>
 </Class>
 
@@ -162,6 +282,24 @@ The circuit C API currently only supports creating circuits that contain operati
 
   <Attribute id="QkDelayUnit_PS">
     Picoseconds.
+  </Attribute>
+
+  #### enumerator QkDelayUnit\_DT
+
+  <Attribute id="QkDelayUnit_DT">
+    Dt
+  </Attribute>
+
+  #### enumerator QkDelayUnit\_EXPR
+
+  <Attribute id="QkDelayUnit_EXPR">
+    Classical Expression
+  </Attribute>
+
+  #### enumerator QkDelayUnit\_Unknown
+
+  <Attribute id="QkDelayUnit_Unknown">
+    Unknown
   </Attribute>
 </Class>
 
@@ -216,7 +354,7 @@ The circuit C API currently only supports creating circuits that contain operati
 <Function id="qk_circuit_new" signature="QkCircuit *qk_circuit_new(uint32_t num_qubits, uint32_t num_clbits)">
   Construct a new circuit with the given number of qubits and clbits.
 
-  <span id="group__QkCircuit_1autotoc_md6" />
+  <span id="group__QkCircuit_1autotoc_md0" />
 
   #### Example
 
@@ -239,7 +377,7 @@ The circuit C API currently only supports creating circuits that contain operati
 <Function id="qk_circuit_add_quantum_register" signature="void qk_circuit_add_quantum_register(QkCircuit *circuit, const QkQuantumRegister *reg)">
   Add a quantum register to a given quantum circuit
 
-  <span id="group__QkCircuit_1autotoc_md15" />
+  <span id="group__QkCircuit_1autotoc_md21" />
 
   #### Example
 
@@ -251,11 +389,11 @@ The circuit C API currently only supports creating circuits that contain operati
   qk_circuit_free(qc);
   ```
 
-  <span id="group__QkCircuit_1autotoc_md16" />
+  <span id="group__QkCircuit_1autotoc_md22" />
 
   #### Safety
 
-  <span id="group__QkCircuit_1autotoc_md16" />
+  <span id="group__QkCircuit_1autotoc_md22" />
 
   Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit` and if `reg` is not a valid, non-null pointer to a `QkQuantumRegister`.
 
@@ -265,12 +403,95 @@ The circuit C API currently only supports creating circuits that contain operati
   *   **reg** – A pointer to the quantum register
 </Function>
 
+### qk\_circuit\_num\_quantum\_registers
+
+<Function id="qk_circuit_num_quantum_registers" signature="size_t qk_circuit_num_quantum_registers(const QkCircuit *circuit)">
+  Get the number of quantum registers in the circuit.
+
+  Returns the number of quantum registers that have been added to the circuit.
+
+  <span id="group__QkCircuit_1autotoc_md23" />
+
+  #### Example
+
+  ```c
+  QkCircuit *qc = qk_circuit_new(0, 0);
+  QkQuantumRegister *qr1 = qk_quantum_register_new(2, "qr1");
+  QkQuantumRegister *qr2 = qk_quantum_register_new(3, "qr2");
+  qk_circuit_add_quantum_register(qc, qr1);
+  qk_circuit_add_quantum_register(qc, qr2);
+
+  size_t num_qregs = qk_circuit_num_quantum_registers(qc);
+  printf("Number of quantum registers: %zu\n", num_qregs);  // Prints: 2
+
+  qk_quantum_register_free(qr1);
+  qk_quantum_register_free(qr2);
+  qk_circuit_free(qc);
+  ```
+
+  <span id="group__QkCircuit_1autotoc_md24" />
+
+  #### Safety
+
+  <span id="group__QkCircuit_1autotoc_md24" />
+
+  Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
+
+  **Parameters**
+
+  *   **circuit** – A pointer to the circuit.
+
+  **Returns**
+
+  The number of quantum registers in the circuit.
+</Function>
+
+### qk\_circuit\_get\_quantum\_register
+
+<Function id="qk_circuit_get_quantum_register" signature="const QkQuantumRegister *qk_circuit_get_quantum_register(const QkCircuit *circuit, size_t qreg_idx)">
+  Returns the quantum register at the specified index.
+
+  Returns a borrowed pointer to the quantum register at the specified index. The returned pointer is valid as long as the circuit exists and is not modified. The caller should not free the returned pointer.
+
+  <span id="group__QkCircuit_1autotoc_md25" />
+
+  #### Example
+
+  ```c
+  QkCircuit *qc = qk_circuit_new(0, 0);
+  QkQuantumRegister *qr1 = qk_quantum_register_new(2, "qr1");
+  qk_circuit_add_quantum_register(qc, qr1);
+
+  const QkQuantumRegister *retrieved = qk_circuit_get_quantum_register(qc, 0);
+
+  qk_quantum_register_free(qr1);
+  qk_circuit_free(qc);
+  ```
+
+  <span id="group__QkCircuit_1autotoc_md26" />
+
+  #### Safety
+
+  <span id="group__QkCircuit_1autotoc_md26" />
+
+  Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`, or if `qreg_idx` is out of bounds (>= the number of quantum registers in the circuit).
+
+  **Parameters**
+
+  *   **circuit** – A pointer to the circuit.
+  *   **qreg\_idx** – The index of the quantum register to retrieve.
+
+  **Returns**
+
+  A borrowed pointer to the quantum register at the specified index. Do not free this pointer.
+</Function>
+
 ### qk\_circuit\_add\_classical\_register
 
 <Function id="qk_circuit_add_classical_register" signature="void qk_circuit_add_classical_register(QkCircuit *circuit, const QkClassicalRegister *reg)">
   Add a classical register to a given quantum circuit
 
-  <span id="group__QkCircuit_1autotoc_md17" />
+  <span id="group__QkCircuit_1autotoc_md27" />
 
   #### Example
 
@@ -282,11 +503,11 @@ The circuit C API currently only supports creating circuits that contain operati
   qk_circuit_free(qc);
   ```
 
-  <span id="group__QkCircuit_1autotoc_md18" />
+  <span id="group__QkCircuit_1autotoc_md28" />
 
   #### Safety
 
-  <span id="group__QkCircuit_1autotoc_md18" />
+  <span id="group__QkCircuit_1autotoc_md28" />
 
   Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit` and if `reg` is not a valid, non-null pointer to a `QkClassicalRegister`.
 
@@ -296,12 +517,95 @@ The circuit C API currently only supports creating circuits that contain operati
   *   **reg** – A pointer to the classical register
 </Function>
 
+### qk\_circuit\_num\_classical\_registers
+
+<Function id="qk_circuit_num_classical_registers" signature="size_t qk_circuit_num_classical_registers(const QkCircuit *circuit)">
+  Get the number of classical registers in the circuit.
+
+  Returns the number of classical registers that have been added to the circuit.
+
+  <span id="group__QkCircuit_1autotoc_md29" />
+
+  #### Example
+
+  ```c
+  QkCircuit *qc = qk_circuit_new(0, 0);
+  QkClassicalRegister *cr1 = qk_classical_register_new(2, "cr1");
+  QkClassicalRegister *cr2 = qk_classical_register_new(3, "cr2");
+  qk_circuit_add_classical_register(qc, cr1);
+  qk_circuit_add_classical_register(qc, cr2);
+
+  size_t num_cregs = qk_circuit_num_classical_registers(qc);
+  printf("Number of classical registers: %zu\n", num_cregs);  // Prints: 2
+
+  qk_classical_register_free(cr1);
+  qk_classical_register_free(cr2);
+  qk_circuit_free(qc);
+  ```
+
+  <span id="group__QkCircuit_1autotoc_md30" />
+
+  #### Safety
+
+  <span id="group__QkCircuit_1autotoc_md30" />
+
+  Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
+
+  **Parameters**
+
+  *   **circuit** – A pointer to the circuit.
+
+  **Returns**
+
+  The number of classical registers in the circuit.
+</Function>
+
+### qk\_circuit\_get\_classical\_register
+
+<Function id="qk_circuit_get_classical_register" signature="const QkClassicalRegister *qk_circuit_get_classical_register(const QkCircuit *circuit, size_t creg_idx)">
+  Returns the classical register at the specified index.
+
+  Returns a borrowed pointer to the classical register at the specified index. The returned pointer is valid as long as the circuit exists and is not modified. The caller should not free the returned pointer.
+
+  <span id="group__QkCircuit_1autotoc_md31" />
+
+  #### Example
+
+  ```c
+  QkCircuit *qc = qk_circuit_new(0, 0);
+  QkClassicalRegister *cr1 = qk_classical_register_new(2, "cr1");
+  qk_circuit_add_classical_register(qc, cr1);
+
+  const QkClassicalRegister *retrieved = qk_circuit_get_classical_register(qc, 0);
+
+  qk_classical_register_free(cr1);
+  qk_circuit_free(qc);
+  ```
+
+  <span id="group__QkCircuit_1autotoc_md32" />
+
+  #### Safety
+
+  <span id="group__QkCircuit_1autotoc_md32" />
+
+  Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`, or if `creg_idx` is out of bounds (>= the number of classical registers in the circuit).
+
+  **Parameters**
+
+  *   **circuit** – A pointer to the circuit.
+  *   **creg\_idx** – The index of the classical register to retrieve.
+
+  **Returns**
+
+  A borrowed pointer to the classical register at the specified index. Do not free this pointer.
+</Function>
+
 ### qk\_circuit\_copy
 
 <Function id="qk_circuit_copy" signature="QkCircuit *qk_circuit_copy(const QkCircuit *circuit)">
   Create a copy of a `QkCircuit`.
 
-  <span id="group__QkCircuit_1autotoc_md19" />
+  <span id="group__QkCircuit_1autotoc_md33" />
 
   #### Example
 
@@ -310,11 +614,11 @@ The circuit C API currently only supports creating circuits that contain operati
   QkCircuit *copy = qk_circuit_copy(qc);
   ```
 
-  <span id="group__QkCircuit_1autotoc_md20" />
+  <span id="group__QkCircuit_1autotoc_md34" />
 
   #### Safety
 
-  <span id="group__QkCircuit_1autotoc_md20" />
+  <span id="group__QkCircuit_1autotoc_md34" />
 
   Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
 
@@ -332,7 +636,7 @@ The circuit C API currently only supports creating circuits that contain operati
 <Function id="qk_circuit_num_qubits" signature="uint32_t qk_circuit_num_qubits(const QkCircuit *circuit)">
   Get the number of qubits the circuit contains.
 
-  <span id="group__QkCircuit_1autotoc_md21" />
+  <span id="group__QkCircuit_1autotoc_md35" />
 
   #### Example
 
@@ -341,11 +645,11 @@ The circuit C API currently only supports creating circuits that contain operati
   uint32_t num_qubits = qk_circuit_num_qubits(qc);  // num_qubits==100
   ```
 
-  <span id="group__QkCircuit_1autotoc_md22" />
+  <span id="group__QkCircuit_1autotoc_md36" />
 
   #### Safety
 
-  <span id="group__QkCircuit_1autotoc_md22" />
+  <span id="group__QkCircuit_1autotoc_md36" />
 
   Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
 
@@ -363,7 +667,7 @@ The circuit C API currently only supports creating circuits that contain operati
 <Function id="qk_circuit_num_clbits" signature="uint32_t qk_circuit_num_clbits(const QkCircuit *circuit)">
   Get the number of clbits the circuit contains.
 
-  <span id="group__QkCircuit_1autotoc_md23" />
+  <span id="group__QkCircuit_1autotoc_md37" />
 
   #### Example
 
@@ -372,11 +676,11 @@ The circuit C API currently only supports creating circuits that contain operati
   uint32_t num_clbits = qk_circuit_num_clbits(qc);  // num_clbits==50
   ```
 
-  <span id="group__QkCircuit_1autotoc_md24" />
+  <span id="group__QkCircuit_1autotoc_md38" />
 
   #### Safety
 
-  <span id="group__QkCircuit_1autotoc_md24" />
+  <span id="group__QkCircuit_1autotoc_md38" />
 
   Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
 
@@ -386,7 +690,125 @@ The circuit C API currently only supports creating circuits that contain operati
 
   **Returns**
 
-  The number of qubits the circuit is defined on.
+  The number of clbits the circuit is defined on.
+</Function>
+
+### qk\_circuit\_num\_param\_symbols
+
+<Function id="qk_circuit_num_param_symbols" signature="size_t qk_circuit_num_param_symbols(const QkCircuit *circuit)">
+  Get the number of unbound symbols in `QkParam` objects in the circuit.
+
+  <span id="group__QkCircuit_1autotoc_md39" />
+
+  #### Example
+
+  ```c
+  QkCircuit *qc = qk_circuit_new(2, 0);
+  QkParam *x = qk_param_new_symbol("x");
+  QkParam *y = qk_param_new_symbol("y");
+
+  uint32_t q0[1] = {0};
+  const QkParam *rx_param[1] = {x};
+  const QkParam *ry_param[1] = {y};
+
+  qk_circuit_parameterized_gate(qc, QkGate_RX, q0, rx_param);
+  qk_circuit_parameterized_gate(qc, QkGate_RY, q0, ry_param);
+
+  // check the number of QkParam symbols
+  size_t num_symbols = qk_circuit_num_param_symbols(qc); // == 2
+
+  qk_param_free(x);
+  qk_param_free(y);
+  qk_circuit_free(qc);
+  ```
+
+  <span id="group__QkCircuit_1autotoc_md40" />
+
+  #### Safety
+
+  <span id="group__QkCircuit_1autotoc_md40" />
+
+  Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
+
+  **Parameters**
+
+  *   **circuit** – A pointer to the circuit.
+
+  **Returns**
+
+  The number of unbound `QkParam` symbols in the circuit.
+</Function>
+
+### qk\_circuit\_global\_phase
+
+<Function id="qk_circuit_global_phase" signature="QkParam *qk_circuit_global_phase(const QkCircuit *circuit)">
+  Get the global phase of the circuit.
+
+  This function returns a copy of the circuit’s global phase and the value must be freed via :c:func:`qk_param_free` after usage.
+
+  <span id="group__QkCircuit_1autotoc_md41" />
+
+  #### Example
+
+  ```c
+  QkCircuit *qc = qk_circuit_new(100, 100);
+  QkParam *phase = qk_circuit_global_phase(qc);
+  qk_param_free(phase);
+  qk_circuit_free(qc);
+  ```
+
+  <span id="group__QkCircuit_1autotoc_md42" />
+
+  #### Safety
+
+  <span id="group__QkCircuit_1autotoc_md42" />
+
+  Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
+
+  **Parameters**
+
+  *   **circuit** – A pointer to the circuit.
+
+  **Returns**
+
+  The global phase of the circuit.
+</Function>
+
+### qk\_circuit\_set\_global\_phase
+
+<Function id="qk_circuit_set_global_phase" signature="QkExitCode qk_circuit_set_global_phase(QkCircuit *circuit, const QkParam *phase)">
+  Set the global phase of the circuit.
+
+  This function copies the new global phase upon setting it, so the caller retains ownership of the `QkParam` phase, and the value of the phase must be freed via :c:func:`qk_param_free` after setting.
+
+  <span id="group__QkCircuit_1autotoc_md43" />
+
+  #### Example
+
+  ```c
+  QkCircuit *qc = qk_circuit_new(100, 100);
+  QkParam *new_global_phase = qk_param_from_double(1.23);
+  qk_circuit_set_global_phase(qc, new_global_phase);
+  qk_param_free(new_global_phase);
+  qk_circuit_free(qc);
+  ```
+
+  <span id="group__QkCircuit_1autotoc_md44" />
+
+  #### Safety
+
+  <span id="group__QkCircuit_1autotoc_md44" />
+
+  Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit` and if `phase` is not a valid, non-null pointer to a `QkParam`.
+
+  **Parameters**
+
+  *   **circuit** – A pointer to the circuit.
+  *   **phase** – A pointer to the global phase to set.
+
+  **Returns**
+
+  `QkExitCode_Success` upon successful setting of the global phase. Upon failure, `QkExitCode_ParameterNameConflict` indicates that a new parameter symbol has a name conflict with an existing one. `QkExitCode_ParameterError` describes other generic failures when attempting to track the parameter symbols.
 </Function>
 
 ### qk\_circuit\_free
@@ -394,7 +816,7 @@ The circuit C API currently only supports creating circuits that contain operati
 <Function id="qk_circuit_free" signature="void qk_circuit_free(QkCircuit *circuit)">
   Free the circuit.
 
-  <span id="group__QkCircuit_1autotoc_md25" />
+  <span id="group__QkCircuit_1autotoc_md45" />
 
   #### Example
 
@@ -403,11 +825,11 @@ The circuit C API currently only supports creating circuits that contain operati
   qk_circuit_free(qc);
   ```
 
-  <span id="group__QkCircuit_1autotoc_md26" />
+  <span id="group__QkCircuit_1autotoc_md46" />
 
   #### Safety
 
-  <span id="group__QkCircuit_1autotoc_md26" />
+  <span id="group__QkCircuit_1autotoc_md46" />
 
   Behavior is undefined if `circuit` is not either null or a valid pointer to a `QkCircuit`.
 
@@ -421,7 +843,7 @@ The circuit C API currently only supports creating circuits that contain operati
 <Function id="qk_circuit_gate" signature="QkExitCode qk_circuit_gate(QkCircuit *circuit, QkGate gate, const uint32_t *qubits, const double *params)">
   Append a `QkGate` to the circuit.
 
-  <span id="group__QkCircuit_1autotoc_md27" />
+  <span id="group__QkCircuit_1autotoc_md47" />
 
   #### Example
 
@@ -431,11 +853,11 @@ The circuit C API currently only supports creating circuits that contain operati
   qk_circuit_gate(qc, QkGate_H, qubit, NULL);
   ```
 
-  <span id="group__QkCircuit_1autotoc_md28" />
+  <span id="group__QkCircuit_1autotoc_md48" />
 
   #### Safety
 
-  <span id="group__QkCircuit_1autotoc_md28" />
+  <span id="group__QkCircuit_1autotoc_md48" />
 
   The `qubits` and `params` types are expected to be a pointer to an array of `uint32_t` and `double` respectively where the length is matching the expectations for the standard gate. If the array is insufficiently long the behavior of this function is undefined as this will read outside the bounds of the array. It can be a null pointer if there are no qubits or params for a given gate. You can check `qk_gate_num_qubits` and `qk_gate_num_params` to determine how many qubits and params are required for a given gate.
 
@@ -453,12 +875,51 @@ The circuit C API currently only supports creating circuits that contain operati
   An exit code.
 </Function>
 
+### qk\_circuit\_parameterized\_gate
+
+<Function id="qk_circuit_parameterized_gate" signature="QkExitCode qk_circuit_parameterized_gate(QkCircuit *circuit, QkGate gate, const uint32_t *qubits, const QkParam *const *params)">
+  Append a `QkGate` with `QkParam*` parameters to the circuit.
+
+  <span id="group__QkCircuit_1autotoc_md49" />
+
+  #### Example
+
+  ```c
+  QkCircuit *qc = qk_circuit_new(100, 0);
+  QkParam *theta = qk_param_new_symbol("theta");
+  uint32_t qubit[1] = {0};
+  const QkParam* params[1] = {theta};
+  qk_circuit_parameterized_gate(qc, QkGate_RX, qubit, params); // add RX(theta) to the circuit
+  ```
+
+  <span id="group__QkCircuit_1autotoc_md50" />
+
+  #### Safety
+
+  <span id="group__QkCircuit_1autotoc_md50" />
+
+  The `qubits` and `params` types are expected to be a pointer to an array of `uint32_t` and `QkParam*` respectively where the length is matching the expectations for the standard gate. If the array is insufficiently long the behavior of this function is undefined as this will read outside the bounds of the array. It can be a null pointer if there are no qubits or params for a given gate. You can check `qk_gate_num_qubits` and `qk_gate_num_params` to determine how many qubits and params are required for a given gate.
+
+  Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`, or if any of the elements in the `params` array is not a valid, non-null pointer to a `QkParam`.
+
+  **Parameters**
+
+  *   **circuit** – A pointer to the circuit to add the gate to.
+  *   **gate** – The `QkGate` to add to the circuit.
+  *   **qubits** – The pointer to the array of `uint32_t` qubit indices to add the gate on. This can be a null pointer if there are no qubits for `gate` (e.g. `QkGate_GlobalPhase`).
+  *   **params** – The pointer to the array of `QkParam*` parameters to use for the gate parameters. This can be a null pointer if there are no parameters for `gate` (e.g. `QkGate_H`).
+
+  **Returns**
+
+  `QkExitCode_Success` upon successful append. Upon failure, `QkExitCode_ParameterNameConflict` indicates that a new parameter symbol has a name conflict with an existing one. `QkExitCode_ParameterError` describes other generic failures when attempting to track the parameter symbols.
+</Function>
+
 ### qk\_gate\_num\_qubits
 
 <Function id="qk_gate_num_qubits" signature="uint32_t qk_gate_num_qubits(QkGate gate)">
   Get the number of qubits for a `QkGate`.
 
-  <span id="group__QkCircuit_1autotoc_md29" />
+  <span id="group__QkCircuit_1autotoc_md51" />
 
   #### Example
 
@@ -480,7 +941,7 @@ The circuit C API currently only supports creating circuits that contain operati
 <Function id="qk_gate_num_params" signature="uint32_t qk_gate_num_params(QkGate gate)">
   Get the number of parameters for a `QkGate`.
 
-  <span id="group__QkCircuit_1autotoc_md30" />
+  <span id="group__QkCircuit_1autotoc_md52" />
 
   #### Example
 
@@ -502,7 +963,7 @@ The circuit C API currently only supports creating circuits that contain operati
 <Function id="qk_circuit_measure" signature="QkExitCode qk_circuit_measure(QkCircuit *circuit, uint32_t qubit, uint32_t clbit)">
   Append a measurement to the circuit
 
-  <span id="group__QkCircuit_1autotoc_md31" />
+  <span id="group__QkCircuit_1autotoc_md53" />
 
   #### Example
 
@@ -511,11 +972,11 @@ The circuit C API currently only supports creating circuits that contain operati
   qk_circuit_measure(qc, 0, 0);
   ```
 
-  <span id="group__QkCircuit_1autotoc_md32" />
+  <span id="group__QkCircuit_1autotoc_md54" />
 
   #### Safety
 
-  <span id="group__QkCircuit_1autotoc_md32" />
+  <span id="group__QkCircuit_1autotoc_md54" />
 
   Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
 
@@ -535,7 +996,7 @@ The circuit C API currently only supports creating circuits that contain operati
 <Function id="qk_circuit_reset" signature="QkExitCode qk_circuit_reset(QkCircuit *circuit, uint32_t qubit)">
   Append a reset to the circuit
 
-  <span id="group__QkCircuit_1autotoc_md33" />
+  <span id="group__QkCircuit_1autotoc_md55" />
 
   #### Example
 
@@ -544,11 +1005,11 @@ The circuit C API currently only supports creating circuits that contain operati
   qk_circuit_reset(qc, 0);
   ```
 
-  <span id="group__QkCircuit_1autotoc_md34" />
+  <span id="group__QkCircuit_1autotoc_md56" />
 
   #### Safety
 
-  <span id="group__QkCircuit_1autotoc_md34" />
+  <span id="group__QkCircuit_1autotoc_md56" />
 
   Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
 
@@ -567,7 +1028,9 @@ The circuit C API currently only supports creating circuits that contain operati
 <Function id="qk_circuit_barrier" signature="QkExitCode qk_circuit_barrier(QkCircuit *circuit, const uint32_t *qubits, uint32_t num_qubits)">
   Append a barrier to the circuit.
 
-  <span id="group__QkCircuit_1autotoc_md35" />
+  If `qubits` is `NULL`, then `num_qubits` is ignored and the barrier is applied to all qubits in the circuit. This is a convenience; it is more efficient to allocate your own all-qubits buffer and re-use it, if you need multiple full-width barriers.
+
+  <span id="group__QkCircuit_1autotoc_md57" />
 
   #### Example
 
@@ -577,21 +1040,19 @@ The circuit C API currently only supports creating circuits that contain operati
   qk_circuit_barrier(qc, qubits, 5);
   ```
 
-  <span id="group__QkCircuit_1autotoc_md36" />
+  <span id="group__QkCircuit_1autotoc_md58" />
 
   #### Safety
 
-  <span id="group__QkCircuit_1autotoc_md36" />
+  <span id="group__QkCircuit_1autotoc_md58" />
 
-  The length of the array `qubits` points to must be `num_qubits`. If there is a mismatch the behavior is undefined.
-
-  Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
+  Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`. If `qubits` is not `NULL`, it must be aligned and point to `num_qubits` valid initialized values that have no duplicates and are all in-bounds for the circuit.
 
   **Parameters**
 
   *   **circuit** – A pointer to the circuit to add the barrier to.
-  *   **num\_qubits** – The number of qubits wide the barrier is.
   *   **qubits** – The pointer to the array of `uint32_t` qubit indices to add the barrier on.
+  *   **num\_qubits** – The number of qubits wide the barrier is. Ignored if `qubits` is null.
 
   **Returns**
 
@@ -603,7 +1064,7 @@ The circuit C API currently only supports creating circuits that contain operati
 <Function id="qk_circuit_unitary" signature="QkExitCode qk_circuit_unitary(QkCircuit *circuit, const QkComplex64 *matrix, const uint32_t *qubits, uint32_t num_qubits, bool check_input)">
   Append an arbitrary unitary matrix to the circuit.
 
-  <span id="group__QkCircuit_1autotoc_md37" />
+  <span id="group__QkCircuit_1autotoc_md59" />
 
   #### Example
 
@@ -620,11 +1081,11 @@ The circuit C API currently only supports creating circuits that contain operati
   qk_circuit_unitary(circuit, unitary, qubit, num_qubits, true);
   ```
 
-  <span id="group__QkCircuit_1autotoc_md38" />
+  <span id="group__QkCircuit_1autotoc_md60" />
 
   #### Safety
 
-  <span id="group__QkCircuit_1autotoc_md38" />
+  <span id="group__QkCircuit_1autotoc_md60" />
 
   Behavior is undefined if any of the following is violated:
 
@@ -652,11 +1113,11 @@ The circuit C API currently only supports creating circuits that contain operati
 
   Panics if the instruction at the given index is not a unitary.
 
-  <span id="group__QkCircuit_1autotoc_md39" />
+  <span id="group__QkCircuit_1autotoc_md61" />
 
   #### Safety
 
-  <span id="group__QkCircuit_1autotoc_md39" />
+  <span id="group__QkCircuit_1autotoc_md61" />
 
   Behavior is undefined if any of the following is violated: if `circuit` is not a valid, non-null pointer to a `QkCircuit`, if `index` is out of bounds for the number of instructions in the circuit, if `out` is not valid for `4**num_qubits` writes of `QkComplex64`.
 
@@ -672,11 +1133,11 @@ The circuit C API currently only supports creating circuits that contain operati
 <Function id="qk_circuit_instruction_kind" signature="QkOperationKind qk_circuit_instruction_kind(const QkCircuit *circuit, size_t index)">
   Get the “kind” of circuit instruction.
 
-  <span id="group__QkCircuit_1autotoc_md40" />
+  <span id="group__QkCircuit_1autotoc_md62" />
 
   #### Safety
 
-  <span id="group__QkCircuit_1autotoc_md40" />
+  <span id="group__QkCircuit_1autotoc_md62" />
 
   Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit` and if `index` is out of bounds for the number of instructions in the circuit.
 
@@ -697,7 +1158,7 @@ The circuit C API currently only supports creating circuits that contain operati
 
   To properly free the memory allocated by the struct, you should call `qk_opcounts_clear`. Dropping the `QkOpCounts` struct without doing so will leave the stored array of `QkOpCount` allocated and produce a memory leak.
 
-  <span id="group__QkCircuit_1autotoc_md41" />
+  <span id="group__QkCircuit_1autotoc_md63" />
 
   #### Example
 
@@ -710,11 +1171,11 @@ The circuit C API currently only supports creating circuits that contain operati
   qk_opcounts_clear(&counts);
   ```
 
-  <span id="group__QkCircuit_1autotoc_md42" />
+  <span id="group__QkCircuit_1autotoc_md64" />
 
   #### Safety
 
-  <span id="group__QkCircuit_1autotoc_md42" />
+  <span id="group__QkCircuit_1autotoc_md64" />
 
   Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
 
@@ -732,7 +1193,7 @@ The circuit C API currently only supports creating circuits that contain operati
 <Function id="qk_circuit_num_instructions" signature="size_t qk_circuit_num_instructions(const QkCircuit *circuit)">
   Return the total number of instructions in the circuit.
 
-  <span id="group__QkCircuit_1autotoc_md43" />
+  <span id="group__QkCircuit_1autotoc_md65" />
 
   #### Example
 
@@ -743,11 +1204,11 @@ The circuit C API currently only supports creating circuits that contain operati
   size_t num = qk_circuit_num_instructions(qc); // 1
   ```
 
-  <span id="group__QkCircuit_1autotoc_md44" />
+  <span id="group__QkCircuit_1autotoc_md66" />
 
   #### Safety
 
-  <span id="group__QkCircuit_1autotoc_md44" />
+  <span id="group__QkCircuit_1autotoc_md66" />
 
   Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
 
@@ -769,7 +1230,9 @@ The circuit C API currently only supports creating circuits that contain operati
 
   This function allocates memory internally for the provided `QkCircuitInstruction` and thus you are responsible for calling `qk_circuit_instruction_clear` to free it.
 
-  <span id="group__QkCircuit_1autotoc_md45" />
+  See also \[`qk_circuit_view_instruction`], which is the non-allocating version of this function.
+
+  <span id="group__QkCircuit_1autotoc_md67" />
 
   #### Example
 
@@ -782,11 +1245,11 @@ The circuit C API currently only supports creating circuits that contain operati
   qk_circuit_instruction_clear(&inst);
   ```
 
-  <span id="group__QkCircuit_1autotoc_md46" />
+  <span id="group__QkCircuit_1autotoc_md68" />
 
   #### Safety
 
-  <span id="group__QkCircuit_1autotoc_md46" />
+  <span id="group__QkCircuit_1autotoc_md68" />
 
   Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`. The value for `index` must be less than the value returned by `qk_circuit_num_instructions` otherwise this function will panic. Behavior is undefined if `instruction` is not a valid, non-null pointer to a memory allocation with sufficient space for a `QkCircuitInstruction`.
 
@@ -797,12 +1260,57 @@ The circuit C API currently only supports creating circuits that contain operati
   *   **instruction** – A pointer to where to write out the `QkCircuitInstruction`
 </Function>
 
+### qk\_circuit\_view\_instruction
+
+<Function id="qk_circuit_view_instruction" signature="void qk_circuit_view_instruction(const QkCircuit *circuit, size_t index, QkCircuitInstructionView *out)">
+  Write out direct views for an instruction in the circuit.
+
+  See `QkCircuitInstructionView` for details on the stored information. All pointers in the `QkCircuitInstructionView` are borrowed from `circuit`, and are invalidated by mutating or freeing the circuit in any way.
+
+  You typically allocate space for this view in the calling stack, and must not free or mutate any of the pointers or the data they point to.
+
+  See also \[`qk_circuit_get_instruction`] which allocates owned versions of the output of this function.
+
+  <span id="group__QkCircuit_1autotoc_md69" />
+
+  #### Example
+
+  ```c
+  QkCircuit *qc = qk_circuit_new(1, 1);
+  qk_circuit_measure(qc, 0, 0);
+
+  QkCircuitInstructionView view;
+  qk_circuit_view_instruction(qc, 0, &view);
+  printf("name: '%.*s'\n", view.name_len, view.name);
+  ```
+
+  This prints “name: ‘measure’” to standard output.
+
+  <span id="group__QkCircuit_1autotoc_md70" />
+
+  #### Safety
+
+  <span id="group__QkCircuit_1autotoc_md70" />
+
+  Behavior is undefined in any of the follow situations:
+
+  *   `circuit` is not an aligned pointer to a valid `QkCircuit`.
+  *   `index` is not a valid instruction index in the circuit.
+  *   `out` is misaligned or not valid for a single write.
+
+  **Parameters**
+
+  *   **circuit** – The circuit to get the instruction from.
+  *   **index** – The index of the instruction in `circuit`.
+  *   **out** – **\[out]** The memory location to write the result to.
+</Function>
+
 ### qk\_circuit\_pauli\_product\_rotation
 
 <Function id="qk_circuit_pauli_product_rotation" signature="void qk_circuit_pauli_product_rotation(QkCircuit *circuit, const QkPauliProductRotation *rotation, const uint32_t *qubits)">
   Apply a `QkPauliProductRotation` to a circuit.
 
-  <span id="group__QkCircuit_1autotoc_md47" />
+  <span id="group__QkCircuit_1autotoc_md71" />
 
   #### Example
 
@@ -821,11 +1329,11 @@ The circuit C API currently only supports creating circuits that contain operati
   qk_circuit_free(circuit);
   ```
 
-  <span id="group__QkCircuit_1autotoc_md48" />
+  <span id="group__QkCircuit_1autotoc_md72" />
 
   #### Safety
 
-  <span id="group__QkCircuit_1autotoc_md48" />
+  <span id="group__QkCircuit_1autotoc_md72" />
 
   Behavior is undefined if any of the following is violated:
 
@@ -849,11 +1357,11 @@ The circuit C API currently only supports creating circuits that contain operati
 
   If the instruction at the provided `index` **is not** a `QkPauliProductRotation`, this function will return `QkExitCode_InvalidOperationKind` error. You can verify that the instruction has the right kind using `qk_circuit_instruction_kind`.
 
-  <span id="group__QkCircuit_1autotoc_md49" />
+  <span id="group__QkCircuit_1autotoc_md73" />
 
   #### Safety
 
-  <span id="group__QkCircuit_1autotoc_md49" />
+  <span id="group__QkCircuit_1autotoc_md73" />
 
   Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`. The value for `index` must be less than the value returned by `qk_circuit_num_instructions` otherwise this function will panic. Behavior is undefined if `instruction` is not a valid, non-null pointer to a memory allocation with sufficient space for a `QkPauliProductRotation`.
 
@@ -873,7 +1381,7 @@ The circuit C API currently only supports creating circuits that contain operati
 <Function id="qk_circuit_pauli_product_measurement" signature="void qk_circuit_pauli_product_measurement(QkCircuit *circuit, const QkPauliProductMeasurement *measurement, const uint32_t *qubits, uint32_t clbit)">
   Apply a `QkPauliProductMeasurement` to a circuit.
 
-  <span id="group__QkCircuit_1autotoc_md50" />
+  <span id="group__QkCircuit_1autotoc_md74" />
 
   #### Example
 
@@ -891,11 +1399,11 @@ The circuit C API currently only supports creating circuits that contain operati
   qk_circuit_free(circuit);
   ```
 
-  <span id="group__QkCircuit_1autotoc_md51" />
+  <span id="group__QkCircuit_1autotoc_md75" />
 
   #### Safety
 
-  <span id="group__QkCircuit_1autotoc_md51" />
+  <span id="group__QkCircuit_1autotoc_md75" />
 
   Behavior is undefined if any of the following is violated:
 
@@ -920,11 +1428,11 @@ The circuit C API currently only supports creating circuits that contain operati
 
   If the instruction at the provided `index` **is not** a `QkPauliProductMeasurement`, this function will return `QkExitCode_InvalidOperationKind` error. Verify that the instruction is of the correct kind using `qk_circuit_instruction_kind`.
 
-  <span id="group__QkCircuit_1autotoc_md52" />
+  <span id="group__QkCircuit_1autotoc_md76" />
 
   #### Safety
 
-  <span id="group__QkCircuit_1autotoc_md52" />
+  <span id="group__QkCircuit_1autotoc_md76" />
 
   Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`. The value for `index` must be less than the value returned by `qk_circuit_num_instructions` otherwise this function will panic. Behavior is undefined if `instruction` is not a valid, non-null pointer to a memory allocation with sufficient space for a `QkPauliProductMeasurement`.
 
@@ -946,7 +1454,7 @@ The circuit C API currently only supports creating circuits that contain operati
 
   This function doesn’t free the allocation for the provided `QkCircuitInstruction` pointer, it only frees the internal allocations for the data contained in the instruction. You are responsible for allocating and freeing the actual allocation used to store a `QkCircuitInstruction`.
 
-  <span id="group__QkCircuit_1autotoc_md53" />
+  <span id="group__QkCircuit_1autotoc_md77" />
 
   #### Example
 
@@ -961,11 +1469,11 @@ The circuit C API currently only supports creating circuits that contain operati
   qk_circuit_free(qc); // free the circuit
   ```
 
-  <span id="group__QkCircuit_1autotoc_md54" />
+  <span id="group__QkCircuit_1autotoc_md78" />
 
   #### Safety
 
-  <span id="group__QkCircuit_1autotoc_md54" />
+  <span id="group__QkCircuit_1autotoc_md78" />
 
   Behavior is undefined if `inst` is not a valid, non-null pointer to a `QkCircuitInstruction`.
 
@@ -979,11 +1487,11 @@ The circuit C API currently only supports creating circuits that contain operati
 <Function id="qk_opcounts_clear" signature="void qk_opcounts_clear(QkOpCounts *op_counts)">
   Clear the content in a circuit operation count list.
 
-  <span id="group__QkCircuit_1autotoc_md55" />
+  <span id="group__QkCircuit_1autotoc_md79" />
 
   #### Safety
 
-  <span id="group__QkCircuit_1autotoc_md55" />
+  <span id="group__QkCircuit_1autotoc_md79" />
 
   Behavior is undefined if `op_counts` is not the object returned by `qk_circuit_count_ops`.
 
@@ -992,38 +1500,18 @@ The circuit C API currently only supports creating circuits that contain operati
   *   **op\_counts** – The returned op count list from `qk_circuit_count_ops`.
 </Function>
 
-### qk\_circuit\_to\_python
-
-<Function id="qk_circuit_to_python" signature="PyObject *qk_circuit_to_python(QkCircuit *circuit)">
-  Convert to a Python-space `QuantumCircuit`.
-
-  This function takes ownership of the pointer and gives it to Python. Using the input `circuit` pointer after it’s passed to this function is undefined behavior. In particular, `qk_circuit_free` should not be called on this pointer anymore.
-
-  <span id="group__QkCircuit_1autotoc_md56" />
-
-  #### Safety
-
-  <span id="group__QkCircuit_1autotoc_md56" />
-
-  Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`
-
-  It is assumed that the thread currently executing this function holds the Python GIL. This is required to create the Python object returned by this function.
-
-  **Parameters**
-
-  *   **circuit** – The C-space `QkCircuit` pointer.
-
-  **Returns**
-
-  A Python `QuantumCircuit` object.
-</Function>
-
 ### qk\_circuit\_delay
 
 <Function id="qk_circuit_delay" signature="QkExitCode qk_circuit_delay(QkCircuit *circuit, uint32_t qubit, double duration, QkDelayUnit unit)">
   Append a delay instruction to the circuit.
 
-  <span id="group__QkCircuit_1autotoc_md57" />
+  Some `QkDelayUnit` variants are not supported in this function:
+
+  *   `QkDelayUnit_DT` : Returns `QkExitCode_IncorrectDelayUnit`, use `qk_circuit_delay_dt` instead.
+  *   `QkDelayUnit_EXPR` : Returns `QkExitCode_IncorrectDelayUnit`, not supported for inserting delays.
+  *   `QkDelayUnit_Unknown` : Invalid input, Returns `QkExitCode_CInputError`.
+
+  <span id="group__QkCircuit_1autotoc_md80" />
 
   #### Example
 
@@ -1032,11 +1520,11 @@ The circuit C API currently only supports creating circuits that contain operati
   qk_circuit_delay(qc, 0, 100.0, QkDelayUnit_NS);
   ```
 
-  <span id="group__QkCircuit_1autotoc_md58" />
+  <span id="group__QkCircuit_1autotoc_md81" />
 
   #### Safety
 
-  <span id="group__QkCircuit_1autotoc_md58" />
+  <span id="group__QkCircuit_1autotoc_md81" />
 
   Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
 
@@ -1052,6 +1540,127 @@ The circuit C API currently only supports creating circuits that contain operati
   An exit code.
 </Function>
 
+### qk\_circuit\_delay\_dt
+
+<Function id="qk_circuit_delay_dt" signature="QkExitCode qk_circuit_delay_dt(QkCircuit *circuit, uint32_t qubit, int64_t duration)">
+  Append a delay instruction to the circuit with a duration in units of dt.
+
+  As expected with all duration, this value should be positive. Otherwise, the function will return with an input error.
+
+  <span id="group__QkCircuit_1autotoc_md82" />
+
+  #### Example
+
+  ```c
+  QkCircuit *qc = qk_circuit_new(1, 0);
+  qk_circuit_delay_dt(qc, 0, 100);
+  ```
+
+  <span id="group__QkCircuit_1autotoc_md83" />
+
+  #### Safety
+
+  <span id="group__QkCircuit_1autotoc_md83" />
+
+  Behavior is undefined if `circuit` is `NULL` or unaligned.
+
+  **Parameters**
+
+  *   **circuit** – A pointer to the circuit to add the delay to.
+  *   **qubit** – The `uint32_t` index of the qubit to apply the delay to.
+  *   **duration** – The duration of the delay as an integer.
+
+  **Returns**
+
+  An exit code. If the duration is negative, it will return `ExitCode_CInputError`.
+</Function>
+
+### qk\_circuit\_delay\_unit
+
+<Function id="qk_circuit_delay_unit" signature="QkDelayUnit qk_circuit_delay_unit(const QkCircuit *circuit, size_t index)">
+  Retrieves the duration unit of a delay instruction.
+
+  Users should make sure that the instruction being accessed here is a delay instruction by using `qk_circuit_instruction_kind`.
+
+  <span id="group__QkCircuit_1autotoc_md84" />
+
+  #### Example
+
+  ```c
+  QkCircuit *qc = qk_circuit_new(1, 0);
+  qk_circuit_delay_dt(qc, 0, 100);
+  QkDelayUnit unit = qk_circuit_delay_unit(qc, 0);
+  ```
+
+  <span id="group__QkCircuit_1autotoc_md85" />
+
+  #### Safety
+
+  <span id="group__QkCircuit_1autotoc_md85" />
+
+  Behavior is undefined if `circuit` is `NULL`, `circuit` is unaligned, or `index` is out of bounds.
+
+  **Parameters**
+
+  *   **circuit** – A pointer to the circuit to add the delay to.
+  *   **index** – The instruction index to get the delay details of. If the index is not within the circuit range it can lead to undefined behavior. Please use `qk_circuit_num_instructions` to check the circuit’s current length.
+
+  **Returns**
+
+  The duration unit of the delay.
+</Function>
+
+### qk\_circuit\_draw
+
+<Function id="qk_circuit_draw" signature="char *qk_circuit_draw(const QkCircuit *circuit, const QkCircuitDrawerConfig *config)">
+  Draw the circuit as text.
+
+  <span id="group__QkCircuit_1autotoc_md86" />
+
+  #### Example
+
+  ```c
+  QkCircuit *circuit = qk_circuit_new(2, 1);
+
+  qk_circuit_gate(circuit, QkGate_H, (uint32_t[]){0}, NULL);
+  qk_circuit_gate(circuit, QkGate_CX, (uint32_t[]){0, 1}, NULL);
+  qk_circuit_measure(circuit, 0, 0);
+  qk_circuit_measure(circuit, 1, 0);
+
+  QkCircuitDrawerConfig config = {false, true, 0, 16};
+
+  char *circ_str = qk_circuit_draw(circuit, &config);
+
+  printf("%s", circ_str);
+
+  qk_str_free(circ_str);
+  qk_circuit_free(circuit);
+  ```
+
+  <span id="group__QkCircuit_1autotoc_md87" />
+
+  #### Safety
+
+  <span id="group__QkCircuit_1autotoc_md87" />
+
+  Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`, or if `config` is not NULL and a non-valid pointer to a `QkCircuitDrawerConfig` struct.
+
+  **Parameters**
+
+  *   **circuit** – A pointer to the circuit to draw.
+
+  *   **config** – A pointer to the `QkCircuitDrawerConfig` structure or NULL. If NULL, the drawer will use these defaults:
+
+      *   `bundle_cregs = true`
+      *   `merge_wires = true`
+      *   `fold = 0`
+      *   `barrier_label_len = 16`
+
+  **Returns**
+
+  A pointer to a null-terminated string containing the circuit representation. You must use `qk_str_free` to release the allocated memory when done.
+</Function>
+
 ### qk\_circuit\_to\_dag
 
 <Function id="qk_circuit_to_dag" signature="QkDag *qk_circuit_to_dag(const QkCircuit *circuit)">
@@ -1059,7 +1668,7 @@ The circuit C API currently only supports creating circuits that contain operati
 
   The new DAG is copied from the circuit; the original `circuit` reference is still owned by the caller and still required to be freed with `qk_circuit_free`. You must free the returned DAG with `qk_dag_free` when done with it.
 
-  <span id="group__QkCircuit_1autotoc_md59" />
+  <span id="group__QkCircuit_1autotoc_md88" />
 
   #### Example
 
@@ -1075,11 +1684,11 @@ The circuit C API currently only supports creating circuits that contain operati
   qk_circuit_free(qc);
   ```
 
-  <span id="group__QkCircuit_1autotoc_md60" />
+  <span id="group__QkCircuit_1autotoc_md89" />
 
   #### Safety
 
-  <span id="group__QkCircuit_1autotoc_md60" />
+  <span id="group__QkCircuit_1autotoc_md89" />
 
   Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
 
@@ -1102,16 +1711,16 @@ The circuit C API currently only supports creating circuits that contain operati
   *   global phase
   *   all the qubits and clbits, including the registers.
 
-  <span id="group__QkCircuit_1autotoc_md61" />
+  <span id="group__QkCircuit_1autotoc_md90" />
 
   #### Example
 
   ```c
   QkCircuit *qc = qk_circuit_new(10, 10);
   for (int i = 0; i < 10; i++) {
-      qk_circuit_measure(qc, i, i);
+  qk_circuit_measure(qc, i, i);
       uint32_t qubits[1] = {i};
-      qk_circuit_gate(qc, QkGate_H, qubits, NULL);
+  qk_circuit_gate(qc, QkGate_H, qubits, NULL);
   }
 
   // As the circuit does not contain any control-flow instructions,
@@ -1126,11 +1735,11 @@ The circuit C API currently only supports creating circuits that contain operati
   qk_circuit_free(copy);
   ```
 
-  <span id="group__QkCircuit_1autotoc_md62" />
+  <span id="group__QkCircuit_1autotoc_md91" />
 
   #### Safety
 
-  <span id="group__QkCircuit_1autotoc_md62" />
+  <span id="group__QkCircuit_1autotoc_md91" />
 
   Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
 
@@ -1143,5 +1752,400 @@ The circuit C API currently only supports creating circuits that contain operati
   **Returns**
 
   The pointer to the copied circuit.
+</Function>
+
+### qk\_circuit\_estimate\_fidelity
+
+<Function id="qk_circuit_estimate_fidelity" signature="double qk_circuit_estimate_fidelity(const QkCircuit *circuit, const QkTarget *target)">
+  Estimate the fidelity of a physical circuit.
+
+  This function will compute the product of the error rates for each gate in the circuit to estimate the fidelity of the circuit. This method is not intended to compute a realistic simulation of the fidelity of execution on real hardware. It is designed to provide an estimate of how the transpiler would work with the fidelity for various heuristics in its operation. It is typically only useful for comparing different compilation outputs against each other to estimate which one would produce a better quality execution on hardware.
+
+  <span id="group__QkCircuit_1autotoc_md92" />
+
+  #### Safety
+
+  <span id="group__QkCircuit_1autotoc_md92" />
+
+  Behavior is undefined if `circuit` and `target` are not a valid, non-null pointer to a `QkCircuit` and `QkTarget` respectively.
+
+  **Parameters**
+
+  *   **circuit** – A pointer to the circuit to estimate the fidelity of.
+  *   **target** – A pointer to the target that the circuit will be executed on. This is used to get the error rates for the instructions in the circuit.
+
+  **Returns**
+
+  The computed fidelity of the circuit. This will return NaN if the circuit is not physical, meaning there are instructions in `circuit` not supported by `target`.
+</Function>
+
+### qk\_circuit\_get\_control\_flow\_instruction
+
+<Function id="qk_circuit_get_control_flow_instruction" signature="QkControlFlowInstruction *qk_circuit_get_control_flow_instruction(const QkCircuit *circuit, size_t inst_idx, const QkControlFlowInstruction *parent_cf)">
+  Get a control flow instruction from a circuit at the specified index.
+
+  This function returns a pointer to an opaque `QkControlFlowInstruction` struct, which holds information about a control flow instruction at the specified index. The instruction at `inst_idx` must be a control flow instruction (e.g. IfElse, ForLoop etc.).
+
+  <span id="group__QkCircuit_1autotoc_md93" />
+
+  #### Example
+
+  ```c
+  QkCircuit *circuit = ...; // Assume circuit contains a control flow instruction at index 0
+  QkControlFlowInstruction *cf_inst = qk_circuit_get_control_flow_instruction(circuit, 0, NULL);
+  QkControlFlowKind kind = qk_control_flow_kind(cf_inst);
+  qk_control_flow_instruction_free(cf_inst);
+  ```
+
+  <span id="group__QkCircuit_1autotoc_md94" />
+
+  #### Safety
+
+  <span id="group__QkCircuit_1autotoc_md94" />
+
+  Behavior is undefined if `circuit` is not a valid pointer to a `QkCircuit` object, or if `inst_idx` is not a valid index within the circuit’s instruction list, or if the instruction at `inst_idx` is not a control flow instruction. If `parent_cf` is not null, it must be a valid pointer to a `QkControlFlowInstruction`.
+
+  **Parameters**
+
+  *   **circuit** – A pointer to the circuit containing the control flow instruction.
+  *   **inst\_idx** – The index of the instruction in the circuit’s instruction list.
+  *   **parent\_cf** – A pointer to the enclosing control flow instruction, or `NULL` if this instruction is at the top level of the circuit. This is used to compute the correct qubit and clbit mappings relative to the top-level circuit.
+
+  **Returns**
+
+  A pointer to a newly allocated `QkControlFlowInstruction` object.
+</Function>
+
+### qk\_control\_flow\_instruction\_free
+
+<Function id="qk_control_flow_instruction_free" signature="void qk_control_flow_instruction_free(QkControlFlowInstruction *cf_inst)">
+  Free a `QkControlFlowInstruction` object.
+
+  <span id="group__QkCircuit_1autotoc_md95" />
+
+  #### Example
+
+  ```c
+  QkCircuit *circuit = ...; // Assume circuit contains a control flow instruction at index 0
+  QkControlFlowInstruction *cf_inst = qk_circuit_get_control_flow_instruction(circuit, 0, NULL);
+  qk_control_flow_instruction_free(cf_inst);
+  ```
+
+  <span id="group__QkCircuit_1autotoc_md96" />
+
+  #### Safety
+
+  <span id="group__QkCircuit_1autotoc_md96" />
+
+  Behavior is undefined if `cf_inst` is not either null or a valid pointer that was returned by `qk_circuit_get_control_flow_instruction`, or if this function is called more than once on the same pointer.
+
+  **Parameters**
+
+  *   **cf\_inst** – A pointer to the control flow instruction to free.
+</Function>
+
+### qk\_circuit\_custom\_operation
+
+<Function id="qk_circuit_custom_operation" signature="QkExitCode qk_circuit_custom_operation(QkCircuit *circuit, QkCustomOp *operation, const uint32_t *qubits, const uint32_t *clbits, QkParam **params)">
+  Adds a `QkCustomOp` into the circuit. Consuming the instance in the process.
+
+  The addition of this `QkCustomOp` depends on its validity and can be rejected. If the operation’s vtable points to a null pointer due to any errors during construction, or invalid input being received by `qk_custom_operation_vtable_new`, the operation will be rejected and an `ExitCode` will be returned due to an unexpected null pointer.
+
+  <span id="group__QkCircuit_1autotoc_md97" />
+
+  #### Safety
+
+  <span id="group__QkCircuit_1autotoc_md97" />
+
+  The `qubits`, `clbits`, and `params` types are expected to be a pointer to an array of `uint32_t` (for `qubits`, `clbits`) or `QkParam` (for `params`) where the length is matching the expectations for the standard operation. If the array is insufficiently long the behavior of this function is undefined as this will read outside the bounds of the array. It can be a null pointer if there are no qubits or params for a given operation.
+
+  Behavior is undefined if `circuit` is not a valid, non-null pointer to a `QkCircuit`.
+
+  **Parameters**
+
+  *   **circuit** – A pointer to the circuit object.
+  *   **operation** – The `QkCustomOp` object.
+  *   **qubits** – The pointer to the array of `uint32_t` qubit indices to add the operation on. This can be a null pointer if there are no qubits for `operation` (e.g. `QkGate_GlobalPhase`).
+  *   **clbits** – The pointer to the array of `uint32_t` qubit indices to add the operation on. This can be a null pointer if there are no qubits for `operation` (e.g. `QkGate_GlobalPhase`).
+  *   **params** – The pointer to the array of `QkParam` values to use for the operation parameters. This can be a null pointer if there are no parameters for `operation` (e.g. `QkGate_H`).
+
+  **Returns**
+
+  an ExitCode.
+</Function>
+
+### qk\_circuit\_to\_python
+
+<Function id="qk_circuit_to_python" signature="PyObject *qk_circuit_to_python(QkCircuit *qc)">
+  Pass ownership of a `QkCircuit` object to Python.
+
+  The resulting Python object is *not* `QuantumCircuit`, it is the inner `CircuitData`, which is typically accessed as `QuantumCircuit._data`. You can use `qk_circuit_to_python_full` to produce a complete `QuantumCircuit` object.
+
+  It is not safe to use the `QkCircuit` pointer after calling this function. In particular, you should not attempt to clear or free it. The caller must own the `QkCircuit`, not hold a borrowed reference (for example, a `QkCircuit *` retrieved from `qk_circuit_borrow_from_python` is not owned).
+
+  <span id="group__QkCircuit_1autotoc_md98" />
+
+  #### Safety
+
+  <span id="group__QkCircuit_1autotoc_md98" />
+
+  The caller must be attached to a Python interpreter. Behavior is undefined if `circuit` is not a valid non-null pointer to an initialized and owned `QkCircuit`.
+
+  **Parameters**
+
+  *   **qc** – The owned object.
+
+  **Returns**
+
+  An owned Python reference to the object.
+</Function>
+
+### qk\_circuit\_to\_python\_full
+
+<Function id="qk_circuit_to_python_full" signature="PyObject *qk_circuit_to_python_full(QkCircuit *qc)">
+  Pass ownership of a `QkCircuit` object to Python and create a complete `QuantumCircuit`.
+
+  This includes additional Python-space logic to produce the complete `QuantumCircuit`, since `QkCircuit` corresponds only to the internal `QuantumCircuit._data` field.
+
+  It is not safe to use the `QkCircuit` pointer after calling this function. In particular, you should not attempt to clear or free it. The caller must own the `QkCircuit`, not hold a borrowed reference (for example, a `QkCircuit *` retrieved from `qk_circuit_borrow_from_python` is not owned).
+
+  <span id="group__QkCircuit_1autotoc_md99" />
+
+  #### Safety
+
+  <span id="group__QkCircuit_1autotoc_md99" />
+
+  The caller must be attached to a Python interpreter. Behavior is undefined if `circuit` is not a valid non-null pointer to an initialized and owned `QkCircuit`.
+
+  **Parameters**
+
+  *   **qc** – The owned object.
+
+  **Returns**
+
+  An owned Python reference to the object.
+</Function>
+
+### qk\_circuit\_borrow\_from\_python
+
+<Function id="qk_circuit_borrow_from_python" signature="QkCircuit *qk_circuit_borrow_from_python(PyObject *ob)">
+  Retrieve a `QkCircuit` pointer from a Python object.
+
+  Note that the input to this function should *not* be `QuantumCircuit`, but the output of `QuantumCircuit._data`. This is necessary to enforce correct reference-counting semantics.
+
+  This borrows a Python reference and extracts the `QkCircuit` pointer for it, if it is of the correct type. The returned pointer is borrowed from the `ob` pointer. If the `PyObject` is not the correct type, the return value is `NULL` and the exception state of the Python interpreter is set.
+
+  You must be attached to a Python interpreter to call this function.
+
+  You can also use `qk_circuit_convert_from_python`, which is logically the exact same as this function, but can be directly used as a “converter” function for the `PyArg_Parse*` family of Python converter functions.
+
+  <span id="group__QkCircuit_1autotoc_md100" />
+
+  #### Safety
+
+  <span id="group__QkCircuit_1autotoc_md100" />
+
+  The caller must be attached to a Python interpreter. Behavior is undefined if `ob` is not a valid non-null pointer to a Python object.
+
+  **Parameters**
+
+  *   **ob** – A borrowed Python object.
+
+  **Returns**
+
+  A pointer to the native object, or `NULL` if the Python object is the wrong type.
+</Function>
+
+### qk\_circuit\_convert\_from\_python
+
+<Function id="qk_circuit_convert_from_python" signature="int qk_circuit_convert_from_python(PyObject *object, void *address)">
+  Retrieve a `QkCircuit` pointer from a Python object.
+
+  Note that the input to this function should *not* be `QuantumCircuit`, but the output of `QuantumCircuit._data`. This is necessary to enforce correct reference-counting semantics.
+
+  This borrows a Python reference and extracts the `QkCircuit` pointer for it into `address`, if it is of the correct type. The returned pointer is borrowed from the `object` pointer. If the `PyObject` is not the correct type, the return value is 0, the exception state of the Python interpreter is set, and `address` is unchanged.
+
+  You must be attached to a Python interpreter to call this function.
+
+  You can also use `qk_circuit_borrow_from_python`, which is logically the exact same as this, but with a more natural signature for direct usage.
+
+  <span id="group__QkCircuit_1autotoc_md101" />
+
+  #### Safety
+
+  <span id="group__QkCircuit_1autotoc_md101" />
+
+  The caller must be attached to a Python interpreter. Behavior is undefined if `object` is not a valid non-null pointer to a Python object, or if `address` is not a pointer to writeable data of the correct type.
+
+  **Parameters**
+
+  *   **object** – A borrowed Python object.
+  *   **address** – The location to write the output to.
+
+  **Returns**
+
+  1 on success, 0 on failure.
+</Function>
+
+### qk\_quantum\_register\_to\_python
+
+<Function id="qk_quantum_register_to_python" signature="PyObject *qk_quantum_register_to_python(QkQuantumRegister *qr)">
+  Pass ownership of a `QkQuantumRegister` object to Python.
+
+  It is not safe to use the `QkQuantumRegister` pointer after calling this function. In particular, you should not attempt to clear or free it. The caller must own the `QkQuantumRegister`, not hold a borrowed reference (for example, a `QkQuantumRegister *` retrieved from `qk_quantum_register_borrow_from_python` is not owned).
+
+  <span id="group__QkCircuit_1autotoc_md102" />
+
+  #### Safety
+
+  <span id="group__QkCircuit_1autotoc_md102" />
+
+  The caller must be attached to a Python interpreter. Behavior is undefined if `qr` is not a valid non-null pointer to an initialized and owned `QkQuantumRegister`.
+
+  **Parameters**
+
+  *   **qr** – The owned object.
+
+  **Returns**
+
+  An owned Python reference to the object.
+</Function>
+
+### qk\_quantum\_register\_borrow\_from\_python
+
+<Function id="qk_quantum_register_borrow_from_python" signature="const QkQuantumRegister *qk_quantum_register_borrow_from_python(PyObject *ob)">
+  Retrieve a `QkQuantumRegister` pointer from a Python object.
+
+  This borrows a Python reference and extracts the `QkQuantumRegister` pointer for it, if it is of the correct type. The returned pointer is borrowed from the `ob` pointer. If the `PyObject` is not the correct type, the return value is `NULL` and the exception state of the Python interpreter is set.
+
+  You must be attached to a Python interpreter to call this function.
+
+  You can also use `qk_quantum_register_convert_from_python`, which is logically the exact same as this function, but can be directly used as a “converter” function for the `PyArg_Parse*` family of Python converter functions.
+
+  <span id="group__QkCircuit_1autotoc_md103" />
+
+  #### Safety
+
+  <span id="group__QkCircuit_1autotoc_md103" />
+
+  The caller must be attached to a Python interpreter. Behavior is undefined if `ob` is not a valid non-null pointer to a Python object.
+
+  **Parameters**
+
+  *   **ob** – A borrowed Python object.
+
+  **Returns**
+
+  A pointer to the native object, or `NULL` if the Python object is the wrong type.
+</Function>
+
+### qk\_quantum\_register\_convert\_from\_python
+
+<Function id="qk_quantum_register_convert_from_python" signature="int qk_quantum_register_convert_from_python(PyObject *object, void *address)">
+  Retrieve a `QkQuantumRegister` pointer from a Python object.
+
+  This borrows a Python reference and extracts the `QkQuantumRegister` pointer for it into `address`, if it is of the correct type. The returned pointer is borrowed from the `object` pointer. If the `PyObject` is not the correct type, the return value is 0, the exception state of the Python interpreter is set, and `address` is unchanged.
+
+  You must be attached to a Python interpreter to call this function.
+
+  You can also use `qk_quantum_register_borrow_from_python`, which is logically the exact same as this, but with a more natural signature for direct usage.
+
+  <span id="group__QkCircuit_1autotoc_md104" />
+
+  #### Safety
+
+  <span id="group__QkCircuit_1autotoc_md104" />
+
+  The caller must be attached to a Python interpreter. Behavior is undefined if `object` is not a valid non-null pointer to a Python object, or if `address` is not a pointer to writeable data of the correct type.
+
+  **Parameters**
+
+  *   **object** – A borrowed Python object.
+  *   **address** – The location to write the output to.
+
+  **Returns**
+
+  1 on success, 0 on failure.
+</Function>
+
+### qk\_classical\_register\_to\_python
+
+<Function id="qk_classical_register_to_python" signature="PyObject *qk_classical_register_to_python(QkClassicalRegister *cr)">
+  Pass ownership of a `QkClassicalRegister` object to Python.
+
+  It is not safe to use the `QkClassicalRegister` pointer after calling this function. In particular, you should not attempt to clear or free it. The caller must own the `QkClassicalRegister`, not hold a borrowed reference (for example, a `QkClassicalRegister *` retrieved from `qk_classical_register_borrow_from_python` is not owned).
+
+  <span id="group__QkCircuit_1autotoc_md105" />
+
+  #### Safety
+
+  <span id="group__QkCircuit_1autotoc_md105" />
+
+  The caller must be attached to a Python interpreter. Behavior is undefined if `cr` is not a valid non-null pointer to an initialized and owned `QkClassicalRegister`.
+
+  **Parameters**
+
+  *   **cr** – The owned object.
+
+  **Returns**
+
+  An owned Python reference to the object.
+</Function>
+
+### qk\_classical\_register\_borrow\_from\_python
+
+<Function id="qk_classical_register_borrow_from_python" signature="const QkClassicalRegister *qk_classical_register_borrow_from_python(PyObject *ob)">
+  Retrieve a `QkClassicalRegister` pointer from a Python object.
+
+  This borrows a Python reference and extracts the `QkClassicalRegister` pointer for it, if it is of the correct type. The returned pointer is borrowed from the `ob` pointer. If the `PyObject` is not the correct type, the return value is `NULL` and the exception state of the Python interpreter is set.
+
+  You must be attached to a Python interpreter to call this function.
+
+  You can also use `qk_classical_register_convert_from_python`, which is logically the exact same as this function, but can be directly used as a “converter” function for the `PyArg_Parse*` family of Python converter functions.
+
+  <span id="group__QkCircuit_1autotoc_md106" />
+
+  #### Safety
+
+  <span id="group__QkCircuit_1autotoc_md106" />
+
+  The caller must be attached to a Python interpreter. Behavior is undefined if `ob` is not a valid non-null pointer to a Python object.
+
+  **Parameters**
+
+  *   **ob** – A borrowed Python object.
+
+  **Returns**
+
+  A pointer to the native object, or `NULL` if the Python object is the wrong type.
+</Function>
+
+### qk\_classical\_register\_convert\_from\_python
+
+<Function id="qk_classical_register_convert_from_python" signature="int qk_classical_register_convert_from_python(PyObject *object, void *address)">
+  Retrieve a `QkClassicalRegister` pointer from a Python object.
+
+  This borrows a Python reference and extracts the `QkClassicalRegister` pointer for it into `address`, if it is of the correct type. The returned pointer is borrowed from the `object` pointer. If the `PyObject` is not the correct type, the return value is 0, the exception state of the Python interpreter is set, and `address` is unchanged.
+
+  You must be attached to a Python interpreter to call this function.
+
+  You can also use `qk_classical_register_borrow_from_python`, which is logically the exact same as this, but with a more natural signature for direct usage.
+
+  <span id="group__QkCircuit_1autotoc_md107" />
+
+  #### Safety
+
+  <span id="group__QkCircuit_1autotoc_md107" />
+
+  The caller must be attached to a Python interpreter. Behavior is undefined if `object` is not a valid non-null pointer to a Python object, or if `address` is not a pointer to writeable data of the correct type.
+
+  **Parameters**
+
+  *   **object** – A borrowed Python object.
+  *   **address** – The location to write the output to.
+
+  **Returns**
+
+  1 on success, 0 on failure.
 </Function>
 

@@ -11,8 +11,8 @@
 // that they have been altered from the originals.
 
 import { expect, test } from "@playwright/test";
-import { ObjectsInv } from "./objectsInv";
 
+import { ObjectsInv } from "./objectsInv.js";
 import { updateLinks, normalizeUrl, relativizeLink } from "./updateLinks.js";
 import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
 
@@ -312,6 +312,51 @@ test("normalizeUrl() Qiskit C API", () => {
     "/docs/api/qiskit/qiskit-page-3",
     "#my-anchor",
   ]);
+});
+
+test("normalizeUrl() Qiskit Python API links to C API via cdoc/", () => {
+  // These are the realistic forms from the Sphinx artifact: `../cdoc/<page>.html#<anchor>`
+  const urls = [
+    `../cdoc/qk-circuit.html#c.qk_circuit_new`,
+    `../cdoc/config.html#c.qk_import`,
+    `../cdoc/qk-circuit.html`,
+    // Enum members carry the enum scope (`c.<Enum>.<Member>`). The generated
+    // anchor is just the member id, so the scope must be dropped as well.
+    `../cdoc/qk-exit-code.html#c.QkExitCode.QkExitCode_ValueError`,
+  ];
+  const resultsByName = {};
+  const itemNames = new Set<string>();
+
+  const results = urls.map((url) =>
+    normalizeUrl(url, resultsByName, itemNames, {
+      kebabCaseAndShorten: true,
+      pkgName: "qiskit",
+      pkgOutputDir: "/docs/api/qiskit/dev",
+    }),
+  );
+  expect(results).toEqual([
+    "/docs/api/qiskit-c/dev/qk-circuit#qk_circuit_new",
+    "/docs/api/qiskit-c/dev/config#qk_import",
+    "/docs/api/qiskit-c/dev/qk-circuit",
+    "/docs/api/qiskit-c/dev/qk-exit-code#QkExitCode_ValueError",
+  ]);
+});
+
+test("normalizeUrl() rewrites cdoc/ links for a non-qiskit package", () => {
+  // The C API package is `{pkgName}-c`, so `qiskit-fermions` → `qiskit-fermions-c`.
+  // A plain `.replace("qiskit", "qiskit-c")` would wrongly yield `qiskit-c-fermions`.
+  expect(
+    normalizeUrl(
+      "cdoc/qf-ferm-op.html#c.qf_ferm_op_set_groups",
+      {},
+      new Set(),
+      {
+        kebabCaseAndShorten: true,
+        pkgName: "qiskit-fermions",
+        pkgOutputDir: "/docs/api/qiskit-fermions",
+      },
+    ),
+  ).toEqual("/docs/api/qiskit-fermions-c/qf-ferm-op#qf_ferm_op_set_groups");
 });
 
 test.describe("relativizeLink()", () => {

@@ -6,6 +6,8 @@ python_api_type: module
 python_api_name: QkDag
 ---
 
+<span id="capi-dag" />
+
 # QkDag
 
 ```c
@@ -116,6 +118,10 @@ The C API currently only supports building DAGs that contain operations defined 
   <Attribute id="QkOperationKind_Unknown">
     This variant is used as an opaque type for operations not yet implemented in the native data model.
   </Attribute>
+
+  #### enumerator QkOperationKind\_PauliProductRotation
+
+  <Attribute id="QkOperationKind_PauliProductRotation" />
 </Class>
 
 ### QkDagNeighbors
@@ -147,7 +153,7 @@ The C API currently only supports building DAGs that contain operations defined 
 
   You must free the returned DAG with `qk_dag_free` when done with it.
 
-  <span id="group__QkDag_1autotoc_md54" />
+  <span id="group__QkDag_1autotoc_md209" />
 
   #### Example
 
@@ -165,7 +171,7 @@ The C API currently only supports building DAGs that contain operations defined 
 <Function id="qk_dag_add_quantum_register" signature="void qk_dag_add_quantum_register(QkDag *dag, const QkQuantumRegister *reg)">
   Add a quantum register to the DAG.
 
-  <span id="group__QkDag_1autotoc_md55" />
+  <span id="group__QkDag_1autotoc_md210" />
 
   #### Example
 
@@ -177,11 +183,11 @@ The C API currently only supports building DAGs that contain operations defined 
   qk_dag_free(dag);
   ```
 
-  <span id="group__QkDag_1autotoc_md56" />
+  <span id="group__QkDag_1autotoc_md211" />
 
   #### Safety
 
-  <span id="group__QkDag_1autotoc_md56" />
+  <span id="group__QkDag_1autotoc_md211" />
 
   Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag` and if `reg` is not a valid, non-null pointer to a `QkQuantumRegister`.
 
@@ -196,7 +202,7 @@ The C API currently only supports building DAGs that contain operations defined 
 <Function id="qk_dag_add_classical_register" signature="void qk_dag_add_classical_register(QkDag *dag, const QkClassicalRegister *reg)">
   Add a classical register to the DAG.
 
-  <span id="group__QkDag_1autotoc_md57" />
+  <span id="group__QkDag_1autotoc_md212" />
 
   #### Example
 
@@ -208,11 +214,11 @@ The C API currently only supports building DAGs that contain operations defined 
   qk_dag_free(dag);
   ```
 
-  <span id="group__QkDag_1autotoc_md58" />
+  <span id="group__QkDag_1autotoc_md213" />
 
   #### Safety
 
-  <span id="group__QkDag_1autotoc_md58" />
+  <span id="group__QkDag_1autotoc_md213" />
 
   Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag` and if `reg` is not a valid, non-null pointer to a `QkClassicalRegister`.
 
@@ -227,7 +233,7 @@ The C API currently only supports building DAGs that contain operations defined 
 <Function id="qk_dag_num_qubits" signature="uint32_t qk_dag_num_qubits(const QkDag *dag)">
   Get the number of qubits the DAG contains.
 
-  <span id="group__QkDag_1autotoc_md59" />
+  <span id="group__QkDag_1autotoc_md214" />
 
   #### Example
 
@@ -240,11 +246,11 @@ The C API currently only supports building DAGs that contain operations defined 
   qk_dag_free(dag);
   ```
 
-  <span id="group__QkDag_1autotoc_md60" />
+  <span id="group__QkDag_1autotoc_md215" />
 
   #### Safety
 
-  <span id="group__QkDag_1autotoc_md60" />
+  <span id="group__QkDag_1autotoc_md215" />
 
   Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag`.
 
@@ -262,7 +268,7 @@ The C API currently only supports building DAGs that contain operations defined 
 <Function id="qk_dag_num_clbits" signature="uint32_t qk_dag_num_clbits(const QkDag *dag)">
   Get the number of clbits the DAG contains.
 
-  <span id="group__QkDag_1autotoc_md61" />
+  <span id="group__QkDag_1autotoc_md216" />
 
   #### Example
 
@@ -275,11 +281,11 @@ The C API currently only supports building DAGs that contain operations defined 
   qk_dag_free(dag);
   ```
 
-  <span id="group__QkDag_1autotoc_md62" />
+  <span id="group__QkDag_1autotoc_md217" />
 
   #### Safety
 
-  <span id="group__QkDag_1autotoc_md62" />
+  <span id="group__QkDag_1autotoc_md217" />
 
   Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag`.
 
@@ -297,7 +303,7 @@ The C API currently only supports building DAGs that contain operations defined 
 <Function id="qk_dag_num_op_nodes" signature="size_t qk_dag_num_op_nodes(const QkDag *dag)">
   Return the total number of operation nodes in the DAG.
 
-  <span id="group__QkDag_1autotoc_md63" />
+  <span id="group__QkDag_1autotoc_md218" />
 
   #### Example
 
@@ -314,11 +320,11 @@ The C API currently only supports building DAGs that contain operations defined 
   qk_quantum_register_free(qr);
   ```
 
-  <span id="group__QkDag_1autotoc_md64" />
+  <span id="group__QkDag_1autotoc_md219" />
 
   #### Safety
 
-  <span id="group__QkDag_1autotoc_md64" />
+  <span id="group__QkDag_1autotoc_md219" />
 
   Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag`.
 
@@ -331,6 +337,81 @@ The C API currently only supports building DAGs that contain operations defined 
   The total number of instructions in the DAG.
 </Function>
 
+### qk\_dag\_global\_phase
+
+<Function id="qk_dag_global_phase" signature="QkParam *qk_dag_global_phase(const QkDag *dag)">
+  Get the global phase of the DAG.
+
+  This function returns a copy of the DAG’s global phase and the value must be freed via :c:func:`qk_param_free` after usage.
+
+  <span id="group__QkDag_1autotoc_md220" />
+
+  #### Example
+
+  ```c
+  QkDag *dag = qk_dag_new();
+  QkQuantumRegister *qr = qk_quantum_register_new(24, "my_register");
+  qk_dag_add_quantum_register(dag, qr);
+  QkParam *global_phase = qk_dag_global_phase(dag);
+  qk_param_free(global_phase);
+  qk_quantum_register_free(qr);
+  qk_dag_free(dag);
+  ```
+
+  <span id="group__QkDag_1autotoc_md221" />
+
+  #### Safety
+
+  <span id="group__QkDag_1autotoc_md221" />
+
+  Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag`.
+
+  **Parameters**
+
+  *   **dag** – A pointer to the DAG.
+
+  **Returns**
+
+  The global phase of the DAG.
+</Function>
+
+### qk\_dag\_set\_global\_phase
+
+<Function id="qk_dag_set_global_phase" signature="QkExitCode qk_dag_set_global_phase(QkDag *dag, const QkParam *phase)">
+  Set the global phase of the DAG.
+
+  This function copies the new global phase upon setting it, so the caller retains ownership of the `QkParam` phase, and the value of the phase must be freed via :c:func:`qk_param_free` after setting.
+
+  <span id="group__QkDag_1autotoc_md222" />
+
+  #### Example
+
+  ```c
+  QkDag *dag = qk_dag_new();
+  QkParam *new_global_phase = qk_param_from_double(1.23);
+  qk_dag_set_global_phase(dag, new_global_phase);
+  qk_param_free(new_global_phase);
+  qk_dag_free(dag);
+  ```
+
+  <span id="group__QkDag_1autotoc_md223" />
+
+  #### Safety
+
+  <span id="group__QkDag_1autotoc_md223" />
+
+  Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag` and if `phase` is not a valid, non-null pointer to a `QkParam`.
+
+  **Parameters**
+
+  *   **dag** – A pointer to the DAG.
+  *   **phase** – A pointer to the global phase to set.
+
+  **Returns**
+
+  `QkExitCode_Success` upon successful setting of the global phase. Upon failure, `QkExitCode_ParameterError` describes generic failures when attempting to track the parameter symbols such as invalid parameter values. Otherwise, `QkExitCode_DagError` indicates a DAG-specific cause of the failure.
+</Function>
+
 ### qk\_dag\_node\_type
 
 <Function id="qk_dag_node_type" signature="QkDagNodeType qk_dag_node_type(const QkDag *dag, uint32_t node)">
@@ -338,11 +419,11 @@ The C API currently only supports building DAGs that contain operations defined 
 
   The result can be used in a switch statement to dispatch proper handling when iterating over nodes of unknown type.
 
-  <span id="group__QkDag_1autotoc_md65" />
+  <span id="group__QkDag_1autotoc_md224" />
 
   #### Safety
 
-  <span id="group__QkDag_1autotoc_md65" />
+  <span id="group__QkDag_1autotoc_md224" />
 
   Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag`.
 
@@ -361,11 +442,11 @@ The C API currently only supports building DAGs that contain operations defined 
 <Function id="qk_dag_qubit_in_node" signature="uint32_t qk_dag_qubit_in_node(const QkDag *dag, uint32_t qubit)">
   Retrieve the index of the input node of the wire corresponding to the given qubit.
 
-  <span id="group__QkDag_1autotoc_md66" />
+  <span id="group__QkDag_1autotoc_md225" />
 
   #### Safety
 
-  <span id="group__QkDag_1autotoc_md66" />
+  <span id="group__QkDag_1autotoc_md225" />
 
   Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag`.
 
@@ -384,11 +465,11 @@ The C API currently only supports building DAGs that contain operations defined 
 <Function id="qk_dag_qubit_out_node" signature="uint32_t qk_dag_qubit_out_node(const QkDag *dag, uint32_t qubit)">
   Retrieve the index of the output node of the wire corresponding to the given qubit.
 
-  <span id="group__QkDag_1autotoc_md67" />
+  <span id="group__QkDag_1autotoc_md226" />
 
   #### Safety
 
-  <span id="group__QkDag_1autotoc_md67" />
+  <span id="group__QkDag_1autotoc_md226" />
 
   Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag`.
 
@@ -407,11 +488,11 @@ The C API currently only supports building DAGs that contain operations defined 
 <Function id="qk_dag_clbit_in_node" signature="uint32_t qk_dag_clbit_in_node(const QkDag *dag, uint32_t clbit)">
   Retrieve the index of the input node of the wire corresponding to the given clbit.
 
-  <span id="group__QkDag_1autotoc_md68" />
+  <span id="group__QkDag_1autotoc_md227" />
 
   #### Safety
 
-  <span id="group__QkDag_1autotoc_md68" />
+  <span id="group__QkDag_1autotoc_md227" />
 
   Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag`.
 
@@ -430,11 +511,11 @@ The C API currently only supports building DAGs that contain operations defined 
 <Function id="qk_dag_clbit_out_node" signature="uint32_t qk_dag_clbit_out_node(const QkDag *dag, uint32_t clbit)">
   Retrieve the index of the output node of the wire corresponding to the given clbit.
 
-  <span id="group__QkDag_1autotoc_md69" />
+  <span id="group__QkDag_1autotoc_md228" />
 
   #### Safety
 
-  <span id="group__QkDag_1autotoc_md69" />
+  <span id="group__QkDag_1autotoc_md228" />
 
   Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag`.
 
@@ -453,11 +534,11 @@ The C API currently only supports building DAGs that contain operations defined 
 <Function id="qk_dag_wire_node_value" signature="uint32_t qk_dag_wire_node_value(const QkDag *dag, uint32_t node)">
   Retrieve the value of a wire endpoint node.
 
-  <span id="group__QkDag_1autotoc_md70" />
+  <span id="group__QkDag_1autotoc_md229" />
 
   #### Safety
 
-  <span id="group__QkDag_1autotoc_md70" />
+  <span id="group__QkDag_1autotoc_md229" />
 
   Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag`.
 
@@ -478,11 +559,11 @@ The C API currently only supports building DAGs that contain operations defined 
 
   Panics if the node is not an operation.
 
-  <span id="group__QkDag_1autotoc_md71" />
+  <span id="group__QkDag_1autotoc_md230" />
 
   #### Safety
 
-  <span id="group__QkDag_1autotoc_md71" />
+  <span id="group__QkDag_1autotoc_md230" />
 
   Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag`.
 
@@ -503,11 +584,11 @@ The C API currently only supports building DAGs that contain operations defined 
 
   Panics if the node is not an operation.
 
-  <span id="group__QkDag_1autotoc_md72" />
+  <span id="group__QkDag_1autotoc_md231" />
 
   #### Safety
 
-  <span id="group__QkDag_1autotoc_md72" />
+  <span id="group__QkDag_1autotoc_md231" />
 
   Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag`.
 
@@ -528,11 +609,11 @@ The C API currently only supports building DAGs that contain operations defined 
 
   Panics if the node is not an operation.
 
-  <span id="group__QkDag_1autotoc_md73" />
+  <span id="group__QkDag_1autotoc_md232" />
 
   #### Safety
 
-  <span id="group__QkDag_1autotoc_md73" />
+  <span id="group__QkDag_1autotoc_md232" />
 
   Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag`.
 
@@ -553,11 +634,11 @@ The C API currently only supports building DAGs that contain operations defined 
 
   Panics if the node is not an operation.
 
-  <span id="group__QkDag_1autotoc_md74" />
+  <span id="group__QkDag_1autotoc_md233" />
 
   #### Safety
 
-  <span id="group__QkDag_1autotoc_md74" />
+  <span id="group__QkDag_1autotoc_md233" />
 
   Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag`.
 
@@ -578,11 +659,11 @@ The C API currently only supports building DAGs that contain operations defined 
 
   Panics if the node is not an operation.
 
-  <span id="group__QkDag_1autotoc_md75" />
+  <span id="group__QkDag_1autotoc_md234" />
 
   #### Safety
 
-  <span id="group__QkDag_1autotoc_md75" />
+  <span id="group__QkDag_1autotoc_md234" />
 
   Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag`.
 
@@ -601,7 +682,7 @@ The C API currently only supports building DAGs that contain operations defined 
 <Function id="qk_dag_apply_gate" signature="uint32_t qk_dag_apply_gate(QkDag *dag, QkGate gate, const uint32_t *qubits, const double *params, bool front)">
   Apply a `QkGate` to the DAG.
 
-  <span id="group__QkDag_1autotoc_md76" />
+  <span id="group__QkDag_1autotoc_md235" />
 
   #### Example
 
@@ -617,11 +698,11 @@ The C API currently only supports building DAGs that contain operations defined 
   qk_quantum_register_free(qr);
   ```
 
-  <span id="group__QkDag_1autotoc_md77" />
+  <span id="group__QkDag_1autotoc_md236" />
 
   #### Safety
 
-  <span id="group__QkDag_1autotoc_md77" />
+  <span id="group__QkDag_1autotoc_md236" />
 
   The `qubits` and `params` types are expected to be a pointer to an array of `uint32_t` and `double` respectively where the length is matching the expectations for the standard gate. If the array is insufficiently long the behavior of this function is undefined as this will read outside the bounds of the array. It can be a null pointer if there are no qubits or params for a given gate. You can check `qk_gate_num_qubits` and `qk_gate_num_params` to determine how many qubits and params are required for a given gate.
 
@@ -645,26 +726,26 @@ The C API currently only supports building DAGs that contain operations defined 
 <Function id="qk_dag_apply_measure" signature="uint32_t qk_dag_apply_measure(QkDag *dag, uint32_t qubit, uint32_t clbit, bool front)">
   Apply a measure to a DAG.
 
-  <span id="group__QkDag_1autotoc_md78" />
+  <span id="group__QkDag_1autotoc_md237" />
 
   #### Example
 
-  <span id="group__QkDag_1autotoc_md78" />
+  <span id="group__QkDag_1autotoc_md237" />
 
   Measure all qubits into the corresponding clbit index at the end of the circuit.
 
   ```c
   uint32_t num_qubits = qk_dag_num_qubits(dag);
   for (uint32_t i = 0; i < num_qubits; i++) {
-      qk_dag_apply_measure(dag, i, i, false);
+  qk_dag_apply_measure(dag, i, i, false);
   }
   ```
 
-  <span id="group__QkDag_1autotoc_md79" />
+  <span id="group__QkDag_1autotoc_md238" />
 
   #### Safety
 
-  <span id="group__QkDag_1autotoc_md79" />
+  <span id="group__QkDag_1autotoc_md238" />
 
   Behavior is undefined if `dag` is not an aligned, non-null pointer to a valid `QkDag`, or if `qubit` or `clbit` are out of range.
 
@@ -685,26 +766,26 @@ The C API currently only supports building DAGs that contain operations defined 
 <Function id="qk_dag_apply_reset" signature="uint32_t qk_dag_apply_reset(QkDag *dag, uint32_t qubit, bool front)">
   Apply a reset to the DAG.
 
-  <span id="group__QkDag_1autotoc_md80" />
+  <span id="group__QkDag_1autotoc_md239" />
 
   #### Examples
 
-  <span id="group__QkDag_1autotoc_md80" />
+  <span id="group__QkDag_1autotoc_md239" />
 
   Apply initial resets on all qubits.
 
   ```c
   uint32_t num_qubits = qk_dag_num_qubits(dag);
   for (uint32_t qubit = 0; qubit < num_qubits; qubit++) {
-      qk_dag_apply_reset(dag, qubit, true);
+  qk_dag_apply_reset(dag, qubit, true);
   }
   ```
 
-  <span id="group__QkDag_1autotoc_md81" />
+  <span id="group__QkDag_1autotoc_md240" />
 
   #### Safety
 
-  <span id="group__QkDag_1autotoc_md81" />
+  <span id="group__QkDag_1autotoc_md240" />
 
   Behavior is undefined if `dag` is not an aligned, non-null pointer to a valid `QkDag`, or if `qubit` is out of range.
 
@@ -724,11 +805,11 @@ The C API currently only supports building DAGs that contain operations defined 
 <Function id="qk_dag_apply_barrier" signature="uint32_t qk_dag_apply_barrier(QkDag *dag, const uint32_t *qubits, uint32_t num_qubits, bool front)">
   Apply a barrier to the DAG.
 
-  <span id="group__QkDag_1autotoc_md82" />
+  <span id="group__QkDag_1autotoc_md241" />
 
   #### Examples
 
-  <span id="group__QkDag_1autotoc_md82" />
+  <span id="group__QkDag_1autotoc_md241" />
 
   Apply a final barrier on all qubits:
 
@@ -744,11 +825,11 @@ The C API currently only supports building DAGs that contain operations defined 
   qk_dag_apply_barrier(dag, qubits, num_qubits, true);
   ```
 
-  <span id="group__QkDag_1autotoc_md83" />
+  <span id="group__QkDag_1autotoc_md242" />
 
   #### Safety
 
-  <span id="group__QkDag_1autotoc_md83" />
+  <span id="group__QkDag_1autotoc_md242" />
 
   Behavior is undefined if:
 
@@ -776,11 +857,11 @@ The C API currently only supports building DAGs that contain operations defined 
 
   See :[Circuit conventions](/docs/api/qiskit/circuit#circuit-conventions) for detail on the bit-labelling and matrix conventions of Qiskit.
 
-  <span id="group__QkDag_1autotoc_md84" />
+  <span id="group__QkDag_1autotoc_md243" />
 
   #### Safety
 
-  <span id="group__QkDag_1autotoc_md84" />
+  <span id="group__QkDag_1autotoc_md243" />
 
   Behavior is undefined if any of:
 
@@ -808,7 +889,7 @@ The C API currently only supports building DAGs that contain operations defined 
 
   Panics if the node is not a standard gate operation.
 
-  <span id="group__QkDag_1autotoc_md85" />
+  <span id="group__QkDag_1autotoc_md244" />
 
   #### Example
 
@@ -826,11 +907,11 @@ The C API currently only supports building DAGs that contain operations defined 
   qk_quantum_register_free(qr);
   ```
 
-  <span id="group__QkDag_1autotoc_md86" />
+  <span id="group__QkDag_1autotoc_md245" />
 
   #### Safety
 
-  <span id="group__QkDag_1autotoc_md86" />
+  <span id="group__QkDag_1autotoc_md245" />
 
   Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag`. If `out_params` is non-NULL, it must point to a buffer large enough to hold all the gate’s params, otherwise behavior is undefined as this function will write beyond its bounds. You can check `qk_dag_op_node_num_params` to determine how many params are required for any given operation node.
 
@@ -852,11 +933,11 @@ The C API currently only supports building DAGs that contain operations defined 
 
   Panics if the node is not a unitary gate.
 
-  <span id="group__QkDag_1autotoc_md87" />
+  <span id="group__QkDag_1autotoc_md246" />
 
   #### Safety
 
-  <span id="group__QkDag_1autotoc_md87" />
+  <span id="group__QkDag_1autotoc_md246" />
 
   Behavior is undefined if `dag` is not a non-null pointer to a valid `QkDag`, if `out` is unaligned, or if `out` is not valid for `4**num_qubits` writes of `QkComplex64`.
 
@@ -876,11 +957,11 @@ The C API currently only supports building DAGs that contain operations defined 
 
   Panics if `node` is not an operation node.
 
-  <span id="group__QkDag_1autotoc_md88" />
+  <span id="group__QkDag_1autotoc_md247" />
 
   #### Safety
 
-  <span id="group__QkDag_1autotoc_md88" />
+  <span id="group__QkDag_1autotoc_md247" />
 
   Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag`.
 
@@ -901,7 +982,7 @@ The C API currently only supports building DAGs that contain operations defined 
 
   The successors array and its length are returned as a `QkDagNeighbors` struct, where each element in the array corresponds to a DAG node index. You must call the `qk_dag_neighbors_clear` function when done to free the memory allocated for the struct.
 
-  <span id="group__QkDag_1autotoc_md89" />
+  <span id="group__QkDag_1autotoc_md248" />
 
   #### Example
 
@@ -919,11 +1000,11 @@ The C API currently only supports building DAGs that contain operations defined 
   qk_dag_free(dag);
   ```
 
-  <span id="group__QkDag_1autotoc_md90" />
+  <span id="group__QkDag_1autotoc_md249" />
 
   #### Safety
 
-  <span id="group__QkDag_1autotoc_md90" />
+  <span id="group__QkDag_1autotoc_md249" />
 
   Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag`.
 
@@ -944,7 +1025,7 @@ The C API currently only supports building DAGs that contain operations defined 
 
   The predecessors array and its length are returned as a `QkDagNeighbors` struct, where each element in the array corresponds to a DAG node index. You must call the `qk_dag_neighbors_clear` function when done to free the memory allocated for the struct.
 
-  <span id="group__QkDag_1autotoc_md91" />
+  <span id="group__QkDag_1autotoc_md250" />
 
   #### Example
 
@@ -962,11 +1043,11 @@ The C API currently only supports building DAGs that contain operations defined 
   qk_dag_free(dag);
   ```
 
-  <span id="group__QkDag_1autotoc_md92" />
+  <span id="group__QkDag_1autotoc_md251" />
 
   #### Safety
 
-  <span id="group__QkDag_1autotoc_md92" />
+  <span id="group__QkDag_1autotoc_md251" />
 
   Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag`.
 
@@ -987,11 +1068,11 @@ The C API currently only supports building DAGs that contain operations defined 
 
   The function deallocates the memory pointed to by the `neighbors` field and sets it to NULL. It also sets the `num_neighbors` field to 0.
 
-  <span id="group__QkDag_1autotoc_md93" />
+  <span id="group__QkDag_1autotoc_md252" />
 
   #### Safety
 
-  <span id="group__QkDag_1autotoc_md93" />
+  <span id="group__QkDag_1autotoc_md252" />
 
   Behavior is undefined if `neighbors` is not a valid, non-null pointer to a [QkDagNeighbors](#structqkdagneighbors) object populated with either `qk_dag_successors` or `qk_dag_predecessors`.
 
@@ -1009,11 +1090,11 @@ The C API currently only supports building DAGs that contain operations defined 
 
   You must call `qk_circuit_instruction_clear` to reset the `QkCircuitInstruction` before reusing it or dropping it.
 
-  <span id="group__QkDag_1autotoc_md94" />
+  <span id="group__QkDag_1autotoc_md253" />
 
   #### Examples
 
-  <span id="group__QkDag_1autotoc_md94" />
+  <span id="group__QkDag_1autotoc_md253" />
 
   Iterate through a DAG to find which qubits have measures on them:
 
@@ -1026,21 +1107,21 @@ The C API currently only supports building DAGs that contain operations defined 
   // Storage space for the instruction.
   QkCircuitInstruction inst;
   for (uint32_t i = 0; i < num_ops; i++) {
-      qk_dag_get_instruction(dag, ops[i], &inst);
-      if (!strcmp(inst.name, "measure"))
+  qk_dag_get_instruction(dag, ops[i], &inst);
+  if (!strcmp(inst.name, "measure"))
           measured[inst.qubits[0]] = true;
-      qk_circuit_instruction_clear(&inst);
+  qk_circuit_instruction_clear(&inst);
   }
 
   free(ops);
   free(measured);
   ```
 
-  <span id="group__QkDag_1autotoc_md95" />
+  <span id="group__QkDag_1autotoc_md254" />
 
   #### Safety
 
-  <span id="group__QkDag_1autotoc_md95" />
+  <span id="group__QkDag_1autotoc_md254" />
 
   Behavior is undefined if either `dag` or `instruction` are not valid, aligned, non-null pointers to the relevant data type. The fields of `instruction` need not be initialized.
 
@@ -1051,6 +1132,34 @@ The C API currently only supports building DAGs that contain operations defined 
   *   **instruction** – A point to where to write out the `QkCircuitInstruction`.
 </Function>
 
+### qk\_dag\_view\_instruction
+
+<Function id="qk_dag_view_instruction" signature="void qk_dag_view_instruction(const QkDag *dag, uint32_t index, QkCircuitInstructionView *out)">
+  Write out direct views for an instruction in the circuit.
+
+  This is a mirror of `qk_circuit_view_instruction`; consult its documentation for more detail and examples.
+
+  See also `qk_dag_get_instruction` which allocates owned versions of the output of this function.
+
+  <span id="group__QkDag_1autotoc_md255" />
+
+  #### Safety
+
+  <span id="group__QkDag_1autotoc_md255" />
+
+  Behavior is undefined in any of the follow situations:
+
+  *   `dag` is not an aligned pointer to a valid `QkDag`.
+  *   `index` is not a valid instruction index in the circuit. An index is invalid if does not correspond to an “operation node”, i.e. calling `qk_dag_node_type(dag, index)` would be defined and return `QkDagNodeType_Operation`.
+  *   `out` is misaligned or not valid for a single write.
+
+  **Parameters**
+
+  *   **dag** – The circuit to get the instruction from.
+  *   **index** – The index of the instruction in `dag`.
+  *   **out** – **\[out]** The memory location to write the result to.
+</Function>
+
 ### qk\_dag\_compose
 
 <Function id="qk_dag_compose" signature="QkExitCode qk_dag_compose(QkDag *dag, const QkDag *other, const uint32_t *qubits, const uint32_t *clbits)">
@@ -1058,7 +1167,7 @@ The C API currently only supports building DAGs that contain operations defined 
 
   `other` may include a smaller or equal number of wires for each type.
 
-  <span id="group__QkDag_1autotoc_md96" />
+  <span id="group__QkDag_1autotoc_md256" />
 
   #### Example
 
@@ -1108,11 +1217,11 @@ The C API currently only supports building DAGs that contain operations defined 
   qk_quantum_register_free(rqr);
   ```
 
-  <span id="group__QkDag_1autotoc_md97" />
+  <span id="group__QkDag_1autotoc_md257" />
 
   #### Safety
 
-  <span id="group__QkDag_1autotoc_md97" />
+  <span id="group__QkDag_1autotoc_md257" />
 
   Behavior is undefined if `dag` or `other` are not valid, non-null pointers to a `QkDag`. If `qubit` nor `clbit` are NULL, it must contains a less or equal amount than what the circuit owns.
 
@@ -1133,7 +1242,7 @@ The C API currently only supports building DAGs that contain operations defined 
 <Function id="qk_dag_free" signature="void qk_dag_free(QkDag *dag)">
   Free the DAG.
 
-  <span id="group__QkDag_1autotoc_md98" />
+  <span id="group__QkDag_1autotoc_md258" />
 
   #### Example
 
@@ -1142,13 +1251,13 @@ The C API currently only supports building DAGs that contain operations defined 
   qk_dag_free(dag);
   ```
 
-  <span id="group__QkDag_1autotoc_md99" />
+  <span id="group__QkDag_1autotoc_md259" />
 
   #### Safety
 
-  <span id="group__QkDag_1autotoc_md99" />
+  <span id="group__QkDag_1autotoc_md259" />
 
-  Behavior is undefined if `dag` is not either null or a valid pointer to a `QkDag`.
+  Behavior is undefined if `dag` is not either null or a valid, owning pointer of a `QkDag`.
 
   **Parameters**
 
@@ -1162,7 +1271,7 @@ The C API currently only supports building DAGs that contain operations defined 
 
   The new circuit is copied from the DAG; the original `dag` reference is still owned by the caller and still required to be freed with `qk_dag_free`. You must free the returned circuit with `qk_circuit_free` when done with it.
 
-  <span id="group__QkDag_1autotoc_md100" />
+  <span id="group__QkDag_1autotoc_md260" />
 
   #### Example
 
@@ -1178,11 +1287,11 @@ The C API currently only supports building DAGs that contain operations defined 
   qk_dag_free(dag);
   ```
 
-  <span id="group__QkDag_1autotoc_md101" />
+  <span id="group__QkDag_1autotoc_md261" />
 
   #### Safety
 
-  <span id="group__QkDag_1autotoc_md101" />
+  <span id="group__QkDag_1autotoc_md261" />
 
   Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag`.
 
@@ -1200,7 +1309,7 @@ The C API currently only supports building DAGs that contain operations defined 
 <Function id="qk_dag_topological_op_nodes" signature="void qk_dag_topological_op_nodes(const QkDag *dag, uint32_t *out_order)">
   Return the operation nodes in the DAG listed in topological order.
 
-  <span id="group__QkDag_1autotoc_md102" />
+  <span id="group__QkDag_1autotoc_md262" />
 
   #### Example
 
@@ -1232,11 +1341,11 @@ The C API currently only supports building DAGs that contain operations defined 
   qk_dag_free(dag);
   ```
 
-  <span id="group__QkDag_1autotoc_md103" />
+  <span id="group__QkDag_1autotoc_md263" />
 
   #### Safety
 
-  <span id="group__QkDag_1autotoc_md103" />
+  <span id="group__QkDag_1autotoc_md263" />
 
   Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag` or if `out_order` is not a valid, non-null pointer to a sequence of `qk_dag_num_op_nodes(dag)` consecutive elements of `uint32_t`.
 
@@ -1249,9 +1358,9 @@ The C API currently only supports building DAGs that contain operations defined 
 ### qk\_dag\_substitute\_node\_with\_dag
 
 <Function id="qk_dag_substitute_node_with_dag" signature="void qk_dag_substitute_node_with_dag(QkDag *dag, uint32_t node, const QkDag *replacement)">
-  Replace a node in a `QkDag` with a subcircuit specfied by another `QkDag`
+  Replace a node in a `QkDag` with a subcircuit specified by another `QkDag`
 
-  <span id="group__QkDag_1autotoc_md104" />
+  <span id="group__QkDag_1autotoc_md264" />
 
   #### Example
 
@@ -1282,11 +1391,11 @@ The C API currently only supports building DAGs that contain operations defined 
   qk_dag_free(dag);
   ```
 
-  <span id="group__QkDag_1autotoc_md105" />
+  <span id="group__QkDag_1autotoc_md265" />
 
   #### Safety
 
-  <span id="group__QkDag_1autotoc_md105" />
+  <span id="group__QkDag_1autotoc_md265" />
 
   Behavior is undefined if `dag` and `replacement` are not a valid, non-null pointer to a `QkDag`.
 
@@ -1309,7 +1418,7 @@ The C API currently only supports building DAGs that contain operations defined 
   *   duration
   *   all the qubits and clbits, including the registers.
 
-  <span id="group__QkDag_1autotoc_md106" />
+  <span id="group__QkDag_1autotoc_md266" />
 
   #### Example
 
@@ -1333,11 +1442,11 @@ The C API currently only supports building DAGs that contain operations defined 
   qk_dag_free(copied_dag);
   ```
 
-  <span id="group__QkDag_1autotoc_md107" />
+  <span id="group__QkDag_1autotoc_md267" />
 
   #### Safety
 
-  <span id="group__QkDag_1autotoc_md107" />
+  <span id="group__QkDag_1autotoc_md267" />
 
   Behavior is undefined if `dag` is not a valid pointer to a `QkDag`.
 
@@ -1350,5 +1459,229 @@ The C API currently only supports building DAGs that contain operations defined 
   **Returns**
 
   The pointer to the copied DAG circuit.
+</Function>
+
+### qk\_dag\_replace\_block\_with\_unitary
+
+<Function id="qk_dag_replace_block_with_unitary" signature="uint32_t qk_dag_replace_block_with_unitary(QkDag *dag, uint32_t num_block_ids, const uint32_t *block_ids, const QkComplex64 *matrix, uint32_t num_qubits, const uint32_t *qubits, bool cycle_check)">
+  Replace a non-empty contiguous block of nodes in a `QkDag` with a single unitary gate corresponding to the specified unitary matrix.
+
+  Upon replacement, the nodes in the block are removed and substituted by a new node acting on the given qubits.
+
+  <span id="group__QkDag_1autotoc_md268" />
+
+  #### Example
+
+  ```c
+  // Create a DAG with H, T, S, T, H gates on the second qubit
+  QkDag *dag = qk_dag_new();
+  QkQuantumRegister *qr = qk_quantum_register_new(2, "qr");
+  qk_dag_add_quantum_register(dag, qr);
+  uint32_t qubit[1] = {1};
+  qk_dag_apply_gate(dag, QkGate_H, qubit, NULL, false);
+  uint32_t idx1 = qk_dag_apply_gate(dag, QkGate_T, qubit, NULL, false);
+  uint32_t idx2 = qk_dag_apply_gate(dag, QkGate_S, qubit, NULL, false);
+  uint32_t idx3 = qk_dag_apply_gate(dag, QkGate_T, qubit, NULL, false);
+  qk_dag_apply_gate(dag, QkGate_H, qubit, NULL, false);
+
+  // Replace the inner T, S, T gates by a unitary gate (representing Z)
+  uint32_t replaced_ids[3] = {idx1, idx2, idx3};
+  static const QkComplex64 mat_z[4] = {{1, 0}, {0, 0}, {0, 0}, {-1, 0}};
+  uint32_t new_node_idx =
+  qk_dag_replace_block_with_unitary(dag, 3, replaced_ids, mat_z, 1, qubit, false);
+
+  // free the register and dag pointer when done
+  qk_quantum_register_free(qr);
+  qk_dag_free(dag);
+  ```
+
+  <span id="group__QkDag_1autotoc_md269" />
+
+  #### Safety
+
+  <span id="group__QkDag_1autotoc_md269" />
+
+  Behavior is undefined if any of:
+
+  *   `dag` is not an aligned, non-null pointer to a valid `QkDag`,
+  *   `qubits` is not an aligned pointer to `num_qubits` initialized values.
+  *   `matrix` is not an aligned pointer to `4**num_qubits` initialized values,
+  *   `block_ids` is not an aligned pointer to `num_block_ids` initialized values.
+
+  **Parameters**
+
+  *   **dag** – Pointer to the DAG.
+  *   **num\_block\_ids** – Number of entries in `block_ids`. This number must be nonzero.
+  *   **block\_ids** – Pointer to a non-empty array of nodes to replace.
+  *   **matrix** – Pointer to an initialized row-major unitary matrix of size `4**num_qubits`.
+  *   **num\_qubits** – The number of qubits the resulting unitary gate acts on.
+  *   **qubits** – Pointer to an array of distinct `uint32_t` qubit indices. Each entry specifies the index of the DAG qubit that corresponds to the respective argument position in the unitary gate.
+  *   **cycle\_check** – If `true`, the function checks whether replacing the provided `block_ids` with a single node would introduce a cycle in the DAG (which would invalidate the DAG). If a cycle would be created, the DAG is left unchanged and `UINT32_MAX` is returned. This checking comes with a run time penalty. If you can guarantee that the provided `block_ids` is a contiguous block and won’t introduce a cycle when contracted to a single node, this can be set to `false`.
+
+  **Returns**
+
+  The index of the newly added operation node, or `UINT32_MAX` if `cycle_check` is `true` and the replacement would introduce a cycle.
+</Function>
+
+### qk\_dag\_substitute\_node\_with\_unitary
+
+<Function id="qk_dag_substitute_node_with_unitary" signature="void qk_dag_substitute_node_with_unitary(QkDag *dag, uint32_t node, const QkComplex64 *matrix, uint32_t num_qubits)">
+  Substitute an operation in a node in a `QkDag` with a unitary gate corresponding to the specified unitary matrix.
+
+  The new operation should match the shape of the replaced operation. The qargs and cargs for the node will remain the same.
+
+  <span id="group__QkDag_1autotoc_md270" />
+
+  #### Example
+
+  ```c
+  // Create a DAG with a Z-gate
+  QkDag *dag = qk_dag_new();
+  QkQuantumRegister *qr = qk_quantum_register_new(2, "qr");
+  qk_dag_add_quantum_register(dag, qr);
+  uint32_t idx_z = qk_dag_apply_gate(dag, QkGate_Z, (uint32_t[]){1}, NULL, false);
+
+  static const QkComplex64 mat[4] = {{1, 0}, {0, 0}, {0, 0}, {-1, 0}};
+
+  // Replace the Z-gate by a unitary matrix
+  qk_dag_substitute_node_with_unitary(dag, idx_z, mat, 1);
+
+  // free the register and dag pointer when done
+  qk_quantum_register_free(qr);
+  qk_dag_free(dag);
+  ```
+
+  <span id="group__QkDag_1autotoc_md271" />
+
+  #### Safety
+
+  <span id="group__QkDag_1autotoc_md271" />
+
+  Behavior is undefined if any of:
+
+  *   `dag` is not an aligned, non-null pointer to a valid `QkDag`,
+  *   `matrix` is not an aligned pointer to `4**num_qubits` initialized values,
+
+  **Parameters**
+
+  *   **dag** – Pointer to the DAG.
+  *   **node** – The node whose operation is substituted. The number of qubits in the substituted operation should equal to `num_qubits` and the number of clbits should be `0`.
+  *   **matrix** – Pointer to an initialized row-major unitary matrix of size `4**num_qubits`.
+  *   **num\_qubits** – The number of qubits the unitary acts on.
+</Function>
+
+### qk\_dag\_to\_python
+
+<Function id="qk_dag_to_python" signature="PyObject *qk_dag_to_python(QkDag *dag)">
+  Pass ownership of a `QkDag` object to Python.
+
+  It is not safe to use the `QkDag` pointer after calling this function. In particular, you should not attempt to clear or free it. The caller must own the `QkDag`, not hold a borrowed reference (for example, a `QkDag *` retrieved from `qk_dag_borrow_from_python` is not owned).
+
+  <span id="group__QkDag_1autotoc_md272" />
+
+  #### Safety
+
+  <span id="group__QkDag_1autotoc_md272" />
+
+  The caller must be attached to a Python interpreter. Behavior is undefined if `dag` is not a valid non-null pointer to an initialized and owned `QkDag`.
+
+  **Parameters**
+
+  *   **dag** – The owned object.
+
+  **Returns**
+
+  An owned Python reference to the object.
+</Function>
+
+### qk\_dag\_borrow\_from\_python
+
+<Function id="qk_dag_borrow_from_python" signature="QkDag *qk_dag_borrow_from_python(PyObject *ob)">
+  Retrieve a `QkDag` pointer from a Python object.
+
+  This borrows a Python reference and extracts the `QkDag` pointer for it, if it is of the correct type. The returned pointer is borrowed from the `ob` pointer. If the `PyObject` is not the correct type, the return value is `NULL` and the exception state of the Python interpreter is set.
+
+  You must be attached to a Python interpreter to call this function.
+
+  You can also use `qk_dag_convert_from_python`, which is logically the exact same as this function, but can be directly used as a “converter” function for the `PyArg_Parse*` family of Python converter functions.
+
+  <span id="group__QkDag_1autotoc_md273" />
+
+  #### Safety
+
+  <span id="group__QkDag_1autotoc_md273" />
+
+  The caller must be attached to a Python interpreter. Behavior is undefined if `ob` is not a valid non-null pointer to a Python object.
+
+  **Parameters**
+
+  *   **ob** – A borrowed Python object.
+
+  **Returns**
+
+  A pointer to the native object, or `NULL` if the Python object is the wrong type.
+</Function>
+
+### qk\_dag\_convert\_from\_python
+
+<Function id="qk_dag_convert_from_python" signature="int qk_dag_convert_from_python(PyObject *object, void *address)">
+  Retrieve a DAG pointer from a Python object.
+
+  This borrows a Python reference and extracts the `QkDag` pointer for it into `address`, if it is of the correct type. The returned pointer is borrowed from the `object` pointer. If the `PyObject` is not the correct type, the return value is 1, the exception state of the Python interpreter is set, and `address` is unchanged.
+
+  You must be attached to a Python interpreter to call this function.
+
+  You can also use `qk_dag_borrow_from_python`, which is logically the exact same as this, but with a more natural signature for direct usage.
+
+  <span id="group__QkDag_1autotoc_md274" />
+
+  #### Safety
+
+  <span id="group__QkDag_1autotoc_md274" />
+
+  The caller must be attached to a Python interpreter. Behavior is undefined if `object` is not a valid non-null pointer to a Python object, or if `address` is not a pointer to writeable data of the correct type.
+
+  **Parameters**
+
+  *   **object** – A borrowed Python object.
+  *   **address** – The location to write the output to.
+
+  **Returns**
+
+  1 on success, 0 on failure.
+</Function>
+
+### qk\_dag\_apply\_custom\_operation
+
+<Function id="qk_dag_apply_custom_operation" signature="QkExitCode qk_dag_apply_custom_operation(QkDag *dag, QkCustomOp *operation, const uint32_t *qubits, const uint32_t *clbits, QkParam **params, uint32_t *node, bool front)">
+  Adds a `QkCustomOp` into the circuit, consuming the instance in the process.
+
+  The addition of this `QkCustomOp` depends on its validity and can be rejected. If the operation’s vtable points to a null pointer due to any errors during construction, or invalid input being received by `qk_custom_operation_vtable_new`, the operation will be rejected and an `ExitCode` will be returned due to an unexpected null pointer.
+
+  <span id="group__QkDag_1autotoc_md275" />
+
+  #### Safety
+
+  <span id="group__QkDag_1autotoc_md275" />
+
+  The `qubits`, `clbits`, and `params` types are expected to be a pointer to an array of `uint32_t` (for `qubits`, `clbits`) or `QkParam` (for `params`) where the length is matching the expectations for operation. If the array is insufficiently long the behavior of this function is undefined as this will read outside the bounds of the array. It can be a null pointer if there are no qubits or params for a given operation.
+
+  Behavior is undefined if `node` is not a valid non-null pointer to an address big enough to store a 32-bit unsigned integer.
+
+  Behavior is undefined if `dag` is not a valid, non-null pointer to a `QkDag`.
+
+  **Parameters**
+
+  *   **dag** – A pointer to the DAG to apply the operation to.
+  *   **operation** – The `QkCustomOp` object.
+  *   **qubits** – The pointer to the array of `uint32_t` qubit indices to add the operation on. This can be a null pointer if there are no qubits for `operation` (e.g. `QkGate_GlobalPhase`).
+  *   **clbits** – The pointer to the array of `uint32_t` qubit indices to add the operation on. This can be a null pointer if there are no qubits for `operation` (e.g. `QkGate_GlobalPhase`).
+  *   **params** – The pointer to the array of `QkParam` values to use for the operation parameters. This can be a null pointer if there are no parameters for `operation` (e.g. `QkGate_H`).
+  *   **node** – The pointer to an address big enough to write the unsigned 32-bit integer index to.
+  *   **front** – If `true`, the operation is applied as the first operation on the specified qubits, rather than as the last.
+
+  **Returns**
+
+  an ExitCode.
 </Function>
 

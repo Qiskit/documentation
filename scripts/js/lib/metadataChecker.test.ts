@@ -12,7 +12,7 @@
 
 import { expect, test } from "@playwright/test";
 
-import { checkMetadata } from "./metadataChecker";
+import { checkMetadata } from "./metadataChecker.js";
 
 test.describe("checkMarkdown", () => {
   test("should return no errors for valid metadata", () => {

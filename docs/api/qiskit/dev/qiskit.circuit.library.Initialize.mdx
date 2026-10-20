@@ -8,7 +8,7 @@ python_api_name: qiskit.circuit.library.Initialize
 
 # Initialize
 
-<Class id="qiskit.circuit.library.Initialize" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/data_preparation/initializer.py#L33-L108" signature="qiskit.circuit.library.Initialize(params, num_qubits=None, normalize=False)" modifiers="class">
+<Class id="qiskit.circuit.library.Initialize" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/data_preparation/initializer.py#L33-L114" signature="qiskit.circuit.library.Initialize(params, num_qubits=None, normalize=False)" modifiers="class">
   Bases: [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
 
   Complex amplitude initialization.
@@ -23,7 +23,7 @@ python_api_name: qiskit.circuit.library.Initialize
 
   **Parameters**
 
-  *   **params** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector") *| Sequence\[*[*complex*](https://docs.python.org/3/library/functions.html#complex)*] |* [*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*int*](https://docs.python.org/3/library/functions.html#int)) –
+  *   **params** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector") *| Sequence\[*[*complex*](https://docs.python.org/3/builtins/functions.html#complex)*] |* [*str*](https://docs.python.org/3/builtins/stdtypes.html#str)  *|*[*int*](https://docs.python.org/3/builtins/functions.html#int)) –
 
       The state to initialize to, can be either of the following.
 
@@ -31,9 +31,9 @@ python_api_name: qiskit.circuit.library.Initialize
       *   Labels of basis states of the Pauli eigenstates Z, X, Y. See [`Statevector.from_label()`](qiskit.quantum_info.Statevector#from_label "qiskit.quantum_info.Statevector.from_label"). Notice the order of the labels is reversed with respect to the qubit index to be applied to. Example label ‘01’ initializes the qubit zero to $|1\rangle$ and the qubit one to $|0\rangle$.
       *   An integer that is used as a bitmap indicating which qubits to initialize to $|1\rangle$. Example: setting params to 5 would initialize qubit 0 and qubit 2 to $|1\rangle$ and qubit 1 to $|0\rangle$.
 
-  *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – This parameter is only used if params is an int. Indicates the total number of qubits in the initialize call. Example: initialize covers 5 qubits and params is 3. This allows qubits 0 and 1 to be initialized to $|1\rangle$ and the remaining 3 qubits to be initialized to $|0\rangle$.
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/builtins/functions.html#int) *| None*) – This parameter is only used if params is an int. Indicates the total number of qubits in the initialize call. Example: initialize covers 5 qubits and params is 3. This allows qubits 0 and 1 to be initialized to $|1\rangle$ and the remaining 3 qubits to be initialized to $|0\rangle$.
 
-  *   **normalize** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Whether to normalize an input array to a unit vector.
+  *   **normalize** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) – Whether to normalize an input array to a unit vector.
 
   ## Attributes
 
@@ -112,13 +112,13 @@ python_api_name: qiskit.circuit.library.Initialize
 
   ### add\_decomposition
 
-  <Function id="qiskit.circuit.library.Initialize.add_decomposition" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L318-L323" signature="add_decomposition(decomposition)">
+  <Function id="qiskit.circuit.library.Initialize.add_decomposition" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L315-L320" signature="add_decomposition(decomposition)">
     Add a decomposition of the instruction to the SessionEquivalenceLibrary.
   </Function>
 
   ### broadcast\_arguments
 
-  <Function id="qiskit.circuit.library.Initialize.broadcast_arguments" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/data_preparation/initializer.py#L107-L108" signature="broadcast_arguments(qargs, cargs)">
+  <Function id="qiskit.circuit.library.Initialize.broadcast_arguments" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/data_preparation/initializer.py#L106-L107" signature="broadcast_arguments(qargs, cargs)">
     Validation of the arguments.
 
     **Parameters**
@@ -132,17 +132,17 @@ python_api_name: qiskit.circuit.library.Initialize
 
     **Raises**
 
-    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+    [**CircuitError**](/docs/api/qiskit/dev/circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If the input is not valid. For example, the number of arguments does not match the gate expectation.
   </Function>
 
   ### copy
 
-  <Function id="qiskit.circuit.library.Initialize.copy" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L428-L443" signature="copy(name=None)">
+  <Function id="qiskit.circuit.library.Initialize.copy" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L425-L440" signature="copy(name=None)">
     Copy of the instruction.
 
     **Parameters**
 
-    **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – name to be given to the copied circuit, if `None` then the name stays the same.
+    **name** ([*str*](https://docs.python.org/3/builtins/stdtypes.html#str)) – name to be given to the copied circuit, if `None` then the name stays the same.
 
     **Returns**
 
@@ -155,7 +155,7 @@ python_api_name: qiskit.circuit.library.Initialize
 
   ### gates\_to\_uncompute
 
-  <Function id="qiskit.circuit.library.Initialize.gates_to_uncompute" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/data_preparation/initializer.py#L87-L95" signature="gates_to_uncompute()">
+  <Function id="qiskit.circuit.library.Initialize.gates_to_uncompute" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/data_preparation/initializer.py#L87-L94" signature="gates_to_uncompute()">
     Call to create a circuit with gates that take the desired vector to zero.
 
     **Returns**
@@ -164,47 +164,33 @@ python_api_name: qiskit.circuit.library.Initialize
 
     **Return type**
 
-    [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+    [QuantumCircuit](/docs/api/qiskit/dev/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
   </Function>
 
   ### inverse
 
-  <Function id="qiskit.circuit.library.Initialize.inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L371-L426" signature="inverse(annotated=False)">
-    Invert this instruction.
-
-    If annotated is False, the inverse instruction is implemented as a fresh instruction with the recursively inverted definition.
-
-    If annotated is True, the inverse instruction is implemented as [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation"), and corresponds to the given instruction annotated with the “inverse modifier”.
-
-    Special instructions inheriting from Instruction can implement their own inverse (e.g. T and Tdg, Barrier, etc.) In particular, they can choose how to handle the argument `annotated` which may include ignoring it and always returning a concrete gate class if the inverse is defined as a standard gate.
+  <Function id="qiskit.circuit.library.Initialize.inverse" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/library/data_preparation/initializer.py#L109-L114" signature="inverse(annotated=False)">
+    Raises an error as Initialize cannot be inverted.
 
     **Parameters**
 
-    **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – if set to True the output inverse gate will be returned as [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation").
-
-    **Returns**
-
-    The inverse operation.
-
-    **Raises**
-
-    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if the instruction is not composite and an inverse has not been implemented for it.
+    **annotated** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool))
   </Function>
 
   ### is\_parameterized
 
-  <Function id="qiskit.circuit.library.Initialize.is_parameterized" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L283-L288" signature="is_parameterized()">
-    Return whether the `Instruction` contains [compile-time parameters](circuit#circuit-compile-time-parameters).
+  <Function id="qiskit.circuit.library.Initialize.is_parameterized" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L280-L285" signature="is_parameterized()">
+    Return whether the `Instruction` contains [compile-time parameters](/docs/api/qiskit/dev/circuit#circuit-compile-time-parameters).
   </Function>
 
   ### repeat
 
-  <Function id="qiskit.circuit.library.Initialize.repeat" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L491-L521" signature="repeat(n)">
+  <Function id="qiskit.circuit.library.Initialize.repeat" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L488-L518" signature="repeat(n)">
     Creates an instruction with `self` repeated $n$ times.
 
     **Parameters**
 
-    **n** ([*int*](https://docs.python.org/3/library/functions.html#int)) – Number of times to repeat the instruction
+    **n** ([*int*](https://docs.python.org/3/builtins/functions.html#int)) – Number of times to repeat the instruction
 
     **Returns**
 
@@ -216,12 +202,12 @@ python_api_name: qiskit.circuit.library.Initialize
 
     **Raises**
 
-    [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If n \< 1.
+    [**CircuitError**](/docs/api/qiskit/dev/circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If n \< 1.
   </Function>
 
   ### reverse\_ops
 
-  <Function id="qiskit.circuit.library.Initialize.reverse_ops" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L345-L369" signature="reverse_ops()">
+  <Function id="qiskit.circuit.library.Initialize.reverse_ops" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L342-L366" signature="reverse_ops()">
     For a composite instruction, reverse the order of sub-instructions.
 
     This is done by recursively reversing all sub-instructions. It does not invert any gate.
@@ -239,7 +225,7 @@ python_api_name: qiskit.circuit.library.Initialize
 
   ### soft\_compare
 
-  <Function id="qiskit.circuit.library.Initialize.soft_compare" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L214-L254" signature="soft_compare(other)">
+  <Function id="qiskit.circuit.library.Initialize.soft_compare" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L211-L251" signature="soft_compare(other)">
     Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
 
     **Parameters**
@@ -252,12 +238,12 @@ python_api_name: qiskit.circuit.library.Initialize
 
     **Return type**
 
-    [bool](https://docs.python.org/3/library/functions.html#bool)
+    [bool](https://docs.python.org/3/builtins/functions.html#bool)
   </Function>
 
   ### to\_mutable
 
-  <Function id="qiskit.circuit.library.Initialize.to_mutable" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L144-L152" signature="to_mutable()">
+  <Function id="qiskit.circuit.library.Initialize.to_mutable" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L141-L149" signature="to_mutable()">
     Return a mutable copy of this gate.
 
     This method will return a new mutable copy of this gate instance. If a singleton instance is being used this will be a new unique instance that can be mutated. If the instance is already mutable it will be a deepcopy of that instance.
@@ -265,7 +251,7 @@ python_api_name: qiskit.circuit.library.Initialize
 
   ### validate\_parameter
 
-  <Function id="qiskit.circuit.library.Initialize.validate_parameter" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L279-L281" signature="validate_parameter(parameter)">
+  <Function id="qiskit.circuit.library.Initialize.validate_parameter" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L276-L278" signature="validate_parameter(parameter)">
     Instruction parameter has no validation or normalization.
   </Function>
 </Class>

@@ -10,28 +10,23 @@ test-strategies.ci = {}
 test-strategies.extended = {}
 test-strategies.hardware = { patch = "qiskit-ibm-runtime-open" }
 notebooks = [
+  "learning/courses/tools-for-quantum-advantage/error-correction-ii.ipynb",
   "docs/guides/DAG-representation.ipynb",
-  "docs/guides/qiskit-runtime-primitives.ipynb",
   "docs/guides/bit-ordering.ipynb",
   "docs/guides/build-noise-models.ipynb",
   "docs/guides/circuit-library.ipynb",
   "docs/guides/classical-feedforward-and-control-flow.ipynb",
-  "docs/guides/execute-dynamic-circuits.ipynb",
   "docs/guides/common-parameters.ipynb",
-  "docs/guides/configure-error-mitigation.ipynb",
-  "docs/guides/configure-error-suppression.ipynb",
   "docs/guides/construct-circuits.ipynb",
   "docs/guides/create-transpiler-plugin.ipynb",
   "docs/guides/custom-backend.ipynb",
   "docs/guides/custom-transpiler-pass.ipynb",
   "docs/guides/defaults-and-configuration-options.ipynb",
   "docs/guides/dynamical-decoupling-pass-manager.ipynb",
-  "docs/guides/error-mitigation-and-suppression-techniques.ipynb",
   "docs/guides/execution-modes-rest-api.ipynb",
   "docs/guides/qpu-information.ipynb",
   "docs/guides/interoperate-qiskit-qasm2.ipynb",
   "docs/guides/interoperate-qiskit-qasm3.ipynb",
-  "docs/guides/local-testing-mode.ipynb",
   "docs/guides/max-execution-time.ipynb",
   "docs/guides/measure-qubits.ipynb",
   "docs/guides/operator-class.ipynb",
@@ -41,7 +36,6 @@ notebooks = [
   "docs/guides/repetition-rate-execution.ipynb",
   "docs/guides/represent-quantum-computers.ipynb",
   "docs/guides/save-circuits.ipynb",
-  "docs/guides/save-jobs.ipynb",
   "docs/guides/set-optimization.ipynb",
   "docs/guides/simulate-stabilizer-circuits.ipynb",
   "docs/guides/simulate-with-qiskit-aer.ipynb",
@@ -59,87 +53,107 @@ notebooks = [
 test-strategies.ci = { patch = "qiskit-fake-provider", num_qubits = 6 }
 test-strategies.extended = { patch = "qiskit-fake-provider", num_qubits = 6 }
 test-strategies.hardware = { patch = "qiskit-ibm-runtime-open" }
-notebooks = [
-  "docs/guides/specify-runtime-options.ipynb",
-  "docs/guides/visualize-results.ipynb",
-]
+notebooks = ["docs/guides/visualize-results.ipynb"]
 
 # Mock the following notebooks in our extended checks using IBM Quantum's
 # test-eagle device, which returns nonsense results. Use this to test notebooks
 # that submit large jobs to test notebooks that use functions, which accept
 # only a backend name (string) rather than a `Backend` object.
+# Use this ANY time the results (postprocessing) are not important.  For example,
+# for showing how to format & run a job. Don't use it if you're trying to explain
+# something about the results. Put a notebook here if it's timing out in CI.
 [groups.test-eagle]
 test-strategies.extended = { patch = "qiskit-ibm-runtime", backend = "test_eagle_us-east", qiskit_runtime_service_args = "" }
 test-strategies.hardware = { patch = "qiskit-ibm-runtime-open" }
 notebooks = [
-  "docs/guides/algorithmiq-tem.ipynb",
-  "docs/guides/debug-qiskit-runtime-jobs.ipynb",
   "docs/guides/fractional-gates.ipynb",
-  "docs/guides/functions.ipynb",
-  "docs/guides/get-started-with-primitives.ipynb",
-  "docs/guides/ibm-circuit-function.ipynb",
-  "docs/guides/primitives-examples.ipynb",
-  "docs/guides/qiskit-addons-sqd-get-started.ipynb",
-  "docs/guides/multiverse-computing-singularity.ipynb",
-  "docs/guides/qunova-chemistry.ipynb",
-  "docs/guides/ai-transpiler-passes.ipynb",
+  "docs/guides/executor-examples.ipynb",
+  "docs/guides/executor-input-output.ipynb",
+  "docs/guides/execute-dynamic-circuits.ipynb",
+  "docs/guides/estimator-rest-api.ipynb",
+  "docs/guides/get-started-with-executor.ipynb",
+  "docs/guides/executor-options.ipynb",
   "docs/guides/primitives.ipynb",
-  "docs/guides/run-jobs-batch.ipynb",
-  "docs/guides/run-jobs-session.ipynb",
   "docs/guides/primitive-input-output.ipynb",
   "docs/guides/add-job-tags.ipynb",
   "docs/guides/qiskit-runtime-circuit-timing.ipynb",
   "docs/guides/visualize-circuit-timing.ipynb",
+  "docs/guides/circuit-transpilation-settings.ipynb",
 ]
 
 # Only run the following notebooks in our fortnightly cron job on real hardware.
-[groups.cron-job-only]
-test-strategies.hardware = { patch = "qiskit-ibm-runtime-open" }
-notebooks = [
-  "docs/guides/primitives-rest-api.ipynb",
-  "docs/guides/hello-world.ipynb",
-  # The following notebook takes >300s to run and should be executed in the
-  # cron job. Even though it does not use real hardware
-
-  # The following notebooks don't seem to work with `test-eagle`, but I'm not
-  # sure why. I've added them here to run on the next cron job so we can
-  # confirm on actual hardware.
-
-  #   This timed out for me, even though I saw the job finish. Maybe it needs
-  #   longer? Running in cron job to remove time limit.
-  "docs/guides/noise-learning.ipynb",
-
-  #   This timed out with no jobs submitted. Adding to the cron to see if it
-  #   needs longer.
-  "docs/guides/qedma-qesem.ipynb",
-
-  #   Got: `QiskitServerlessException: "Q-CTRL: Failed to execute Qiskit
-  #   Function. Failed to compile the circuit.
-  #   compiler_exceptions=[TranspilerError('More virtual qubits
-  #   exist than physical.')]"`
-  "docs/guides/q-ctrl-optimization-solver.ipynb",
-
-  #   Got: `QiskitServerlessException: "Q-CTRL: Failed to execute Qiskit
-  #   Function. could not broadcast input array from shape (3996,5) into
-  #   shape (4000,5)"`
-  #   Timed out when I re-ran it.
-  "docs/guides/q-ctrl-performance-management.ipynb",
-]
+#[groups.cron-job-only]
+#test-strategies.hardware = { patch = "qiskit-ibm-runtime-open" }
+#notebooks = [
+#  "docs/guides/post-selection.ipynb",
+#]
 
 # Don't ever test the following notebooks
 [groups.exclude]
 notebooks = [
+  # Temporarily excluded until the testing environment recognizes the
+  # client-side primitives in qiskit-ibm-runtime 0.50.0 (executor_estimator /
+  # executor_sampler modules).
+  "docs/guides/estimator-noise-management.ipynb",
+  "docs/guides/sampler-noise-management.ipynb",
+  "docs/guides/local-testing-mode.ipynb",
+  "docs/guides/debug-qiskit-runtime-jobs.ipynb",
+  "docs/guides/estimator-examples.ipynb",
+  "docs/guides/estimator-input-output.ipynb",
+  "docs/guides/estimator-options.ipynb",
+  "docs/guides/get-started-with-estimator.ipynb",
+  "docs/guides/get-started-with-sampler.ipynb",
+  "docs/guides/run-jobs-batch.ipynb",
+  "docs/guides/run-jobs-session.ipynb",
+  "docs/guides/sampler-examples.ipynb",
+  "docs/guides/sampler-input-output.ipynb",
+  "docs/guides/sampler-options.ipynb",
+  "docs/guides/hello-world.ipynb",
+  # noise-learning was previously in cron-job-only (timed out under test-eagle);
+  # restore it there once runtime 0.50.0 is recognized.
+  "docs/guides/noise-learning.ipynb",
+
+  # Addon notebooks require the addon packages and are not run in standard CI
+  "docs/addons/**/*.ipynb",
+
+  # qiskit-ibm-transpiler conflicts with qiskit-serverless~=0.35.x so cannot be installed
+  "docs/guides/ai-transpiler-passes.ipynb",
+
+  # These Qiskit Functions are not accessible in the test environment
+  "docs/guides/parity-twine-optimizer.ipynb",
+  "docs/guides/aqarios-constrained-quantum-optimizer.ipynb",
+  "docs/guides/algorithmiq-tem.ipynb",
+  "docs/guides/functions-get-started.ipynb",
+  "docs/guides/multiverse-computing-singularity.ipynb",
+  "docs/guides/qunova-chemistry.ipynb",
+  "docs/guides/qedma-qesem.ipynb",
+  "docs/guides/q-ctrl-optimization-solver.ipynb",
+  "docs/guides/q-ctrl-performance-management.ipynb",
+
+  # Test fixture — not real content
+  "scripts/js/lib/api/testdata/**/*.ipynb",
+
   # This notebook contains undefined variables so can't run at all.
   "docs/guides/function-template-hamiltonian-simulation.ipynb",
   "docs/guides/function-template-chemistry-workflow.ipynb",
 
+  # Deploys a Qiskit Function to Serverless and runs it, so it needs saved
+  # credentials and a deployed function. Not runnable in CI.
+  "docs/guides/function-template-aqc-trotter.ipynb",
+
   # Only works in runtime 0.41.1
   "docs/guides/monitor-job.ipynb",
+
+  # The code was split out into a new notebook so doesn't need to be tested
+  "docs/guides/functions.ipynb",
 
   # These notebooks are failing with auth errors and need investigating
   "docs/guides/serverless-first-program.ipynb",
   "docs/guides/serverless-run-first-workload.ipynb",
   "docs/guides/serverless-manage-resources.ipynb",
+
+  # This notebook is failing.  It requires runtime .46 but there's a dependency conflict when we try to update it.
+  "docs/guides/save-jobs.ipynb",
 
   # This notebook might work but we didn't have time to test it before merging
   "docs/guides/kipu-optimization.ipynb",
@@ -152,13 +166,19 @@ notebooks = [
   "docs/guides/estimate-job-run-time.ipynb",
   "docs/guides/serverless-port-code.ipynb",
 
-  # This is temporarily broken while the transpiler service migrates to cloud
-  "docs/guides/qiskit-transpiler-service.ipynb",
-
   # We never run tutorials notebooks
+  "docs/tutorials/parity-twine-optimizer-ms.ipynb",
+  "docs/tutorials/parity-twine-optimizer-sk.ipynb",
+  "docs/tutorials/find-the-maximum-independent-set-with-aqarios-constrained-quantum-optimizer.ipynb",
+  # QRMI submits directly to hardware and is not covered by Runtime mocks.
+  "docs/tutorials/run-quantum-workloads-with-qrmi.ipynb",
+  "docs/tutorials/quantum-elements-orbit-qft-with-dynamic-circuits.ipynb",
+  "docs/guides/quantum-elements-orbit.ipynb",
+  "docs/tutorials/loop-string-hadron-dynamics.ipynb",
+  "docs/tutorials/implicit-solvent-calculations.ipynb",
   "docs/tutorials/simulate-kicked-ising-tem.ipynb",
   "docs/tutorials/dc-hex-ising.ipynb",
-  "docs/tutorials/ghz-spacetime-codes.ipynb",
+  "docs/tutorials/spacetime-codes.ipynb",
   "docs/tutorials/sml-classification.ipynb",
   "docs/tutorials/qedma-2d-ising-with-qesem.ipynb",
   "docs/tutorials/readout-error-mitigation-sampler.ipynb",
@@ -168,8 +188,8 @@ notebooks = [
   "docs/tutorials/shors-algorithm.ipynb",
   "docs/tutorials/multi-product-formula.ipynb",
   "docs/tutorials/advanced-techniques-for-qaoa.ipynb",
+  "docs/tutorials/warm-start-qaoa.ipynb",
   "docs/tutorials/ai-transpiler-introduction.ipynb",
-  "docs/guides/circuit-transpilation-settings.ipynb",
   "docs/tutorials/grovers-algorithm.ipynb",
   "docs/tutorials/spin-chain-vqe.ipynb",
   "docs/tutorials/quantum-approximate-optimization-algorithm.ipynb",
@@ -178,7 +198,9 @@ notebooks = [
   "docs/tutorials/transpilation-optimizations-with-sabre.ipynb",
   "docs/tutorials/qunova-hivqe.ipynb",
   "docs/tutorials/real-time-benchmarking-for-qubit-selection.ipynb",
+  "docs/tutorials/refresh-backend-properties-with-real-time-benchmarking.ipynb",
   "docs/tutorials/sample-based-krylov-quantum-diagonalization.ipynb",
+  "docs/tutorials/assets/sqdrift/sqdrift.ipynb",
   "docs/tutorials/solve-higher-order-binary-optimization-problems-with-q-ctrls-optimization-solver.ipynb",
   "docs/tutorials/chsh-inequality.ipynb",
   "docs/tutorials/approximate-quantum-compilation-for-time-evolution.ipynb",
@@ -192,7 +214,10 @@ notebooks = [
   "docs/tutorials/wire-cutting.ipynb",
   "docs/tutorials/krylov-quantum-diagonalization.ipynb",
   "docs/tutorials/probabilistic-error-amplification.ipynb",
+  "docs/tutorials/pec-with-shaded-lightcones.ipynb",
+  "docs/tutorials/propagated-noise-absorption.ipynb",
   "docs/tutorials/sample-based-quantum-diagonalization.ipynb",
+  "docs/tutorials/assets/nuclear_sqd_pooled/nuclear-sqd-pooled.ipynb",
   "docs/tutorials/pauli-correlation-encoding-for-qaoa.ipynb",
   "docs/tutorials/nishimori-phase-transition.ipynb",
   "docs/tutorials/global-data-quantum-optimizer.ipynb",
@@ -200,6 +225,12 @@ notebooks = [
   "docs/tutorials/edc-cut-bell-pair-benchmarking.ipynb",
   "docs/tutorials/compilation-methods-for-hamiltonian-simulation-circuits.ipynb",
   "docs/tutorials/solve-market-split-problem-with-iskay-quantum-optimizer.ipynb",
+  "docs/tutorials/time-evolution.ipynb",
+  "docs/tutorials/simulate-neutron-scattering.ipynb",
+  "docs/tutorials/simulate-neutron-scattering-with-a-serverless-workflow.ipynb",
+  "docs/tutorials/probabilistic-error-cancellation-with-logical-noise-models.ipynb",
+  "docs/tutorials/shadow-tomography.ipynb",
+  "docs/tutorials/quantum-approximate-multi-objective-optimization.ipynb",
 
   # Don't test any learning notebooks
   "learning/courses/quantum-computing-in-practice/introduction.ipynb",
@@ -307,11 +338,6 @@ notebooks = [
   "learning/courses/foundations-of-quantum-error-correction/fault-tolerant-quantum-computing/approach-to-fault-tolerance.ipynb",
   "learning/courses/foundations-of-quantum-error-correction/fault-tolerant-quantum-computing/controlling-error-propagation.ipynb",
   "learning/courses/foundations-of-quantum-error-correction/fault-tolerant-quantum-computing/threshold-theorem.ipynb",
-  "learning/courses/quantum-safe-cryptography/cryptographic-hash-functions.ipynb",
-  "learning/courses/quantum-safe-cryptography/quantum-safe-cryptography.ipynb",
-  "learning/courses/quantum-safe-cryptography/symmetric-key-cryptography.ipynb",
-  "learning/courses/quantum-safe-cryptography/WhatNext.ipynb",
-  "learning/courses/quantum-safe-cryptography/asymmetric-key-cryptography.ipynb",
   "learning/courses/quantum-chem-with-vqe/introduction.ipynb",
   "learning/courses/quantum-chem-with-vqe/hamiltonian-construction.ipynb",
   "learning/courses/quantum-chem-with-vqe/ansatz.ipynb",
@@ -343,4 +369,13 @@ notebooks = [
   "learning/courses/integrating-quantum-and-high-performance-computing/next-steps.ipynb",
   "learning/courses/integrating-quantum-and-high-performance-computing/programming-models.ipynb",
   "learning/courses/integrating-quantum-and-high-performance-computing/sqd-skqd.ipynb",
+  "learning/courses/use-a-qc-today/build-and-run-your-first-quantum-program.ipynb",
+  "learning/courses/use-a-qc-today/quantum-mechanics-basics.ipynb",
+  "learning/courses/use-a-qc-today/your-first-quantum-experiment.ipynb",
+  "learning/courses/use-a-qc-today/quantum-computing-context.ipynb",
+  "learning/courses/use-a-qc-today/continue-your-learning-journey.ipynb",
+  "learning/courses/tools-for-quantum-advantage/noise-and-errors.ipynb",
+  "learning/courses/tools-for-quantum-advantage/error-suppression.ipynb",
+  "learning/courses/tools-for-quantum-advantage/error-mitigation.ipynb",
+  "learning/courses/tools-for-quantum-advantage/error-correction-i.ipynb",
 ]

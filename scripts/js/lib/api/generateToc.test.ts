@@ -96,6 +96,7 @@ test("generate a basic toc", () => {
       {
         title: "my_quantum_project",
         url: "/docs/api/my-quantum-project",
+        untranslatable: true,
       },
       {
         title: "Release notes",
@@ -105,18 +106,22 @@ test("generate a basic toc", () => {
       {
         title: "my_quantum_project.options",
         url: "/docs/api/my-quantum-project/options",
+        untranslatable: true,
       },
       {
         title: "my_quantum_project.options.submodule",
         url: "/docs/api/my-quantum-project/my_quantum_project.options.submodule",
+        untranslatable: true,
       },
       {
         title: "my_quantum_project.single",
         url: "/docs/api/my-quantum-project/single",
+        untranslatable: true,
       },
     ],
     collapsed: true,
     title: "My Quantum Project",
+    untranslatable: true,
   });
 });
 
@@ -134,6 +139,7 @@ test("TOC with grouped modules", () => {
       moduleId: "my_quantum_project.another",
       title: "dedicated module",
       kind: "module",
+      untranslatable: true,
     },
     // Ensure we can handle unused entries.
     { moduleId: "unused_module", title: "unused", kind: "module" },
@@ -186,6 +192,7 @@ test("TOC with grouped modules", () => {
       {
         title: "API index (custom)",
         url: "/docs/api/my-quantum-project",
+        untranslatable: undefined,
       },
       {
         title: "Release notes",
@@ -194,27 +201,33 @@ test("TOC with grouped modules", () => {
       },
       {
         title: "Group 2",
+        untranslatable: undefined,
         children: [
           {
             title: "my_quantum_project.module.submodule",
             url: "/docs/api/my-quantum-project/my_quantum_project.module.submodule",
+            untranslatable: true,
           },
         ],
       },
       {
         title: "Group 1",
+        untranslatable: undefined,
         children: [
           {
             title: "my_quantum_project.module",
+            untranslatable: true,
             url: "/docs/api/my-quantum-project/my_quantum_project.module",
           },
         ],
       },
       {
         title: "dedicated module",
+        untranslatable: true,
         url: "/docs/api/my-quantum-project/my_quantum_project.another",
       },
     ],
+    untranslatable: true,
   });
 });
 
@@ -242,6 +255,7 @@ test("TOC with separate release note files", () => {
     children: [
       {
         title: "my_quantum_project",
+        untranslatable: true,
         url: "/docs/api/my-quantum-project",
       },
       {
@@ -288,6 +302,7 @@ test("TOC with separate release note files", () => {
     ],
     collapsed: true,
     title: "My Quantum Project",
+    untranslatable: true,
   });
 });
 
@@ -342,5 +357,43 @@ test("generate a toc without modules and releaes notes", () => {
     ],
     collapsed: true,
     title: "My Quantum Project",
+    untranslatable: true,
   });
+});
+
+const ADDON_DOCS_RESULTS = [
+  {
+    meta: { apiType: "class" as const, apiName: "Sampler" },
+    url: "/api/my-quantum-project/my_quantum_project.Sampler",
+    ...DEFAULT_ARGS,
+  },
+];
+
+test("TOC without addon docs has no parent link", () => {
+  const toc = generateToc(
+    Pkg.mock({ hasAddonDocs: false }),
+    ADDON_DOCS_RESULTS,
+  );
+  expect(toc).not.toHaveProperty("parentUrl");
+  expect(toc).not.toHaveProperty("parentLabel");
+});
+
+test("TOC with addon docs links to the addon page", () => {
+  const toc = generateToc(Pkg.mock({ hasAddonDocs: true }), ADDON_DOCS_RESULTS);
+  expect(toc.parentUrl).toEqual("/docs/addons/my-quantum-project");
+  expect(toc.parentLabel).toEqual("My Quantum Project");
+});
+
+test("C API TOC with addon docs links to the Python sibling's addon page", () => {
+  const toc = generateToc(
+    Pkg.mock({
+      name: "my-quantum-project-c",
+      language: "C",
+      artifactPackageName: "my-quantum-project",
+      hasAddonDocs: true,
+    }),
+    ADDON_DOCS_RESULTS,
+  );
+  expect(toc.parentUrl).toEqual("/docs/addons/my-quantum-project");
+  expect(toc.parentLabel).toEqual("My Quantum Project");
 });

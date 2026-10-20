@@ -35,13 +35,13 @@ $$
 
   **Parameters**
 
-  *   **data** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*circuit.instruction.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction") *| BaseOperator | np.ndarray*) – data to initialize superoperator.
-  *   **input\_dims** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple) *| None*) – the input subsystem dimensions.
-  *   **output\_dims** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple) *| None*) – the output subsystem dimensions.
+  *   **data** ([*QuantumCircuit*](/docs/api/qiskit/dev/qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*circuit.instruction.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction") *| BaseOperator | np.ndarray*) – data to initialize superoperator.
+  *   **input\_dims** ([*tuple*](https://docs.python.org/3/builtins/stdtypes.html#tuple) *| None*) – the input subsystem dimensions.
+  *   **output\_dims** ([*tuple*](https://docs.python.org/3/builtins/stdtypes.html#tuple) *| None*) – the output subsystem dimensions.
 
   **Raises**
 
-  [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if input data cannot be initialized as a list of Kraus matrices.
+  [**QiskitError**](/docs/api/qiskit/dev/exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if input data cannot be initialized as a list of Kraus matrices.
 
   **Additional Information:**
 
@@ -51,7 +51,9 @@ $$
 
   ### atol
 
-  <Attribute id="qiskit.quantum_info.Kraus.atol" attributeValue="1e-08" />
+  <Attribute id="qiskit.quantum_info.Kraus.atol">
+    Default value: `1e-08`
+  </Attribute>
 
   ### data
 
@@ -79,7 +81,9 @@ $$
 
   ### rtol
 
-  <Attribute id="qiskit.quantum_info.Kraus.rtol" attributeValue="1e-05" />
+  <Attribute id="qiskit.quantum_info.Kraus.rtol">
+    Default value: `1e-05`
+  </Attribute>
 
   ### settings
 
@@ -107,8 +111,8 @@ $$
     **Parameters**
 
     *   **other** ([*Kraus*](#qiskit.quantum_info.Kraus "qiskit.quantum_info.Kraus")) – a Kraus object.
-    *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list) *or None*) – a list of subsystem positions to apply other on. If None apply on all subsystems (default: None).
-    *   **front** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – If True compose using right operator multiplication, instead of left multiplication \[default: False].
+    *   **qargs** ([*list*](https://docs.python.org/3/builtins/stdtypes.html#list) *or None*) – a list of subsystem positions to apply other on. If None apply on all subsystems (default: None).
+    *   **front** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) – If True compose using right operator multiplication, instead of left multiplication \[default: False].
 
     **Returns**
 
@@ -120,7 +124,7 @@ $$
 
     **Raises**
 
-    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if other cannot be converted to an operator, or has incompatible dimensions for specified subsystems.
+    [**QiskitError**](/docs/api/qiskit/dev/exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if other cannot be converted to an operator, or has incompatible dimensions for specified subsystems.
 
     <Admonition title="Note" type="note">
       Composition (`&`) by default is defined as left matrix multiplication for matrix operators, while `@` (equivalent to [`dot()`](#qiskit.quantum_info.Kraus.dot "qiskit.quantum_info.Kraus.dot")) is defined as right matrix multiplication. That is that `A & B == A.compose(B)` is equivalent to `B @ A == B.dot(A)` when `A` and `B` are of the same type.
@@ -153,7 +157,7 @@ $$
     **Parameters**
 
     *   **other** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – an operator object.
-    *   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list) *or None*) – a list of subsystem positions to apply other on. If None apply on all subsystems (default: None).
+    *   **qargs** ([*list*](https://docs.python.org/3/builtins/stdtypes.html#list) *or None*) – a list of subsystem positions to apply other on. If None apply on all subsystems (default: None).
 
     **Returns**
 
@@ -201,12 +205,12 @@ $$
 
     **Parameters**
 
-    *   **atol** ([*float*](https://docs.python.org/3/library/functions.html#float) *| None*)
-    *   **rtol** ([*float*](https://docs.python.org/3/library/functions.html#float) *| None*)
+    *   **atol** ([*float*](https://docs.python.org/3/builtins/functions.html#float) *| None*)
+    *   **rtol** ([*float*](https://docs.python.org/3/builtins/functions.html#float) *| None*)
 
     **Return type**
 
-    [bool](https://docs.python.org/3/library/functions.html#bool)
+    [bool](https://docs.python.org/3/builtins/functions.html#bool)
   </Function>
 
   ### is\_cptp
@@ -222,12 +226,12 @@ $$
 
     **Parameters**
 
-    *   **atol** ([*float*](https://docs.python.org/3/library/functions.html#float) *| None*)
-    *   **rtol** ([*float*](https://docs.python.org/3/library/functions.html#float) *| None*)
+    *   **atol** ([*float*](https://docs.python.org/3/builtins/functions.html#float) *| None*)
+    *   **rtol** ([*float*](https://docs.python.org/3/builtins/functions.html#float) *| None*)
 
     **Return type**
 
-    [bool](https://docs.python.org/3/library/functions.html#bool)
+    [bool](https://docs.python.org/3/builtins/functions.html#bool)
   </Function>
 
   ### is\_unitary
@@ -237,12 +241,12 @@ $$
 
     **Parameters**
 
-    *   **atol** ([*float*](https://docs.python.org/3/library/functions.html#float) *| None*)
-    *   **rtol** ([*float*](https://docs.python.org/3/library/functions.html#float) *| None*)
+    *   **atol** ([*float*](https://docs.python.org/3/builtins/functions.html#float) *| None*)
+    *   **rtol** ([*float*](https://docs.python.org/3/builtins/functions.html#float) *| None*)
 
     **Return type**
 
-    [bool](https://docs.python.org/3/library/functions.html#bool)
+    [bool](https://docs.python.org/3/builtins/functions.html#bool)
   </Function>
 
   ### output\_dims
@@ -258,7 +262,7 @@ $$
 
     **Parameters**
 
-    **n** ([*float*](https://docs.python.org/3/library/functions.html#float)) – the power exponent.
+    **n** ([*float*](https://docs.python.org/3/builtins/functions.html#float)) – the power exponent.
 
     **Returns**
 
@@ -270,7 +274,7 @@ $$
 
     **Raises**
 
-    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the input and output dimensions of the SuperOp are not equal.
+    [**QiskitError**](/docs/api/qiskit/dev/exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the input and output dimensions of the SuperOp are not equal.
 
     <Admonition title="Note" type="note">
       For non-positive or non-integer exponents the power is defined as the matrix power of the [`SuperOp`](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp") representation ie. for a channel $\mathcal{{E}}$, the SuperOp of the powered channel $\mathcal{{E}}^\n$ is $S_{{\mathcal{{E}}^n}} = S_{{\mathcal{{E}}}}^n$.
@@ -284,9 +288,9 @@ $$
 
     **Parameters**
 
-    *   **input\_dims** (*None or* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)) – new subsystem input dimensions. If None the original input dims will be preserved \[Default: None].
-    *   **output\_dims** (*None or* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)) – new subsystem output dimensions. If None the original output dims will be preserved \[Default: None].
-    *   **num\_qubits** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int)) – reshape to an N-qubit operator \[Default: None].
+    *   **input\_dims** (*None or* [*tuple*](https://docs.python.org/3/builtins/stdtypes.html#tuple)) – new subsystem input dimensions. If None the original input dims will be preserved \[Default: None].
+    *   **output\_dims** (*None or* [*tuple*](https://docs.python.org/3/builtins/stdtypes.html#tuple)) – new subsystem output dimensions. If None the original output dims will be preserved \[Default: None].
+    *   **num\_qubits** (*None or* [*int*](https://docs.python.org/3/builtins/functions.html#int)) – reshape to an N-qubit operator \[Default: None].
 
     **Returns**
 
@@ -298,7 +302,7 @@ $$
 
     **Raises**
 
-    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if combined size of all subsystem input dimension or subsystem output dimensions is not constant.
+    [**QiskitError**](/docs/api/qiskit/dev/exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if combined size of all subsystem input dimension or subsystem output dimensions is not constant.
   </Function>
 
   ### tensor
@@ -342,7 +346,7 @@ $$
 
     **Raises**
 
-    [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if input data is not an N-qubit CPTP quantum channel.
+    [**QiskitError**](/docs/api/qiskit/dev/exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if input data is not an N-qubit CPTP quantum channel.
   </Function>
 
   ### to\_operator

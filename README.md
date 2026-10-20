@@ -8,6 +8,7 @@ Refer to:
 
 - Our [MDX guide](./mdx-guide.md) for how to write documentation and use our variant of markdown.
 - Our [style guide](./style-guide.md) for technical writing guidance.
+- The [adding courses guide](./adding-courses.md) for a step-by-step guide to add a new course to Learning.
 
 ### Licensing
 
@@ -29,7 +30,7 @@ Read on for more information about how to support this project:
 This is the quickest, easiest, and most helpful way to contribute to this project and improve the quality of Qiskit&reg; and IBM Quantum&reg; documentation. There are a few different ways to report issues, depending on where it was found:
 
 - For problems you've found in the [Qiskit SDK API Reference](https://docs.quantum.ibm.com/api/qiskit) section, open an issue in the Qiskit repo [here](https://github.com/Qiskit/qiskit/issues/new/choose).
-- For problems you've found in the [Qiskit Runtime client](https://docs.quantum.ibm.com/api/qiskit-ibm-runtime) section, open an issue in the Qiskit IBM Runtime repo [here](https://github.com/Qiskit/qiskit-ibm-runtime/issues/new/choose).
+- For problems you've found in the [IBM Quantum Compute client](https://docs.quantum.ibm.com/api/qiskit-ibm-runtime) section, open an issue in the repo [here](https://github.com/Qiskit/qiskit-ibm-runtime/issues/new/choose).
 - For problems you've found in any other section of [docs](https://docs.quantum.ibm.com), open a content bug issue [here](https://github.com/Qiskit/documentation/issues/new/choose).
 
 #### 2. Suggest new content
@@ -51,21 +52,7 @@ You can help the team prioritize already-open issues by doing the following:
 
 #### 4. Fix an open issue
 
-You can look through the open issues we have in this repo and address them with a PR. We recommend focusing on issues with the "good first issue" label.
-
-Before getting started on an issue, remember to do the following:
-
-1. Read the [Code of Conduct](https://quantum.cloud.ibm.com/docs/guides/code-of-conduct)
-2. Check for open, unassigned issues with the "good first issue" label
-3. Select an issue that is not already assigned to someone and leave a comment to request to be assigned
-
-Once you have an issue to work on, see the "How to work with this repo" section below to get going, then open a PR.
-
-Before opening a PR, remember to do the following:
-
-1. Check that you have addressed all the requirements from the original issue
-2. Run the quality control checks with `npm run check`
-3. Use the GitHub "fixes" notation to [link your PR to the issue](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue) you are addressing
+See our [Contribution policy](/CONTRIBUTING.md) for information on contributing fixes.
 
 ## Set up this repository
 
@@ -139,6 +126,13 @@ API docs authors can preview their changes to one of the APIs by using the `-a` 
 1. Run `npm run gen-api -- -p <pkg-name> -v <version> -a <path/to/docs/_build/html>`.
 2. Execute `./start` and open up `http://localhost:3000`, as explained in the prior section.
 
+### Addon docs authors: How to preview your changes
+
+Addon docs authors can preview guide and how-to changes by pointing the addon pipeline at a local Sphinx build:
+
+1. Run `npm run gen-addon -- -p <pkg-name> --sphinx-artifact-folder <path/to/docs/_build/html>`.
+2. Execute `./start` and navigate to `http://localhost:3000/docs/addons/<pkg-name>`.
+
 ## Run quality checks
 
 We use multiple tools to ensure that documentation meets high standards. These tools will run automatically in your PR through CI, but it is much faster to run the checks locally.
@@ -180,31 +174,38 @@ When adding a new notebook, you'll need to tell the testing tools how to handle 
 To do this, add the file path to `scripts/config/notebook-testing.toml`. There are
 four categories:
 
-- `notebooks_normal_test`: Notebooks to be run normally in CI. These notebooks
+- `[groups.normal]`: Notebooks to be run normally in CI. These notebooks
   can't submit jobs as the queue times are too long and it will waste
   resources. You _can_ interact with IBM Quantum to retrieve jobs and backend
   information.
-- `notebooks_that_submit_jobs`: Notebooks that submit jobs, but that are small
+- `[groups.local-sim]`: Notebooks that submit jobs, but that are small
   enough to run on a 5-qubit simulator. We will test these notebooks in CI by
   patching `least_busy` to return a 5-qubit fake backend.
-- `notebooks_no_mock`: For notebooks that can't be tested using the 5-qubit
+- `[groups.test-eagle]`: These notebooks can't run with a local simulator, but
+  _can_ be mocked with the `test-eagle` device, which returns nonsense results.
+  We can trigger a manual job to test these with `test-eagle`.
+- `[groups.cron-job-only]`: For notebooks that can't be tested using the 5-qubit
   simulator patch. We skip testing these in CI and instead run them twice per
   month. Any notebooks with cells that take more than five minutes to run are
   also deemed too big for CI. Try to avoid adding notebooks to this category if
   possible.
-- `notebooks_exclude`: Notebooks to be ignored.
-
-If your notebook uses the latex circuit drawer (`qc.draw("latex")`), you must
-also add it to the "Check for notebooks that require LaTeX" step in
-`.github/workflows/notebook-test.yml`.
+- `[groups.exclude]`: We never test these notebooks.
 
 If you don't do this step, you will get the error "FAILED scripts/nb-tester/test/test_notebook_classification.py::test_all_notebooks_are_classified".
 
+If your notebook requires extra dependencies (such as latex or graphviz), you
+must also add it to the `EXTRA_DEPS_NOTEBOOKS` list in
+`.github/workflows/main.yml`. We don't install these for every job because they
+take a while to install and only a handful of notebooks use them. You will know
+when you need them because CI will fail.
+
 ### Add package version information
 
-Add a new markdown cell under your title with a `version-info` tag.
-When you execute the notebook locally with either When you execute the notebook locally with either `tox -- docs/guides/circuit-transpilation-settings.ipynb --test-strategy=hardware --write` or `tox -- docs/guides/circuit-transpilation-settings.ipynb --test-strategy=hardware --write --patch '{patch="qiskit-ibm-runtime"}'`, the script will populate
-this cell with the package versions so users can reproduce the results.
+Add a new markdown cell under your title with a `version-info` tag. When you
+execute the notebook (see the next section), the script will populate this cell
+with the package versions so users can reproduce the results. Do not add
+anything else to this cell as the contents of the cell will be completely
+overwritten when it's next executed.
 
 It will also update during the cron jobs.
 
@@ -212,21 +213,21 @@ It will also update during the cron jobs.
 
 Before submitting a new notebook or code changes to a notebook, you must run
 the notebook using `tox -- --write <path-to-notebook>` and commit the results.
-If the notebook submits jobs, also use the argument `--submit-jobs`. This means
-we can be sure all notebooks work and that users will see the same results when
-they run using the environment we recommend.
+If the notebook submits jobs, also use the argument `--test-strategy=hardware`.
+This means we can be sure all notebooks work and that users will see the same
+results when they run using the environment we recommend.
 
-To execute notebooks in a fixed Python environment, first install `tox` using
-[pipx](https://pipx.pypa.io/stable/):
+We use `tox` to execute notebooks in a reproducible Python environment. First,
+install `tox` using [pipx](https://pipx.pypa.io/stable/):
 
 ```sh
 pipx install tox
 ```
 
-You also need to install a few system dependencies: TeX, Poppler, and graphviz.
-On macOS, you can run `brew install mactex-no-gui poppler graphviz`. On Ubuntu,
-you can run `apt-get install texlive-pictures texlive-latex-extra poppler-utils
-graphviz`.
+You may also need to install a few system dependencies: TeX, Poppler, and
+graphviz. On macOS, you can run `brew install mactex-no-gui poppler graphviz`.
+On Ubuntu, you can run `apt-get install texlive-pictures texlive-latex-extra
+poppler-utils graphviz`.
 
 - To execute all notebooks, run tox.
   ```sh
@@ -315,48 +316,180 @@ Additionally, If you are regenerating a dev version, then you can add `--dev` as
 
 In this case, no commit will be automatically created.
 
+## Generate or update addon docs
+
+Addon docs for packages like are generated by a separate pipeline from the API pipeline. Content is published to `docs/addons/{pkg}/` rather than `docs/api/{pkg}/`.
+
+### Generate addon docs for a new release
+
+1. Run:
+
+   ```sh
+   npm run gen-addon -- -p <pkg-name>
+   ```
+
+   To regenerate all addon packages at once:
+
+   ```sh
+   npm run gen-addon -- --all
+   ```
+
+   Or if you don't need to download but need to re-run the pipeline you can pass "--skip-download" to speed things up
+
+   ```sh
+   npm run gen-addon -- --all --skip-download
+   ```
+
+2. Open a pull request with the generated changes.
+
+### Add a new addon package
+
+1. Download the Sphinx HTML artifact from the package's GitHub Actions workflow (see the [CI artifact links](#initial-steps) in the API docs section).
+2. Unzip the artifact and make sure there is **no subfolder before the content**. If there's an extra directory, you'll have to unzip, select all of the files that are in the extra directory, and zip them. Rename the zip to its minor version, ex. `0.5.zip`, and upload the renamed zip file to https://ibm.ent.box.com/folder/246867452622.
+   - Unzipping should produce a flat structure of the content: 0.5.zip -> index.html. NOT: 0.5.zip -> sphinx-output/index.html.
+3. Add the package's Box artifact URL to `scripts/config/api-html-artifacts.json` (see how to get the shareable link [here](#Final-steps-for-the-rc1-release)). Copy an existing section, like qiskit-addon-paulice, then update it with the correct information. Save a commit with the message "Set up Box link".
+4. Add the package name to `Pkg.ADDON_NAMES` in `scripts/js/lib/api/Pkg.ts` and add a `new Pkg(...)` with the correct `title`, `githubSlug`, and `language` in that file as well. Save a commit with the message "Add package name". Note: The package name becomes the URL. Contact the Addon's author for the correct package name.
+5. Run the pipelines for the new addon (`gen-api` (as described below), then `gen-addon` (See above section)) Note that these pipeline commands require `major.minor.update` for the file name. For example, `npm run gen-addon -- -p qiskit-fermions -v 0.1.0`. This is different from the zip file's name. Check in the changes and list the commands you ran in the PR description.
+6. After you have also run the ncessary scripts to [generate the API docs](#generate-new-api-docs) for the addon, verify the content by running `npm run check:internal-links -- --current-apis`, `npm run check:spelling`, `npm run check:markdown -- --apis`, and `./check`. Fix any issues directly in the generated content. Note any problems with link generation etc. and let the frontend team know, in case they need to fix the pipeline.
+7. Verify the rendering by running `./start --apis` (Docker must be running through Rancher or similar.) Navigate to docs/addons/{pkg}/ in the preview to see the new content.
+
 ## Generate new API docs
 
-This is useful when new docs content is published, usually corresponding to new releases or hotfixes for content issues. If you're generating a patch release, also see the below subsection for additional steps.
+Use this process when we want to publish new API docs, such as when we release a new version of a package like Qiskit SDK.
 
-1. Choose which documentation you want to generate (e.g. `qiskit` or `qiskit-ibm-runtime`) and its version.
-2. Determine the full version, such as by looking at https://github.com/Qiskit/qiskit/releases
+### Pre-requisite: GitHub token
+
+You must have the environment variable `GITHUB_TOKEN` saved to your environment. You can check if it is by running `echo $GITHUB_TOKEN` in your terminal.
+
+The easiest way to set up a new token is with the [GitHub CLI](https://cli.github.com):
+
+1. `gh auth login`. Follow the instructions to log-in in to github.com (not enterprise GitHub).
+2. `gh auth status --show-token`. Find the token for `github.com`; make sure it is not for enterprise GitHub.
+3. Save `GITHUB_TOKEN` to your environment, such as by updating `~/.zprofile` with `export GITHUB_TOKEN=<token>`.
+
+### Key terms
+
+The process depends on which type of release you are generating. Some key terms to know:
+
+- "Major version": the first number in the version string. For example, the major version of 0.46.1 is 0.
+- "Minor version": the second number in the version string. For example, the minor version of 0.46.1 is 46.
+- "Patch version": the final number in the version string. For example, the patch version of 0.46.1 is 1.
+- "Latest docs": the current stable version of the package. In the `qiskit/documentation` repository, the latest docs are at the top-level of the API folder, e.g., the files at `docs/api/qiskit` (not `docs/api/qiskit/dev` or `docs/api/qiskit/2.3`).
+- "Historical docs": prior versions of the package that are no longer the latest. In the `qiskit/documentation` repository, historical docs are stored in a folder with their number, such as `docs/api/qiskit/0.46` and `docs/api/qiskit/2.3`.
+- "Dev docs": docs for the upcoming, unreleased version of the package. For Qiskit SDK and Qiskit Runtime, we pull these docs from their `main` branch several times a week; the other packages do not have dev docs. In the `qiskit/documentation` repository, dev docs are stored in the `dev` folder, e.g., `docs/api/qiskit/dev`.
+- "Release candidate": Qiskit SDK has "release candidates", which are previews of the upcoming stable release. When a release candidate is active, it replaces the normal dev docs. In other words, release candidates are stored in the `dev/` folder, like `docs/api/qiskit/dev`.
+
+### Initial steps
+
+All release types start with the following steps:
+
+1. In Git, check out the main branch of `Qiskit/documentation` and pull any updates. Then, create a new Git branch.
+2. Determine which documentation you want to generate (e.g., `qiskit` or `qiskit-ibm-runtime`) and its full version, e.g., `0.45.2` or `1.2.0rc1`.
 3. Download a CI artifact with the project's documentation. To find this:
-   1. Pull up the CI runs for the stable commit that you want to build docs from. This should not be from a Pull Request
-   2. Open up the "Details" for the relevant workflow.
-      - Qiskit: "Documentation / Build (push)"
-      - Runtime: "CI / Build documentation (push)"
-   3. Click the "Summary" page at the top of the left navbar.
-   4. Scroll down to "Artifacts" and look for the artifact related to documentation, such as `html_docs`.
-   5. Download the artifact by clicking on its name.
-4. Rename the downloaded zip file with its version number, e.g. `0.45.zip` for an artifact from `qiskit v0.45.2`.
-5. Upload the renamed zip file to https://ibm.ent.box.com/folder/246867452622
-6. Share the file by clicking the `Copy shared link` button
-7. Select `People with the link` and go to `Link Settings`.
-8. Under `Link Expiration` select `Disable Shared Link on` and set an expiration date of ~10 years into the future.
-9. Copy the direct link at the end of the `Shared Link Settings` tab.
-10. Modify the `scripts/config/api-html-artifacts.json` file, adding the new versions with the direct link from step 9.
-11. Run `npm run gen-api -- -p <pkg-name> -v <version>`, e.g. `npm run gen-api -- -p qiskit -v 0.45.0`. If it is not the latest minor version, set `--historical`.
 
-For dev docs, add `--dev` and either use a version like `-v 1.0.0-dev` or `-v 1.0.0rc1`.
+   1. Find the relevant GitHub Actions workflow for the project:
 
-### Setting up a new minor version
+      - Qiskit SDK: https://github.com/Qiskit/qiskit/actions/workflows/docs_deploy.yml
+      - Runtime: https://github.com/Qiskit/qiskit-ibm-runtime/actions/workflows/docs.yml
+      - Transpiler Service: https://github.com/Qiskit/qiskit-ibm-transpiler/actions/workflows/upload-docs.yml
+      - qiskit-addon-aqc-tensor: https://github.com/Qiskit/qiskit-addon-aqc-tensor/actions/workflows/docs.yml
+      - qiskit-addon-obp: https://github.com/Qiskit/qiskit-addon-obp/actions/workflows/docs.yml
+      - qiskit-addon-mpf: https://github.com/Qiskit/qiskit-addon-mpf/actions/workflows/docs.yml
+      - qiskit-addon-sqd: https://github.com/Qiskit/qiskit-addon-sqd/actions/workflows/docs.yml
+      - qiskit-addon-cutting: https://github.com/Qiskit/qiskit-addon-cutting/actions/workflows/docs.yml
+      - qiskit-addon-utils: https://github.com/Qiskit/qiskit-addon-utils/actions/workflows/docs.yml
 
-For example, the latest unversioned docs were `0.2.0` but `0.3.0` was just released.
+   2. Find the run for the release by looking at the middle column with the blue text; look for the version number, like `0.45.2`. For the `rc1` release, look for `main` in blue text and a run description like "Prepare 2.3.0rc1".
+   3. Click the CI run name. (Not the middle column with the blue link!)
+   4. In the left navbar, it should show as selected the "Summary" page with the house.
+   5. Scroll down to "Artifacts" and look for the artifact related to documentation, such as `html_docs`.
+   6. Download the artifact by clicking on its name. **Note:** For `qiskit-addon-utils` (and possibly others) the downloaded zip file might contain an extra parent directory. This will cause the `gen-addon` script to run incorrectly and leave your changes in a broken state. To fix this, uncompress the zip file and open the top-level directory, so you are viewing a collection of files and folders such as `_downloads`, `_images`, `objects.inv`, and others. Select all these files and folders and compress into a new zip file, which you will rename (see step 5 below) and upload (step 6).
 
-You must first save the latest unversioned docs as historical docs by running `npm run gen-api` with the `--historical` arg. For example, first run `npm run gen-api -- -p qiskit -v 0.2.0 --historical`.
+4. On some operating systems, the downloaded zip file will be auto-expanded rather than staying a zip file. If this happens, compress it back to a zip file. On macOS, secondary-click on the folder in Finder and use the "Compress" option.
+5. Rename the downloaded zip file with its minor-version number. For example, for the release `0.45.2`, rename `html_docs.zip` to `0.45.zip`. For release candidates (rc), use a value like `2.3-rc.zip`.
+6. Upload the renamed zip file to https://ibm.ent.box.com/folder/246867452622. If this is a patch release, this step will overwrite the prior file; if it's the `rc1` release or a new minor version like `2.3.0`, it will be a new file.
+7. Proceed with the final steps for the type of release (patch, rc1, or major/minor; see the relevant section below).
 
-Once the historical docs are set up, you can now generate the newest docs by following the normal process, such as `npm run gen-api -- -p qiskit -v 0.3.0`.
+### Final steps for patch releases
 
-### Generate patch releases
+Examples of when to use this process:
 
-For example, if the current docs are for 0.45.2 but you want to generate 0.45.3.
+- The latest docs were `2.3.0`, and `2.3.1` is released
+- An earlier historical release has an update, like `2.3.2` to `2.3.3`
+- For Qiskit SDK, the dev docs were `2.3.1rc1`, and `2.3.1.rc2` is released
 
-When uploading the artifact to Box, overwrite the existing file with the new one. No need to update the file metadata.
+Steps:
 
-If the version is not for the latest stable minor release series, remember to add `--historical` to the arguments. For example, use `--historical` if the latest stable release is 0.3.\* but you're generating docs for the patch release 0.2.1.
+1. Run the script:
+   - For release candidates (any rc other than rc1), run `npm run gen-api -- -p <pkg-name> -v <version> --dev`, e.g., `npm run gen-api -- -p qiskit -v 2.3.0rc2 --dev`.
+   - For historical releases, run `npm run gen-api -- -p <pkg-name> -v <version> --historical`, e.g., `npm run gen-api -- -p qiskit -v 2.3.2 --historical`.
+   - For the latest release, run `npm run gen-api -- -p <pkg-name> -v <version>`, e.g., `npm run gen-api -- -p qiskit -v 2.3.2`.
+2. If it's Qiskit SDK or Qiskit Fermions (and probably any package with a C API), repeat the above command, but use (for example) `-p qiskit-c` instead of `-p qiskit`.
+3. Save the commit and open a pull request.
+   - Add the commands that you ran to the PR description.
+   - Look for any weirdness in the diff, such as if files are unexpectedly deleted.
 
-### View diff for `objects.inv`
+### Final steps for the rc1 release
+
+This process is only for the _first_ release candidate (rc1). Subsequent release candidates like rc2 should use the [process for patch releases](#final-steps-for-patch-releases).
+
+1. In Box, share the recently uploaded zip file:
+   1. Click the `Copy shared link` button.
+   2. Select `People with the link` from the menu under "Share Link" (default is `Invited people only`) and go to `Link Settings`.
+   3. Under `Link Expiration`, select `Disable Shared Link on` and set an expiration date of ~10 years into the future. (There _must_ be an expiration date.)
+   4. Copy the "Direct link" at the end of the `Shared Link Settings` tab. Do not use the link from the prior screen.
+2. Save the Box link.
+   1. Open `scripts/config/api-html-artifacts.json` and find the `dev` entry for the package, like `qiskit`.
+   2. Replace the `dev` link with the Box link, rather than the GitHub link.
+   3. Save a commit with the message "Set up Box link".
+3. Run `npm run gen-api -- -p <pkg-name> -v <version> --dev`, e.g., `npm run gen-api -- -p qiskit -v 2.3.0rc1 --dev`.
+4. If it's Qiskit SDK, repeat the above command, but use `-p qiskit-c` instead of `-p qiskit`.
+5. Save the commit and open a pull request.
+   - Add the commands that you ran to the PR description.
+   - Look for any weirdness in the diff, such as if files are unexpectedly deleted.
+
+### Final steps for a new minor or major version
+
+Examples of when to use this process:
+
+- The latest docs were `2.3.1`, and `2.4.0` is released
+- The latest docs were `2.3.1`, and `3.0.0` is released
+
+1. In Box, share the recently uploaded zip file:
+   1. Click the `Copy shared link` button.
+   2. Select `People with the link` from the menu under "Share Link" (default is `Invited people only`) and go to `Link Settings`.
+   3. Under `Link Expiration`, select `Disable Shared Link on` and set an expiration date of ~10 years into the future. (There _must_ be an expiration date.)
+   4. Copy the "Direct link" at the end of the `Shared Link Settings` tab. Do not use the link from the prior screen.
+2. Save the Box link.
+   1. Modify `scripts/config/api-html-artifacts.json` by adding the new version with the direct link from step 9.
+   2. Save a commit with the message "Set up Box link".
+      2a. For a totally new package, be sure to update the `scripts/js/lib/api/Pkg.ts` file to add name and entry there (see the instructions in Step 4 of [Add a new addon package](#add-a-new-addon-package)).
+3. Save the prior latest docs to instead be historical docs.
+   1. Identify the full version. You can find it by looking at the `_package.json` file in the package's top-level folder, such as `docs/api/qiskit/_package.json`.
+   2. Run `npm run gen-api -- -p <pkg-name> -v <version> --historical`, using the version from the _previous step_. For example, `npm run gen-api -- -p qiskit -v 0.2.1 --historical`.
+   3. If it's Qiskit SDK, repeat the above command, but use `-p qiskit-c` instead of `-p qiskit`.
+   4. Save a commit with the message "Save historical docs". This commit should solely have new files, rather than updating existing docs.
+4. Update the latest docs.
+   1. Run `npm run gen-api -- -p <pkg-name> -v <version>`, using the version from the _new release_. For example, `npm run gen-api -- -p qiskit -v 0.3.0`.
+   2. If it's Qiskit SDK, repeat the above command, but use `-p qiskit-c` instead of `-p qiskit`.
+   3. Save a commit with the message "Update latest docs". This commit should mostly be updating existing files, although there may be some new files or deleted files.
+5. For Qiskit SDK and Runtime, update the dev docs.
+   1. For Qiskit SDK, go to https://github.com/Qiskit/qiskit/actions/workflows/docs_deploy.yml; for Runtime, go to https://github.com/Qiskit/qiskit-ibm-runtime/actions/workflows/ci.yml.
+   2. Find the latest run for the `main` branch by looking at the middle column with the blue text; look for `main`.
+   3. Click the CI run name. (Not the middle column with the blue link!)
+   4. In the left navbar, it should show as selected the "Summary" page with the house.
+   5. Scroll down to "Artifacts" and look for the artifact related to documentation, such as `html_docs`.
+   6. Secondary-click to copy the link. Paste it somewhere to look at the result. Save the final set of numbers at the end, such as `6026447195` from the link `https://github.com/Qiskit/qiskit/actions/runs/23345366690/artifacts/6026447195`.
+   7. In `api-html-artifacts.json`, update the `dev` entry with the following value. Replace `<NUMBER>` with the number from the prior step. Qiskit: `https://api.github.com/repos/Qiskit/qiskit/actions/artifacts/<NUMBER>/zip`. Qiskit Runtime: `https://api.github.com/repos/Qiskit/qiskit-ibm-runtime/actions/artifacts/<NUMBER>/zip`
+   8. Identify the version for the upcoming dev docs. This should be the _next_ minor release, followed by `-dev`. For example, if the latest release is `2.3.0`, then the dev version would be `2.4.0-dev`.
+   9. Run `npm run gen-api -- -p <pkg-name> -v <version> --dev`, e.g., `npm run gen-api -- -p qiskit -v 2.4.0-dev --dev`.
+   10. If it's Qiskit SDK, repeat the above command, but use `-p qiskit-c` instead of `-p qiskit`.
+   11. Save a commit with the message "Update dev docs". This commit should only modify files in the `/dev` folder.
+6. Open a pull request.
+   - Add the commands that you ran to the PR description.
+   - When reviewing, it is easiest to look at each individual commit for a smaller diff. Look for any weirdness in the diff, such as if files are unexpectedly deleted.
+
+### View diff for `objects.inv` (advanced)
 
 Since `objects.inv` is compressed, we can't review changes through `git diff`. Git _does_ tell you if the file has changed, but this isn't that helpful as the compressed file can be different even if the uncompressed contents are the same.
 If you want to see the diff for the uncompressed contents, first install [`sphobjinv`](https://github.com/bskinn/sphobjinv).
@@ -376,7 +509,7 @@ The add the following to your `.gitconfig` (usually found at `~/.gitconfig`).
 
 When a new version of an API is released, we should also update `nb-tester/requirements.txt` to ensure that our notebooks still work with the latest version of the API. You can do this upgrade either manually or wait for Dependabot's automated PR.
 
-Dependabot will fail to run at first due to not having access to the token. To fix this, have someone with write access trigger CI for the PR, such as by merging main or closing then reopening the issue.
+CI will fail on Dependabot's PR at first due to not having access to the token. To fix this, have someone with write access close and then immediately reopen the PR to trigger CI.
 
 You can land the API generation separately from the `requirements.txt` version upgrade. It's high priority to get out new versions of the API docs ASAP, so you should not block that on the notebook version upgrade if you run into any complications like failing notebooks.
 

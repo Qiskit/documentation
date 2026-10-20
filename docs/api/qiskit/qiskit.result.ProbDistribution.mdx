@@ -8,8 +8,8 @@ python_api_name: qiskit.result.ProbDistribution
 
 # ProbDistribution
 
-<Class id="qiskit.result.ProbDistribution" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/result/distributions/probability.py#L23-L100" signature="qiskit.result.ProbDistribution(data, shots=None)" modifiers="class">
-  Bases: [`dict`](https://docs.python.org/3/library/stdtypes.html#dict)
+<Class id="qiskit.result.ProbDistribution" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.6/qiskit/result/distributions/probability.py#L23-L100" signature="qiskit.result.ProbDistribution(data, shots=None)" modifiers="class">
+  Bases: [`dict`](https://docs.python.org/3/builtins/stdtypes.html#dict)
 
   A generic dict-like class for probability distributions.
 
@@ -17,7 +17,7 @@ python_api_name: qiskit.result.ProbDistribution
 
   **Parameters**
 
-  *   **data** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)) –
+  *   **data** ([*dict*](https://docs.python.org/3/builtins/stdtypes.html#dict)) –
 
       Input probability data. Where the keys represent a measured classical value and the value is a float for the probability of that result. The keys can be one of several formats:
 
@@ -25,23 +25,23 @@ python_api_name: qiskit.result.ProbDistribution
       > *   A bit string e.g. `'0b1011'` or `"01011"`
       > *   An integer
 
-  *   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int)) – Number of shots the distribution was derived from.
+  *   **shots** ([*int*](https://docs.python.org/3/builtins/functions.html#int)) – Number of shots the distribution was derived from.
 
   **Raises**
 
-  *   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError) – If the input keys are not a string or int
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If the string format of the keys is incorrect
+  *   [**TypeError**](https://docs.python.org/3/builtins/exceptions.html#TypeError) – If the input keys are not a string or int
+  *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If the string format of the keys is incorrect
 
   ## Methods
 
   ### binary\_probabilities
 
-  <Function id="qiskit.result.ProbDistribution.binary_probabilities" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/result/distributions/probability.py#L75-L91" signature="binary_probabilities(num_bits=None)">
+  <Function id="qiskit.result.ProbDistribution.binary_probabilities" github="https://github.com/Qiskit/qiskit/tree/stable/2.6/qiskit/result/distributions/probability.py#L75-L91" signature="binary_probabilities(num_bits=None)">
     Build a probabilities dictionary with binary string keys
 
     **Parameters**
 
-    **num\_bits** ([*int*](https://docs.python.org/3/library/functions.html#int)) – number of bits in the binary bitstrings (leading zeros will be padded). If None, a default value will be used. If keys are given as integers or strings with binary or hex prefix, the default value will be derived from the largest key present. If keys are given as bitstrings without prefix, the default value will be derived from the largest key length.
+    **num\_bits** ([*int*](https://docs.python.org/3/builtins/functions.html#int)) – number of bits in the binary bitstrings (leading zeros will be padded). If None, a default value will be used. If keys are given as integers or strings with binary or hex prefix, the default value will be derived from the largest key present. If keys are given as bitstrings without prefix, the default value will be derived from the largest key length.
 
     **Returns**
 
@@ -51,20 +51,24 @@ python_api_name: qiskit.result.ProbDistribution
 
     **Return type**
 
-    [dict](https://docs.python.org/3/library/stdtypes.html#dict)
+    [dict](https://docs.python.org/3/builtins/stdtypes.html#dict)
   </Function>
 
   ### clear
 
-  <Function id="qiskit.result.ProbDistribution.clear" signature="clear() → None.  Remove all items from D." />
+  <Function id="qiskit.result.ProbDistribution.clear" signature="clear()">
+    Remove all items from the dict.
+  </Function>
 
   ### copy
 
-  <Function id="qiskit.result.ProbDistribution.copy" signature="copy() → a shallow copy of D" />
+  <Function id="qiskit.result.ProbDistribution.copy" signature="copy()">
+    Return a shallow copy of the dict.
+  </Function>
 
   ### fromkeys
 
-  <Function id="qiskit.result.ProbDistribution.fromkeys" signature="fromkeys(value=None, /)">
+  <Function id="qiskit.result.ProbDistribution.fromkeys" signature="fromkeys(iterable, value=None, /)" modifiers="classmethod">
     Create a new dictionary with keys from iterable and values set to value.
   </Function>
 
@@ -76,7 +80,7 @@ python_api_name: qiskit.result.ProbDistribution
 
   ### hex\_probabilities
 
-  <Function id="qiskit.result.ProbDistribution.hex_probabilities" github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/result/distributions/probability.py#L93-L100" signature="hex_probabilities()">
+  <Function id="qiskit.result.ProbDistribution.hex_probabilities" github="https://github.com/Qiskit/qiskit/tree/stable/2.6/qiskit/result/distributions/probability.py#L93-L100" signature="hex_probabilities()">
     Build a probabilities dictionary with hexadecimal string keys
 
     **Returns**
@@ -87,16 +91,20 @@ python_api_name: qiskit.result.ProbDistribution
 
     **Return type**
 
-    [dict](https://docs.python.org/3/library/stdtypes.html#dict)
+    [dict](https://docs.python.org/3/builtins/stdtypes.html#dict)
   </Function>
 
   ### items
 
-  <Function id="qiskit.result.ProbDistribution.items" signature="items() → a set-like object providing a view on D's items" />
+  <Function id="qiskit.result.ProbDistribution.items" signature="items()">
+    Return a set-like object providing a view on the dict’s items.
+  </Function>
 
   ### keys
 
-  <Function id="qiskit.result.ProbDistribution.keys" signature="keys() → a set-like object providing a view on D's keys" />
+  <Function id="qiskit.result.ProbDistribution.keys" signature="keys()">
+    Return a set-like object providing a view on the dict’s keys.
+  </Function>
 
   ### pop
 
@@ -122,12 +130,14 @@ python_api_name: qiskit.result.ProbDistribution
 
   ### update
 
-  <Function id="qiskit.result.ProbDistribution.update" signature="update([E, ]**F) → None.  Update D from dict/iterable E and F.">
-    If E is present and has a .keys() method, then does: for k in E: D\[k] = E\[k] If E is present and lacks a .keys() method, then does: for k, v in E: D\[k] = v In either case, this is followed by: for k in F: D\[k] = F\[k]
+  <Function id="qiskit.result.ProbDistribution.update" signature="update([E, ]**F) → None.  Update D from mapping/iterable E and F.">
+    If E is present and has a .keys() method, then does: for k in E.keys(): D\[k] = E\[k] If E is present and lacks a .keys() method, then does: for k, v in E: D\[k] = v In either case, this is followed by: for k in F: D\[k] = F\[k]
   </Function>
 
   ### values
 
-  <Function id="qiskit.result.ProbDistribution.values" signature="values() → an object providing a view on D's values" />
+  <Function id="qiskit.result.ProbDistribution.values" signature="values()">
+    Return an object providing a view on the dict’s values.
+  </Function>
 </Class>
 

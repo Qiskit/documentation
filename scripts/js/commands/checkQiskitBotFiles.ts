@@ -47,7 +47,12 @@ const ALLOWED_OWNERLESS_FILES = new Set([
 
 const ALLOWED_NONEXISTENT_FILES: Set<string> = new Set([]);
 
-const GLOBS = ["{docs,learning}/**/*.{ipynb,mdx}", "!docs/api/**/*"];
+const GLOBS = [
+  "{docs,learning}/**/*.{ipynb,mdx}",
+  "!docs/api/**/*",
+  "docs/api/functions/**",
+  "!docs/addons/**/*",
+];
 
 async function main() {
   const qiskitBotFiles = await getQiskitBotFiles();
