@@ -1,0 +1,38 @@
+---
+title: Advanced techniques with Iskay Quantum Optimizer
+description: Tune iterations, shots, preprocessing, postprocessing, and transpilation options for the Iskay Quantum Optimizer by Kipu Quantum.
+---
+
+{/* cspell:ignore Kipu, Iskay */}
+
+# Advanced techniques with Iskay Quantum Optimizer
+
+Use the following techniques to get the most out of the Iskay Quantum Optimizer. Set each option in the `options` dictionary of `run()`. For every option and its default value, see the [API reference](/docs/api/functions/kipu-optimization#kipu-options).
+
+## Balance shots and iterations
+
+The `shots` option (default `10000`) sets the measurements per iteration, and `num_iterations` (default `10`) sets the number of algorithm iterations. More shots give better statistics, and more iterations can improve solution quality. Typically, approximately ten iterations are sufficient to converge.
+
+## Shorten circuits for large problems
+
+For larger problems that do not fit in the coherence times of the hardware, raise `preprocessing_level` (`0`-`3`, default `0`). Higher levels produce shallower circuits by approximating the problem, so start at `0` and increase only as needed.
+
+## Refine solutions in post-processing
+
+The `postprocessing_level` option (`0`-`2`, default `2`) sets the number of greedy local-search passes that compensate for bit-flip errors.
+
+## Explore transpilation settings
+
+Higher `transpilation_level` values (`0`-`5`) run more transpiler trials. They increase transpilation time and might not change the final circuit, but for some problems the difference is dramatic. To compare settings without running the full algorithm, set `transpile_only=True` and inspect the `transpilation_info` result. Leave `seed_transpiler` as `None` to let the function select the seed with the best circuit depth, or set it for reproducible compilation.
+
+## Reproduce hardware benchmarks
+
+To reproduce the HUBO benchmarks, select the `ibm_marrakesh` backend and set `direct_qubit_mapping=True`.
+
+## Track jobs
+
+Keep `use_session=True` (the default) to reduce queue times, and use `job_tags` to attach tags to each job so that you can find related jobs later.
+
+<Admonition type="note">
+This page is a starting point. Kipu Quantum is invited to add tuning guidance from their experience.
+</Admonition>
