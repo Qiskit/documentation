@@ -38,14 +38,14 @@ Every tutorial must:
 
 Beyond these, Foundational and Applied tutorials differ in what they cover and the bar they meet:
 
-- **Foundational tutorials** teach how to use a method or tool on the domain's [foundational problem class](#problem-classes). They compare the method against a default approach as the problem grows, and end with a "Next steps" section that links to the Applied tutorial or problem class that the method leads to.
-- **Applied tutorials** solve a real instance from a [problem class](#problem-classes) and report its target quantity, or, in quantum information science, apply a specialized technique to a workload at scale. They compare against a classical method on the same instance, and meet at least two of these state-of-the-art criteria: a peer-reviewed paper from the past three years, the largest hardware demonstration of the problem, or advanced features such as dynamic circuits. The hardware run uses a two-qubit depth of at least 50 unless the tutorial clearly meets the state-of-the-art bar, and anyone can reproduce it within its error bars on a current-generation backend. A tutorial built around a vendor's Qiskit Function is always Applied.
+- **Foundational tutorials** teach how to use a method or tool on the domain's [foundational problem class](#problem-classes), show its trade-offs against a default approach, and link to the Applied work that the method leads to.
+- **Applied tutorials** solve a real instance from a [problem class](#problem-classes), or, in quantum information science, apply a specialized technique at scale. They compare against a classical method and meet a state-of-the-art bar.
 
-If a problem class already has a tutorial that uses your method, propose an improvement to that tutorial instead of a new one. Reviewers weigh the trade-offs, such as better scale at a higher QPU cost, and an accepted improvement updates the existing tutorial.
+For the detailed requirements and how reviewers check them, see the [guide to adding tutorials](https://github.com/Qiskit/documentation/blob/main/adding-tutorials.md).
 
 ### Approved quantum packages
 
-The IBM Quantum team maintains this list. Install approved packages from PyPI, or from GitHub pinned to a release tag where the list says so. Classical packages, such as NumPy and SciPy, must be published on PyPI. To request a package that is not on the list, name it in your proposal and explain why you need it.
+The IBM Quantum team maintains this list. Classical packages, such as NumPy and SciPy, only need to be published on PyPI. To request another quantum package, name it in your proposal.
 
 | Area | Packages |
 | --- | --- |
@@ -140,12 +140,14 @@ The following Foundational topics fill known gaps in the catalog:
 
 Contributions go through two stages, so that you get feedback before you write the full tutorial.
 
-1. **Propose.** Open a [tutorial proposal issue](https://github.com/Qiskit/documentation/issues/new?template=tutorial-proposal.yaml) in the Qiskit documentation repository. Proposals are public, so you can check what others are already working on. The IBM Quantum tutorials team reviews each proposal against these requirements, and a member of the relevant working group reviews the technical content.
-2. **Submit.** After your proposal is approved, open a pull request from your fork that adds the notebook. Follow the [contributing guide](https://github.com/Qiskit/documentation/blob/main/CONTRIBUTING.md), including signing the [Contributor License Agreement](https://qisk.it/cla).
+1. **Propose.** Open a [tutorial proposal issue](https://github.com/Qiskit/documentation/issues/new?template=tutorial-proposal.yaml) in the Qiskit documentation repository. The IBM Quantum tutorials team and a member of the relevant working group review it against these requirements.
+2. **Submit.** After your proposal is approved, open a pull request from your fork that adds the notebook, and sign the [Contributor License Agreement](https://qisk.it/cla).
 
-## Authorship and maintenance
+To improve an existing tutorial, propose the improvement the same way. The [guide to adding tutorials](https://github.com/Qiskit/documentation/blob/main/adding-tutorials.md) describes the review process and how to add your notebook.
 
-- **Credit.** Contributed tutorials show a byline at the top with the authors' names and affiliations and a link to the source paper. Tutorial cards show a community tag.
-- **Maintainer of record.** Each contributed tutorial also has a maintainer of record from the IBM Quantum team, who keeps it running as Qiskit changes.
-- **Breaking changes.** If a change breaks the tutorial, the authors have 30 days to respond to the issue. If it is still unresolved after the next major Qiskit release, the tutorial is archived.
-- **Existing community tutorials.** These requirements apply to new contributions. Community tutorials that are already published get the community tag, and are held to these requirements when they are next updated.
+## What you get
+
+- **Credit.** Your tutorial shows a byline with the authors' names and affiliations and a link to the source paper, and its tutorial card shows a community tag.
+- **Ongoing maintenance.** A maintainer of record from the IBM Quantum team keeps the tutorial running as Qiskit changes.
+
+In return, you respond within 30 days if a change breaks your tutorial.
