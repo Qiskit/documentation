@@ -1,0 +1,114 @@
+---
+title: PreChangeBasis (latest version)
+description: API reference for samplomatic.pre_samplex.PreChangeBasis in the latest version of samplomatic
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: samplomatic.pre_samplex.PreChangeBasis
+---
+
+# PreChangeBasis
+
+<Class id="samplomatic.pre_samplex.PreChangeBasis" isDedicatedPage={true} github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/pre_samplex/graph_data.py#L415-L429" signature="samplomatic.pre_samplex.PreChangeBasis(subsystems: Partition[int], direction: Direction, register_type: VirtualType, basis_ref: str, basis_change: Literal['local_clifford', 'pauli_prepare', 'pauli_measure'], *, trace_info: TraceInfo | None = None, twirl_gate: str | None = None)" modifiers="class">
+  Bases: [`PreEmit`](pre-samplex-pre-emit "samplomatic.pre_samplex.graph_data.PreEmit")
+
+  The basis emit node type used during samplex building.
+
+  **Attributes Summary**
+
+  |                                                                                                                                 |                                                                     |
+  | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+  | [`basis_change`](#samplomatic.pre_samplex.PreChangeBasis.basis_change "samplomatic.pre_samplex.PreChangeBasis.basis_change")    | What kind of basis change to use.                                   |
+  | [`basis_ref`](#samplomatic.pre_samplex.PreChangeBasis.basis_ref "samplomatic.pre_samplex.PreChangeBasis.basis_ref")             | Unique identifier of this basis change.                             |
+  | [`direction`](#samplomatic.pre_samplex.PreChangeBasis.direction "samplomatic.pre_samplex.PreChangeBasis.direction")             | The direction of virtual gates that can interact with this node.    |
+  | [`register_type`](#samplomatic.pre_samplex.PreChangeBasis.register_type "samplomatic.pre_samplex.PreChangeBasis.register_type") | The virtual register type of the basis change.                      |
+  | [`subsystems`](#samplomatic.pre_samplex.PreChangeBasis.subsystems "samplomatic.pre_samplex.PreChangeBasis.subsystems")          | The subsystems that virtual gates act on.                           |
+  | [`trace_info`](#samplomatic.pre_samplex.PreChangeBasis.trace_info "samplomatic.pre_samplex.PreChangeBasis.trace_info")          | Debug trace information, populated when building with `debug=True`. |
+  | [`twirl_gate`](#samplomatic.pre_samplex.PreChangeBasis.twirl_gate "samplomatic.pre_samplex.PreChangeBasis.twirl_gate")          | The gate name used for gate-dependent sampling, or `None`.          |
+
+  **Methods Summary**
+
+  |                                                                                                                       |                                                                                                                                       |
+  | --------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+  | [`get_style`](#samplomatic.pre_samplex.PreChangeBasis.get_style "samplomatic.pre_samplex.PreChangeBasis.get_style")() | Summarizes the style of this node when plotted via [`plot_graph()`](visualization-plot-graph "samplomatic.visualization.plot_graph"). |
+
+  **Attributes Documentation**
+
+  ### basis\_change
+
+  <Attribute id="samplomatic.pre_samplex.PreChangeBasis.basis_change">
+    Type: [`Literal`](https://docs.python.org/3/library/typing.html#typing.Literal)\[`'local_clifford'`, `'pauli_prepare'`, `'pauli_measure'`]
+
+    Default value: `<dataclasses._MISSING_TYPE object>`
+
+    What kind of basis change to use.
+  </Attribute>
+
+  ### basis\_ref
+
+  <Attribute id="samplomatic.pre_samplex.PreChangeBasis.basis_ref">
+    Type: [`str`](https://docs.python.org/3/builtins/stdtypes.html#str)
+
+    Default value: `<dataclasses._MISSING_TYPE object>`
+
+    Unique identifier of this basis change.
+  </Attribute>
+
+  ### direction
+
+  <Attribute id="samplomatic.pre_samplex.PreChangeBasis.direction">
+    Type: [`Direction`](constants-direction "samplomatic.constants.Direction")
+
+    Default value: `<dataclasses._MISSING_TYPE object>`
+
+    The direction of virtual gates that can interact with this node.
+  </Attribute>
+
+  ### register\_type
+
+  <Attribute id="samplomatic.pre_samplex.PreChangeBasis.register_type">
+    Type: [`VirtualType`](virtual-registers-virtual-type "samplomatic.virtual_registers.virtual_type.VirtualType")
+
+    Default value: `<dataclasses._MISSING_TYPE object>`
+
+    The virtual register type of the basis change.
+  </Attribute>
+
+  ### subsystems
+
+  <Attribute id="samplomatic.pre_samplex.PreChangeBasis.subsystems">
+    Type: [`Partition`](partition-partition "samplomatic.partition.Partition")\[[`int`](https://docs.python.org/3/builtins/functions.html#int)]
+
+    Default value: `<dataclasses._MISSING_TYPE object>`
+
+    The subsystems that virtual gates act on.
+  </Attribute>
+
+  ### trace\_info
+
+  <Attribute id="samplomatic.pre_samplex.PreChangeBasis.trace_info">
+    Type: `TraceInfo` | [`None`](https://docs.python.org/3/builtins/constants.html#None)
+
+    Default value: `None`
+
+    Debug trace information, populated when building with `debug=True`.
+  </Attribute>
+
+  ### twirl\_gate
+
+  <Attribute id="samplomatic.pre_samplex.PreChangeBasis.twirl_gate">
+    Type: [`str`](https://docs.python.org/3/builtins/stdtypes.html#str) | [`None`](https://docs.python.org/3/builtins/constants.html#None)
+
+    Default value: `None`
+
+    The gate name used for gate-dependent sampling, or `None`.
+  </Attribute>
+
+  **Methods Documentation**
+
+  ### get\_style
+
+  <Function id="samplomatic.pre_samplex.PreChangeBasis.get_style" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/pre_samplex/graph_data.py#L428-L429" signature="get_style() → NodeStyle">
+    Summarizes the style of this node when plotted via [`plot_graph()`](visualization-plot-graph "samplomatic.visualization.plot_graph").
+  </Function>
+</Class>
+

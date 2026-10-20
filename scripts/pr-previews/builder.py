@@ -139,11 +139,25 @@ def _copy_local_content(root_dir: Path, changed_files: set[str]) -> None:
         )
         shutil.copytree(dir, dest, ignore=copytree_ignore)
 
-    for fp in [
+    # The Next.js app requires these files to be present even when no PR change
+    # touches their directory, otherwise routes like `/api/toc/[[...tocPath]]`
+    # fail to generate static params. The copytree pass above can drop them
+    # whenever the parent directory has no changed files.
+    always_copy = [
         "docs/responsible-quantum-computing.mdx",
         "docs/accessibility.mdx",
-    ]:
-        shutil.copy2(fp, root_dir / f"content/{fp}")
+    ]
+    for content_dir in ("docs", "learning"):
+        for pattern in ("**/_toc.json", "**/index.mdx", "**/index.ipynb"):
+            for fp in Path(content_dir).glob(pattern):
+                if "api" in fp.parts:
+                    continue
+                always_copy.append(str(fp))
+
+    for fp in always_copy:
+        dest = root_dir / f"content/{fp}"
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(fp, dest)
 
     logger.info("local content files copied")
 
@@ -176,18 +190,9 @@ def _ignore_unchanged_files(
         if full_path.startswith("public"):
             continue
 
-        # We also need to copy over `_toc.json` used by any changed files.
-        # Copytree should only reach these files if a sibling or child of
-        # the current directory contains a changed file.
-        if entry == "_toc.json":
-            continue
-
-        # We also need to copy over the index files because the app doesn't
-        # build without them
-        if entry.startswith("index."):
-            continue
-
-        # Finally, include files that were directly changed.
+        # Include files that were directly changed. `_toc.json` and `index.*`
+        # files required by the Next.js build are copied explicitly in
+        # `_copy_local_content`, so we don't need a special case here.
         if any(file.startswith(full_path) for file in changed_files):
             continue
 

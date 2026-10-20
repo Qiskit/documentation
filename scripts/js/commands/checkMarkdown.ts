@@ -1,4 +1,4 @@
-// This code is a Qiskit project.
+// This code is a Qiskit project.session
 //
 // (C) Copyright IBM 2025.
 //
@@ -17,9 +17,11 @@ import { hideBin } from "yargs/helpers";
 import { collectInvalidImageErrors } from "../lib/markdownImages.js";
 import { readMarkdownAndMetadata } from "../lib/markdownReader.js";
 import { collectHeadingTitleMismatch } from "../lib/markdownTitles.js";
+import { collectInlineDelimiterErrors } from "../lib/mathUtils.js";
 import { parseMarkdown } from "../lib/markdownUtils.js";
 import { checkMetadata } from "../lib/metadataChecker.js";
 import {
+  IMAGE_ALLOWLIST,
   METADATA_ALLOWLIST,
   ignoreTitleMismatch,
 } from "../../config/allowLists.js";
@@ -50,7 +52,9 @@ async function main() {
   for (const file of files) {
     const { content, metadata } = await readMarkdownAndMetadata(file);
     const tree = parseMarkdown(content);
-    const imageErrors = collectInvalidImageErrors(tree);
+    const imageErrors = IMAGE_ALLOWLIST.has(file)
+      ? new Set<string>()
+      : collectInvalidImageErrors(tree);
     const mismatchedTitleHeadingErrors = ignoreTitleMismatch(file)
       ? new Set<string>()
       : collectHeadingTitleMismatch(tree, metadata);
@@ -59,11 +63,17 @@ async function main() {
       ? new Set<string>()
       : checkMetadata(metadata, file);
 
+    const mathPeriodErrors =
+      file.startsWith("docs/api/") || file.includes("/addons/")
+        ? []
+        : collectInlineDelimiterErrors(content);
+
     // Collect all errors for this file
     const errorsInFile: string[] = [
       ...imageErrors,
       ...mismatchedTitleHeadingErrors,
       ...metadataErrors,
+      ...mathPeriodErrors,
     ];
 
     if (errorsInFile.length) {

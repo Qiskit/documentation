@@ -1,0 +1,61 @@
+---
+title: operators (latest version)
+description: API reference for qiskit_fermions.operators in the latest version of qiskit-fermions
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit_fermions.operators
+---
+
+<span id="module-qiskit_fermions.operators" />
+
+# Operator Representations
+
+This module provides various data structures for representing fermionic operators in different bases.
+
+|                                                                                                                                                                             |                                                                    |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| [`OperatorTrait`](/docs/api/qiskit-fermions/operators-operator-trait#qiskit_fermions.operators.OperatorTrait "qiskit_fermions.operators.OperatorTrait")(\*args, \*\*kwargs) | A protocol indicating all methods implemented by operator classes. |
+
+## Fermion Operator
+
+This operator represents fermionic operators in terms of the second-quantization creation and annihilation operators.
+
+|                                                                                                                                                                                                      |                                              |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
+| [`FermionAction`](/docs/api/qiskit-fermions/operators-fermion-action-fermion-action#qiskit_fermions.operators.fermion_action.FermionAction "qiskit_fermions.operators.fermion_action.FermionAction") | A fermionic creation or annihilation action. |
+
+|                                                                                                                                                                                              |                                                                    |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| [`FermionOperator`](/docs/api/qiskit-fermions/operators-fermion-operator#qiskit_fermions.operators.FermionOperator "qiskit_fermions.operators.FermionOperator")(coeffs, actions, modes, ...) | A spin-less fermionic operator.                                    |
+| [`cre`](/docs/api/qiskit-fermions/operators-cre#qiskit_fermions.operators.cre "qiskit_fermions.operators.cre")(mode)                                                                         | Constructs a creation action on the fermionic mode at `mode`.      |
+| [`ann`](/docs/api/qiskit-fermions/operators-ann#qiskit_fermions.operators.ann "qiskit_fermions.operators.ann")(mode)                                                                         | Constructs an annihilation action on the fermionic mode at `mode`. |
+
+## Majorana Operator
+
+This operator represents fermionic operators in terms of Majorana fermions.
+
+|                                                                                                                                                                                                             |                          |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------ |
+| [`MajoranaAction`](/docs/api/qiskit-fermions/operators-majorana-action-majorana-action#qiskit_fermions.operators.majorana_action.MajoranaAction "qiskit_fermions.operators.majorana_action.MajoranaAction") | The MajoranaAction type. |
+
+|                                                                                                                                                                                                |                              |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------- |
+| [`MajoranaOperator`](/docs/api/qiskit-fermions/operators-majorana-operator#qiskit_fermions.operators.MajoranaOperator "qiskit_fermions.operators.MajoranaOperator")(coeffs, modes, boundaries) | A Majorana fermion operator. |
+| [`gamma`](/docs/api/qiskit-fermions/operators-gamma#qiskit_fermions.operators.gamma "qiskit_fermions.operators.gamma")(mode, is\_prime)                                                        | Create a majorana fermion.   |
+
+## Interaction Operators
+
+Many commonly used operators can be expressed as interaction operators which can express operators with even fermionic parity. Such operators are defined in terms of pairs of Majorana actions $\gamma_k\gamma'_k$ or, equivalently, are generated by the quadratic fermionic operators $a_i a_j$, $a_i^\dagger a_j$, $a_i a^\dagger_j$, and $a^\dagger_i a^\dagger_j$.
+
+This package provides two different data structures expressing operators of this type in terms of Hermitian generators:
+
+|                                                                                                                                                                                                             |                          |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------ |
+| [`EdgeAction`](/docs/api/qiskit-fermions/operators-edge-action-edge-action#qiskit_fermions.operators.edge_action.EdgeAction "qiskit_fermions.operators.edge_action.EdgeAction")                             | The EdgeAction type.     |
+| [`TransferAction`](/docs/api/qiskit-fermions/operators-transfer-action-transfer-action#qiskit_fermions.operators.transfer_action.TransferAction "qiskit_fermions.operators.transfer_action.TransferAction") | The TransferAction type. |
+
+|                                                                                                                                                                                                                          |                             |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------- |
+| [`EdgeVertexOperator`](/docs/api/qiskit-fermions/operators-edge-vertex-operator#qiskit_fermions.operators.EdgeVertexOperator "qiskit_fermions.operators.EdgeVertexOperator")(coeffs, left\_indices, ...)                 | An edge-vertex operator.    |
+| [`TransferVertexOperator`](/docs/api/qiskit-fermions/operators-transfer-vertex-operator#qiskit_fermions.operators.TransferVertexOperator "qiskit_fermions.operators.TransferVertexOperator")(coeffs, left\_indices, ...) | A transfer-vertex operator. |
+

@@ -97,5 +97,5 @@ zxMain(async () => {
 
   console.log("Latest major series is over six months old, creating issue...");
   const issueBody = `Qiskit v${firstReleaseOfLatestMajor} was released over six months ago. The previous major series (v${previousMajorNumber}.x) should be demoted from "Stable" to "Deprecated" in the version selector.`;
-  await $`gh issue create --title ${issueTitle} --body ${issueBody} --assignee frankharkins,arnaucasau --label 'infra 🏗️,needs triage 🤔'`;
+  await $`gh issue create --title ${issueTitle} --body ${issueBody} --assignee Qiskit/frontend --label 'infra 🏗️,needs triage 🤔'`;
 });

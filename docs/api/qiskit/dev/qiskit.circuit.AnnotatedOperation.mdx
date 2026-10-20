@@ -15,7 +15,7 @@ python_api_name: qiskit.circuit.AnnotatedOperation
 
   Create a new AnnotatedOperation.
 
-  An “annotated operation” allows to add a list of modifiers to the “base” operation. For now, the only supported modifiers are of types [`InverseModifier`](circuit#qiskit.circuit.InverseModifier "qiskit.circuit.InverseModifier"), [`ControlModifier`](circuit#qiskit.circuit.ControlModifier "qiskit.circuit.ControlModifier") and [`PowerModifier`](circuit#qiskit.circuit.PowerModifier "qiskit.circuit.PowerModifier").
+  An “annotated operation” allows to add a list of modifiers to the “base” operation. For now, the only supported modifiers are of types [`InverseModifier`](/docs/api/qiskit/dev/circuit#qiskit.circuit.InverseModifier "qiskit.circuit.InverseModifier"), [`ControlModifier`](/docs/api/qiskit/dev/circuit#qiskit.circuit.ControlModifier "qiskit.circuit.ControlModifier") and [`PowerModifier`](/docs/api/qiskit/dev/circuit#qiskit.circuit.PowerModifier "qiskit.circuit.PowerModifier").
 
   An annotated operation can be viewed as an extension of [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") (which also allows adding control to the base operation). However, an important difference is that the circuit definition of an annotated operation is not constructed when the operation is declared, and instead happens during transpilation, specifically during the [`HighLevelSynthesis`](qiskit.transpiler.passes.HighLevelSynthesis "qiskit.transpiler.passes.HighLevelSynthesis") transpiler pass.
 
@@ -24,7 +24,7 @@ python_api_name: qiskit.circuit.AnnotatedOperation
   **Parameters**
 
   *   **base\_op** ([*Operation*](qiskit.circuit.Operation "qiskit.circuit.Operation")) – base operation being modified
-  *   **modifiers** (*Modifier |* [*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[Modifier]*) – ordered list of modifiers. Supported modifiers include `InverseModifier`, `ControlModifier` and `PowerModifier`.
+  *   **modifiers** (*Modifier |* [*list*](https://docs.python.org/3/builtins/stdtypes.html#list)*\[Modifier]*) – ordered list of modifiers. Supported modifiers include `InverseModifier`, `ControlModifier` and `PowerModifier`.
 
   Examples:
 
@@ -86,10 +86,10 @@ python_api_name: qiskit.circuit.AnnotatedOperation
 
     **Parameters**
 
-    *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)) – Number of controls to add. Defaults to `1`.
-    *   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – Ignored.
-    *   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int)  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – The control state of the gate, specified either as an integer or a bitstring (e.g. `"110"`). If `None`, defaults to the all-ones state `2**num_ctrl_qubits - 1`.
-    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool) *| None*) – Ignored.
+    *   **num\_ctrl\_qubits** ([*int*](https://docs.python.org/3/builtins/functions.html#int)) – Number of controls to add. Defaults to `1`.
+    *   **label** ([*str*](https://docs.python.org/3/builtins/stdtypes.html#str) *| None*) – Ignored.
+    *   **ctrl\_state** ([*int*](https://docs.python.org/3/builtins/functions.html#int)  *|*[*str*](https://docs.python.org/3/builtins/stdtypes.html#str) *| None*) – The control state of the gate, specified either as an integer or a bitstring (e.g. `"110"`). If `None`, defaults to the all-ones state `2**num_ctrl_qubits - 1`.
+    *   **annotated** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool) *| None*) – Ignored.
 
     **Returns**
 
@@ -119,7 +119,7 @@ python_api_name: qiskit.circuit.AnnotatedOperation
 
     **Parameters**
 
-    **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – ignored (used for consistency with other inverse methods)
+    **annotated** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) – ignored (used for consistency with other inverse methods)
 
     **Returns**
 
@@ -135,8 +135,8 @@ python_api_name: qiskit.circuit.AnnotatedOperation
 
     **Parameters**
 
-    *   **exponent** ([*float*](https://docs.python.org/3/library/functions.html#float)) – the power to raise the gate to
-    *   **annotated** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – ignored (used for consistency with other power methods)
+    *   **exponent** ([*float*](https://docs.python.org/3/builtins/functions.html#float)) – the power to raise the gate to
+    *   **annotated** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) – ignored (used for consistency with other power methods)
 
     **Returns**
 
@@ -156,11 +156,11 @@ python_api_name: qiskit.circuit.AnnotatedOperation
 
     **Parameters**
 
-    **parameter** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit._accelerate.circuit.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float))
+    **parameter** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit._accelerate.circuit.ParameterExpression")  *|*[*float*](https://docs.python.org/3/builtins/functions.html#float))
 
     **Return type**
 
-    [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit._accelerate.circuit.ParameterExpression") | [float](https://docs.python.org/3/library/functions.html#float)
+    [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit._accelerate.circuit.ParameterExpression") | [float](https://docs.python.org/3/builtins/functions.html#float)
   </Function>
 </Class>
 

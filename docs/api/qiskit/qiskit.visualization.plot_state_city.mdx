@@ -10,7 +10,7 @@ python_api_name: qiskit.visualization.plot_state_city
 
 # qiskit.visualization.plot\_state\_city
 
-<Function id="qiskit.visualization.plot_state_city" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.3/qiskit/visualization/state_visualization.py#L372-L622" signature="qiskit.visualization.plot_state_city(state, title='', figsize=None, color=None, alpha=1, ax_real=None, ax_imag=None, *, filename=None)">
+<Function id="qiskit.visualization.plot_state_city" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.6/qiskit/visualization/state_visualization.py#L377-L629" signature="qiskit.visualization.plot_state_city(state, title='', figsize=None, color=None, alpha=1, ax_real=None, ax_imag=None, *, filename=None)">
   Plot the cityscape of quantum state.
 
   Plot two 3d bar graphs (two dimensional) of the real and imaginary part of the density matrix rho.
@@ -18,12 +18,13 @@ python_api_name: qiskit.visualization.plot_state_city
   **Parameters**
 
   *   **state** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix") *or ndarray*) – an N-qubit quantum state.
-  *   **title** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – a string that represents the plot title
-  *   **figsize** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)) – Figure size in inches.
-  *   **color** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)) – A list of len=2 giving colors for real and imaginary components of matrix elements.
-  *   **alpha** ([*float*](https://docs.python.org/3/library/functions.html#float)) – Transparency value for bars
-  *   **ax\_real** ([*matplotlib.axes.Axes*](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.html#matplotlib.axes.Axes "(in Matplotlib v3.10.8)")) – An optional Axes object to be used for the visualization output. If none is specified a new matplotlib Figure will be created and used. If this is specified without an ax\_imag only the real component plot will be generated. Additionally, if specified there will be no returned Figure since it is redundant.
-  *   **ax\_imag** ([*matplotlib.axes.Axes*](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.html#matplotlib.axes.Axes "(in Matplotlib v3.10.8)")) – An optional Axes object to be used for the visualization output. If none is specified a new matplotlib Figure will be created and used. If this is specified without an ax\_real only the imaginary component plot will be generated. Additionally, if specified there will be no returned Figure since it is redundant.
+  *   **title** ([*str*](https://docs.python.org/3/builtins/stdtypes.html#str)) – a string that represents the plot title
+  *   **figsize** ([*tuple*](https://docs.python.org/3/builtins/stdtypes.html#tuple)) – Figure size in inches.
+  *   **color** ([*list*](https://docs.python.org/3/builtins/stdtypes.html#list)) – A list of len=2 giving colors for real and imaginary components of matrix elements.
+  *   **alpha** ([*float*](https://docs.python.org/3/builtins/functions.html#float)) – Transparency value for bars
+  *   **ax\_real** ([*matplotlib.axes.Axes*](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.html#matplotlib.axes.Axes "(in Matplotlib v3.11.2)")) – An optional Axes object to be used for the visualization output. If none is specified a new matplotlib Figure will be created and used. If this is specified without an ax\_imag only the real component plot will be generated. Additionally, if specified there will be no returned Figure since it is redundant.
+  *   **ax\_imag** ([*matplotlib.axes.Axes*](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.html#matplotlib.axes.Axes "(in Matplotlib v3.11.2)")) – An optional Axes object to be used for the visualization output. If none is specified a new matplotlib Figure will be created and used. If this is specified without an ax\_real only the imaginary component plot will be generated. Additionally, if specified there will be no returned Figure since it is redundant.
+  *   **filename** ([*str*](https://docs.python.org/3/builtins/stdtypes.html#str) *| None*) – The optional file path to save image to. If not specified no file is created for the visualization. If this is set the return from this function will be `None`.
 
   **Returns**
 
@@ -31,13 +32,13 @@ python_api_name: qiskit.visualization.plot_state_city
 
   **Return type**
 
-  [`matplotlib.figure.Figure`](https://matplotlib.org/stable/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure "(in Matplotlib v3.10.8)")
+  [`matplotlib.figure.Figure`](https://matplotlib.org/stable/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure "(in Matplotlib v3.11.2)")
 
   **Raises**
 
-  *   [**MissingOptionalLibraryError**](exceptions#qiskit.exceptions.MissingOptionalLibraryError "qiskit.exceptions.MissingOptionalLibraryError") – Requires matplotlib.
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – When ‘color’ is not a list of len=2.
-  *   [**VisualizationError**](visualization#qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – if input is not a valid N-qubit state.
+  *   [**MissingOptionalLibraryError**](/docs/api/qiskit/exceptions#qiskit.exceptions.MissingOptionalLibraryError "qiskit.exceptions.MissingOptionalLibraryError") – Requires matplotlib.
+  *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – When ‘color’ is not a list of len=2.
+  *   [**VisualizationError**](/docs/api/qiskit/visualization#qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – if input is not a valid N-qubit state.
 
   **Examples**
 
