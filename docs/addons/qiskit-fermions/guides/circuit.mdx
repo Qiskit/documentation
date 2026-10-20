@@ -41,36 +41,38 @@ The example below implements the time evolution described in the previous sectio
 
 The example also demonstrates how to incorporate domain knowledge into an operator by using [operator term grouping](grouping#grouping-explanation). By assigning group indices to the Hamiltonian terms, you preserve structural information that optimization passes can exploit throughout the transpilation stack.
 
-\[x] Python
+<Tabs group="tab">
+  <TabItem value="python" label="Python">
+    ```python
+    >>> from qiskit_fermions.circuit import FermionicCircuit
+    >>> from qiskit_fermions.circuit.library import Evolution
+    >>> from qiskit_fermions.operators import FermionOperator, cre, ann
+    >>>
+    >>> # Create a circuit with 4 fermionic modes
+    >>> circuit = FermionicCircuit(4)
+    >>>
+    >>> # Define a simple fermionic Hamiltonian
+    >>> hamiltonian = FermionOperator.from_terms([
+    ...     ([cre(0), ann(2)], 0.5),
+    ...     ([cre(2), ann(0)], 0.5),
+    ...     ([cre(1), ann(3)], 0.5),
+    ...     ([cre(3), ann(1)], 0.5),
+    ... ])
+    >>> # Add some problem structure by grouping our Hamiltonian terms
+    >>> hamiltonian.groups = [0, 0, 1, 1]
+    >>>
+    >>> # Add an evolution gate to implement exp(-i * t * H)
+    >>> evolution = Evolution(4, hamiltonian, time=1.0)
+    >>> circuit.append(evolution, circuit.register)
+    ```
+  </TabItem>
 
-```python
->>> from qiskit_fermions.circuit import FermionicCircuit
->>> from qiskit_fermions.circuit.library import Evolution
->>> from qiskit_fermions.operators import FermionOperator, cre, ann
->>>
->>> # Create a circuit with 4 fermionic modes
->>> circuit = FermionicCircuit(4)
->>>
->>> # Define a simple fermionic Hamiltonian
->>> hamiltonian = FermionOperator.from_terms([
-...     ([cre(0), ann(2)], 0.5),
-...     ([cre(2), ann(0)], 0.5),
-...     ([cre(1), ann(3)], 0.5),
-...     ([cre(3), ann(1)], 0.5),
-... ])
->>> # Add some problem structure by grouping our Hamiltonian terms
->>> hamiltonian.groups = [0, 0, 1, 1]
->>>
->>> # Add an evolution gate to implement exp(-i * t * H)
->>> evolution = Evolution(4, hamiltonian, time=1.0)
->>> circuit.append(evolution, circuit.register)
-```
-
-\[ ] C
-
-```c
-// The C API for FermionicCircuit is not available yet.
-```
+  <TabItem value="c" label="C">
+    ```c
+    // The C API for FermionicCircuit is not available yet.
+    ```
+  </TabItem>
+</Tabs>
 
 ![A simple \`FermionicCircuit\` with a single time evolution gate.](/docs/images/addons/qiskit-fermions/circuit-2.avif)
 

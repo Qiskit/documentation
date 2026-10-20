@@ -29,4 +29,8 @@ export type Notebook = {
   cells: NotebookCell[];
 };
 
-export type NotebookWithUrl = Notebook & { url: string };
+export type NotebookWithUrl = Notebook & {
+  url: string;
+  /** Path of the notebook relative to the Sphinx artifact root. */
+  sourcePath: string;
+};
