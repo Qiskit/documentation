@@ -1,5 +1,5 @@
 name: (Tutorials 📓) Propose a community tutorial
-description: Propose a new Foundational or Applied tutorial to contribute to the Qiskit tutorials
+description: Propose a new tutorial, or an improvement to an existing one, for the Qiskit tutorials
 title: "[Tutorial proposal] "
 labels: ["content 📄", "tutorial 📒", "needs triage 🤔"]
 assignees:
@@ -17,9 +17,11 @@ body:
     id: kind
     attributes:
       label: Tutorial type
+      description: Foundational and Applied apply to optimization, Hamiltonian simulation, and quantum machine learning. Quantum information science tutorials belong to a topic category instead.
       options:
         - Foundational
         - Applied
+        - Quantum information science
         - Improvement to an existing tutorial
     validations:
       required: true
@@ -39,8 +41,8 @@ body:
   - type: input
     id: target
     attributes:
-      label: Problem class or topic
-      description: Name the foundational problem class or the Applied problem class your tutorial uses. For quantum information science, name the topic and its teaching problem, or the technique. To propose a new problem class or topic, describe the gap it fills.
+      label: Problem class or topic category
+      description: Name the foundational problem class or the Applied problem class your tutorial uses. For quantum information science, name the topic category and the technique. To propose a new problem class or topic category, describe the gap it fills.
     validations:
       required: true
 
@@ -75,6 +77,7 @@ body:
       description: |
         Foundational: where the method leads next, such as an Applied tutorial or problem class, and what it shows on hardware that a course does not.
         Applied: which state-of-the-art criteria it meets.
+        Quantum information science: the default approach it compares against, and where the technique leads next.
         Improvement: how it improves the existing tutorial, and anything that gets worse.
     validations:
       required: true

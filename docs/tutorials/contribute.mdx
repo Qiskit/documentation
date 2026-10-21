@@ -1,6 +1,6 @@
 ---
 title: Contribute a tutorial
-description: Learn which tutorials the community can contribute, the requirements for Foundational and Applied tutorials, and how to propose one
+description: Learn which tutorials the community can contribute, the requirements for each kind of tutorial, and how to propose one
 ---
 
 {/* cspell:ignore Birkhoff Floquet Polaron QOBLIB Steane VLSI */}
@@ -9,23 +9,26 @@ description: Learn which tutorials the community can contribute, the requirement
 
 Qiskit tutorials on IBM Quantum&reg; Platform are open to community contributions. This page explains which tutorials you can contribute, what each kind of tutorial must show, and how to propose one.
 
-Every tutorial belongs to a domain (optimization, Hamiltonian simulation, quantum machine learning, or quantum information science) and is either Foundational or Applied:
+Every tutorial belongs to a domain: optimization, Hamiltonian simulation, quantum machine learning, or quantum information science. In the first three domains, each tutorial is either Foundational or Applied:
 
 - **Foundational tutorials** teach the core ideas and canonical methods of a domain. They use well-known teaching problems, so that the method is the focus rather than the problem.
 - **Applied tutorials** are built around a specific goal: solving a particular problem from the problem classes on this page, or applying a specialized technique or tool in the setting where it can be used successfully. They assume strong familiarity with the fundamentals.
 
 In short, Foundational tutorials show how to use a method or tool, and Applied tutorials show the best current results on a specific problem.
 
+Quantum information science tutorials teach general-purpose techniques that tutorials in every domain use, such as compilation and error mitigation. Instead of being Foundational or Applied, each one belongs to a [topic category](#quantum-information-science).
+
 ## What you can contribute
 
-Every domain is open to both Foundational and Applied contributions:
+Every domain is open to contributions. Optimization, Hamiltonian simulation, and quantum machine learning are open to both Foundational and Applied tutorials:
 
 | Domain | Foundational tutorials | Applied tutorials |
 | --- | --- | --- |
 | [Optimization](#optimization) | 1 problem class | 10 problem classes |
 | [Hamiltonian simulation](#hamiltonian-simulation) | 3 problem classes | 8 problem classes |
 | [Quantum machine learning](#quantum-machine-learning) | 3 problem classes | 5 problem classes |
-| [Quantum information science](#quantum-information-science) | Your own teaching problem, with 4 suggested topics | Specialized techniques at scale |
+
+[Quantum information science](#quantum-information-science) is open to tutorials in seven topic categories, from algorithms and protocols to error detection and correction.
 
 ## Requirements
 
@@ -36,10 +39,11 @@ Every tutorial must:
 - Verify a small instance against a known answer (exact, analytic, or published) within a stated tolerance before scaling up.
 - Run on IBM Quantum hardware at about 50 qubits or more, and report the error mitigation settings and QPU time.
 
-Beyond these, Foundational and Applied tutorials differ in what they cover and the bar they meet:
+Beyond these, each kind of tutorial covers different ground and meets a different bar:
 
 - **Foundational tutorials** teach how to use a method or tool on one of the domain's [foundational problem classes](#problem-classes), show its trade-offs against a default approach, and point readers to where the method leads next.
-- **Applied tutorials** solve a real instance from a [problem class](#problem-classes), or, in quantum information science, apply a specialized technique at scale. They compare against a classical method and meet a state-of-the-art bar.
+- **Applied tutorials** solve a real instance from a [problem class](#problem-classes). They compare against a classical method and meet a state-of-the-art bar.
+- **Quantum information science tutorials** teach a technique from one of the [topic categories](#quantum-information-science), compare it against the category's default approach, and point readers to where the technique leads next.
 
 For the detailed requirements and how reviewers check them, see the [guide to adding tutorials](https://github.com/Qiskit/documentation/blob/main/adding-tutorials.md).
 
@@ -59,7 +63,7 @@ The IBM Quantum team maintains this list. Classical packages, such as NumPy and 
 
 ## Problem classes
 
-For each domain, this section lists the foundational problem classes for Foundational tutorials and the problem classes for Applied tutorials, with the tutorials that already cover each one. To propose a new problem class or topic, open a [proposal](#how-to-propose-a-tutorial) and explain the gap it fills.
+For optimization, Hamiltonian simulation, and quantum machine learning, this section lists the foundational problem classes for Foundational tutorials and the problem classes for Applied tutorials. For quantum information science, it lists the topic categories. Each table shows the tutorials that already cover each class or category. To propose a new problem class or topic category, open a [proposal](#how-to-propose-a-tutorial) and explain the gap it fills.
 
 ### Optimization
 
@@ -133,16 +137,23 @@ Applied tutorials target one of the following problem classes:
 
 ### Quantum information science
 
-Quantum information science has no problem classes yet. A Foundational tutorial names its own teaching problem in the proposal, and an Applied tutorial applies a specialized technique, such as an advanced error mitigation or error correction method, to a workload at scale.
+Quantum information science tutorials belong to one of the following topic categories instead of a problem class. The first six categories form a path toward error correction, in the order that you meet them when you run circuits on hardware.
 
-The following Foundational topics fill known gaps in the catalog:
-
-| Suggested topic | Teaching problem | Leads to |
+| Topic category | Description | Existing tutorials |
 | --- | --- | --- |
-| Phase estimation at scale without vendor tools, for example iterative phase estimation with dynamic circuits | The one-dimensional transverse-field Ising chain, whose energies are known exactly | Energy estimation in Hamiltonian simulation |
-| Device benchmarking with cross-entropy benchmarking and random circuit sampling | Random circuits, simulated exactly at small sizes | Quantum advantage experiments |
-| Error correction beyond the repetition code, such as syndrome extraction with dynamic circuits | A small stabilizer code, such as the Steane code or the distance-3 surface code | <ul><li>[Low-overhead error detection with spacetime codes](/docs/tutorials/spacetime-codes)</li></ul> |
-| Fidelity estimation and certification of large entangled states | GHZ and graph states | Learning and certifying quantum states |
+| Algorithms and protocols | Standard quantum algorithms and entanglement protocols, run on hardware | <ul><li>[CHSH inequality](/docs/tutorials/chsh-inequality)</li><li>[Grover's algorithm](/docs/tutorials/grovers-algorithm)</li><li>[Shor's algorithm](/docs/tutorials/shors-algorithm)</li><li>[Quantum Phase Estimation with Q-CTRL's Qiskit Functions](/docs/tutorials/quantum-phase-estimation-qctrl)</li></ul> |
+| Characterization and benchmarking | Measure how well a device, or a state prepared on it, performs | <ul><li>[Real-time benchmarking for qubit selection](/docs/tutorials/real-time-benchmarking-for-qubit-selection)</li><li>[Refresh backend properties with real-time benchmarking](/docs/tutorials/refresh-backend-properties-with-real-time-benchmarking)</li><li>[Benchmark dynamic circuits with cut Bell pairs](/docs/tutorials/edc-cut-bell-pair-benchmarking)</li><li>[Benchmark QFT+M process fidelity with Orbit](/docs/tutorials/quantum-elements-orbit-qft-with-dynamic-circuits)</li><li>[Shadow tomography of the Greenberger-Horne-Zeilinger state](/docs/tutorials/shadow-tomography)</li></ul> |
+| Compilation | Map circuits to hardware through layout, routing, synthesis, native gates, and dynamic circuits for long-range gates | <ul><li>[Transpilation optimization with SABRE](/docs/tutorials/transpilation-optimizations-with-sabre)</li><li>[Qiskit AI-powered transpiler introduction](/docs/tutorials/ai-transpiler-introduction)</li><li>[Compilation methods for Hamiltonian simulation circuits](/docs/tutorials/compilation-methods-for-hamiltonian-simulation-circuits)</li><li>[Quantum kernels with fractional gates](/docs/tutorials/fractional-gates)</li><li>[Long-range entanglement with dynamic circuits](/docs/tutorials/long-range-entanglement)</li></ul> |
+| Circuit cutting | Split circuits that are too large or too deep for the hardware, and recombine the results at a sampling cost | <ul><li>[Circuit cutting for depth reduction](/docs/tutorials/depth-reduction-with-circuit-cutting)</li><li>[Wire cutting for expectation values estimation](/docs/tutorials/wire-cutting)</li><li>[Circuit cutting for periodic boundary conditions](/docs/tutorials/periodic-boundary-conditions-with-circuit-cutting)</li></ul> |
+| Error mitigation | Reduce the effect of noise on results with extra sampling and post-processing | <ul><li>[Readout error mitigation for the Sampler primitive using M3](/docs/tutorials/readout-error-mitigation-sampler)</li><li>[Combine error mitigation options with the Estimator primitive](/docs/tutorials/combine-error-mitigation-techniques)</li><li>[Utility-scale error mitigation with probabilistic error amplification](/docs/tutorials/probabilistic-error-amplification)</li><li>[Probabilistic error cancellation with shaded lightcones](/docs/tutorials/pec-with-shaded-lightcones)</li><li>[Improve expectation values with propagated noise absorption (PNA)](/docs/tutorials/propagated-noise-absorption)</li></ul> |
+| Error detection and correction | Detect or correct errors with extra qubits or checks | <ul><li>[Repetition codes](/docs/tutorials/repetition-codes)</li><li>[Low-overhead error detection with spacetime codes](/docs/tutorials/spacetime-codes)</li><li>[Probabilistic error cancellation with logical noise models](/docs/tutorials/probabilistic-error-cancellation-with-logical-noise-models)</li></ul> |
+| HPC integration | Run quantum workloads from high-performance computing (HPC) schedulers and classical workflows | <ul><li>[Run quantum workloads with QRMI](/docs/tutorials/run-quantum-workloads-with-qrmi)</li></ul> |
+
+The following topics fill known gaps in the catalog:
+
+- **Algorithms and protocols:** phase estimation at scale without vendor tools, such as iterative phase estimation with dynamic circuits.
+- **Characterization and benchmarking:** device benchmarking with cross-entropy benchmarking and random circuit sampling, and fidelity estimation and certification of large entangled states, such as GHZ and graph states.
+- **Error detection and correction:** error correction beyond the repetition code, such as syndrome extraction for the Steane code or the distance-3 surface code.
 
 ## How to propose a tutorial
 
