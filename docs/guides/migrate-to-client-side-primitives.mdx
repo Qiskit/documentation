@@ -23,9 +23,9 @@ This black-box experience is convenient: you don't have to worry about implement
 details. But it also makes the primitives hard to debug, customize, or learn from,
 because you can't see what happens during processing.
 
-The newly introduced [directed execution model](/docs/guides/directed-execution-model#directed-execution-model-beta) takes the opposite approach and
+The newly introduced [directed execution model](/docs/ibm-quantum-compute/directed-execution-model#directed-execution-model-beta) takes the opposite approach and
 provides a **white-box** experience. All design intents are captured on the client side,
-and a single server-side primitive [**Executor**](/docs/guides/directed-execution-model#executor-primitive) processes those inputs exactly as
+and a single server-side primitive [**Executor**](/docs/ibm-quantum-compute/directed-execution-model#executor-primitive) processes those inputs exactly as
 directed — it makes no implicit decisions on your behalf.
 
 Starting in `qiskit-ibm-runtime` v0.50.0, Sampler and Estimator are re-implemented
@@ -118,7 +118,7 @@ logger.setLevel(logging.INFO)
 
 The new Estimator no longer performs *implicit* noise learning when the PEA or PEC error
 mitigation method is selected. You must learn the noise models explicitly and pass them
-in. Use the new [`NoiseLearnerV3`](/docs/guides/noise-learning#noiselearnerv3) to control how circuits
+in. Use the new [`NoiseLearnerV3`](/docs/ibm-quantum-compute/noise-learning#noiselearnerv3) to control how circuits
 are stratified into layers. It takes a list of boxed circuit instructions (for example,
 the unique layers) as input.
 
@@ -288,12 +288,12 @@ when constructing the local PUB:
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
-- [Directed execution model](/docs/guides/directed-execution-model)
-- [Estimator inputs and outputs](/docs/guides/estimator-input-output)
-- [Specify Estimator options](/docs/guides/estimator-options)
-- [Sampler inputs and outputs](/docs/guides/sampler-input-output)
-- [Specify Sampler options](/docs/guides/sampler-options)
-- [Noise learning helper (NoiseLearnerV3)](/docs/guides/noise-learning#noiselearnerv3)
+- [Directed execution model](/docs/ibm-quantum-compute/directed-execution-model)
+- [Estimator inputs and outputs](/docs/ibm-quantum-compute/estimator-input-output)
+- [Specify Estimator options](/docs/ibm-quantum-compute/estimator-options)
+- [Sampler inputs and outputs](/docs/ibm-quantum-compute/sampler-input-output)
+- [Specify Sampler options](/docs/ibm-quantum-compute/sampler-options)
+- [Noise learning helper (NoiseLearnerV3)](/docs/ibm-quantum-compute/noise-learning#noiselearnerv3)
 - [NoiseLearnerV3 API reference](/docs/api/qiskit-ibm-runtime/noise-learner-v3-noise-learner-v3)
 - [`ConvertISAToClifford` transpiler pass](/docs/api/qiskit-ibm-runtime/transpiler-passes-convert-isa-to-clifford)
 - [Error mitigation and suppression techniques](/docs/guides/error-mitigation-and-suppression-techniques)

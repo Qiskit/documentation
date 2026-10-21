@@ -1,0 +1,23 @@
+---
+title: "Constrained Quantum Optimizer changelog"
+description: "Release history for Constrained Quantum Optimizer, including new features, breaking changes, and fixes."
+---
+
+# Constrained Quantum Optimizer changelog
+
+## [0.4.0] - 2026-09-22
+
+**Breaking changes**
+- Renamed the input parameter `model` to `problem`.
+- Renamed the output field `obj_value` to `objective_value`.
+- Replaced the `postprocessing` option with `postprocessing_level`, which takes an integer in the range `[0, 3]` instead of a string. The previous values map to `"off"` -> `0`, `"weak"` -> `1`, `"medium"` -> `2`, and `"strong"` -> `3`, and the default is unchanged at `3`.
+- Restructured `metadata.circuit_metrics`. It now reports `num_qubits`, `gate_count`, `depth`, `two_qubit_gate_count`, `two_qubit_gate_depth`, and `operations` separately for `before_transpilation` and `after_transpilation`, instead of a single flat dictionary of averaged gate counts. The field is `None` when the problem was solved during preprocessing and no circuit was run (error code `4712`).
+
+**Features**
+- Added the `seed_transpiler` option to make circuit synthesis and routing reproducible across runs.
+- Added the `job_tags` option to attach your own tags to every Qiskit Runtime job the function submits.
+- Added the output field `solution_bitstrings`, which returns the same solutions as `solutions` in bitstring form.
+- Added `metadata.solver_info.variable_mapping`, which maps each variable name to its character position in the entries of `solution_bitstrings`.
+
+**Documentation**
+- Documented that continuous (real-valued) variables are not supported and that integer variables require explicit bounds. Such models fail with error code `4710`.

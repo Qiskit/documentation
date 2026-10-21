@@ -1,0 +1,122 @@
+---
+title: Manage cost on the Pay-As-You-Go Plan
+description: How to manage costs of running jobs on QPUs when using the Pay-As-You-Go Plan on IBM Quantum Platform.
+
+---
+
+# Manage cost on the Pay-As-You-Go Plan
+
+This guide describes how to set a cost limit on your Pay-As-You-Go Plan instance.  You can also manage cost by [minimizing a workload's QPU usage](/docs/ibm-quantum-compute/minimize-time), and setting a [maximum execution time](/docs/ibm-quantum-compute/max-execution-time) on your workloads.
+
+The _cost limit_ refers to the total cost of all workloads run with this instance since it was created, and it will always be greater than or equal to the total cost. After the instance reaches the specified number of total seconds, no further workloads can be run and no more cost is incurred.
+
+    <Admonition type="note">
+      The cost limit is always specified in US dollars (USD), then converted to runtime seconds. However, for monthly billing purposes, you are charged in your local currency, specified on your IBM Cloud&reg; account. Because currency exchange rates can fluctuate, the cost for X runtime seconds might be different when initially calculated in USD than when you’re actually charged in your local currency. As a result, if your local currency is not USD, the total amount charged for the number of seconds specified in this field could vary from the dollar amount you specify.
+    </Admonition>
+
+<span id="cost-limit"></span>
+## Set or change a cost limit
+
+There are several ways to set or change a limit on how much is spent:
+
+* **IBM Quantum Platform**: Open the [Instances](https://quantum.cloud.ibm.com/instances) page. Find the instance you want to limit, click the Actions menu at the end of the row, and then click **Edit details**. Set the total cost limit or the usage limit, then click **Save changes**.
+   <Admonition type="note">
+   You can also set the cost or usage limit when creating a new instance under the Pay-As-You-Go Plan. When you select the Pay-As-You-Go tile, a field appears with the label "Total cost limit (Optional)". You can enter a total cost limit in this field.
+   </Admonition>
+
+* **API**: [Set the instance limit in seconds](/docs/api/qiskit-runtime-rest/tags/instances#tags__instances__operations__replace_instance_data).
+
+   ```api
+   PUT /v1/instances/configuration "instance_limit":<seconds>
+   ```
+
+* **IBM Cloud CLI**: For instructions to use the CLI, refer to [Getting started with the IBM Cloud CLI](https://cloud.ibm.com/docs/cli?topic=cli-getting-started).
+
+   ```cli
+      ibmcloud resource service-instance-update <instance_CRN>
+      -p '{"instance_limit_seconds":"<seconds>"}'
+   ```
+
+## View the cost limit
+
+There are several ways to view the current cost limit:
+
+* **IBM Quantum Platform**: The Total cost limit is shown on the Pay-As-You-Go tab of the [Instances](https://quantum.cloud.ibm.com/instances) table.
+
+* **API**:
+
+   ```api
+   GET /v1/instances/configuration
+   ```
+   See the [REST API documentation](/docs/api/qiskit-runtime-rest/tags/instances).
+
+* **IBM Cloud CLI**: For instructions to use the CLI, refer to [Getting started with the IBM Cloud CLI](https://cloud.ibm.com/docs/cli?topic=cli-getting-started).
+
+   ```cli
+   ibmcloud resource service-instance-update <instance_CRN> -p
+   '{"instance_limit_seconds":null}'
+   ```
+
+## Remove a cost limit
+
+You can remove the cost limit in several ways:
+
+* **IBM Quantum Platform**: Open the [Instances](https://quantum.cloud.ibm.com/instances) table. Find the instance you want to update, click the overflow menu at the end of the row, and then click **Edit details**. Delete the total cost limit or the usage, then click **Save changes**.
+
+* **API**: [Set the instance limit to `null`](/docs/api/qiskit-runtime-rest/tags/instances).
+
+   ```api
+   PUT /v1/instances/configuration "instance_limit":null
+   ```
+
+* **IBM Cloud CLI**: For instructions to use the CLI, refer to [Getting started with the IBM Cloud CLI](https://cloud.ibm.com/docs/cli?topic=cli-getting-started).
+
+   ```cli
+   ibmcloud resource service-instance-update <instance_CRN> -p
+   '{"instance_limit_seconds":null}'
+   ```
+<Admonition type="note">
+Only administrators and owners can edit the instance.  See the [Create access policies and access groups](/docs/ibm-quantum-platform/access-groups) guide for information about assigning access.
+</Admonition>
+
+### What happens when the cost limit is reached
+
+When a running job reports usage that causes the instance's cost limit to be exceeded, currently running jobs from that instance are stopped, their statuses are set to `Canceled` with a reason of `Ran too long`, and the account is billed for the usage.
+
+Note that job runtime is only reported periodically during execution. Therefore, the job might continue to run past the limit, or even to completion, and, as a result, the account can be billed for usage over the specified limit.
+
+No further jobs submitted by this instance will begin execution until the cost limit is increased.
+
+## How to see what you’re being charged
+
+You will receive a monthly invoice that provides details about your resource charges. You can check how much has been spent at any time on the [IBM Cloud Billing and usage](https://cloud.ibm.com/billing) page.
+
+The [Analytics](https://quantum.cloud.ibm.com/analytics) page displays usage according to the filters you set. Additionally, you can determine cost per instance or per job at any time from the [Instances](https://quantum.cloud.ibm.com/instances) page, as detailed below.
+
+### View instance usage
+
+To determine how much has been billed to an instance, from the [Instances](https://quantum.cloud.ibm.com/instances) page, click the instance to open its details page. The **Instance usage** field displays the total amount of this instance's QPU usage since it was created.
+
+You can view your billing cycle on the [Billing and usage page](https://cloud.ibm.com/billing).
+
+### View workload usage
+
+To determine how much has been billed to each workload associated with an instance, from the [Instances](https://quantum.cloud.ibm.com/instances) page, click the instance to open its details page. Next, click on the value under **Total workloads (all types)**.
+
+The **Usage** column displays the amount of QPU consumed by the job.
+
+## Set up spending notifications
+
+You can set up spending notifications to get notified when your account or a particular service reaches a specific spending threshold that you set. For information, see the [IBM Cloud Account types](https://cloud.ibm.com/docs/account?topic=account-accounts) page. IBM Cloud spending notifications must be used with other methods of cost management for several reasons:
+
+*   The notifications trigger only *after* cost surpasses the specified limit.
+*   Cost is submitted to the billing system hourly. Therefore, a long delay might occur between the job submission and the spending notification being sent.
+*   The billing system can take multiple days to get information to the invoicing system, which might cause further delay in notifications. For more information about how the IBM Cloud billing system works, see [Setting spending notifications](https://cloud.ibm.com/docs/billing-usage?topic=billing-usage-spending).
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+    - Review the [plans](/docs/ibm-quantum-platform/plans-overview) available to IBM Quantum users.
+    - Review suggestions to [minimize job QPU usage](/docs/ibm-quantum-compute/minimize-time).
+    - Learn how to set a [maximum execution time](/docs/ibm-quantum-compute/max-execution-time) on jobs.
+</Admonition>

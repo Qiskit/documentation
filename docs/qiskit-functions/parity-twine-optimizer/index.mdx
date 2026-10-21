@@ -1,0 +1,132 @@
+---
+title: "Parity Twine Optimizer: A Qiskit Function by ParityQC"
+description: "Solve optimization problems on quantum computers using Parity Twine. Minimizes gate counts and circuit depths to run quantum optimization algorithms."
+---
+
+{/* cspell:ignore parityqc QOBLIB  */}
+
+# Parity Twine Optimizer: A Qiskit Function by ParityQC
+
+*See the [API reference](/docs/qiskit-functions/parity-twine-optimizer/api_ref)*
+
+<Admonition type="note">
+  Qiskit Functions are an experimental feature available only to IBM Quantum&reg; Premium Plan, Flex Plan, and On-Prem (via IBM Quantum Platform API) Plan users. They are in preview release status and subject to change.
+</Admonition>
+
+## Overview
+
+
+The Parity Twine Optimizer allows users to solve optimization problems with quantum computers using the [Parity Twine method](https://arxiv.org/abs/2501.14020).
+This approach, built on the Parity Architecture, uses the ParityQC compiler to minimize the gate counts and circuit depth required to run a quantum algorithm while accounting for device connectivity.
+
+This resource reduction enables solving industry-relevant optimization problems for sizes that are unfeasible with standard, SWAP-heavy, transpilation methods.
+The Parity Twine Optimizer automates transpilation steps and can be used with minimal user input.
+
+The Parity Twine approach outperforms all other compilation methods in terms of reducing gate counts and circuit depths for quantum algorithms such as the
+[quantum approximate optimization algorithm (QAOA)](https://arxiv.org/abs/2501.14020) and [quantum Fourier transform (QFT)](https://arxiv.org/abs/2604.12465).
+By abstracting quantum information away from the physical qubits, non-local interactions are implemented without SWAP gates. Instead, Parity Twine chains (sequences of CNOT gates) systematically distribute logical
+parity information between qubits.
+
+The optimizer uses the QAOA to minimize the energy of a given cost function. QAOA is a hybrid quantum-classical variational algorithm designed to solve combinatorial optimization problems by approximating the ground state
+of a cost Hamiltonian ($H_C$). A mixing term ($H_B$) drives transitions between states to explore the solution space. An alternating sequence of these terms, controlled by parameters $\gamma$ and $\beta$, defines the unitary
+$U(\gamma, \beta) = \Pi_{i=1}^p e^{-i \beta_i H_B} e^{-i \gamma_i H_C}$, which acts on the initial state.
+
+Encoding of the problem unitary, exp($-i \beta H_C)$), requires encoding of all logical $n$-body rotation operators (exp($-i \beta J_{i,j,...n}Z_iZ_j...Z_n$)).
+This can be accomplished using $n$-body generators (Parity Twine Networks), which reduce the QAOA circuit depth and two-qubit gate count.
+
+## Description
+
+The Parity Twine Optimizer input consists of an optimization problem, the chosen IBM Quantum hardware name, and additional optional arguments to tailor the transpilation and hardware execution settings. The optimizer
+function routes the problem definition to the Parity Twine Compiler. Figure 1 shows a summary of the function workflow.
+
+
+![Parity Twine Optimizer workflow](/docs/images/guides/parity-twine-optimizer/process_pipeline.avif "Figure 1: Summary of the Parity Twine Optimizer workflow.")
+
+The input optimization problem is pre-processed into a (normalized) Hamiltonian. The ParityQC compiler then constructs a parameterized Parity Twine ansatz circuit, which is transpiled to a logical ansatz matching the native
+gate set of the chosen hardware.
+
+QAOA circuit parameters are classically optimized using the ["efficient depth one"](https://github.com/qiskit-community/qaoa_training_pipeline/blob/main/how_tos/efficient_depth_one.ipynb) approach and assigned to the transpiled circuit.
+As one round of QAOA is used, optimal $\gamma$ and $\beta$ parameters are obtained using a grid search on a CPU without the need for costly iterative optimization
+over many circuit calls. This greatly minimizes the required QPU runtime of the optimizer. Execution time per circuit is mostly determined by the constant overhead to run a job on the QPU.
+With the circuit parameters set, the job is submitted to the specified IBM&reg; QPU.
+
+Raw results are then post-processed. This step uses a local greedy search that iterates randomly through the solution string and flips bit values if this reduces the value of the cost function.
+
+## Benchmarks
+
+<Admonition type="caution" title="Disclaimer">
+    Performance can depend on both the problem instance and subsequent processing steps. In some cases, classical samples and quantum-generated samples might achieve similar final solution quality after equivalent post-processing. Evaluation should therefore consider the complete optimization workflow.
+</Admonition>
+
+### Sherrington-Kirkpatrick model
+
+Figure 2 demonstrates the effectiveness of the Parity Twine Optimizer. This compares results obtained using the optimizer against random sampling for the Sherrington-Kirkpatrick model
+with increasing qubits.
+
+Post-processing of both the random and optimizer results leads to exact ground states, but the raw minimum energy output from Twine QAOA is always better than random
+values. For the largest qubit numbers considered (90 and 100), hardware noise degrades the optimizer result where it reverts to raw values matching random sampling.
+
+![Parity Twine Optimizer SK Benchmarks](/docs/images/guides/parity-twine-optimizer/benchmark_run_sk.avif "Figure 2: Benchmark results for Parity Twine Optimizer for SK model compared to random sampling. Results were obtained on
+`ibm_boston` with 20,000 shots, repeated three times.")
+
+See this [tutorial](/docs/tutorials/parity-twine-optimizer-sk) for an introduction to the Sherrington-Kirkpatrick model and details on how to solve it with the Parity Twine Optimizer.
+
+### Market split problem
+
+Table 1 shows specific performance metrics for the Parity Twine Optimizer applied to various instances of the market split (MS) problem.
+These were obtained from the [QOBLIB - Quantum Optimization Benchmarking Library](https://github.com/ZIB-AOPT/QOBLIB) and correspond to
+[submissions](https://github.com/ZIB-AOPT/QOBLIB/tree/main/01-marketsplit/submissions/20260728_Parity_Twine_Optimizer) made to the
+library using the Parity Twine Optimizer.
+
+MS violation is an accuracy metric that measures how far the solution is from satisfying all constraints, defined as $\sum_i ((Ax - b)_i)^2$. Lower values of this metric indicate more accurate solutions.
+Table 1 reports averaged values for five runs of each instance using the Parity Twine Optimizer with the `ibm_boston` device as a backend and 100,000 shots.
+The minimum MS violation obtained from the runs of each instance is reported.
+
+
+| Instance      | Qubits | Two-qubit gates | Two-qubit depth | MS violation | Mapping time (s) | QPU runtime (s) | Post-process time (s) |
+|:--------------|:-------|:----------------|:----------------|:-------------|:-----------------|:----------------|:----------------------|
+| ms_03_050_002 | 20     | 399             | 76              | 0          | 45               | 29              | 71                    |
+| ms_03_100_022 | 20     | 399             | 76              | 0          | 30               | 29              | 77                    |
+| ms_03_200_177 | 20     | 399             | 76              | 0          | 33               | 29              | 63                    |
+| ms_04_050_001 | 30     | 899             | 116             | 1          | 68               | 29              | 216                   |
+| ms_04_100_003 | 30     | 899             | 116             | 2          | 89               | 29              | 187                   |
+| ms_04_200_030 | 30     | 899             | 116             | 3          | 89               | 29              | 219                   |
+| ms_05_100_003 | 40     | 1599            | 156             | 3          | 237              | 30              | 364                   |
+| ms_06_050_001 | 50     | 2499            | 196             | 4          | 499              | 30              | 464                   |
+| ms_07_050_001 | 60     | 3599            | 236             | 17         | 858              | 31              | 637                   |
+| ms_08_050_001 | 70     | 4899            | 276             | 36         | 1561             | 31              | 773                   |
+
+<p align="center"><i>Table 1: Performance metrics for different instances of the market split problem. Instance names are for corresponding examples in the [QOBLIB](https://github.com/ZIB-AOPT/QOBLIB) problem library. As mentioned previously in the description section, the QPU time is minimal and almost constant, as only one round of QAOA is used with optimal circuit parameters obtained on a CPU.</i></p>
+
+
+See this [tutorial](/docs/tutorials/parity-twine-optimizer-ms) for an introduction to the market split problem and details on how to solve it with the Parity Twine Optimizer.
+
+### Maximum independent set problem
+
+Figure 3 compares results obtained using the Parity Twine optimizer against random sampling for the maximum independent set problem for selected instances
+obtained from the [QOBLIB - Quantum Optimization Benchmarking Library](https://github.com/ZIB-AOPT/QOBLIB). These range from 18 (mammalia-kangaroo-interactions) to
+114 (es60fst03) qubits.
+
+For small instances, the raw maximum independent set size results from the optimizer and random sampling are similar, but for larger instances, the optimizer gives far better results.
+Post-processing of both the random-sampled and optimizer results again leads to set sizes in agreement with exact values.
+
+![Parity Twine Optimizer MIS Benchmarks](/docs/images/guides/parity-twine-optimizer/benchmark_run_mis.avif "Figure 3: Benchmark results for Parity Twine Optimizer for MIS model compared to random sampling.
+Results were obtained on `ibm_boston` with 20,000 shots, repeated three times.")
+
+## Get started
+
+To learn how to load the function and run it, see [Get started with Parity Twine Optimizer](/docs/qiskit-functions/parity-twine-optimizer/guides/get-started).
+
+## Get support
+
+Contact [ParityQC](mailto:support@parityqc.com) with any questions or issues.
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+- Request access to the function by completing this [form](https://parityqc.com/products/parity-twine-optimizer/free-trial).
+- Visit the [API reference](/docs/qiskit-functions/parity-twine-optimizer/api_ref) for this Qiskit Function.
+- Try the [tutorial](/docs/tutorials/parity-twine-optimizer-ms) for applying the Parity Twine Optimizer to the market split problem.
+- Try the [tutorial](/docs/tutorials/parity-twine-optimizer-sk) for applying the Parity Twine Optimizer to the Sherrington-Kirkpatrick model.
+- Review the [Connectivity-aware Synthesis of Quantum Algorithms, Drier et al. (2025)](https://arxiv.org/abs/2501.14020) ArXiv preprint.
+</Admonition>

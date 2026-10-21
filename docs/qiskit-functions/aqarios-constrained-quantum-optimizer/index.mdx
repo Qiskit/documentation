@@ -1,0 +1,88 @@
+---
+title: "Constrained Quantum Optimizer - A Qiskit Function by Aqarios"
+description: "Solve constrained binary optimization problems on IBM Quantum hardware by using the iterative warm-starting QAOA with XY-mixers by Aqarios."
+---
+
+{/* cspell:ignore Aqarios QOBLIB Bucher docplex forall Zachary quicksum */}
+
+# Constrained Quantum Optimizer - A Qiskit Function by Aqarios
+
+*See the [API reference](/docs/qiskit-functions/aqarios-constrained-quantum-optimizer/api_ref)*
+
+<Admonition type="note">
+  Qiskit Functions are an experimental feature available only to IBM Quantum&reg; Premium Plan, Flex Plan, and On-Prem (via IBM Quantum Platform API) Plan users. They are in preview release status and subject to change.
+</Admonition>
+
+## Overview
+
+With the Constrained Quantum Optimizer by Aqarios, you can solve constrained binary optimization problems on IBM&reg; quantum hardware without manual reformulation and circuit mapping. Simply supply a problem as an LP file, an MPS file, or a [Luna Model](https://docs.aqarios.com/luna-model). The function handles reformulation, circuit synthesis, transpilation, and hardware execution automatically. The solver utilizes iterative warm-starting [\[1\]](#references) of the [FlexQAOA](https://docs.aqarios.com/luna-solve/algorithms/quantum-gate/flexqaoa/) algorithm, a constraint-native extension of the Quantum Approximate Optimization Algorithm (QAOA).
+
+The optimizer targets binary problems with constraints. In particular, one-hot constraints and set-packing constraints can be natively enforced by using XY-mixers. Other constraint types are automatically reformulated as penalty terms.
+
+<Admonition type="note" title="Supported variable types">
+  The function solves discrete problems only. Every decision variable must be binary, or integer with an explicit lower and upper bound, so that it can be encoded into qubits. Continuous (real-valued) variables are not supported: a model that contains them is rejected with error code `4710`.
+</Admonition>
+
+## Description
+
+<Admonition type="caution" title="Disclaimer">
+    Performance can depend on both the problem instance and subsequent processing steps. In some cases, classical samples and quantum-generated samples might achieve similar final solution quality after equivalent post-processing. Evaluation should therefore consider the complete optimization workflow.
+</Admonition>
+
+The Constrained Quantum Optimizer implements the Iterative warm-start XY-mixer QAOA(IWS-QAOA) [\[1\]](#references). The algorithm runs fixed-angle QAOA circuits on quantum hardware and updates the initial warm-start probabilities of each circuit using measurement outcomes from the previous iteration. No variational parameter training is required; instead, a fixed linear ramp parametrization is chosen.
+
+By using XY-mixers to enforce one-hot constraints, you can drastically improve solution quality for constrained problems, because the search space is practically reduced to a smaller feasible subspace &mdash; and no additional complexity, due to penalty terms, is introduced in the optimization landscape.
+
+### Workflow
+
+The workflow of the function is described below:
+
+1. **Preprocessing**: Before circuit synthesis, the optimizer analyzes the constraint structure of the input problem:
+    - _Graph preprocessing:_ When applicable to the problem, it is analyzed as a graph, where edges determine the relationship between variables. This graph analysis enables two preprocessing problem enhancements. First, single constraints can be aggregated to one large constraint by using clique merging, so that they are represented by a single XY-mixer. Second, variables with only a single neighbor can be fixed deterministically, reducing the problem size and complexity.
+    - _Constraint resolution:_ The preprocessor handles each constraint separately: If the constraint is a one-hot constraint, it can be enforced through XY-mixers. If it is a set-packing constraint, it will first be transformed to a one-hot constraint. Equality constraints are handled through quadratic penalties, and inequality constraints through [unbalanced penalization](https://doi.org/10.1088/2058-9565/ad35e4).
+    - _Penalty derivation:_ Constraints that cannot be expressed as one-hot equality constraints are converted to penalty terms. The optimizer derives the penalty strength automatically from the problem structure.
+2. **Iterative warm-starting**: The optimizer runs multiple _parallel warm-start chains_. Each chain holds a probability distribution over variable assignments, which is used as the starting probability of the QAOA circuit (warm-start state). At each iteration, a chain samples from the quantum circuit, applies classical postprocessing, and updates its distribution based on the occurrence of samples. Across iterations, this focuses the search on high-quality solutions without a variational optimization loop.
+
+The number of chains (`num_parallel`), the total shot budget per chain (`total_shots`), and the number of QAOA repetitions (`reps`) are the primary controls for trading solution quality against runtime.
+
+![Workflow diagram of the Constrained Quantum Optimizer](/docs/images/guides/aqarios-constrained-quantum-optimizer/cqo-diagram.svg)
+
+## Benchmarks
+
+The benchmarks below show that the Constrained Quantum Optimizer Qiskit Function is capable of finding high quality, feasible solutions to constrained optimization problems with well above 100 binary variables. Accuracy is the ratio of the found objective value to the known optimum. Runtime is wall-clock time from function invocation to result delivery. QPU usage is the billable Quantum Compute time.
+
+Two problems were examined: The [Maximum Independent Set](/docs/tutorials/find-the-maximum-independent-set-with-aqarios-constrained-quantum-optimizer) (MIS) problem and the Max-$k$-Cut, which is an extension of the well-known MaxCut problem to more than two categories. Max-$k$-Cut is also the optimization problem equivalent of the graph coloring decision problem (when all edges are cut, the graph is $k$-colorable).
+
+| Problem               | Variables | Constraints | Qubits | Accuracy | Feasibility | Total runtime (s) | QPU usage (s) | Total shots |
+|-----------------------|-----------|-------------|--------|----------|-------------|-------------------|---------------|-------------|
+| MIS es60fst02         | 186       | 280         | 124    | 100.0%   | True        | 940.2             | 147.0         | 25.0k       |
+| MIS sloane\_2dc\_128  | 128       | 5173        | 74     | 100.0%   | True        | 347.6             | 106.0         | 12.5k       |
+| Max-3-Cut Karate Club | 99        | 33          | 99     | 98.7%    | True        | 279.5             | 166.0         | 25.0k       |
+| Max-4-Cut Karate Club | 132       | 33          | 132    | 100.0%   | True        | 258.3             | 200.0         | 25.0k       |
+
+### Benchmark Notes
+
+- The above results were obtained on the `ibm_marrakesh` Heron r2 processor with default options and `use_session` enabled. For the `sloane_2dc_128` instance, `total_shots=12500` was used.
+- The reduced qubit count for MIS instances (74 and 124 versus 128 and 186 variables) reflects variable fixing in preprocessing.
+- The problem instances for MIS are taken from the [Quantum Optimization Benchmarking Library](https://doi.org/10.1038/s43588-026-00991-1). - The instance for the Max-$k$-Cut problem is the [Zachary Karate Club graph](https://en.wikipedia.org/wiki/Zachary%27s_karate_club), which has a chromatic number of 5.
+
+## Get started
+
+To learn how to load the function and run it, see [Get started with Constrained Quantum Optimizer](/docs/qiskit-functions/aqarios-constrained-quantum-optimizer/guides/get-started).
+
+## Get support
+
+For questions or issues, contact [support@aqarios.com](mailto:support@aqarios.com) with your job ID.
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+  * [Request access to the Constrained Quantum Optimizer by Aqarios](https://aqarios.com/qiskit-function-access/).
+  * Visit the [API reference](/docs/qiskit-functions/aqarios-constrained-quantum-optimizer/api_ref) for the complete parameter and output documentation.
+  * Try the [Find the Maximum Independent Set with the Aqarios Constrained Quantum Optimizer](/docs/tutorials/find-the-maximum-independent-set-with-aqarios-constrained-quantum-optimizer) tutorial for a deep-dive into a real QOBLIB benchmark instance.
+  * Review the publication [Constrained Quantum Optimization via Iterative Warm-Start XY-Mixers](https://doi.org/10.1088/1367-2630/ae8ea2).
+</Admonition>
+
+## References
+
+1. Bucher et al. (2026), *Constrained Quantum Optimization via Iterative Warm-Start XY-Mixers* [10.1088/1367-2630/ae8ea2](https://doi.org/10.1088/1367-2630/ae8ea2)
