@@ -2906,6 +2906,30 @@ Both versions build the same shell-model Hamiltonian from the USDA interaction, 
 
 The [Appendix](#appendix) explains why the Python example searches for its reference determinant and uses the first-order amplitude. The Fortran application keeps the simpler choices, so its starting point is higher in energy for $^{20}\mathrm{Ne}$, and its circuits seed different amplitudes. Because it discards rather than repairs samples with the wrong symmetry, low sample retention can also limit the accuracy of a Fortran result even though the Hamiltonian is correct.
 
+## Next steps (Fortran)
+
+<Admonition type="note" title="Recommendations">
+
+Explore these related resources:
+
+- [qiskit-fortran](https://github.com/Qiskit/qiskit-fortran): the Fortran bindings for Qiskit that this application is built on.
+- [Qiskit C API](/docs/api/qiskit-c): the C library that the Fortran bindings call, and [Install the Qiskit C API](/docs/guides/install-c-api) for building it.
+- [Sample-based quantum diagonalization of a chemistry Hamiltonian](/docs/tutorials/sample-based-quantum-diagonalization): the same algorithm applied to electronic structure.
+- [Quantum diagonalization algorithms](/learning/courses/quantum-diagonalization-algorithms): a full course on subspace diagonalization, including Krylov variants.
+- [Execution modes](/docs/guides/execution-modes): explore batch mode for scheduling independent jobs.
+
+</Admonition>
+
+### Extensions to consider (Fortran)
+
+Each difference from the Python example is a place to extend the Fortran application:
+
+- **Repair samples instead of discarding them.** The symmetry filter drops every shot with the wrong proton or neutron number, so on noisy hardware only a small fraction of shots survive. Configuration recovery, as in the Python example, repairs those shots using average orbital occupancies from the previous diagonalization and recycles them into the subspace.
+- **Build a product subspace.** $M_J = M_p + M_n$ couples the two halves of a bitstring, so filtering whole shots on $M_J$ discards valid proton and neutron half-configurations. Combining every sampled proton configuration with every sampled neutron configuration, and keeping the products in the target $M_J$ and parity sector, can span a much larger subspace from the same shots.
+- **Search for the reference determinant.** Searching all paired fillings for the lowest diagonal energy, as the [Appendix](#appendix) describes, gives a lower starting energy for $^{20}\mathrm{Ne}$ than filling the lowest single-particle energies.
+- **Submit the ensemble together.** The driver submits one job per circuit and waits for each to finish. Submitting all circuits in one Sampler job, or in a batch, reduces queue and per-job overhead.
+- **Run a larger model space.** Supply a $pf$-shell interaction file such as `gxpf1.snt` with `--snt`, or place it in the run directory and use the `--shell pf` shorthand, together with the valence nucleon counts. This runs on a 40-qubit register, like the Python example's $^{44}\mathrm{Ti}$ and $^{48}\mathrm{Cr}$ runs. Larger subspaces then need more memory for the dense LAPACK diagonalization.
+
 </TabItem>
 </Tabs>
 
