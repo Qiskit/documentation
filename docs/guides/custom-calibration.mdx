@@ -25,8 +25,7 @@ These instructions are calibrated with the standard instruction set, so you don'
 | `reset_2` | Shorter conditional reset pulse that uses `measure_2` | Mid-circuit qubit reset | [`MidCircuitReset`](/docs/api/qiskit-ibm-runtime/circuit-library-mid-circuit-reset) (v0.49.0 or later) | Heron |
 | `measure_reset` | Measurement like `measure` that also resets the qubit* | Measure and reset a qubit | [`MeasureReset`](/docs/api/qiskit-ibm-runtime/circuit-library-measure-reset) (v0.50.0 or later) | Heron, Nighthawk r2 |
 | `measure_reset_2` | Shorter measurement like `measure_2` that also resets the qubit* | Measure and reset a qubit mid-circuit | Initialize [`MeasureReset`](/docs/api/qiskit-ibm-runtime/circuit-library-measure-reset) with `name="measure_reset_2"` (v0.50.0 or later) | Heron, Nighthawk r2 |
-| `xslow` | Bit-flip (X) gate with an extended duration | [Postselection](/docs/addons/qiskit-mitigation/guides/postselection-with-non-markovian-error-checks) and error mitigation. It is the default value of the `x_pulse_type` option in [postselection passes](/docs/api/qiskit-mitigation/postselection-passes) | All |
-. | [`XSlowGate`](/docs/api/qiskit-ibm-runtime/circuit-library-x-slow-gate#xslowgate) (v0.50.0 or later) | All |
+| `xslow` | Bit-flip (X) gate with an extended duration | [Postselection](/docs/addons/qiskit-mitigation/guides/postselection-with-non-markovian-error-checks) and error mitigation. It is the default value of the `x_pulse_type` option in [postselection passes](/docs/api/qiskit-mitigation/postselection-passes) | [`XSlowGate`](/docs/api/qiskit-ibm-runtime/circuit-library-x-slow-gate#xslowgate) (v0.50.0 or later) | All |
 
 \* On Heron processors, the reset is conditional on the measurement result. On Nighthawk r2 processors, the reset is unconditional.
 
@@ -70,7 +69,7 @@ print(backend.calibration_id)
 ```
 
 <Admonition type="note">
-Alternative calibrations are not available on all QPUs.
+Most alternative calibrations are not available on all QPUs. The experimental [`qec_experimental`](#qec-experimental) calibration is available on all backends.
 </Admonition>
 
 ### Slow gate calibrations
@@ -125,6 +124,47 @@ print(slow_backend.target["cz"][qubits].duration)
 ```
 
 Because the target reflects the selected calibration, transpile your circuits against the backend that uses the same `calibration_id` you plan to run on.
+
+<span id="qec-experimental" />
+### QEC experimental calibration
+
+<Admonition type="caution" title="Experimental">
+The `qec_experimental` calibration and the `for_loop` instruction are experimental. Both support only the use case described on this page and might change or be removed without notice.
+</Admonition>
+
+The `qec_experimental` calibration is available on all backends. With this calibration, you can use the `for_loop` instruction to repeat a block of operations a fixed number of times, without unrolling the block into the circuit. The block can include mid-circuit measurements. Use this calibration for quantum error correction (QEC) experiments, such as running many rounds of a repetition code.
+
+The `for_loop` instruction has these restrictions:
+
+- It is supported in [Executor](/docs/guides/get-started-with-executor) jobs only.
+- Results must be classified (level 2).
+- The loop must be countable, with an integer number of iterations. Other loop forms are not supported.
+- The product of the number of shots and the size of the classical register has a maximum limit.
+
+To use it, pass `calibration_id="qec_experimental"` when you retrieve the backend and build the repeated block with `QuantumCircuit.for_loop`:
+
+```python
+from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister
+from qiskit_ibm_runtime import QiskitRuntimeService
+
+service = QiskitRuntimeService()
+backend = service.backend("<backend_name>", calibration_id="qec_experimental")
+
+# Three data qubits and two syndrome qubits
+data = QuantumRegister(3, "data")
+syndrome = QuantumRegister(2, "syndrome")
+creg = ClassicalRegister(2, "syndrome_bits")
+qc = QuantumCircuit(data, syndrome, creg)
+
+num_rounds = 10
+with qc.for_loop(range(num_rounds)):
+    qc.cx(data[0], syndrome[0])
+    qc.cx(data[1], syndrome[0])
+    qc.cx(data[1], syndrome[1])
+    qc.cx(data[2], syndrome[1])
+    qc.measure(syndrome, creg)
+    qc.reset(syndrome)
+```
 
 ## Next steps
 
