@@ -131,7 +131,7 @@ pip install qiskit qiskit-ibm-runtime samplomatic
 
 **Sampler:**
 ```python
-from qiskit_ibm_runtime import Sampler
+from qiskit_ibm_runtime import SamplerV2 as Sampler
 ```
 
 **Executor:**
@@ -411,8 +411,7 @@ There is no equivalent step in Sampler because it undoes twirling for you.
 import numpy as np
 from qiskit.circuit import QuantumCircuit
 from qiskit.transpiler import generate_preset_pass_manager
-from qiskit_ibm_runtime import QiskitRuntimeService
-from qiskit_ibm_runtime import Sampler
+from qiskit_ibm_runtime import QiskitRuntimeService, SamplerV2 as Sampler
 
 # 1. Account + backend
 service = QiskitRuntimeService()
