@@ -3,7 +3,7 @@ title: Contribute a tutorial
 description: Learn which tutorials the community can contribute, the requirements for each kind of tutorial, and how to propose one
 ---
 
-{/* cspell:ignore Birkhoff Floquet Polaron QOBLIB Steane VLSI */}
+{/* cspell:ignore Birkhoff Floquet Keerthi Kumaran Polaron QOBLIB Steane VLSI */}
 
 # Contribute a tutorial
 
@@ -63,30 +63,30 @@ The IBM Quantum team maintains this list. Classical packages, such as NumPy and 
 
 ## Problem classes
 
-For optimization, Hamiltonian simulation, and quantum machine learning, this section lists the foundational problem classes for Foundational tutorials and the problem classes for Applied tutorials. For quantum information science, it lists the topic categories. Each table shows the tutorials that already cover each class or category. To propose a new problem class or topic category, open a [proposal](#how-to-propose-a-tutorial) and explain the gap it fills.
+For optimization, Hamiltonian simulation, and quantum machine learning, this section lists the foundational problem classes for Foundational tutorials and the problem classes for Applied tutorials. For quantum information science, it lists the topic categories. Each table shows the tutorials that already cover each class or category, and the community members who contributed to it. To propose a new problem class or topic category, open a [proposal](#how-to-propose-a-tutorial) and explain the gap it fills.
 
 ### Optimization
 
 Foundational tutorials target the following problem class:
 
-| Problem class | Description | Existing tutorials |
-| --- | --- | --- |
-| Max-cut | Partition a graph's nodes into two sets to maximize the weight of the edges between them | <ul><li>[Quantum approximate optimization algorithm](/docs/tutorials/quantum-approximate-optimization-algorithm)</li><li>[Advanced techniques for QAOA](/docs/tutorials/advanced-techniques-for-qaoa)</li><li>[Warm-start QAOA with the Optimization Mapper Qiskit addon](/docs/tutorials/warm-start-qaoa)</li><li>[Pauli correlation encoding to reduce Max-Cut requirements](/docs/tutorials/pauli-correlation-encoding-for-qaoa)</li></ul> |
+| Problem class | Description | Existing tutorials | Community contributors |
+| --- | --- | --- | --- |
+| Max-cut | Partition a graph's nodes into two sets to maximize the weight of the edges between them | <ul><li>[Quantum approximate optimization algorithm](/docs/tutorials/quantum-approximate-optimization-algorithm)</li><li>[Advanced techniques for QAOA](/docs/tutorials/advanced-techniques-for-qaoa)</li><li>[Warm-start QAOA with the Optimization Mapper Qiskit addon](/docs/tutorials/warm-start-qaoa)</li><li>[Pauli correlation encoding to reduce Max-Cut requirements](/docs/tutorials/pauli-correlation-encoding-for-qaoa)</li></ul> | None yet |
 
 Applied tutorials target one of the ten problem classes in the [Quantum Optimization Benchmarking Library (QOBLIB)](https://arxiv.org/abs/2504.03832):
 
-| Problem class | Description | Existing tutorials |
-| --- | --- | --- |
-| Market split | Multi-dimensional subset sum | <ul><li>[Solve the Market Split problem with Kipu Quantum's Iskay Quantum Optimizer](/docs/tutorials/solve-market-split-problem-with-iskay-quantum-optimizer)</li><li>[Solve the market split problem with the ParityQC Parity Twine Optimizer](/docs/tutorials/parity-twine-optimizer-ms)</li></ul> |
-| Low autocorrelation binary sequences | Radar and communications sequence design | None yet |
-| Minimum Birkhoff decomposition | Doubly stochastic matrix decomposition | None yet |
-| Steiner tree packing | VLSI design and wire routing | None yet |
-| Sports tournament scheduling | Constraint satisfaction | None yet |
-| Portfolio optimization | Multi-period portfolios with transaction costs and short selling | <ul><li>[Dynamic portfolio optimization with Global Data Quantum's Portfolio Optimizer](/docs/tutorials/global-data-quantum-optimizer)</li></ul> |
-| Maximum independent set | Unweighted maximum independent set on graphs | <ul><li>[Find the maximum independent set with Aqarios Constrained Quantum Optimizer](/docs/tutorials/find-the-maximum-independent-set-with-aqarios-constrained-quantum-optimizer)</li></ul> |
-| Network design | Telecommunications network planning | None yet |
-| Vehicle routing | Vehicle routing with time windows and knapsack constraints | None yet |
-| Topology design | Graph golf (the degree-diameter problem) | None yet |
+| Problem class | Description | Existing tutorials | Community contributors |
+| --- | --- | --- | --- |
+| Market split | Multi-dimensional subset sum | <ul><li>[Solve the Market Split problem with Kipu Quantum's Iskay Quantum Optimizer](/docs/tutorials/solve-market-split-problem-with-iskay-quantum-optimizer)</li><li>[Solve the market split problem with the ParityQC Parity Twine Optimizer](/docs/tutorials/parity-twine-optimizer-ms)</li></ul> | None yet |
+| Low autocorrelation binary sequences | Radar and communications sequence design | None yet | None yet |
+| Minimum Birkhoff decomposition | Doubly stochastic matrix decomposition | None yet | None yet |
+| Steiner tree packing | VLSI design and wire routing | None yet | None yet |
+| Sports tournament scheduling | Constraint satisfaction | None yet | None yet |
+| Portfolio optimization | Multi-period portfolios with transaction costs and short selling | <ul><li>[Dynamic portfolio optimization with Global Data Quantum's Portfolio Optimizer](/docs/tutorials/global-data-quantum-optimizer)</li></ul> | None yet |
+| Maximum independent set | Unweighted maximum independent set on graphs | <ul><li>[Find the maximum independent set with Aqarios Constrained Quantum Optimizer](/docs/tutorials/find-the-maximum-independent-set-with-aqarios-constrained-quantum-optimizer)</li></ul> | None yet |
+| Network design | Telecommunications network planning | None yet | None yet |
+| Vehicle routing | Vehicle routing with time windows and knapsack constraints | None yet | None yet |
+| Topology design | Graph golf (the degree-diameter problem) | None yet | None yet |
 
 ### Hamiltonian simulation
 
@@ -94,24 +94,24 @@ The [Hamiltonian simulation problem classes](https://github.com/Qiskit/documenta
 
 Foundational tutorials target one of the following problem classes, which group related systems:
 
-| Problem class | Description | Existing tutorials |
-| --- | --- | --- |
-| Molecular electronic structure | Ground-state energies of molecules, from N<sub>2</sub> in a minimal basis to strongly correlated molecules across geometries | <ul><li>[Sample-based quantum diagonalization of a chemistry Hamiltonian](/docs/tutorials/sample-based-quantum-diagonalization)</li><li>[SqDRIFT algorithm for ground state estimation](/docs/tutorials/sqdrift)</li><li>[Dissociation PES curves with Qunova HiVQE](/docs/tutorials/qunova-hivqe)</li></ul> |
-| Nuclear structure | Ground-state energies of nuclei in the shell model | <ul><li>[Pooled sample-based quantum diagonalization of a nuclear Hamiltonian](/docs/tutorials/nuclear-sqd-pooled)</li></ul> |
-| Spin chains | Ground-state energies and time evolution of one-dimensional Heisenberg-type and Ising chains | <ul><li>[Krylov quantum diagonalization of lattice Hamiltonians](/docs/tutorials/krylov-quantum-diagonalization)</li><li>[Ground-state energy estimation of the Heisenberg chain with VQE](/docs/tutorials/spin-chain-vqe)</li><li>[Multi-product formulas to reduce Trotter error](/docs/tutorials/multi-product-formula)</li><li>[Approximate quantum compilation for time evolution circuits](/docs/tutorials/approximate-quantum-compilation-for-time-evolution)</li><li>[Operator backpropagation (OBP) for estimation of expectation values](/docs/tutorials/operator-back-propagation)</li></ul> |
+| Problem class | Description | Existing tutorials | Community contributors |
+| --- | --- | --- | --- |
+| Molecular electronic structure | Ground-state energies of molecules, from N<sub>2</sub> in a minimal basis to strongly correlated molecules across geometries | <ul><li>[Sample-based quantum diagonalization of a chemistry Hamiltonian](/docs/tutorials/sample-based-quantum-diagonalization)</li><li>[SqDRIFT algorithm for ground state estimation](/docs/tutorials/sqdrift)</li><li>[Dissociation PES curves with Qunova HiVQE](/docs/tutorials/qunova-hivqe)</li></ul> | None yet |
+| Nuclear structure | Ground-state energies of nuclei in the shell model | <ul><li>[Pooled sample-based quantum diagonalization of a nuclear Hamiltonian](/docs/tutorials/nuclear-sqd-pooled)</li></ul> | None yet |
+| Spin chains | Ground-state energies and time evolution of one-dimensional Heisenberg-type and Ising chains | <ul><li>[Krylov quantum diagonalization of lattice Hamiltonians](/docs/tutorials/krylov-quantum-diagonalization)</li><li>[Ground-state energy estimation of the Heisenberg chain with VQE](/docs/tutorials/spin-chain-vqe)</li><li>[Multi-product formulas to reduce Trotter error](/docs/tutorials/multi-product-formula)</li><li>[Approximate quantum compilation for time evolution circuits](/docs/tutorials/approximate-quantum-compilation-for-time-evolution)</li><li>[Operator backpropagation (OBP) for estimation of expectation values](/docs/tutorials/operator-back-propagation)</li></ul> | None yet |
 
 Applied tutorials target one of the following problem classes:
 
-| Problem class | Description | Existing tutorials |
-| --- | --- | --- |
-| Electron-phonon dynamics | Real-time dynamics of electrons coupled to lattice vibrations, such as polaron formation after a quench | None yet |
-| Lattice gauge real-time dynamics | Real-time dynamics of lattice gauge theories, such as string breaking and hadron dynamics | <ul><li>[Observation of robust and coherent non-Abelian hadron dynamics on noisy quantum processors](/docs/tutorials/loop-string-hadron-dynamics)</li></ul> |
-| Chaotic Hamiltonian | Scrambling in chaotic many-body systems, such as the SYK model, measured by out-of-time-order correlators and the spectral form factor | None yet |
-| Frustrated magnets | Ground-state and finite-temperature properties of spin systems with competing interactions | None yet |
-| Kicked and Floquet spin dynamics | Dynamics of periodically driven spin systems, such as kicked Ising models | <ul><li>[Simulation of kicked Ising Hamiltonian with dynamic circuits](/docs/tutorials/dc-hex-ising)</li><li>[Transverse-Field Ising Model with Q-CTRL's Performance Management](/docs/tutorials/transverse-field-ising-model)</li><li>[Simulate 2D tilted-field Ising with the QESEM function](/docs/tutorials/qedma-2d-ising-with-qesem)</li><li>[Simulate a kicked Ising model with the TEM function](/docs/tutorials/simulate-kicked-ising-tem)</li></ul> |
-| Symmetric spin dynamics | Dynamical structure factors of spin systems with symmetries, as measured in neutron scattering | <ul><li>[Simulate neutron scattering in quantum materials with quantum circuits](/docs/tutorials/simulate-neutron-scattering)</li><li>[Simulate neutron scattering with an AQC + Trotter dynamics Serverless workflow](/docs/tutorials/simulate-neutron-scattering-with-a-serverless-workflow)</li></ul> |
-| Doped 2D Fermi-Hubbard dynamics | Charge and spin dynamics of the doped two-dimensional Fermi-Hubbard model after a quench | None yet |
-| Quantum impurity models | Green's functions of impurity models, such as the Anderson impurity model | <ul><li>[Sample-based Krylov quantum diagonalization of a fermionic lattice model](/docs/tutorials/sample-based-krylov-quantum-diagonalization) (ground state only)</li></ul> |
+| Problem class | Description | Existing tutorials | Community contributors |
+| --- | --- | --- | --- |
+| Electron-phonon dynamics | Real-time dynamics of electrons coupled to lattice vibrations, such as polaron formation after a quench | None yet | None yet |
+| Lattice gauge real-time dynamics | Real-time dynamics of lattice gauge theories, such as string breaking and hadron dynamics | <ul><li>[Observation of robust and coherent non-Abelian hadron dynamics on noisy quantum processors](/docs/tutorials/loop-string-hadron-dynamics)</li></ul> | None yet |
+| Chaotic Hamiltonian | Scrambling in chaotic many-body systems, such as the SYK model, measured by out-of-time-order correlators and the spectral form factor | None yet | None yet |
+| Frustrated magnets | Ground-state and finite-temperature properties of spin systems with competing interactions | None yet | None yet |
+| Kicked and Floquet spin dynamics | Dynamics of periodically driven spin systems, such as kicked Ising models | <ul><li>[Simulation of kicked Ising Hamiltonian with dynamic circuits](/docs/tutorials/dc-hex-ising)</li><li>[Transverse-Field Ising Model with Q-CTRL's Performance Management](/docs/tutorials/transverse-field-ising-model)</li><li>[Simulate 2D tilted-field Ising with the QESEM function](/docs/tutorials/qedma-2d-ising-with-qesem)</li><li>[Simulate a kicked Ising model with the TEM function](/docs/tutorials/simulate-kicked-ising-tem)</li></ul> | None yet |
+| Symmetric spin dynamics | Dynamical structure factors of spin systems with symmetries, as measured in neutron scattering | <ul><li>[Simulate neutron scattering in quantum materials with quantum circuits](/docs/tutorials/simulate-neutron-scattering)</li><li>[Simulate neutron scattering with an AQC + Trotter dynamics Serverless workflow](/docs/tutorials/simulate-neutron-scattering-with-a-serverless-workflow)</li></ul> | <ul><li>Yi-Ting Lee (University of Illinois Urbana-Champaign)</li><li>Keerthi Kumaran (Purdue University)</li></ul> |
+| Doped 2D Fermi-Hubbard dynamics | Charge and spin dynamics of the doped two-dimensional Fermi-Hubbard model after a quench | None yet | None yet |
+| Quantum impurity models | Green's functions of impurity models, such as the Anderson impurity model | <ul><li>[Sample-based Krylov quantum diagonalization of a fermionic lattice model](/docs/tutorials/sample-based-krylov-quantum-diagonalization) (ground state only)</li></ul> | None yet |
 
 ### Quantum machine learning
 
@@ -119,34 +119,34 @@ The [quantum machine learning problem classes](https://github.com/Qiskit/documen
 
 Foundational tutorials target one of the following problem classes:
 
-| Problem class | Description | Existing tutorials |
-| --- | --- | --- |
-| Small-dataset classification | Train and evaluate a quantum classifier, such as a quantum kernel, on a small classical dataset with a classical baseline | <ul><li>[Quantum kernel training](/docs/tutorials/quantum-kernel-training)</li></ul> |
-| Real-world tabular classification | Classify public real-world tabular data, and compare against a matched classical model | <ul><li>[Enhance feature classification using projected quantum kernels](/docs/tutorials/projected-quantum-kernels)</li><li>[Hybrid quantum-enhanced ensemble classification (grid stability workflow)](/docs/tutorials/sml-classification)</li></ul> |
-| Quantum reservoir and extreme learning | Predict time series or other classical data with fixed quantum dynamics and a trained classical readout | None yet |
+| Problem class | Description | Existing tutorials | Community contributors |
+| --- | --- | --- | --- |
+| Small-dataset classification | Train and evaluate a quantum classifier, such as a quantum kernel, on a small classical dataset with a classical baseline | <ul><li>[Quantum kernel training](/docs/tutorials/quantum-kernel-training)</li></ul> | None yet |
+| Real-world tabular classification | Classify public real-world tabular data, and compare against a matched classical model | <ul><li>[Enhance feature classification using projected quantum kernels](/docs/tutorials/projected-quantum-kernels)</li><li>[Hybrid quantum-enhanced ensemble classification (grid stability workflow)](/docs/tutorials/sml-classification)</li></ul> | None yet |
+| Quantum reservoir and extreme learning | Predict time series or other classical data with fixed quantum dynamics and a trained classical readout | None yet | None yet |
 
 Applied tutorials target one of the following problem classes:
 
-| Problem class | Description | Existing tutorials |
-| --- | --- | --- |
-| Quantum phase classification | Classify phases of matter from quantum states | None yet |
-| Quantum property prediction | Predict properties of quantum states from measurements | None yet |
-| Hamiltonian learning | Learn the unknown parameters of a Hamiltonian from measurements | None yet |
-| Generative learning of hard distributions | Learn to sample from distributions that are hard to sample classically | None yet |
-| Group-structured classification | Classify data with group structure, where covariant quantum kernels apply | None yet |
+| Problem class | Description | Existing tutorials | Community contributors |
+| --- | --- | --- | --- |
+| Quantum phase classification | Classify phases of matter from quantum states | None yet | None yet |
+| Quantum property prediction | Predict properties of quantum states from measurements | None yet | None yet |
+| Hamiltonian learning | Learn the unknown parameters of a Hamiltonian from measurements | None yet | None yet |
+| Generative learning of hard distributions | Learn to sample from distributions that are hard to sample classically | None yet | None yet |
+| Group-structured classification | Classify data with group structure, where covariant quantum kernels apply | None yet | None yet |
 
 ### Quantum information science
 
 Quantum information science tutorials belong to one of the following topic categories instead of a problem class. The first five categories follow the order that you meet them in when you run circuits on hardware. A tutorial whose main method uses dynamic circuits belongs to Dynamic circuits, even when its topic fits another category.
 
-| Topic category | Description | Existing tutorials |
-| --- | --- | --- |
-| Building blocks | Prepare states and entanglement, and run the standard subroutines that larger algorithms are built from, such as phase estimation and amplitude amplification | <ul><li>[CHSH inequality](/docs/tutorials/chsh-inequality)</li><li>[Grover's algorithm](/docs/tutorials/grovers-algorithm)</li><li>[Shor's algorithm](/docs/tutorials/shors-algorithm)</li><li>[Quantum Phase Estimation with Q-CTRL's Qiskit Functions](/docs/tutorials/quantum-phase-estimation-qctrl)</li></ul> |
-| Characterization and benchmarking | Measure how well a device, or a state prepared on it, performs | <ul><li>[Real-time benchmarking for qubit selection](/docs/tutorials/real-time-benchmarking-for-qubit-selection)</li><li>[Refresh backend properties with real-time benchmarking](/docs/tutorials/refresh-backend-properties-with-real-time-benchmarking)</li><li>[Shadow tomography of the Greenberger-Horne-Zeilinger state](/docs/tutorials/shadow-tomography)</li></ul> |
-| Compilation and circuit synthesis | Map circuits to hardware through layout, routing, circuit synthesis, and native gates | <ul><li>[Transpilation optimization with SABRE](/docs/tutorials/transpilation-optimizations-with-sabre)</li><li>[Qiskit AI-powered transpiler introduction](/docs/tutorials/ai-transpiler-introduction)</li><li>[Compilation methods for Hamiltonian simulation circuits](/docs/tutorials/compilation-methods-for-hamiltonian-simulation-circuits)</li><li>[Quantum kernels with fractional gates](/docs/tutorials/fractional-gates)</li><li>[Circuit cutting for depth reduction](/docs/tutorials/depth-reduction-with-circuit-cutting)</li><li>[Wire cutting for expectation values estimation](/docs/tutorials/wire-cutting)</li><li>[Circuit cutting for periodic boundary conditions](/docs/tutorials/periodic-boundary-conditions-with-circuit-cutting)</li></ul> |
-| Dynamic circuits | Use mid-circuit measurement and classical feedforward as the main method, such as for long-range gates, device benchmarks, or real-time error correction | <ul><li>[Long-range entanglement with dynamic circuits](/docs/tutorials/long-range-entanglement)</li><li>[Benchmark dynamic circuits with cut Bell pairs](/docs/tutorials/edc-cut-bell-pair-benchmarking)</li><li>[Benchmark QFT+M process fidelity with Orbit](/docs/tutorials/quantum-elements-orbit-qft-with-dynamic-circuits)</li><li>[Repetition codes](/docs/tutorials/repetition-codes)</li></ul> |
-| Error mitigation to error correction | Handle noise along a continuous path, from mitigating errors with extra sampling and post-processing to detecting and correcting them with extra qubits or checks | <ul><li>[Readout error mitigation for the Sampler primitive using M3](/docs/tutorials/readout-error-mitigation-sampler)</li><li>[Combine error mitigation options with the Estimator primitive](/docs/tutorials/combine-error-mitigation-techniques)</li><li>[Utility-scale error mitigation with probabilistic error amplification](/docs/tutorials/probabilistic-error-amplification)</li><li>[Probabilistic error cancellation with shaded lightcones](/docs/tutorials/pec-with-shaded-lightcones)</li><li>[Improve expectation values with propagated noise absorption (PNA)](/docs/tutorials/propagated-noise-absorption)</li><li>[Low-overhead error detection with spacetime codes](/docs/tutorials/spacetime-codes)</li><li>[Probabilistic error cancellation with logical noise models](/docs/tutorials/probabilistic-error-cancellation-with-logical-noise-models)</li></ul> |
-| HPC integration | Run quantum workloads from high-performance computing (HPC) schedulers and classical workflows | <ul><li>[Run quantum workloads with QRMI](/docs/tutorials/run-quantum-workloads-with-qrmi)</li></ul> |
+| Topic category | Description | Existing tutorials | Community contributors |
+| --- | --- | --- | --- |
+| Building blocks | Prepare states and entanglement, and run the standard subroutines that larger algorithms are built from, such as phase estimation and amplitude amplification | <ul><li>[CHSH inequality](/docs/tutorials/chsh-inequality)</li><li>[Grover's algorithm](/docs/tutorials/grovers-algorithm)</li><li>[Shor's algorithm](/docs/tutorials/shors-algorithm)</li><li>[Quantum Phase Estimation with Q-CTRL's Qiskit Functions](/docs/tutorials/quantum-phase-estimation-qctrl)</li></ul> | None yet |
+| Characterization and benchmarking | Measure how well a device, or a state prepared on it, performs | <ul><li>[Real-time benchmarking for qubit selection](/docs/tutorials/real-time-benchmarking-for-qubit-selection)</li><li>[Refresh backend properties with real-time benchmarking](/docs/tutorials/refresh-backend-properties-with-real-time-benchmarking)</li><li>[Shadow tomography of the Greenberger-Horne-Zeilinger state](/docs/tutorials/shadow-tomography)</li></ul> | None yet |
+| Compilation and circuit synthesis | Map circuits to hardware through layout, routing, circuit synthesis, and native gates | <ul><li>[Transpilation optimization with SABRE](/docs/tutorials/transpilation-optimizations-with-sabre)</li><li>[Qiskit AI-powered transpiler introduction](/docs/tutorials/ai-transpiler-introduction)</li><li>[Compilation methods for Hamiltonian simulation circuits](/docs/tutorials/compilation-methods-for-hamiltonian-simulation-circuits)</li><li>[Quantum kernels with fractional gates](/docs/tutorials/fractional-gates)</li><li>[Circuit cutting for depth reduction](/docs/tutorials/depth-reduction-with-circuit-cutting)</li><li>[Wire cutting for expectation values estimation](/docs/tutorials/wire-cutting)</li><li>[Circuit cutting for periodic boundary conditions](/docs/tutorials/periodic-boundary-conditions-with-circuit-cutting)</li></ul> | None yet |
+| Dynamic circuits | Use mid-circuit measurement and classical feedforward as the main method, such as for long-range gates, device benchmarks, or real-time error correction | <ul><li>[Long-range entanglement with dynamic circuits](/docs/tutorials/long-range-entanglement)</li><li>[Benchmark dynamic circuits with cut Bell pairs](/docs/tutorials/edc-cut-bell-pair-benchmarking)</li><li>[Benchmark QFT+M process fidelity with Orbit](/docs/tutorials/quantum-elements-orbit-qft-with-dynamic-circuits)</li><li>[Repetition codes](/docs/tutorials/repetition-codes)</li></ul> | None yet |
+| Error mitigation to error correction | Handle noise along a continuous path, from mitigating errors with extra sampling and post-processing to detecting and correcting them with extra qubits or checks | <ul><li>[Readout error mitigation for the Sampler primitive using M3](/docs/tutorials/readout-error-mitigation-sampler)</li><li>[Combine error mitigation options with the Estimator primitive](/docs/tutorials/combine-error-mitigation-techniques)</li><li>[Utility-scale error mitigation with probabilistic error amplification](/docs/tutorials/probabilistic-error-amplification)</li><li>[Probabilistic error cancellation with shaded lightcones](/docs/tutorials/pec-with-shaded-lightcones)</li><li>[Improve expectation values with propagated noise absorption (PNA)](/docs/tutorials/propagated-noise-absorption)</li><li>[Low-overhead error detection with spacetime codes](/docs/tutorials/spacetime-codes)</li><li>[Probabilistic error cancellation with logical noise models](/docs/tutorials/probabilistic-error-cancellation-with-logical-noise-models)</li></ul> | None yet |
+| HPC integration | Run quantum workloads from high-performance computing (HPC) schedulers and classical workflows | <ul><li>[Run quantum workloads with QRMI](/docs/tutorials/run-quantum-workloads-with-qrmi)</li></ul> | None yet |
 
 The following topics fill known gaps in the catalog:
 
@@ -165,5 +165,5 @@ To improve an existing tutorial, propose the improvement the same way. The [guid
 
 ## Authorship
 
-- **Credit.** Your tutorial shows a byline with the authors' names and affiliations and a link to the source paper, and its tutorial card shows a community tag.
+- **Credit.** Your tutorial shows a byline with the authors' names and affiliations and a link to the source paper, and its tutorial card shows a community tag. This page also lists you as a community contributor for the tutorial's problem class or topic category.
 - **Ongoing maintenance.** A maintainer of record from the IBM Quantum team keeps the tutorial running as Qiskit changes.
