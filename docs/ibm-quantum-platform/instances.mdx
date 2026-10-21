@@ -4,7 +4,7 @@ description: Create, update, and use instances to run jobs with free or paid pla
 ---
 # Create and manage instances
 
-Access to IBM Quantum Platform services is controlled by the **instances** to which you are assigned. Users can belong to multiple instances.
+Access to IBM Quantum&reg; Platform services is controlled by the **instances** to which you are assigned. Users can belong to multiple instances.
 
 Instances are virtual servers (deployments of IBM Quantum Compute Service) that manage the execution of your workloads, including executing quantum programs and classical compute tasks (such as processing error mitigation).  Instances are identified by their *Cloud Resource Name* (CRN). This CRN can be used when sending workloads from your Qiskit programs.
 
@@ -124,6 +124,45 @@ Find the instance on the [Instances](https://quantum.cloud.ibm.com/instances) pa
 <Admonition type="note">
 Only administrators and owners can edit the instance.  See the [Create access policies and access groups](/docs/ibm-quantum-platform/access-groups) guide for information about assigning access.
 </Admonition>
+
+<span id="configure-functions-access"></span>
+## Configure Qiskit Functions access in an instance
+
+<Admonition type="note">
+The Functions tab and its options only appear if your account has been configured with Qiskit Functions access. If your account has Qiskit Functions access but you do not see the option to edit function access per instance, your account has not yet been migrated to this method. Contact your engagement manager or the [Support team](/docs/guides/support) to be migrated.
+</Admonition>
+
+You can configure which Qiskit Functions an instance can access, either by using the Resource Controller API (see [Configure Qiskit Functions access on an instance](/docs/guides/access-instances-platform-apis#functions-api)), or by following these steps in IBM Quantum Platform.
+
+1. Go to the [Instances](https://quantum.cloud.ibm.com/instances) page.
+1. Ensure you have the correct account selected in the account switcher in the header.
+1. Find the instance where you want to enable functions access.
+1. Click the overflow menu at the end of the instance's row, then select **Edit details**.
+1. Click the **Functions** tab.
+1. Enable functions access and select the function you want to enable.
+1. Read and confirm that you have read the agreements.
+1. Click **Save** to save your changes.
+
+Note that if your account has access to Qiskit Functions, you can also configure access when you add a new instance. Click **Create instance** and follow the steps in the window that opens. During the Functions step, you can turn on access to catalog functions and custom functions, and to specify which Qiskit Functions the instance can access.
+
+### Default and custom permissions
+
+The default user-level permissions apply when you set up Qiskit Functions access for an instance in IBM Quantum Platform. Users with default permissions can do the following:
+
+- View the function and its details
+- Submit jobs using the function
+- List and download files stored in the user workspace
+- Upload, update, and delete the input and result files in the user workspace
+
+To assign **Custom** permissions, use the Resource Controller API instead. See [Configure Qiskit Functions access on an instance](/docs/guides/access-instances-platform-apis#configure-qiskit-functions-access-on-an-instance) for more information. To find the API reference, click the information icon next to a function's permissions in the **Functions** tab, then click the **View the API reference** link in the tooltip.
+
+To restore the default permissions for an instance that has custom permissions, either use the [Resource Controller](/docs/guides/access-instances-platform-apis#configure-qiskit-functions-access-on-an-instance) or remove and re-assign the function in IBM Quantum Platform, by doing the following on the [Instances](https://quantum.cloud.ibm.com/instances) page:
+
+1. Click the overflow menu at the end of the instance's row, then select **Edit details**.
+1. Click the **Functions** tab.
+1. Remove access to the function with custom permissions.
+1. Click **Save**.
+1. Repeat the steps to re-assign access to the function: select **Edit details** for the instance, click the **Functions** tab, select the function, and click **Save**. The instance now has default user-level permissions for that function.
 
 ## Archived instances
 
