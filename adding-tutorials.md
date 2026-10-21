@@ -57,17 +57,15 @@ Quantum information science tutorials aren't Foundational or Applied. Reviewers 
 | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------- |
 | **Q1. Teaches a technique**          | The technique is the focus, and the notebook shows how to use it and when it helps.                                                                                                                                                              | The technique runs as a black box, or the workload is the focus.                                                |
 | **Q2. Compares against the default** | It compares the technique against its category's default approach, listed in the following table, on the same workload. It names what it varies and what it measures, and reports the cost, such as extra shots, QPU time, or classical runtime. | It shows a single run with no comparison, or compares only against an approach that is weaker than the default. |
-| **Q3. Points to what comes next**    | It ends with a "Next steps" section that names where the technique leads, such as a later category on the path toward error correction, or a tutorial in another domain that uses the technique.                                                 | It has no "Next steps" section, or the next step is unrelated to the technique.                                 |
+| **Q3. Points to what comes next**    | It ends with a "Next steps" section that names where the technique leads, such as a later topic category, or a tutorial in another domain that uses the technique.                                                                               | It has no "Next steps" section, or the next step is unrelated to the technique.                                 |
 
-| Topic category                    | Default approach to compare against                                                        |
-| --------------------------------- | ------------------------------------------------------------------------------------------ |
-| Algorithms and protocols          | The textbook implementation of the algorithm, or the classical bound that a protocol tests |
-| Characterization and benchmarking | The properties that the backend reports, or the ideal state                                |
-| Compilation                       | The preset pass manager at optimization level 3                                            |
-| Circuit cutting                   | The uncut circuit on the same backend                                                      |
-| Error mitigation                  | The unmitigated result, and the Estimator's default resilience level                       |
-| Error detection and correction    | The same circuit without encoding or checks                                                |
-| HPC integration                   | The same workload submitted directly through Qiskit Runtime                                |
+| Topic category                       | Default approach to compare against                                                                                                                               |
+| ------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Building blocks                      | The textbook implementation, the ideal state, or the classical bound that a protocol tests                                                                        |
+| Characterization and benchmarking    | The properties that the backend reports, or the ideal state                                                                                                       |
+| Compilation and circuit synthesis    | The preset pass manager at optimization level 3                                                                                                                   |
+| Error mitigation to error correction | The unmitigated result, or the same circuit without encoding or checks. Error mitigation tutorials also compare against the Estimator's default resilience level. |
+| HPC integration                      | The same workload submitted directly through Qiskit Runtime                                                                                                       |
 
 ### Improving an existing tutorial
 
