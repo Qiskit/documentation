@@ -52,21 +52,7 @@ You can help the team prioritize already-open issues by doing the following:
 
 #### 4. Fix an open issue
 
-You can look through the open issues we have in this repo and address them with a PR. We recommend focusing on issues with the "good first issue" label.
-
-Before getting started on an issue, remember to do the following:
-
-1. Read the [Code of Conduct](https://quantum.cloud.ibm.com/docs/guides/code-of-conduct)
-2. Check for open, unassigned issues with the "good first issue" label
-3. Select an issue that is not already assigned to someone and leave a comment to request to be assigned
-
-Once you have an issue to work on, see the "How to work with this repo" section below to get going, then open a PR.
-
-Before opening a PR, remember to do the following:
-
-1. Check that you have addressed all the requirements from the original issue
-2. Run the quality control checks with `npm run check`
-3. Use the GitHub "fixes" notation to [link your PR to the issue](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue) you are addressing
+See our [Contribution policy](/CONTRIBUTING.md) for information on contributing fixes.
 
 ## Set up this repository
 
@@ -221,6 +207,8 @@ with the package versions so users can reproduce the results. Do not add
 anything else to this cell as the contents of the cell will be completely
 overwritten when it's next executed.
 
+The package versions will also update during the cron jobs.
+
 ### Execute notebooks
 
 Before submitting a new notebook or code changes to a notebook, you must run
@@ -249,7 +237,7 @@ poppler-utils graphviz`.
   ```sh
   tox -- <path/to/notebook.ipynb> <path/to/another-notebook.ipynb>
   ```
-- To write the execution results to the file, pass the `--write` argument.
+- To write the execution results to the file, pass the `--write` argument. (Note this generates the package version info cell mentioned in [this section](#add-package-version-information).)
   Since we only allow writing results from real hardware, you will usually also
   need to pass `--test-strategy=hardware`. Note this means the run will use QPU
   time.

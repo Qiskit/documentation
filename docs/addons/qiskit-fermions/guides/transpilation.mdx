@@ -45,42 +45,44 @@ Converts the internal DAG data structure to the desired output format.
 
 Use the preset pass manager to transpile your fermionic circuit with the Jordan-Wigner fermion-to-qubit mapping:
 
-\[x] Python
+<Tabs group="tab">
+  <TabItem value="python" label="Python">
+    ```python
+    >>> from qiskit_fermions.circuit import FermionicCircuit
+    >>> from qiskit_fermions.circuit.library import Evolution
+    >>> from qiskit_fermions.operators import FermionOperator, cre, ann
+    >>> from qiskit_fermions.transpiler.presets import generate_preset_jw_pass_manager
+    >>>
+    >>> # Create the same fermionic circuit from the previous guide
+    >>> circuit = FermionicCircuit(4)
+    >>> hamiltonian = FermionOperator.from_terms([
+    ...     ([cre(0), ann(2)], 0.5),
+    ...     ([cre(2), ann(0)], 0.5),
+    ...     ([cre(1), ann(3)], 0.5),
+    ...     ([cre(3), ann(1)], 0.5),
+    ... ])
+    >>> hamiltonian.groups = [0, 0, 1, 1]
+    >>> evolution = Evolution(4, hamiltonian, time=1.0)
+    >>> circuit.append(evolution, circuit.register)
+    >>>
+    >>> # Generate the Jordan-Wigner transpilation pipeline
+    >>> pm = generate_preset_jw_pass_manager()
+    >>>
+    >>> # Transpile the fermionic circuit to a qubit circuit
+    >>> qubit_circuit = pm.run(circuit)
+    >>>
+    >>> # The result is a standard QuantumCircuit
+    >>> print(type(qubit_circuit))
+    <class 'qiskit.circuit.quantumcircuit.QuantumCircuit'>
+    ```
+  </TabItem>
 
-```python
->>> from qiskit_fermions.circuit import FermionicCircuit
->>> from qiskit_fermions.circuit.library import Evolution
->>> from qiskit_fermions.operators import FermionOperator, cre, ann
->>> from qiskit_fermions.transpiler.presets import generate_preset_jw_pass_manager
->>>
->>> # Create the same fermionic circuit from the previous guide
->>> circuit = FermionicCircuit(4)
->>> hamiltonian = FermionOperator.from_terms([
-...     ([cre(0), ann(2)], 0.5),
-...     ([cre(2), ann(0)], 0.5),
-...     ([cre(1), ann(3)], 0.5),
-...     ([cre(3), ann(1)], 0.5),
-... ])
->>> hamiltonian.groups = [0, 0, 1, 1]
->>> evolution = Evolution(4, hamiltonian, time=1.0)
->>> circuit.append(evolution, circuit.register)
->>>
->>> # Generate the Jordan-Wigner transpilation pipeline
->>> pm = generate_preset_jw_pass_manager()
->>>
->>> # Transpile the fermionic circuit to a qubit circuit
->>> qubit_circuit = pm.run(circuit)
->>>
->>> # The result is a standard QuantumCircuit
->>> print(type(qubit_circuit))
-<class 'qiskit.circuit.quantumcircuit.QuantumCircuit'>
-```
-
-\[ ] C
-
-```c
-// The C API for transpilation will be made available in a future release.
-```
+  <TabItem value="c" label="C">
+    ```c
+    // The C API for transpilation will be made available in a future release.
+    ```
+  </TabItem>
+</Tabs>
 
 ![The transpiled QuantumCircuit of the fermionic time evolution.](/docs/images/addons/qiskit-fermions/transpilation-2.avif)
 
