@@ -72,7 +72,9 @@ Although calibrations run periodically, the optimal parameters for gates and ope
 - Currently, only readout angle calibration is supported. Additional calibration types, such as gate calibration, will be added in the future.
 </Admonition>
 
-To trigger a calibration, create a `Calibrator` in the session and call its `run()` method. Wait for the calibration to complete before you submit the jobs that should use the updated parameters.
+To trigger a calibration, create a `Calibrator` in the session and call its `run()` method. This submits a calibration job, which works the same way as a primitive job: it appears on the IBM Quantum Platform [Workloads](https://quantum.cloud.ibm.com/workloads) page, and you can use the usual job methods in Qiskit, such as `job_id()` and `status()`. However, calibration jobs don't report job-level usage.
+
+Wait for the calibration job to finish, for example by calling `calibration_job.result()`, before you submit the primitive jobs that should use the updated parameters. If calibration and primitive jobs run in parallel, the primitive jobs are not guaranteed to use the updated calibration.
 
 ```python
 from qiskit_ibm_runtime import QiskitRuntimeService, Session
@@ -87,7 +89,11 @@ backend = service.least_busy(
 with Session(backend=backend) as session:
     # Calibrate before running the main experiments
     calibrator = Calibrator(session)
-    calibrator.run().result()
+    calibration_job = calibrator.run()
+    print(f"Calibration job ID: {calibration_job.job_id()}")
+
+    # Wait for the calibration to finish before submitting primitive jobs
+    calibration_job.result()
 
     # Run the main experiments
     sampler = Sampler()
