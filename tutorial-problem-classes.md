@@ -121,14 +121,14 @@ Foundational classes use classical data, where quantum models are useful to lear
 - **Leads to:** Group-structured classification.
 - **Out of scope:** Private datasets.
 
-#### Quantum reservoir and extreme learning
+#### Time-series prediction
 
-- **Data:** Time series or other classical data.
-- **Tasks:** Predict the data with fixed quantum dynamics as a reservoir and a trained classical readout.
-- **Teaching instance:** A small reservoir that can be simulated exactly, compared against a classical reservoir such as an echo state network.
+- **Data:** Classical time series, such as energy demand or weather data.
+- **Tasks:** Forecast future values with a quantum model, such as a quantum reservoir or a variational model.
+- **Teaching instance:** A short series and a model small enough to simulate exactly, compared against a matched classical model, such as an echo state network or a recurrent neural network.
 - **Scale-up:** About 50 qubits or more on hardware.
 - **Leads to:** No Applied class yet.
-- **Out of scope:** Variational models trained end to end.
+- **Out of scope:** Classification, which is its own class.
 
 ### Applied problem classes
 
