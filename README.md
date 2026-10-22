@@ -207,6 +207,8 @@ with the package versions so users can reproduce the results. Do not add
 anything else to this cell as the contents of the cell will be completely
 overwritten when it's next executed.
 
+The package versions will also update during the cron jobs.
+
 ### Execute notebooks
 
 Before submitting a new notebook or code changes to a notebook, you must run
@@ -235,7 +237,7 @@ poppler-utils graphviz`.
   ```sh
   tox -- <path/to/notebook.ipynb> <path/to/another-notebook.ipynb>
   ```
-- To write the execution results to the file, pass the `--write` argument.
+- To write the execution results to the file, pass the `--write` argument. (Note this generates the package version info cell mentioned in [this section](#add-package-version-information).)
   Since we only allow writing results from real hardware, you will usually also
   need to pass `--test-strategy=hardware`. Note this means the run will use QPU
   time.
