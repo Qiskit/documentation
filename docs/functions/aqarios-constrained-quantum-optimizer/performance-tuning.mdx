@@ -1,0 +1,39 @@
+---
+title: Advanced techniques with Aqarios Constrained Quantum Optimizer
+description: Trade solution quality against runtime, control postprocessing and penalties, and inspect results with the Aqarios Constrained Quantum Optimizer.
+---
+
+# Advanced techniques with Aqarios Constrained Quantum Optimizer
+
+Use the following techniques to get the most out of the Aqarios Constrained Quantum Optimizer. For every option and its default value, see the [API reference](/docs/api/functions/aqarios-constrained-quantum-optimizer#options-list).
+
+## Trade solution quality against runtime
+
+The number of chains (`num_parallel`), the total shot budget per chain (`total_shots`), and the number of QAOA repetitions (`reps`) are the primary controls:
+
+- Increase `num_parallel` to improve the probability of finding high-quality solutions. This raises the total shot budget.
+- Increase `total_shots` to run more iterations for each chain. Use `shots` to set the number of shots for each iteration.
+- Increase `reps` for higher solution quality, at the cost of deeper circuits that can add noise.
+- Lower `approximation_degree` to reduce circuit depth through approximations, which can affect solution quality.
+
+## Control postprocessing and penalties
+
+- Set `postprocessing_level` to an integer from `0` (off) to `3` (greedy local search, the default). Higher levels improve solution quality at the cost of classical compute time.
+- The optimizer derives penalty strengths automatically. If the results are infeasible, set `penalty_override` to a larger value.
+- Use `beta` and `epsilon` to control how strongly each new warm-start state concentrates on low-energy samples.
+
+## Reuse a session and tag jobs
+
+- Set `use_session` to `True` to keep a dedicated connection to the QPU open across iterations, which can lower wall-clock time.
+- Set `seed_transpiler` to make circuit synthesis and routing reproducible across runs.
+- Use `job_tags` to attach your own tags to every Qiskit Runtime job that the function submits.
+
+## Inspect the result
+
+- `feasible` reports whether the solutions satisfy all constraints. Compare `raw_energy` with `objective_value` to diagnose constraint violations.
+- `metadata.circuit_metrics` reports circuit sizes before and after transpilation.
+- `metadata.resource_usage` breaks down QPU and CPU time by phase.
+
+<Admonition type="note">
+  Aqarios: add tuning guidance from your experience, such as recommended option values for common problem sizes.
+</Admonition>
