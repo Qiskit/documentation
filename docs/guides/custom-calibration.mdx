@@ -69,7 +69,7 @@ print(backend.calibration_id)
 ```
 
 <Admonition type="note">
-Most alternative calibrations are not available on all QPUs. The experimental [`qec_experimental`](#qec-experimental) calibration is available on all backends.
+Alternative calibrations might not be available on all QPUs.
 </Admonition>
 
 ### Slow gate calibrations
@@ -126,18 +126,18 @@ print(slow_backend.target["cz"][qubits].duration)
 Because the target reflects the selected calibration, transpile your circuits against the backend that uses the same `calibration_id` you plan to run on.
 
 <span id="qec-experimental" />
-### QEC experimental calibration
+### `qec_experimental` calibration
 
 <Admonition type="caution" title="Experimental">
 The `qec_experimental` calibration and the `for_loop` instruction are experimental. Both support only the use case described on this page and might change or be removed without notice.
 </Admonition>
 
-The `qec_experimental` calibration is available on all backends. With this calibration, you can use the `for_loop` instruction to repeat a block of operations a fixed number of times, without unrolling the block into the circuit. The block can include mid-circuit measurements. Use this calibration for quantum error correction (QEC) experiments, such as running many rounds of a repetition code.
+The `qec_experimental` calibration might not be available on all backends. With this calibration, you can use the `for_loop` instruction to repeat a block of operations a fixed number of times, without unrolling the block into the circuit. The block can include mid-circuit measurements. Use this calibration for quantum error correction (QEC) experiments, such as running many rounds of a repetition code.
 
 The `for_loop` instruction has these restrictions:
 
 - It is supported in [Executor](/docs/guides/get-started-with-executor) jobs only.
-- Results must be classified (level 2).
+- [Measurement type](/docs/api/qiskit-ibm-runtime/quantum-program-quantum-program#quantumprogram) must be `classified`, which is the default.
 - The loop must be countable, with an integer number of iterations. Other loop forms are not supported.
 - The product of the number of shots and the size of the classical register has a maximum limit.
 
