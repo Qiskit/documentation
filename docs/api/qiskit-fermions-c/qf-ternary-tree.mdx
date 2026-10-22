@@ -1,0 +1,456 @@
+---
+title: Ternary Trees (latest version)
+description: API reference for Ternary Trees in the latest version of qiskit-fermions-c
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: Ternary Trees
+---
+
+<span id="qf-ternary-tree" />
+
+# Ternary Trees
+
+A ternary tree on $N$ nodes defines a fermion-to-qubit encoding of $N$ fermionic modes onto $N$ qubits. Each node is a qubit carrying three downward **links**, labelled `X`, `Y` and `Z`. A link either descends to a child node (an *edge*) or terminates (a *leg*), and each leg’s path back to the root spells a Pauli string: crossing the link labelled $P$ that descends *from* node $u$ contributes $P$ on qubit $u$, with the identity everywhere else.
+
+Every tree of this shape yields a valid encoding, and the encodings named in the literature are simply particular shapes:
+
+| Encoding         | Construction                                    | Pauli weight                   |
+| ---------------- | ----------------------------------------------- | ------------------------------ |
+| Jordan-Wigner    | `qf_ternary_tree_chain(n, QfPauliLabel_Z, ...)` | $n$                            |
+| Parity           | `qf_ternary_tree_chain(n, QfPauliLabel_X, ...)` | $n$                            |
+| Balanced         | `qf_ternary_tree_breadth_first(n, 3, ...)`      | $\lceil \log_3(2n+1) \rceil$   |
+| Binary-branching | `qf_ternary_tree_breadth_first(n, 2, ...)`      | $\lfloor \log_2 n \rfloor + 1$ |
+
+The balanced tree’s weight is optimal over *all* fermion-to-qubit mappings, so the reduction from $n$ to $\lceil \log_3(2n+1) \rceil$ is the reason to reach for one. Both trees use exactly $n$ qubits, so the saving is in Pauli weight rather than qubit count.
+
+These two constructors cover only the uniform families. The general interface is [`qf_ternary_tree_new()`](#qf_ternary_tree_new "qf_ternary_tree_new"), which takes the root and, per node, its parent and the label of the link from that parent: the trees worth searching for are usually neither a chain nor uniform, since an algorithm such as Bonsai grows a spanning tree of a device’s coupling graph and its branching therefore follows that connectivity.
+
+Not every encoding in the family has a convenience constructor. Bravyi-Kitaev, for instance, is a tree that is not uniform, so it is built by computing its specification: the binary-branching tree above matches its Pauli weight but is a different tree, whatever its label order.
+
+Once built, a tree is compiled into a `QfTernaryTreeEncoding` with [`qf_ternary_tree_encoding_new()`](#qf_ternary_tree_encoding_new "qf_ternary_tree_encoding_new"), which pairs its legs into Majorana operators and builds their Pauli strings once. That encoding is then passed to the mappers in [Mapper Library](qf-mappers-library#qf-mapper-library), and should be reused across every operator mapped through it.
+
+<Admonition title="Note" type="note">
+  Some identities that hold under Jordan-Wigner are properties of the *chain* rather than of ternary trees. A vertex operator is the weight-1 Pauli $Z_l$ only there, where the two Majorana strings’ $Z$ chains cancel; on the balanced tree at four modes it has weight 3.
+</Admonition>
+
+|                                                                                                                             |                                                                           |
+| --------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| [`qf_ternary_tree_new()`](#qf_ternary_tree_new "qf_ternary_tree_new")                                                       | Construct a tree from a parent-and-label specification.                   |
+| [`qf_ternary_tree_chain()`](#qf_ternary_tree_chain "qf_ternary_tree_chain")                                                 | Construct a linear chain descending along one label.                      |
+| [`qf_ternary_tree_breadth_first()`](#qf_ternary_tree_breadth_first "qf_ternary_tree_breadth_first")                         | Construct a tree by breadth-first filling.                                |
+| [`qf_ternary_tree_num_nodes()`](#qf_ternary_tree_num_nodes "qf_ternary_tree_num_nodes")                                     | The number of nodes, i.e. modes and qubits.                               |
+| [`qf_ternary_tree_num_legs()`](#qf_ternary_tree_num_legs "qf_ternary_tree_num_legs")                                        | The number of legs, always `2 * num_nodes + 1`.                           |
+| [`qf_ternary_tree_max_weight()`](#qf_ternary_tree_max_weight "qf_ternary_tree_max_weight")                                  | The largest Pauli weight of any single Majorana operator.                 |
+| [`qf_ternary_tree_free()`](#qf_ternary_tree_free "qf_ternary_tree_free")                                                    | Free a tree.                                                              |
+| [`qf_ternary_tree_encoding_new()`](#qf_ternary_tree_encoding_new "qf_ternary_tree_encoding_new")                            | Compile a tree into the Pauli images of its Majorana operators.           |
+| [`qf_ternary_tree_encoding_num_modes()`](#qf_ternary_tree_encoding_num_modes "qf_ternary_tree_encoding_num_modes")          | The number of modes the encoding covers.                                  |
+| [`qf_ternary_tree_encoding_max_weight()`](#qf_ternary_tree_encoding_max_weight "qf_ternary_tree_encoding_max_weight")       | The largest Pauli weight of any single Majorana operator of the encoding. |
+| [`qf_ternary_tree_encoding_total_parity()`](#qf_ternary_tree_encoding_total_parity "qf_ternary_tree_encoding_total_parity") | Build the total fermionic parity observable of the encoding.              |
+| [`qf_ternary_tree_encoding_free()`](#qf_ternary_tree_encoding_free "qf_ternary_tree_encoding_free")                         | Free a compiled encoding.                                                 |
+
+***
+
+### qf\_ternary\_tree\_new
+
+<Function id="qf_ternary_tree_new" signature="QfExitCode qf_ternary_tree_new(uint32_t num_nodes, uint32_t root, const uint32_t *parents, const QfPauliLabel *labels, QfTernaryTree **out)">
+  Constructs a ternary tree from a parent-and-label specification.
+
+  A ternary tree on $N$ nodes defines a fermion-to-qubit encoding of $N$ fermionic modes onto $N$ qubits. Each node is a qubit carrying three downward **links**, labelled `X`, `Y` and `Z`. A link either descends to a child node (an *edge*) or terminates (a *leg*), and each leg’s path back to the root spells a Pauli string: crossing the link labelled $P$ that descends *from* node $u$ contributes $P$ on qubit $u$.
+
+  Every tree of this shape yields a valid encoding, and the familiar ones are particular shapes. This is the general constructor; [`qf_ternary_tree_chain()`](#qf_ternary_tree_chain "qf_ternary_tree_chain") and [`qf_ternary_tree_breadth_first()`](#qf_ternary_tree_breadth_first "qf_ternary_tree_breadth_first") build the two uniform families more conveniently.
+
+  The tree must be freed with [`qf_ternary_tree_free()`](#qf_ternary_tree_free "qf_ternary_tree_free").
+
+  #### Example
+
+  ```c
+  // A tree in which node 0, the root, branches three ways. The root's entries are never read,
+  // so any value works.
+  #define IGNORED 0
+
+  uint32_t parents[4] = {IGNORED, 0, 0, 0};
+  QfPauliLabel labels[4] = {IGNORED, QfPauliLabel_X, QfPauliLabel_Y, QfPauliLabel_Z};
+
+  QfTernaryTree *tree;
+  QfExitCode exit = qf_ternary_tree_new(4, 0, parents, labels, &tree);
+
+  assert(exit == QfExitCode_Success);
+  ```
+
+  <span id="group__qf__ternary__tree_1autotoc_md10" />
+
+  #### Safety
+
+  <span id="group__qf__ternary__tree_1autotoc_md10" />
+
+  `parents` and `labels` must each point to an array of at least `num_nodes` initialized values (they are not read when `num_nodes` is zero), and `out` must be non-null and aligned. The entries of `labels` need not hold valid labels: an invalid one is reported as `QfExitCode_ValueError`.
+
+  **Parameters**
+
+  *   **num\_nodes** – The number of nodes, which is both the number of fermionic modes and the number of qubits the encoding uses.
+  *   **root** – The index of the root node.
+  *   **parents** – An array of `num_nodes` entries: the index of each node’s parent. The root has no parent, so its entry is never read and may hold any value, zero included. The array is not read when `num_nodes` is zero, and may then be `NULL`.
+  *   **labels** – An array of `num_nodes` `QfPauliLabel` values: the label of the link descending from each node’s parent to it. The root has no such link, so its entry is never read and may hold any value, zero included. The array is not read when `num_nodes` is zero, and may then be `NULL`.
+  *   **out** – A pointer to where the created tree will be written on success. It is left untouched if construction fails.
+
+  **Returns**
+
+  An exit code. This is `>0` if an error occurred. In particular, a `QfExitCode_ValueError` is returned if the specification does not describe a single connected ternary tree – if it is empty, `root` is not a node, a label is repeated on one node, a non-root entry of `labels` is not a `QfPauliLabel` value, a parent is not a node, or some node is unreachable from the root.
+</Function>
+
+### qf\_ternary\_tree\_chain
+
+<Function id="qf_ternary_tree_chain" signature="QfExitCode qf_ternary_tree_chain(uint32_t num_nodes, uint8_t label, QfTernaryTree **out)">
+  Constructs a linear chain descending along one label.
+
+  `QfPauliLabel_Z` gives the Jordan-Wigner encoding and `QfPauliLabel_X` the parity encoding. Both have Pauli weight `num_nodes`, the worst a tree on that many nodes can do; see [`qf_ternary_tree_breadth_first()`](#qf_ternary_tree_breadth_first "qf_ternary_tree_breadth_first") for the optimal one.
+
+  This is only a convenience: it is [`qf_ternary_tree_breadth_first()`](#qf_ternary_tree_breadth_first "qf_ternary_tree_breadth_first") with a branching of one, whose `order` then needs just the one label.
+
+  The tree must be freed with [`qf_ternary_tree_free()`](#qf_ternary_tree_free "qf_ternary_tree_free").
+
+  <span id="id1" />
+
+  #### Example
+
+  ```c
+  // The Jordan-Wigner encoding of four modes: a chain descending along Z.
+  QfTernaryTree *chain;
+  QfExitCode exit = qf_ternary_tree_chain(4, QfPauliLabel_Z, &chain);
+
+  assert(exit == QfExitCode_Success);
+  // A chain is the worst case: one Majorana operator spans the whole register.
+  assert(qf_ternary_tree_max_weight(chain) == 4);
+
+  qf_ternary_tree_free(chain);
+  ```
+
+  <span id="group__qf__ternary__tree_1autotoc_md11" />
+
+  #### Safety
+
+  <span id="group__qf__ternary__tree_1autotoc_md11" />
+
+  `out` must be non-null and aligned. `label` need not hold a valid label: an invalid one is reported as `QfExitCode_ValueError`.
+
+  **Parameters**
+
+  *   **num\_nodes** – The number of nodes, and hence of modes and qubits.
+  *   **label** – The link the chain descends along, as a `QfPauliLabel` value. It is passed as a plain byte, so that an invalid value is reported as a `QfExitCode_ValueError`.
+  *   **out** – A pointer to where the created tree will be written on success.
+
+  **Returns**
+
+  An exit code. This is `>0` if an error occurred, in particular a `QfExitCode_ValueError` if `num_nodes` is zero or `label` is not a `QfPauliLabel` value.
+</Function>
+
+### qf\_ternary\_tree\_breadth\_first
+
+<Function id="qf_ternary_tree_breadth_first" signature="QfExitCode qf_ternary_tree_breadth_first(uint32_t num_nodes, uint8_t branching, const QfPauliLabel *order, QfTernaryTree **out)">
+  Constructs a tree by attaching up to `branching` children to each node in turn.
+
+  A `branching` of 3 gives the balanced tree, whose Pauli weight $\lceil \log_3(2N+1) \rceil$ is optimal over *all* fermion-to-qubit mappings. A `branching` of 2 gives a binary-branching tree of weight $\lfloor \log_2 N \rfloor + 1$. That matches the Bravyi-Kitaev weight but is *not* that encoding, for any `order`: Bravyi-Kitaev’s tree is the irregular partial-sum shape, built through [`qf_ternary_tree_new()`](#qf_ternary_tree_new "qf_ternary_tree_new").
+
+  `order` is part of the encoding’s definition: it changes which Pauli strings are produced, though not their weight.
+
+  The tree must be freed with [`qf_ternary_tree_free()`](#qf_ternary_tree_free "qf_ternary_tree_free").
+
+  <span id="id2" />
+
+  #### Example
+
+  ```c
+  QfPauliLabel order[3] = {QfPauliLabel_X, QfPauliLabel_Y, QfPauliLabel_Z};
+
+  QfTernaryTree *tree;
+  QfExitCode exit = qf_ternary_tree_breadth_first(13, 3, order, &tree);
+
+  assert(exit == QfExitCode_Success);
+  // The balanced tree needs weight 3 where a chain of 13 modes needs 13.
+  assert(qf_ternary_tree_max_weight(tree) == 3);
+  ```
+
+  <span id="group__qf__ternary__tree_1autotoc_md12" />
+
+  #### Safety
+
+  <span id="group__qf__ternary__tree_1autotoc_md12" />
+
+  `order` must point to an array of at least 3 initialized `QfPauliLabel` entries, and `out` must be non-null and aligned. The entries need not hold valid labels: an invalid one is reported as `QfExitCode_ValueError`.
+
+  **Parameters**
+
+  *   **num\_nodes** – The number of nodes, and hence of modes and qubits.
+  *   **branching** – How many children to attach per node, from 1 to 3.
+  *   **order** – The three labels to attach children along, in order. Only the first `branching` entries are used, and they must be distinct, but all three must be `QfPauliLabel` values.
+  *   **out** – A pointer to where the created tree will be written on success.
+
+  **Returns**
+
+  An exit code. This is `>0` if an error occurred, in particular if `num_nodes` is zero, `branching` is not between 1 and 3, an entry of `order` is not a `QfPauliLabel` value, or the used part of `order` repeats a label.
+</Function>
+
+### qf\_ternary\_tree\_num\_nodes
+
+<Function id="qf_ternary_tree_num_nodes" signature="uint32_t qf_ternary_tree_num_nodes(const QfTernaryTree *tree)">
+  Returns the number of nodes of a tree, i.e. its mode and qubit count.
+
+  <span id="group__qf__ternary__tree_1autotoc_md13" />
+
+  #### Safety
+
+  <span id="group__qf__ternary__tree_1autotoc_md13" />
+
+  `tree` must be a non-null, aligned pointer to a `QfTernaryTree`.
+
+  **Parameters**
+
+  *   **tree** – A pointer to the tree.
+
+  **Returns**
+
+  The number of nodes.
+</Function>
+
+### qf\_ternary\_tree\_num\_legs
+
+<Function id="qf_ternary_tree_num_legs" signature="uint32_t qf_ternary_tree_num_legs(const QfTernaryTree *tree)">
+  Returns the number of legs of a tree, always `2 * num_nodes + 1`.
+
+  This holds for every shape: a node with fewer children has more *legs*, not fewer Pauli strings. Of these, `2 * num_nodes` pair into the Majorana operators and exactly one is left over, carrying the total fermionic parity – see [`qf_ternary_tree_encoding_total_parity()`](#qf_ternary_tree_encoding_total_parity "qf_ternary_tree_encoding_total_parity").
+
+  <span id="group__qf__ternary__tree_1autotoc_md14" />
+
+  #### Safety
+
+  <span id="group__qf__ternary__tree_1autotoc_md14" />
+
+  `tree` must be a non-null, aligned pointer to a `QfTernaryTree`.
+
+  **Parameters**
+
+  *   **tree** – A pointer to the tree.
+
+  **Returns**
+
+  The number of legs.
+</Function>
+
+### qf\_ternary\_tree\_max\_weight
+
+<Function id="qf_ternary_tree_max_weight" signature="uint32_t qf_ternary_tree_max_weight(const QfTernaryTree *tree)">
+  Returns the largest Pauli weight of any single Majorana operator the tree generates.
+
+  This is the figure of merit a tree is chosen for. Note that it is the weight of one *Majorana* operator, and that no Pauli term of a fermionic creation or annihilation operator is heavier, since that is a sum of two Majorana operators. The two terms generally act on different qubits, though, so the operator as a whole can be supported on more.
+
+  <span id="group__qf__ternary__tree_1autotoc_md15" />
+
+  #### Safety
+
+  <span id="group__qf__ternary__tree_1autotoc_md15" />
+
+  `tree` must be a non-null, aligned pointer to a `QfTernaryTree`.
+
+  **Parameters**
+
+  *   **tree** – A pointer to the tree.
+
+  **Returns**
+
+  The maximum Pauli weight.
+</Function>
+
+### qf\_ternary\_tree\_free
+
+<Function id="qf_ternary_tree_free" signature="void qf_ternary_tree_free(QfTernaryTree *tree)">
+  Frees a ternary tree.
+
+  <span id="group__qf__ternary__tree_1autotoc_md16" />
+
+  #### Safety
+
+  <span id="group__qf__ternary__tree_1autotoc_md16" />
+
+  `tree` must be a pointer returned by one of the `qf_ternary_tree_*` constructors and not already freed, or `NULL`.
+
+  **Parameters**
+
+  *   **tree** – A pointer to the tree to free. Passing `NULL` is a no-op.
+</Function>
+
+### qf\_ternary\_tree\_encoding\_new
+
+<Function id="qf_ternary_tree_encoding_new" signature="QfExitCode qf_ternary_tree_encoding_new(const QfTernaryTree *tree, const uint32_t *mode_map, QfTernaryTreeEncoding **out)">
+  Compiles a ternary tree into the Pauli images of its Majorana operators.
+
+  Pairing the tree’s legs into Majorana operators and building their Pauli strings is done once, here, rather than per mapped operator, so one encoding should be reused across every operator mapped through it. The encoding carries no qubit count of its own: the mappers take one, so a single encoding can serve registers of different widths.
+
+  The pairing follows Algorithm 1 of   <span id="id3" />[\[Bonsai\]](#bonsai): from each node, descend its `X` link and then `Z` links until reaching a leg, which carries $\gamma$ of that node’s mode; the `Y` link likewise gives $\gamma'$. This is what makes the all-zero computational state the fermionic vacuum, so it is not an adjustable convention.
+
+  The encoding must be freed with [`qf_ternary_tree_encoding_free()`](#qf_ternary_tree_encoding_free "qf_ternary_tree_encoding_free").
+
+  <span id="id4" />
+
+  #### Example
+
+  `mode_map` is indexed by *node* and names the *mode* that node serves, so it reassigns which mode’s Majorana operators each pair of Pauli strings represents without changing the strings themselves. Pass `NULL` when node `j` should serve mode `j`.
+
+  ```c
+  QfTernaryTree *tree;
+  qf_ternary_tree_chain(4, QfPauliLabel_Z, &tree);
+
+  // Node j serves mode j.
+  QfTernaryTreeEncoding *identity;
+  QfExitCode exit = qf_ternary_tree_encoding_new(tree, NULL, &identity);
+  assert(exit == QfExitCode_Success);
+
+  // Reverse the assignment: node 0 now serves mode 3, node 1 mode 2, and so on.
+  uint32_t mode_map[4] = {3, 2, 1, 0};
+  QfTernaryTreeEncoding *reversed;
+  exit = qf_ternary_tree_encoding_new(tree, mode_map, &reversed);
+  assert(exit == QfExitCode_Success);
+
+  // Both cover the same modes; only which node serves which mode differs.
+  assert(qf_ternary_tree_encoding_num_modes(reversed) == 4);
+
+  qf_ternary_tree_encoding_free(identity);
+  qf_ternary_tree_encoding_free(reversed);
+  qf_ternary_tree_free(tree);
+  ```
+
+  Reordering the modes of a fixed tree is one of the cheapest ways to lower the Pauli weight of a particular Hamiltonian, which is why the assignment is separate from the tree.
+
+  <span id="bonsai" />
+
+  \[[Bonsai](#id3)]
+
+  A. Miller, Z. Zimborás, S. Knecht, S. Maniscalco and G. García-Pérez, Bonsai algorithm: grow your own fermion-to-qubit mappings, PRX Quantum 4, 030314 (2023), [arXiv:2212.09731](https://arxiv.org/abs/2212.09731).
+
+  <span id="group__qf__ternary__tree_1autotoc_md17" />
+
+  #### Safety
+
+  <span id="group__qf__ternary__tree_1autotoc_md17" />
+
+  `tree` must be `NULL` or a valid `QfTernaryTree` pointer, `mode_map` must be `NULL` or point to an array of at least `qf_ternary_tree_num_nodes(tree)` initialized `uint32_t` values, and `out` must be `NULL` or aligned.
+
+  **Parameters**
+
+  *   **tree** – A pointer to the tree defining the encoding.
+  *   **mode\_map** – Which mode each node serves, as an array of `qf_ternary_tree_num_nodes(tree)` entries indexed by node, or `NULL` for the identity assignment.
+  *   **out** – A pointer to where the created encoding will be written on success.
+
+  **Returns**
+
+  An exit code. This is `>0` if an error occurred. In particular, a `QfExitCode_NullPointerError` is returned if `tree` or `out` is `NULL`, and a `QfExitCode_ValueError` if `mode_map` is not a permutation of the tree’s nodes.
+</Function>
+
+### qf\_ternary\_tree\_encoding\_num\_modes
+
+<Function id="qf_ternary_tree_encoding_num_modes" signature="uint32_t qf_ternary_tree_encoding_num_modes(const QfTernaryTreeEncoding *encoding)">
+  Returns the number of fermionic modes a compiled encoding covers.
+
+  <span id="group__qf__ternary__tree_1autotoc_md18" />
+
+  #### Safety
+
+  <span id="group__qf__ternary__tree_1autotoc_md18" />
+
+  `encoding` must be a non-null, aligned pointer to a `QfTernaryTreeEncoding`.
+
+  **Parameters**
+
+  *   **encoding** – A pointer to the encoding.
+
+  **Returns**
+
+  The number of modes, equal to the tree’s node count.
+</Function>
+
+### qf\_ternary\_tree\_encoding\_total\_parity
+
+<Function id="qf_ternary_tree_encoding_total_parity" signature="QfExitCode qf_ternary_tree_encoding_total_parity(const QfTernaryTreeEncoding *encoding, uint32_t num_qubits, QkObs **out)">
+  Builds the total fermionic parity observable of a compiled encoding.
+
+  A tree’s $2N+1$ legs pair into $2N$ Majorana operators, leaving exactly one over, and that leftover is the total parity $\prod_j (1 - 2 n_j)$.
+
+  <Admonition title="Important" type="danger">
+    This is an **observable to measure, not a constraint to impose**. Both eigenvalues are physical, so do not project a state onto the $+1$ sector: a ternary-tree encoding spends one qubit per mode and is a unitary isomorphism onto the *whole* $2^N$-dimensional space, with both parity sectors represented at multiplicity $2^{N-1}$ and no unphysical subspace to project away.
+  </Admonition>
+
+  Note also that the Pauli string is *not* in general the all-$Z$ string: it is the leg reached by the all-$Z$ *path*, which acts as the identity on every node not on that path. On the balanced tree at four modes it is $Z_3 Z_0$.
+
+  <span id="id5" />
+
+  #### Example
+
+  ```c
+  QkObs *parity;
+  QfExitCode exit = qf_ternary_tree_encoding_total_parity(encoding, 4, &parity);
+
+  assert(exit == QfExitCode_Success);
+
+  qk_obs_free(parity);
+  ```
+
+  <span id="group__qf__ternary__tree_1autotoc_md19" />
+
+  #### Safety
+
+  <span id="group__qf__ternary__tree_1autotoc_md19" />
+
+  `encoding` must be `NULL` or a valid `QfTernaryTreeEncoding` pointer, and `out` must be `NULL` or aligned.
+
+  **Parameters**
+
+  *   **encoding** – A pointer to the compiled encoding.
+  *   **num\_qubits** – The number of qubits for the resulting observable. This must be at least the encoding’s mode count; a larger value pads with the identity.
+  *   **out** – A pointer to where the total-parity observable will be written on success: a single :math:`Z` string with coefficient :math:`+1`. The caller takes ownership and must free it with `qk_obs_free`. It is left untouched if the construction fails.
+
+  **Returns**
+
+  An exit code. This is `>0` if an error occurred. In particular, a `QfExitCode_NullPointerError` is returned if `encoding` or `out` is `NULL`, and a `QfExitCode_ValueError` if `num_qubits` is below the encoding’s mode count.
+</Function>
+
+### qf\_ternary\_tree\_encoding\_max\_weight
+
+<Function id="qf_ternary_tree_encoding_max_weight" signature="uint32_t qf_ternary_tree_encoding_max_weight(const QfTernaryTreeEncoding *encoding)">
+  Returns the largest Pauli weight of any single Majorana operator of a compiled encoding.
+
+  This is the encoding-level counterpart of [`qf_ternary_tree_max_weight()`](#qf_ternary_tree_max_weight "qf_ternary_tree_max_weight"), and always agrees with it: although it ranges only over the `2N` legs that carry a Majorana operator, the leftover parity leg is never deeper than all of them. It lets an encoding report its weight once the tree it was compiled from has been freed.
+
+  <span id="group__qf__ternary__tree_1autotoc_md20" />
+
+  #### Safety
+
+  <span id="group__qf__ternary__tree_1autotoc_md20" />
+
+  `encoding` must be a non-null, aligned pointer to a `QfTernaryTreeEncoding`.
+
+  **Parameters**
+
+  *   **encoding** – A pointer to the encoding.
+
+  **Returns**
+
+  The largest weight over the encoding’s `2N` Majorana operators.
+</Function>
+
+### qf\_ternary\_tree\_encoding\_free
+
+<Function id="qf_ternary_tree_encoding_free" signature="void qf_ternary_tree_encoding_free(QfTernaryTreeEncoding *encoding)">
+  Frees a compiled ternary-tree encoding.
+
+  <span id="group__qf__ternary__tree_1autotoc_md21" />
+
+  #### Safety
+
+  <span id="group__qf__ternary__tree_1autotoc_md21" />
+
+  `encoding` must be a pointer returned by `qf_ternary_tree_encoding_new` and not already freed, or `NULL`.
+
+  **Parameters**
+
+  *   **encoding** – A pointer to the encoding to free. Passing `NULL` is a no-op.
+</Function>
+
