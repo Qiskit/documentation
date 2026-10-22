@@ -112,20 +112,11 @@ Foundational classes use classical data, where quantum models are useful to lear
 
 ### Foundational problem classes
 
-#### Small-dataset classification
+#### Classical data classification
 
-- **Data:** Small classical datasets for binary or multiclass classification.
-- **Tasks:** Train and evaluate a quantum classifier, such as a quantum kernel or variational classifier.
-- **Teaching instance:** A dataset small enough to simulate exactly, with a classical baseline such as a support vector machine with a radial basis function kernel on the same split.
-- **Scale-up:** Feature maps at about 50 qubits or more on hardware.
-- **Leads to:** Group-structured classification.
-- **Out of scope:** Real-world tabular data, which is its own class.
-
-#### Real-world tabular classification
-
-- **Data:** Public real-world tabular datasets, such as biomedical or energy data.
-- **Tasks:** Classify the data with a quantum model, and compare against a matched classical model, such as gradient-boosted trees, on the same split and metric.
-- **Teaching instance:** A subset of the data small enough to simulate exactly.
+- **Data:** Small or public real-world classical datasets for binary or multiclass classification, such as tabular biomedical or energy data.
+- **Tasks:** Train and evaluate a quantum classifier, such as a quantum kernel or variational classifier, and compare against a matched classical model, such as a support vector machine with a radial basis function kernel or gradient-boosted trees, on the same split and metric.
+- **Teaching instance:** A dataset, or a subset of one, small enough to simulate exactly.
 - **Scale-up:** About 50 qubits or more on hardware.
 - **Leads to:** Group-structured classification.
 - **Out of scope:** Private datasets.
