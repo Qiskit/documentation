@@ -51,7 +51,7 @@ Reviewers check every proposal against the criteria for its type, and check the 
 
 ### Quantum information science tutorials
 
-Quantum information science tutorials aren't Foundational or Applied. Reviewers check them against these criteria instead. A tutorial whose main method uses dynamic circuits belongs to the Dynamic circuits category, even when its topic fits another category.
+Quantum information science tutorials aren't Foundational or Applied. Reviewers check them against these criteria instead.
 
 | Criterion                            | Meets it when                                                                                                                                                                                                                                    | Doesn't meet it when                                                                                            |
 | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------- |
@@ -64,7 +64,6 @@ Quantum information science tutorials aren't Foundational or Applied. Reviewers 
 | Building blocks                      | The textbook implementation, the ideal state, or the classical bound that a protocol tests                                                                        |
 | Characterization and benchmarking    | The properties that the backend reports, or the ideal state                                                                                                       |
 | Compilation and circuit synthesis    | The preset pass manager at optimization level 3                                                                                                                   |
-| Dynamic circuits                     | The equivalent circuit without mid-circuit measurement or feedforward, such as a SWAP-based or fully unitary version                                              |
 | Error mitigation to error correction | The unmitigated result, or the same circuit without encoding or checks. Error mitigation tutorials also compare against the Estimator's default resilience level. |
 | HPC integration                      | The same workload submitted directly through Qiskit Runtime                                                                                                       |
 
