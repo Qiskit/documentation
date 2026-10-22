@@ -8,7 +8,7 @@ description: Learn about the available error mitigation and suppression techniqu
 # Error mitigation and suppression techniques
 
 <Admonition type="note" title="New execution model, now in beta release">
-The beta release of a new execution model is now available. The directed execution model provides more flexibility when customizing your error mitigation workflow. See the [Directed execution model](/docs/guides/directed-execution-model) guide for more information.
+The beta release of a new execution model is now available. The directed execution model provides more flexibility when customizing your error mitigation workflow. See the [Directed execution model](/docs/ibm-quantum-compute/directed-execution-model) guide for more information.
 </Admonition>
 
 Error mitigation and error suppression techniques are used to improve result quality when scaling up to larger workloads. This page provides high-level explanations of the error suppression and error mitigation techniques available with Qiskit.
@@ -26,7 +26,7 @@ The diagram below depicts dynamical decoupling with an XX pulse sequence. The ab
 ![Depiction of dynamical decoupling](/docs/images/guides/error-mitigation-explanation/dd.avif)
 
 You can enable dynamical decoupling the following ways:
-    - The [Dynamical decoupling transpiler pass](/docs/guides/dynamical-decoupling-pass-manager) in Qiskit
+    - The [Dynamical decoupling transpiler pass](/docs/qiskit/dynamical-decoupling-pass-manager) in Qiskit
     - The dynamical decoupling option if using IBM Quantum [Estimator](/docs/api/qiskit-ibm-runtime/options-models-estimator-options#dynamical_decoupling) or [Sampler](/docs/api/qiskit-ibm-runtime/options-models-sampler-options#dynamical_decoupling)
 
 ## Pauli twirling
@@ -44,7 +44,7 @@ Since most of the errors in current quantum hardware come from two-qubit gates, 
 ![Depiction of gate twirls](/docs/images/guides/error-mitigation-explanation/gate_twirls.avif)
 
 You can enable Pauli twirling the following ways:
-    - A [Pauli twirling custom pass](/docs/guides/custom-transpiler-pass) in Qiskit
+    - A [Pauli twirling custom pass](/docs/qiskit/custom-transpiler-pass) in Qiskit
     - The twirling options if using IBM Quantum [Estimator](/docs/api/qiskit-ibm-runtime/options-models-estimator-options#twirling) or [Sampler](/docs/api/qiskit-ibm-runtime/options-models-sampler-options#twirling)
 
 <span id="trex"></span>
@@ -63,7 +63,7 @@ readout noise. Estimating the readout-error transfer matrix requires executing a
 You can enable TREX the following ways:
     - The [Qiskit Mitigation](/docs/api/qiskit-mitigation/trex#trex) addon for Qiskit
     - The [`measure_mitigation` option](/docs/api/qiskit-ibm-runtime/options-models-resilience-options#measure_mitigation) if using IBM Quantum Estimator
-    - The [resilience level](/docs/guides/estimator-noise-management#resilience) if using IBM Quantum Estimator
+    - The [resilience level](/docs/ibm-quantum-compute/estimator-noise-management#resilience-level) if using IBM Quantum Estimator
 
 <span id="zne"></span>
 ## Zero-noise extrapolation (ZNE)
@@ -87,7 +87,7 @@ leading to a roughly 3x overhead.
 You can enable ZNE the following ways:
     - The [Qiskit Mitigation](/docs/api/qiskit-mitigation/zne) addon for Qiskit
     - The [`zne_mitigation` option](/docs/api/qiskit-ibm-runtime/options-models-resilience-options#zne_mitigation) if using IBM Quantum Estimator
-    - The [resilience level](/docs/guides/estimator-noise-management#resilience) if using IBM Quantum Estimator
+    - The [resilience level](/docs/ibm-quantum-compute/estimator-noise-management#resilience-level) if using IBM Quantum Estimator
 
 <span id="pea"></span>
 ## Probabilistic Error Amplification (PEA)
@@ -144,7 +144,7 @@ See [Migrate from server-side to client-side Sampler and Estimator](/docs/guides
 ## Next steps
 
 - Check out the [tutorial](/docs/tutorials/combine-error-mitigation-techniques) on combining error mitigation options with the Estimator primitive.
-- [Configure noise management with Estimator](/docs/guides/estimator-noise-management).
-- [Configure noise management with Sampler](/docs/guides/sampler-noise-management).
-- Explore other [options](/docs/guides/runtime-options-overview) for the IBM Quantum primitives.
-- Decide what [execution mode](/docs/guides/execution-modes) to run your job in.
+- [Configure noise management with Estimator](/docs/ibm-quantum-compute/estimator-noise-management).
+- [Configure noise management with Sampler](/docs/ibm-quantum-compute/sampler-noise-management).
+- Explore other [options](/docs/ibm-quantum-compute/runtime-options-overview) for the IBM Quantum primitives.
+- Decide what [execution mode](/docs/ibm-quantum-compute/execution-modes) to run your job in.

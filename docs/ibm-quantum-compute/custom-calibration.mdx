@@ -5,14 +5,14 @@ description: Use gates and readout instructions on IBM QPUs that are calibrated 
 
 # Specially calibrated instructions
 
-By default, the quantum gates and readout operations on IBM&reg; quantum computers are calibrated for optimal performance across general use cases. Some workloads, however, benefit from instructions whose parameters are tuned differently. For example, [`MidCircuitMeasure`](/docs/guides/execute-dynamic-circuits#midcircuitmeasure-method) (`measure_2`) is a readout operation tailored for measurements in the middle of a circuit, and slower `cz` gates can improve the results of some error mitigation workflows.
+By default, the quantum gates and readout operations on IBM&reg; quantum computers are calibrated for optimal performance across general use cases. Some workloads, however, benefit from instructions whose parameters are tuned differently. For example, [`MidCircuitMeasure`](/docs/ibm-quantum-compute/execute-dynamic-circuits#midcircuitmeasure-method) (`measure_2`) is a readout operation tailored for measurements in the middle of a circuit, and slower `cz` gates can improve the results of some error mitigation workflows.
 
 Specially calibrated instructions come in two forms, and you access them differently:
 
 - [**Instructions with different signatures**](#different) are calibrated alongside the standard instructions in the default calibration, so you add them to your circuits like any other instruction. They are usually identified by a suffix, such as `measure_2`.
 - [**Alternative calibrations**](#alternative-calibrations) replace parts of the default calibration with differently tuned parameters. You select one by passing a `calibration_id` when you retrieve the backend.
 
-To learn how IBM quantum computers are calibrated, see [Monitor, calibrate, and benchmark](/docs/guides/calibration-jobs).
+To learn how IBM quantum computers are calibrated, see [Monitor, calibrate, and benchmark](/docs/ibm-quantum-compute/calibration-jobs).
 
 <span id="different" />
 ## Instructions with different signatures
@@ -21,7 +21,7 @@ These instructions are calibrated with the standard instruction set, so you don'
 
 | Instruction | Description | Typical use case | Use in Qiskit | Processor family |
 | --- | --- | --- | --- | --- |
-| `measure_2` | Shorter measurement pulse | [Mid-circuit measurements](/docs/guides/execute-dynamic-circuits#midcircuitmeasure-method) | [`MidCircuitMeasure`](/docs/api/qiskit-ibm-runtime/circuit-library-mid-circuit-measure) (v0.43.0 or later) | Heron, Nighthawk r2 |
+| `measure_2` | Shorter measurement pulse | [Mid-circuit measurements](/docs/ibm-quantum-compute/execute-dynamic-circuits#midcircuitmeasure-method) | [`MidCircuitMeasure`](/docs/api/qiskit-ibm-runtime/circuit-library-mid-circuit-measure) (v0.43.0 or later) | Heron, Nighthawk r2 |
 | `reset_2` | Shorter conditional reset pulse that uses `measure_2` | Mid-circuit qubit reset | [`MidCircuitReset`](/docs/api/qiskit-ibm-runtime/circuit-library-mid-circuit-reset) (v0.49.0 or later) | Heron |
 | `measure_reset` | Measurement like `measure` that also resets the qubit* | Measure and reset a qubit | [`MeasureReset`](/docs/api/qiskit-ibm-runtime/circuit-library-measure-reset) (v0.50.0 or later) | Heron, Nighthawk r2 |
 | `measure_reset_2` | Shorter measurement like `measure_2` that also resets the qubit* | Measure and reset a qubit mid-circuit | Initialize [`MeasureReset`](/docs/api/qiskit-ibm-runtime/circuit-library-measure-reset) with `name="measure_reset_2"` (v0.50.0 or later) | Heron, Nighthawk r2 |
@@ -106,7 +106,7 @@ backend = service.backend("ibm_phoenix", calibration_id="slow_gates")
 ```
 
 <Admonition type="tip">
-When you use `slow_gates_ac`, submit all jobs in the workflow to a single [session](/docs/guides/run-jobs-session) so that they run while the device's noise remains stable.
+When you use `slow_gates_ac`, submit all jobs in the workflow to a single [session](/docs/ibm-quantum-compute/run-jobs-session) so that they run while the device's noise remains stable.
 </Admonition>
 
 #### Check gate durations
@@ -129,7 +129,7 @@ Because the target reflects the selected calibration, transpile your circuits ag
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
-- Learn how to [execute dynamic circuits](/docs/guides/execute-dynamic-circuits) with mid-circuit measurements.
+- Learn how to [execute dynamic circuits](/docs/ibm-quantum-compute/execute-dynamic-circuits) with mid-circuit measurements.
 - Use [postselection](/docs/addons/qiskit-mitigation/guides/postselection-with-non-markovian-error-checks) to filter out results affected by correlated noise.
-- Read about how IBM quantum computers are [monitored, calibrated, and benchmarked](/docs/guides/calibration-jobs).
+- Read about how IBM quantum computers are [monitored, calibrated, and benchmarked](/docs/ibm-quantum-compute/calibration-jobs).
 </Admonition>
