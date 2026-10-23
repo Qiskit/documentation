@@ -7,15 +7,15 @@ description: "Documentation for the latest version of Shaded lightcones"
 
 ![\_images/lightcones.png](/docs/images/addons/qiskit-addon-slc/lightcones.avif)
 
-`qiskit-addon-slc` is a package for computing the shaded lightcone (SLC) [\[1\]](#references) of an observable with respect to a quantum circuit. In the context of probabilistic error cancellation (PEC), shaded lightcones are similar to conventional binary lightcones in that not mitigating errors outside the lightcone can reduce the variance (i.e. sampling cost). Lightcone shading allows this strategy to be pushed further by assigning scales to Pauli error generators within the causal lightcone. Errors that are assigned smaller scales have less effect on the observable; truncating them from the noise model can reduce variance (i.e. sampling cost) at the cost of some bias. The `qiskit-addon-slc` package gives users the ability to do lightcone shading and control the tradeoff between sampling cost and bias.
+`qiskit-addon-slc` is a package for computing the shaded lightcone (SLC) [\[1\]](#ref1) of an observable with respect to a quantum circuit. In the context of probabilistic error cancellation (PEC), shaded lightcones are similar to conventional binary lightcones in that not mitigating errors outside the lightcone can reduce the variance (i.e. sampling cost). Lightcone shading allows this strategy to be pushed further by assigning scales to Pauli error generators within the causal lightcone. Errors that are assigned smaller scales have less effect on the observable; truncating them from the noise model can reduce variance (i.e. sampling cost) at the cost of some bias. The `qiskit-addon-slc` package gives users the ability to do lightcone shading and control the tradeoff between sampling cost and bias.
 
 ## Getting started
 
-A simple guide to help you get started quickly with this package is available in the [quickstart guide](guides/quickstart).
+A simple guide to help you get started quickly with this package is available in the [quickstart guide](/docs/addons/qiskit-addon-slc/guides/quickstart).
 
 ## Use case examples
 
-This technique has been used to improve the sampling cost of PEC on a 20-qubit mirrored Ising circuit [\[tutorial\]](/docs/tutorials/pec-with-shaded-lightcones).
+This technique has been used to lower the sampling cost of probabilistic error cancellation (PEC) for operator Loschmidt echo experiments with 56 qubits on an IBM Heron processor. [\[2\]](#ref2).
 
 ## Technical discussion
 
@@ -55,7 +55,6 @@ Shaded lightcones are calculated and used in 5 steps:
 ### Future work
 
 *   Rust-accelerated eigenvalue computation for computing forward bounds
-*   Additional guides coming soon
 
 ## Contributing
 
@@ -92,4 +91,6 @@ We use [GitHub issues](https://github.com/Qiskit/qiskit-addon-slc/issues/new/cho
 ## References
 
 1.  Andrew Eddins, et al., [Lightcone shading for classically accelerated quantum error mitigation](https://arxiv.org/abs/2409.04401v1), arXiv:2409.04401v1 \[quant-ph].
+
+2.  Samantha V. Barron, et al., [Observable Estimation in the Absence of Classical Verification](https://arxiv.org/pdf/2607.25998), arXiv:2607.25998 \[quant-ph].
 
