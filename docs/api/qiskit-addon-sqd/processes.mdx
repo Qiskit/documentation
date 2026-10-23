@@ -1,0 +1,109 @@
+---
+title: processes (latest version)
+description: API reference for qiskit_addon_sqd.processes in the latest version of qiskit-addon-sqd
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit_addon_sqd.processes
+---
+
+<span id="module-qiskit_addon_sqd.processes" />
+
+<span id="processes-qiskit-addon-sqd-processes" />
+
+# Processes
+
+`qiskit_addon_sqd.processes`
+
+Support for collective multi-process execution.
+
+This module exists to support coordinated parallel execution across multiple isolated processes, with explicit global synchronization and communication (e.g., MPI-style SPMD collectives).
+
+The current implementation relies on MPI, but the public interface is designed to support other collective-execution backends in the future.
+
+### is\_mpi\_execution
+
+<Function id="qiskit_addon_sqd.processes.is_mpi_execution" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.14/qiskit_addon_sqd/processes.py#L75-L81" signature="is_mpi_execution()">
+  Check if running in MPI mode.
+
+  **Returns**
+
+  `True` if MPI is detected.
+
+  **Return type**
+
+  [bool](https://docs.python.org/3/builtins/functions.html#bool)
+</Function>
+
+### process\_index
+
+<Function id="qiskit_addon_sqd.processes.process_index" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.14/qiskit_addon_sqd/processes.py#L93-L99" signature="process_index()">
+  Get the index of the current process.
+
+  **Returns**
+
+  Process index (0 for the control process).
+
+  **Return type**
+
+  [int](https://docs.python.org/3/builtins/functions.html#int)
+</Function>
+
+### process\_count
+
+<Function id="qiskit_addon_sqd.processes.process_count" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.14/qiskit_addon_sqd/processes.py#L102-L108" signature="process_count()">
+  Get the total number of collective processes.
+
+  **Returns**
+
+  Number of collective processes (1 if not in distributed mode).
+
+  **Return type**
+
+  [int](https://docs.python.org/3/builtins/functions.html#int)
+</Function>
+
+### is\_control\_process
+
+<Function id="qiskit_addon_sqd.processes.is_control_process" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.14/qiskit_addon_sqd/processes.py#L111-L117" signature="is_control_process()">
+  Return `True` if the current process is the control process.
+
+  **Returns**
+
+  `True` if this is rank 0 or if not in distributed mode.
+
+  **Return type**
+
+  [bool](https://docs.python.org/3/builtins/functions.html#bool)
+</Function>
+
+### broadcast
+
+<Function id="qiskit_addon_sqd.processes.broadcast" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.14/qiskit_addon_sqd/processes.py#L120-L134" signature="broadcast(obj, root=0)">
+  Broadcast a picklable object to all processes.
+
+  **Parameters**
+
+  *   **obj** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any)) – Object to broadcast (only used on the root process).
+  *   **root** ([*int*](https://docs.python.org/3/builtins/functions.html#int)) – Root process index (default: 0 = broadcast from the control process).
+
+  **Returns**
+
+  The broadcasted object on all ranks.
+
+  **Return type**
+
+  [*Any*](https://docs.python.org/3/library/typing.html#typing.Any)
+</Function>
+
+### barrier
+
+<Function id="qiskit_addon_sqd.processes.barrier" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.14/qiskit_addon_sqd/processes.py#L137-L144" signature="barrier()">
+  Synchronize all processes.
+
+  This is a no-op if not in distributed mode.
+
+  **Return type**
+
+  None
+</Function>
+

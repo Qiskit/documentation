@@ -17,7 +17,7 @@ SQD-based workflows involve first preparing one or more quantum states on a quan
 
 ## Getting started
 
-A simple guide to help you get started quickly with this package is available in the [quickstart guide](guides/quickstart).
+A simple guide to help you get started quickly with this package is available in the [quickstart guide](/docs/addons/qiskit-addon-sqd/guides/quickstart).
 
 ## Use case examples
 
@@ -45,15 +45,21 @@ The [`qiskit_addon_sqd.fermion.solve_fermion()`](/docs/api/qiskit-addon-sqd/ferm
 
 ### Choosing subspace dimensions
 
-The choice of the subspace dimension affects the accuracy and runtime of the eigenstate solver. The larger the subspace, the more accurate the calculation, at the cost of increasing the runtime and memory requirements. The optimal subspace size of a given system is not known; thus, a convergence study with the subspace dimension can be performed, as described in this [guide](guides/choose-subspace-dimension).
+The choice of the subspace dimension affects the accuracy and runtime of the eigenstate solver. The larger the subspace, the more accurate the calculation, at the cost of increasing the runtime and memory requirements. The optimal subspace size of a given system is not known; thus, a convergence study with the subspace dimension can be performed, as described in this [guide](/docs/addons/qiskit-addon-sqd/guides/choose-subspace-dimension).
 
-### The subspace dimension is set indirectly
+### Bounding the subspace dimension
 
-In this package, the user controls the number of bitstrings contained in each subspace with the samples\_per\_batch argument in [`qiskit_addon_sqd.subsampling.postselect_and_subsample()`](/docs/api/qiskit-addon-sqd/subsampling#qiskit_addon_sqd.subsampling.postselect_and_subsample "qiskit_addon_sqd.subsampling.postselect_and_subsample"). The value of this argument sets an upper bound to the subspace dimension in the case of quantum chemistry applications. See this [example](guides/select-open-closed-shell) for more details.
+The `samples_per_batch` argument of [`qiskit_addon_sqd.fermion.diagonalize_fermionic_hamiltonian()`](/docs/api/qiskit-addon-sqd/fermion#qiskit_addon_sqd.fermion.diagonalize_fermionic_hamiltonian "qiskit_addon_sqd.fermion.diagonalize_fermionic_hamiltonian") sets the number of bitstrings contained in each batch, and thereby controls the subspace dimension indirectly: in the case of quantum chemistry applications, its value sets an upper bound to the subspace dimension. The dimension that actually results depends on how many of the sampled bitstrings are distinct, and it grows over the course of the self-consistent configuration recovery iterations, so it is not known in advance. See this [example](/docs/addons/qiskit-addon-sqd/guides/select-open-closed-shell) for more details.
+
+The `max_dim` argument of the same function bounds the dimension directly, by limiting the number of CI strings retained in each spin sector. Since the subspace is spanned by the Cartesian product of the two spin sectors, `max_dim=d` caps the subspace dimension at `d**2`, while a tuple `max_dim=(d_a, d_b)` limits the spin-alpha and spin-beta sectors separately, capping the subspace dimension at `d_a * d_b` (with `symmetrize_spin=True`, the two limits must be equal). When a batch yields more CI strings than the limit allows, the strings requested through `include_configurations` and those carried over from the previous iteration are retained preferentially, and the remaining slots are filled with the most frequently sampled strings. Because it caps the size of the largest diagonalization that the eigenstate solver will be asked to perform, `max_dim` is a convenient way to keep the solver within a runtime and memory budget. See this [guide](/docs/addons/qiskit-addon-sqd/guides/choose-subspace-dimension) for more details.
 
 ### Solvers
 
 The projection and diagonalization steps are performed by a classical solver. We provide here two generic solvers, one for Fermionic systems and another for qubit systems. Other solvers that might be more efficient for specific systems can be interfaced by the users.
+
+### Trim SQD
+
+Standard SQD diagonalizes each subsampled batch independently and keeps the best result, so the number of configurations it can consider is limited to what one affordable subspace can hold. **Trim SQD** instead partitions the bitstrings into batches, performs an intermediate diagonalization of each batch, then performs a larger diagonalization using the highest-weight determinants from each partition. This method is based on joint research from the Cleveland Clinic Foundation, RIKEN, and IBM [\[7\]](#references), and can be enabled by passing a [`TrimPolicy`](/docs/api/qiskit-addon-sqd/trim#qiskit_addon_sqd.trim.TrimPolicy "qiskit_addon_sqd.trim.TrimPolicy") object to the [`diagonalize_fermionic_hamiltonian()`](/docs/api/qiskit-addon-sqd/fermion#qiskit_addon_sqd.fermion.diagonalize_fermionic_hamiltonian "qiskit_addon_sqd.fermion.diagonalize_fermionic_hamiltonian") function.
 
 ## Contributing
 
@@ -67,6 +73,10 @@ We use [GitHub issues](https://github.com/Qiskit/qiskit-addon-sqd/issues/new/cho
 
 If you use this package in your research, use the [CITATION.bib](https://github.com/Qiskit/qiskit-addon-sqd/blob/main/CITATION.bib) file in this project’s repository to cite the appropriate reference(s).
 
+## Acknowledgements
+
+This package includes an optional sampling strategy within the self-consistent configuration recovery loop that trims determinants based on intermediate diagonalization results. The implementation is based on joint research from the Cleveland Clinic Foundation, RIKEN, and IBM. If you use this feature in your research, please also use the citation for the paper, which can be found in the [CITATION.bib](https://github.com/Qiskit/qiskit-addon-sqd/blob/main/CITATION.bib) file with citation key `merz2026crossing`. An implementation of the full workflow from that paper is expected to be available on GitHub soon.
+
 ## License
 
 [Apache License 2.0](https://github.com/Qiskit/qiskit-addon-sqd/blob/main/LICENSE.txt)
@@ -75,7 +85,7 @@ If you use this package in your research, use the [CITATION.bib](https://github.
 
 We follow [semantic versioning](https://semver.org/). We may occasionally make breaking changes in order to improve the user experience. When possible, we will keep old interfaces and mark them as deprecated, as long as they can co-exist with the new ones. Each substantial improvement, breaking change, or deprecation will be documented in the [release notes](/docs/api/qiskit-addon-sqd/release-notes).
 
-<span id="id1" />
+<span id="id2" />
 
 ## References
 
@@ -90,4 +100,6 @@ We follow [semantic versioning](https://semver.org/). We may occasionally make b
 5.  Mathias Mikkelsen, Yuya O. Nakagawa, [Quantum-selected configuration interaction with time-evolved state](https://arxiv.org/abs/2412.13839), arXiv:2412.13839 \[quant-ph].
 
 6.  Samuele Piccinelli, et al., [Quantum chemistry with provable convergence via randomized sample-based Krylov quantum diagonalization](https://arxiv.org/abs/2508.02578), arXiv:2508.02578 \[quant-ph].
+
+7.  Kenneth M. Merz Jr., et al., [Crossing the 12,000-atom barrier with heterogeneous quantum-classical supercomputing: quantum chemistry of protein-ligand complexes](https://arxiv.org/abs/2605.01138), arXiv:2605.01138 \[quant-ph].
 
