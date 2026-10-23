@@ -36,9 +36,11 @@ python_api_name: qiskit_fermions.transpiler.passes.MergeOrbitalRotations
 
     Collects every maximal run of consecutive [`OrbitalRotation`](circuit-library-orbital-rotation "qiskit_fermions.circuit.library.OrbitalRotation") gates on the same modes and replaces each run of length two or more with a single [`OrbitalRotation`](circuit-library-orbital-rotation "qiskit_fermions.circuit.library.OrbitalRotation") whose `rotation_unitary` is the run’s rotations multiplied in circuit order. Runs of a single rotation (and all other nodes) are left untouched. The input DAG is modified in place.
 
+    A `Barrier` interrupts a run, so the rotations on either side of one are not merged. Place a barrier between two rotations to keep them apart.
+
     **Parameters**
 
-    **dag** ([*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit)) – the input circuit with fermion-based instructions. Only [`DAGOpNode`](/docs/api/qiskit/qiskit.dagcircuit.DAGOpNode) with [`FermionicGate`](circuit-fermionic-gate "qiskit_fermions.circuit.FermionicGate") instances as their [`op`](/docs/api/qiskit/qiskit.dagcircuit.DAGOpNode#op) are supported.
+    **dag** ([*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit)) – the input circuit with fermion-based instructions. Only [`DAGOpNode`](/docs/api/qiskit/qiskit.dagcircuit.DAGOpNode) with [`FermionicGate`](circuit-fermionic-gate "qiskit_fermions.circuit.FermionicGate") instances as their [`op`](/docs/api/qiskit/qiskit.dagcircuit.DAGOpNode#op) are supported, plus `Barrier` and [`FermionicMeasure`](circuit-library-fermionic-measure "qiskit_fermions.circuit.library.FermionicMeasure"), which are carried through untouched (a measurement keeps the classical bit it writes into).
 
     **Returns**
 
