@@ -1,0 +1,390 @@
+---
+title: passmanager (v2.6)
+description: API reference for qiskit.passmanager in qiskit v2.6
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit.passmanager
+---
+
+<span id="pass-managers-qiskit-passmanager" />
+
+<span id="module-qiskit.passmanager" />
+
+<span id="qiskit-passmanager" />
+
+# Pass Managers
+
+`qiskit.passmanager`
+
+<Admonition title="Note" type="note">
+  As of Qiskit v2.6, there are two separate non-interacting pass-manager systems defined in Qiskit, and Qiskit is beginning to transition away from the pure-Python system. The original, earlier pass-manager infrastructure is discussed in [Original Python-native pass manager](#passmanager-legacy). The new, Rust-native system, which supports multiple IRs and natively handles interoperation with C and Rust code is discussed in [Multi-IR lowering pass manager](#passmanager-lowering).
+</Admonition>
+
+<span id="passmanager-legacy" />
+
+## Original Python-native pass manager
+
+### Overview
+
+The Qiskit pass manager is inspired by the [LLVM compiler](https://llvm.org/). The compiler infrastructure separates responsibilities into three main components: tasks, flow controllers, and pass managers.
+
+A compilation pipeline executes a sequence of [`Task`](/docs/api/qiskit/2.6/qiskit.passmanager.Task "qiskit.passmanager.Task") objects, each of which takes an intermediate representation (IR) as input, performs work, and returns a, possibly different, IR as output. Where [`Task`](/docs/api/qiskit/2.6/qiskit.passmanager.Task "qiskit.passmanager.Task") defines the interface, an atomic task is a *pass*, which subclasses [`GenericPass`](/docs/api/qiskit/2.6/qiskit.passmanager.GenericPass "qiskit.passmanager.GenericPass") and implements its abstract [`run()`](/docs/api/qiskit/2.6/qiskit.passmanager.GenericPass#run "qiskit.passmanager.GenericPass.run") method. This is the class that should be used as base class when implementing a custom compiler pass.
+
+Flow controllers provide execution models for a set of tasks. The simplest flow controller is a [`FlowControllerLinear`](/docs/api/qiskit/2.6/qiskit.passmanager.FlowControllerLinear "qiskit.passmanager.FlowControllerLinear"), which simply executes a set of tasks in a linear sequence. More advanced flow controllers include loops or conditional execution. These are, for example, used in Qiskit’s preset transpiler pipelines for higher optimization levels where optimizations are run until a convergence criterion is met.
+
+Pass managers are responsible for managing the tasks, including scheduling required analyses and enabling modification of the task sequence by the user. Qiskit provides two IR-generic pass managers in this module, and a pass manager specialized to [`DAGCircuit`](/docs/api/qiskit/2.6/qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") as IR in [`qiskit.transpiler`](transpiler#module-qiskit.transpiler "qiskit.transpiler"). The IR-generic ones are:
+
+*   [`BasePassManager`](/docs/api/qiskit/2.6/qiskit.passmanager.BasePassManager "qiskit.passmanager.BasePassManager"): a pass manager with fixed IR. This pass manager allows modifying the set of tasks to be run and supports parallel execution of multiple inputs by means of [`parallel_map()`](utils#qiskit.utils.parallel_map "qiskit.utils.parallel_map"). This class has support for additional conversion of an input program representation to the internal IR, and a conversion to an output program format.
+
+    The [`BasePassManager`](/docs/api/qiskit/2.6/qiskit.passmanager.BasePassManager "qiskit.passmanager.BasePassManager") is the base class for Qiskit’s preset pass managers for [`DAGCircuit`](/docs/api/qiskit/2.6/qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") transpilation, such as returned by [`generate_preset_pass_manager()`](/docs/api/qiskit/2.6/qiskit.transpiler.generate_preset_pass_manager "qiskit.transpiler.generate_preset_pass_manager"). There, implicit conversions to and from [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") as input and output program format are used.
+
+*   [`MultiStagePassManager`](/docs/api/qiskit/2.6/qiskit.passmanager.MultiStagePassManager "qiskit.passmanager.MultiStagePassManager"): a staged pass manager where each stage can preserve or lower the IR. A stage is defined by a [`Task`](/docs/api/qiskit/2.6/qiskit.passmanager.Task "qiskit.passmanager.Task") or an iterable thereof, which can also be grouped inside a [`BasePassManager`](/docs/api/qiskit/2.6/qiskit.passmanager.BasePassManager "qiskit.passmanager.BasePassManager"). The stages must be set up such that the output IR of the current stage matches the input IR of the next stage, there are (currently) no automatic translations.
+
+Pass managers also provide infrastructure to pass a [`PropertySet`](/docs/api/qiskit/2.6/qiskit.passmanager.PropertySet "qiskit.passmanager.PropertySet") with context-information through every task and a callback function for introspection. The [`PropertySet`](/docs/api/qiskit/2.6/qiskit.passmanager.PropertySet "qiskit.passmanager.PropertySet") is a free-form dictionary, which can be populated and read by a pass during execution, or read by a flow-controller to control pass execution. The property set is portable and handed over from pass to pass at execution. In addition to the property set, tasks also receive a [`WorkflowStatus`](/docs/api/qiskit/2.6/qiskit.passmanager.WorkflowStatus "qiskit.passmanager.WorkflowStatus") data structure. This object is initialized when the pass manager is run and handed over to underlying tasks. The status is updated after every pass is run, and contains information about the pipeline state (number of passes run, failure state, and so on) as opposed to the [`PropertySet`](/docs/api/qiskit/2.6/qiskit.passmanager.PropertySet "qiskit.passmanager.PropertySet"), which contains information about the IR being optimized.
+
+The callback is called by [`GenericPass`](/docs/api/qiskit/2.6/qiskit.passmanager.GenericPass "qiskit.passmanager.GenericPass") instances expecting the following signature:
+
+```python
+def callback(
+    *,
+    task: Task[IR_IN, IR_OUT],
+    passmanager_ir: IR_OUT,
+    property_set: PropertySet,
+    running_time: float,
+    count: int
+) -> None:
+    ...
+```
+
+Note that this signature differs slightly for passes and pass managers defined in the [`qiskit.transpiler`](transpiler#module-qiskit.transpiler "qiskit.transpiler") module.
+
+### Examples
+
+We look into a toy optimization task, namely, preparing a row of numbers and removing a digit if the number is five. Such a task might be easily done by converting the input numbers into string. We use the pass manager framework here, putting the efficiency aside for a moment to learn how to build a custom Qiskit compiler.
+
+```python
+from qiskit.passmanager import BasePassManager, GenericPass, ConditionalController
+
+class ToyPassManager(BasePassManager):
+
+    def _passmanager_frontend(self, input_program: int, **kwargs) -> str:
+        return str(input_program)
+
+    def _passmanager_backend(self, passmanager_ir: str, in_program: int, **kwargs) -> int:
+        return int(passmanager_ir)
+```
+
+This pass manager inputs and outputs an integer number, while performing the optimization tasks on a string data. Hence, input, IR, output type are integer, string, integer, respectively. The `_passmanager_frontend()` method defines the conversion from the input data to IR, and `_passmanager_backend()` defines the conversion from the IR to output data. The pass manager backend is also given an `in_program` parameter that contains the original `input_program` to the front end, for referencing any original metadata of the input program for the final conversion.
+
+Next, we implement a pass that removes a digit when the number is five.
+
+```python
+class RemoveFive(GenericPass):
+
+    def run(self, passmanager_ir: str):
+        return passmanager_ir.replace("5", "")
+
+task = RemoveFive()
+```
+
+Finally, we instantiate a pass manager and schedule the task with it. Running the pass manager with a random row of numbers returns new numbers that don’t contain five.
+
+```python
+pm = ToyPassManager()
+pm.append(task)
+
+pm.run([123456789, 45654, 36785554])
+```
+
+Output:
+
+```text
+[12346789, 464, 36784]
+```
+
+Now we consider the case of conditional execution. We avoid execution of the “remove five” task when the input number is six digits or less. Such control can be implemented by a flow controller. We start from an analysis pass that provides the flow controller with information about the number of digits.
+
+```python
+class CountDigits(GenericPass):
+
+    def run(self, passmanager_ir: str):
+        self.property_set["ndigits"] = len(passmanager_ir)
+
+analysis_task = CountDigits()
+```
+
+Then, we wrap the remove five task with the [`ConditionalController`](/docs/api/qiskit/2.6/qiskit.passmanager.ConditionalController "qiskit.passmanager.ConditionalController") that runs the stored tasks only when the condition is met.
+
+```python
+def digit_condition(property_set):
+    # Return True when condition is met.
+    return property_set["ndigits"] > 6
+
+conditional_task = ConditionalController(
+    tasks=[RemoveFive()],
+    condition=digit_condition,
+)
+```
+
+As before, we schedule these passes with the pass manager and run.
+
+```python
+pm = ToyPassManager()
+pm.append(analysis_task)
+pm.append(conditional_task)
+
+pm.run([123456789, 45654, 36785554])
+```
+
+Output:
+
+```text
+[12346789, 45654, 36784]
+```
+
+The “remove five” task is triggered only for the first and third input values, which have more than six digits.
+
+With the pass manager framework, a developer can flexibly customize the optimization task by combining multiple passes and flow controllers. See details in the following class API documentation.
+
+### Interface
+
+#### Passes
+
+|                                                                                                         |                                           |
+| ------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
+| [`GenericPass`](/docs/api/qiskit/2.6/qiskit.passmanager.GenericPass "qiskit.passmanager.GenericPass")() | Base class of a single pass manager task. |
+| [`Task`](/docs/api/qiskit/2.6/qiskit.passmanager.Task "qiskit.passmanager.Task")()                      | An interface of the pass manager task.    |
+
+#### Pass managers
+
+|                                                                                                                                                 |                                                |
+| ----------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| [`BasePassManager`](/docs/api/qiskit/2.6/qiskit.passmanager.BasePassManager "qiskit.passmanager.BasePassManager")(\[tasks, max\_iteration])     | Pass manager base class.                       |
+| [`MultiStagePassManager`](/docs/api/qiskit/2.6/qiskit.passmanager.MultiStagePassManager "qiskit.passmanager.MultiStagePassManager")(\*\*stages) | A staged pass manager supporting multiple IRs. |
+
+#### Flow controllers
+
+|                                                                                                                                                               |                                                                                                               |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| [`BaseController`](/docs/api/qiskit/2.6/qiskit.passmanager.BaseController "qiskit.passmanager.BaseController")(\[options])                                    | Base class of controller.                                                                                     |
+| [`FlowControllerLinear`](/docs/api/qiskit/2.6/qiskit.passmanager.FlowControllerLinear "qiskit.passmanager.FlowControllerLinear")(\[tasks, options])           | A standard flow controller that runs tasks one after the other.                                               |
+| [`ConditionalController`](/docs/api/qiskit/2.6/qiskit.passmanager.ConditionalController "qiskit.passmanager.ConditionalController")(\[tasks, condition, ...]) | A flow controller runs the pipeline once if the condition is true, or does nothing if the condition is false. |
+| [`DoWhileController`](/docs/api/qiskit/2.6/qiskit.passmanager.DoWhileController "qiskit.passmanager.DoWhileController")(\[tasks, do\_while, options])         | Run the given tasks in a loop until the `do_while` condition on the property set becomes `False`.             |
+
+#### Compilation state
+
+|                                                                                                                                                       |                                                                                    |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| [`PropertySet`](/docs/api/qiskit/2.6/qiskit.passmanager.PropertySet "qiskit.passmanager.PropertySet")                                                 | A default dictionary-like object.                                                  |
+| [`WorkflowStatus`](/docs/api/qiskit/2.6/qiskit.passmanager.WorkflowStatus "qiskit.passmanager.WorkflowStatus")(\[count, completed\_passes, ...])      | Collection of compilation status of workflow, i.e. pass manager run.               |
+| [`PassManagerState`](/docs/api/qiskit/2.6/qiskit.passmanager.PassManagerState "qiskit.passmanager.PassManagerState")(workflow\_status, property\_set) | A portable container object that pass manager tasks communicate through generator. |
+
+#### Exceptions
+
+##### PassManagerError
+
+<Class id="qiskit.passmanager.PassManagerError" github="https://github.com/Qiskit/qiskit/tree/stable/2.6/qiskit/passmanager/exceptions.py#L18-L19" signature="qiskit.passmanager.PassManagerError(*message)" modifiers="exception">
+  Bases: [`QiskitError`](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError")
+
+  Pass manager error.
+
+  Set the error message.
+</Class>
+
+<span id="passmanager-lowering" />
+
+## Multi-IR lowering pass manager
+
+The “new” Qiskit pass manager is [`LoweringPassManager`](#qiskit.passmanager.LoweringPassManager "qiskit.passmanager.LoweringPassManager"). This is newly designed, with the intention to permit native interoperation between compiled code and Python, and to permit a pipeline to lower through a series of intermediate representations (IRs).
+
+From a user perspective, you will create a [`LoweringPassManager`](#qiskit.passmanager.LoweringPassManager "qiskit.passmanager.LoweringPassManager"), populate it with a series of [`Pass`](#qiskit.passmanager.Pass "qiskit.passmanager.Pass") instances, each of which defines which [`IR`](#qiskit.passmanager.IR "qiskit.passmanager.IR") it accepts and returns, and then simply `run()` the pipeline. Alternatively, you may receive a [`LoweringPassManager`](#qiskit.passmanager.LoweringPassManager "qiskit.passmanager.LoweringPassManager") from a constructor function, which builds a preconfigured pipeline for you.
+
+### LoweringPassManager
+
+<Class id="qiskit.passmanager.LoweringPassManager" github="https://github.com/Qiskit/qiskit/tree/stable/2.6/qiskit/passmanager/lowering_passmanager.py#L266-L318" signature="qiskit.passmanager.LoweringPassManager(tasks=())" modifiers="final class">
+  Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
+
+  A multi-step pass manager that may lower through several IRs.
+
+  Internally, this holds a handle to a low-level Rust-native pass manager. This class then provides a Pythonic interface for interacting with the base object. The corresponding object of the Rust-native component in the C API is `QkPassManager`.
+
+  <Admonition title="Warning" type="caution">
+    Due to internal limitations, users must ensure that this object does not participate in any Python reference cycles; the Python garbage collector cannot fully traverse this object. We intend to lift this restriction in the future.
+  </Admonition>
+
+  **Parameters**
+
+  **tasks** (*Iterable\[*[*Pass*](#qiskit.passmanager.Pass "qiskit.passmanager.Pass")*]*) – any tasks with which to initialize the pass manager. Passing this is equivalent to calling `append()` in a loop with the arguments.
+</Class>
+
+Developers will need to implement passes, and potentially introduce new IRs. Both of these base objects define their subclass interfaces.
+
+### IR
+
+<Class id="qiskit.passmanager.IR" github="https://github.com/Qiskit/qiskit/tree/stable/2.6/qiskit/passmanager/lowering_passmanager.py#L43-L103" signature="qiskit.passmanager.IR" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
+
+  An interface for objects that can be used as IRs by a [`Pass`](#qiskit.passmanager.Pass "qiskit.passmanager.Pass") in a [`LoweringPassManager`](#qiskit.passmanager.LoweringPassManager "qiskit.passmanager.LoweringPassManager").
+
+  Note that all methods named `_qiskit_*_` are interface methods that are only for Qiskit to call. These are documented for implementers, but are generally not stable for users to call; Qiskit may allow implementations to fulfill one of several contracts for the method, and additional alternatives may be added in new versions. Qiskit will maintain stability within its own use of these protocols, but they are not stable for public consumption.
+
+  Implementers of subclasses should override the attributes and methods, and are free to change the methods and signatures in line with this documentation about per-Qiskit-version calling signatures.
+
+  Qiskit reserves the attribute and method namespace `_qiskit_ir_*_` for future expansion of this interface. Qiskit will not define any attributes or methods in the interface outside this namespace.
+
+  <Admonition title="Note" type="note">
+    The native [`IR`](#qiskit.passmanager.IR "qiskit.passmanager.IR") system does not have a concept of Python’s subclasses; an object is identified as being of at most one IR type, which is the first type in its resolution order that sets [`_qiskit_ir_base_`](#qiskit.passmanager.IR._qiskit_ir_base_ "qiskit.passmanager.IR._qiskit_ir_base_"), or the sole direct subclass of [`IR`](#qiskit.passmanager.IR "qiskit.passmanager.IR") if there is only one.
+  </Admonition>
+
+  #### \_qiskit\_ir\_base\_
+
+  <Attribute id="qiskit.passmanager.IR._qiskit_ir_base_">
+    Type: [`ClassVar`](https://docs.python.org/3/library/typing.html#typing.ClassVar)\[[`type`](/docs/api/qiskit/2.6/qiskit.dagcircuit.DAGDepNode#type "qiskit.dagcircuit.DAGDepNode.type")\[[`IR`](#qiskit.passmanager.IR "qiskit.passmanager.lowering_passmanager.IR")] | [`None`](https://docs.python.org/3/builtins/constants.html#None)]
+
+    Default value: `None`
+
+    Mark a subclass of an existing [`IR`](#qiskit.passmanager.IR "qiskit.passmanager.IR") as a *new* intermediate representation.
+
+    You only very rarely need to set this.
+
+    There are three cases to think about:
+
+    *   You define a new class that subclasses [`IR`](#qiskit.passmanager.IR "qiskit.passmanager.IR") directly, and none of its supertypes are instances of [`IR`](#qiskit.passmanager.IR "qiskit.passmanager.IR") (the most common case).
+
+        You do not need to set this attribute, but may explicitly set it to `None` (these have the same meaning).
+
+    *   You define a new class that subclasses an existing implementation of [`IR`](#qiskit.passmanager.IR "qiskit.passmanager.IR") for reasons unrelated to the [`IR`](#qiskit.passmanager.IR "qiskit.passmanager.IR") system. You want instances of your subclass to be treated by the pass-manager system as if they’re compatible with the base [`IR`](#qiskit.passmanager.IR "qiskit.passmanager.IR").
+
+        You must not set this attribute (nor override any other attributes or methods).
+
+    *   You define a new class that subclasses an existing implementation of [`IR`](#qiskit.passmanager.IR "qiskit.passmanager.IR"), and you want it to be considered as a *new* IR.
+
+        You must set this attribute to `None`.
+
+    After class creation, the value of this class variable will be set to the resolved base [`IR`](#qiskit.passmanager.IR "qiskit.passmanager.IR") implementer.
+  </Attribute>
+
+  #### \_qiskit\_ir\_name\_
+
+  <Attribute id="qiskit.passmanager.IR._qiskit_ir_name_">
+    Type: [`ClassVar`](https://docs.python.org/3/library/typing.html#typing.ClassVar)\[[`str`](https://docs.python.org/3/builtins/stdtypes.html#str)]
+
+    Default value: `''`
+
+    A human-readable name for the type of IR.
+
+    Defaults to the name of base class implementing [`IR`](#qiskit.passmanager.IR "qiskit.passmanager.IR") if unset (or empty).
+  </Attribute>
+</Class>
+
+### Pass
+
+<Class id="qiskit.passmanager.Pass" github="https://github.com/Qiskit/qiskit/tree/stable/2.6/qiskit/passmanager/lowering_passmanager.py#L195-L255" signature="qiskit.passmanager.Pass" modifiers="class">
+  Bases: [`Generic`](https://docs.python.org/3/library/typing.html#typing.Generic)\[`IRIn`, `IROut`], [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC)
+
+  An interface for defining passes over IRs.
+
+  This is primarily an *implementation* interface. The typical way to safely consume a [`Pass`](#qiskit.passmanager.Pass "qiskit.passmanager.Pass") is to put it into a [`LoweringPassManager`](#qiskit.passmanager.LoweringPassManager "qiskit.passmanager.LoweringPassManager"), and call the pass manager’s methods.
+
+  Note that all methods named `_qiskit_*_` are interface methods that are only for Qiskit to call. These are documented for implementers, but are generally not stable for users to call; Qiskit may allow implementations to fulfill one of several contracts for the method, and additional alternatives may be added in new versions. Qiskit will maintain stability within its own use of these protocols, but they are not stable for public consumption.
+
+  Implementers of subclasses should override the methods, and are free to change the methods and signatures in line with this documentation about per-Qiskit-version calling signatures.
+
+  Qiskit reserves the attribute and method namespace `_qiskit_pass_*_` for future expansion of this interface. Qiskit will not define any attributes or methods in the interface outside this namespace.
+
+  #### \_qiskit\_pass\_ir\_in\_
+
+  <Attribute id="qiskit.passmanager.Pass._qiskit_pass_ir_in_">
+    Type: [`type`](/docs/api/qiskit/2.6/qiskit.dagcircuit.DAGDepNode#type "qiskit.dagcircuit.DAGDepNode.type")\[[`IR`](#qiskit.passmanager.IR "qiskit.passmanager.lowering_passmanager.IR") | `_BuiltinIR`]
+
+    The type of the IR that the pass expects.
+  </Attribute>
+
+  #### \_qiskit\_pass\_ir\_out\_
+
+  <Attribute id="qiskit.passmanager.Pass._qiskit_pass_ir_out_">
+    Type: [`type`](/docs/api/qiskit/2.6/qiskit.dagcircuit.DAGDepNode#type "qiskit.dagcircuit.DAGDepNode.type")\[[`IR`](#qiskit.passmanager.IR "qiskit.passmanager.lowering_passmanager.IR") | `_BuiltinIR`]
+
+    The type of the IR that the pass outputs.
+  </Attribute>
+
+  #### \_qiskit\_pass\_name\_
+
+  <Attribute id="qiskit.passmanager.Pass._qiskit_pass_name_">
+    Type: [`str`](https://docs.python.org/3/builtins/stdtypes.html#str)
+
+    Default value: `''`
+
+    A human-readable name for the pass. **Optional**.
+
+    This is provided primarily for debugging purposes in pipelines.
+  </Attribute>
+
+  #### \_qiskit\_pass\_run\_
+
+  <Function id="qiskit.passmanager.Pass._qiskit_pass_run_" github="https://github.com/Qiskit/qiskit/tree/stable/2.6/qiskit/passmanager/lowering_passmanager.py#L229-L255" signature="_qiskit_pass_run_(ir, context)" modifiers="abstractmethod">
+    Run the pass on the given IR, returning the next IR object.
+
+    The pass “owns” the `ir` object that comes in, and can do anything it likes with it; passes can assume they hold the only reference to the object. However, the execution environment of passes also assumes that it has sole ownership of the output in a similar manner. This means that you cannot “leak” references to the value returned outside the function; if you store references anywhere, they may see nonsense but valid data after this method has completed, or cause the execution pipeline to raise an access error. If you want to leak out the data, you will need to ensure you produce copies.
+
+    **Parameters**
+
+    *   **ir** (*IRIn*) – the input IR to run the pass on. This can be assumed to be of the correct type as specified by the left generic in the subclass.
+    *   **context** ([*PassContextHandle*](#qiskit.passmanager.PassContextHandle "qiskit.passmanager.lowering_passmanager.PassContextHandle")) – a context object for interaction with the executing pipeline. See the type documentation of [`PassContextHandle`](#qiskit.passmanager.PassContextHandle "qiskit.passmanager.PassContextHandle") for more information.
+
+    **Returns**
+
+    The next IR object to use. This must match the specified right generic from the subclass of [`Pass`](#qiskit.passmanager.Pass "qiskit.passmanager.Pass") (or the only generic, if used in single-argument form).
+
+    **Raises**
+
+    [**PassError**](#qiskit.passmanager.PassError "qiskit.passmanager.PassError") – when the pass encounters a compilation-specific error and wants to provide structured error messages back to the user.
+
+    **Return type**
+
+    *IROut*
+  </Function>
+</Class>
+
+Implementers of [`Pass`](#qiskit.passmanager.Pass "qiskit.passmanager.Pass") get a “handle” object, which can be used to interact with the pipeline execution context.
+
+### PassContextHandle
+
+<Class id="qiskit.passmanager.PassContextHandle" github="https://github.com/Qiskit/qiskit/tree/stable/2.6/qiskit/passmanager/lowering_passmanager.py#L129-L192" signature="qiskit.passmanager.PassContextHandle(native)" modifiers="final class">
+  Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
+
+  The execution context for a given pass in a lowering pipeline.
+
+  This object is created within the Rust components of the pass manager; you do not need to instantiate one yourself.
+
+  This object is given to the [`Pass._qiskit_pass_run_()`](#qiskit.passmanager.Pass._qiskit_pass_run_ "qiskit.passmanager.Pass._qiskit_pass_run_") method, and passes may use its methods to interact with the execution context. The object is specific to a single call of [`_qiskit_pass_run_()`](#qiskit.passmanager.Pass._qiskit_pass_run_ "qiskit.passmanager.Pass._qiskit_pass_run_"); its data is invalidated once that method has returned, and attempts to use it will just raise exceptions.
+
+  You should not store or leak instances of this object anywhere.
+
+  **Parameters**
+
+  **native** ([*passmanager.PassContextHandle*](#qiskit.passmanager.PassContextHandle "qiskit.passmanager.PassContextHandle"))
+</Class>
+
+There are two exceptions associated with the lowering pass-manager infrastructure:
+
+### PassError
+
+<Class id="qiskit.passmanager.PassError" github="https://github.com/Qiskit/qiskit/tree/stable/2.6/qiskit/passmanager/lowering_passmanager.py#L116-L118" signature="qiskit.passmanager.PassError(*message)" modifiers="final exception">
+  Bases: [`PassManagerError`](#qiskit.passmanager.PassManagerError "qiskit.passmanager.exceptions.PassManagerError")
+
+  Raised by implementers of [`Pass._qiskit_pass_run_()`](#qiskit.passmanager.Pass._qiskit_pass_run_ "qiskit.passmanager.Pass._qiskit_pass_run_") to provide user-facing errors.
+
+  Set the error message.
+</Class>
+
+### LoweringPassManagerError
+
+<Class id="qiskit.passmanager.LoweringPassManagerError" github="https://github.com/Qiskit/qiskit/tree/stable/2.6/qiskit/passmanager/lowering_passmanager.py#L121-L126" signature="qiskit.passmanager.LoweringPassManagerError(*message)" modifiers="final exception">
+  Bases: [`PassManagerError`](#qiskit.passmanager.PassManagerError "qiskit.passmanager.exceptions.PassManagerError")
+
+  Raised by `LoweringPassManager.run()` when compilation errors have occurred.
+
+  Set the error message.
+</Class>
+
