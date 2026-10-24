@@ -1,0 +1,38 @@
+---
+title: Advanced techniques with Qedma QESEM
+description: Estimate QPU time, set precision and time limits, choose a transpilation level, and pick an execution mode with Qedma QESEM.
+---
+
+# Advanced techniques with Qedma QESEM
+
+Use the following techniques to get the most out of Qedma QESEM. For every option and its default value, see the [API reference](/docs/api/functions/qedma-qesem).
+
+## Estimate QPU time first
+
+Set the `estimate_time_only` option before you run a full mitigation job:
+
+- Use `"analytical"` for a quick upper bound that consumes no QPU time. It is useful for comparing circuits and precisions.
+- Use `"empirical"` for a more accurate estimate. It runs a small number of circuits, and its partial mitigation results might already be enough for small circuits or low target precision.
+
+Run the mitigation job on the same backend that you used for the estimate, because the estimate changes from one backend to another.
+
+## Balance precision and QPU time
+
+QPU time grows roughly with the inverse square of the target precision. Set `default_precision` for all PUBs, or set a precision on an individual PUB. Use `max_execution_time` (in seconds) to cap the QPU time of the whole QESEM process.
+
+## Choose a transpilation level
+
+- `"standard"` (default) prepares several transpilations and picks the one that minimizes QPU time.
+- `"minimal_with_layout_opt"` keeps your circuit structure and respects barriers. Transpile your circuits to the backend basis gates first. Use this level for parameterized circuits and multi-PUB jobs, which let QESEM share characterization across circuit instances.
+
+## Choose an execution mode
+
+Set `execution_mode` to `"batch"` (default) for lower QPU usage, or to `"session"` for a shorter time to result. Keep `parallel_execution` enabled so that QESEM can run your circuit on several high-fidelity patches of the QPU at once.
+
+## Request noise-scaled results
+
+To get expectation values at selected noise scale factors, pass a dictionary that maps each scale factor to its target precision as the PUB precision. This is called Quasi-probabilistic Error Tuning (QET).
+
+<Admonition type="note">
+Qedma is invited to add further tuning guidance to this page. For questions, contact support@qedma.com.
+</Admonition>
