@@ -26,9 +26,9 @@ python_api_name: qiskit.utils
   **Parameters**
 
   *   **func** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)) – The function to modify.
-  *   **msg** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – The full deprecation message.
-  *   **since** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – The version the deprecation started at.
-  *   **pending** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Is the deprecation still pending?
+  *   **msg** ([*str*](https://docs.python.org/3/builtins/stdtypes.html#str)) – The full deprecation message.
+  *   **since** ([*str*](https://docs.python.org/3/builtins/stdtypes.html#str) *| None*) – The version the deprecation started at.
+  *   **pending** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) – Is the deprecation still pending?
 
   **Return type**
 
@@ -44,15 +44,15 @@ python_api_name: qiskit.utils
 
   **Parameters**
 
-  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – The name of the deprecated argument.
-  *   **since** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – The version the deprecation started at. If the deprecation is pending, set the version to when that started; but later, when switching from pending to deprecated, update since to the new version.
-  *   **deprecation\_description** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – What is being deprecated? E.g. “Setting my\_func()’s my\_arg argument to None.” If not set, will default to “\{func\_name}’s argument \{name}”.
-  *   **additional\_msg** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – Put here any additional information, such as what to use instead (if new\_alias is not set). For example, “Instead, use the argument new\_arg, which is similar but does not impact the circuit’s setup.”
-  *   **pending** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Set to True if the deprecation is still pending.
-  *   **package\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – The package name shown in the deprecation message (e.g. the PyPI package name).
-  *   **new\_alias** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – If the arg has simply been renamed, set this to the new name. The decorator will dynamically update the kwargs so that when the user sets the old arg, it will be passed in as the new\_alias arg.
-  *   **predicate** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*],* [*bool*](https://docs.python.org/3/library/functions.html#bool)*] | None*) – Only log the runtime warning if the predicate returns True. This is useful to deprecate certain values or types for an argument, e.g. lambda my\_arg: isinstance(my\_arg, dict). Regardless of if a predicate is set, the runtime warning will only log when the user specifies the argument.
-  *   **removal\_timeline** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – How soon can this deprecation be removed? Expects a value like “no sooner than 6 months after the latest release” or “in release 9.99”.
+  *   **name** ([*str*](https://docs.python.org/3/builtins/stdtypes.html#str)) – The name of the deprecated argument.
+  *   **since** ([*str*](https://docs.python.org/3/builtins/stdtypes.html#str)) – The version the deprecation started at. If the deprecation is pending, set the version to when that started; but later, when switching from pending to deprecated, update since to the new version.
+  *   **deprecation\_description** ([*str*](https://docs.python.org/3/builtins/stdtypes.html#str) *| None*) – What is being deprecated? E.g. “Setting my\_func()’s my\_arg argument to None.” If not set, will default to “\{func\_name}’s argument \{name}”.
+  *   **additional\_msg** ([*str*](https://docs.python.org/3/builtins/stdtypes.html#str) *| None*) – Put here any additional information, such as what to use instead (if new\_alias is not set). For example, “Instead, use the argument new\_arg, which is similar but does not impact the circuit’s setup.”
+  *   **pending** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) – Set to True if the deprecation is still pending.
+  *   **package\_name** ([*str*](https://docs.python.org/3/builtins/stdtypes.html#str)) – The package name shown in the deprecation message (e.g. the PyPI package name).
+  *   **new\_alias** ([*str*](https://docs.python.org/3/builtins/stdtypes.html#str) *| None*) – If the arg has simply been renamed, set this to the new name. The decorator will dynamically update the kwargs so that when the user sets the old arg, it will be passed in as the new\_alias arg.
+  *   **predicate** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*],* [*bool*](https://docs.python.org/3/builtins/functions.html#bool)*] | None*) – Only log the runtime warning if the predicate returns True. This is useful to deprecate certain values or types for an argument, e.g. lambda my\_arg: isinstance(my\_arg, dict). Regardless of if a predicate is set, the runtime warning will only log when the user specifies the argument.
+  *   **removal\_timeline** ([*str*](https://docs.python.org/3/builtins/stdtypes.html#str)) – How soon can this deprecation be removed? Expects a value like “no sooner than 6 months after the latest release” or “in release 9.99”.
 
   **Returns**
 
@@ -74,13 +74,13 @@ python_api_name: qiskit.utils
 
   **Parameters**
 
-  *   **since** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – The version the deprecation started at. If the deprecation is pending, set the version to when that started; but later, when switching from pending to deprecated, update `since` to the new version.
-  *   **additional\_msg** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – Put here any additional information, such as what to use instead. For example, “Instead, use the function `new_func` from the module `<my_module>.<my_submodule>`, which is similar but uses GPU acceleration.”
-  *   **pending** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – Set to `True` if the deprecation is still pending.
-  *   **package\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – The package name shown in the deprecation message (e.g. the PyPI package name).
-  *   **removal\_timeline** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – How soon can this deprecation be removed? Expects a value like “no sooner than 6 months after the latest release” or “in release 9.99”.
-  *   **is\_property** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – If the deprecated function is a @property, set this to True so that the generated message correctly describes it as such. (This isn’t necessary for property setters, as their docstring is ignored by Python.)
-  *   **stacklevel** ([*int*](https://docs.python.org/3/library/functions.html#int)) – Stack level passed to [`warnings.warn()`](https://docs.python.org/3/library/warnings.html#warnings.warn).
+  *   **since** ([*str*](https://docs.python.org/3/builtins/stdtypes.html#str)) – The version the deprecation started at. If the deprecation is pending, set the version to when that started; but later, when switching from pending to deprecated, update `since` to the new version.
+  *   **additional\_msg** ([*str*](https://docs.python.org/3/builtins/stdtypes.html#str) *| None*) – Put here any additional information, such as what to use instead. For example, “Instead, use the function `new_func` from the module `<my_module>.<my_submodule>`, which is similar but uses GPU acceleration.”
+  *   **pending** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) – Set to `True` if the deprecation is still pending.
+  *   **package\_name** ([*str*](https://docs.python.org/3/builtins/stdtypes.html#str)) – The package name shown in the deprecation message (e.g. the PyPI package name).
+  *   **removal\_timeline** ([*str*](https://docs.python.org/3/builtins/stdtypes.html#str)) – How soon can this deprecation be removed? Expects a value like “no sooner than 6 months after the latest release” or “in release 9.99”.
+  *   **is\_property** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) – If the deprecated function is a @property, set this to True so that the generated message correctly describes it as such. (This isn’t necessary for property setters, as their docstring is ignored by Python.)
+  *   **stacklevel** ([*int*](https://docs.python.org/3/builtins/functions.html#int)) – Stack level passed to [`warnings.warn()`](https://docs.python.org/3/library/warnings.html#warnings.warn).
 
   **Returns**
 
@@ -100,8 +100,8 @@ python_api_name: qiskit.utils
 
   **Parameters**
 
-  *   **value** ([*float*](https://docs.python.org/3/library/functions.html#float)  *|*[*ParameterExpression*](/docs/api/qiskit/dev/qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")) – The number to apply prefix to.
-  *   **unit** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – String prefix.
+  *   **value** ([*float*](https://docs.python.org/3/builtins/functions.html#float)  *|*[*ParameterExpression*](/docs/api/qiskit/dev/qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")) – The number to apply prefix to.
+  *   **unit** ([*str*](https://docs.python.org/3/builtins/stdtypes.html#str)) – String prefix.
 
   **Returns**
 
@@ -109,7 +109,7 @@ python_api_name: qiskit.utils
 
   **Return type**
 
-  [float](https://docs.python.org/3/library/functions.html#float) | [ParameterExpression](/docs/api/qiskit/dev/qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")
+  [float](https://docs.python.org/3/builtins/functions.html#float) | [ParameterExpression](/docs/api/qiskit/dev/qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")
 
   <Admonition title="Note" type="note">
     This may induce tiny value error due to internal representation of float object. See [https://docs.python.org/3/tutorial/floatingpoint.html](https://docs.python.org/3/tutorial/floatingpoint.html) for details.
@@ -117,16 +117,16 @@ python_api_name: qiskit.utils
 
   **Raises**
 
-  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If the `unit` isn’t recognized.
+  [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If the `unit` isn’t recognized.
 
   **Parameters**
 
-  *   **value** ([*float*](https://docs.python.org/3/library/functions.html#float)  *|*[*ParameterExpression*](/docs/api/qiskit/dev/qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression"))
-  *   **unit** ([*str*](https://docs.python.org/3/library/stdtypes.html#str))
+  *   **value** ([*float*](https://docs.python.org/3/builtins/functions.html#float)  *|*[*ParameterExpression*](/docs/api/qiskit/dev/qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression"))
+  *   **unit** ([*str*](https://docs.python.org/3/builtins/stdtypes.html#str))
 
   **Return type**
 
-  [float](https://docs.python.org/3/library/functions.html#float) | [ParameterExpression](/docs/api/qiskit/dev/qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")
+  [float](https://docs.python.org/3/builtins/functions.html#float) | [ParameterExpression](/docs/api/qiskit/dev/qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")
 </Function>
 
 ### detach\_prefix
@@ -146,8 +146,8 @@ python_api_name: qiskit.utils
 
   **Parameters**
 
-  *   **value** ([*float*](https://docs.python.org/3/library/functions.html#float)) – The number to find prefix.
-  *   **decimal** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – Optional. An arbitrary integer number to represent a precision of the value. If specified, it tries to round the mantissa and adjust the prefix to rounded value. For example, 999\_999.91 will become 999.9999 k with `decimal=4`, while 1.0 M with `decimal=3` or less.
+  *   **value** ([*float*](https://docs.python.org/3/builtins/functions.html#float)) – The number to find prefix.
+  *   **decimal** ([*int*](https://docs.python.org/3/builtins/functions.html#int) *| None*) – Optional. An arbitrary integer number to represent a precision of the value. If specified, it tries to round the mantissa and adjust the prefix to rounded value. For example, 999\_999.91 will become 999.9999 k with `decimal=4`, while 1.0 M with `decimal=3` or less.
 
   **Returns**
 
@@ -155,7 +155,7 @@ python_api_name: qiskit.utils
 
   **Return type**
 
-  [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[float](https://docs.python.org/3/library/functions.html#float), [str](https://docs.python.org/3/library/stdtypes.html#str)]
+  [tuple](https://docs.python.org/3/builtins/stdtypes.html#tuple)\[[float](https://docs.python.org/3/builtins/functions.html#float), [str](https://docs.python.org/3/builtins/stdtypes.html#str)]
 
   <Admonition title="Note" type="note">
     This may induce tiny value error due to internal representation of float object. See [https://docs.python.org/3/tutorial/floatingpoint.html](https://docs.python.org/3/tutorial/floatingpoint.html) for details.
@@ -163,17 +163,17 @@ python_api_name: qiskit.utils
 
   **Raises**
 
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If the `value` is out of range.
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If the `value` is not real number.
+  *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If the `value` is out of range.
+  *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If the `value` is not real number.
 
   **Parameters**
 
-  *   **value** ([*float*](https://docs.python.org/3/library/functions.html#float))
-  *   **decimal** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*)
+  *   **value** ([*float*](https://docs.python.org/3/builtins/functions.html#float))
+  *   **decimal** ([*int*](https://docs.python.org/3/builtins/functions.html#int) *| None*)
 
   **Return type**
 
-  [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[float](https://docs.python.org/3/library/functions.html#float), [str](https://docs.python.org/3/library/stdtypes.html#str)]
+  [tuple](https://docs.python.org/3/builtins/stdtypes.html#tuple)\[[float](https://docs.python.org/3/builtins/functions.html#float), [str](https://docs.python.org/3/builtins/stdtypes.html#str)]
 </Function>
 
 ## Class tools
@@ -190,20 +190,20 @@ python_api_name: qiskit.utils
   **Parameters**
 
   *   **cls** ([*type*](/docs/api/qiskit/dev/qiskit.dagcircuit.DAGDepNode#type "qiskit.dagcircuit.DAGDepNode.type")) – the class to modify.
-  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – the name of the method on the class to wrap.
+  *   **name** ([*str*](https://docs.python.org/3/builtins/stdtypes.html#str)) – the name of the method on the class to wrap.
   *   **before** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable) *| None*) – a callable that should be called before the method that is being wrapped.
   *   **after** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable) *| None*) – a callable that should be called after the method that is being wrapped.
 
   **Raises**
 
-  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – if the named method is not defined on the class or any parent class.
+  [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – if the named method is not defined on the class or any parent class.
 </Function>
 
 ## Multiprocessing
 
 ### default\_num\_processes
 
-<Function id="qiskit.utils.default_num_processes" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/parallel.py#L97-L130" signature="qiskit.utils.default_num_processes()">
+<Function id="qiskit.utils.default_num_processes" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/parallel.py#L92-L125" signature="qiskit.utils.default_num_processes()">
   Get the number of processes that a multiprocessing parallel call will use by default.
 
   Such functions typically also accept a `num_processes` keyword argument that will supersede the value returned from this function.
@@ -219,12 +219,12 @@ python_api_name: qiskit.utils
 
   **Return type**
 
-  [int](https://docs.python.org/3/library/functions.html#int)
+  [int](https://docs.python.org/3/builtins/functions.html#int)
 </Function>
 
 ### is\_main\_process
 
-<Function id="qiskit.utils.is_main_process" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/parallel.py#L151-L162" signature="qiskit.utils.is_main_process()">
+<Function id="qiskit.utils.is_main_process" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/parallel.py#L146-L157" signature="qiskit.utils.is_main_process()">
   Checks whether the current process is the main one.
 
   Since Python 3.8, this is identical to the standard Python way of calculating this:
@@ -238,12 +238,12 @@ python_api_name: qiskit.utils
 
   **Return type**
 
-  [bool](https://docs.python.org/3/library/functions.html#bool)
+  [bool](https://docs.python.org/3/builtins/functions.html#bool)
 </Function>
 
 ### local\_hardware\_info
 
-<Function id="qiskit.utils.local_hardware_info" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/parallel.py#L133-L148" signature="qiskit.utils.local_hardware_info()">
+<Function id="qiskit.utils.local_hardware_info" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/parallel.py#L128-L143" signature="qiskit.utils.local_hardware_info()">
   Basic hardware information about the local machine.
 
   Attempts to estimate the number of physical CPUs in the machine, even when hyperthreading is turned on. CPU count defaults to 1 when true count can’t be determined.
@@ -254,33 +254,33 @@ python_api_name: qiskit.utils
 
   **Return type**
 
-  [dict](https://docs.python.org/3/library/stdtypes.html#dict)
+  [dict](https://docs.python.org/3/builtins/stdtypes.html#dict)
 </Function>
 
 ### should\_run\_in\_parallel
 
-<Function id="qiskit.utils.should_run_in_parallel" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/parallel.py#L171-L221" signature="qiskit.utils.should_run_in_parallel(num_processes=None)">
+<Function id="qiskit.utils.should_run_in_parallel" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/parallel.py#L166-L215" signature="qiskit.utils.should_run_in_parallel(num_processes=None)">
   Decide whether a multiprocessing function should spawn subprocesses for parallelization.
 
-  In particular, this is how [`parallel_map()`](#qiskit.utils.parallel_map "qiskit.utils.parallel_map") decides whether to use multiprocessing or not. The `num_processes` argument alone does not enforce parallelism; by default, Qiskit will only use process-based parallelism when a `fork`-like process spawning start method is in effect. You can override this decision either by setting the [`multiprocessing`](https://docs.python.org/3/library/multiprocessing.html#module-multiprocessing) start method you use, setting the `QISKIT_PARALLEL` environment variable to `"TRUE"`, or setting `parallel = true` in your user settings file.
+  In particular, this is how [`parallel_map()`](#qiskit.utils.parallel_map "qiskit.utils.parallel_map") decides whether to use multiprocessing or not. The `num_processes` argument alone does not enforce parallelism; by default, Qiskit disables process-based parallelism by default. It can enabled by explicitly setting a `fork`-like [`multiprocessing`](https://docs.python.org/3/library/multiprocessing.html#module-multiprocessing) start method, setting the `QISKIT_PARALLEL` environment variable to `"TRUE"`, or setting `parallel = true` in your user settings file.
 
   This function includes two context managers that can be used to temporarily modify the return value of this function:
 
   ### override
 
-  <Function id="qiskit.utils.should_run_in_parallel.override" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/parallel.py#L244-L261" signature="should_run_in_parallel.override(value)">
+  <Function id="qiskit.utils.should_run_in_parallel.override" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/parallel.py#L238-L255" signature="should_run_in_parallel.override(value)">
     A context manager within which [`should_run_in_parallel()`](#qiskit.utils.should_run_in_parallel "qiskit.utils.should_run_in_parallel") will return the given `value`.
 
     This is not a *complete* override; Qiskit will never attempt to parallelize if only a single process is available, and will not allow process-based parallelism at a depth greater than 1.
 
     **Parameters**
 
-    **value** ([*bool*](https://docs.python.org/3/library/functions.html#bool))
+    **value** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool))
   </Function>
 
   ### ignore\_user\_settings
 
-  <Function id="qiskit.utils.should_run_in_parallel.ignore_user_settings" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/parallel.py#L224-L241" signature="should_run_in_parallel.ignore_user_settings()">
+  <Function id="qiskit.utils.should_run_in_parallel.ignore_user_settings" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/parallel.py#L218-L235" signature="should_run_in_parallel.ignore_user_settings()">
     A context manager within which [`should_run_in_parallel()`](#qiskit.utils.should_run_in_parallel "qiskit.utils.should_run_in_parallel") will ignore environmental configuration variables.
 
     In particular, the `QISKIT_PARALLEL` environment variable and the user-configuration file are ignored within this context.
@@ -288,11 +288,11 @@ python_api_name: qiskit.utils
 
   **Parameters**
 
-  **num\_processes** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – the maximum number of processes requested for use (`None` implies the default).
+  **num\_processes** ([*int*](https://docs.python.org/3/builtins/functions.html#int) *| None*) – the maximum number of processes requested for use (`None` implies the default).
 
   **Return type**
 
-  [bool](https://docs.python.org/3/library/functions.html#bool)
+  [bool](https://docs.python.org/3/builtins/functions.html#bool)
 
   **Examples**
 
@@ -310,7 +310,7 @@ A helper function for calling a custom function with Python [`ProcessPoolExecuto
 
 ### parallel\_map
 
-<Function id="qiskit.utils.parallel_map" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/parallel.py#L268-L318" signature="qiskit.utils.parallel_map(task, values, task_args=(), task_kwargs=None, num_processes=None)">
+<Function id="qiskit.utils.parallel_map" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/utils/parallel.py#L262-L321" signature="qiskit.utils.parallel_map(task, values, task_args=(), task_kwargs=None, num_processes=None)">
   Parallel execution of a mapping of values to the function task. This is functionally equivalent to:
 
   ```python
@@ -319,13 +319,15 @@ A helper function for calling a custom function with Python [`ProcessPoolExecuto
 
   This will parallelise the results if the number of `values` is greater than one and [`should_run_in_parallel()`](#qiskit.utils.should_run_in_parallel "qiskit.utils.should_run_in_parallel") returns `True`. If not, it will run in serial.
 
+  By default multiprocessing will be disabled on all supported platforms when calling this function due to issues mixing it with threading. You have to explicitly opt-in to use multiprocessing with this function by either explicitly calling [`multiprocessing.set_start_method()`](https://docs.python.org/3/library/multiprocessing.html#multiprocessing.set_start_method) to either `"fork"` or `"forkserver"`, setting the environment variable `QISKIT_PARALLEL=TRUE`, or setting `parallel` in your user configuration file. You can find more details on these configuration options here: [/guides/configure-qiskit-local](/docs/guides/configure-qiskit-local)
+
   **Parameters**
 
   *   **task** (*func*) – Function that is to be called for each value in `values`.
   *   **values** (*array\_like*) – List or array of values for which the `task` function is to be evaluated.
-  *   **task\_args** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)) – Optional additional arguments to the `task` function.
-  *   **task\_kwargs** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)) – Optional additional keyword argument to the `task` function.
-  *   **num\_processes** ([*int*](https://docs.python.org/3/library/functions.html#int)) – Number of processes to spawn. If not given, the return value of [`default_num_processes()`](#qiskit.utils.default_num_processes "qiskit.utils.default_num_processes") is used.
+  *   **task\_args** ([*list*](https://docs.python.org/3/builtins/stdtypes.html#list)) – Optional additional arguments to the `task` function.
+  *   **task\_kwargs** ([*dict*](https://docs.python.org/3/builtins/stdtypes.html#dict)) – Optional additional keyword argument to the `task` function.
+  *   **num\_processes** ([*int*](https://docs.python.org/3/builtins/functions.html#int)) – Number of processes to spawn. If not given, the return value of [`default_num_processes()`](#qiskit.utils.default_num_processes "qiskit.utils.default_num_processes") is used.
 
   **Returns**
 
@@ -616,7 +618,7 @@ from qiskit.utils import LazyImportTester
 
     **Return type**
 
-    [bool](https://docs.python.org/3/library/functions.html#bool)
+    [bool](https://docs.python.org/3/builtins/functions.html#bool)
   </Function>
 
   ##### disable\_locally
@@ -632,7 +634,7 @@ from qiskit.utils import LazyImportTester
 
     **Parameters**
 
-    **feature\_or\_callable** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *or Callable*) – the name of the feature that requires these dependencies. If this function is called directly as a decorator (for example `@HAS_X.require_in_call` as opposed to `@HAS_X.require_in_call("my feature")`), then the feature name will be taken to be the function name, or class and method name as appropriate.
+    **feature\_or\_callable** ([*str*](https://docs.python.org/3/builtins/stdtypes.html#str) *or Callable*) – the name of the feature that requires these dependencies. If this function is called directly as a decorator (for example `@HAS_X.require_in_call` as opposed to `@HAS_X.require_in_call("my feature")`), then the feature name will be taken to be the function name, or class and method name as appropriate.
 
     **Returns**
 
@@ -650,7 +652,7 @@ from qiskit.utils import LazyImportTester
 
     **Parameters**
 
-    **feature\_or\_class** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)  *or*[*Type*](circuit_classical#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type")) – the name of the feature that requires these dependencies. If this function is called directly as a decorator (for example `@HAS_X.require_in_instance` as opposed to `@HAS_X.require_in_instance("my feature")`), then the feature name will be taken as the name of the class.
+    **feature\_or\_class** ([*str*](https://docs.python.org/3/builtins/stdtypes.html#str)  *or*[*Type*](circuit_classical#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type")) – the name of the feature that requires these dependencies. If this function is called directly as a decorator (for example `@HAS_X.require_in_instance` as opposed to `@HAS_X.require_in_instance("my feature")`), then the feature name will be taken as the name of the class.
 
     **Returns**
 
@@ -668,7 +670,7 @@ from qiskit.utils import LazyImportTester
 
     **Parameters**
 
-    **feature** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – the name of the feature that is requiring these dependencies.
+    **feature** ([*str*](https://docs.python.org/3/builtins/stdtypes.html#str)) – the name of the feature that is requiring these dependencies.
 
     **Raises**
 
@@ -685,15 +687,15 @@ from qiskit.utils import LazyImportTester
 
   **Parameters**
 
-  *   **name\_map\_or\_modules** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*,* [*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*]] |* [*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*]*) – if a name map, then a dictionary where the keys are modules or packages, and the values are iterables of names to try and import from that module. It should be valid to write `from <module> import <name1>, <name2>, ...`. If simply a string or iterable of strings, then it should be valid to write `import <module>` for each of them.
-  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – the name of this optional dependency.
-  *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[*[*bool*](https://docs.python.org/3/library/functions.html#bool)*], None] | None*) – a callback that is called immediately after the availability of the library is tested with the result. This will only be called once.
-  *   **install** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – how to install this optional dependency. Passed to [`MissingOptionalLibraryError`](exceptions#qiskit.exceptions.MissingOptionalLibraryError "qiskit.exceptions.MissingOptionalLibraryError") as the `pip_install` parameter.
-  *   **msg** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – an extra message to include in the error raised if this is required.
+  *   **name\_map\_or\_modules** ([*str*](https://docs.python.org/3/builtins/stdtypes.html#str)  *|*[*dict*](https://docs.python.org/3/builtins/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/builtins/stdtypes.html#str)*,* [*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)*\[*[*str*](https://docs.python.org/3/builtins/stdtypes.html#str)*]] |* [*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)*\[*[*str*](https://docs.python.org/3/builtins/stdtypes.html#str)*]*) – if a name map, then a dictionary where the keys are modules or packages, and the values are iterables of names to try and import from that module. It should be valid to write `from <module> import <name1>, <name2>, ...`. If simply a string or iterable of strings, then it should be valid to write `import <module>` for each of them.
+  *   **name** ([*str*](https://docs.python.org/3/builtins/stdtypes.html#str) *| None*) – the name of this optional dependency.
+  *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[*[*bool*](https://docs.python.org/3/builtins/functions.html#bool)*], None] | None*) – a callback that is called immediately after the availability of the library is tested with the result. This will only be called once.
+  *   **install** ([*str*](https://docs.python.org/3/builtins/stdtypes.html#str) *| None*) – how to install this optional dependency. Passed to [`MissingOptionalLibraryError`](exceptions#qiskit.exceptions.MissingOptionalLibraryError "qiskit.exceptions.MissingOptionalLibraryError") as the `pip_install` parameter.
+  *   **msg** ([*str*](https://docs.python.org/3/builtins/stdtypes.html#str) *| None*) – an extra message to include in the error raised if this is required.
 
   **Raises**
 
-  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – if no modules are given.
+  [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – if no modules are given.
 </Class>
 
 #### LazySubprocessTester
@@ -705,14 +707,14 @@ from qiskit.utils import LazyImportTester
 
   **Parameters**
 
-  *   **command** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*]*) – the strings that make up the command to be run. For example, `["pdflatex", "-version"]`.
-  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – the name of this optional dependency.
-  *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[*[*bool*](https://docs.python.org/3/library/functions.html#bool)*], None] | None*) – a callback that is called immediately after the availability of the library is tested with the result. This will only be called once.
-  *   **install** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – how to install this optional dependency. Passed to [`MissingOptionalLibraryError`](exceptions#qiskit.exceptions.MissingOptionalLibraryError "qiskit.exceptions.MissingOptionalLibraryError") as the `pip_install` parameter.
-  *   **msg** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*) – an extra message to include in the error raised if this is required.
+  *   **command** ([*str*](https://docs.python.org/3/builtins/stdtypes.html#str)  *|*[*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)*\[*[*str*](https://docs.python.org/3/builtins/stdtypes.html#str)*]*) – the strings that make up the command to be run. For example, `["pdflatex", "-version"]`.
+  *   **name** ([*str*](https://docs.python.org/3/builtins/stdtypes.html#str) *| None*) – the name of this optional dependency.
+  *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[*[*bool*](https://docs.python.org/3/builtins/functions.html#bool)*], None] | None*) – a callback that is called immediately after the availability of the library is tested with the result. This will only be called once.
+  *   **install** ([*str*](https://docs.python.org/3/builtins/stdtypes.html#str) *| None*) – how to install this optional dependency. Passed to [`MissingOptionalLibraryError`](exceptions#qiskit.exceptions.MissingOptionalLibraryError "qiskit.exceptions.MissingOptionalLibraryError") as the `pip_install` parameter.
+  *   **msg** ([*str*](https://docs.python.org/3/builtins/stdtypes.html#str) *| None*) – an extra message to include in the error raised if this is required.
 
   **Raises**
 
-  [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – if an empty command is given.
+  [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – if an empty command is given.
 </Class>
 

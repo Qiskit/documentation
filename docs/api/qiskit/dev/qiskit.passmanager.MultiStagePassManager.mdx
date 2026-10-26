@@ -146,7 +146,7 @@ python_api_name: qiskit.passmanager.MultiStagePassManager
 
   **Parameters**
 
-  **stages** ([*BasePassManager*](qiskit.passmanager.BasePassManager "qiskit.passmanager.passmanager.BasePassManager")*\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*] |* [*Task*](qiskit.passmanager.Task "qiskit.passmanager.base_tasks.Task")*\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*,* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*] |* [*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)*\[*[*Task*](qiskit.passmanager.Task "qiskit.passmanager.base_tasks.Task")*\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*,* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*]]*) –
+  **stages** ([*BasePassManager*](qiskit.passmanager.BasePassManager "qiskit.passmanager.base_passmanager.BasePassManager")*\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*] |* [*Task*](qiskit.passmanager.Task "qiskit.passmanager.base_tasks.Task")*\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*,* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*] |* [*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)*\[*[*Task*](qiskit.passmanager.Task "qiskit.passmanager.base_tasks.Task")*\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*,* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*]]*) –
 
   The stages as pass managers. These will be executed in the provided order and must have compatible IRs.
 
@@ -171,8 +171,8 @@ python_api_name: qiskit.passmanager.MultiStagePassManager
 
     **Parameters**
 
-    *   **in\_programs** (*IR |* [*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[IR] |* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[IR]*) – The programs to run the pass manager on.
-    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[*[*Task*](qiskit.passmanager.Task "qiskit.passmanager.base_tasks.Task")*,* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*,* [*PropertySet*](qiskit.passmanager.PropertySet "qiskit.passmanager.compilation_status.PropertySet")*,* [*float*](https://docs.python.org/3/library/functions.html#float)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*], None] | None*) – A callback passed to each individual task.
+    *   **in\_programs** (*IR |* [*list*](https://docs.python.org/3/builtins/stdtypes.html#list)*\[IR] |* [*tuple*](https://docs.python.org/3/builtins/stdtypes.html#tuple)*\[IR]*) – The programs to run the pass manager on.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[*[*Task*](qiskit.passmanager.Task "qiskit.passmanager.base_tasks.Task")*,* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*,* [*PropertySet*](qiskit.passmanager.PropertySet "qiskit.passmanager.compilation_status.PropertySet")*,* [*float*](https://docs.python.org/3/builtins/functions.html#float)*,* [*int*](https://docs.python.org/3/builtins/functions.html#int)*], None] | None*) – A callback passed to each individual task.
     *   **property\_set** ([*PropertySet*](qiskit.passmanager.PropertySet "qiskit.passmanager.compilation_status.PropertySet") *| None*) – An optional property set to pass into the pass manager. This will be mutated in place, if given. This cannot be used with multiple in programs.
 
     **Returns**

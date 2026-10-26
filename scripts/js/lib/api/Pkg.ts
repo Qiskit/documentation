@@ -57,7 +57,10 @@ export class Pkg {
   readonly kebabCaseAndShortenUrls: boolean;
   readonly artifactPackageName: string;
   readonly hasRootNamespaceFile: boolean;
-  /** Whether this addon has a dedicated docs page at /docs/addons/{name}. */
+  /**
+   * Whether this addon has a dedicated docs page at /docs/addons/{name}.
+   * C API packages share the docs page of their Python sibling.
+   */
   readonly hasAddonDocs: boolean;
   /** Slugs of docs/tutorials/ notebooks to surface under this addon's tutorials route. */
 
@@ -75,6 +78,8 @@ export class Pkg {
     "pauli-prop",
     "qiskit-addon-slc",
     "qiskit-noise-learning",
+    "samplomatic",
+    "qiskit-mitigation",
   ];
 
   static VALID_NAMES = [
@@ -190,6 +195,16 @@ export class Pkg {
         hasAddonDocs: true,
       });
     }
+    if (name === "qiskit-mitigation") {
+      return new Pkg({
+        ...args,
+        title: "Qiskit mitigation",
+        githubSlug: "Qiskit/qiskit-mitigation",
+        kebabCaseAndShortenUrls: true,
+        language: "Python",
+        hasAddonDocs: true,
+      });
+    }
     if (name === "qiskit-addon-mpf") {
       return new Pkg({
         ...args,
@@ -236,6 +251,7 @@ export class Pkg {
         githubSlug: "Qiskit/qiskit-fermions",
         kebabCaseAndShortenUrls: true,
         language: "Python",
+        hasAddonDocs: true,
       });
     }
     if (name === "qiskit-fermions-c") {
@@ -250,6 +266,7 @@ export class Pkg {
           linkToPackage: "qiskit-fermions",
         }),
         artifactPackageName: "qiskit-fermions",
+        hasAddonDocs: true,
       });
     }
     if (name === "qiskit-addon-pna") {
@@ -287,6 +304,15 @@ export class Pkg {
         ...args,
         title: "Qiskit addon utilities",
         githubSlug: "Qiskit/qiskit-addon-utils",
+        kebabCaseAndShortenUrls: true,
+        language: "Python",
+      });
+    }
+    if (name === "samplomatic") {
+      return new Pkg({
+        ...args,
+        title: "Samplomatic",
+        githubSlug: "Qiskit/samplomatic",
         kebabCaseAndShortenUrls: true,
         language: "Python",
       });
@@ -329,6 +355,8 @@ export class Pkg {
     releaseNotesConfig?: ReleaseNotesConfig;
     tocGrouping?: TocGrouping;
     kebabCaseAndShortenUrls?: boolean;
+    artifactPackageName?: string;
+    hasAddonDocs?: boolean;
   }): Pkg {
     return new Pkg({
       name: kwargs.name ?? "my-quantum-project",
@@ -341,6 +369,8 @@ export class Pkg {
       releaseNotesConfig: kwargs.releaseNotesConfig,
       tocGrouping: kwargs.tocGrouping,
       kebabCaseAndShortenUrls: kwargs.kebabCaseAndShortenUrls ?? false,
+      artifactPackageName: kwargs.artifactPackageName,
+      hasAddonDocs: kwargs.hasAddonDocs,
     });
   }
 
@@ -376,6 +406,11 @@ export class Pkg {
 
   isCApi(): boolean {
     return this.language === "C";
+  }
+
+  /** The Python package that a C API package documents, or the package itself. */
+  pythonSiblingName(): string {
+    return this.isCApi() ? this.artifactPackageName : this.name;
   }
 
   isAddon(): boolean {

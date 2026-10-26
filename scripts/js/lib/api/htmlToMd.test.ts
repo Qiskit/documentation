@@ -42,6 +42,43 @@ async function toMd(
 // Transform tabs
 // ------------------------------------------------------------------
 
+test("handle sphinx-design tab-set", async () => {
+  expect(
+    await toMd(`<div role='main'>
+      <div class="sd-tab-set docutils">
+        <input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+        <label class="sd-tab-label" data-sync-group="code" data-sync-id="python" for="sd-tab-item-0">
+        PYTHON</label>
+        <div class="sd-tab-content docutils">
+          <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>x = 1
+</pre><button class="copybtn"><svg><title>Copy to clipboard</title></svg></button></div></div>
+        </div>
+        <input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+        <label class="sd-tab-label" data-sync-group="code" data-sync-id="c" for="sd-tab-item-1">
+        C</label>
+        <div class="sd-tab-content docutils">
+          <div class="highlight-c notranslate"><div class="highlight"><pre><span></span>int x = 1;
+</pre></div></div>
+        </div>
+      </div>
+    </div>
+`),
+  ).toEqual(`<Tabs group="code">
+  <TabItem value="python" label="PYTHON">
+    \`\`\`python
+    x = 1
+    \`\`\`
+  </TabItem>
+
+  <TabItem value="c" label="C">
+    \`\`\`c
+    int x = 1;
+    \`\`\`
+  </TabItem>
+</Tabs>
+`);
+});
+
 test("handle tabs", async () => {
   expect(
     await toMd(`<div role='main'>
