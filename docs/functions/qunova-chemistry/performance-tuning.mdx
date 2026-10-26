@@ -1,0 +1,36 @@
+---
+title: Advanced techniques with Qunova HI-VQE Chemistry
+description: Control the subspace size, choose an ansatz, set shots and convergence, screen configurations, and restart runs with Qunova HI-VQE Chemistry.
+---
+
+{/* cspell:ignore hivqe, Qunova, HI-VQE, lucj */}
+
+# Advanced techniques with Qunova HI-VQE Chemistry
+
+Use the following techniques to get the most out of Qunova HI-VQE Chemistry. For every parameter and its default value, see the [API reference](/docs/api/functions/qunova-chemistry).
+
+## Control the subspace size
+
+`max_states` sets the maximum subspace dimension for the diagonalization, and `max_expansion_states` sets the maximum number of classically generated configurations added in each iteration. Larger values can improve accuracy but increase the classical diagonalization cost.
+
+## Choose an ansatz
+
+Set `ansatz` in `hivqe_options` to `"epa"` (excitation-preserving, the default), `"hea"` (hardware-efficient), or `"lucj"` (local unitary cluster Jastrow). Use `ansatz_entanglement` and `ansatz_reps` to adjust the entanglement scheme and the number of layer repetitions.
+
+## Set shots and convergence
+
+- `shots` sets the number of shots per iteration.
+- `max_iter` caps the number of iterations. The algorithm can stop early when it converges.
+- `convergence_count`, `convergence_abstol`, and `reset_convergence_count` control when the energy is considered converged.
+
+## Screen configurations
+
+Use `overlap_screening_tolerance` to remove configurations predicted to contribute little before diagonalization, and `amplitude_screening_tolerance` to remove low-amplitude configurations after diagonalization. Set `configuration_recovery` to `False` to discard invalid sampled configurations instead of correcting them.
+
+## Restart from a previous result
+
+Pass the `"states"` from a previous result as `initial_basis_states` to restart the algorithm from those configurations.
+
+<Admonition type="note">
+  This page is a starting point. Qunova Computing is invited to add further tuning guidance for this function.
+</Admonition>
