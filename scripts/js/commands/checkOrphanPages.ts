@@ -84,25 +84,4 @@ async function findExistentUrls(directory: string): Promise<string[]> {
   );
 }
 
-async function findTocFiles(includeApis: boolean): Promise<string[]> {
-  const globs = [
-    ["{docs,learning}/**/_toc.json"],
-    includeApis ? ["docs/api/**/_toc.json"] : ["!docs/api/**"],
-  ].flat();
-  return globby(globs);
-}
-
-function parseTocUrls(entries: TocEntry[]): string[] {
-  const urls = [];
-  for (const entry of entries) {
-    if ("children" in entry) {
-      const childUrls = parseTocUrls(entry.children || []);
-      urls.push(...childUrls);
-    } else if (entry.url !== undefined) {
-      urls.push(entry.url);
-    }
-  }
-  return urls;
-}
-
 main().then(() => process.exit());
