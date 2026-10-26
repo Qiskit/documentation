@@ -117,6 +117,7 @@ export async function runAddonDocsPipeline(
     allObjectInvs,
     pkg,
     imageDestination,
+    files,
   );
   await writeNotebooks(pkg, docsBaseFolder, notebooks);
 
@@ -164,6 +165,8 @@ async function determineFilePaths(
       "tutorials/**",
       "release-notes.html",
       "release_notes.html",
+      "release-notes/**",
+      "release_notes/**",
       ...SPHINX_INTERNALS,
       ...pkgIgnores,
     ],

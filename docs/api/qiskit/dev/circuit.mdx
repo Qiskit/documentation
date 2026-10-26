@@ -249,6 +249,24 @@ The main user-facing class for representing circuits is [`QuantumCircuit`](qiski
 
 Internally, a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") contains the qubits, classical bits, compile-time parameters, real-time variables, and other tracking information about the data it acts on and how it is parametrized. It then contains a sequence of [`CircuitInstruction`](/docs/api/qiskit/dev/qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s, which contain the particular operation (gate, measurement, etc) and its operands (the qubits and classical bits).
 
+### Interoperation with C
+
+[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") in Python space is not precisely the same type that native Rust code or C-API code uses. The C-API type `QkCircuit` is backed by the internal [`QuantumCircuit._data`](qiskit.circuit.QuantumCircuit#_data "qiskit.circuit.QuantumCircuit._data") object, which has type [`CircuitData`](#qiskit.circuit.CircuitData "qiskit.circuit.CircuitData"). Very little about is public from Python space.
+
+#### CircuitData
+
+<Class id="qiskit.circuit.CircuitData" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/__init__.py" signature="qiskit.circuit.CircuitData(<no public constructor>)" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
+
+  Private internal Qiskit object that corresponds to the C-API `QkCircuit`.
+
+  Regardless of naming, all methods and attributes of this object are private and not for user consumption from Python. This is an implementation detail of Qiskit.
+
+  The only valid uses of this object for Python users are to pass it to methods that expect the “native” component of circuits. This includes the C-API function [`qk_circuit_borrow_from_python()`](/docs/api/qiskit-c/dev/qk-circuit#qk_circuit_borrow_from_python "qk_circuit_borrow_from_python"), for example.
+
+  This object is usable as a [`passmanager.IR`](passmanager#qiskit.passmanager.IR "qiskit.passmanager.IR") corresponding to the Rust/C-native components of [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
+</Class>
+
 ### Bits and registers
 
 Qubits and classical bits are represented by a shared base [`Bit`](#qiskit.circuit.Bit "qiskit.circuit.Bit") type, which is just intended to be a “type tag”; the classes have no behavior other than being immutable objects:
@@ -799,7 +817,7 @@ Subclasses of [`Instruction`](/docs/api/qiskit/dev/qiskit.circuit.Instruction "q
 
 #### \_define
 
-<Function id="qiskit.circuit.Instruction._define" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L256-L263" signature="Instruction._define()">
+<Function id="qiskit.circuit.Instruction._define" github="https://github.com/Qiskit/qiskit/tree/main/qiskit/circuit/instruction.py#L253-L260" signature="Instruction._define()">
   Populate the cached `_definition` field of this [`Instruction`](/docs/api/qiskit/dev/qiskit.circuit.Instruction "qiskit.circuit.Instruction").
 
   Subclasses should implement this method to provide lazy construction of their public [`definition`](/docs/api/qiskit/dev/qiskit.circuit.Instruction#definition "qiskit.circuit.Instruction.definition") attribute. A subclass can use its [`params`](/docs/api/qiskit/dev/qiskit.circuit.Instruction#params "qiskit.circuit.Instruction.params") at the time of the call. The method should populate `_definition` with a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") and not return a value.
@@ -908,7 +926,7 @@ For a more backend-like simulation experience, there are simulator-backed implem
 
 *   [`BasicProvider`](/docs/api/qiskit/dev/qiskit.providers.basic_provider.BasicProvider "qiskit.providers.basic_provider.BasicProvider") and the raw backends it can return to you.
 *   `StatevectorSimulator` for a backend-like wrapper around [`Statevector`](/docs/api/qiskit/dev/qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")
-*   The [`qiskit_aer`](https://qiskit.github.io/qiskit-aer/apidocs/aer_provider.html#module-qiskit_aer "(in Qiskit Aer v0.17.1)") for full, high-performance simulation capabilities.
+*   The [`qiskit_aer`](https://qiskit.github.io/qiskit-aer/apidocs/aer_provider.html#module-qiskit_aer "(in Qiskit Aer v0.18)") for full, high-performance simulation capabilities.
 *   [`StatevectorSampler`](/docs/api/qiskit/dev/qiskit.primitives.StatevectorSampler "qiskit.primitives.StatevectorSampler") and [`StatevectorEstimator`](/docs/api/qiskit/dev/qiskit.primitives.StatevectorEstimator "qiskit.primitives.StatevectorEstimator") for simulator-backed reference implementations of the [Qiskit Primitives](primitives#qiskit-primitives).
 
 ### Defining equivalence relationships

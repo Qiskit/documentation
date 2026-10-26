@@ -360,3 +360,40 @@ test("generate a toc without modules and releaes notes", () => {
     untranslatable: true,
   });
 });
+
+const ADDON_DOCS_RESULTS = [
+  {
+    meta: { apiType: "class" as const, apiName: "Sampler" },
+    url: "/api/my-quantum-project/my_quantum_project.Sampler",
+    ...DEFAULT_ARGS,
+  },
+];
+
+test("TOC without addon docs has no parent link", () => {
+  const toc = generateToc(
+    Pkg.mock({ hasAddonDocs: false }),
+    ADDON_DOCS_RESULTS,
+  );
+  expect(toc).not.toHaveProperty("parentUrl");
+  expect(toc).not.toHaveProperty("parentLabel");
+});
+
+test("TOC with addon docs links to the addon page", () => {
+  const toc = generateToc(Pkg.mock({ hasAddonDocs: true }), ADDON_DOCS_RESULTS);
+  expect(toc.parentUrl).toEqual("/docs/addons/my-quantum-project");
+  expect(toc.parentLabel).toEqual("My Quantum Project");
+});
+
+test("C API TOC with addon docs links to the Python sibling's addon page", () => {
+  const toc = generateToc(
+    Pkg.mock({
+      name: "my-quantum-project-c",
+      language: "C",
+      artifactPackageName: "my-quantum-project",
+      hasAddonDocs: true,
+    }),
+    ADDON_DOCS_RESULTS,
+  );
+  expect(toc.parentUrl).toEqual("/docs/addons/my-quantum-project");
+  expect(toc.parentLabel).toEqual("My Quantum Project");
+});

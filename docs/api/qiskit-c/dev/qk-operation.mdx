@@ -1,0 +1,302 @@
+---
+title: QkCustomOp (dev version)
+description: API reference for QkCustomOp in the dev version of qiskit-c
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: QkCustomOp
+---
+
+<span id="capi-operations" />
+
+# QkCustomOp
+
+```c
+typedef struct QkCustomOp QkCustomOp
+```
+
+A representation of an operation that has been defined in C.
+
+This operation object contains the minimal functionality an object should adhere to in order operate on a `QkCircuit`.
+
+Any object that can be implemented using `QkCustomOp` will be dynamically dispatched to be added to the circuit. In other words, the circuit is unaware of the type of object it is accepting, but it will work with it as long as it has the functionality expected from any operation.
+
+To achieve this, an operation is defined by two parts: - The original pointer to the operation struct. - The pointer to a vtable with the function slots that define the functionality of this operation. See `qk_custom_op_vtable_new()` for more details.
+
+Here’s a quick example of what that looks like:
+
+```c
+// Define an operation with a single attribute.
+struct foo_gate {
+   uint32_t num_qubits;
+};
+// Represents the name of the operation.
+const char *FOO_NAME = "foo";
+// Design the required methods for the vtable.
+const char *foo_name(const void *gate) {
+   // Cast void to original pointer.
+   struct foo_gate *_self = (struct foo_gate *)gate;
+   // Cast once more to consume it
+   (void)_self;
+   return FOO_NAME;
+}
+uint32_t foo_num_qubits(const void *gate) {
+   struct foo_gate *self = (struct foo_gate *)gate;
+   // Used stored attirbute as return value.
+   return self->num_qubits;
+}
+// Use same logic below for required methods that have
+// fixed values.
+uint32_t foo_num_clbits(const void *gate) {
+   struct foo_gate *_self = (struct foo_gate *)gate;
+   (void)_self;
+   return 0;
+}
+// Implement all required methods.
+// Build list of entries for the vtable (at least 7 required entries)
+QkCustomOpVtableEntry entries[7] = {
+   {.slot = 0, .func = foo_name},
+   {.slot = 1, .func = foo_num_qubits},
+   {.slot = 2, .func = foo_num_clbits},
+   // ...
+   // End with sentinel value
+   {.slot = -1, .func = NULL},
+};
+// Create a vtable
+QkCustomOpVtable *foo_vtable = qk_custom_op_vtable_new(entries);
+// Declare a sample instance
+struct foo_gate foo_3q = {
+   .num_qubits = 3,
+};
+// Create the custom operation
+QkCustomOp *foo_3q_custom = qk_custom_op_new(&foo_3q, foo_vtable);
+// Add to a circuit
+QkCircuit *circuit = qk_circuit_new(3, 0);
+uint32_t qubits[3] = {0, 1, 2};
+qk_circuit_custom_operation(circuit, foo_3q_custom, qubits, NULL, NULL);
+```
+
+## Data Types
+
+### QkCustomOpSlot
+
+<Class id="QkCustomOpSlot" signature="enum QkCustomOpSlot">
+  Represents the Vtable index of a `QkCustomOp` coming from the C domain.
+
+  Each named index refers to a required/optional method of the `Operation` and `CustomOperation` traits in Rust.
+
+  *Values:*
+
+  #### enumerator QkCustomOpSlot\_Name
+
+  <Attribute id="QkCustomOpSlot_Name" />
+
+  #### enumerator QkCustomOpSlot\_NumQubits
+
+  <Attribute id="QkCustomOpSlot_NumQubits" />
+
+  #### enumerator QkCustomOpSlot\_NumClbits
+
+  <Attribute id="QkCustomOpSlot_NumClbits" />
+
+  #### enumerator QkCustomOpSlot\_NumParams
+
+  <Attribute id="QkCustomOpSlot_NumParams" />
+
+  #### enumerator QkCustomOpSlot\_Directive
+
+  <Attribute id="QkCustomOpSlot_Directive" />
+
+  #### enumerator QkCustomOpSlot\_IsUnitary
+
+  <Attribute id="QkCustomOpSlot_IsUnitary" />
+
+  #### enumerator QkCustomOpSlot\_NumCtrlQubits
+
+  <Attribute id="QkCustomOpSlot_NumCtrlQubits" />
+
+  #### enumerator QkCustomOpSlot\_Label
+
+  <Attribute id="QkCustomOpSlot_Label" />
+
+  #### enumerator QkCustomOpSlot\_Definition
+
+  <Attribute id="QkCustomOpSlot_Definition" />
+
+  #### enumerator QkCustomOpSlot\_Eq
+
+  <Attribute id="QkCustomOpSlot_Eq" />
+
+  #### enumerator QkCustomOpSlot\_Clone
+
+  <Attribute id="QkCustomOpSlot_Clone" />
+
+  #### enumerator QkCustomOpSlot\_Delete
+
+  <Attribute id="QkCustomOpSlot_Delete" />
+</Class>
+
+## Functions
+
+### qk\_custom\_operation\_new
+
+<Function id="qk_custom_operation_new" signature="QkCustomOp *qk_custom_operation_new(void *operation, const QkCustomOpVtable *v_table)">
+  Builds a `QkCustomOp` based on a quantum operation fully defined in C.
+
+  Here’s a quick example of what that looks like:
+
+  ```c
+  // Define an operation with a single attribute.
+  struct foo_gate {
+      uint32_t num_qubits;
+  }
+
+  // Implement all required methods
+  uint32_t foo_num_qubits(const void *gate) {
+  struct foo_gate *self = (struct foo_gate *)gate;
+  // Used stored attirbute as return value.
+  return self->num_qubits;
+  }
+
+  // Build list of entries for the vtable (at least 7 required entries)
+  QkVtableEntry entries[7] = {
+      {.slot = QkCustomOpSlot_NumQubits, .func = foo_num_qubits},
+  // ...
+  // End with sentinel value
+      {.slot = -1, .func = NULL},
+  };
+
+  // Create a vtable
+  QkCustomOpVtable *foo_vtable = qk_custom_operation_vtable_new(entries);
+
+  // Declare a sample instance
+  struct foo_gate foo_3q = {
+      .num_qubits = 3,
+  };
+
+  // Create the custom operation
+  QkCustomOp foo_3q_custom = qk_custom_operation_new(&foo_3q, foo_vtable);
+  ```
+
+  <span id="group__QkCustomOp_1autotoc_md276" />
+
+  #### Safety
+
+  <span id="group__QkCustomOp_1autotoc_md276" />
+
+  It falls on the responsibility of the implementors to ensure that the data enclosed in the `operation` struct can:
+
+  *   Be accessed safely by multiple threads concurrently.
+  *   Be immutably borrowed by other threads without causing race conditions.
+  *   Be preserved throughout the lifetime of the operation.
+
+  Behavior is undefined if the provided `v_table` pointer is null or non-aligned.
+
+  Failure to comply with these conditions may result in undefined behavior.
+
+  **Parameters**
+
+  *   **operation** – An owned pointer to the operation struct.
+  *   **v\_table** – A pointer to a correctly constructed v\_table designed to work with the data of the struct `operation` points to.
+
+  **Returns**
+
+  A pointer to `QkCustomOp`.
+</Function>
+
+### qk\_custom\_operation\_free
+
+<Function id="qk_custom_operation_free" signature="void qk_custom_operation_free(QkCustomOp *data)">
+  Free an owned :c:type:`QkCustomOp`.
+
+  You typically do not need to call this, because :c:func:`qk_circuit_custom_operation` takes ownership of the object.
+
+  This function is a no-op if given `NULL`.
+
+  <span id="group__QkCustomOp_1autotoc_md277" />
+
+  #### Safety
+
+  <span id="group__QkCustomOp_1autotoc_md277" />
+
+  Behavior is undefined if `data` is not null or a valid owning pointer to a :c:type:`QkCustomOp`.
+
+  **Parameters**
+
+  *   **data** – An owning pointer to data to free.
+</Function>
+
+### qk\_custom\_operation\_vtable\_new
+
+<Function id="qk_custom_operation_vtable_new" signature="const QkCustomOpVtable *qk_custom_operation_vtable_new(const QkVtableEntry *slots)">
+  Builds a `QkCustomOpVtable` based on a list of `QkVtableEntry` instances.
+
+  The vtable is built from a collection of slots that hold an index and a pointer to a function of the correct argument and return types.
+
+  Refer to the following table to identify the correct slots.
+
+  | Slot              | Arg(s) type                    | Return type   | Index                          | Required | Default            |
+  | ----------------- | ------------------------------ | ------------- | ------------------------------ | -------- | ------------------ |
+  | `name`            | `const void *`                 | `char *`      | `QkCustomOpSlot_Name`          | Yes      | n/a                |
+  | `num_qubits`      | `const void *`                 | `uint32_t`    | `QkCustomOpSlot_NumQubits`     | Yes      | n/a                |
+  | `num_clbits`      | `const void *`                 | `uint32_t`    | `QkCustomOpSlot_NumClbits`     | No       | `0`                |
+  | `num_params`      | `const void *`                 | `uint32_t`    | `QkCustomOpSlot_NumParams`     | No       | `0`                |
+  | `directive`       | `const void *`                 | `bool`        | `QkCustomOpSlot_Directive`     | No       | `false`            |
+  | `is_unitary`      | `const void *`                 | `bool`        | `QkCustomOpSlot_IsUnitary`     | No       | `true`             |
+  | `num_ctrl_qubits` | `const void *`                 | `uint32_t`    | `QkCustomOpSlot_NumCtrlQubits` | No       | `0`                |
+  | `label`           | `const void *`                 | `char *`      | `QkCustomOpSlot_Label`         | No       | `NULL`             |
+  | `definition`      | `const void *`, `QkParam **`   | `QkCircuit *` | `QkCustomOpSlot_Definition`    | No       | `NULL`             |
+  | `eq`              | `const void *`, `const void *` | `bool`        | `QkCustomOpSlot_Eq`            | No       | Pointer comparison |
+  | `clone`           | `const void *`                 | `void *`      | `QkCustomOpSlot_Clone`         | No       | pointer alias      |
+  | `delete`          | `void *`                       | `void`        | `QkCustomOpSlot_Delete`        | No       | no-op              |
+
+  Each function will be seen as a `void` pointer to Rust and will be transmuted to a function pointer of the correct signature.
+
+  If a required slot is not received, the vtable will not be constructed and this function will return a `NULL` pointer. If an optional slot is not included, the vtable will still be built and its slots will point to default implementations of the said method(s).
+
+  If a slot does not have a valid index (other than the sentinel value), the provided function pointer will be ignored. This ensures that if any non-required methods are added or removed from the chart above, the program should still be able to run without issues.
+
+  Every list of slots should be delimited by a sentinel valued `QkVtableEntry` at the end. The sentinel should look as follows:
+
+  ```c
+  QkVtableEntry sentinel = {.slot = -1, .func = NULL};
+  ```
+
+  This function will stop reading any slots located after the sentinel is found.
+
+  <span id="group__QkCustomOp_1autotoc_md278" />
+
+  #### Safety
+
+  <span id="group__QkCustomOp_1autotoc_md278" />
+
+  Behavior is undefined if a list of entries without delimiting sentinel value are provided.
+
+  Undefined behavior may also happen during transmutation if the provided function pointer does not have the correct signature.
+
+  **Parameters**
+
+  *   **slots** – A pointer to a list of entries delimited by an entry with a sentinel value.
+
+  **Returns**
+
+  A pointer to a constructed vtable or a null pointer if any required entries are absent.
+</Function>
+
+### qk\_custom\_operation\_vtable\_free
+
+<Function id="qk_custom_operation_vtable_free" signature="void qk_custom_operation_vtable_free(const QkCustomOpVtable *v_table)">
+  Frees the `QkCustomOpVtable` pointer
+
+  <span id="group__QkCustomOp_1autotoc_md279" />
+
+  #### Safety
+
+  <span id="group__QkCustomOp_1autotoc_md279" />
+
+  Undefined behavior may occur if `v_table` is a `NULL` or unaligned invalid pointer to a `QkCustomOpVtable`.
+
+  **Parameters**
+
+  *   **v\_table** – The pointer to a `QkCustomOpVtable` object.
+</Function>
+
