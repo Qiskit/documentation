@@ -5,7 +5,7 @@ description: "Documentation for the latest version of Qiskit Paulice"
 
 # Qiskit Paulice
 
-`qiskit-paulice` is a package for embedding hardware-efficient Pauli checks into arbitrary Clifford circuits on arbitrary qubit connectivities using spacetime stabilizer codes. These checks can be used to detect logical errors during circuit execution. Postselecting only samples with no detected errors can improve the fidelity of states sampled with a quantum processor at the cost of some ancilla qubits and an increase in sampling overhead. This method is particularly suited to near-term hardware since it has a much milder overhead in qubits and gates compared to fault-tolerant quantum computing, while having a better sampling overhead than error mitigation methods such as ZNE or PEC [\[1\]](#ref1).
+`qiskit-paulice` is a package for embedding hardware-efficient Pauli checks into arbitrary Clifford circuits on arbitrary qubit connectivities using spacetime stabilizer codes. These checks can be used to detect logical errors during circuit execution. Postselecting only samples with no detected errors can improve the fidelity of states sampled with a quantum processor at the cost of some ancilla qubits and an increase in sampling overhead. This method is particularly suited to near-term hardware since it has a much milder overhead in qubits and gates compared to fault-tolerant quantum computing, while having a better sampling overhead than error mitigation methods such as ZNE or PEC [\[1\]](#references).
 
 Although spacetime Pauli checks may be used to implement standalone error detection routines, they are also relevant in the context of error mitigation and error correction. Error detection can complement error mitigation techniques such as probabilistic error cancellation (PEC) by capturing some of the noise affecting gates and measurements, reducing the impact of the noise channel being inverted and thus reducing the sampling overhead. They can also be viewed as an early step toward practical fault tolerance, since implementing stabilizer codes to protect data qubits from logical errors is a core concept of traditional error correction. Since this method provides single-shot access to the quantum state, it can be used in both sampling-based and expectation value-based workflows.
 
@@ -15,7 +15,7 @@ A simple guide to help you get started quickly with this package is available in
 
 ## Use case examples
 
-This technique has been used to improve the fidelity of samples from Clifford-dominated circuits using 97 physical qubits to encode 2415 logical entangling gates across 70 logical qubits [\[2\]](#ref2).
+This technique has been used to improve the fidelity of samples from Clifford-dominated circuits using 97 physical qubits to encode 2415 logical entangling gates across 70 logical qubits [\[2\]](#references).
 
 ## Technical discussion
 
@@ -72,7 +72,7 @@ If you use this package in your research, use the [CITATION.bib](https://github.
 
 ## Deprecation policy
 
-We follow [semantic versioning](https://semver.org/). We may occasionally make breaking changes in order to improve the user experience. When possible, we will keep old interfaces and mark them as deprecated, as long as they can co-exist with the new ones. Each substantial improvement, breaking change, or deprecation will be documented in the [release notes](/docs/en/api/qiskit-addon-paulice/release-notes).
+We follow [semantic versioning](https://semver.org/). We may occasionally make breaking changes in order to improve the user experience. When possible, we will keep old interfaces and mark them as deprecated, as long as they can co-exist with the new ones. Each substantial improvement, breaking change, or deprecation will be documented in the [release notes](/docs/api/qiskit-addon-paulice/release-notes).
 
 <span id="id1" />
 
