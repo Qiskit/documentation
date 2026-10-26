@@ -50,9 +50,11 @@ python_api_name: qiskit_fermions.transpiler.passes.MergeSlaterDeterminantPrepara
 
     Walks the input DAG in topological order, rewriting each matched [`InitializeModes`](circuit-library-initialize-modes "qiskit_fermions.circuit.library.InitializeModes")-then-[`OrbitalRotation`](circuit-library-orbital-rotation "qiskit_fermions.circuit.library.OrbitalRotation") pattern into [`PrepareSlaterDeterminant`](circuit-library-prepare-slater-determinant "qiskit_fermions.circuit.library.PrepareSlaterDeterminant") gate(s) and copying every other node through unchanged.
 
+    The pattern requires the rotation to immediately follow the initialization, so any node between the two prevents the fusion. That is a `Barrier`, which is the way to keep the initialization and the rotation as separate gates on purpose, but equally a [`FermionicMeasure`](circuit-library-fermionic-measure "qiskit_fermions.circuit.library.FermionicMeasure"), which must not be fused across since that would change what the circuit reads out.
+
     **Parameters**
 
-    **dag** ([*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit)) – the input circuit with fermion-based instructions. Only [`DAGOpNode`](/docs/api/qiskit/qiskit.dagcircuit.DAGOpNode) with [`FermionicGate`](circuit-fermionic-gate "qiskit_fermions.circuit.FermionicGate") instances as their [`op`](/docs/api/qiskit/qiskit.dagcircuit.DAGOpNode#op) are supported.
+    **dag** ([*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit)) – the input circuit with fermion-based instructions. Only [`DAGOpNode`](/docs/api/qiskit/qiskit.dagcircuit.DAGOpNode) with [`FermionicGate`](circuit-fermionic-gate "qiskit_fermions.circuit.FermionicGate") instances as their [`op`](/docs/api/qiskit/qiskit.dagcircuit.DAGOpNode#op) are supported, plus `Barrier` and [`FermionicMeasure`](circuit-library-fermionic-measure "qiskit_fermions.circuit.library.FermionicMeasure"), which are carried through untouched (a measurement keeps the classical bit it writes into).
 
     **Returns**
 
@@ -60,7 +62,7 @@ python_api_name: qiskit_fermions.transpiler.passes.MergeSlaterDeterminantPrepara
 
     **Raises**
 
-    [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError) – when the provided input circuit has more than a single register.
+    [**NotImplementedError**](https://docs.python.org/3/builtins/exceptions.html#NotImplementedError) – when the provided input circuit has more than a single register.
 
     **Return type**
 
@@ -78,7 +80,7 @@ python_api_name: qiskit_fermions.transpiler.passes.MergeSlaterDeterminantPrepara
 
     *   **passmanager\_ir** (*IR*) – Qiskit IR to optimize.
     *   **state** ([*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)) – State associated with workflow execution by the pass manager itself.
-    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[*[*Task*](/docs/api/qiskit/qiskit.passmanager.Task)*, IR\_OUT,* [*PropertySet*](/docs/api/qiskit/qiskit.passmanager.PropertySet)*,* [*float*](https://docs.python.org/3/library/functions.html#float)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*], None] | None*) – A callback function which is called per execution of optimization task.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[*[*Task*](/docs/api/qiskit/qiskit.passmanager.Task)*, IR\_OUT,* [*PropertySet*](/docs/api/qiskit/qiskit.passmanager.PropertySet)*,* [*float*](https://docs.python.org/3/builtins/functions.html#float)*,* [*int*](https://docs.python.org/3/builtins/functions.html#int)*], None] | None*) – A callback function which is called per execution of optimization task.
 
     **Returns**
 
@@ -86,7 +88,7 @@ python_api_name: qiskit_fermions.transpiler.passes.MergeSlaterDeterminantPrepara
 
     **Return type**
 
-    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[*IR\_OUT*, [*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)]
+    [tuple](https://docs.python.org/3/builtins/stdtypes.html#tuple)\[*IR\_OUT*, [*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)]
   </Function>
 
   ### name
@@ -96,7 +98,7 @@ python_api_name: qiskit_fermions.transpiler.passes.MergeSlaterDeterminantPrepara
 
     **Return type**
 
-    [str](https://docs.python.org/3/library/stdtypes.html#str)
+    [str](https://docs.python.org/3/builtins/stdtypes.html#str)
   </Function>
 
   ### update\_status

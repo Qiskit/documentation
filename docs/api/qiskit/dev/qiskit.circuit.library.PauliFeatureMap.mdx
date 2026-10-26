@@ -102,15 +102,15 @@ $$
 
   **Parameters**
 
-  *   **feature\_dimension** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – Number of qubits in the circuit.
-  *   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The number of times the evolution layers are repeated.
-  *   **entanglement** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*,* [*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]]] | Callable\[\[*[*int*](https://docs.python.org/3/library/functions.html#int)*],* [*str*](https://docs.python.org/3/library/stdtypes.html#str)  *|*[*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*,* [*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]]]]*) – Specifies the entanglement structure. Can be a string (`'full'`, `'linear'`, `'reverse_linear'`, `'circular'` or `'sca'`) or can be a dictionary where the keys represent the number of qubits and the values are list of integer-pairs specifying the indices of qubits that are entangled with one another, for example: `{1: [(0,), (2,)], 2: [(0,1), (2,0)]}` or can be a `Callable[[int], Union[str | Dict[...]]]` to return an entanglement specific for a repetition
-  *   **alpha** ([*float*](https://docs.python.org/3/library/functions.html#float)) – The Pauli rotation factor, multiplicative to the pauli rotations
-  *   **paulis** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*] | None*) – A list of strings for to-be-used paulis. If None are provided, `['Z', 'ZZ']` will be used.
-  *   **data\_map\_func** (*Callable\[\[np.ndarray],* [*float*](https://docs.python.org/3/library/functions.html#float)*] | None*) – A mapping function for the data `x` which can be supplied to override the default mapping.
-  *   **parameter\_prefix** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – The prefix used if default parameters are generated.
-  *   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – If `True`, barriers are inserted in between the evolution instructions and Hadamard layers.
-  *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – Name of the circuit.
+  *   **feature\_dimension** ([*int*](https://docs.python.org/3/builtins/functions.html#int) *| None*) – Number of qubits in the circuit.
+  *   **reps** ([*int*](https://docs.python.org/3/builtins/functions.html#int)) – The number of times the evolution layers are repeated.
+  *   **entanglement** ([*str*](https://docs.python.org/3/builtins/stdtypes.html#str)  *|*[*dict*](https://docs.python.org/3/builtins/stdtypes.html#dict)*\[*[*int*](https://docs.python.org/3/builtins/functions.html#int)*,* [*list*](https://docs.python.org/3/builtins/stdtypes.html#list)*\[*[*tuple*](https://docs.python.org/3/builtins/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/builtins/functions.html#int)*]]] | Callable\[\[*[*int*](https://docs.python.org/3/builtins/functions.html#int)*],* [*str*](https://docs.python.org/3/builtins/stdtypes.html#str)  *|*[*dict*](https://docs.python.org/3/builtins/stdtypes.html#dict)*\[*[*int*](https://docs.python.org/3/builtins/functions.html#int)*,* [*list*](https://docs.python.org/3/builtins/stdtypes.html#list)*\[*[*tuple*](https://docs.python.org/3/builtins/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/builtins/functions.html#int)*]]]]*) – Specifies the entanglement structure. Can be a string (`'full'`, `'linear'`, `'reverse_linear'`, `'circular'` or `'sca'`) or can be a dictionary where the keys represent the number of qubits and the values are list of integer-pairs specifying the indices of qubits that are entangled with one another, for example: `{1: [(0,), (2,)], 2: [(0,1), (2,0)]}` or can be a `Callable[[int], Union[str | Dict[...]]]` to return an entanglement specific for a repetition
+  *   **alpha** ([*float*](https://docs.python.org/3/builtins/functions.html#float)) – The Pauli rotation factor, multiplicative to the pauli rotations
+  *   **paulis** ([*list*](https://docs.python.org/3/builtins/stdtypes.html#list)*\[*[*str*](https://docs.python.org/3/builtins/stdtypes.html#str)*] | None*) – A list of strings for to-be-used paulis. If None are provided, `['Z', 'ZZ']` will be used.
+  *   **data\_map\_func** (*Callable\[\[np.ndarray],* [*float*](https://docs.python.org/3/builtins/functions.html#float)*] | None*) – A mapping function for the data `x` which can be supplied to override the default mapping.
+  *   **parameter\_prefix** ([*str*](https://docs.python.org/3/builtins/stdtypes.html#str)) – The prefix used if default parameters are generated.
+  *   **insert\_barriers** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) – If `True`, barriers are inserted in between the evolution instructions and Hadamard layers.
+  *   **name** ([*str*](https://docs.python.org/3/builtins/stdtypes.html#str)) – Name of the circuit.
 
   ## Attributes
 
@@ -163,7 +163,7 @@ $$
   ### name
 
   <Attribute id="qiskit.circuit.library.PauliFeatureMap.name">
-    Type: [`str`](https://docs.python.org/3/library/stdtypes.html#str)
+    Type: [`str`](https://docs.python.org/3/builtins/stdtypes.html#str)
 
     A human-readable name for the circuit.
 
@@ -207,9 +207,9 @@ $$
 
     **Parameters**
 
-    *   **rep\_num** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The current repetition we are in.
-    *   **block\_num** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The block number within the entanglement layers.
-    *   **num\_block\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)) – The number of qubits in the block.
+    *   **rep\_num** ([*int*](https://docs.python.org/3/builtins/functions.html#int)) – The current repetition we are in.
+    *   **block\_num** ([*int*](https://docs.python.org/3/builtins/functions.html#int)) – The block number within the entanglement layers.
+    *   **num\_block\_qubits** ([*int*](https://docs.python.org/3/builtins/functions.html#int)) – The number of qubits in the block.
 
     **Returns**
 
@@ -217,11 +217,11 @@ $$
 
     **Raises**
 
-    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – If the value of `entanglement` could not be cast to a corresponding entangler map.
+    [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If the value of `entanglement` could not be cast to a corresponding entangler map.
 
     **Return type**
 
-    [*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)\[[*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)\[[int](https://docs.python.org/3/library/functions.html#int)]]
+    [*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)\[[*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)\[[int](https://docs.python.org/3/builtins/functions.html#int)]]
   </Function>
 
   ### pauli\_block

@@ -1,0 +1,60 @@
+---
+title: LegacySolve (latest version)
+description: API reference for qiskit_noise_learning.analysis.LegacySolve in the latest version of qiskit-noise-learning
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_noise_learning.analysis.LegacySolve
+---
+
+<span id="qiskit-noise-learning-analysis-legacysolve" />
+
+# qiskit\_noise\_learning.analysis.LegacySolve
+
+<Class id="qiskit_noise_learning.analysis.LegacySolve" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/analysis/legacy.py" signature="qiskit_noise_learning.analysis.LegacySolve" modifiers="class">
+  Bases: [`AnalysisStage`](analysis-analysis-stage "qiskit_noise_learning.analysis.analysis_pipeline.AnalysisStage")
+
+  Solves for the [`ModelData`](data-model-data "qiskit_noise_learning.data.ModelData") using the legacy pair-fidelity method.
+
+  **This class is more specialized than other model solvers.** Where the others are set up to work for general models and path sets, this stage has the following restrictions and limitations:
+
+  *   It assumes the gate set consists of pure preparation, measurement, and self-inverse unitary gates.
+  *   It assumes the model is a [`PauliLindbladModel`](models-pauli-lindblad-model "qiskit_noise_learning.models.PauliLindbladModel") for which the unitary gate noise is 2-local, the measurement noise is 1-local, and preparation is assumed to be perfect. Furthermore, for a given gate, the fidelities of “conjugate Paulis” (Paulis that are mapped to each other under the gate) are assumed to be equal in the fitting process.
+  *   It accepts only [`EvenDepthVanillaPaths`](experiment-builder-even-depth-vanilla-paths "qiskit_noise_learning.experiment_builder.EvenDepthVanillaPaths") and [`SPAMPaths`](experiment-builder-spam-paths "qiskit_noise_learning.experiment_builder.SPAMPaths") paths to analyze.
+  *   The unitary gate model fitting is based exclusively on exponential decay data, and so this stage must run after [`CurveFitObservables`](analysis-curve-fit-observables "qiskit_noise_learning.analysis.CurveFitObservables").
+
+  The fitting process proceeds by analyzing decay curves for each unitary gate independently, and likewise for any SPAM experiments.
+
+  *   For the unitary gates a more restricted design matrix, constructed under the equality of fidelities with conjugate Paulis, is constructed and solved. Any fidelities of weight > 2 are not considered.
+  *   For SPAM, as preparation is assumed perfect, all noise is attributed to measurement: the rate of the corresponding single-qubit $X$ generator is calculated directly as $-\ln(F)/2$ for a measured fidelity $F$, clipped at zero, with its variance propagated from that fidelity’s uncertainty.
+
+  In both cases, the set of returned generators fit and returned is constructed based on what Paulis appear in the fidelities encountered in the paths.
+
+  Further notes:
+
+  *   Unitary gate rates are reported with zero covariance.
+  *   When the same Pauli appears in more than one path, the fidelity estimates must be equal, otherwise this solver raises an error.
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit_noise_learning.analysis.LegacySolve.__init__" signature="__init__()" />
+
+  ## Methods
+
+  |                                                                                                                            |                                                                                                                             |
+  | -------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit_noise_learning.analysis.LegacySolve.__init__ "qiskit_noise_learning.analysis.LegacySolve.__init__")() |                                                                                                                             |
+  | `run`(fit)                                                                                                                 | Run this stage, returning a new [`Fit`](analysis-fit "qiskit_noise_learning.analysis.Fit") with the output level populated. |
+
+  ### input\_level
+
+  <Attribute id="qiskit_noise_learning.analysis.LegacySolve.input_level">
+    alias of [`AggregatedObservableData`](data-aggregated-observable-data "qiskit_noise_learning.data.aggregated_observable_data.AggregatedObservableData")
+  </Attribute>
+
+  ### output\_level
+
+  <Attribute id="qiskit_noise_learning.analysis.LegacySolve.output_level">
+    alias of [`ModelData`](data-model-data "qiskit_noise_learning.data.model_data.ModelData")
+  </Attribute>
+</Class>
+

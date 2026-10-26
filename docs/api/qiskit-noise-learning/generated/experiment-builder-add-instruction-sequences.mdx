@@ -1,0 +1,45 @@
+---
+title: AddInstructionSequences (latest version)
+description: API reference for qiskit_noise_learning.experiment_builder.AddInstructionSequences in the latest version of qiskit-noise-learning
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_noise_learning.experiment_builder.AddInstructionSequences
+---
+
+<span id="qiskit-noise-learning-experiment-builder-addinstructionsequences" />
+
+# qiskit\_noise\_learning.experiment\_builder.AddInstructionSequences
+
+<Class id="qiskit_noise_learning.experiment_builder.AddInstructionSequences" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/experiment_builder/stages/sequence_generators/add_instruction_sequences.py" signature="qiskit_noise_learning.experiment_builder.AddInstructionSequences(instruction_sequences: list[InstructionSequence], randomization_multipliers: list[int] | None = None)" modifiers="class">
+  Bases: [`ExperimentBuilderStage`](experiment-builder-experiment-builder-stage "qiskit_noise_learning.experiment_builder.experiment_builder_stage.ExperimentBuilderStage")
+
+  Add instruction sequences to an experiment.
+
+  This is both a concrete stage (pass sequences directly) and the base class for sequence-generator stages that compute sequences from the experiment at runtime.
+
+  Subclasses should override `_generate_sequences()` to return sequences and multipliers computed from the experiment’s data.
+
+  **Parameters**
+
+  *   **instruction\_sequences** – The instruction sequences to add.
+  *   **randomization\_multipliers** – Per-sequence randomization multipliers. If `None`, defaults to all ones.
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit_noise_learning.experiment_builder.AddInstructionSequences.__init__" signature="__init__(instruction_sequences: list[InstructionSequence], randomization_multipliers: list[int] | None = None)" />
+
+  ## Methods
+
+  |                                                                                                                                                                                                      |                                                  |
+  | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
+  | [`__init__`](#qiskit_noise_learning.experiment_builder.AddInstructionSequences.__init__ "qiskit_noise_learning.experiment_builder.AddInstructionSequences.__init__")(instruction\_sequences\[, ...]) |                                                  |
+  | `run`(experiment)                                                                                                                                                                                    | Validate required fields, then apply this stage. |
+
+  ## Attributes
+
+  |                    |   |
+  | ------------------ | - |
+  | `populates_fields` |   |
+  | `required_fields`  |   |
+</Class>
+
