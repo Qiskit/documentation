@@ -278,7 +278,9 @@ Each Krylov circuit evolves for a total time $k \, \Delta t$. That is realized w
 ```
 
 <Admonition title="Note" type="note">
-  The fermionic circuit carries no measurements. Measurement is a qubit-level concept, so add it after transpilation, once the fermionic gates have been synthesized onto qubits. Convenience `measure` instructions on [`FermionicCircuit`](/docs/api/qiskit-fermions/circuit-fermionic-circuit#qiskit_fermions.circuit.FermionicCircuit "qiskit_fermions.circuit.FermionicCircuit") might be introduced in the [future](https://github.com/Qiskit/qiskit-fermions/issues/219).
+  The circuits built here carry no measurements yet, because the same fermionic circuits also drive the exact simulation in step 6, and a measurement is not a unitary operation. Step 5 adds them with [`FermionicCircuit.measure_all()`](/docs/api/qiskit-fermions/circuit-fermionic-circuit#qiskit_fermions.circuit.FermionicCircuit.measure_all "qiskit_fermions.circuit.FermionicCircuit.measure_all"), which reads mode `i` into classical bit `i`.
+
+  Prefer measuring the *fermionic* circuit over the transpiled one. A fermionic measurement names the mode it reads, so layout and routing carry it along with the qubit that mode ended up on, and the sampled bitstring is indexed by mode. Measuring the transpiled circuit instead leaves you to undo [`final_index_layout()`](/docs/api/qiskit/qiskit.transpiler.TranspileLayout#final_index_layout) yourself, and silently returns permuted results if you forget. This relies on the occupation-basis Jordan-Wigner encoding the preset uses, where each mode is carried by one qubit.
 </Admonition>
 
 <span id="transpile-to-qubit-circuits" />
@@ -287,7 +289,7 @@ Each Krylov circuit evolves for a total time $k \, \Delta t$. That is realized w
 
 Transpiling a [`FermionicCircuit`](/docs/api/qiskit-fermions/circuit-fermionic-circuit#qiskit_fermions.circuit.FermionicCircuit "qiskit_fermions.circuit.FermionicCircuit") maps its fermionic gates to qubit gates. This uses the Jordan-Wigner [`jordan_wigner()`](/docs/api/qiskit-fermions/mappers-library-jordan-wigner#qiskit_fermions.mappers.library.jordan_wigner "qiskit_fermions.mappers.library.jordan_wigner") mapping. The [`OrbitalRotation`](/docs/api/qiskit-fermions/circuit-library-orbital-rotation#qiskit_fermions.circuit.library.OrbitalRotation "qiskit_fermions.circuit.library.OrbitalRotation") gates synthesize into a brickwork of Givens rotations, and the single-term [`Evolution`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution "qiskit_fermions.circuit.library.Evolution") lowers to a single two-qubit interaction gate.
 
-Because every fermionic gate here has a default synthesis, you can use the ready-made [`generate_preset_jw_pass_manager()`](/docs/api/qiskit-fermions/transpiler-presets-generate-preset-jw-pass-manager#qiskit_fermions.transpiler.presets.generate_preset_jw_pass_manager "qiskit_fermions.transpiler.presets.generate_preset_jw_pass_manager") directly rather than hand-assembling the stages. Any keyword arguments are forwarded to the qubit stage; pass `optimization_level=0` for a faithful, unoptimized picture of the synthesized depth. Generating the full family of Krylov circuits is then a loop over the Krylov dimension. Keep the untranspiled [`FermionicCircuit`](/docs/api/qiskit-fermions/circuit-fermionic-circuit#qiskit_fermions.circuit.FermionicCircuit "qiskit_fermions.circuit.FermionicCircuit")s alongside the transpiled qubit circuits. The fermionic ones drive the exact (statevector) simulation in step 6, while the transpiled ones (with measurements added) are what a backend would execute.
+Because every fermionic gate here has a default synthesis, you can use the ready-made [`generate_preset_jw_pass_manager()`](/docs/api/qiskit-fermions/transpiler-presets-generate-preset-jw-pass-manager#qiskit_fermions.transpiler.presets.generate_preset_jw_pass_manager "qiskit_fermions.transpiler.presets.generate_preset_jw_pass_manager") directly rather than hand-assembling the stages. Any keyword arguments are forwarded to the qubit stage; pass `optimization_level=0` for a faithful, unoptimized picture of the synthesized depth. Generating the full family of Krylov circuits is then a loop over the Krylov dimension. Keep the untranspiled [`FermionicCircuit`](/docs/api/qiskit-fermions/circuit-fermionic-circuit#qiskit_fermions.circuit.FermionicCircuit "qiskit_fermions.circuit.FermionicCircuit")s alongside the transpiled qubit circuits. The fermionic ones drive the exact (statevector) simulation in step 6, so they must stay measurement-free; `measure_all(inplace=False)` returns a measured copy to transpile and leaves the original untouched, and that copy is what a backend would execute.
 
 ```python
 >>> from qiskit_fermions.transpiler.presets import generate_preset_jw_pass_manager
@@ -299,9 +301,8 @@ Because every fermionic gate here has a default synthesis, you can use the ready
 ...     for dim in range(krylov_dim):
 ...         fermionic_circuit = krylov_circuit(dim)
 ...         fermionic_circuits.append(fermionic_circuit)
-...         circuit = pass_manager.run(fermionic_circuit)
-...         circuit.measure_all()
-...         circuits.append(circuit)
+...         measured = fermionic_circuit.measure_all(inplace=False)
+...         circuits.append(pass_manager.run(measured))
 ...     return fermionic_circuits, circuits
 ...
 >>> krylov_dim = 5
@@ -380,13 +381,13 @@ Plotting the counts with [`qiskit.visualization.plot_histogram()`](/docs/api/qis
 
 The sampled bitstrings are the input to the classical half of SKQD. The Hamiltonian is projected onto the subspace the sampled configurations span and diagonalized there. This is passed to the [qiskit-addon-sqd](/docs/addons/qiskit-addon-sqd) package, whose [`diagonalize_fermionic_hamiltonian()`](/docs/api/qiskit-addon-sqd/fermion#diagonalize_fermionic_hamiltonian "(in Sample-based quantum diagonalization (SQD))") runs the full sample-based quantum diagonalization loop. It builds a subspace from batches of the sampled configurations, diagonalizes the Hamiltonian in it, and iteratively refines the subspace by using configuration recovery: flipping occupations to repair configurations that violate the known particle-number symmetry. Configuration recovery is designed to undo the damage of hardware noise, which corrupts sampled bitstrings into the wrong particle-number sector; the sampling here is noiseless, so there is nothing to repair on that front.
 
-The solver consumes the sampled counts as a [`BitArray`](/docs/api/qiskit/qiskit.primitives.BitArray), built directly from the pooled `counts` of step 6. It diagonalizes in the same momentum basis the rest of the construction uses, so it takes the `h1e_momentum` and `h2e_momentum` integrals from step 2 directly, with no repacking. The recovered energy matches the exact reference to well under a milli-Hartree, from only a few hundred sampled configurations. Because the SQD energy is a variational upper bound on the true ground state, it always sits at or above `reference_energy` (still in scope from step 2):
+The solver consumes the sampled counts as a [`BitArray`](/docs/api/qiskit/qiskit.primitives.BitArray), built directly from the pooled `counts` of step 6. Pass `num_bits` explicitly: without it, the width is inferred from the widest sampled bitstring, which is narrower than `2 * norb` whenever no sample occupies the last mode, and the solver then rejects the array. The solver diagonalizes in the same momentum basis the rest of the construction uses, so it takes the `h1e_momentum` and `h2e_momentum` integrals from step 2 directly, with no repacking. The recovered energy matches the exact reference to well under a milli-Hartree, from only a few hundred sampled configurations. Because the SQD energy is a variational upper bound on the true ground state, it always sits at or above `reference_energy` (still in scope from step 2):
 
 ```python
 >>> from qiskit.primitives import BitArray
 >>> from qiskit_addon_sqd.fermion import diagonalize_fermionic_hamiltonian
 >>>
->>> bit_array = BitArray.from_counts(dict(counts))
+>>> bit_array = BitArray.from_counts(dict(counts), num_bits=2 * norb)
 >>>
 >>> # record each iteration's batch results so we can watch the energy converge
 >>> result_history = []

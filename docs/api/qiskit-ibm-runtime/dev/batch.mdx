@@ -136,7 +136,7 @@ python_api_name: qiskit_ibm_runtime.Batch
 
   ### details
 
-  <Function id="qiskit_ibm_runtime.Batch.details" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/session.py#L280-L325" signature="details()">
+  <Function id="qiskit_ibm_runtime.Batch.details" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/session.py#L280-L330" signature="details()">
     Return session details.
 
     **Returns**
@@ -157,6 +157,7 @@ python_api_name: qiskit_ibm_runtime.Batch
     *   `activated_at`: Timestamp of when the session state was changed to active.
     *   `mode`: Execution mode of the session.
     *   `usage_time`: The usage time, in seconds, of this Session or Batch. Usage is defined as the time a quantum system is committed to complete a job.
+    *   `timestamps`: List of the state transitions of the session. Each entry is a dictionary with the `status` (open, active, inactive, or closed) and the `timestamp` of when the session transitioned into that status. The list is empty if the API response does not include timestamps.
 
     **Return type**
 
@@ -165,7 +166,7 @@ python_api_name: qiskit_ibm_runtime.Batch
 
   ### from\_id
 
-  <Function id="qiskit_ibm_runtime.Batch.from_id" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/session.py#L345-L428" signature="from_id(session_id, service, use_fractional_gates=False, calibration_id=None)" modifiers="classmethod">
+  <Function id="qiskit_ibm_runtime.Batch.from_id" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/session.py#L350-L433" signature="from_id(session_id, service, use_fractional_gates=False, calibration_id=None)" modifiers="classmethod">
     Construct a Session object with a given `session_id`.
 
     For example:
