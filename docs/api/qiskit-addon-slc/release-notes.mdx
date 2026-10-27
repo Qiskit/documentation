@@ -24,3 +24,75 @@ This release makes bound computation faster, more robust, and more extensible, a
 
 The forward and backward bound computations have been reworked to keep all worker processes busy and can be interrupted gracefully while preserving the results computed so far. The building blocks behind them are now public, so you can assemble custom bounds with [`compute_bounds()`](/docs/api/qiskit-addon-slc/bounds#qiskit_addon_slc.bounds.compute_bounds "qiskit_addon_slc.bounds.compute_bounds"). For standard PEC experiments, [`compute_local_scales()`](/docs/api/qiskit-addon-slc/bounds#qiskit_addon_slc.bounds.compute_local_scales "qiskit_addon_slc.bounds.compute_local_scales") can now apply SLC in post-processing via `apply_in_post`. The new [`animate_shaded_lightcone()`](/docs/api/qiskit-addon-slc/visualization#qiskit_addon_slc.visualization.animate_shaded_lightcone "qiskit_addon_slc.visualization.animate_shaded_lightcone") makes light cones on heavy-hex and square-lattice devices easier to interpret.
 
+<span id="release-notes-0-2-0-new-features" />
+
+### New Features
+
+*   Added [`animate_shaded_lightcone()`](/docs/api/qiskit-addon-slc/visualization#qiskit_addon_slc.visualization.animate_shaded_lightcone "qiskit_addon_slc.visualization.animate_shaded_lightcone"), which animates a shaded light cone on top of a QPU’s coupling map. This makes shaded light cones easier to interpret for circuits acting on qubits whose connectivity is higher than a 1D line, where [`draw_shaded_lightcone()`](/docs/api/qiskit-addon-slc/visualization#qiskit_addon_slc.visualization.draw_shaded_lightcone "qiskit_addon_slc.visualization.draw_shaded_lightcone") becomes hard to read.
+
+    The qubits are placed by embedding the coupling map into a square lattice, so that every coupling is drawn between grid-adjacent qubits. The strategy is chosen from the map’s maximum connectivity, which supports both the heavy-hex processors and those with square connectivity.
+
+*   Added the `apply_in_post` argument to [`compute_local_scales()`](/docs/api/qiskit-addon-slc/bounds#qiskit_addon_slc.bounds.compute_local_scales "qiskit_addon_slc.bounds.compute_local_scales"). Set this to `True` when the experiment is run as standard PEC (i.e. Paulis are injected for all error terms) and SLC is applied to the resulting data in post-processing. This is necessary whenever the error terms to mitigate are not known at the time of the experiment, for example, when computing multiple observables from a single dataset, or when computing a single observable retroactively from existing PEC data. In that scenario, the minus signs associated with unmitigated low-priority errors are ignored, which effectively doubles their error rates. This setting accounts for that by prioritizing errors greedily based on their “value density” instead of using the default prioritization.
+
+    When `apply_in_post` is `True`, the returned `local_scales` must not be provided to the [`Samplex`](/docs/api/samplomatic/auto/samplex-samplex "(in samplomatic)"). Instead, they are used when processing the experiment’s results.
+
+*   The parallelization of the forward and backward unequal time commutator bound computation has been reworked internally. As a result, long-running single tasks no longer cause other tasks to idle until the next circuit layer can be processed but instead all processes remain utilized at all times. Consequently, the perceived time-to-completion has shortened considerably when running with many parallel processes.
+
+    In addition to the above, a user may now use a `KeyboardInterrupt` signal to terminate the bound computation manually, which will be handled gracefully and preserves all results computed thus far.
+
+*   Added the `max_num_boxes` argument to [`compute_forward_bounds()`](/docs/api/qiskit-addon-slc/bounds#qiskit_addon_slc.bounds.compute_forward_bounds "qiskit_addon_slc.bounds.compute_forward_bounds") and [`compute_backward_bounds()`](/docs/api/qiskit-addon-slc/bounds#qiskit_addon_slc.bounds.compute_backward_bounds "qiskit_addon_slc.bounds.compute_backward_bounds"). This new optional setting will set the maximum number of [`BoxOp`](/docs/api/qiskit/qiskit.circuit.BoxOp) instructions for which to compute shaded light-cone bounds. Any remaining boxes with an [`InjectNoise`](/docs/api/samplomatic/auto/inject-noise "(in samplomatic)") annotation will be given trivial upper bounds of $2.0$.
+
+*   Faster operator-norm computations in some cases. [`get_extremal_eigenvalue()`](/docs/api/qiskit-addon-slc/utils#qiskit_addon_slc.utils.get_extremal_eigenvalue "qiskit_addon_slc.utils.get_extremal_eigenvalue") now first tries to reduce the operator to fewer qubits, applicable when the spectrum consists of repeated eigenvalues. The reduced operator is block-diagonal, and whenever its blocks have at most $2^8$ rows they are diagonalized exactly, however many of them there are. Only operators with larger blocks are solved with the iterative (Davidson) method.
+
+*   The polling period of the bound computation progress indicator can now be configured via [`qiskit_addon_slc.globals.PROGRESS_POLLING_PERIOD`](/docs/api/qiskit-addon-slc/globals#qiskit_addon_slc.globals.PROGRESS_POLLING_PERIOD "qiskit_addon_slc.globals.PROGRESS_POLLING_PERIOD").
+
+*   The building blocks of [`compute_forward_bounds()`](/docs/api/qiskit-addon-slc/bounds#qiskit_addon_slc.bounds.compute_forward_bounds "qiskit_addon_slc.bounds.compute_forward_bounds") and [`compute_backward_bounds()`](/docs/api/qiskit-addon-slc/bounds#qiskit_addon_slc.bounds.compute_backward_bounds "qiskit_addon_slc.bounds.compute_backward_bounds") are now part of the public API, so that custom bounds can be assembled with [`compute_bounds()`](/docs/api/qiskit-addon-slc/bounds#qiskit_addon_slc.bounds.compute_bounds "qiskit_addon_slc.bounds.compute_bounds"):
+
+    *   [`time_evolved_norm_forward()`](/docs/api/qiskit-addon-slc/bounds#qiskit_addon_slc.bounds.time_evolved_norm_forward "qiskit_addon_slc.bounds.time_evolved_norm_forward") bounds a single Pauli error term evolved forward to an observable.
+    *   [`time_evolved_norm_backward()`](/docs/api/qiskit-addon-slc/bounds#qiskit_addon_slc.bounds.time_evolved_norm_backward "qiskit_addon_slc.bounds.time_evolved_norm_backward") bounds a single Pauli error term evolved backward to the all-zero initial state.
+    *   [`LightCone`](/docs/api/qiskit-addon-slc/bounds#qiskit_addon_slc.bounds.LightCone "qiskit_addon_slc.bounds.LightCone") tracks which instructions can affect what is being bounded, and is seeded with the operator the error terms are bounded against.
+
+*   Added support for Windows.
+
+*   The Davidson eigensolver used internally by [`get_extremal_eigenvalue()`](/docs/api/qiskit-addon-slc/utils#qiskit_addon_slc.utils.get_extremal_eigenvalue "qiskit_addon_slc.utils.get_extremal_eigenvalue") is now provided by a compiled Rust extension (built on `nalgebra`).
+
+<span id="release-notes-0-2-0-upgrade-notes" />
+
+### Upgrade Notes
+
+*   `plotly` is a new requirement of `qiskit-addon-slc`, used by [`animate_shaded_lightcone()`](/docs/api/qiskit-addon-slc/visualization#qiskit_addon_slc.visualization.animate_shaded_lightcone "qiskit_addon_slc.visualization.animate_shaded_lightcone").
+
+*   Support for Python 3.10 has been dropped since it reached its end-of-life.
+
+*   `pyscf` is no longer a dependency. The Davidson eigensolver behind [`get_extremal_eigenvalue()`](/docs/api/qiskit-addon-slc/utils#qiskit_addon_slc.utils.get_extremal_eigenvalue "qiskit_addon_slc.utils.get_extremal_eigenvalue") was previously provided by `pyscf`, which had no Windows wheel and could not be built from source on Windows; it is now the compiled Rust extension.
+
+<span id="release-notes-0-2-0-deprecation-notes" />
+
+### Deprecation Notes
+
+*   Passing arbitrary keyword arguments to [`get_extremal_eigenvalue()`](/docs/api/qiskit-addon-slc/utils#qiskit_addon_slc.utils.get_extremal_eigenvalue "qiskit_addon_slc.utils.get_extremal_eigenvalue") is deprecated. They used to be forwarded to `pyscf.lib.davidson1`; now they are ignored and raise a `DeprecationWarning`. The options that the new solver supports, `tol`, `max_cycle`, `max_space` and `lindep`, are explicit keyword arguments instead.
+
+*   The `atol` argument to the [`compute_forward_bounds()`](/docs/api/qiskit-addon-slc/bounds#qiskit_addon_slc.bounds.compute_forward_bounds "qiskit_addon_slc.bounds.compute_forward_bounds") function has been deprecated. Use the new `atol_simplify` and `atol_eigenvalue` arguments instead. `atol_simplify` keeps the previous default of `1e-8`, whereas `atol_eigenvalue` defaults to `1e-10`, since `1e-8` was occasionally producing significant inaccuracy in the eigenvalue computation.
+
+<span id="release-notes-0-2-0-bug-fixes" />
+
+### Bug Fixes
+
+*   Fixed [`get_extremal_eigenvalue()`](/docs/api/qiskit-addon-slc/utils#qiskit_addon_slc.utils.get_extremal_eigenvalue "qiskit_addon_slc.utils.get_extremal_eigenvalue") to properly handle operators with no negative eigenvalue (does not affect normal SLC computations).
+
+*   Fixed [`compute_forward_bounds()`](/docs/api/qiskit-addon-slc/bounds#qiskit_addon_slc.bounds.compute_forward_bounds "qiskit_addon_slc.bounds.compute_forward_bounds") and [`compute_backward_bounds()`](/docs/api/qiskit-addon-slc/bounds#qiskit_addon_slc.bounds.compute_backward_bounds "qiskit_addon_slc.bounds.compute_backward_bounds") hanging indefinitely on platforms that start worker processes by forking, such as Linux. This happened whenever the calling process had already run one of Qiskit’s multithreaded routines, for example [`to_matrix()`](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp#to_matrix): the worker processes inherited Qiskit’s thread pool without its threads and waited forever on their first use of it. The workers now run Qiskit’s routines serially, as [`qiskit.utils.parallel_map()`](/docs/api/qiskit/utils#qiskit.utils.parallel_map) already does for its own workers.
+
+*   Fixed [`compute_local_scales()`](/docs/api/qiskit-addon-slc/bounds#qiskit_addon_slc.bounds.compute_local_scales "qiskit_addon_slc.bounds.compute_local_scales") raising an `IndexError` when no error term gets selected for mitigation. This is reachable through each of the three conditions making up the selection: a `sampling_cost_budget` below the cost of even the cheapest term, a `bias_tolerance` already above the total bias bound, or a set of commutator bounds that are all zero. Mitigating nothing is now reported with a sampling cost overhead of `1.0`, the value of not mitigating anything.
+
+*   Fixed [`compute_bounds()`](/docs/api/qiskit-addon-slc/bounds#qiskit_addon_slc.bounds.compute_bounds "qiskit_addon_slc.bounds.compute_bounds") silently ignoring exceptions raised while bounding an error term. Such an error term keeps the trivial bound of `2.0`, which remains a valid bound, but any problem in the norm function, such as a bug in a custom one, went unnoticed. The first failure now gets logged as a warning together with its traceback from within the worker process, and a second warning summarizes all failures once the computation has finished.
+
+*   Fixed [`compute_bounds()`](/docs/api/qiskit-addon-slc/bounds#qiskit_addon_slc.bounds.compute_bounds "qiskit_addon_slc.bounds.compute_bounds") silently returning the trivial bound of `2.0` for every error term when its `norm_fn` names its second parameter anything other than `gates`. The gates were passed as the keyword argument `gates`, although the documented signature of `norm_fn` only specifies the types of its two arguments. `norm_fn` now gets called as `norm_fn(pauli, gates)`, so the names of its parameters no longer matter.
+
+*   The pauli-propagation underlying the forward and backward-bound computations has been adjusted to remove terms whose coefficients are numerically zero. The truncation threshold to determine whether a term is numerically zero can be adjusted via [`qiskit_addon_slc.globals.ZERO_ATOL`](/docs/api/qiskit-addon-slc/globals#qiskit_addon_slc.globals.ZERO_ATOL "qiskit_addon_slc.globals.ZERO_ATOL").
+
+<span id="release-notes-0-2-0-other-notes" />
+
+### Other Notes
+
+*   This release adds support for Python 3.14. No code changes were necessary, so older releases are expected to work on Python 3.14 too.
+

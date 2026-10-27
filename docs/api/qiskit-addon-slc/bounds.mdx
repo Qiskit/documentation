@@ -27,10 +27,10 @@ This module provides various functions for computing the error bounds that make 
 
   That is, compute $\| \left[ E_F, A_F \right] \|_2$ for all error terms, $E_F$, where $A_F$ is the target `observable` to be measured on `circuit`.
 
-  The error terms, $E_I$, are dictated by `noise_model_paulis`. This dictionary maps noise model identifiers (`samplomatic.InjectNoise.ref`) to a list of Pauli error terms. The corresponding terms will be used whenever a [`BoxOp`](/docs/api/qiskit/qiskit.circuit.BoxOp) with a matching [`InjectNoise`](/docs/addons/samplomatic/api/auto/samplomatic.InjectNoise#samplomatic.InjectNoise "(in samplomatic)") annotation is encountered during the iteration over `circuit`.
+  The error terms, $E_I$, are dictated by `noise_model_paulis`. This dictionary maps noise model identifiers (`samplomatic.InjectNoise.ref`) to a list of Pauli error terms. The corresponding terms will be used whenever a [`BoxOp`](/docs/api/qiskit/qiskit.circuit.BoxOp) with a matching [`InjectNoise`](/docs/api/samplomatic/auto/inject-noise "(in samplomatic)") annotation is encountered during the iteration over `circuit`.
 
   <Admonition title="Important" type="danger">
-    Every [`BoxOp`](/docs/api/qiskit/qiskit.circuit.BoxOp) with an [`InjectNoise`](/docs/addons/samplomatic/api/auto/samplomatic.InjectNoise#samplomatic.InjectNoise "(in samplomatic)") annotation **must** have a unique `modifier_ref`, since the bounds are keyed by it. Boxing a circuit with [`generate_boxing_pass_manager()`](/docs/addons/samplomatic/api/auto/samplomatic.transpiler.generate_boxing_pass_manager#samplomatic.transpiler.generate_boxing_pass_manager "(in samplomatic)") provides this only with `inject_noise_strategy="individual_modification"`. Otherwise, the bounds of boxes sharing a `modifier_ref` silently overwrite each other.
+    Every [`BoxOp`](/docs/api/qiskit/qiskit.circuit.BoxOp) with an [`InjectNoise`](/docs/api/samplomatic/auto/inject-noise "(in samplomatic)") annotation **must** have a unique `modifier_ref`, since the bounds are keyed by it. Boxing a circuit with [`generate_boxing_pass_manager()`](/docs/api/samplomatic/auto/transpiler-generate-boxing-pass-manager "(in samplomatic)") provides this only with `inject_noise_strategy="individual_modification"`. Otherwise, the bounds of boxes sharing a `modifier_ref` silently overwrite each other.
   </Admonition>
 
   <Admonition title="Deprecated since version 0.2.0" type="danger">
@@ -99,10 +99,10 @@ This module provides various functions for computing the error bounds that make 
 
   That is, compute $\| \left[ E_I, \rho_I \right] \|_1$ (using the Schatten 1-norm aka nuclear norm) for all error terms, $E_I$, where $\rho_I$ is assumed to be the all-zero state, $\ket{0 \ldots 0}$, on all active qubits in `circuit`.
 
-  The error terms, $E_I$, are dictated by `noise_model_paulis`. This dictionary maps noise model identifiers (`samplomatic.InjectNoise.ref`) to a list of Pauli error terms. The corresponding terms will be used whenever a [`BoxOp`](/docs/api/qiskit/qiskit.circuit.BoxOp) with a matching [`InjectNoise`](/docs/addons/samplomatic/api/auto/samplomatic.InjectNoise#samplomatic.InjectNoise "(in samplomatic)") annotation is encountered during the iteration over `circuit`.
+  The error terms, $E_I$, are dictated by `noise_model_paulis`. This dictionary maps noise model identifiers (`samplomatic.InjectNoise.ref`) to a list of Pauli error terms. The corresponding terms will be used whenever a [`BoxOp`](/docs/api/qiskit/qiskit.circuit.BoxOp) with a matching [`InjectNoise`](/docs/api/samplomatic/auto/inject-noise "(in samplomatic)") annotation is encountered during the iteration over `circuit`.
 
   <Admonition title="Important" type="danger">
-    Every [`BoxOp`](/docs/api/qiskit/qiskit.circuit.BoxOp) with an [`InjectNoise`](/docs/addons/samplomatic/api/auto/samplomatic.InjectNoise#samplomatic.InjectNoise "(in samplomatic)") annotation **must** have a unique `modifier_ref`, since the bounds are keyed by it. Boxing a circuit with [`generate_boxing_pass_manager()`](/docs/addons/samplomatic/api/auto/samplomatic.transpiler.generate_boxing_pass_manager#samplomatic.transpiler.generate_boxing_pass_manager "(in samplomatic)") provides this only with `inject_noise_strategy="individual_modification"`. Otherwise, this function may never return.
+    Every [`BoxOp`](/docs/api/qiskit/qiskit.circuit.BoxOp) with an [`InjectNoise`](/docs/api/samplomatic/auto/inject-noise "(in samplomatic)") annotation **must** have a unique `modifier_ref`, since the bounds are keyed by it. Boxing a circuit with [`generate_boxing_pass_manager()`](/docs/api/samplomatic/auto/transpiler-generate-boxing-pass-manager "(in samplomatic)") provides this only with `inject_noise_strategy="individual_modification"`. Otherwise, this function may never return.
   </Admonition>
 
   <Admonition title="Caution" type="note">
@@ -159,7 +159,7 @@ This module provides various functions for computing the error bounds that make 
 ### compute\_local\_scales
 
 <Function id="qiskit_addon_slc.bounds.compute_local_scales" github="https://github.com/Qiskit/qiskit-addon-slc/tree/stable/0.2/python/qiskit_addon_slc/bounds/local_scales.py#L35-L206" signature="compute_local_scales(circuit, bounds, /, noise_rates, *, sampling_cost_budget=inf, bias_tolerance=0.0, apply_in_post=False)">
-  Computes the `local_scales` argument to a [`Samplex`](/docs/addons/samplomatic/api/auto/samplomatic.samplex.Samplex#samplomatic.samplex.Samplex "(in samplomatic)").
+  Computes the `local_scales` argument to a [`Samplex`](/docs/api/samplomatic/auto/samplex-samplex "(in samplomatic)").
 
   This `local_scales` argument is used to specify which individual error terms to mitigate.
 
@@ -183,17 +183,17 @@ This module provides various functions for computing the error bounds that make 
 
   *   **apply\_in\_post** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) –
 
-      whether SLC will be applied in post-processing rather than at sampling time. By default (`False`), the returned `local_scales` are provided as an input to the [`Samplex`](/docs/addons/samplomatic/api/auto/samplomatic.samplex.Samplex#samplomatic.samplex.Samplex "(in samplomatic)"), such that Paulis are only injected for the error terms selected for mitigation. Set this to `True` when the experiment is instead run as standard PEC (i.e. Paulis are injected for all error terms) and SLC is applied to the resulting data afterwards. This is necessary whenever the error terms to mitigate are not known at the time of the experiment, for example, when computing multiple observables (each with its own shaded lightcone) from a single dataset, or when computing even a single observable retroactively from existing PEC data.
+      whether SLC will be applied in post-processing rather than at sampling time. By default (`False`), the returned `local_scales` are provided as an input to the [`Samplex`](/docs/api/samplomatic/auto/samplex-samplex "(in samplomatic)"), such that Paulis are only injected for the error terms selected for mitigation. Set this to `True` when the experiment is instead run as standard PEC (i.e. Paulis are injected for all error terms) and SLC is applied to the resulting data afterwards. This is necessary whenever the error terms to mitigate are not known at the time of the experiment, for example, when computing multiple observables (each with its own shaded lightcone) from a single dataset, or when computing even a single observable retroactively from existing PEC data.
 
       In this setting, the minus signs of the error terms which are not selected for mitigation are ignored. Their injected Paulis therefore act as noise rather than antinoise, effectively doubling their error rates. Setting this to `True` accounts for that by ranking the error terms greedily by their “value density” (i.e., their bias bound divided by their noise rate) instead of using the default prioritization.
 
         <Admonition title="Warning" type="caution">
-          When this is `True`, the returned `local_scales` must **not** be provided to the [`Samplex`](/docs/addons/samplomatic/api/auto/samplomatic.samplex.Samplex#samplomatic.samplex.Samplex "(in samplomatic)"), since the experiment must inject Paulis for all error terms. Instead, they specify which error terms’ signs to apply when processing the experiment’s results. Providing them to the samplex silently yields wrong results.
+          When this is `True`, the returned `local_scales` must **not** be provided to the [`Samplex`](/docs/api/samplomatic/auto/samplex-samplex "(in samplomatic)"), since the experiment must inject Paulis for all error terms. Instead, they specify which error terms’ signs to apply when processing the experiment’s results. Providing them to the samplex silently yields wrong results.
         </Admonition>
 
   **Returns**
 
-  *   the `local_scales` dictionary to be provided as the direct input to the [`samplomatic.samplex.Samplex.inputs()`](/docs/addons/samplomatic/api/auto/samplomatic.samplex.Samplex#samplomatic.samplex.Samplex.inputs "(in samplomatic)") (unless `apply_in_post` is `True`, in which case it is used in post-processing instead).
+  *   the `local_scales` dictionary to be provided as the direct input to the [`samplomatic.samplex.Samplex.inputs()`](/docs/api/samplomatic/auto/samplex-samplex#inputs "(in samplomatic)") (unless `apply_in_post` is `True`, in which case it is used in post-processing instead).
   *   the sampling cost overhead ($\gamma^2$) required to perform the sampling of `local_scales`.
   *   the remaining bias on expectation values computed with these bounds.
 
@@ -219,7 +219,7 @@ This module also contains some lower level functions which are usually not acces
   Given a circuit with `BoxOp` instructions with `InjectNoise` annotations and a mapping of noise model identifiers (`InjectNoise.ref`) to list of Pauli error terms (`noise_model_paulis`), this function computes the unequal time commutator bounds (the details of which are implemented by `norm_fn`). In doing so, it only considers gates that lie within the light-cone of the observable (initialized by `light_cone`). These computed bounds form the basis of the shaded light-cone.
 
   <Admonition title="Important" type="danger">
-    The computed bounds are keyed by `InjectNoise.modifier_ref`, so every `BoxOp` with an `InjectNoise` annotation **must** have a unique `modifier_ref`. Boxing a circuit with [`generate_boxing_pass_manager()`](/docs/addons/samplomatic/api/auto/samplomatic.transpiler.generate_boxing_pass_manager#samplomatic.transpiler.generate_boxing_pass_manager "(in samplomatic)") provides this only with `inject_noise_strategy="individual_modification"`. With any other strategy, several boxes share a `modifier_ref`, which leads to silently wrong forward bounds or a backward computation that never finishes.
+    The computed bounds are keyed by `InjectNoise.modifier_ref`, so every `BoxOp` with an `InjectNoise` annotation **must** have a unique `modifier_ref`. Boxing a circuit with [`generate_boxing_pass_manager()`](/docs/api/samplomatic/auto/transpiler-generate-boxing-pass-manager "(in samplomatic)") provides this only with `inject_noise_strategy="individual_modification"`. With any other strategy, several boxes share a `modifier_ref`, which leads to silently wrong forward bounds or a backward computation that never finishes.
   </Admonition>
 
   Since this function performs a long-running computation, it gracefully handles `KeyboardInterrupt` exceptions, allowing the user to interrupt the computation at an arbitrary point in time and still obtain the results that have been computed up to that point.
