@@ -10,6 +10,52 @@ in_page_toc_max_heading_level: 2
 
 # Qiskit Paulice release notes
 
+<span id="release-notes-upcoming-release" />
+
+## Upcoming release
+
+<span id="release-notes-upcoming-release-new-features" />
+
+### New Features
+
+*   The windowed search of `qiskit_paulice.add_pauli_checks()` now decodes all windows for a target in parallel and scores their candidates as one batch. With `cost="gamma"`, a seeded search picks the same checks as before. With `cost="LER"`, a candidate that appears in several windows is now estimated once and that estimate is reused, so LER searches can differ slightly; they were never seed-reproducible.
+
+*   Added [`qiskit_paulice.checked_circuit.CheckedCircuit.box()`](/docs/api/qiskit-addon-paulice/qiskit-paulice-checked-circuit#qiskit_paulice.checked_circuit.CheckedCircuit.box "qiskit_paulice.checked_circuit.CheckedCircuit.box"), which groups the checked circuit into the annotated boxes used for twirling, noise learning, and sampling, scheduling each Pauli check entangling gate into a box of its own. This minimizes the number of unique entangling layers at the cost of sub-optimal gate scheduling.
+
+*   Added the new [`qiskit_paulice.checked_circuit.CheckedCircuit.estimate_fault_rates()`](/docs/api/qiskit-addon-paulice/qiskit-paulice-checked-circuit#qiskit_paulice.checked_circuit.CheckedCircuit.estimate_fault_rates "qiskit_paulice.checked_circuit.CheckedCircuit.estimate_fault_rates") method for calculating fault rate statistics via Monte Carlo sampling. Every rate is a fraction of all sampled shots.
+
+*   `qiskit_paulice.add_pauli_checks()` no longer builds the output circuits that are never read. `add_pauli_checks(...)[-1].circuit` assembles one circuit instead of one per target qubit, and reading `[c.cost for c in result]` to watch the cost converge as checks are added assembles none at all.
+
+*   `qiskit_paulice.add_pauli_checks()` scores candidate checks faster with `cost="gamma"`. Noise generators and propagated cumulants are now stored in packed tables instead of one hash map per Pauli.
+
+*   Added the new [`qiskit_paulice.checked_circuit.CheckedCircuit.dope()`](/docs/api/qiskit-addon-paulice/qiskit-paulice-checked-circuit#qiskit_paulice.checked_circuit.CheckedCircuit.dope "qiskit_paulice.checked_circuit.CheckedCircuit.dope") method, which adds `RZ` rotations that commute with all spacetime check stabilizers. See [arXiv:2607.25941](https://arxiv.org/abs/2607.25941) for details.
+
+*   [`add_pauli_checks()`](/docs/api/qiskit-addon-paulice/qiskit-paulice-checks#qiskit_paulice.checks.add_pauli_checks "qiskit_paulice.checks.add_pauli_checks") can now find checks for circuit stabilizers, rather than being restricted to only finding checks with respect to terminal measurements. Use the new `stabilizers` argument to specify a subset of stabilizers for which to find valid checks.
+
+<span id="release-notes-upcoming-release-upgrade-notes" />
+
+### Upgrade Notes
+
+*   `qiskit-aer` is no longer a dependency of `qiskit-paulice`, which never imports it. The `test`, `nbtest` and `notebook-dependencies` extras still install it. Code that used `AerSimulator` alongside `qiskit-paulice` without installing an extra must now install `qiskit-aer` itself.
+
+*   A uniform [`gate_noise`](/docs/api/qiskit-addon-paulice/qiskit-paulice-noise-models#qiskit_paulice.noise_models.NoiseModel.gate_noise "qiskit_paulice.noise_models.NoiseModel.gate_noise") must now lie in `[0, 0.75)`, the range on which a two-qubit depolarizing channel exists, instead of `[0, 3)`.
+
+*   `qiskit_paulice.add_pauli_checks()` now assembles each output circuit the first time [`circuit`](/docs/api/qiskit-addon-paulice/qiskit-paulice-checked-circuit#qiskit_paulice.checked_circuit.CheckedCircuit.circuit "qiskit_paulice.checked_circuit.CheckedCircuit.circuit") is read, rather than assembling all of them before it returns. Check metadata ([`cost`](/docs/api/qiskit-addon-paulice/qiskit-paulice-checked-circuit#qiskit_paulice.checked_circuit.CheckedCircuit.cost "qiskit_paulice.checked_circuit.CheckedCircuit.cost") and the qubit tuples) is still populated eagerly, so nothing about the returned sequence’s shape or contents changes.
+
+    One consequence is visible: when the input gate set cannot express the inserted checks, the resulting [`UserWarning`](https://docs.python.org/3/builtins/exceptions.html#UserWarning) is now raised on that first read of [`circuit`](/docs/api/qiskit-addon-paulice/qiskit-paulice-checked-circuit#qiskit_paulice.checked_circuit.CheckedCircuit.circuit "qiskit_paulice.checked_circuit.CheckedCircuit.circuit") instead of from `add_pauli_checks()` itself. Code that suppresses or asserts on that warning needs the circuit read inside the same block.
+
+<span id="release-notes-upcoming-release-bug-fixes" />
+
+### Bug Fixes
+
+*   A gate infidelity is now distributed exactly across the Pauli error generators of the channel it describes, both for a uniform [`gate_noise`](/docs/api/qiskit-addon-paulice/qiskit-paulice-noise-models#qiskit_paulice.noise_models.NoiseModel.gate_noise "qiskit_paulice.noise_models.NoiseModel.gate_noise") and for the gate-wise models [`from_backend()`](/docs/api/qiskit-addon-paulice/qiskit-paulice-noise-models#qiskit_paulice.noise_models.NoiseModel.from_backend "qiskit_paulice.noise_models.NoiseModel.from_backend") builds, which previously carried less error than the uniform model for the same backend data. `from_backend` now rejects malformed or identity `pauli_bases` entries, and bases that cannot produce an edge’s error.
+
+*   [`add_pauli_checks()`](/docs/api/qiskit-addon-paulice/qiskit-paulice-checks#qiskit_paulice.checks.add_pauli_checks "qiskit_paulice.checks.add_pauli_checks") with `method="genetic"` or `method="windowed_genetic"` now reports the correct [`check_support`](/docs/api/qiskit-addon-paulice/qiskit-paulice-checked-circuit#qiskit_paulice.checked_circuit.CheckedCircuit.check_support "qiskit_paulice.checked_circuit.CheckedCircuit.check_support"). It previously omitted each check’s ancilla, and when only some payload qubits were measured, listed positions in the list of measured qubits instead of qubit indices, so [`get_postselection_method()`](/docs/api/qiskit-addon-paulice/qiskit-paulice-checked-circuit#qiskit_paulice.checked_circuit.CheckedCircuit.get_postselection_method "qiskit_paulice.checked_circuit.CheckedCircuit.get_postselection_method") computed the wrong syndromes.
+
+*   `qiskit_paulice.add_pauli_checks()` with `cost="gamma"` and a fixed `seed` now returns bit-identical costs from one run to the next. Previously the order of gates within a layer and of layered-noise entries depended on hash iteration order, and the gamma sum depended on thread scheduling, so costs could differ in the last bits and near-ties could pick different checks between runs. Because the order is now fixed, a near-tie may resolve to a different check than in earlier releases.
+
+*   Fixed a panic (“does not match any known layer type”) with layered gate noise when a layer of the circuit holds only some of the two-qubit gates of a noise layer. Such a layer now takes the noise of the noise layer that contains it, choosing the first in sorted order if several do.
+
 <span id="release-notes-0-2-1" />
 
 <span id="id2" />
@@ -17,6 +63,8 @@ in_page_toc_max_heading_level: 2
 ## 0.2.1
 
 <span id="release-notes-0-2-1-bug-fixes" />
+
+<span id="id3" />
 
 ### Bug Fixes
 
@@ -26,19 +74,21 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-2-0" />
 
-<span id="id3" />
+<span id="id4" />
 
 ## 0.2.0
 
 <span id="release-notes-0-2-0-new-features" />
 
+<span id="id5" />
+
 ### New Features
 
-*   Added new [`qiskit_paulice.layout.get_check_qubits()`](/docs/api/qiskit-addon-paulice/qiskit-paulice-layout#get_check_qubits "qiskit_paulice.layout.get_check_qubits") function, which provides a straightforward way to find target/ancilla qubit pairs.
+*   Added new [`qiskit_paulice.layout.get_check_qubits()`](/docs/api/qiskit-addon-paulice/qiskit-paulice-layout#qiskit_paulice.layout.get_check_qubits "qiskit_paulice.layout.get_check_qubits") function, which provides a straightforward way to find target/ancilla qubit pairs.
 
 <span id="release-notes-0-1-1" />
 
-<span id="id4" />
+<span id="id6" />
 
 ## 0.1.1
 
