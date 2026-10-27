@@ -11,7 +11,7 @@ python_api_name: qiskit_fermions.transpiler.passes.synthesis.synthesis.F2QSynthe
 <Attribute id="qiskit_fermions.transpiler.passes.synthesis.synthesis.F2QSynthesisConfig" isDedicatedPage={true}>
   The dictionary type used to configure the [`F2QSynthesis.methods`](transpiler-passes-f-2-q-synthesis#methods "qiskit_fermions.transpiler.passes.F2QSynthesis.methods").
 
-  The keys of this dictionary must be names of [`FermionicGate`](circuit-fermionic-gate "qiskit_fermions.circuit.FermionicGate") circuit instructions. The values can be one of three types:
+  The keys of this dictionary must be names of [`FermionicInstruction`](circuit-fermionic-instruction "qiskit_fermions.circuit.FermionicInstruction") circuit instructions. The values can be one of three types:
 
   1.  `str`: the simplest scenario simply specifies the name of the plugin method to use for the corresponding key in this dictionary. The plugin is extracted from the [`F2QSynthesisPluginManager`](transpiler-passes-synthesis-f-2-q-synthesis-plugin-manager "qiskit_fermions.transpiler.passes.synthesis.F2QSynthesisPluginManager") and it’s `__init__` method may **not** require any arguments.
   2.  `tuple[str, Sequence[Any]]`: the first `str` is the same as the above, and the second `Sequence[Any]` can be used to provide any positional arguments to the plugin’s `__init__` method.
