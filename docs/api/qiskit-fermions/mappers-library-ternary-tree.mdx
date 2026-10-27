@@ -1,0 +1,67 @@
+---
+title: ternary_tree (latest version)
+description: API reference for qiskit_fermions.mappers.library.ternary_tree in the latest version of qiskit-fermions
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit_fermions.mappers.library.ternary_tree
+---
+
+<span id="ternary-tree" />
+
+# ternary\_tree
+
+<Function id="qiskit_fermions.mappers.library.ternary_tree" isDedicatedPage={true} signature="ternary_tree(operator, encoding, num_qubits)">
+  Map an operator to a `SparseObservable` under a ternary-tree encoding.
+
+  This is the type-agnostic entry point to the ternary-tree mappers, mirroring [`jordan_wigner()`](mappers-library-jordan-wigner "qiskit_fermions.mappers.library.jordan_wigner"). It dispatches on the concrete type of `operator` to the matching direct implementation, listed under [Ternary-tree encodings](/docs/api/qiskit-fermions/mappers-library#ternary-tree-mappers) in the [`library`](/docs/api/qiskit-fermions/mappers-library#module-qiskit_fermions.mappers.library "qiskit_fermions.mappers.library") documentation. An operator type without one raises a [`TypeError`](https://docs.python.org/3/builtins/exceptions.html#TypeError).
+
+  **Parameters**
+
+  *   **operator** ([*OperatorTrait*](operators-operator-trait "qiskit_fermions.operators.operator_trait.OperatorTrait")) – the operator to map.
+  *   **encoding** ([*TernaryTreeEncoding*](mappers-ternary-tree-encoding "qiskit_fermions.mappers.ternary_tree.TernaryTreeEncoding")) – the compiled encoding to map through. Compile it once with [`TernaryTreeEncoding`](mappers-ternary-tree-encoding "qiskit_fermions.mappers.TernaryTreeEncoding") and reuse it across every operator mapped through the same tree.
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/builtins/functions.html#int)) – the number of qubits for the resulting qubit operator. Must be at least the encoding’s mode count; a larger value pads with the identity.
+
+  **Returns**
+
+  The mapped qubit operator, subject to the same simplification and grouping caveats as [`fermion_ternary_tree()`](mappers-library-fermion-ternary-tree "qiskit_fermions.mappers.library.fermion_ternary_tree").
+
+  **Raises**
+
+  *   [**TypeError**](https://docs.python.org/3/builtins/exceptions.html#TypeError) – if `operator` is of a type for which no ternary-tree implementation exists.
+  *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – if `operator` acts on a mode the encoding does not cover, or `num_qubits` is smaller than the encoding’s mode count.
+  *   [**OverflowError**](https://docs.python.org/3/builtins/exceptions.html#OverflowError) – if `num_qubits` is negative or does not fit in 32 bits.
+
+  **Return type**
+
+  [*SparseObservable*](/docs/api/qiskit/qiskit.quantum_info.SparseObservable)
+
+  ```pycon
+  >>> from qiskit_fermions.mappers import TernaryTree, TernaryTreeEncoding
+  >>> from qiskit_fermions.mappers.library import ternary_tree
+  >>> from qiskit_fermions.operators import FermionOperator
+  >>> fop = FermionOperator.from_dict({((True, 0), (False, 0)): 0.1})
+  >>> enc = TernaryTreeEncoding(TernaryTree.breadth_first(2, 3))
+  >>> ternary_tree(fop, enc, 2).simplify()
+  <SparseObservable with 2 terms on 2 qubits: (0.05+0j)() + (-0.05+0j)(Z_1 Z_0)>
+  ```
+
+  A chain along `Z` reproduces [`jordan_wigner()`](mappers-library-jordan-wigner "qiskit_fermions.mappers.library.jordan_wigner"), which is what makes the tree a generalisation of it rather than an alternative to it:
+
+  ```pycon
+  >>> from qiskit_fermions.mappers.library import jordan_wigner
+  >>> chain = TernaryTreeEncoding(TernaryTree.chain(2, "Z"))
+  >>> bool((ternary_tree(fop, chain, 2) - jordan_wigner(fop, 2)).simplify().num_terms == 0)
+  True
+  ```
+
+  Every operator type has a direct implementation, so the dispatch is total over them. Anything else (an object that is not a fermionic operator at all) raises a [`TypeError`](https://docs.python.org/3/builtins/exceptions.html#TypeError):
+
+  ```pycon
+  >>> from qiskit.quantum_info import SparseObservable
+  >>> ternary_tree(SparseObservable.identity(2), enc, 2)
+  Traceback (most recent call last):
+  ...
+  TypeError: ternary_tree does not support operator type 'SparseObservable'.
+  ```
+</Function>
+

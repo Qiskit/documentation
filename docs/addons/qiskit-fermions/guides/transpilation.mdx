@@ -31,7 +31,7 @@ Maps fermionic mode registers to quantum registers. For occupation-basis mapping
 
 ## **Synthesis**
 
-Converts fermionic gates to qubit operations by using the chosen fermion-to-qubit mapping. [`FermionicGate`](/docs/api/qiskit-fermions/circuit-fermionic-gate#qiskit_fermions.circuit.FermionicGate "qiskit_fermions.circuit.FermionicGate") instances are transformed into sequences of standard quantum gates.
+Converts fermionic gates to qubit operations by using the chosen fermion-to-qubit mapping. [`FermionicGate`](/docs/api/qiskit-fermions/circuit-fermionic-gate#qiskit_fermions.circuit.FermionicGate "qiskit_fermions.circuit.FermionicGate") instances are transformed into sequences of standard quantum gates. A barrier is carried through onto every qubit of each register it touched, so it continues to separate the gates on either side of it during the qubit stage.
 
 ## **Qubit**
 
