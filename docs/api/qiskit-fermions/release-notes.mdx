@@ -10,19 +10,33 @@ in_page_toc_max_heading_level: 2
 
 # Qiskit Fermions release notes
 
-<span id="upcoming-release-stable-0-3" />
+<span id="release-notes-0-3-1" />
 
-<span id="release-notes-upcoming-release-stable-0-3" />
+<span id="id2" />
 
-## Upcoming release (`stable/0.3`)
+## 0.3.1
 
-<span id="release-notes-upcoming-release-stable-0-3-prelude" />
+<span id="release-notes-0-3-1-bug-fixes" />
+
+### Bug Fixes
+
+*   [`F2QSynthesis`](/docs/api/qiskit-fermions/transpiler-passes-f-2-q-synthesis#qiskit_fermions.transpiler.passes.F2QSynthesis "qiskit_fermions.transpiler.passes.F2QSynthesis"), [`RelabelModes`](/docs/api/qiskit-fermions/transpiler-passes-relabel-modes#qiskit_fermions.transpiler.passes.RelabelModes "qiskit_fermions.transpiler.passes.RelabelModes") and [`QDriftTrotterization`](/docs/api/qiskit-fermions/transpiler-passes-q-drift-trotterization#qiskit_fermions.transpiler.passes.QDriftTrotterization "qiskit_fermions.transpiler.passes.QDriftTrotterization") now visit a circuit’s instructions in circuit order rather than in the order in which the DAG stores them. The two differ after a pass has replaced a node by a sub-circuit, for example when [`FermionicTrotterization`](/docs/api/qiskit-fermions/transpiler-passes-fermionic-trotterization#qiskit_fermions.transpiler.passes.FermionicTrotterization "qiskit_fermions.transpiler.passes.FermionicTrotterization") expands several [`Evolution`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution "qiskit_fermions.circuit.library.Evolution") gates. These passes rebuild their output node by node, so the factors of two successive replacements could be interleaved, producing a well-formed circuit that implements a different unitary.
+
+*   [`FermionicSuzukiTrotter`](/docs/api/qiskit-fermions/circuit-library-synthesis-fermionic-suzuki-trotter#qiskit_fermions.circuit.library.synthesis.FermionicSuzukiTrotter "qiskit_fermions.circuit.library.synthesis.FermionicSuzukiTrotter") now raises a `ValueError` on construction when `order` is `< 1`. Previously these values were accepted and synthesis then failed with a `RecursionError`, unless the evolved operator had a single factor.
+
+<span id="release-notes-0-3-0" />
+
+<span id="id3" />
+
+## 0.3.0
+
+<span id="release-notes-0-3-0-prelude" />
 
 ### Prelude
 
 This release adds a framework for ternary-tree fermion-to-qubit encodings. A ternary tree is described once and compiled into an encoding that all four operator mappers accept, which makes every mapping expressible as such a tree available, including the Jordan-Wigner, parity, Bravyi-Kitaev and Jiang-Kalev-Mruczkiewicz-Neven (JKMN) encodings. The framework is available from both the Python and the C API, and with it this package moves beyond Jordan-Wigner as the only mapper it ships. The [`FermionicCircuit`](/docs/api/qiskit-fermions/circuit-fermionic-circuit#qiskit_fermions.circuit.FermionicCircuit "qiskit_fermions.circuit.FermionicCircuit") also became considerably more complete. It can now be composed with other circuits, repeated, separated by barriers and measured, all at the fermionic level. A measurement names the mode it reads, so the sampled bitstrings stay indexed by the original mode even after the transpiler relabels modes or routes qubits, and the new `FermionicMeasure` synthesis plugin is part of the preset Jordan-Wigner pass manager.
 
-<span id="release-notes-upcoming-release-stable-0-3-python-api-features" />
+<span id="release-notes-0-3-0-python-api-features" />
 
 ### Python API Features
 
@@ -80,7 +94,7 @@ This release adds a framework for ternary-tree fermion-to-qubit encodings. A ter
 
     This simplifies the use of every mapping that can be expressed as a ternary tree, including but not limited to the Jordan-Wigner, parity, Bravyi-Kitaev and Jiang-Kalev-Mruczkiewicz-Neven (JKMN) encodings.
 
-<span id="release-notes-upcoming-release-stable-0-3-c-api-features" />
+<span id="release-notes-0-3-0-c-api-features" />
 
 ### C API Features
 
@@ -88,13 +102,15 @@ This release adds a framework for ternary-tree fermion-to-qubit encodings. A ter
 
     Like the Jordan-Wigner mappers, the four operator mappers and [`qf_ternary_tree_encoding_total_parity()`](/docs/api/qiskit-fermions-c/qf-ternary-tree#qf_ternary_tree_encoding_total_parity "qf_ternary_tree_encoding_total_parity") write the resulting [QkObs](/docs/api/qiskit-c/qk-obs) through an out-parameter and return a `QfExitCode`. This is `QfExitCode_ValueError` when the operator acts on a mode the encoding does not cover, or when the requested qubit count is below the encoding’s mode count, whichever modes the operator acts on. A specification that does not describe a single connected tree is rejected earlier, by [`qf_ternary_tree_new()`](/docs/api/qiskit-fermions-c/qf-ternary-tree#qf_ternary_tree_new "qf_ternary_tree_new"), which then writes no tree, so check its exit code before compiling the result.
 
-<span id="release-notes-upcoming-release-stable-0-3-python-api-upgrade-notes" />
+<span id="release-notes-0-3-0-python-api-upgrade-notes" />
 
 ### Python API Upgrade Notes
 
 *   We dropped support for Python 3.10 which has reached end-of-life.
 
-<span id="release-notes-upcoming-release-stable-0-3-bug-fixes" />
+<span id="release-notes-0-3-0-bug-fixes" />
+
+<span id="id4" />
 
 ### Bug Fixes
 
@@ -102,13 +118,13 @@ This release adds a framework for ternary-tree fermion-to-qubit encodings. A ter
 
 <span id="release-notes-0-2-0" />
 
-<span id="id2" />
+<span id="id5" />
 
 ## 0.2.0
 
 <span id="release-notes-0-2-0-prelude" />
 
-<span id="id3" />
+<span id="id6" />
 
 ### Prelude
 
@@ -116,7 +132,7 @@ This release grows the control this package gives over circuit synthesis. An `Ev
 
 <span id="release-notes-0-2-0-python-api-features" />
 
-<span id="id4" />
+<span id="id7" />
 
 ### Python API Features
 
@@ -222,7 +238,7 @@ This release grows the control this package gives over circuit synthesis. An `Ev
 
 <span id="release-notes-0-2-0-c-api-features" />
 
-<span id="id5" />
+<span id="id8" />
 
 ### C API Features
 
@@ -294,7 +310,7 @@ This release grows the control this package gives over circuit synthesis. An `Ev
 
 <span id="release-notes-0-2-0-python-api-upgrade-notes" />
 
-<span id="id6" />
+<span id="id9" />
 
 ### Python API Upgrade Notes
 
@@ -423,7 +439,7 @@ This release grows the control this package gives over circuit synthesis. An `Ev
 
 <span id="release-notes-0-2-0-bug-fixes" />
 
-<span id="id7" />
+<span id="id10" />
 
 ### Bug Fixes
 
@@ -459,13 +475,13 @@ This release grows the control this package gives over circuit synthesis. An `Ev
 
 <span id="release-notes-0-1-0" />
 
-<span id="id8" />
+<span id="id11" />
 
 ## 0.1.0
 
 <span id="release-notes-0-1-0-prelude" />
 
-<span id="id9" />
+<span id="id12" />
 
 ### Prelude
 
