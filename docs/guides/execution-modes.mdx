@@ -11,10 +11,6 @@ When IBM Quantum Compute Service was introduced, users could only execute circui
 
 A single primitive request made without a context manager. Circuits and inputs are packaged as primitive unified blocs (PUBs) and submitted as an execution task on the quantum computer. To run in job mode, specify `mode=backend` when instantiating a primitive. See [Estimator examples](/docs/guides/estimator-examples) and [Sampler examples](/docs/guides/sampler-examples) for usage.
 
-<Admonition type="note">
-[Dry-run jobs](/docs/guides/dry-run-jobs) support job mode only.
-</Admonition>
-
 <span id="batch-mode"></span>
 ## Batch mode
 
@@ -45,6 +41,7 @@ To run in session mode, specify `mode=session` when instantiating a primitive, o
 <Admonition type="note" title="Notes">
 - The queuing time does not decrease for the first job submitted within a session. Therefore, sessions do not provide any benefits when running a single job.
 - Open Plan users cannot submit session jobs.
+- [Dry-run jobs](/docs/guides/dry-run-jobs) do not support session mode.
 </Admonition>
 
 ## Basic workflow
