@@ -1,0 +1,113 @@
+<svg width="1013" height="912" viewBox="0 0 1013 912" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title">
+<title id="title">Lifecycle of a managed workflow run</title>
+<style>
+text{font-family:'IBM Plex Sans','Helvetica Neue',Arial,sans-serif;font-size:16px;fill:#F4F4F4}
+.m{font-family:'IBM Plex Mono',Menlo,Consolas,monospace;font-size:12px;fill:#C6C6C6}
+.s{font-family:'IBM Plex Mono',Menlo,Consolas,monospace;font-size:11px}
+.t{font-family:'IBM Plex Mono',Menlo,Consolas,monospace;font-size:10px;fill:#C6C6C6}
+.w{fill:#FFFFFF}.g{fill:#C6C6C6}
+.bar{fill:#393939}.c{stroke:#A8A8A8}.b{fill:#1C0F30;stroke:#A56EFF}.bl{fill:#0F62FE}.rn{stroke:#0F62FE}
+.p{fill:none;stroke:#8D8D8D;stroke-dasharray:2 2}.pw{fill:none;stroke:#FFFFFF;stroke-dasharray:2 2}
+.ln{stroke:#C6C6C6;fill:none}.ah{fill:#C6C6C6}
+.lb{stroke:#4589FF;stroke-width:4;stroke-linecap:round}.lbd{stroke:#4589FF;stroke-width:2;stroke-dasharray:3 4;stroke-linecap:round}.fs{fill:#262626;stroke:#525252}.gd{stroke:#525252;stroke-dasharray:2 4}.dl{stroke:#8D8D8D;stroke-dasharray:4 4;fill:none}
+</style>
+<defs>
+<marker id="h" viewBox="0 0 8 8" refX="7.5" refY="4" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path class="ah" d="M0,0 L8,4 L0,8 z"/></marker>
+<marker id="t" viewBox="0 0 8 8" refX="0.5" refY="4" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path class="ah" d="M8,0 L0,4 L8,8 z"/></marker>
+</defs>
+<rect class="bar" x="48" y="48" width="917" height="54" rx="4"/>
+<text class="w" x="64" y="80">Your Python session</text>
+<rect class="b" x="48.5" y="152.5" width="295" height="55" rx="4"/>
+<text x="64" y="176">Upload</text>
+<text class="m" x="64" y="196">Code, packages, profiles</text>
+<rect class="p" x="246.5" y="160.5" width="85" height="23" rx="11.5"/>
+<text class="s g" x="289.0" y="176" text-anchor="middle">no job yet</text>
+<path class="ln" d="M120,102 L120,152" marker-end="url(#h)"/>
+<text class="m" x="128" y="132">upload()</text>
+<path class="ln" d="M360,102 L360,288" marker-end="url(#h)"/>
+<text class="m" x="368" y="132">run(args)</text>
+<rect class="c" x="48.5" y="232.5" width="471" height="567" rx="4"/>
+<text x="64" y="260">Job</text>
+<rect class="b" x="64.5" y="288.5" width="439" height="55" rx="4"/>
+<text x="80" y="312">Queue</text>
+<text class="m" x="80" y="332">Waits for allocation</text>
+<rect class="p" x="429.5" y="304.5" width="58" height="23" rx="11.5"/>
+<text class="s g" x="458.5" y="320" text-anchor="middle">QUEUED</text>
+<rect class="b" x="64.5" y="360.5" width="439" height="55" rx="4"/>
+<text x="80" y="384">Start</text>
+<text class="m" x="80" y="404">Creates environment</text>
+<rect class="p" x="389.5" y="376.5" width="98" height="23" rx="11.5"/>
+<text class="s g" x="438.5" y="392" text-anchor="middle">INITIALIZING</text>
+<path class="ln" d="M120,344 L120,360" marker-end="url(#h)"/>
+<path class="ln" d="M120,416 L120,432" marker-end="url(#h)"/>
+<rect class="rn" x="64.5" y="432.5" width="439" height="279" rx="4"/>
+<rect class="bl" x="64" y="432" width="440" height="36" rx="4"/>
+<text class="w" x="80" y="456">Running</text>
+<text class="m w" x="488" y="455" text-anchor="end">Optional stages · update_status()</text>
+<rect class="b" x="80.5" y="480.5" width="407" height="33" rx="4"/>
+<text x="92" y="502">Mapping</text>
+<text class="t" x="476" y="501" text-anchor="end">RUNNING: MAPPING</text>
+<path class="ln" d="M120,514 L120,526" marker-end="url(#h)"/>
+<rect class="b" x="80.5" y="526.5" width="407" height="33" rx="4"/>
+<text x="92" y="548">Optimizing</text>
+<text class="t" x="476" y="547" text-anchor="end">RUNNING: OPTIMIZING_FOR_HARDWARE</text>
+<path class="ln" d="M120,560 L120,572" marker-end="url(#h)"/>
+<rect class="b" x="80.5" y="572.5" width="407" height="33" rx="4"/>
+<text x="92" y="594">Waiting for QPU</text>
+<text class="t" x="476" y="593" text-anchor="end">RUNNING: WAITING_FOR_QPU</text>
+<path class="ln" d="M120,606 L120,618" marker-end="url(#h)"/>
+<rect class="b" x="80.5" y="618.5" width="407" height="33" rx="4"/>
+<text x="92" y="640">Executing QPU</text>
+<text class="t" x="476" y="639" text-anchor="end">RUNNING: EXECUTING_QPU</text>
+<path class="ln" d="M120,652 L120,664" marker-end="url(#h)"/>
+<rect class="b" x="80.5" y="664.5" width="407" height="33" rx="4"/>
+<text x="92" y="686">Post-processing</text>
+<text class="t" x="476" y="685" text-anchor="end">RUNNING: POST_PROCESSING</text>
+<path class="ln" d="M120,712 L120,728" marker-end="url(#h)"/>
+<rect class="b" x="64.5" y="728.5" width="439" height="55" rx="4"/>
+<text x="80" y="752">Result</text>
+<text class="m" x="80" y="772">Environment shuts down</text>
+<rect class="p" x="301.5" y="744.5" width="45" height="23" rx="11.5"/>
+<text class="s g" x="324.0" y="760" text-anchor="middle">DONE</text>
+<rect class="p" x="355.5" y="744.5" width="52" height="23" rx="11.5"/>
+<text class="s g" x="381.5" y="760" text-anchor="middle">ERROR</text>
+<rect class="p" x="416.5" y="744.5" width="71" height="23" rx="11.5"/>
+<text class="s g" x="452.0" y="760" text-anchor="middle">CANCELED</text>
+<text class="m" x="48" y="836">Persists after the job ends</text>
+<path class="dl" d="M260,832 L965,832"/>
+<rect class="fs" x="548.5" y="232.5" width="127" height="627" rx="4"/>
+<text x="560" y="258">Workflow</text>
+<text x="560" y="278">file storage</text>
+<text class="m" x="560" y="302">Shared by</text>
+<text class="m" x="560" y="318">all runs</text>
+<text class="m" x="560" y="820">Exists before</text>
+<text class="m" x="560" y="836">and after</text>
+<text class="m" x="560" y="852">each job</text>
+<path class="ln" d="M504,572 L548,572" marker-start="url(#t)" marker-end="url(#h)"/>
+<text class="t" x="534" y="590" text-anchor="middle">r/w</text>
+<text x="708" y="260">What you can read, and when</text>
+<path class="gd" d="M700,288 L965,288"/>
+<path class="gd" d="M700,432 L965,432"/>
+<path class="gd" d="M700,728 L965,728"/>
+<rect class="p" x="708.5" y="128.5" width="71" height="23" rx="11.5"/>
+<text class="s g" x="744.0" y="144" text-anchor="middle">status()</text>
+<path class="ln" d="M744,128 L744,102" marker-end="url(#h)"/>
+<path class="gd" d="M744,152 L744,278"/>
+<path class="lb" d="M744,288 L744,784"/>
+<rect class="p" x="806.5" y="128.5" width="58" height="23" rx="11.5"/>
+<text class="s g" x="835.5" y="144" text-anchor="middle">logs()</text>
+<path class="ln" d="M836,128 L836,102" marker-end="url(#h)"/>
+<path class="gd" d="M836,152 L836,422"/>
+<path class="lb" d="M836,432 L836,784"/>
+<rect class="p" x="892.5" y="128.5" width="71" height="23" rx="11.5"/>
+<text class="s g" x="928.0" y="144" text-anchor="middle">result()</text>
+<path class="ln" d="M928,128 L928,102" marker-end="url(#h)"/>
+<path class="gd" d="M928,152 L928,718"/>
+<path class="lb" d="M928,728 L928,784"/>
+<path class="lbd" d="M744,792 L744,868"/>
+<text class="t" x="744" y="890" text-anchor="middle">final status</text>
+<path class="lbd" d="M836,792 L836,868"/>
+<text class="t" x="836" y="890" text-anchor="middle">kept</text>
+<path class="lbd" d="M928,792 L928,868"/>
+<text class="t" x="928" y="890" text-anchor="middle">kept</text>
+</svg>

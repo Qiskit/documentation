@@ -32,6 +32,8 @@ You upload a workflow once and run it as many times as you need. Each run is a j
 
 Each job runs asynchronously for up to 24 hours. You can run up to 50 jobs at the same time if your instance has enough allocation.
 
+![From your Python session, you call upload() once to upload the workflow's code, packages, and compute profiles. No job exists yet. Each call to run(args) creates a job that moves through these stages: Queue, where it waits for allocation with status QUEUED; Start, where Functions creates the environment with status INITIALIZING; Running, where your code can optionally set stages with update_status(): Mapping (RUNNING: MAPPING), Optimizing (RUNNING: OPTIMIZING_FOR_HARDWARE), Waiting for QPU (RUNNING: WAITING_FOR_QPU), Executing QPU (RUNNING: EXECUTING_QPU), and Post-processing (RUNNING: POST_PROCESSING); and Result, where the environment shuts down with status DONE, ERROR, or CANCELED. While running, the job reads and writes workflow file storage, which exists outside the job, is shared by all runs, and persists before and after each job. From your session, you can read status() from Queue onward, logs() from Running onward, and result() once the job reaches Result. All three remain available after the job ends.](/docs/images/guides/managed-workflows/lifecycle.svg)
+
 | Stage | What happens | Job status |
 |---|---|---|
 | Upload | You upload the workflow's code, dependencies, and sizes. Functions rejects an invalid upload before any job runs. | None (no job yet) |
@@ -42,7 +44,7 @@ Each job runs asynchronously for up to 24 hours. You can run up to 50 jobs at th
 
 ### What a running job can access
 
-![You call run() with arguments from your Python session and receive status, logs, and the result. Inside the managed workflow, each run executes in an isolated job environment for up to 24 hours, with access to your workflow code and packages, its arguments, and compute. The job produces outputs with save_result(), logs(), and update_status(). Both its classical compute (CPU, RAM, and optionally GPU) and the QPU jobs that your code submits rely on your instance, which provides access and cost management. File storage and your instance are shared across all managed workflow jobs and persist after the job ends. The job has no internet access.](/docs/images/guides/managed-workflows/architecture.svg)
+![You call run() with arguments from your Python session and receive status, logs, and the result. Inside the managed workflow, each run executes in an isolated job environment with access to its compute (CPU, RAM, and optionally GPU), your code and packages, and its arguments. The job produces outputs with save_result(), logs, and update_status(), and submits QPU jobs that run on your instance. File storage and your instance, which provides access and cost management, are shared across all managed workflow jobs and persist after the job ends. The job has no internet access.](/docs/images/guides/managed-workflows/architecture.svg)
 
 | Resource | What the job can use |
 |---|---|
@@ -63,13 +65,9 @@ Functions isolates each job from other jobs and limits the privileges of the cod
 - **Credentials.** Functions encrypts the credentials that a job uses, including your API token, when it stores them. Your workflow code can read these credentials while the job runs.
 - **Privileges.** Functions removes administrator-level privileges from the environment before your entrypoint starts.
 
-{/* REVIEW: Your draft said the encrypted credentials include "your instance". review-facts only covers the token, so confirm before adding the instance back. Consider adding: workflow environment variables are not encrypted, so do not store secrets in them. */}
-
 ## Compare with on-premises HPC
 
 Managed workflows differ from an on-premises HPC cluster in how you get compute time, set up software, and submit jobs. The following table compares common tasks.
-
-{/* REVIEW: Confirm with engineering that each job runs on a single node, including tasks started with distribute_task. This affects the "Request resources" row and the "Run tasks in parallel" bullet. */}
 
 | Task | On-premises HPC cluster | Managed workflows |
 |---|---|---|
