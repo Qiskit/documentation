@@ -1,39 +1,102 @@
 ---
 title: "Install"
-description: "Install the managed workflows client packages and AI skills, and authenticate to IBM Quantum Platform."
+description: "Install the managed workflows client package, authenticate to IBM Quantum Platform, and verify your setup."
 ---
 
 # Install
 
 <Admonition type="caution" title="Placeholder content">
-**Page type:** How-to (setup)
-
-**Content comes from:**
-- [serverless](/docs/managed-workflows/serverless) (Install Qiskit Serverless section)
-- [serverless-first-program](/docs/managed-workflows/serverless-first-program) (Authenticate section)
-- [Qiskit AI skills](/docs/guides/ai-skills) (new: a managed-workflows skill)
+- **Client class name.** `QiskitServerless` is being renamed. Update the code examples after the new name is decided.
+- **Method to list workflows.** The current release uses `list()`. An open pull request in `qiskit-ibm-catalog` (#139) renames it to `functions()`.
+- **AI skill.** The Qiskit AI skills repository does not have a managed workflows skill yet. A managed workflows skill is in review in the `qiskit-function-templates` repository. Update the "Add AI skills" section after it is published.
 </Admonition>
 
 ## Prerequisites
 
-TBD. Python 3.11+, an instance on a plan with access (see "Who can use managed workflows" in the Introduction).
+- Managed workflows is [enabled on your IBM Quantum&reg; Platform instances](https://quantum.cloud.ibm.com/instances). Contact your administrator to enable for your instances. *Note: we need an internal link to the admin section*
+- An API key and the CRN of your instance. See [Find your access credentials](/docs/ibm-quantum-platform/save-credentials#find-credentials).
+- Python 3.10 or later, in an active virtual environment. See [Install Qiskit](/docs/qiskit/install-qiskit#local) for how to set up an environment.
 
-## Install the client packages
+## Quick start with AI skills
 
-TBD. `pip install qiskit-ibm-catalog qiskit_serverless`
+{/* REVIEW: managed workflows skill is in review (qiskit-function-templates PR #54). Add install steps after it is published. */}
+
+You can use [Qiskit AI skills](/docs/guides/ai-skills) to help you install `qiskit-ibm-catalog`, package your existing local code, and deploy to managed workflows service.
+
+## Install the client package
+
+Install the `qiskit-ibm-catalog` package:
+
+```bash
+pip install qiskit-ibm-catalog
+```
+
+This command also installs `qiskit-serverless`, `qiskit`, and `qiskit-ibm-runtime` as dependencies. You do not need to install `qiskit-serverless` separately.
+
+The two packages have different roles:
+
+- `qiskit-ibm-catalog` is the client that you use in your local Python session to upload workflows, run them, and get their results.
+- `qiskit-serverless` is used inside your workflow code, with helpers for `get_arguments()`, `update_status()`, `save_result()`.
+
+### Update the client package
+
+Managed workflows is in beta, and the client package changes often. To check which version you have, run the following command:
+
+```bash
+pip show qiskit-ibm-catalog
+```
+
+To update to the latest version, run the following command:
+
+```bash
+pip install --upgrade qiskit-ibm-catalog
+```
+
+If the new version of `qiskit-ibm-catalog` requires a newer version of `qiskit-serverless`, this command updates `qiskit-serverless` too.
 
 ## Authenticate
 
-TBD. Save credentials and connect to IBM Quantum Platform.
+<Admonition type="danger" title="Protect your API key">
+Do not include your API key in your workflow code, in scripts, or in notebook files. A running workflow uses the credentials and instance that you used to call `run()`.
+</Admonition>
 
-## Add AI skills
+The managed workflows client uses the same credentials as `qiskit-ibm-runtime`. If you already saved an account with `QiskitRuntimeService.save_account()`, the client loads your default saved account, and you can skip to [Verify your setup](#verify-your-setup).
 
-TBD. Install the managed workflows skill from the [Qiskit AI skills repository](https://github.com/Qiskit/skills) so your AI assistant can scaffold, upload, and run workflows.
+If you have not saved an account, save your API key and instance CRN one time in a trusted environment:
+
+{/* REVIEW: class rename pending */}
+```python
+from qiskit_ibm_catalog import QiskitServerless
+
+QiskitServerless.save_account(
+    token="<your-api-key>",
+    instance="<your-instance-crn>",
+)
+```
+
+This method writes your credentials to the same file as [`QiskitRuntimeService.save_account()`](/docs/api/qiskit-ibm-runtime/qiskit-runtime-service#save_account). The client uses the `ibm_quantum_platform` channel by default, so you do not need to set `channel`. To save more than one account, set `name`, and pass the same `name` when you create the client.
+
+For more options, such as saving several accounts or selecting an instance automatically, see [Save your login credentials](/docs/ibm-quantum-platform/save-credentials). If you work on a public computer or another untrusted environment, do not save your credentials. Instead, follow [Initialize the service in an untrusted environment](/docs/ibm-quantum-platform/cloud-setup-untrusted).
 
 ## Verify your setup
 
-TBD.
+Connect to managed workflows with your saved account, and list the workflows that you uploaded:
+
+{/* REVIEW: class rename pending. list() is renamed to functions() in qiskit-ibm-catalog PR #139. */}
+```python
+from qiskit_ibm_catalog import QiskitServerless
+
+serverless = QiskitServerless()
+serverless.list()
+```
+
+*Note: maybe figure out how to call the version?*
+
+If you have not uploaded a workflow yet, the output is an empty list (`[]`). An authentication error means that the client did not find valid credentials. Check the account that you saved in the [Authenticate](#authenticate) section.
 
 ## Next steps
 
-TBD. Deploy your first managed workflow.
+<Admonition type="tip" title="Recommendations">
+- [Deploy your first managed workflow](/docs/managed-workflows/deploy-first-managed-workflow) to upload a workflow, run it, and get its result.
+- To start from working code, deploy one of the [Qiskit Function templates](/docs/managed-workflows/qiskit-function-templates), or adapt a base template for your own workflow.
+</Admonition>
