@@ -9,7 +9,7 @@ A dry-run job runs your workload through IBM Quantum&reg; Compute Service withou
 
 - **Get the usage, in [resource units (RUs)](/docs/guides/plans-overview#rus),** that the job would incur on the real QPU.
 - **Validate the job.** Quantum Compute checks the job's parameters, the same way it does for a real job.
-- **Get the circuit timing schedule**, if you request it, to debug the job before you run it for real.
+- **Get the [circuit timing schedule](/docs/guides/qiskit-runtime-circuit-timing)**, if you request it, to debug the job before you run it for real.
 
 Unlike dry-run jobs, local testing (fake backends and [Qiskit Aer](/docs/guides/simulate-with-qiskit-aer)) runs on your own machine and therefore cannot provide usage numbers, service-side validation, or service timing information. To compare the two approaches, see [Mock devices compared to fake backends](#mock-vs-fake).
 
@@ -31,11 +31,10 @@ job.result()  # wait for completion
 print(job.usage(resource_units=True))  # RUs the real QPU would charge for this job
 ```
 
-`dry_run` is an argument of the `run()` method (the default is `False`), not a runtime option. It is available on `SamplerV2.run()`, `EstimatorV2.run()`, the Executor-based primitives, and `Session.run()`.
+`dry_run` is an argument of the `run()` method (the default is `False`), not a runtime option. It is available on `SamplerV2.run()`, `EstimatorV2.run()`, [client-side Sampler and Estimator](/docs/guides/migrate-to-client-side-primitives), and `Session.run()`.
 
-When you set `dry_run=True`, `qiskit-ibm-runtime` replaces the backend with its *mock device* counterpart by swapping the prefix of the backend name: `ibm_phoenix` becomes `mock_phoenix`. Every real QPU has a mock device.
 
-A mock device has the following characteristics:
+A dry-run job has the following characteristics:
 
 - It runs in IBM Quantum Compute Service in the cloud, not on your machine.
 - It is calibrated like the real device at any given time. The calibration is live, not a snapshot.
@@ -56,8 +55,8 @@ QiskitBackendNotFoundError: Unable to use dry_run mode: backend 'mock_<name>' wa
 
 The usage of a completed dry-run job is the usage the same job would incur on the real QPU. Use this value as your usage estimate.
 
-- `job.usage(resource_units=True)` returns the usage in RUs. For standard QPU workloads, 1 RU is 1 minute of QPU compute time.
-- `job.usage()` with no argument returns the same value in seconds (until the default changes).
+- `job.usage(resource_units=True)` returns the usage in RUs.
+- `job.usage()` with no argument returns the same value in seconds.
 - `job.metrics()["usage"]` returns the same data together with the usage status.
 
 Dry-run usage is not charged, does not consume your plan allocation, and does not count against any limits.
@@ -72,18 +71,10 @@ Do not use `job.usage_estimation` for a dry-run usage estimate. That property ex
 
 A dry-run job only changes where the job runs, so to request the circuit timing schedule, use the same option as for a real job. For full details, see [Visualize circuit timing](/docs/guides/qiskit-runtime-circuit-timing).
 
-```python
-sampler = Sampler(mode=backend)
-sampler.options.experimental = {"execution": {"scheduler_timing": True}}
-job = sampler.run([isa_circuit], dry_run=True)
-timing = job.result()[0].metadata["compilation"]["scheduler_timing"]["timing"]
-```
-
-The `draw_circuit_schedule_timing` method works on the returned data. This feature is experimental and applies to Sampler jobs only. The total circuit time in the metadata is not the billed QPU usage.
 
 ## Limitations
 
-- **Job mode only.** The service blocks sessions and batches on mock devices. Dry-run jobs support [job mode](/docs/guides/execution-modes#job-mode) only.
+- **Job and batch modes only.** The service blocks sessions on mock devices. Dry-run jobs support [job mode](/docs/guides/execution-modes#job-mode) and [batch mode](docs/guides/execution-modes#batch-mode) only.
 - **Flex, Premium, and On-Prem plans only.** Dry-run jobs are not available on the Open or Pay-As-You-Go plans.
 - **Circuit timing is Sampler-only and experimental.** See [Circuit timing schedule](#circuit-timing-schedule).
 
@@ -91,9 +82,9 @@ The `draw_circuit_schedule_timing` method works on the returned data. This featu
 
 Mock devices are the implementation behind dry-run jobs. Dry-run jobs hide mock devices by default, but you encounter them in these cases:
 
-- **Instances with access only to mock devices.** Example: if you use `service.backend("ibm_phoenix")` to submit a dry-run job on `ibm_phoenix`, you will get the "not found" error shown in the [How it works](#how-it-works) section. Instead, select the mock device directly with `service.backend("mock_phoenix")`.
-- **Compute resources.** Mock devices are hidden by default on the [Compute resources](https://quantum.cloud.ibm.com/computers) page. Every plan has a toggle to show them, but only the Flex, Premium, and On-Prem plans have access to mock devices.
-- **Workloads table.** Jobs from mock devices are hidden by default on the [Workloads](https://quantum.cloud.ibm.com/workloads) page. Every plan with access to dry-run jobs has a filter (the funnel icon) to show them.
+- **Instances configured to access only mock devices.** Example: if you use `service.backend("ibm_phoenix")` to submit a dry-run job on `ibm_phoenix`, you will get the "not found" error shown in the [How it works](#how-it-works) section. Instead, select the mock device directly with `service.backend("mock_phoenix")`.
+- **Compute resources.** Mock devices are hidden by default on the [Compute resources](https://quantum.cloud.ibm.com/computers) page. The table on the page has a filter option to include them, but only the Flex, Premium, and On-Prem plans have access to mock devices.
+- **Workloads table.** Jobs from mock devices are hidden by default on the [Workloads](https://quantum.cloud.ibm.com/workloads) page. The table has a filter option (the funnel icon) to display them.
 - **Python API.** `service.backends()` and `service.jobs()` exclude mock devices unless you call them with `include_mocks=True`. `IBMBackend.is_mock` indicates whether a backend is a mock device. `service.least_busy()` never returns a mock device.
 
 <span id="mock-vs-fake"></span>
@@ -114,7 +105,7 @@ The names are similar, but a mock device and a [fake backend](/docs/guides/local
 | Charged or counted against plan allocation or limits | No | No |
 | Job validation | Done by the service, same as a real job | Limited to what the client checks |
 | Timing schedule | Available on request (Sampler, experimental) | Not available |
-| Execution modes | Job mode only. Sessions and batches are blocked | Session syntax accepted but ignored (local mode has no real sessions or batches) |
+| Execution modes | Job and batch mode only. Sessions are blocked | Session syntax accepted but ignored (local mode has no real sessions or batches) |
 | Completion | Asynchronous, on the server | Runs locally and returns when finished |
 | Shown in platform interface and API lists | Hidden by default (Compute resources, Workloads table, `backends()`, `jobs()`). Opt in to show | Never, because nothing is sent to the service |
 
