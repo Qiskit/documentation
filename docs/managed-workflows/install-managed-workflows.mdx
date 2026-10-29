@@ -33,14 +33,14 @@ pip install qiskit-ibm-catalog
 
 This command also installs `qiskit-serverless`, `qiskit`, and `qiskit-ibm-runtime` as dependencies. You do not need to install `qiskit-serverless` separately.
 
-The two packages have different roles:
+Two of these packages matter for managed workflows, and they run in different places:
 
-- `qiskit-ibm-catalog` is the client that you use in your local Python session to upload workflows, run them, and get their results.
-- `qiskit-serverless` is used inside your workflow code, with helpers for `get_arguments()`, `update_status()`, `save_result()`.
+- `qiskit-ibm-catalog` is the client that you use on your local computer to upload workflows, run them, and get their results.
+- `qiskit-serverless` runs inside your workflow code. It provides helpers such as `get_arguments()`, `update_status()`, and `save_result()`.
 
 ### Update the client package
 
-Managed workflows is in beta, and the client package changes often. To check which version you have, run the following command:
+Because managed workflows is in beta, the client package changes often. To check which version you have, run the following command:
 
 ```bash
 pip show qiskit-ibm-catalog
@@ -92,7 +92,7 @@ serverless.list()
 
 *Note: maybe figure out how to call the version?*
 
-If you have not uploaded a workflow yet, the output is an empty list (`[]`). An authentication error means that the client did not find valid credentials. Check the account that you saved in the [Authenticate](#authenticate) section.
+If you have not uploaded a workflow yet, the output is an empty list (`[]`). If you see an authentication error, the client did not find valid credentials. Check the account that you saved in the [Authenticate](#authenticate) section.
 
 ## Next steps
 
