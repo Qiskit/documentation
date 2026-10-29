@@ -7,7 +7,7 @@ description: Use modern tools to implement methods for error suppression, mitiga
 
 # Modern Workflows
 
-This course has already covered a wide variety of methods for handling quantum noise and errors. We have intentionally avoided some black-box solutions so that we can see how these methods work. But now we are ready to embrace these methods in their most modern form. Specifically, we will explore some highly optimized error-handling tools that hide some complexity for us, and on the other hand, we will explore Samplomatic and addons like shaded light cones (SLC) which give us very fine control over certain mitigation processes.
+This course has already covered a wide variety of methods for handling quantum noise and errors. We have intentionally avoided some black-box solutions so that we can see how these methods work. But now we are ready to embrace these methods in their most modern form. Specifically, we explore some highly optimized error-handling tools that hide some complexity for us, and on the other hand, we explore Samplomatic and addons like shaded light cones (SLC) which give us very fine control over certain mitigation processes.
 
 In this video, Dr. Chris Porter gives an overview of these modern tools. We plan to add example workflows to this lesson at a later date. But all information necessary to use these tools and to pass the badging exam is already present.
 
@@ -41,7 +41,7 @@ The model is built around two key components:
 * Samplomatic, which defines execution recipes
 * Executor, which carries out those recipes and returns samples
 
-Most workflows that use Executor could also be implemented with Sampler, since both ultimately produce samples. The key advantage is efficiency. Tasks such as generating twirling configurations are often much faster when performed in the server-side near-time environment rather than on the client. Estimator and Sampler remain supported and may still be the most convenient choice for many workloads.
+Most workflows that use Executor could also be implemented with Sampler, since both ultimately produce samples. The key advantage is efficiency. Tasks such as generating twirling configurations are often much faster when performed in the server-side near-time environment rather than on the client. Estimator and Sampler remain supported and might still be the most convenient choice for many workloads.
 
 Before execution, however, a circuit must first be constructed and prepared. Qiskit provides several add-ons that assist with circuit generation, simulation, and optimization. Follow the links for more information on any of the tools below.
 
@@ -61,7 +61,7 @@ For some applications or brand new approaches, users must figure out how to map 
 
 #### Fermionic Mapper
 
-[Fermionic Mapper](https://quantum.cloud.ibm.com/docs/en/addons/qiskit-fermions) converts fermionic operators into qubit operators suitable for quantum hardware. It supports mappings such as Jordan-Wigner, which converts operators on indistinguishable fermions to Pauli operators on distinguishable qubits, while preserving fermionic statistics. This addon is useful for quantum chemistry and materials science applications.
+[Fermionic Mapper](/docs/addons/qiskit-fermions) converts fermionic operators into qubit operators suitable for quantum hardware. It supports mappings such as Jordan-Wigner, which converts operators on indistinguishable fermions to Pauli operators on distinguishable qubits, while preserving fermionic statistics. This addon is useful for quantum chemistry and materials science applications.
 
 The previous two addons were focused on the initial mapping of a problem structure to a quantum circuit. But it is equally important to efficiently map the time evolution of a process onto a quantum circuit, and to optimize a circuit by reducing its depth. The next few circuit addons address this.
 
@@ -87,11 +87,11 @@ Key transpilation stages include:
 * Translation: rewrite operations using the backend's native gate set
 * Routing: insert and optimize SWAP operations required by hardware connectivity
 
-These processes are interrelated. For example, the layout should be chosen in a way that minimizes depth even once routing is taken into account. Also, layout should be chosen so as to avoid the most error-prone qubits or connections. These stages are often automated, but advanced users may choose to specify custom layouts or other constraints when needed.
+These processes are interrelated. For example, the layout should be chosen in a way that minimizes depth even once routing is taken into account. Also, layout should be chosen so as to avoid the most error-prone qubits or connections. These stages are often automated, but advanced users might choose to specify custom layouts or other constraints when needed.
 
 ![An image showing how the qubits in an abstract quantum circuit need to be assigned to real physical qubits on a quantum computer as part of transpilation.](/learning/images/courses/tools-for-quantum-advantage/modern-workflows/transp-mapping.avif)
 
-To learn more about transpilation, see the [guide on IBM Quantum](https://quantum.cloud.ibm.com/docs/en/guides/transpile).
+To learn more about transpilation, see the [guide on IBM Quantum](/docs/guides/transpile).
 
 #### Check your understanding
 
@@ -102,7 +102,7 @@ Look at the quantum circuit below and assume you need to run that circuit on a q
 <Accordion>
 <AccordionItem title="Answer">
 
-(a) There may be many correct answers, but note that only abstract qubit 0 has entangling (two-qubit) gates with three neighbors. All others participate in two-qubit operations with only two neighbors. This can be mapped to a heavy-hex topology without any SWAP gates. Any layout that achieves this is acceptable. Using $\text{aq[0]}$ to refer to abstract qubit zero, and $\text{tq[0]}$ for transpiled qubit zero, one such layout is: 
+(a) There could be many correct answers, but note that only abstract qubit 0 has entangling (two-qubit) gates with three neighbors. All others participate in two-qubit operations with only two neighbors. This can be mapped to a heavy-hex topology without any SWAP gates. Any layout that achieves this is acceptable. Using $\text{aq[0]}$ to refer to abstract qubit zero, and $\text{tq[0]}$ for transpiled qubit zero, one such layout is: 
 
 $$
 \begin{aligned}
@@ -128,7 +128,7 @@ $$
 \end{aligned}
 $$
 
-(c) Sometimes a specific qubit may be more error-prone than most others on the chip. Also, some connections between qubits are more error-prone than others. The transpiler will attempt to find a layout that avoids unnecessary SWAP gates, but which also uses the highest-fidelity qubits and connections available on the selected quantum computer.
+(c) Sometimes a specific qubit is more error-prone than most others on the chip. Also, some connections between qubits are more error-prone than others. The transpiler attempts to find a layout that avoids unnecessary SWAP gates, but which also uses the highest-fidelity qubits and connections available on the selected quantum computer.
 
 </AccordionItem>
 </Accordion>
@@ -159,7 +159,7 @@ The circuit above is an obvious example where using backpropagation is advantage
 
 #### Propagated Noise Absorption (PNA)
 
-[Propagated Noise Absorption](https://quantum.cloud.ibm.com/docs/en/addons/qiskit-addon-pna) is structurally similar to operator backpropagation, but rather than propagating an operator back through the ideal gates in a circuit, one incorporates a learned noise model and propagates the effects of noise directly into the observable. PNA:
+[Propagated Noise Absorption](/docs/addons/qiskit-addon-pna) is structurally similar to operator backpropagation, but rather than propagating an operator back through the ideal gates in a circuit, one incorporates a learned noise model and propagates the effects of noise directly into the observable. PNA:
 
 * Learns noise behavior from the hardware
 * Propagates the noise model through the circuit
@@ -167,7 +167,7 @@ The circuit above is an obvious example where using backpropagation is advantage
 
 ![An image showing the gate errors on many layers of a quantum circuit being propagated forward to the final observable measurement.](/learning/images/courses/tools-for-quantum-advantage/modern-workflows/pna.avif)
 
-When the modified observable is measured on noisy hardware, the resulting expectation values better approximate the ideal noiseless result. Here, there may be two types of overhead: firstly, you need to learn the noise model and this requires running additional circuits, and secondly this can produce more complicated observables, which can increase sampling requirements.
+When the modified observable is measured on noisy hardware, the resulting expectation values better approximate the ideal noiseless result. Here, there are two types of overhead: firstly, you need to learn the noise model and this requires running additional circuits, and secondly this can produce more complicated observables, which can increase sampling requirements.
 
 #### Circuit Cutting
 
@@ -191,9 +191,9 @@ Many of the techniques in the previous sections complement other suppression and
 * Zero-noise extrapolation (ZNE)
 * Probabilistic error cancellation (PEC)
 
-In many workflows, different techniques may be applied to different regions of the same circuit. And as we have seen, many of the techniques come with quantum overhead. We therefore sometimes need fine, detailed control over noise learning, sampling, and application of twirling sequences. These are some of the motivations behind Samplomatic.
+In many workflows, different techniques can be applied to different regions of the same circuit. And as we have seen, many of the techniques come with quantum overhead. We therefore sometimes need fine, detailed control over noise learning, sampling, and application of twirling sequences. These are some of the motivations behind Samplomatic.
 
-[Samplomatic](https://quantum.cloud.ibm.com/docs/en/addons/samplomatic) is an open-source library that enables customized sampling, randomization, and error-mitigation workflows.
+[Samplomatic](/docs/addons/samplomatic) is an open-source library that enables customized sampling, randomization, and error-mitigation workflows.
 
 Its first task is to analyze a circuit and divide it into labeled regions, or boxes. These boxes serve two purposes:
 * They visually partition the circuit.
@@ -206,7 +206,7 @@ Users can attach annotations that describe how each box should be treated during
 * Injecting learned noise into specific layers
 * Customizing mitigation strategies at a fine-grained level
 
-Samplomatic also identifies repeated boxed regions. Since identical layers typically exhibit similar noise characteristics, noise learning only needs to be performed once per unique layer.
+Samplomatic also identifies repeated boxed regions. Because identical layers typically exhibit similar noise characteristics, noise learning only needs to be performed once per unique layer.
 
 #### Samplomatic Outputs
 
@@ -267,7 +267,7 @@ Some error types therefore deserve more mitigation effort than others. This dist
 * Z errors
 * Y (or XZ up to a phase) errors
 
-This error sensitivity will generally look different for each error type, since different causally connected errors have different impacts on the measurement. Note also that the sensitivity changes throughout the circuit. An X error immediately before measurement may be highly damaging, while an error occurring many layers earlier may have a smaller effect after propagating through a highly entangled state.
+This error sensitivity generally looks different for each error type, because different causally connected errors have different impacts on the measurement. Note also that the sensitivity changes throughout the circuit. An X error immediately before measurement might be highly damaging, while an error occurring many layers earlier might have a smaller effect after propagating through a highly entangled state.
 
 ![Three images showing the same quantum circuit, but with (a) no error, (b) an error just before measurement, and (c) an error earlier in the circuit.](/learning/images/courses/tools-for-quantum-advantage/modern-workflows/sensitivity.avif)
 
@@ -329,7 +329,7 @@ This flexibility allows users to adopt as many or as few components of the direc
 
 Executor works closely with Samplomatic, which manages randomization choices, shot allocation, noise-injection selections, and related execution metadata as described above.
 
-For practical examples of the directed execution model, see [documentation](https://quantum.cloud.ibm.com/docs/en/guides), [tutorials](https://quantum.cloud.ibm.com/docs/en/tutorials), and [addons guides](https://quantum.cloud.ibm.com/docs/en/guides/addons) on the [IBM Quantum platform](https://quantum.cloud.ibm.com/).
+For practical examples of the directed execution model, see [documentation](/docs/guides), [tutorials](/docs/tutorials), and [addons guides](/docs/guides/addons) on the [IBM Quantum platform](https://quantum.cloud.ibm.com/).
 
 ## Conclusion
 
