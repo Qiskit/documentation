@@ -27,7 +27,7 @@ python_api_name: qiskit_noise_learning.gate_sets.QiskitGate
   *   **circuit** – The quantum circuit.
   *   **qubit\_idxs** – The physical qubit indices that `circuit.qubits` act on.
   *   **prep\_idxs** – The physical qubit indices that this gate prepares, or resets. This is included because explicitly using the `Reset` instruction is not common.
-  *   **annotations** – The annotations that describe how to implement the gate. If `None`, this defaults to Pauli twirling. If no `samplomatic.Tag` annotation is provided, then one is added automatically whose tag name is equal to `name`.
+  *   **annotations** – The annotations that describe how to implement the gate. If `None`, this defaults to Pauli twirling. If no [`samplomatic.Tag`](/docs/api/samplomatic/auto/tag "(in samplomatic)") annotation is provided, then one is added automatically whose tag name is equal to `name`.
   *   **latex\_str** – An optional LaTeX string for this gate.
 
   **Raises**
@@ -35,7 +35,7 @@ python_api_name: qiskit_noise_learning.gate_sets.QiskitGate
   *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If `qubit_idxs` does not have a length equal to `circuit.num_qubits`.
   *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If any classical bit of `circuit` is measured into more than once, or is never measured into.
   *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If any qubit of `circuit` is measured into more than one classical bit.
-  *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If `annotations` does not include a `samplomatic.Twirl` annotation.
+  *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If `annotations` does not include a [`samplomatic.Twirl`](/docs/api/samplomatic/auto/twirl "(in samplomatic)") annotation.
 
   ### \_\_init\_\_
 
@@ -48,6 +48,7 @@ python_api_name: qiskit_noise_learning.gate_sets.QiskitGate
   | [`__init__`](#qiskit_noise_learning.gate_sets.QiskitGate.__init__ "qiskit_noise_learning.gate_sets.QiskitGate.__init__")(name, circuit, qubit\_idxs\[, ...]) |                                                                         |
   | [`draw`](#qiskit_noise_learning.gate_sets.QiskitGate.draw "qiskit_noise_learning.gate_sets.QiskitGate.draw")(\*args, \*\*kwargs)                             | Draw this gate as a circuit diagram.                                    |
   | [`iter_ops`](#qiskit_noise_learning.gate_sets.QiskitGate.iter_ops "qiskit_noise_learning.gate_sets.QiskitGate.iter_ops")()                                   | Iterate through the operations that compose this gate in circuit order. |
+  | [`to_instruction`](#qiskit_noise_learning.gate_sets.QiskitGate.to_instruction "qiskit_noise_learning.gate_sets.QiskitGate.to_instruction")()                 | Return this gate as a boxed instruction defined on `self.qubit_idxs`.   |
 
   ## Attributes
 
@@ -114,14 +115,22 @@ python_api_name: qiskit_noise_learning.gate_sets.QiskitGate
   <Function id="qiskit_noise_learning.gate_sets.QiskitGate.iter_ops" signature="iter_ops() → Iterable[tuple[tuple[int, ...], Operation]]">
     Iterate through the operations that compose this gate in circuit order.
 
+    Instructions that carry no physical action, such as barriers, are skipped.
+
     **Yields**
 
     Tuples `(physical_qubits, operation)` for each instruction in [`circuit`](#qiskit_noise_learning.gate_sets.QiskitGate.circuit "qiskit_noise_learning.gate_sets.QiskitGate.circuit").
   </Function>
 
+  ### to\_instruction
+
+  <Function id="qiskit_noise_learning.gate_sets.QiskitGate.to_instruction" signature="to_instruction() → CircuitInstruction">
+    Return this gate as a boxed instruction defined on `self.qubit_idxs`.
+  </Function>
+
   ### model\_gate
 
-  <Attribute id="qiskit_noise_learning.gate_sets.QiskitGate.model_gate">
+  <Attribute id="qiskit_noise_learning.gate_sets.QiskitGate.model_gate" github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/gate_sets/qiskit_gate.py">
     Type: [`ModelGate`](gate-sets-model-gate "qiskit_noise_learning.gate_sets.model_gate.ModelGate")
 
     The model for this gate.
