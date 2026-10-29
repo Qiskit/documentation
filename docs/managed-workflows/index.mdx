@@ -11,7 +11,9 @@ IBM Quantum Functions and managed workflows are beta features available only to 
 
 Managed workflows run your custom Python code on classical compute that IBM Quantum&reg; Platform manages for you. Use managed workflows to run hybrid quantum-classical workflows, large-scale diagonalization, and long-running parallel tasks without managing compute infrastructure or storage.
 
-Use a managed workflow when no [pre-built Catalog Function](/docs/guides/compute-services#functions) covers your task, or when you want to package your own method as a reusable function:
+## When to use a managed workflow
+
+Use a managed workflow when no [pre-built Catalog Function](/docs/guides/compute-services#functions) covers your task, or when you want to package your own method as a reusable function. Managed workflows are a good fit when you want to do the following:
 
 - **Run long jobs in the cloud.** A managed workflow keeps running when you close your laptop, and you can reconnect to the job later.
 - **Use large-memory and GPU nodes.** Choose the memory, CPU, and GPU resources that the workload needs.
@@ -22,17 +24,21 @@ You provide the workflow code, its dependencies, and the compute sizes that it s
 
 ## How managed workflows work
 
-You upload a workflow once and run it as many times as you need. Each run is a job. Every job works in the following ways:
+You upload a workflow once and run as many jobs as you need. Every job works in the following ways:
 
 - The job starts in a new environment with an empty local disk. Functions shuts down the environment after the job ends.
 - The job runs on one of the compute sizes that you define when you upload the workflow. You can choose a different size for each run.
 - The job can read and write the workflow's file storage. Files in file storage remain after the job ends.
 
+Because each job starts with an empty local disk, a later job can find only the files that an earlier job saved to file storage.
+
 ### Lifecycle of a run
 
-Each job runs asynchronously for up to 24 hours. You can run up to 50 jobs at the same time if your instance has enough allocation.
+Each job runs asynchronously for up to 24 hours. You can run up to 20 jobs at the same time if your instance has enough allocation.
 
 ![From your Python session, you call upload() once to upload the workflow's code, packages, and compute profiles. No job exists yet. Each call to run(args) creates a job that moves through these stages: Queue, where it waits for allocation with status QUEUED; Start, where Functions creates the environment with status INITIALIZING; Running, where your code can optionally set stages with update_status(): Mapping (RUNNING: MAPPING), Optimizing (RUNNING: OPTIMIZING_FOR_HARDWARE), Waiting for QPU (RUNNING: WAITING_FOR_QPU), Executing QPU (RUNNING: EXECUTING_QPU), and Post-processing (RUNNING: POST_PROCESSING); and Result, where the environment shuts down with status DONE, ERROR, or CANCELED. While running, the job reads and writes workflow file storage, which exists outside the job, is shared by all runs, and persists before and after each job. From your session, you can read status() from Queue onward, logs() from Running onward, and result() once the job reaches Result. All three remain available after the job ends.](/docs/images/guides/managed-workflows/lifecycle.svg)
+
+The following table describes each stage in the diagram and the job status that you see during that stage:
 
 | Stage | What happens | Job status |
 |---|---|---|
@@ -43,6 +49,8 @@ Each job runs asynchronously for up to 24 hours. You can run up to 50 jobs at th
 | Result | The job ends, and Functions shuts down its environment. Functions keeps the result and logs. | `DONE`, `ERROR`, or `CANCELED` |
 
 ### What a running job can access
+
+Each job runs in an isolated environment, so it's important to know what your code can reach. The following diagram and table show the resources that a running job can use.
 
 ![You call run() with arguments from your Python session and receive status, logs, and the result. Inside the managed workflow, each run executes in an isolated job environment with access to its compute (CPU, RAM, and optionally GPU), your code and packages, and its arguments. The job produces outputs with save_result(), logs, and update_status(), and submits QPU jobs that run on your instance. File storage and your instance, which provides access and cost management, are shared across all managed workflow jobs and persist after the job ends. The job has no internet access.](/docs/images/guides/managed-workflows/architecture.svg)
 
@@ -58,7 +66,7 @@ Each job runs asynchronously for up to 24 hours. You can run up to 50 jobs at th
 
 ### Security and isolation
 
-Functions isolates each job from other jobs and limits the privileges of the code that runs in it. The access boundaries in the preceding table are part of this isolation. Functions also applies the following protections:
+Isolation also protects your work. Functions isolates each job from other jobs and limits the privileges of the code that runs in it. The access boundaries in the preceding table are part of this isolation. Functions also applies the following protections:
 
 - **Job isolation.** No other job runs in your job's environment. This includes other users' jobs and your own jobs that run at the same time.
 - **Results, logs, storage.** Only the user who ran a job can read its results and logs. *Note: check how this works with instance / user permission model*
@@ -67,7 +75,7 @@ Functions isolates each job from other jobs and limits the privileges of the cod
 
 ## Compare with on-premises HPC
 
-Managed workflows differ from an on-premises HPC cluster in how you get compute time, set up software, and submit jobs. The following table compares common tasks.
+If you've used an on-premises HPC cluster, this section maps familiar tasks to managed workflows. Managed workflows differ from an on-premises HPC cluster in how you get compute time, set up software, and submit jobs. The following table compares common tasks.
 
 | Task | On-premises HPC cluster | Managed workflows |
 |---|---|---|
