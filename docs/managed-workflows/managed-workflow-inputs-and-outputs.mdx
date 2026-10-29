@@ -12,6 +12,24 @@ description: "Pass arguments into a managed workflow and return results from it.
 - **Confirm the maximum argument size**. I have 32 MB but needs confirmation.
 </Admonition>
 
+A managed workflow works like a Python function that runs on remote compute. Compare a local function with the same code as a workflow:
+
+<CodeTitle title="Local Python" />
+```python
+def my_workflow(circuits, shots=4096):
+    ...
+    return {"counts": counts}
+
+result = my_workflow(circuits=circuits, shots=1024)
+```
+
+In a managed workflow, `run()` is the call, `get_arguments()` gives the workflow its parameters, and `save_result()` is its `return` statement. Because the workflow runs as a separate job on remote compute, it differs from a local function call in three ways:
+
+- **Arguments and results are encoded on the way.** Each value must be one that the client can encode, and some types change. See [Read arguments in your workflow](#read-arguments-in-your-workflow).
+- **The call does not wait.** `run()` returns a job right away, and you read the result later with `job.result()`. See [Save results](#save-results).
+- **Nothing checks the call.** A Python function rejects an unknown keyword argument, but a workflow ignores it unless you attach a schema. See [Best practice: validate arguments with a schema](#best-practice-validate-arguments-with-a-schema).
+
+![Your local notebook, run_workflow_remotely.ipynb, calls run(args). Functions runs an optional schema check, then creates the managed workflow job, my_workflow/my_workflow.py. The job reads its arguments with get_arguments(), runs your code, such as mapping, transpiling circuits, running primitives, and post-processing, and returns a result with save_result(). Functions stores the result, and your notebook reads it with job.result().](/docs/images/guides/managed-workflows/inputs-outputs.svg)
 
 ## Read arguments in your workflow
 
