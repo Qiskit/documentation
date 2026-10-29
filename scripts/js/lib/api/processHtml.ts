@@ -390,13 +390,18 @@ export function convertRubricsToHeaders(
   // A rubric is "a paragraph heading that is not used to create a table
   // of contents node". Depending on the heading, this should be either <h2> or
   // <strong>
+  // "Inherited"/"Protocol" variants come from custom autosummary class templates, e.g. qiskit-fermions
+  const memberSectionHeadings = new Set([
+    "Attributes",
+    "Inherited Attributes",
+    "Methods",
+    "Methods Defined Here",
+    "Protocol Methods",
+    "Inherited Methods",
+    "Inherited Protocol Methods",
+  ]);
   function appropriateHtmlTag(html: string | null) {
-    html = String(html);
-    return html == "Methods" ||
-      html == "Methods Defined Here" ||
-      html == "Attributes"
-      ? "h2"
-      : "strong";
+    return memberSectionHeadings.has(String(html)) ? "h2" : "strong";
   }
 
   $main.find(".rubric").each((_, el) => {
