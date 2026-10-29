@@ -62,6 +62,8 @@ export class Pkg {
    * C API packages share the docs page of their Python sibling.
    */
   readonly hasAddonDocs: boolean;
+  /** The `parentUrl` written to this addon's docs/addons/{name}/_toc.json. */
+  readonly addonTocParentUrl: string;
   /** Slugs of docs/tutorials/ notebooks to surface under this addon's tutorials route. */
 
   static ADDON_NAMES = [
@@ -104,6 +106,7 @@ export class Pkg {
     artifactPackageName?: string;
     hasRootNamespaceFile?: boolean;
     hasAddonDocs?: boolean;
+    addonTocParentUrl?: string;
   }) {
     this.name = kwargs.name;
     this.title = kwargs.title;
@@ -119,6 +122,7 @@ export class Pkg {
     this.artifactPackageName = kwargs.artifactPackageName ?? this.name;
     this.hasRootNamespaceFile = kwargs.hasRootNamespaceFile ?? false;
     this.hasAddonDocs = kwargs.hasAddonDocs ?? false;
+    this.addonTocParentUrl = kwargs.addonTocParentUrl ?? "/docs/guides/addons";
   }
 
   static async fromArgs(
@@ -223,6 +227,7 @@ export class Pkg {
         kebabCaseAndShortenUrls: true,
         language: "Python",
         hasAddonDocs: true,
+        addonTocParentUrl: "/docs/guides/hamiltonian-simulation",
       });
     }
     if (name === "qiskit-addon-cutting") {
@@ -251,7 +256,7 @@ export class Pkg {
         githubSlug: "Qiskit/qiskit-fermions",
         kebabCaseAndShortenUrls: true,
         language: "Python",
-        hasAddonDocs: true,
+        addonTocParentUrl: "/docs/guides/hamiltonian-simulation",
       });
     }
     if (name === "qiskit-fermions-c") {

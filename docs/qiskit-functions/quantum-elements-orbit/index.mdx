@@ -1,0 +1,125 @@
+---
+title: "Orbit - a Qiskit Function by Quantum Elements"
+description: "Orbit, a Qiskit Function by Quantum Elements, improves circuit execution with optimized transpilation, dynamical decoupling, and measurement error mitigation"
+---
+
+{/* cspell:ignore QAOA, MEM, Bernstein, Vazirani, bitstring, bitstrings, transpiler, transpilation, decoupling, mid-circuit, QEC, Mitiq, M3 */}
+
+# Orbit - a Qiskit Function by Quantum Elements
+
+*See the [API reference](/docs/qiskit-functions/quantum-elements-orbit/api_ref)*
+
+<Admonition type="note" title="Note">
+Qiskit Functions are an experimental feature available only to IBM Quantum&reg; Premium Plan, Flex Plan, and On-Prem (via IBM Quantum Platform API) Plan users. They are in preview release status and subject to change.
+</Admonition>
+
+## Overview
+
+Quantum hardware continues to advance, but noise and decoherence still constrain the depth and reliability of practical quantum circuits. Among the available approaches, three complementary techniques can substantially mitigate these limitations: dynamical decoupling (DD), optimized transpilation, and measurement error mitigation (MEM). Optimized transpilation reduces circuit depth and better aligns circuits with the target hardware connectivity, DD suppresses idle-time noise through carefully designed control sequences, and MEM reduces the effects of readout errors and can be applied during post-processing.
+
+Selecting an effective DD strategy is particularly nontrivial because numerous sequence families are available, and a sequence that performs well for one circuit or noise environment may not perform well for another. The benefits of transpilation, DD, and MEM depend on the problem, hardware, and workload; used individually or in combination, they can improve performance, but they are not universally beneficial in every configuration.
+
+Orbit, a Qiskit Function developed by Quantum Elements, seamlessly combines all three components into a unified workflow, making them easy to use for improving circuit execution on IBM Quantum hardware. In its primary form, Orbit automatically applies active error-suppression strategies that protect quantum states during idle periods, while preserving the original circuit logic. Notably, it does so without introducing any additional quantum or classical pre-processing time, thereby avoiding unnecessary additional costs or wait time within the workflow.
+
+Rather than operating as a black box, Orbit allows users to evaluate and fine-tune its optimization components for a specific experiment. Users can independently enable or disable optimized transpilation, DD, and MEM; compare automated DD selection with user-specified sequences; and execute multiple configurations within the same workflow. By comparing each configuration with the raw circuit, users can determine which techniques provide measurable benefits for their circuit and backend, identify interactions among the different optimization methods, and select the configuration that best supports their experimental objective. This process guides users in understanding where performance gains originate and in making more informed decisions when optimizing quantum circuits for a given workload.
+
+## Description
+
+Orbit is designed to enhance the execution of quantum circuits on IBM Quantum backends. In automated mode, users can seamlessly apply high-order, robust DD sequences without needing to select or configure them manually. Advanced users can instead experiment with available higher-order sequences to identify and optimize the approach that delivers the best performance for a specific circuit.
+
+Orbit also provides instantaneous MEM without requiring the additional jobs typically needed for separate calibration and mitigation workflows. For workloads in which transpilation should not alter the circuit structure, such as quantum error-correction circuits with mid-circuit measurements or dynamic circuits, Orbit can apply DD and MEM without interfering with the user's existing transpilation strategy. For users who do not already have a preferred approach, Orbit also includes a built-in transpiler to optimize circuits for the target hardware before applying error-suppression and readout-mitigation techniques.
+
+Unlike approaches that rely on additional circuit sampling, extrapolation, or extensive classical post-processing, Orbit focuses on suppressing errors during execution. The function is designed to introduce low overhead while preserving the original circuit logic. Users can inspect the resulting circuit and directly compare Orbit-optimized executions with standard executions.
+
+A practical Orbit workflow is:
+
+1. Define a quantum circuit and select Orbit through the [Qiskit Functions Catalog](https://quantum.cloud.ibm.com/functions).
+2. Include the circuit without Orbit using the 'Raw' mode to establish a raw-circuit baseline.
+3. Choose which optimization strategies to apply, including automated or user-selected DD sequences, MEM, and optimized transpilation.
+4. Enable or disable individual methods, or submit multiple configurations, to evaluate their separate and combined effects.
+
+Orbit is particularly useful for circuits containing idle periods or scheduling gaps where qubits are not actively participating in gates. It supports static and dynamic circuits, including workflows with mid-circuit measurements and fault-tolerant quantum-computing experiments. Typical applications include quantum error correction, surface-code experiments on square and heavy-hex lattices, oracular algorithms such as Bernstein-Vazirani, Fourier transform circuits, variational quantum algorithms, Hamiltonian simulation, benchmarking experiments, and hardware-aware circuit optimization.
+
+Looking ahead to the era of fault tolerance, Orbit is also compatible with fault-tolerant quantum computing workflows, as it can seamlessly be combined with quantum error correction. In the long term, Orbit points toward logical-level dynamical decoupling [[1]](#references) as a future-facing path for protecting logical qubits. In the example below, two logical qubits were entangled to create a logical Bell state under quantum error detection. Quantum error detection alone led the Bell-state fidelity to decay to approximately 44% over tens of microseconds, while QED combined with Orbit-style protection kept the logical Bell-state fidelity near the top of the scale, reaching approximately 95.3% across the same time window.
+
+![Orbit Quantum Circuit Development Platform](/docs/images/guides/quantum-elements-orbit/orbit-quantum-circuit-development-platform.svg)
+
+## Benchmarks
+
+The following results summarize representative Orbit runs on IBM Quantum hardware. As with other hardware benchmarks, results depend on the selected device, calibration state, circuit, and execution settings.
+
+
+| Example                                            | Metric                                      | Qubits            | QPU                    | Additional details                                                            | Orbit Improvement          |
+|----------------------------------------------------|---------------------------------------------|-------------------|------------------------|-------------------------------------------------------------------------------|----------------------------|
+| Bernstein–Vazirani                                 | Hidden-bitstring fidelity                   | 26<br />60<br />70| Heron r3               | Raw versus Full Orbit,<br />Transpilation only versus Full Orbit,<br />Full Orbit Only| 75x<br />66x<br />N/A      |
+| QFT (unitary)                                      | Fidelity                                    | 10                | Heron r2<br />Heron r3 | Orbit versus raw:<br /> ~44% versus ~35%<br /> ~67% versus ~61%                        | 1.26x<br />1.09x           |
+| QFT (dynamic circuits)                             | Fidelity                                    | 10<br />20        | Heron r3               | Orbit versus raw:<br /> ~55% versus ~2%<br /> ~10% versus ~0%                          | 27.51x<br />N/A            |
+| Long-range Bell state (dynamic circuits)           | Fidelity                                    | 30<br />60        | Heron r2               | N/A                                                                           | 1.78x<br />1.11x           |
+| Surface code<br />(square lattice)                 | Logical error probability                   | 25                | Nighthawk r1           | 1 round<br /> 5 rounds<br /> 10 rounds                                        | 1.01x<br />1.15x<br />1.12x|
+| Surface code<br />(heavy-hex)                      | Logical error probability                   | 65                | Heron r3               | 1 round<br /> 5 rounds<br /> 10 rounds                                        | 4.11x<br />2.04x<br />1.39x|
+| VQE                                                | Absolute error relative to the ideal energy | 8                 | Heron r3               | Orbit versus raw:<br /> 56mHa versus 1342 mHa                                       | 24x                        |
+| QAOA                                               | Success probability                         | 5                 | Heron r2               | N/A                                                                           | 1.46x                      |
+| `[[4,2,2]]` code (logical-level error suppression) | Entangled Bell-state logical fidelity       | 4                 | Heron r2               | Average fidelity over 55 μs                                                   | 1.63x                      |
+
+### Metric definitions
+
+- **Bernstein–Vazirani hidden-bitstring fidelity:** Probability of measuring the correct hidden bitstring. This metric indicates how reliably the algorithm recovers the intended solution as the circuit size increases. The table reports the three largest hidden bitstrings successfully evaluated under three different configurations: (i), raw circuits without Orbit, which reached 26 qubits; (ii), circuits with transpilation only, which reached 60 qubits; and  (iii), circuits using the full Orbit workflow, which reached 70 qubits. For the raw circuits (i), the improvement factor represents the performance gain achieved by DD and MEM relative to the unmodified circuits. For the transpilation-only configuration (ii), it represents the improvement achieved by adding DD and MEM to the optimally transpiled circuits. For the full Orbit configuration (iii), no baseline improvement factor is reported because a nonzero success probability was obtained only when all Orbit components (transpilation, DD, and MEM) were enabled. An illustrative example is provided below.
+
+- **Quantum Fourier transform fidelity:** For both the unitary and dynamic-circuit QFT implementations [[2]](#references), fidelity measures the agreement between the experimentally implemented transformation and the ideal QFT process over 20 different input states. Dynamic circuits contain substantial idle time due to mid-circuit measurements and classical feedforward, during which dynamical decoupling can suppress decoherence. The reported improvement compares the fidelity obtained with Orbit to the raw fidelity.
+
+- **Long-range Bell-state preparation:** Creating a Bell state using dynamic circuits and feedforward operations between two qubits separated by as many as 60 intermediate qubits, thereby demonstrating efficient long-range entanglement on locally connected quantum hardware [[3]](#references). Orbit identifies the best qubit routing, preserves the qubits during feedforward measurements, and applies MEM to mitigate readout errors.
+
+- **Surface-code logical error probability:** For the heavy-hex surface code [[4]](#references) and square-lattice surface code [[5]](#references), quantum-memory experiments were performed in which an encoded logical state was preserved over repeated rounds of error correction. Logical error probability measures the probability that accumulated errors cause the encoded information to be recovered incorrectly (lower error is better). The reported improvement compares the logical error probability from raw circuits to that obtained with Orbit.
+
+- **VQE absolute error:** Using VQE with an optimized unitary coupled-cluster ansatz to estimate the ground-state energy of LiH [[6]](#references). The measured energy is compared with the corresponding ideal energy obtained from the noiseless circuit. The metric is the absolute difference between the measured and ideal energies (lower values are better). The reported improvement is:
+
+$$
+\text{Improvement factor}
+=
+\frac{|E_{\mathrm{raw}}-E_{\mathrm{ideal}}|}
+{|E_{\mathrm{Orbit}}-E_{\mathrm{ideal}}|}.
+$$
+
+Values greater than one indicate that Orbit reduces the energy error relative to execution without dynamical decoupling.
+
+- **QAOA success probability:** Probability of measuring a bitstring corresponding to an optimal solution of the optimization problem defined on the butterfly graph. The reported improvement compares the success probability obtained with Orbit against that obtained from the raw circuits.
+
+- **Logical fidelity:** In the [[4,2,2]] logical dynamical-decoupling experiment [1], two logical qubits were encoded into four physical qubits and prepared as an entangled logical Bell state. Logical fidelity measures the agreement between the recovered encoded state and the target logical Bell state. The reported improvement compares the average logical fidelity obtained with Orbit and error detection (code's capability) to that obtained when only using the code alone.
+
+## Get started
+
+To learn how to load the function and run it, see [Get started with Orbit](/docs/qiskit-functions/quantum-elements-orbit/guides/get-started).
+
+## Get support
+
+Reach out to Quantum Elements support: [info@quantumelements.ai](mailto:info@quantumelements.ai)
+
+Be sure to include the following information:
+
+- Qiskit Function Job ID (`qiskit-ibm-catalog`), `job.job_id`
+- Backend name
+- Orbit `pub_options` used for the raw and Orbit modes
+- A detailed description of the issue
+- Any relevant error messages or codes
+- Steps to reproduce the issue
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+
+- Try a different backend, qubit number, or another hidden bitstring.
+- Read [our tutorial](/docs/tutorials/quantum-elements-orbit-qft-with-dynamic-circuits) on the quantum Fourier transform to learn how to define orbit-enabled custom DD strategies, as well as to apply DD to dynamic circuits with mid-circuit measurements and feedforward operations.
+- Visit the [API reference](/docs/qiskit-functions/quantum-elements-orbit/api_ref) for a detailed description of all Orbit options.
+
+</Admonition>
+
+<a name="references"></a>
+
+## References
+
+1. [Logical-level error suppression combined with Quantum Error Detection, *Nature Communications* (2026)](https://www.nature.com/articles/s41467-026-70011-3)
+2. [Quantum Fourier Transform Using Dynamic Circuits, *Physical Review Letters* (2024)](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.133.150602)
+3. [Efficient Long-Range Entanglement Using Dynamic Circuits, *PRX Quantum* (2024)](https://journals.aps.org/prxquantum/abstract/10.1103/PRXQuantum.5.030339)
+4. [Surface code scaling experiments on IBM Heron with heavy-hex connectivity, arXiv:2510.18847](https://arxiv.org/abs/2510.18847)
+5. [Surface code experiments on IBM Nighthawk with square-lattice connectivity, arXiv:2606.11496](https://arxiv.org/abs/2606.11496)
+6. [VQE benchmark reference, *Nature Physics* (2024)](https://www.nature.com/articles/s41567-024-02530-z)

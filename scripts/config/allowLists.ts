@@ -29,35 +29,35 @@ const IGNORE_TITLE_MISMATCHES: string[] = [
   "docs/guides/changelog-qiskit-functions.mdx", // ok
   "docs/guides/changelog-qiskit-transpiler.mdx", // ok
   "docs/guides/changelog-quantum-compute-service.mdx", // ok
-  "docs/guides/directed-execution-model.mdx", // ok
-  "docs/guides/estimator-examples.ipynb", // ok
-  "docs/guides/estimator-input-output.ipynb", // ok
-  "docs/guides/estimator-options.ipynb", // ok
-  "docs/guides/estimator-rest-api.ipynb", // ok
-  "docs/guides/executor-examples.ipynb", // ok
-  "docs/guides/executor-options.ipynb", // ok
-  "docs/guides/executor-input-output.mdx", // ok
-  "docs/guides/executor-broadcasting.mdx", // ok
+  "docs/ibm-quantum-compute/directed-execution-model.mdx", // ok
+  "docs/ibm-quantum-compute/estimator-examples.ipynb", // ok
+  "docs/ibm-quantum-compute/estimator-input-output.ipynb", // ok
+  "docs/ibm-quantum-compute/estimator-options.ipynb", // ok
+  "docs/ibm-quantum-compute/estimator-rest-api.ipynb", // ok
+  "docs/ibm-quantum-compute/executor-examples.ipynb", // ok
+  "docs/ibm-quantum-compute/executor-options.ipynb", // ok
+  "docs/ibm-quantum-compute/executor-input-output.mdx", // ok
+  "docs/ibm-quantum-compute/executor-broadcasting.mdx", // ok
   "docs/guides/estimator-broadcasting.mdx", // ok
   "docs/guides/broadcasting.mdx", // ok
   "docs/guides/executor-rest-api.mdx", // ok
-  "docs/guides/get-started-with-sampler.ipynb", // ok
+  "docs/ibm-quantum-compute/get-started-with-sampler.ipynb", // ok
   "docs/guides/pubs.ipynb", // ok
-  "docs/guides/estimator-noise-management.ipynb", // ok
-  "docs/guides/sampler-noise-management.ipynb", // ok
-  "docs/guides/sampler-examples.ipynb", // ok
-  "docs/guides/sampler-rest-api.mdx", // ok
-  "docs/guides/sampler-input-output.ipynb", // ok
-  "docs/guides/sampler-options.ipynb", // ok
-  "docs/guides/get-started-with-estimator.ipynb", // ok
-  "docs/guides/get-started-with-executor.ipynb", // ok
+  "docs/ibm-quantum-compute/estimator-noise-management.ipynb", // ok
+  "docs/ibm-quantum-compute/sampler-noise-management.ipynb", // ok
+  "docs/ibm-quantum-compute/sampler-examples.ipynb", // ok
+  "docs/ibm-quantum-compute/sampler-rest-api.mdx", // ok
+  "docs/ibm-quantum-compute/sampler-input-output.ipynb", // ok
+  "docs/ibm-quantum-compute/sampler-options.ipynb", // ok
+  "docs/ibm-quantum-compute/get-started-with-estimator.ipynb", // ok
+  "docs/ibm-quantum-compute/get-started-with-executor.ipynb", // ok
   "docs/guides/qiskit-backendv1-to-v2.mdx", // ok
-  "docs/guides/execution-modes.mdx", // ok
+  "docs/ibm-quantum-compute/execution-modes.mdx", // ok
   "docs/guides/faq.mdx", // ok
   "docs/guides/algorithmiq-tem.ipynb", // ok
-  "docs/guides/classical-feedforward-and-control-flow.ipynb", // ok
+  "docs/qiskit/classical-feedforward-and-control-flow.ipynb", // ok
   "docs/guides/colibritd-pde.ipynb", // ok
-  "docs/guides/defaults-and-configuration-options.ipynb", // ok
+  "docs/qiskit/defaults-and-configuration-options.ipynb", // ok
   "docs/guides/function-template-chemistry-workflow.ipynb", // ok
   "docs/guides/function-template-hamiltonian-simulation.ipynb", // ok
   "docs/guides/global-data-quantum-optimizer.ipynb", // ok

@@ -30,11 +30,8 @@ def skip_apis(working_directory: str) -> Iterable[str]:
     """Mounts an empty directory to /docs/api/ to effectively exclude it"""
     if "--apis" in sys.argv:
         return ()
-    print("Skipping non-functions API docs for speed; use --apis to include them")
     return (
-        "-v", "/home/node/app/docs/api",
-        # Even when skipping APIs, we still include the functions APIs
-        "-v", f"{working_directory}/docs/api/functions:/home/node/app/docs/api/functions"
+        "-v", "/home/node/app/docs/api"
     )
 
 def main() -> None:

@@ -1,0 +1,90 @@
+---
+title: "HI-VQE Chemistry - A Qiskit Function by Qunova Computing"
+description: "Documentation for Qunova Computing's HI-VQE Qiskit Function. It can be used to solve for the ground state and ground state energy of chemical systems."
+---
+
+{/* cspell:ignore lumo hivqe DMRG ccsd, ffsim, pvdz, Qunova, HI-VQE, AVAS, Dooh, pyscf, nucmod, GTO's, lucj, pseudopotential, pseudopotentials, magmom, Jastrow, multireference, Pellow, Jarman */}
+
+# HI-VQE Chemistry - A Qiskit Function by Qunova Computing
+
+*See the [API reference](/docs/qiskit-functions/qunova-chemistry/api_ref)*
+
+<Admonition type="note">
+  Qiskit Functions are an experimental feature available only to IBM Quantum&reg; Premium Plan, Flex Plan, and On-Prem (via IBM Quantum Platform API) Plan users. They are in preview release status and subject to change.
+</Admonition>
+
+## Overview
+
+In quantum chemistry, the electronic structure problem focuses on finding the solutions to the electronic Schrödinger equation - the quantum wave functions describing the behavior of the system's electrons. These wave functions are vectors of complex amplitudes, with each amplitude corresponding to the contribution of a possible electron configuration.
+
+The ground state is the lowest energy wave function of the system and has a special importance in the study of molecular systems. The most accurate approach for computing the ground state considers all possible electron configurations, but this becomes intractable for larger systems since the number of configurations grows exponentially with system size.
+
+The Handover Iterative Variational Quantum Eigensolver (HI-VQE) is an innovative hybrid quantum-classical method for accurately estimating the ground state of molecular systems. It integrates quantum hardware with classical computing, using quantum processors to efficiently explore candidate electron configurations and calculating the resulting wave function on classical computers. By generating compact yet chemically accurate wave functions, HI-VQE enhances research and discovery in quantum chemistry and materials science.
+
+![Image showing an overview of Qunova's HI-VQE algorithm](/docs/images/guides/qunova-chemistry/overview.svg)
+
+HI-VQE reduces the computational complexity of the electronic structure problem by efficiently estimating the ground state with high accuracy. It focuses on a carefully selected subset of the most relevant electron configurations, optimizing both accuracy and efficiency.
+
+Combining the strengths of both classical and quantum computers, HI-VQE iteratively refines and improves the current estimate wave function. Its unique subspace construction techniques help make configuration selection more efficient, so that users have greater computational control and improved accuracy in quantum chemistry simulations.
+
+If you would like to learn about the algorithm in more depth, you can [read the associated research paper](https://arxiv.org/abs/2503.06292)
+
+## Description
+
+The number of electron configurations for a molecular system grows exponentially with system size. However, for certain electronic states, such as the ground state, it is common that only a small fraction of configurations significantly contribute to the state’s energy. Selected configuration interaction (SCI) methods exploit this sparsity to reduce computational costs by identifying and focusing on the most relevant configurations. This subset of configurations is referred to as a subspace.
+
+HI-VQE leverages the inherent efficiency of quantum computers for representing molecular systems to aid the subspace search. It integrates classical and quantum subroutines to solve the electronic structure problem with high accuracy. Unlike existing quantum SCI methods, HI-VQE combines variational training, iterative subspace construction, and pre-diagonalization configuration screening to enhance efficiency by reducing quantum measurements, iterations, and classical diagonalization costs. HI-VQE can therefore be applied to larger molecular systems which require more qubits, and reduces the cost to solve a problem of a given size to the same degree of accuracy.
+
+![Image showing a detailed description of each step in Qunova's HI-VQE algorithm.](/docs/images/guides/qunova-chemistry/description.avif)
+
+To compute a system's ground state, HI-VQE first uses the classical chemistry package PySCF to generate a molecular representation from user-provided inputs, such as the molecular geometry and other molecular information. It then enters a hybrid quantum-classical optimization loop, iteratively refining a subspace to optimally represent the ground state while minimizing the number of configurations included. The loop continues until convergence criteria, such as subspace size or energy stability, are met, after which the computed ground state wave function and energy are output. These results can be used to construct accurate potential energy surfaces and perform further analysis of the system.
+
+The optimization loop focuses on adjusting a quantum circuit’s parameters to generate a high-quality subspace. HI-VQE offers three quantum circuit options: [`excitation_preserving`](/docs/api/qiskit/qiskit.circuit.library.excitation_preserving), [efficient_su2](/docs/api/qiskit/qiskit.circuit.library.efficient_su2), and [LUCJ](https://qiskit-community.github.io/ffsim/explanations/lucj.html). The optimization is initialized close to the Hartree-Fock reference state due to its general suitability. The circuit is then executed on a quantum device and configurations are sampled from the resulting quantum state before being returned as binary strings. Due to quantum device noise, some sampled configurations may be physically invalid, failing to conserve electron number or spin. HI-VQE addresses this using the configuration recovery process from the [qiskit-addon-sqd](/docs/addons/qiskit-addon-sqd) package, so that users can either correct invalid configurations or discard them.
+
+The valid configurations then undergo an optional screening step to remove those predicted to contribute minimally. This reduces the dimension of the subspace, thereby lowering the cost of the diagonalization step. If the screening is enabled, then a preliminary subspace Hamiltonian is constructed from the valid configurations and a diagonalization is performed with very loose termination critieria. Though the accuracy of the resulting amplitudes for each configuration is low, it is effective for predicting which configurations to leave out of the subspace this iteration, and it is fast to compute.
+
+The selected configurations are added to the subspace, and the system's Hamiltonian is projected into this subspace. The subspace updates iteratively, preserving the most relevant configurations across iterations. This approach contrasts with alternative methods because the quantum circuit does not need to approximate the full ground state at each step.
+
+Next, the subspace Hamiltonian is classically diagonalized to obtain the lowest eigenvalue and its corresponding eigenvector, representing an approximation of the ground state and its energy. As the subspace quality improves through iterations, the computed ground state better approximates the true ground state. An additional screening step can be performed at this point to remove any configurations from the subspace that don't have a substantial contribution to the computed ground state. This step ensures that the subspace carried into the next iteration is as compact as possible. This is evaluated based on the amplitudes that are returned by the diagonalization, as these represent each configuration's importance contribution to the computed ground state.
+
+A convergence check then determines whether further training would improve results. If so, then an optional classical expansion step is performed, the quantum circuit parameters are updated to further minimize the computed energy, and the process repeats. The classical expansion step generates additional configurations for the subspace, supplementing the configurations sampled from the quantum device. It first identifies the configuration with the largest amplitude in the diagonalization results, before generating new configurations with single and double excitations from the identified configuration. The desired number of these configurations are then added to the subspace.
+
+Once it is determined that the iterations have converged, HI-VQE returns the computed ground state (in the form of the states in the subspace and their amplitudes in the ground state wave function), its energy, and an energy variance measure that gives an indication of whether the computed state forms an eigenstate of the system's Hamiltonian.
+
+Users are able to decide the quantum circuit used and the number of shots taken for each quantum circuit, as well as control the subspace size or enable the classical generation of additional configurations to assist the quantum generated configurations. In this way users can tailor the behavior of HI-VQE to suit their desired applications.
+
+## Get started
+
+To learn how to load the function and run it, see [Get started with HI-VQE Chemistry](/docs/qiskit-functions/qunova-chemistry/guides/get-started).
+
+## Benchmarks
+
+- Exact matrix size is the number of determinants for exact solution, such as FCI and CASCI.
+- HI-VQE calculation samples and calculates the subspace of it (as in, HI-VQE matrix size).
+- Total time includes QPU runtime and Qiskit Function runs with CPU.
+- Accuracy is estimated from the energy difference from exact solution.
+
+|   Chemical system  | Number of qubits | Exact matrix size |  HI-VQE matrix size  | E(diff) from exact (mHa) | Number of iteration | Total time    | QPU runtime usage |
+| ------------------ | ---------------- | ----------------- | ------------------- | ------------------------ | ------------------- | ------------- | ----------------- |
+|  $NH_3$ (8o,10e)   |  16              |  3136             |  1936               |  0.08                    |  6                  | 37 s          | 34 s              |
+|  $Li_2S$ (10o,10e) |  20              |  63504            |  3969               |  0.60                    |  5                  | 250 s         | 50 s              |
+|  $NH_3$ (15o,10e)  |  30              |  9018009          |  49729              |  0.90                    |  5                  | 354 s         | 54 s              |
+|  $N_2$ (16o,14e)   |  32              |  130873600        |  1798281            |  1.10                    |  9                  | 6531 s        | 121 s             |
+|  $3H_2O$ (18o,24e) |  36              |  344622096        |  399424             |  0.90                    |  24                 | 5174 s        | 130 s             |
+|  $N_2$ (20o,14e)   |  40              |  6009350400       |  9012004            |  1.20                    |  21                 | 46547 s       | 258 s             |
+
+## Get support
+
+You can send an email to [qiskit.support@qunovacomputing.com](mailto:qiskit.support@qunovacomputing.com) for help with this function.
+
+If you want help with troubleshooting a specific error, please provide the Function job ID of the job that encountered the error.
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+- Request access to the function by filling in [this form](https://forms.office.com/r/zN3hvMTqJ1).
+- Visit the [API reference](/docs/qiskit-functions/qunova-chemistry/api_ref) for this Qiskit Function.
+- Try the [Compute dissociation PES curve for FeP-NO with HI-VQE](/docs/tutorials/qunova-hivqe) tutorial.
+- Review [Pellow-Jarman, A., et al. (2025).  HIVQE: Handover Iterative Variational Quantum Eigensolver for Efficient Quantum Chemistry Calculations. arXiv preprint arXiv:2503.06292](https://arxiv.org/abs/2503.06292).
+- Try the [Dissociation PES curves with Qunova HiVQE](/docs/tutorials/qunova-hivqe) tutorial.
+</Admonition>

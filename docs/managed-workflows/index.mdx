@@ -1,0 +1,42 @@
+---
+title: Managed workflows
+description: Deploy your own quantum-classical workflows to IBM Quantum Functions and run them on managed classical compute.
+---
+
+# Managed workflows
+
+Managed workflows run your own Python code on managed classical compute that IBM Quantum&reg; Platform provides. Use a managed workflow when no [pre-built Catalog Function](/docs/guides/compute-services#functions) covers your task, or when you want to package your own method as a reusable function.
+
+## What Functions manages for you
+
+You provide the code. IBM Quantum Functions manages the rest of the run, so you do not provision machines or build an environment yourself:
+
+- **Compute.** Functions allocates the CPU, memory, and GPUs that you choose with a [compute profile](#compute-profiles).
+- **Environment.** Functions installs and pre-compiles all of the workflow's packages before the job starts.
+- **Storage.** Functions sets up storage for the files that the workflow reads and writes.
+
+## What you can do
+
+- **Run long jobs in the cloud.** A managed workflow keeps running when you close your laptop, and you can reconnect to the job later.
+- **Use large-memory and GPU nodes.** Choose a [compute profile](#compute-profiles) that matches the memory, CPU, and GPU needs of the workload.
+- **Run tasks in parallel.** Split classical pre-processing and post-processing across workers.
+- **Share a reusable program.** Upload the workflow once and run it with different inputs.
+
+## Compute profiles
+
+Each workflow runs with one compute profile. A profile name lists the CPU cores, the memory in GB, and, when present, the GPUs. For example, `24x120x1l40s` is 24 CPU cores, 120 GB of memory, and one NVIDIA L40S GPU.
+
+| Profile | CPU cores | Memory (GB) | GPUs |
+| - | - | - | - |
+| `8x32` | 8 | 32 | None |
+| `24x120x1l40s` | 24 | 120 | 1 L40S |
+
+A workflow can define several sizes and a default size. If the workflow defines no sizes, it uses a default size. When you run a workflow, pass `function_size` to choose a size, or omit it to use the default.
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+- Follow [Write your first Qiskit Serverless program](/docs/managed-workflows/serverless-first-program) to upload and run a program.
+- Read [Manage Qiskit Serverless compute and data resources](/docs/managed-workflows/serverless-manage-resources) to set resources and store files.
+- Start from a [Qiskit Function template](/docs/managed-workflows/qiskit-function-templates) for common workflows.
+</Admonition>
