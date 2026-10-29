@@ -61,8 +61,8 @@ The usage of a completed dry-run job is the usage the same job would incur on th
 
 Dry-run usage is not charged, does not consume your plan allocation, and does not count against any limits.
 
-<Admonition type="caution">
-Do not use `job.usage_estimation` for a dry-run usage estimate. That property exists on every job, is expressed in seconds, and on a dry-run job it describes the mock job, not a job on the real QPU. To find the number of RUs that the real QPU would charge, use `job.usage(resource_units=True)`.
+<Admonition type="caution" title="Do not use job.usage_estimation with dry-run jobs">
+Do not use `job.usage_estimation` on a dry-run job. To find the number of RUs that the real QPU would charge, use `job.usage(resource_units=True)`.
 </Admonition>
 
 `job.usage()` returns `0` until the usage calculation is final, so wait for the job to finish before you read it.
