@@ -40,13 +40,13 @@ in_page_toc_max_heading_level: 2
 
 *   [`qiskit_addon_sqd.fermion.diagonalize_fermionic_hamiltonian()`](/docs/api/qiskit-addon-sqd/fermion#qiskit_addon_sqd.fermion.diagonalize_fermionic_hamiltonian "qiskit_addon_sqd.fermion.diagonalize_fermionic_hamiltonian") now accepts sampled bitstrings as a two-dimensional NumPy boolean array in addition to a Qiskit [`BitArray`](/docs/api/qiskit/qiskit.primitives.BitArray).
 
-*   Adds a [guide](/docs/addons/qiskit-addon-sqd/guides/integrate_fulqrum) showing how to use [fulqrum](https://github.com/qiskit-community/fulqrum) as a subspace solver for fermionic systems. To install the optional dependency, use the `fulqrum` extra:
+*   Adds a [guide](/docs/addons/qiskit-addon-sqd/guides/integrate-fulqrum) showing how to use [fulqrum](https://github.com/qiskit-community/fulqrum) as a subspace solver for fermionic systems. To install the optional dependency, use the `fulqrum` extra:
 
     ```python
     pip install 'qiskit-addon-sqd[fulqrum]'
     ```
 
-*   Adds a [guide](/docs/addons/qiskit-addon-sqd/guides/integrate_sbd) showing how to use the [SBD eigensolver](https://github.com/Qiskit/sbd-eigensolver-python) as a subspace solver for fermionic systems. To install the optional dependency, use the `sbd` extra:
+*   Adds a [guide](/docs/addons/qiskit-addon-sqd/guides/integrate-sbd) showing how to use the [SBD eigensolver](https://github.com/Qiskit/sbd-eigensolver-python) as a subspace solver for fermionic systems. To install the optional dependency, use the `sbd` extra:
 
     ```python
     pip install 'qiskit-addon-sqd[sbd]'
@@ -56,7 +56,7 @@ in_page_toc_max_heading_level: 2
 
     An iteration therefore costs `num_batches + 1` diagonalizations rather than `num_batches`. Screening only selects among batches that differ, so [`TrimPolicy`](/docs/api/qiskit-addon-sqd/trim#qiskit_addon_sqd.trim.TrimPolicy "qiskit_addon_sqd.trim.TrimPolicy") draws them as a single pool of `samples_per_batch * num_batches` bitstrings divided among the batches, leaving no bitstring in more than one. That follows from what the schedule does and is not separately configurable.
 
-*   Adds a [guide](/docs/addons/qiskit-addon-sqd/guides/trim_sqd) covering trim SQD, including how to bound the subspace that trimming produces and how to check whether the screening step is helping on a given system.
+*   Adds a [guide](/docs/addons/qiskit-addon-sqd/guides/trim-sqd) covering trim SQD, including how to bound the subspace that trimming produces and how to check whether the screening step is helping on a given system.
 
 *   [`diagonalize_fermionic_hamiltonian()`](/docs/api/qiskit-addon-sqd/fermion#qiskit_addon_sqd.fermion.diagonalize_fermionic_hamiltonian "qiskit_addon_sqd.fermion.diagonalize_fermionic_hamiltonian") has a new `policy` argument, which selects the schedule each iteration follows: how the sampled configurations become subspaces, whether one round of diagonalizations leads to another, which result the iteration reports, and which CI strings seed the next one. Trim SQD is chosen by passing a [`TrimPolicy`](/docs/api/qiskit-addon-sqd/trim#qiskit_addon_sqd.trim.TrimPolicy "qiskit_addon_sqd.trim.TrimPolicy"). The argument defaults to [`StandardPolicy`](/docs/api/qiskit-addon-sqd/fermion#qiskit_addon_sqd.fermion.StandardPolicy "qiskit_addon_sqd.fermion.StandardPolicy"), the behavior this function has always had, so omitting it changes nothing.
 
