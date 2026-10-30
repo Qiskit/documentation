@@ -1,42 +1,99 @@
 ---
-title: Managed workflows
+title: Introduction to managed workflows
 description: Deploy your own quantum-classical workflows to IBM Quantum Functions and run them on managed classical compute.
 ---
 
-# Managed workflows
+# Introduction to managed workflows
 
-Managed workflows run your own Python code on managed classical compute that IBM Quantum&reg; Platform provides. Use a managed workflow when no [pre-built Catalog Function](/docs/guides/compute-services#functions) covers your task, or when you want to package your own method as a reusable function.
+<Admonition type="info" title="Plan availability">
+IBM Quantum Functions and managed workflows are beta features available only to Premium, Flex, and On-Prem (via IBM Quantum Platform API) plan users.
+</Admonition>
 
-## What Functions manages for you
+Managed workflows run your custom Python code on classical compute that IBM Quantum&reg; Platform manages for you. Use managed workflows to run hybrid quantum-classical workflows, large-scale diagonalization, and long-running parallel tasks without managing compute infrastructure or storage.
 
-You provide the code. IBM Quantum Functions manages the rest of the run, so you do not provision machines or build an environment yourself:
+## When to use a managed workflow
 
-- **Compute.** Functions allocates the CPU, memory, and GPUs that you choose with a [compute profile](#compute-profiles).
-- **Environment.** Functions installs and pre-compiles all of the workflow's packages before the job starts.
-- **Storage.** Functions sets up storage for the files that the workflow reads and writes.
-
-## What you can do
+Use a managed workflow when no [pre-built Catalog Function](/docs/guides/compute-services#functions) covers your task, or when you want to package your own method as a reusable function. Managed workflows are a good fit when you want to do the following:
 
 - **Run long jobs in the cloud.** A managed workflow keeps running when you close your laptop, and you can reconnect to the job later.
-- **Use large-memory and GPU nodes.** Choose a [compute profile](#compute-profiles) that matches the memory, CPU, and GPU needs of the workload.
-- **Run tasks in parallel.** Split classical pre-processing and post-processing across workers.
-- **Share a reusable program.** Upload the workflow once and run it with different inputs.
+- **Use large-memory and GPU nodes.** Choose the memory, CPU, and GPU resources that the workload needs.
+- **Run tasks in parallel.** Scale out by running many single-node jobs at the same time.
+- **Share a reusable program.** Upload the workflow once, and collaborators in your instance can reuse it. *NOTE: check for launch.*
 
-## Compute profiles
+You provide the workflow code, its dependencies, and the compute sizes that it supports. Functions runs the workflow on IBM-managed compute in a pre-built environment with your packages installed, and provides cloud storage for the files that the workflow reads and writes.
 
-Each workflow runs with one compute profile. A profile name lists the CPU cores, the memory in GB, and, when present, the GPUs. For example, `24x120x1l40s` is 24 CPU cores, 120 GB of memory, and one NVIDIA L40S GPU.
+## How managed workflows work
 
-| Profile | CPU cores | Memory (GB) | GPUs |
-| - | - | - | - |
-| `8x32` | 8 | 32 | None |
-| `24x120x1l40s` | 24 | 120 | 1 L40S |
+You upload a workflow once and run as many jobs as you need. Every job works in the following ways:
 
-A workflow can define several sizes and a default size. If the workflow defines no sizes, it uses a default size. When you run a workflow, pass `function_size` to choose a size, or omit it to use the default.
+- The job starts in a new environment with an empty local disk. Functions shuts down the environment after the job ends.
+- The job runs on one of the compute sizes that you define when you upload the workflow. You can choose a different size for each run.
+- The job can read and write the workflow's file storage. Files in file storage remain after the job ends.
+
+Because each job starts with an empty local disk, a later job can find only the files that an earlier job saved to file storage.
+
+### Lifecycle of a run
+
+Each job runs asynchronously for up to 24 hours. You can run up to 20 jobs at the same time if your instance has enough allocation.
+
+![From your Python session, you call upload() once to upload the workflow's code, packages, and compute profiles. No job exists yet. Each call to run(args) creates a job that moves through these stages: Queue, where it waits for allocation with status QUEUED; Start, where Functions creates the environment with status INITIALIZING; Running, where your code can optionally set stages with update_status(): Mapping (RUNNING: MAPPING), Optimizing (RUNNING: OPTIMIZING_FOR_HARDWARE), Waiting for QPU (RUNNING: WAITING_FOR_QPU), Executing QPU (RUNNING: EXECUTING_QPU), and Post-processing (RUNNING: POST_PROCESSING); and Result, where the environment shuts down with status DONE, ERROR, or CANCELED. While running, the job reads and writes workflow file storage, which exists outside the job, is shared by all runs, and persists before and after each job. From your session, you can read status() from Queue onward, logs() from Running onward, and result() once the job reaches Result. All three remain available after the job ends.](/docs/images/guides/managed-workflows/lifecycle.svg)
+
+The following table describes each stage in the diagram and the job status that you see during that stage:
+
+| Stage | What happens | Job status |
+|---|---|---|
+| Upload | You upload the workflow's code, dependencies, and sizes. Functions rejects an invalid upload before any job runs. | None (no job yet) |
+| Queue | You call `run()`. Functions checks whether your instance has enough allocation, and schedules the job when compute is available. | `QUEUED` |
+| Start | Functions creates an environment with the compute profile that you selected. | `INITIALIZING` |
+| Run | Your workflow's entrypoint runs. The entrypoint can report its progress with `update_status()`, and you can read its logs with `logs()` while it runs. | `RUNNING`, or a stage that you set, such as `RUNNING: WAITING_FOR_QPU` |
+| Result | The job ends, and Functions shuts down its environment. Functions keeps the result and logs. | `DONE`, `ERROR`, or `CANCELED` |
+
+### What a running job can access
+
+Each job runs in an isolated environment, so it's important to know what your code can reach. The following diagram and table show the resources that a running job can use.
+
+![You call run() with arguments from your Python session and receive status, logs, and the result. Inside the managed workflow, each run executes in an isolated job environment with access to its compute (CPU, RAM, and optionally GPU), your code and packages, and its arguments. The job produces outputs with save_result(), logs, and update_status(), and submits QPU jobs that run on your instance. File storage and your instance, which provides access and cost management, are shared across all managed workflow jobs and persist after the job ends. The job has no internet access.](/docs/images/guides/managed-workflows/architecture.svg)
+
+| Resource | What the job can use |
+|---|---|
+| **Compute** | The CPU, memory, and GPUs of the [compute profile](/docs/managed-workflows/managed-workflow-compute-profiles) that you selected for the job. |
+| **Code and packages** | The files that you uploaded with the workflow, and the supported packages that are installed in the environment. |
+| **Arguments** | The arguments that you passed to `run()`. Read them with `get_arguments()`. |
+| **QPU access** | The credentials and instance that you used to call `run()`. QPU jobs that the workflow submits run on your instance and count against your usage. |
+| **Outputs** | A result that the job saves with `save_result()`, logs that the job prints, and status updates that the job sets with `update_status()`. |
+| **File storage** | [Files](/docs/managed-workflows/manage-files-across-managed-workflows) that all of your runs of the workflow share. Files remain in storage after the job ends. |
+| **Internet** | No access. A job cannot make outbound connections. Declare packages when you upload the workflow, and provide data as arguments or files. |
+
+### Security and isolation
+
+Isolation also protects your work. Functions isolates each job from other jobs and limits the privileges of the code that runs in it. The access boundaries in the preceding table are part of this isolation. Functions also applies the following protections:
+
+- **Job isolation.** No other job runs in your job's environment. This includes other users' jobs and your own jobs that run at the same time.
+- **Results, logs, storage.** Only the user who ran a job can read its results and logs. *Note: check how this works with instance / user permission model*
+- **Credentials.** Functions encrypts the credentials that a job uses, including your API token, when it stores them. Your workflow code can read these credentials while the job runs.
+- **Privileges.** Functions removes administrator-level privileges from the environment before your entrypoint starts.
+
+## Compare with on-premises HPC
+
+If you've used an on-premises HPC cluster, this section maps familiar tasks to managed workflows. Managed workflows differ from an on-premises HPC cluster in how you get compute time, set up software, and submit jobs. The following table compares common tasks.
+
+| Task | On-premises HPC cluster | Managed workflows |
+|---|---|---|
+| Get compute time | Request an allocation or a reservation from the cluster administrator. | Use the allocation of your IBM Quantum instance. Functions queues each job when you call `run()`. |
+| Access the system | Connect to a login node with SSH. | Use the Python client on your local computer. Managed workflows do not provide a login node. |
+| Install software | Build software, load modules, or ask an administrator to install packages. | Declare packages when you upload the workflow. Each package must be on the supported list and pinned to an exact version. Functions installs the packages before any job starts. |
+| Submit a job | Write a batch script and submit it to the scheduler. | Call `run()` with the job arguments. |
+| Request resources | Request nodes, CPUs, memory, and GPUs. | Select one of the compute sizes that are defined for the workflow. Each job runs on a single node. |
+| Run a parameter sweep | Submit a job array. | Call `run()` once for each set of arguments. |
+| Store shared files | Write to a shared scratch file system. | Write to the file storage for the workflow. |
+| Limit run time | Set a wall-time limit. | Functions cancels a job after 24 hours. |
+| Checkpoint long jobs | Write checkpoints to scratch storage. | Save intermediate results to file storage. |
+| Rerun a failed job | Resubmit the job. | Call `run()` again. Functions does not retry failed jobs automatically. |
+| Monitor jobs | Check the queue and log files from the login node. | Check the status, logs, and result of each job from your local Python session. |
 
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
-- Follow [Write your first Qiskit Serverless program](/docs/managed-workflows/serverless-first-program) to upload and run a program.
-- Read [Manage Qiskit Serverless compute and data resources](/docs/managed-workflows/serverless-manage-resources) to set resources and store files.
-- Start from a [Qiskit Function template](/docs/managed-workflows/qiskit-function-templates) for common workflows.
+- [Install](/docs/managed-workflows/install-managed-workflows) the client packages and authenticate.
+- [Deploy your first managed workflow](/docs/managed-workflows/deploy-first-managed-workflow) to upload a workflow, run it, and get its result.
 </Admonition>

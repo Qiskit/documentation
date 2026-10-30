@@ -1,0 +1,268 @@
+---
+title: "Manage files across workflows"
+description: "Upload input files for a managed workflow, read and write them in a job, and download the outputs."
+---
+
+{/* cspell:ignore libmagic */}
+
+# Manage files across workflows
+
+<Admonition type="caution" title="Placeholder content">
+- **Client class name.** `QiskitServerless` is being renamed. Update the code examples after the new name is decided.
+- **File storage path.** `/function_user_data` is the path where the Fleets runner mounts file storage. Confirm that it is a supported path before publishing.
+- **Supported file types.** The list of accepted and rejected types comes from the upload check in the gateway. Confirm the list, and whether CSV files will be accepted, before publishing.
+- **Max file size.** I think it's 50 MB? 
+</Admonition>
+
+A managed workflow job works like a batch job on an HPC compute node. The job's local disk is scratch space: the job can write to it, but Functions deletes it when the job ends. 
+
+You can leverage file stroage to persist data beyond a workflow's lifecycle:
+- File storage works like your own storage bucket. 
+- Files that you upload or your workflow saves remain after the job ends
+- Future workflow runs can read the files.
+
+Each workflow has its own file storage for each user. Other users who run the same workflow do not see your files.
+
+## Upload an input file
+
+Upload a file from your local notebook with `file_upload()`, then list the files in storage with `files()`:
+
+<CodeTitle title="run_workflow_remotely.ipynb" />
+```python
+from qiskit_ibm_catalog import QiskitServerless
+
+serverless = QiskitServerless()
+my_workflow = serverless.load("my-workflow")
+
+serverless.file_upload("hamiltonian.npz", my_workflow)
+print(serverless.files(my_workflow))
+```
+
+```text
+['hamiltonian.npz']
+```
+
+{/* REVIEW: the gateway sets no size limit for uploaded files (gateway/main/settings.py, specs/ARGUMENTS_LIMIT.md). The Helm ingress sets proxy-body-size to 50m. Confirm the limit in production. */}
+
+### Supported file types
+
+Functions checks the contents of each uploaded file, not its extension, and rejects files of other types:
+
+| Accepted | Rejected |
+| - | - |
+| JSON, plain text, YAML, and Python files; binary files such as NumPy (`.npy`, `.npz`), QPY, and pickle files; tar, gzip, and zip archives | CSV, PNG, PDF, HDF5, and empty files |
+
+Note: let's figure out if this is recent, and what the file size limitation actually is (50 MB?)
+
+### File names
+
+- **Use only letters, digits, underscores (`_`), hyphens (`-`), and periods (`.`).** Functions removes other characters, such as spaces, from the name when you download or delete a file. For example, you can upload `my results.json`, but you cannot download it.
+- **File storage has no folders.** `file_upload()` keeps only the file name, so `inputs/params.json` is stored as `params.json`.
+
+{/* REVIEW: upload does not sanitize file names, but download and delete do (gateway/api/utils.py sanitize_file_name()). Confirm whether upload should reject or sanitize these names. */}
+
+### Read files in a workflow
+
+Pass the name of the file when you run the workflow:
+
+<CodeTitle title="run_workflow_remotely.ipynb" />
+```python
+job = my_workflow.run(input_file="hamiltonian.npz")
+```
+
+To enable this, edit your workflow code to read the file from `/function_user_data`, which is where every job sees file storage:
+
+<CodeTitle title="my_workflow/my_workflow.py" />
+```python
+from pathlib import Path
+
+import numpy as np
+from qiskit_serverless import get_arguments
+
+FILE_STORAGE = Path("/function_user_data")
+
+arguments = get_arguments()
+hamiltonian = np.load(FILE_STORAGE / arguments["input_file"])
+```
+
+Inside a job, read and write files through this folder. The client file methods, such as `file_upload()` and `file_download()`, are for your local notebook.
+
+To read an archive, extract it to the local disk:
+
+<CodeTitle title="my_workflow/my_workflow.py" />
+```python
+import tarfile
+
+with tarfile.open(FILE_STORAGE / "inputs.tar.gz") as tar:
+    tar.extractall("/tmp/inputs", filter="data")
+```
+
+Write temporary files to `/tmp`. File storage is object storage that the job sees as a folder, so it is slower than the local disk. Do heavy reads and writes on the local disk, and copy finished files to file storage.
+
+{/* REVIEW: confirm how the mount behaves for appends, renames, and partial writes, and how soon a file that one job writes is visible to a job that is running at the same time. */}
+
+## Save output files
+
+Your local notebook reads the names of the output files from the result:
+
+<CodeTitle title="run_workflow_remotely.ipynb" />
+```python
+result = job.result()
+print(result["output_files"])  # ['energies.npy', 'summary.json']
+```
+
+You can set this up as follows. Save each output file at the top level of `/function_user_data`, and return the file names with `save_result()`:
+
+<CodeTitle title="my_workflow/my_workflow.py" />
+```python
+import json
+
+from qiskit_serverless import save_result
+
+np.save(FILE_STORAGE / "energies.npy", energies)
+(FILE_STORAGE / "summary.json").write_text(json.dumps({"min_energy": float(energies.min())}))
+
+save_result({"output_files": ["energies.npy", "summary.json"]})
+```
+
+Files that the job writes outside `/function_user_data`, such as in `/tmp` or the current folder, are deleted when the job ends.
+
+{/* REVIEW: confirm that the mount stores /function_user_data/<folder>/<file> as the storage key .../data/<folder>/<file>, so that later jobs can read subfolders. file_download() can't fetch these files: sanitize_file_name() strips "/", and files() lists only the base name (file_storage_fleets.py get_public_files()). */}
+
+### Download output files
+
+After the job ends, download each file with `file_download()`. Set `target_name` to choose the local file name, and `download_location` to choose an existing local folder:
+
+<CodeTitle title="run_workflow_remotely.ipynb" />
+```python
+from pathlib import Path
+
+Path("outputs").mkdir(exist_ok=True)
+
+for name in result["output_files"]:
+    serverless.file_download(name, my_workflow, target_name=name, download_location="outputs")
+```
+
+Without `target_name`, `file_download()` adds a random prefix to the local file name, such as `downloaded_3f2a9c1b_energies.npy`, and returns the name that it used.
+
+### Download many outputs as one archive
+
+If a job saves many output files, or files in subfolders, bundle them into one archive in the workflow, and download only the archive:
+
+<CodeTitle title="run_workflow_remotely.ipynb" />
+```python
+import tarfile
+
+serverless.file_download(result["archive"], my_workflow, target_name=result["archive"], download_location="outputs")
+
+with tarfile.open(Path("outputs") / result["archive"]) as tar:
+    tar.extractall("outputs", filter="data")
+```
+
+To enable this, write the outputs to a folder on the local disk, add the folder to an archive in `/tmp`, and copy the archive to file storage:
+
+<CodeTitle title="my_workflow/my_workflow.py" />
+```python
+import shutil
+import tarfile
+
+output_dir = Path("/tmp/outputs")
+output_dir.mkdir()
+np.save(output_dir / "energies.npy", energies)
+# Save other outputs, including subfolders, to output_dir
+
+archive_name = f"{run_name}_outputs.tar.gz"
+with tarfile.open(Path("/tmp") / archive_name, "w:gz") as tar:
+    tar.add(output_dir, arcname=run_name)
+shutil.copy(Path("/tmp") / archive_name, FILE_STORAGE / archive_name)
+
+save_result({"archive": archive_name})
+```
+
+Because the archive is built on the local disk and copied in one step, file storage never holds an incomplete archive. The archive keeps the folder structure, and it can contain files of any type. In this example, the files are extracted to `outputs/<run_name>/`.
+
+## Delete files
+
+Functions does not delete files from file storage, so files remain until you delete them with `file_delete()`:
+
+<CodeTitle title="run_workflow_remotely.ipynb" />
+```python
+serverless.file_delete("hamiltonian.npz", my_workflow)
+```
+
+`file_delete()` reports success even if the file does not exist, so check the name with `files()` first. To delete all the files of one run, filter `files()` by the run's name prefix, as described in the next section:
+
+<CodeTitle title="run_workflow_remotely.ipynb" />
+```python
+for name in serverless.files(my_workflow):
+    if name.startswith("theta-0.1_"):
+        serverless.file_delete(name, my_workflow)
+```
+
+{/* REVIEW: on Fleets, deleting a missing file returns "Requested file was deleted." because gateway/core/ibm_cloud/cos/cos_client.py delete_object() treats a missing key as deleted. Confirm whether file_delete() should return 404 instead. */}
+
+## Best practice: give each run's files a unique name
+
+All of your runs of a workflow share the same file storage, and a file that a job saves replaces any stored file with the same name. If you start several runs at once and each run saves `energies.npy`, only the last one is kept.
+
+As a best practice, pass a run name as an argument, and start the name of every file that the run saves with it:
+
+<CodeTitle title="run_workflow_remotely.ipynb" />
+```python
+jobs = {}
+for theta in [0.1, 0.2, 0.3]:
+    run_name = f"theta-{theta}"
+    jobs[run_name] = my_workflow.run(run_name=run_name, theta=theta, input_file="hamiltonian.npz")
+```
+
+<CodeTitle title="my_workflow/my_workflow.py" />
+```python
+run_name = arguments["run_name"]
+np.save(FILE_STORAGE / f"{run_name}_energies.npy", energies)
+```
+
+All runs can read the same input file, `hamiltonian.npz`, because they only read it. Upload a shared input once, before you start the runs.
+
+Use run names that you can recognize later, and that contain only letters, digits, underscores, hyphens, and periods. With one prefix for each run, you can find, download, and [delete](#delete-files) the files of a run together.
+
+## Best practice: checkpoint long jobs
+
+A job that is canceled, fails, or reaches the 24-hour limit loses everything that is not in file storage. For long runs, save a checkpoint to file storage at regular intervals, and resume from it when you run the workflow again with the same run name:
+
+<CodeTitle title="my_workflow/my_workflow.py" />
+```python
+import json
+import shutil
+
+checkpoint = FILE_STORAGE / f"{run_name}_checkpoint.json"
+
+state = {"step": 0, "params": initial_params}
+if checkpoint.exists():
+    state = json.loads(checkpoint.read_text())
+
+for step in range(state["step"], num_steps):
+    state["params"] = optimize_step(state["params"])
+    state["step"] = step + 1
+
+    if state["step"] % 10 == 0:
+        local_copy = Path("/tmp") / checkpoint.name
+        local_copy.write_text(json.dumps(state))
+        shutil.copy(local_copy, checkpoint)
+```
+
+To continue a run that stopped, call `run()` again with the same arguments.
+
+Keep the following points in mind:
+
+- **Write the checkpoint to the local disk first, then copy it.** If the job stops during a write, the stored checkpoint is incomplete, and the next run cannot read it.
+- **Choose an interval that matches the cost of a step.** Save often enough that you do not lose much work, but not so often that writing checkpoints slows the job.
+- **Delete checkpoints after the run succeeds**, so that a later run with the same name starts from the beginning.
+
+For a job that is canceled, you can also save partial results in a [`SIGTERM` handler](/docs/managed-workflows/managed-workflow-errors-and-progress#clean-up-when-a-job-is-canceled).
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+- [Run workflows in parallel](/docs/managed-workflows/run-managed-workflows-in-parallel) to start one job for each input.
+- [Handle errors and report progress](/docs/managed-workflows/managed-workflow-errors-and-progress) to save partial results when a job is canceled.
+</Admonition>

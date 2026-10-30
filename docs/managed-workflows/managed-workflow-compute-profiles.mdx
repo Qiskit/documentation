@@ -1,0 +1,176 @@
+---
+title: "Choose a compute profile"
+description: "Choose the CPU, memory, and GPU resources for a managed workflow, and define sizes that match the size of the problem."
+---
+
+# Choose a compute profile
+
+<Admonition type="caution" title="Placeholder content">
+- **Client class name.** `QiskitServerless` is being renamed. Update the code examples after the new name is decided.
+- **Profile discovery.** `compute_profiles()` and `compute_profile()` come from `qiskit-serverless` PR 2647. Publish after a `qiskit-serverless` release that includes it, and a `qiskit-ibm-catalog` release that exposes both methods on the client.
+- **Profiles and startup times.** Confirm the profile list and the startup times before publishing.
+- **Concurrent job limits.** This section moved to [Run workflows in parallel](/docs/managed-workflows/run-managed-workflows-in-parallel). Apply that change before publishing.
+</Admonition>
+
+Managed workflows run on compute profiles. A compute profile is a fixed combination of vCPUs, memory, and GPUs, much like the resources that you request from an HPC scheduler. When you upload a workflow, you map its sizes, such as `S` and `M`, to profiles, and each run picks one of those sizes. The job then runs on its own node with that profile, and keeps the profile until the job ends.
+
+| Profile | vCPUs | Memory (GB) | GPUs | Startup time |
+| - | - | - | - | - |
+| `8x32` | 8 | 32 | None | TBD |
+| `16x128` | 16 | 128 | None | TBD |
+| `48x768` | 48 | 768 | None | TBD |
+| `128x1500` | 128 | 1500 | None | TBD |
+| `24x120x1l40s` | 24 | 120 | 1 L40S | TBD |
+| `20x320x2a100` | 20 | 320 | 2 A100 | TBD |
+| `80x1200x8a100` | 80 | 1200 | 8 A100 | TBD |
+| `160x1792x8h100` | 160 | 1792 | 8 H100 | TBD |
+
+A profile ID has the form `{cpu}x{memory}`, with memory in GB, or `{cpu}x{memory}x{count}{gpu}` for a profile with GPUs. For example, `24x120x1l40s` has 24 vCPUs, 120 GB of memory, and one NVIDIA L40S GPU.
+
+## Check available profiles
+
+To see which profiles are available, call `compute_profiles()`:
+
+{/* REVIEW: requires release with PR 2647 */}
+<CodeTitle title="run_workflow_remotely.ipynb" />
+```python
+from qiskit_ibm_catalog import QiskitServerless
+
+serverless = QiskitServerless()
+print(serverless.compute_profiles())
+```
+
+```text
+8x32            (8 vCPU / 32 GB)
+16x128          (16 vCPU / 128 GB)
+48x768          (48 vCPU / 768 GB)
+128x1500        (128 vCPU / 1500 GB)
+24x120x1l40s    (24 vCPU / 120 GB / 1l40s)
+20x320x2a100    (20 vCPU / 320 GB / 2a100)
+80x1200x8a100   (80 vCPU / 1200 GB / 8a100)
+160x1792x8h100  (160 vCPU / 1792 GB / 8h100)
+```
+
+### Look up a profile by its resources
+
+Instead of typing a profile ID, you can describe the resources that your workflow needs with `compute_profile()`, and use the result as a value in `sizes_map`. Pass `cpu` and `memory` in GB, and pass `gpu` for a GPU profile:
+
+{/* REVIEW: requires release with PR 2647 */}
+<CodeTitle title="run_workflow_remotely.ipynb" />
+```python
+profile = serverless.compute_profile(cpu=24, memory=120, gpu="1l40s")
+print(profile)  # 24x120x1l40s
+```
+
+`compute_profiles()` returns a list, so you can also filter it yourself, for example to find the GPU profiles:
+
+<CodeTitle title="run_workflow_remotely.ipynb" />
+```python
+gpu_profiles = [p for p in serverless.compute_profiles() if p.gpu]
+```
+
+## Set a default compute profile for your workflow
+
+Most workflows start with one size. Map it to a profile with `sizes_map`, and make it the default with `default_size`, when you upload the workflow:
+
+<CodeTitle title="run_workflow_remotely.ipynb" />
+```python
+from qiskit_ibm_catalog import QiskitFunction, QiskitServerless
+
+serverless = QiskitServerless()
+
+my_workflow = serverless.upload(
+    QiskitFunction(
+        title="my-workflow",
+        entrypoint="my_workflow.py",
+        working_dir="./my_workflow/",
+        runner="fleets",
+        sizes_map={"M": "16x128"},
+        default_size="M",
+    )
+)
+```
+
+Every run of the workflow uses this profile, so you don't need to pass a size when you run it:
+
+<CodeTitle title="run_workflow_remotely.ipynb" />
+```python
+job = my_workflow.run(circuits=circuits)  # Runs on 16x128
+```
+
+## Best practice: match sizes to problem sizes
+
+Your workflows are designed to solve specific problems, and might require different compute profiles as you increase scale and complexity. With a workflow-specific `sizes_map`, you can do the following:
+
+- Give large problems enough compute resources to run to completion.
+- Keep small problems from taking a larger node than they need.
+
+You can base the sizes on whatever drives your workflow's memory and CPU use, such as the subspace size, the number of batches, or the number of qubits.
+
+### Define the sizes
+
+You can map up to four sizes, for small (`S`), medium (`M`), large (`L`), and extra-large (`XL`) problems. For example, a workflow with three sizes looks like this:
+
+<CodeTitle title="run_workflow_remotely.ipynb" />
+```python
+sizes_map = {"S": "8x32", "M": "16x128", "L": "128x1500"}
+
+my_workflow = serverless.upload(
+    QiskitFunction(
+        title="my-workflow",
+        entrypoint="my_workflow.py",
+        working_dir="./my_workflow/",
+        runner="fleets",
+        sizes_map=sizes_map,
+        default_size="M",
+    )
+)
+```
+
+
+### Size rules
+
+Size labels must be `S`, `M`, `L`, or `XL`, so a workflow can define up to four sizes. Functions matches labels without regard to case and stores them in uppercase. Two sizes can map to the same profile.
+
+Functions rejects the first upload of a workflow in the following cases:
+
+- A label is not `S`, `M`, `L`, or `XL`.
+- You set `sizes_map` without `default_size`, or `default_size` without `sizes_map`.
+- `default_size` is not one of the labels in `sizes_map`.
+- A value in `sizes_map` is not an available compute profile.
+
+### Change sizes on re-upload
+
+When you upload the workflow again with the same `title`, Functions handles the sizes as follows:
+
+- If you set `sizes_map`, the new sizes replace all of the stored sizes.
+- If you omit `sizes_map`, Functions keeps the stored sizes and the default.
+- To change only the default, set `default_size` without `sizes_map`. It must be one of the stored sizes.
+
+Set `default_size` every time that you set `sizes_map`. A re-upload does not require it, so if the new sizes do not include the old default, the workflow has no default, and every run without `function_size` fails.
+
+## Choose a size for each run
+
+Pass `function_size` to `run()` to choose one of the workflow's sizes for that job. If you omit it, the job uses the workflow's default size:
+
+<CodeTitle title="run_workflow_remotely.ipynb" />
+```python
+print(my_workflow.sizes())  # {'S': '8x32', 'M': '16x128', 'L': '128x1500'}
+print(my_workflow.get_default_size())  # 'M'
+
+job = my_workflow.run(function_size="L", circuits=circuits)  # Runs on 128x1500
+job = my_workflow.run(circuits=circuits)  # Runs on the default size, M
+```
+
+`sizes()` and `get_default_size()` return the sizes that were stored when you loaded the workflow. To see sizes that changed after that, load the workflow again.
+
+## Troubleshoot sizes
+
+| Problem | Cause |
+| - | - |
+| The upload fails with `Invalid size '...'. Valid sizes are: S, M, L, XL.` | A label in `sizes_map` is not one of the four supported labels. |
+| The upload fails with `Unknown compute profile '...' for size '...'.` | A value in `sizes_map` is not an available profile. Check the ID with `compute_profiles()`, or use `compute_profile()` to look it up. |
+| `compute_profile()` fails with `No compute profile matches ...` | No profile has exactly those resources. For a GPU profile, also pass `gpu`. Pick a profile from the list in the error. |
+| The upload fails with `'default_size' is required when 'sizes' is provided.` | The first upload sets `sizes_map` without `default_size`. |
+| `run()` fails with `Unknown function size '...' for this function. Available sizes: ...` | The workflow does not define the size that you passed to `function_size`. |
+| `run()` fails with `This function has no size.` | A re-upload replaced the sizes and removed the default. Upload again with `default_size`, or pass `function_size`. |

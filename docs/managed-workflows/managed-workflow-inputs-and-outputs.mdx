@@ -1,0 +1,206 @@
+---
+title: "Define inputs and outputs"
+description: "Pass arguments into a managed workflow and return results from it."
+---
+
+{/* cspell:ignore shotz */}
+
+# Define inputs and outputs
+
+<Admonition type="caution" title="Placeholder content">
+- **Client class name.** `QiskitServerless` is being renamed. Update the code examples after the new name is decided.
+- **Confirm the maximum argument size**. I have 32 MB but needs confirmation.
+</Admonition>
+
+A managed workflow works like a Python function that runs on remote compute. Compare a local function with the same code as a workflow:
+
+<CodeTitle title="Local Python" />
+```python
+def my_workflow(circuits, shots=4096):
+    ...
+    return {"counts": counts}
+
+result = my_workflow(circuits=circuits, shots=1024)
+```
+
+In a managed workflow, `run()` is the call, `get_arguments()` gives the workflow its parameters, and `save_result()` is its `return` statement. Because the workflow runs as a separate job on remote compute, it differs from a local function call in three ways:
+
+- **Arguments and results are encoded on the way.** Each value must be one that the client can encode, and some types change. See [Read arguments in your workflow](#read-arguments-in-your-workflow).
+- **The call does not wait.** `run()` returns a job right away, and you read the result later with `job.result()`. See [Save results](#save-results).
+- **Nothing checks the call.** A Python function rejects an unknown keyword argument, but a workflow ignores it unless you attach a schema. See [Best practice: validate arguments with a schema](#best-practice-validate-arguments-with-a-schema).
+
+![Your local notebook, run_workflow_remotely.ipynb, calls run(args). Functions runs an optional schema check, then creates the managed workflow job, my_workflow/my_workflow.py. The job reads its arguments with get_arguments(), runs your code, such as mapping, transpiling circuits, running primitives, and post-processing, and returns a result with save_result(). Functions stores the result, and your notebook reads it with job.result().](/docs/images/guides/managed-workflows/inputs-outputs.svg)
+
+## Read arguments in your workflow
+
+Pass inputs to your workflow from your local notebook:
+
+<CodeTitle title="run_workflow_remotely.ipynb" />
+```python
+job = my_workflow.run(circuits=circuits, shots=1024)
+```
+
+To enable this, edit your workflow code to fetch arguments with `get_arguments()`, which is a dictionary whose keys are the argument names:
+
+<CodeTitle title="my_workflow/my_workflow.py" />
+```python
+from qiskit_serverless import get_arguments
+
+arguments = get_arguments()
+circuits = arguments["circuits"]
+shots = arguments.get("shots", 4096)
+```
+
+The dictionary contains only the arguments that the run passed, so use `arguments.get()` with a default value for optional arguments. You can freely name arguments except the following protected keywords: `config` and `function_size`, because `run()` uses these directly.
+
+{/* REVIEW: run() also rejects compute_profile (function.py RunnableQiskitFunction.run). Decide whether to mention it. */}
+
+### Supported argument types
+
+Each value must be JSON-serializable, or an object that the client can encode, such as a Qiskit circuit or a NumPy array. Because the client encodes each argument before it sends the job and `get_arguments()` decodes it inside the workflow, the workflow receives the original Python object.
+
+The client sends `int`, `float`, `str`, `bool`, `None`, and lists or dictionaries of these unchanged. It encodes other objects, such as a `QuantumCircuit`, a `numpy.ndarray`, or a `complex` number, as a dictionary with a `__type__` tag and a `__value__`. You need this form when you [write an argument schema](#best-practice-validate-arguments-with-a-schema).
+
+Because JSON has no equivalent, some types change on the way: tuples arrive as lists, dictionary keys arrive as strings, and NumPy integers such as `np.int64` arrive as `int`. If the client cannot encode a value, such as `bytes` or `np.float32`, `run()` raises a `TypeError` and does not create a job.
+
+Some objects cannot be passed as arguments. For example, pass a backend's name as a string instead of a `Backend` object, and create the backend inside the workflow. See [Linking quantum jobs](/docs/managed-workflows/link-quantum-jobs).
+
+### Size limits
+
+The arguments of one run can be up to 32 MB after encoding. Encoded objects are much larger than they look in Python. For example, one 100-qubit circuit with a depth of 100 encodes to about 39 KB, so a single run can take a batch of about 800 such circuits. For larger inputs, [upload a file](/docs/managed-workflows/manage-files-across-managed-workflows) and pass its name as an argument.
+
+{/* REVIEW: 32 MB is MAX_ARGUMENTS_LENGTH_MB, which is checked when the workflow declares a schema. The 50 MB request body limit applies to every run. Confirm the number to publish. */}
+
+## Save results
+
+Use `save_result()` at the end of your workflow to return a result to your notebook.
+
+<CodeTitle title="run_workflow_remotely.ipynb" />
+```python
+result = job.result()
+```
+
+You can set this up as follows:
+
+<CodeTitle title="my_workflow/my_workflow.py" />
+```python
+from qiskit_serverless import save_result
+
+if not save_result({"counts": counts, "circuit": isa_circuit}):
+    raise ValueError("The result could not be encoded.")
+```
+
+`save_result()` encodes the result in the same way that the client encodes arguments, and `job.result()` decodes it. A result can therefore contain the [supported argument types](#supported-argument-types), such as circuits, NumPy arrays, and the result of a primitive job, with the same type changes.
+
+- **Check the return value.** If `save_result()` cannot encode the value, it logs a warning and returns `False` instead of raising an error. Without a check, the job can end with the `DONE` status and no result.
+- **Only the last `save_result()` is stored.** Each call replaces the saved result. To return several values, save them in one dictionary, or write them to the logs.
+- **An empty dictionary means no result.** If the workflow never calls `save_result()`, `job.result()` returns `{}`.
+
+To return files, such as large arrays or plots, save them to [file storage](/docs/managed-workflows/manage-files-across-managed-workflows) and return their names in the result.
+
+## Best practice: validate arguments with a schema
+
+As a best practice, attach a [JSON Schema](https://json-schema.org/) to every workflow that takes arguments. The schema describes the arguments that the workflow accepts, and Functions checks the arguments of every run against it before it creates the job. If the arguments do not match, `run()` fails right away with an error that names the bad field, and no job is created. Without a schema, bad arguments reach the workflow after the job starts, and the workflow ignores a misspelled argument name.
+
+Set the schema with `arguments_schema` when you upload the workflow. Pass a dictionary, not a JSON string:
+
+<CodeTitle title="run_workflow_remotely.ipynb" />
+```python
+from qiskit_ibm_catalog import QiskitFunction, QiskitServerless
+
+arguments_schema = {
+    "type": "object",
+    "additionalProperties": False,
+    "required": ["circuits"],
+    "properties": {
+        "circuits": {
+            "type": "array",
+            "minItems": 1,
+            "items": {"$ref": "#/$defs/circuit"},
+        },
+        "shots": {"type": "integer", "minimum": 1, "maximum": 100000},
+        "backend_name": {"type": "string", "minLength": 1},
+    },
+    "$defs": {
+        "circuit": {
+            "type": "object",
+            "required": ["__type__", "__value__"],
+            "properties": {
+                "__type__": {"const": "QuantumCircuit"},
+                "__value__": {"type": "string"},
+            },
+        }
+    },
+}
+
+serverless = QiskitServerless()
+
+my_workflow = serverless.upload(
+    QiskitFunction(
+        title="my-workflow",
+        entrypoint="my_workflow.py",
+        working_dir="./my_workflow/",
+        runner="fleets",
+        arguments_schema=arguments_schema,
+    )
+)
+```
+
+Keep the following points in mind when you write a schema:
+
+- **Describe the encoded form of Qiskit and NumPy objects.** The schema checks the arguments as the client sends them, so a circuit is an object such as `{"__type__": "QuantumCircuit", "__value__": "<base64-encoded QPY>"}`, not a string or an array. Check the `__type__` tag, and treat `__value__` as an opaque string. A schema that describes a circuit as a string rejects every valid run.
+- **Set `"additionalProperties": false`.** Without it, a misspelled argument name, such as `shotz`, is silently ignored, and the workflow runs with its default value. Declare every argument that the workflow accepts before you turn this on.
+- **Mark arguments as required** if the workflow reads them without a default value.
+
+If the arguments do not match the schema, the error message names the rule and the location of the bad value:
+
+```text
+'type' validation failed, schema requires 'integer': rejected value '4096'
+path: ['shots']
+```
+
+A schema checks the type, shape, and range of each argument. It cannot check whether two valid arguments conflict, or whether a circuit fits a backend. Keep those checks in the workflow code.
+
+### Update or remove a schema
+
+- To replace the schema, set a new `arguments_schema` and upload the workflow again.
+- To remove the schema, upload the workflow with `arguments_schema={}`.
+- If you upload the workflow without `arguments_schema`, Functions keeps the stored schema.
+
+To see the schema that is in effect, read `my_workflow.arguments_schema`. A value of `None` means that the workflow has no schema.
+
+### Check arguments before you run
+
+Call `validate_arguments()` to check a set of arguments against the schema without starting a job:
+
+<CodeTitle title="run_workflow_remotely.ipynb" />
+```python
+my_workflow.validate_arguments({"circuits": [circuit], "shots": 1024})
+# {'valid': True}
+```
+
+If the arguments are not valid, `validate_arguments()` raises a `QiskitServerlessException` with the same message that `run()` would return. If the workflow has no schema, any arguments are valid. A valid result does not guarantee that `run()` succeeds, because `run()` also checks other limits, such as the number of active jobs.
+
+### Schema rules
+
+Functions rejects the upload if the schema breaks any of the following rules:
+
+- The schema can be up to 64 KiB, with up to 64 levels of nesting and up to 200 subschemas.
+- References must point inside the same schema, such as `#/$defs/circuit`, and every reference must resolve. References to URLs or files are not allowed.
+- The schema must be an object or a boolean.
+
+Also avoid the following problems, which the upload does not catch:
+
+- **Nested quantifiers in `pattern`.** A pattern such as `^(a+)+$` can take a very long time to evaluate. Functions stops validation after a CPU time limit and rejects the run. Write patterns without a quantifier around a group that already contains one, such as `^ibm_[a-z0-9_]{1,40}$`.
+- **`false` as a schema.** The schema `false` rejects every run. To remove validation, use `{}`.
+
+### Troubleshoot a schema
+
+| Problem | Cause |
+| - | - |
+| Every run is rejected on a circuit argument. | The schema describes the circuit as a string or an array. Describe it as an object with a `__type__` tag. |
+| Valid runs are rejected. | `additionalProperties` is `false`, and the schema does not declare an argument that the run passes. The error `path` names the argument. |
+| Invalid runs are not rejected. | The workflow has no schema. Check `my_workflow.arguments_schema`. |
+| No run is checked, although you set a schema. | The schema was passed as a JSON string. Pass a dictionary. |
+| The upload fails with a `400` error. | The schema breaks one of the [schema rules](#schema-rules). |
+| The error says that validation took too much CPU time. | A `pattern` has nested quantifiers. Rewrite the pattern. |
