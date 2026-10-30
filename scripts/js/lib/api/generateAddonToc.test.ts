@@ -227,7 +227,7 @@ test("full shape with Tutorials and API reference captions", async () => {
         children: [
           {
             title: "Python API reference",
-            url: "https://quantum.cloud.ibm.com/docs/api/my-addon",
+            url: "/docs/api/my-addon",
           },
           {
             title: "Release notes",
@@ -239,7 +239,7 @@ test("full shape with Tutorials and API reference captions", async () => {
   });
 });
 
-test("API reference caption: external links pass through unchanged", async () => {
+test("API reference caption: entries are rewritten to /docs/api/<package>, ignoring href", async () => {
   const { artifactDir } = await makeTestDirs(
     [{ href: "#", title: "Home" }],
     [
@@ -262,7 +262,7 @@ test("API reference caption: external links pass through unchanged", async () =>
 
   expect(apiSection?.children?.[0]).toEqual({
     title: "Python API reference",
-    url: "https://example.com/api/my-addon",
+    url: "/docs/api/my-addon",
   });
 });
 

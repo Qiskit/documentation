@@ -62,6 +62,14 @@ export class Pkg {
    * C API packages share the docs page of their Python sibling.
    */
   readonly hasAddonDocs: boolean;
+  /**
+   * Pkg names for each entry in this addon's "API reference" toctree caption,
+   * in the order they appear in index.rst. Single-language addons don't need
+   * to set this; it defaults to [this.name]. Multi-language addons (e.g.
+   * qiskit-fermions, which lists a Python and a C entry) need one name per
+   * entry so generateAddonToc.ts knows which registry package each maps to.
+   */
+  readonly apiReferencePackages: string[];
   /** Slugs of docs/tutorials/ notebooks to surface under this addon's tutorials route. */
 
   static ADDON_NAMES = [
@@ -104,6 +112,7 @@ export class Pkg {
     artifactPackageName?: string;
     hasRootNamespaceFile?: boolean;
     hasAddonDocs?: boolean;
+    apiReferencePackages?: string[];
   }) {
     this.name = kwargs.name;
     this.title = kwargs.title;
@@ -119,6 +128,7 @@ export class Pkg {
     this.artifactPackageName = kwargs.artifactPackageName ?? this.name;
     this.hasRootNamespaceFile = kwargs.hasRootNamespaceFile ?? false;
     this.hasAddonDocs = kwargs.hasAddonDocs ?? false;
+    this.apiReferencePackages = kwargs.apiReferencePackages ?? [this.name];
   }
 
   static async fromArgs(
@@ -251,6 +261,7 @@ export class Pkg {
         githubSlug: "Qiskit/qiskit-fermions",
         kebabCaseAndShortenUrls: true,
         language: "Python",
+        apiReferencePackages: ["qiskit-fermions", "qiskit-fermions-c"],
         hasAddonDocs: true,
       });
     }

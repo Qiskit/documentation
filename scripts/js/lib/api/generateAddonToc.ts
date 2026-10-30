@@ -114,13 +114,57 @@ async function buildSectionsFromSidebar(
   $(".sidebar-tree > p.caption").each((_, caption) => {
     const title = $(caption).find(".caption-text").text().trim();
     const ul = $(caption).next("ul");
-    const children = parseTocUl($, ul, pkg, addonUrlBase);
+    const children =
+      title.toLowerCase() === "api reference"
+        ? parseApiReferenceUl($, ul, pkg)
+        : parseTocUl($, ul, pkg, addonUrlBase);
     if (title && children.length > 0) {
       captionedSections.push({ title, children });
     }
   });
 
   return { mainChildren, captionedSections };
+}
+
+/**
+ * Converts the <ul> under the "API reference" caption into TocEntry objects.
+ *
+ * Unlike parseTocUl, this never reads an entry's href or descends into its
+ * children — an entry here can point at a hosted URL or at a local
+ * apidocs/index (whose whole subtree Sphinx renders into that <li>), and
+ * either way we discard it and generate our own /docs/api/{pkg} link. This
+ * is what lets maintainers reference their local apidocs/index directly
+ * instead of hand-authoring a hosted URL.
+ */
+function parseApiReferenceUl(
+  $: ReturnType<typeof load>,
+  ul: ReturnType<ReturnType<typeof load>>,
+  pkg: Pkg,
+): TocEntry[] {
+  const items = ul.children("li").toArray().map((li) => {
+    const title = $(li).children("a").first().text().trim();
+    return { title, isReleaseNotes: title.toLowerCase() === "release notes" };
+  });
+
+  const languageEntryCount = items.filter((i) => !i.isReleaseNotes).length;
+  if (languageEntryCount !== pkg.apiReferencePackages.length) {
+    throw new Error(
+      `${pkg.name}: found ${languageEntryCount} entry/entries in the "API ` +
+        `reference" caption (excluding "Release notes"), but ` +
+        `Pkg.apiReferencePackages declares ${pkg.apiReferencePackages.length} ` +
+        `(${pkg.apiReferencePackages.join(", ")}). These must match 1:1, in order.`,
+    );
+  }
+
+  let languageIndex = 0;
+  return items.map(({ title, isReleaseNotes }) => {
+    if (isReleaseNotes) {
+      return { title, url: `${DOCS_BASE_PATH}/api/${pkg.name}/release-notes` };
+    }
+    const url = `${DOCS_BASE_PATH}/api/${pkg.apiReferencePackages[languageIndex]}`;
+    languageIndex++;
+    return { title, url };
+  });
 }
 
 /**
