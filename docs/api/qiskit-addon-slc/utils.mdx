@@ -20,12 +20,38 @@ This module provides a number of utility functions. Some of these exist only tem
 
 ### find\_indices
 
-<Function id="qiskit_addon_slc.utils.find_indices" github="https://github.com/Qiskit/qiskit-addon-slc/tree/main/qiskit_addon_slc/utils/find_indices.py#L28-L66" signature="find_indices(circuit, bits_or_instruction, /)">
+<Function id="qiskit_addon_slc.utils.find_indices" github="https://github.com/Qiskit/qiskit-addon-slc/tree/stable/0.2/python/qiskit_addon_slc/utils/find_indices.py#L28-L94" signature="find_indices(circuit, bits_or_instruction, /)">
   Find the qubit-indices of the provided bit indices or circuit instructions.
 
   <Admonition title="Caution" type="note">
     This function is not considered part of the stable API! It will get removed without warning or deprecation when the same functionality is supported natively by the Qiskit SDK. See [this issue](https://github.com/Qiskit/qiskit/issues/14558) for more details.
   </Admonition>
+
+  A sequence of bits maps to a list of indices, in the order the bits were given:
+
+  ```python
+  >>> from qiskit import QuantumCircuit
+  >>> from qiskit_addon_slc.utils import find_indices
+  ```
+
+  ```python
+  >>> circuit = QuantumCircuit(3)
+  >>> find_indices(circuit, [circuit.qubits[2], circuit.qubits[0]])
+  [2, 0]
+  ```
+
+  A single bit maps to a single index, and an instruction to the indices of the qubits it acts on:
+
+  ```python
+  >>> find_indices(circuit, circuit.qubits[1])
+  1
+  ```
+
+  ```python
+  >>> _ = circuit.cx(2, 0)
+  >>> find_indices(circuit, circuit.data[0])
+  [2, 0]
+  ```
 
   **Parameters**
 
@@ -38,72 +64,85 @@ This module provides a number of utility functions. Some of these exist only tem
 
   **Raises**
 
-  [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError) – when an unexpected type of `bits_or_instruction` gets provided.
+  [**TypeError**](https://docs.python.org/3/builtins/exceptions.html#TypeError) – when an unexpected type of `bits_or_instruction` gets provided.
 
   **Return type**
 
-  [int](https://docs.python.org/3/library/functions.html#int) | [list](https://docs.python.org/3/library/stdtypes.html#list)\[[int](https://docs.python.org/3/library/functions.html#int)]
+  [int](https://docs.python.org/3/builtins/functions.html#int) | [list](https://docs.python.org/3/builtins/stdtypes.html#list)\[[int](https://docs.python.org/3/builtins/functions.html#int)]
 </Function>
 
 ### generate\_noise\_model\_paulis
 
-<Function id="qiskit_addon_slc.utils.generate_noise_model_paulis" github="https://github.com/Qiskit/qiskit-addon-slc/tree/main/qiskit_addon_slc/utils/noise_model_paulis.py#L34-L96" signature="generate_noise_model_paulis(instructions, coupling_map=None, circuit=None)">
+<Function id="qiskit_addon_slc.utils.generate_noise_model_paulis" github="https://github.com/Qiskit/qiskit-addon-slc/tree/stable/0.2/python/qiskit_addon_slc/utils/noise_model_paulis.py#L34-L96" signature="generate_noise_model_paulis(instructions, coupling_map=None, circuit=None)">
   Generate the 1- and 2-weight Pauli terms for each of the unique 2q layer boxes provided.
 
   **Parameters**
 
-  *   **instructions** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*CircuitInstruction*](/docs/api/qiskit/qiskit.circuit.CircuitInstruction)*]*) – the output of [`find_unique_box_instructions()`](/docs/api/samplomatic/auto/utils-find-unique-box-instructions#samplomatic.utils.find_unique_box_instructions "(in samplomatic)"). Any of the provided instructions are assumed to either consists of only measurement gates or correspond to a layer of 2-qubit gate instructions. For the former, the generated noise model will contain only single-qubit `X` errors, for the latter all 1- and 2-weight Pauli errors on the reduced coupling map will be included.
+  *   **instructions** ([*list*](https://docs.python.org/3/builtins/stdtypes.html#list)*\[*[*CircuitInstruction*](/docs/api/qiskit/qiskit.circuit.CircuitInstruction)*]*) – the output of [`find_unique_box_instructions()`](/docs/api/samplomatic/auto/utils-find-unique-box-instructions "(in samplomatic)"). Any of the provided instructions are assumed to either consists of only measurement gates or correspond to a layer of 2-qubit gate instructions. For the former, the generated noise model will contain only single-qubit `X` errors, for the latter all 1- and 2-weight Pauli errors on the reduced coupling map will be included.
   *   **coupling\_map** ([*CouplingMap*](/docs/api/qiskit/qiskit.transpiler.CouplingMap) *| None*) – the coupling map of the backend on which the instructions have been laid out. If this is `None`, a 1d line of qubits is assumed.
   *   **circuit** ([*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit) *| None*) – the transpiled circuit which has been laid out on the provided coupling map. This may only be `None` when the `coupling_map` is also `None`.
 
   **Returns**
 
-  A dictionary mapping the `ref` attributes of the [`InjectNoise`](/docs/api/samplomatic/auto/inject-noise#samplomatic.InjectNoise "(in samplomatic)") annotation of each unique Box to the 1- and 2-weight Pauli terms whose errors are learned for this box.
+  A dictionary mapping the `ref` attributes of the [`InjectNoise`](/docs/api/samplomatic/auto/inject-noise "(in samplomatic)") annotation of each unique Box to the 1- and 2-weight Pauli terms whose errors are learned for this box.
 
   **Return type**
 
-  [dict](https://docs.python.org/3/library/stdtypes.html#dict)\[[str](https://docs.python.org/3/library/stdtypes.html#str), [*QubitSparsePauliList*](/docs/api/qiskit/qiskit.quantum_info.QubitSparsePauliList)]
+  [dict](https://docs.python.org/3/builtins/stdtypes.html#dict)\[[str](https://docs.python.org/3/builtins/stdtypes.html#str), [*QubitSparsePauliList*](/docs/api/qiskit/qiskit.quantum_info.QubitSparsePauliList)]
 </Function>
 
 ### get\_extremal\_eigenvalue
 
-<Function id="qiskit_addon_slc.utils.get_extremal_eigenvalue" github="https://github.com/Qiskit/qiskit-addon-slc/tree/main/qiskit_addon_slc/utils/davidson.py#L26-L78" signature="get_extremal_eigenvalue(spo, **kwargs)">
-  Finds the extremal eigenvalue of the provided operator.
+<Function id="qiskit_addon_slc.utils.get_extremal_eigenvalue" github="https://github.com/Qiskit/qiskit-addon-slc/tree/stable/0.2/python/qiskit_addon_slc/utils/davidson.py#L41-L160" signature="get_extremal_eigenvalue(spo, *, tol=1e-10, max_cycle=500, max_space=12, lindep=1e-11, **kwargs)">
+  Compute the spectral norm of a Hermitian Pauli operator (as a signed extremal eigenvalue).
 
-  This converts the provided operator to a sparse matrix whose minimal eigenvalue is required.
+  Given a Hermitian operator written as a weighted sum of Paulis, `C = sum_k a_k P_k`, this returns its most-negative eigenvalue. Because such an operator has a spectrum that is symmetric about zero, the magnitude of that eigenvalue is the operator’s spectral norm `||C||` (its largest eigenvalue in absolute value) – take `abs()` of the result if that is what you need. In this addon it is used to evaluate the commutator-norm error bound `||[E, O]||` for an error Pauli `E` and observable `O`.
 
-  <Admonition title="Note" type="note">
-    The current implementation is definitely not optimized in terms of performance.
-  </Admonition>
+  This exploits how a sum of Paulis lives in a space of dimension `2^(p + c)`, where `p` is the number of independent anticommuting pairs the Paulis generate and `c` counts the remaining commuting directions. The commuting directions are conserved, so this reduced operator is block-diagonal, with `2^c` blocks of size `2^p`. When these blocks are small enough each is diagonalized exactly, giving a result exact to machine precision. Otherwise, the reduced operator is instead solved with the compiled Rust Davidson solver (a diagonally-preconditioned Davidson iteration, which checks a converged eigenvalue with a short Lanczos iteration for a lower one before reporting it). This path is accurate but not exact, and the arguments below affect only it. It builds the whole `2^(p + c)`-dimensional operator in sparse form and holds a few vectors of that length, so its memory use grows with the qubit count of `spo`; callers are expected to bound it, as the bound computations do with `eigval_max_qubits`.
+
+  Note the sign convention: the returned eigenvalue is the most-negative one, so the spectral norm is its absolute value.
+
+  ```python
+  >>> from qiskit.quantum_info import SparsePauliOp
+  >>> from qiskit_addon_slc.utils import get_extremal_eigenvalue
+  ```
+
+  ```python
+  >>> operator = SparsePauliOp(["ZI", "IZ"], [1.0, 0.5])
+  >>> converged, eigenvalue = get_extremal_eigenvalue(operator)
+  >>> converged
+  True
+  >>> float(eigenvalue)
+  -1.5
+  >>> abs(eigenvalue)  # the spectral norm
+  1.5
+  ```
 
   **Parameters**
 
-  *   **spo** ([*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp)) – the operator whose minimal eigenvalue to find.
-
-  *   **kwargs** –
-
-      additional keyword arguments for [`davidson1()`](https://pyscf.org/pyscf_api_docs/pyscf.lib.html#pyscf.lib.linalg_helper.davidson1). When not specified otherwise, the following defaults will be used:
-
-      *   tol: 1e-6
-      *   max\_cycle: 500
-      *   max\_space: 12
-      *   lindep: 1e-11
-      *   max\_memory: 2000
-
-      Other values will default to PySCF’s default values.
+  *   **spo** ([*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp)) – the Hermitian operator whose most-negative eigenvalue (and hence spectral norm) to compute.
+  *   **tol** ([*float*](https://docs.python.org/3/builtins/functions.html#float)) – the convergence threshold of the iterative solver. It bounds the change of the eigenvalue between iterations and, unless rounding errors at the scale of the operator norm dominate, the residual norm of the eigenvector.
+  *   **max\_cycle** ([*int*](https://docs.python.org/3/builtins/functions.html#int)) – the maximum number of iterations of the iterative solver.
+  *   **max\_space** ([*int*](https://docs.python.org/3/builtins/functions.html#int)) – the maximum size of the subspace built up by the iterative solver. Once reached, the subspace is restarted from its `max_space // 2` lowest Ritz vectors.
+  *   **lindep** ([*float*](https://docs.python.org/3/builtins/functions.html#float)) – the fraction of its squared norm below which a new subspace vector, after being orthogonalized against the existing subspace, is considered linearly dependent on it (and, thus, discarded).
+  *   **kwargs** – **deprecated and ignored.** Additional keyword arguments used to be passed on to the `pyscf.lib.davidson1` solver that this function no longer uses. They are still accepted for backwards compatibility, but have no effect and raise a `DeprecationWarning`.
 
   **Returns**
 
-  A pair indicating whether the Davidson algorithm has converged and the obtained minimal eigenvalue.
+  A `(converged, eigenvalue)` pair. `converged` reports whether the computation succeeded (may be `False` if Davidson fails to converge). `eigenvalue` is the most-negative eigenvalue of `spo`.
+
+  **Raises**
+
+  [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – if `tol` is not positive and finite, `max_cycle` is not positive, `max_space` is less than 2, or `lindep` is not in `[0, 1)`. These are checked for every `spo`, even one that is solved exactly.
 
   **Return type**
 
-  [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[bool](https://docs.python.org/3/library/functions.html#bool), [float](https://docs.python.org/3/library/functions.html#float)]
+  [tuple](https://docs.python.org/3/builtins/stdtypes.html#tuple)\[[bool](https://docs.python.org/3/builtins/functions.html#bool), [float](https://docs.python.org/3/builtins/functions.html#float)]
 </Function>
 
 ### iter\_circuit
 
-<Function id="qiskit_addon_slc.utils.iter_circuit" github="https://github.com/Qiskit/qiskit-addon-slc/tree/main/qiskit_addon_slc/utils/circuit_iter.py#L36-L111" signature="iter_circuit(circuit, *, reverse=False, log_process=True)">
+<Function id="qiskit_addon_slc.utils.iter_circuit" github="https://github.com/Qiskit/qiskit-addon-slc/tree/stable/0.2/python/qiskit_addon_slc/utils/circuit_iter.py#L36-L110" signature="iter_circuit(circuit, *, reverse=False, log_process=True)">
   Iterates over the instructions in a circuit.
 
   <Admonition title="Note" type="note">
@@ -117,22 +156,45 @@ This module provides a number of utility functions. Some of these exist only tem
   **Parameters**
 
   *   **circuit** ([*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit)) – the circuit to iterate over.
-  *   **reverse** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – whether to iterate the circuit in reverse order.
-  *   **log\_process** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – whether to log process.
+  *   **reverse** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) – whether to iterate the circuit in reverse order.
+  *   **log\_process** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) – whether to log process.
 
   **Yields**
 
-  Tuples of length four, consisting of the encountered circuit instruction, the [canonical qubit indices](/docs/addons/samplomatic/guides/samplex-io#qubit-ordering-convention) (i.e. the integer indices of the acted-upon qubits in the context of the input `circuit`), the [`InjectNoise`](/docs/api/samplomatic/auto/inject-noise#samplomatic.InjectNoise "(in samplomatic)") attributes: `modifier_ref` and `ref`. The latter two items may be `None` indicating a circuit instruction that was **not** part of an unrolled [`BoxOp`](/docs/api/qiskit/qiskit.circuit.BoxOp).
+  Tuples of length four, consisting of the encountered circuit instruction, the [canonical qubit indices](/docs/addons/samplomatic/guides/samplex-io#samplex-io "(in samplomatic)") (i.e. the integer indices of the acted-upon qubits in the context of the input `circuit`), the [`InjectNoise`](/docs/api/samplomatic/auto/inject-noise "(in samplomatic)") attributes: `modifier_ref` and `ref`. The latter two items may be `None` indicating a circuit instruction that was **not** part of an unrolled [`BoxOp`](/docs/api/qiskit/qiskit.circuit.BoxOp).
 
   **Return type**
 
-  [*Generator*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Generator)\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[*CircuitInstruction*](/docs/api/qiskit/qiskit.circuit.CircuitInstruction), [list](https://docs.python.org/3/library/stdtypes.html#list)\[[int](https://docs.python.org/3/library/functions.html#int)], [str](https://docs.python.org/3/library/stdtypes.html#str) | None, [str](https://docs.python.org/3/library/stdtypes.html#str) | None]]
+  [*Generator*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Generator)\[[tuple](https://docs.python.org/3/builtins/stdtypes.html#tuple)\[[*CircuitInstruction*](/docs/api/qiskit/qiskit.circuit.CircuitInstruction), [list](https://docs.python.org/3/builtins/stdtypes.html#list)\[[int](https://docs.python.org/3/builtins/functions.html#int)], [str](https://docs.python.org/3/builtins/stdtypes.html#str) | None, [str](https://docs.python.org/3/builtins/stdtypes.html#str) | None]]
 </Function>
 
 ### map\_modifier\_ref\_to\_ref
 
-<Function id="qiskit_addon_slc.utils.map_modifier_ref_to_ref" github="https://github.com/Qiskit/qiskit-addon-slc/tree/main/qiskit_addon_slc/utils/annotations.py#L26-L47" signature="map_modifier_ref_to_ref(circuit)">
-  Iterate a circuit and map [`InjectNoise`](/docs/api/samplomatic/auto/inject-noise#samplomatic.InjectNoise "(in samplomatic)") annotation references.
+<Function id="qiskit_addon_slc.utils.map_modifier_ref_to_ref" github="https://github.com/Qiskit/qiskit-addon-slc/tree/stable/0.2/python/qiskit_addon_slc/utils/annotations.py#L26-L73" signature="map_modifier_ref_to_ref(circuit)">
+  Iterate a circuit and map [`InjectNoise`](/docs/api/samplomatic/auto/inject-noise "(in samplomatic)") annotation references.
+
+  The bounds computation keys its results by `modifier_ref`, while a noise model is keyed by `ref`, so this mapping is what relates the two. This requires every `modifier_ref` to be unique, as provided by boxing a circuit with `inject_noise_strategy="individual_modification"` (see [`compute_bounds()`](bounds#compute_bounds "qiskit_addon_slc.bounds.compute_bounds")). Boxes without an [`InjectNoise`](/docs/api/samplomatic/auto/inject-noise "(in samplomatic)") annotation are skipped.
+
+  ```python
+  >>> from qiskit import QuantumCircuit
+  >>> from qiskit.circuit import BoxOp
+  >>> from samplomatic import InjectNoise
+  >>> from qiskit_addon_slc.utils import map_modifier_ref_to_ref
+  ```
+
+  ```python
+  >>> circuit = QuantumCircuit(2)
+  >>> for idx in range(2):
+  ...     body = QuantumCircuit(2)
+  ...     _ = body.cx(0, 1)
+  ...     annotation = InjectNoise(ref=f"noise_{idx}", modifier_ref=f"box_{idx}")
+  ...     _ = circuit.append(BoxOp(body, annotations=[annotation]), [0, 1])
+  ```
+
+  ```python
+  >>> map_modifier_ref_to_ref(circuit)
+  {'box_0': 'noise_0', 'box_1': 'noise_1'}
+  ```
 
   **Parameters**
 
@@ -144,17 +206,43 @@ This module provides a number of utility functions. Some of these exist only tem
 
   **Return type**
 
-  [dict](https://docs.python.org/3/library/stdtypes.html#dict)\[[str](https://docs.python.org/3/library/stdtypes.html#str), [str](https://docs.python.org/3/library/stdtypes.html#str)]
+  [dict](https://docs.python.org/3/builtins/stdtypes.html#dict)\[[str](https://docs.python.org/3/builtins/stdtypes.html#str), [str](https://docs.python.org/3/builtins/stdtypes.html#str)]
 </Function>
 
 ### remove\_measure
 
-<Function id="qiskit_addon_slc.utils.remove_measure" github="https://github.com/Qiskit/qiskit-addon-slc/tree/main/qiskit_addon_slc/utils/remove_measure.py#L30-L44" signature="remove_measure(circuit)">
+<Function id="qiskit_addon_slc.utils.remove_measure" github="https://github.com/Qiskit/qiskit-addon-slc/tree/stable/0.2/python/qiskit_addon_slc/utils/remove_measure.py#L30-L72" signature="remove_measure(circuit)">
   Remove any [`Measure`](/docs/api/qiskit/circuit#qiskit.circuit.Measure) operations from the provided circuit.
 
   <Admonition title="Note" type="note">
     This function recurses into [`BoxOp`](/docs/api/qiskit/qiskit.circuit.BoxOp) instructions.
   </Admonition>
+
+  ```python
+  >>> from qiskit import QuantumCircuit
+  >>> from qiskit_addon_slc.utils import remove_measure
+  ```
+
+  ```python
+  >>> circuit = QuantumCircuit(2, 2)
+  >>> _ = circuit.h(0)
+  >>> _ = circuit.measure(0, 0)
+  >>> _ = circuit.cx(0, 1)
+  >>> dict(sorted(circuit.count_ops().items()))
+  {'cx': 1, 'h': 1, 'measure': 1}
+  ```
+
+  ```python
+  >>> dict(sorted(remove_measure(circuit).count_ops().items()))
+  {'cx': 1, 'h': 1}
+  ```
+
+  The original circuit is left untouched:
+
+  ```python
+  >>> dict(sorted(circuit.count_ops().items()))
+  {'cx': 1, 'h': 1, 'measure': 1}
+  ```
 
   **Parameters**
 

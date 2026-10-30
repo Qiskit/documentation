@@ -18,19 +18,12 @@ A class for specifying a circuit containing coherent spacetime Pauli checks.
 
 ### CheckedCircuit
 
-<Class id="qiskit_paulice.checked_circuit.CheckedCircuit" github="https://github.com/Qiskit/qiskit-paulice/tree/main/qiskit_paulice/checked_circuit.py#L45-L176" signature="CheckedCircuit(circuit, target_qubits=(), check_qubits=(), check_support=(), cost=None, cost_metric=None)" modifiers="class">
-  Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
+<Class id="qiskit_paulice.checked_circuit.CheckedCircuit" github="https://github.com/Qiskit/qiskit-paulice/tree/main/qiskit_paulice/checked_circuit.py#L106-L633" signature="CheckedCircuit(circuit, target_qubits=(), check_qubits=(), check_support=(), cost=None, cost_metric=None)" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
 
   A quantum circuit and information about spacetime Pauli checks it contains.
 
-  **Parameters**
-
-  *   **circuit** ([*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit))
-  *   **target\_qubits** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*, ...]*)
-  *   **check\_qubits** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*, ...]*)
-  *   **check\_support** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*, ...], ...]*)
-  *   **cost** ([*float*](https://docs.python.org/3/library/functions.html#float) *| None*)
-  *   **cost\_metric** ([*str*](https://docs.python.org/3/library/stdtypes.html#str) *| None*)
+  Instances returned by `add_pauli_checks()` build [`circuit`](#qiskit_paulice.checked_circuit.CheckedCircuit.circuit "qiskit_paulice.checked_circuit.CheckedCircuit.circuit") on first access rather than up front, so reading the check metadata of every variant ([`cost`](#qiskit_paulice.checked_circuit.CheckedCircuit.cost "qiskit_paulice.checked_circuit.CheckedCircuit.cost"), [`check_support`](#qiskit_paulice.checked_circuit.CheckedCircuit.check_support "qiskit_paulice.checked_circuit.CheckedCircuit.check_support"), …) builds no circuit. The circuit is built once and kept; [`circuit`](#qiskit_paulice.checked_circuit.CheckedCircuit.circuit "qiskit_paulice.checked_circuit.CheckedCircuit.circuit") is otherwise an ordinary attribute. Anything that reads [`circuit`](#qiskit_paulice.checked_circuit.CheckedCircuit.circuit "qiskit_paulice.checked_circuit.CheckedCircuit.circuit") builds it, including `repr()`. Concurrent first reads of the same instance may each build the circuit, but they yield equal circuits.
 
   #### circuit
 
@@ -45,11 +38,11 @@ A class for specifying a circuit containing coherent spacetime Pauli checks.
   #### target\_qubits
 
   <Attribute id="qiskit_paulice.checked_circuit.CheckedCircuit.target_qubits">
-    Qubit indices of `circuit` which were used to entangle the check qubits to the payload. `None` if `circuit` contains no checks.
+    Qubit indices of `circuit` which were used to entangle the check qubits to the payload. Empty if `circuit` contains no checks.
 
     **Type**
 
-    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[int](https://docs.python.org/3/library/functions.html#int), …]
+    [tuple](https://docs.python.org/3/builtins/stdtypes.html#tuple)\[[int](https://docs.python.org/3/builtins/functions.html#int), …]
   </Attribute>
 
   #### check\_qubits
@@ -59,17 +52,17 @@ A class for specifying a circuit containing coherent spacetime Pauli checks.
 
     **Type**
 
-    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[int](https://docs.python.org/3/library/functions.html#int), …]
+    [tuple](https://docs.python.org/3/builtins/stdtypes.html#tuple)\[[int](https://docs.python.org/3/builtins/functions.html#int), …]
   </Attribute>
 
   #### check\_support
 
   <Attribute id="qiskit_paulice.checked_circuit.CheckedCircuit.check_support">
-    For each check, the qubit indices whose measurement outcomes XOR together to give that check’s syndrome bit.
+    For each check, the qubit indices whose measurement outcomes XOR together to give that check’s syndrome bit. For a check found for stabilizers of the prepared state this is just its ancilla.
 
     **Type**
 
-    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[[int](https://docs.python.org/3/library/functions.html#int), …], …]
+    [tuple](https://docs.python.org/3/builtins/stdtypes.html#tuple)\[[tuple](https://docs.python.org/3/builtins/stdtypes.html#tuple)\[[int](https://docs.python.org/3/builtins/functions.html#int), …], …]
   </Attribute>
 
   #### cost
@@ -79,7 +72,7 @@ A class for specifying a circuit containing coherent spacetime Pauli checks.
 
     **Type**
 
-    [float](https://docs.python.org/3/library/functions.html#float) | None
+    [float](https://docs.python.org/3/builtins/functions.html#float) | None
   </Attribute>
 
   #### cost\_metric
@@ -89,46 +82,170 @@ A class for specifying a circuit containing coherent spacetime Pauli checks.
 
     **Type**
 
-    [str](https://docs.python.org/3/library/stdtypes.html#str) | None
+    [str](https://docs.python.org/3/builtins/stdtypes.html#str) | None
   </Attribute>
+
+  **Raises**
+
+  [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – `circuit` has a qubit with an instruction other than a barrier after its measurement.
+
+  #### box
+
+  <Function id="qiskit_paulice.checked_circuit.CheckedCircuit.box" github="https://github.com/Qiskit/qiskit-paulice/tree/main/qiskit_paulice/checked_circuit.py#L476-L509" signature="box(payload_layers=None, **kwargs)">
+    Box [`circuit`](#qiskit_paulice.checked_circuit.CheckedCircuit.circuit "qiskit_paulice.checked_circuit.CheckedCircuit.circuit") while maintaining concurrent scheduling of payload layers.
+
+    This method stratifies the entangling layers of the checked circuit into boxes such that the number of unique entangling layers is minimized. This is done by scheduling the entangling gates from the Pauli checks into boxes of their own, resulting in one unique layer per Pauli check in addition to the `payload_layers`.
+
+    Scheduling check gates into boxes of their own is beneficial in that the number of unique entangling layers is minimized, but it comes at a cost of sub-optimal gate scheduling.
+
+    **Parameters**
+
+    *   **payload\_layers** ([*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)*\[*[*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)*\[*[*tuple*](https://docs.python.org/3/builtins/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/builtins/functions.html#int)*,* [*int*](https://docs.python.org/3/builtins/functions.html#int)*]]] | None*) – The unique entangling layers of the bare payload circuit. Each inner list contains the edges for one unique layer. Edges should not be repeated within the same layer, but may appear in multiple layers; each stratum of the boxed circuit is then consistent with (a subset of) one of these layers.
+    *   **\*\*kwargs** – Overrides for [`generate_boxing_pass_manager()`](/docs/api/samplomatic/auto/transpiler-generate-boxing-pass-manager#samplomatic.transpiler.generate_boxing_pass_manager "(in samplomatic)"). Defaults to the key-value pairs in [`BOXING_DEFAULTS`](#qiskit_paulice.checked_circuit.BOXING_DEFAULTS "qiskit_paulice.checked_circuit.BOXING_DEFAULTS").
+
+    **Returns**
+
+    [`circuit`](#qiskit_paulice.checked_circuit.CheckedCircuit.circuit "qiskit_paulice.checked_circuit.CheckedCircuit.circuit"), boxed and annotated.
+
+    **Raises**
+
+    *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – `payload_layers` does not describe this circuit’s payload gates.
+    *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – [`circuit`](#qiskit_paulice.checked_circuit.CheckedCircuit.circuit "qiskit_paulice.checked_circuit.CheckedCircuit.circuit") contains an instruction other than one- and two-qubit unitary gates, measurements, and barriers.
+
+    **Return type**
+
+    [*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit)
+  </Function>
+
+  #### dope
+
+  <Function id="qiskit_paulice.checked_circuit.CheckedCircuit.dope" github="https://github.com/Qiskit/qiskit-paulice/tree/main/qiskit_paulice/checked_circuit.py#L391-L474" signature="dope(num_sites=None, *, wires='all', angle=0.7853981633974483, seed=None, box=False, payload_layers=None, box_options=None)">
+    Dope `self.circuit` with [`RZGate`](/docs/api/qiskit/qiskit.circuit.library.RZGate) rotations that commute with check stabilizers.
+
+    **Parameters**
+
+    *   **num\_sites** ([*int*](https://docs.python.org/3/builtins/functions.html#int) *| None*) – Number of [`RZGate`](/docs/api/qiskit/qiskit.circuit.library.RZGate) rotations to place in the circuit. `None` uses every possible location.
+
+    *   **wires** ([*Literal*](https://docs.python.org/3/library/typing.html#typing.Literal)*\['all', 'after\_entangling', 'before\_entangling']*) –
+
+        Which wires may hold a rotation:
+
+        *   `"all"`: Dope every possible wire.
+        *   `"after_entangling"`: Dope only wires directly after multi-qubit gates.
+        *   `"before_entangling"`: Dope only wires directly before multi-qubit gates.
+
+    *   **angle** ([*float*](https://docs.python.org/3/builtins/functions.html#float) *| None*) – Rotation angle for each inserted [`RZGate`](/docs/api/qiskit/qiskit.circuit.library.RZGate). `None` instead gives each rotation its own parameter from a [`ParameterVector`](/docs/api/qiskit/qiskit.circuit.ParameterVector) named `dope`. The rotation on the returned `doped_wires[i]` gets `dope[i]`, so a list of angles binds in `doped_wires` order.
+
+    *   **seed** ([*int*](https://docs.python.org/3/builtins/functions.html#int)  *|*[*Generator*](https://numpy.org/doc/stable/reference/random/generator.html#numpy.random.Generator) *| None*) – Seed or generator for the random site selection.
+
+    *   **box** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) – Whether to box the doped circuit, as [`box()`](#qiskit_paulice.checked_circuit.CheckedCircuit.box "qiskit_paulice.checked_circuit.CheckedCircuit.box") boxes [`circuit`](#qiskit_paulice.checked_circuit.CheckedCircuit.circuit "qiskit_paulice.checked_circuit.CheckedCircuit.circuit").
+
+    *   **payload\_layers** ([*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)*\[*[*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)*\[*[*tuple*](https://docs.python.org/3/builtins/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/builtins/functions.html#int)*,* [*int*](https://docs.python.org/3/builtins/functions.html#int)*]]] | None*) – The `payload_layers` argument of [`box()`](#qiskit_paulice.checked_circuit.CheckedCircuit.box "qiskit_paulice.checked_circuit.CheckedCircuit.box"). Only used with `box=True`.
+
+    *   **box\_options** ([*Mapping*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping)*\[*[*str*](https://docs.python.org/3/builtins/stdtypes.html#str)*,* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*] | None*) – Overrides for [`generate_boxing_pass_manager()`](/docs/api/samplomatic/auto/transpiler-generate-boxing-pass-manager#samplomatic.transpiler.generate_boxing_pass_manager "(in samplomatic)"), as the `**kwargs` of [`box()`](#qiskit_paulice.checked_circuit.CheckedCircuit.box "qiskit_paulice.checked_circuit.CheckedCircuit.box"). Only used with `box=True`.
+
+    **Returns**
+
+    a copy of [`circuit`](#qiskit_paulice.checked_circuit.CheckedCircuit.circuit "qiskit_paulice.checked_circuit.CheckedCircuit.circuit") with the rotations inserted, and the [`Wire`](qiskit-paulice-wire#wire "qiskit_paulice.wire.Wire") holding each rotation, in circuit order and with instruction indices into [`circuit`](#qiskit_paulice.checked_circuit.CheckedCircuit.circuit "qiskit_paulice.checked_circuit.CheckedCircuit.circuit"). The checks and classical bits are unchanged, so [`get_postselection_method()`](#qiskit_paulice.checked_circuit.CheckedCircuit.get_postselection_method "qiskit_paulice.checked_circuit.CheckedCircuit.get_postselection_method") applies to the doped circuit’s results.
+
+    **Return type**
+
+    `(doped_circuit, doped_wires)`
+
+    **Raises**
+
+    *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – [`circuit`](#qiskit_paulice.checked_circuit.CheckedCircuit.circuit "qiskit_paulice.checked_circuit.CheckedCircuit.circuit") contains a non-Clifford instruction.
+    *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – `wires` is not one of the allowed values.
+    *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – `payload_layers` or `box_options` is given without `box=True`, or [`box()`](#qiskit_paulice.checked_circuit.CheckedCircuit.box "qiskit_paulice.checked_circuit.CheckedCircuit.box") rejects the doped circuit.
+    *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – `num_sites` is negative, larger than the number of valid sites, or that many sites could not be drawn at random from them.
+
+    **Example**
+
+    Dope a one-qubit circuit with parametrized rotations, then bind their angles:
+
+    ```python
+    import numpy as np
+    from qiskit import QuantumCircuit
+    from qiskit_paulice import CheckedCircuit
+
+    circuit = QuantumCircuit(1)
+    circuit.h(0)
+    circuit.h(0)
+    circuit.h(0)
+    circuit.measure_all()
+
+    doped_circuit, doped_wires = CheckedCircuit(circuit).dope(angle=None)
+    print(doped_wires)
+    # (Wire(qubit=0, after_instruction=0), Wire(qubit=0, after_instruction=1))
+    # dope[0] follows the first H gate, and dope[1] follows the second.
+
+    bound = doped_circuit.assign_parameters([np.pi / 4, np.pi / 8])
+    ```
+
+    **References**
+
+    S. Martiel et al., *Sampling hard circuits with verifiably high fidelity*, [arXiv:2607.25941](https://arxiv.org/abs/2607.25941).
+  </Function>
+
+  #### estimate\_fault\_rates
+
+  <Function id="qiskit_paulice.checked_circuit.CheckedCircuit.estimate_fault_rates" github="https://github.com/Qiskit/qiskit-paulice/tree/main/qiskit_paulice/checked_circuit.py#L299-L389" signature="estimate_fault_rates(noise_model, shots=100000, seed=None)">
+    Estimate acceptance, harmless-fault, logical-error, and check trigger rates.
+
+    One noisy Monte Carlo sampling under `noise_model` yields all rates. A shot is *accepted* if all check syndromes are $0$. An error is *harmless* if it is non-identity yet backpropagates to a diagonal Pauli on the input, acting as a global phase on $|0^n\rangle$. A **logical error** is a sample corrupted by a logical error that evaded the checks. The *check trigger rate* is the probability that a given check flags a non-zero syndrome. All fault rates are with respect to all shots taken.
+
+    **Parameters**
+
+    *   **noise\_model** ([*NoiseModel*](qiskit-paulice-noise-models#noisemodel "qiskit_paulice.noise_models.NoiseModel")) – Noise to apply during Monte Carlo sampling.
+    *   **shots** ([*int*](https://docs.python.org/3/builtins/functions.html#int)) – Number of fault configurations to sample.
+    *   **seed** ([*int*](https://docs.python.org/3/builtins/functions.html#int)  *|*[*Generator*](https://numpy.org/doc/stable/reference/random/generator.html#numpy.random.Generator) *| None*) – Seed or generator for the fault sampling.
+
+    **Returns**
+
+    The estimated fault rates with their standard errors.
+
+    **Raises**
+
+    [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – The noise model is empty or unsupported, or [`circuit`](#qiskit_paulice.checked_circuit.CheckedCircuit.circuit "qiskit_paulice.checked_circuit.CheckedCircuit.circuit") contains a non-Clifford instruction.
+
+    **Return type**
+
+    [*FaultRates*](#qiskit_paulice.checked_circuit.FaultRates "qiskit_paulice.checked_circuit.FaultRates")
+  </Function>
 
   #### get\_postselection\_method
 
-  <Function id="qiskit_paulice.checked_circuit.CheckedCircuit.get_postselection_method" github="https://github.com/Qiskit/qiskit-paulice/tree/main/qiskit_paulice/checked_circuit.py#L139-L176" signature="get_postselection_method()">
+  <Function id="qiskit_paulice.checked_circuit.CheckedCircuit.get_postselection_method" github="https://github.com/Qiskit/qiskit-paulice/tree/main/qiskit_paulice/checked_circuit.py#L260-L297" signature="get_postselection_method()">
     Return a function that maps a single shot’s outcome to a syndrome vector.
 
     No errors were detected iff every entry of the returned vector is zero. The returned function accepts either bitstrings or bit arrays.
 
     **Return type**
 
-    [*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)\[\[[str](https://docs.python.org/3/library/stdtypes.html#str) | [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)], [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)]
+    [*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)\[\[[str](https://docs.python.org/3/builtins/stdtypes.html#str) | [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)], [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)]
   </Function>
 
   #### uncovered\_paulis
 
   <Attribute id="qiskit_paulice.checked_circuit.CheckedCircuit.uncovered_paulis">
-    Type: [`tuple`](https://docs.python.org/3/library/stdtypes.html#tuple)\[[`UncoveredPauli`](#qiskit_paulice.checked_circuit.UncoveredPauli "qiskit_paulice.checked_circuit.UncoveredPauli"), ...]
+    Type: [`tuple`](https://docs.python.org/3/builtins/stdtypes.html#tuple)\[[`UncoveredPauli`](#qiskit_paulice.checked_circuit.UncoveredPauli "qiskit_paulice.checked_circuit.UncoveredPauli"), ...]
 
-    Locations where a single qubit Pauli error is undetectable by some checks.
+    Locations where a single qubit Pauli error is undetectable by the checks.
 
-    Each entry is an `UncoveredPauli(qubit, after_instruction, pauli)` triple, where `qubit` is the qubit of the single-qubit error, `after_instruction` is the `circuit.data` index of the instruction which immediately precedes the error, and `pauli` is the type of error (`"X"`, `"Y"`, or `"Z"`).
+    Each entry is an `UncoveredPauli(qubit, after_instruction, pauli)` triple. Only input wires and wires immediately after 2-qubit gates are enumerated; errors after single qubit gates are folded into the next 2-qubit-gate wire.
 
-    Only locations on input wires and immediately after 2-qubit gates are enumerated; errors after single qubit gates are folded into the next 2-qubit-gate wire.
+    **Raises**
+
+    [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – [`circuit`](#qiskit_paulice.checked_circuit.CheckedCircuit.circuit "qiskit_paulice.checked_circuit.CheckedCircuit.circuit") contains a non-Clifford instruction.
   </Attribute>
 </Class>
 
 ### UncoveredPauli
 
-<Class id="qiskit_paulice.checked_circuit.UncoveredPauli" github="https://github.com/Qiskit/qiskit-paulice/tree/main/qiskit_paulice/checked_circuit.py#L30-L42" signature="UncoveredPauli(qubit, after_instruction, pauli)" modifiers="class">
+<Class id="qiskit_paulice.checked_circuit.UncoveredPauli" github="https://github.com/Qiskit/qiskit-paulice/tree/main/qiskit_paulice/checked_circuit.py#L56-L68" signature="UncoveredPauli(qubit, after_instruction, pauli)" modifiers="class">
   Bases: [`NamedTuple`](https://docs.python.org/3/library/typing.html#typing.NamedTuple)
 
-  A spacetime location at which a single qubit Pauli error is undetectable by a set of checks.
-
-  **Parameters**
-
-  *   **qubit** ([*int*](https://docs.python.org/3/library/functions.html#int))
-  *   **after\_instruction** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*)
-  *   **pauli** ([*Literal*](https://docs.python.org/3/library/typing.html#typing.Literal)*\['X', 'Y', 'Z']*)
+  A spacetime location at which a single qubit Pauli error is undetectable by the set of checks.
 
   #### qubit
 
@@ -137,17 +254,17 @@ A class for specifying a circuit containing coherent spacetime Pauli checks.
 
     **Type**
 
-    [int](https://docs.python.org/3/library/functions.html#int)
+    [int](https://docs.python.org/3/builtins/functions.html#int)
   </Attribute>
 
   #### after\_instruction
 
   <Attribute id="qiskit_paulice.checked_circuit.UncoveredPauli.after_instruction">
-    Index (into `circuit.data`) of the instruction the error occurs after; `None` means the error sits on the qubit’s input wire.
+    Index (into `circuit.data`) of the instruction the error occurs after. `None` means the error sits on the qubit’s input wire.
 
     **Type**
 
-    [int](https://docs.python.org/3/library/functions.html#int) | None
+    [int](https://docs.python.org/3/builtins/functions.html#int) | None
   </Attribute>
 
   #### pauli
@@ -176,4 +293,128 @@ A class for specifying a circuit containing coherent spacetime Pauli checks.
     Raises ValueError if the value is not present.
   </Function>
 </Class>
+
+### FaultRates
+
+<Class id="qiskit_paulice.checked_circuit.FaultRates" github="https://github.com/Qiskit/qiskit-paulice/tree/main/qiskit_paulice/checked_circuit.py#L71-L103" signature="FaultRates(harmless_rate, harmless_stderr, logical_error_rate, logical_error_stderr, acceptance_rate, acceptance_stderr, check_trigger_rates, check_trigger_stderrs, shots)" modifiers="class">
+  Bases: [`NamedTuple`](https://docs.python.org/3/library/typing.html#typing.NamedTuple)
+
+  Monte Carlo fault-rate estimates for a checked circuit, from one common sample set.
+
+  #### harmless\_rate
+
+  <Attribute id="qiskit_paulice.checked_circuit.FaultRates.harmless_rate">
+    Probability that a shot contains errors that only act on the quantum state as a global phase. Harmless samples are always accepted; however, this probability is not conditioned on acceptance. To condition on acceptance: $P(harmless|accepted) = harmless_rate / acceptance_rate$.
+
+    **Type**
+
+    [float](https://docs.python.org/3/builtins/functions.html#float)
+  </Attribute>
+
+  #### harmless\_stderr
+
+  <Attribute id="qiskit_paulice.checked_circuit.FaultRates.harmless_stderr">
+    Standard error of `harmless_rate`.
+
+    **Type**
+
+    [float](https://docs.python.org/3/builtins/functions.html#float)
+  </Attribute>
+
+  #### logical\_error\_rate
+
+  <Attribute id="qiskit_paulice.checked_circuit.FaultRates.logical_error_rate">
+    Probability that a shot is accepted *and* its error flips one or more payload measurement outcomes. If the circuit measures no payload qubit, as when its checks were found for stabilizers of the prepared state, it is instead the probability that a shot is accepted *and* its error changes the prepared state. Logical errors are always accepted; however, this probability is not conditioned on acceptance. To condition on acceptance: $logical_error_rate / acceptance_rate$.
+
+    **Type**
+
+    [float](https://docs.python.org/3/builtins/functions.html#float)
+  </Attribute>
+
+  #### logical\_error\_stderr
+
+  <Attribute id="qiskit_paulice.checked_circuit.FaultRates.logical_error_stderr">
+    Standard error of `logical_error_rate`.
+
+    **Type**
+
+    [float](https://docs.python.org/3/builtins/functions.html#float)
+  </Attribute>
+
+  #### acceptance\_rate
+
+  <Attribute id="qiskit_paulice.checked_circuit.FaultRates.acceptance_rate">
+    Probability of a zero syndrome on every check.
+
+    **Type**
+
+    [float](https://docs.python.org/3/builtins/functions.html#float)
+  </Attribute>
+
+  #### acceptance\_stderr
+
+  <Attribute id="qiskit_paulice.checked_circuit.FaultRates.acceptance_stderr">
+    Standard error of `acceptance_rate`.
+
+    **Type**
+
+    [float](https://docs.python.org/3/builtins/functions.html#float)
+  </Attribute>
+
+  #### check\_trigger\_rates
+
+  <Attribute id="qiskit_paulice.checked_circuit.FaultRates.check_trigger_rates">
+    Per check, the probability that its syndrome bit reads 1.
+
+    **Type**
+
+    [tuple](https://docs.python.org/3/builtins/stdtypes.html#tuple)\[[float](https://docs.python.org/3/builtins/functions.html#float), …]
+  </Attribute>
+
+  #### check\_trigger\_stderrs
+
+  <Attribute id="qiskit_paulice.checked_circuit.FaultRates.check_trigger_stderrs">
+    Standard errors of `check_trigger_rates`.
+
+    **Type**
+
+    [tuple](https://docs.python.org/3/builtins/stdtypes.html#tuple)\[[float](https://docs.python.org/3/builtins/functions.html#float), …]
+  </Attribute>
+
+  #### shots
+
+  <Attribute id="qiskit_paulice.checked_circuit.FaultRates.shots">
+    Number of noisy shots used to generate the instance’s fields.
+
+    **Type**
+
+    [int](https://docs.python.org/3/builtins/functions.html#int)
+  </Attribute>
+
+  Create new instance of FaultRates(harmless\_rate, harmless\_stderr, logical\_error\_rate, logical\_error\_stderr, acceptance\_rate, acceptance\_stderr, check\_trigger\_rates, check\_trigger\_stderrs, shots)
+
+  #### count
+
+  <Function id="qiskit_paulice.checked_circuit.FaultRates.count" signature="count(value, /)">
+    Return number of occurrences of value.
+  </Function>
+
+  #### index
+
+  <Function id="qiskit_paulice.checked_circuit.FaultRates.index" signature="index(value, start=0, stop=9223372036854775807, /)">
+    Return first index of value.
+
+    Raises ValueError if the value is not present.
+  </Function>
+</Class>
+
+### BOXING\_DEFAULTS
+
+<Attribute id="qiskit_paulice.checked_circuit.BOXING_DEFAULTS">
+  Type: [`dict`](https://docs.python.org/3/builtins/stdtypes.html#dict)\[[`str`](https://docs.python.org/3/builtins/stdtypes.html#str), [`Any`](https://docs.python.org/3/library/typing.html#typing.Any)]
+
+  Default value: `{'inject_noise_site': 'after', 'inject_noise_strategy': 'individual_modification', 'inject_noise_targets': 'gates', 'measure_annotations': 'all', 'remove_barriers': 'after_stratification', 'twirling_strategy': 'active'}`
+
+  Options [`CheckedCircuit.box()`](#qiskit_paulice.checked_circuit.CheckedCircuit.box "qiskit_paulice.checked_circuit.CheckedCircuit.box") passes to [`generate_boxing_pass_manager()`](/docs/api/samplomatic/auto/transpiler-generate-boxing-pass-manager#samplomatic.transpiler.generate_boxing_pass_manager "(in samplomatic)"), before `**kwargs` overrides.
+</Attribute>
 
