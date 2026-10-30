@@ -152,7 +152,7 @@ Transpilation method (1-3).
 **Transpilation levels (1-3)**: The level selects the transpilation method.
 - **Level 1**: Standard Qiskit transpiler.
 - **Level 2** (default): Improved transpiler that searches over 15 transpiler seeds and keeps the best circuit. If you set [`seed_transpiler`](#seed_transpiler), the function skips the search.
-- **Level 3**: Line routing with the swap strategy for a linear coupling map that is described in Section 2.2.1 of [Weidenfeller et al.](https://arxiv.org/abs/2202.03459) Level 3 supports at most 127 variables on Heron r2 and r3 processors, 112 variables on Heron r1, and 120 variables on Nighthawk.
+- **Level 3**: Line routing with the swap strategy for a linear coupling map that is described in Section 2.2.1 of [Weidenfeller et al.](https://arxiv.org/abs/2202.03459) Line routing follows a fixed swap schedule, so its circuit depth grows linearly with the number of variables. For densely connected problems, line routing typically produces shallower circuits than levels 1 and 2 and transpiles faster. Level 3 supports at most 127 variables on Heron r2 and r3 processors, 112 variables on Heron r1, and 120 variables on Nighthawk.
 
 Version 3.0.0 removed levels 0, 4, and 5. A job that requests one of them fails with error `1221`.
 </Attribute>
