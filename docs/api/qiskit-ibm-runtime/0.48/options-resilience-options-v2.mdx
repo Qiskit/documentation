@@ -28,7 +28,11 @@ python_api_name: qiskit_ibm_runtime.options.ResilienceOptionsV2
 
   ### layer\_noise\_learning
 
-  <Attribute id="qiskit_ibm_runtime.options.ResilienceOptionsV2.layer_noise_learning" attributeTypeHint="LayerNoiseLearningOptions | Dict" attributeTypeHintHref="options-layer-noise-learning-options" attributeValue="FieldInfo(annotation=NoneType, required=False, default_factory=LayerNoiseLearningOptions)">
+  <Attribute id="qiskit_ibm_runtime.options.ResilienceOptionsV2.layer_noise_learning">
+    Type: [`LayerNoiseLearningOptions`](options-layer-noise-learning-options "qiskit_ibm_runtime.options.layer_noise_learning_options.LayerNoiseLearningOptions") | `Dict`
+
+    Default value: `FieldInfo(annotation=NoneType, required=False, default_factory=LayerNoiseLearningOptions)`
+
     Layer noise learning options.
 
     See [`LayerNoiseLearningOptions`](options-layer-noise-learning-options "qiskit_ibm_runtime.options.LayerNoiseLearningOptions") for all options.
@@ -36,7 +40,11 @@ python_api_name: qiskit_ibm_runtime.options.ResilienceOptionsV2
 
   ### layer\_noise\_model
 
-  <Attribute id="qiskit_ibm_runtime.options.ResilienceOptionsV2.layer_noise_model" attributeTypeHint="UnsetType | NoiseLearnerResult | Sequence[LayerError] | None" attributeTypeHintHref="results-noise-learner-result" attributeValue="Unset">
+  <Attribute id="qiskit_ibm_runtime.options.ResilienceOptionsV2.layer_noise_model">
+    Type: `UnsetType` | [`NoiseLearnerResult`](results-noise-learner-result "qiskit_ibm_runtime.results.noise_learner.NoiseLearnerResult") | `Sequence`\[[`LayerError`](results-layer-error "qiskit_ibm_runtime.results.noise_learner.LayerError")] | `None`
+
+    Default value: `Unset`
+
     A `NoiseLearnerResult` or a sequence of `LayerError` objects.
 
     If `None`, all the mitigation strategies that require noise data (e.g., PEC and PEA) perform a noise-learning stage. Otherwise, this noise-learning stage is skipped, and instead gather the required information from `layer_noise_model`. Layers whose information is missing in `layer_noise_model` are treated as noiseless and their noise is not mitigated.
@@ -46,7 +54,11 @@ python_api_name: qiskit_ibm_runtime.options.ResilienceOptionsV2
 
   ### measure\_mitigation
 
-  <Attribute id="qiskit_ibm_runtime.options.ResilienceOptionsV2.measure_mitigation" attributeTypeHint="UnsetType | bool" attributeValue="Unset">
+  <Attribute id="qiskit_ibm_runtime.options.ResilienceOptionsV2.measure_mitigation">
+    Type: `UnsetType` | `bool`
+
+    Default value: `Unset`
+
     Whether to enable measurement error mitigation method.
 
     If you enable measurement mitigation, you can fine-tune its noise learning by using [`measure_noise_learning`](#qiskit_ibm_runtime.options.ResilienceOptionsV2.measure_noise_learning "qiskit_ibm_runtime.options.ResilienceOptionsV2.measure_noise_learning"). See [`MeasureNoiseLearningOptions`](options-measure-noise-learning-options "qiskit_ibm_runtime.options.MeasureNoiseLearningOptions") for all measurement mitigation noise learning options.
@@ -56,7 +68,11 @@ python_api_name: qiskit_ibm_runtime.options.ResilienceOptionsV2
 
   ### measure\_noise\_learning
 
-  <Attribute id="qiskit_ibm_runtime.options.ResilienceOptionsV2.measure_noise_learning" attributeTypeHint="MeasureNoiseLearningOptions | Dict" attributeTypeHintHref="options-measure-noise-learning-options" attributeValue="FieldInfo(annotation=NoneType, required=False, default_factory=MeasureNoiseLearningOptions)">
+  <Attribute id="qiskit_ibm_runtime.options.ResilienceOptionsV2.measure_noise_learning">
+    Type: [`MeasureNoiseLearningOptions`](options-measure-noise-learning-options "qiskit_ibm_runtime.options.measure_noise_learning_options.MeasureNoiseLearningOptions") | `Dict`
+
+    Default value: `FieldInfo(annotation=NoneType, required=False, default_factory=MeasureNoiseLearningOptions)`
+
     Additional measurement noise learning options.
 
     See [`MeasureNoiseLearningOptions`](options-measure-noise-learning-options "qiskit_ibm_runtime.options.MeasureNoiseLearningOptions") for all options.
@@ -64,7 +80,11 @@ python_api_name: qiskit_ibm_runtime.options.ResilienceOptionsV2
 
   ### pec
 
-  <Attribute id="qiskit_ibm_runtime.options.ResilienceOptionsV2.pec" attributeTypeHint="PecOptions | Dict" attributeTypeHintHref="options-pec-options" attributeValue="FieldInfo(annotation=NoneType, required=False, default_factory=PecOptions)">
+  <Attribute id="qiskit_ibm_runtime.options.ResilienceOptionsV2.pec">
+    Type: [`PecOptions`](options-pec-options "qiskit_ibm_runtime.options.pec_options.PecOptions") | `Dict`
+
+    Default value: `FieldInfo(annotation=NoneType, required=False, default_factory=PecOptions)`
+
     Additional probabalistic error cancellation mitigation options.
 
     See [`PecOptions`](options-pec-options "qiskit_ibm_runtime.options.PecOptions") for all options.
@@ -72,7 +92,11 @@ python_api_name: qiskit_ibm_runtime.options.ResilienceOptionsV2
 
   ### pec\_mitigation
 
-  <Attribute id="qiskit_ibm_runtime.options.ResilienceOptionsV2.pec_mitigation" attributeTypeHint="UnsetType | bool" attributeValue="Unset">
+  <Attribute id="qiskit_ibm_runtime.options.ResilienceOptionsV2.pec_mitigation">
+    Type: `UnsetType` | `bool`
+
+    Default value: `Unset`
+
     Whether to turn on Probabilistic Error Cancellation error mitigation method.
 
     If you enable PEC, you can fine-tune its options by using [`pec`](#qiskit_ibm_runtime.options.ResilienceOptionsV2.pec "qiskit_ibm_runtime.options.ResilienceOptionsV2.pec"). See [`PecOptions`](options-pec-options "qiskit_ibm_runtime.options.PecOptions") for additional PEC-related options.
@@ -82,7 +106,11 @@ python_api_name: qiskit_ibm_runtime.options.ResilienceOptionsV2
 
   ### zne
 
-  <Attribute id="qiskit_ibm_runtime.options.ResilienceOptionsV2.zne" attributeTypeHint="ZneOptions | Dict" attributeTypeHintHref="options-zne-options" attributeValue="FieldInfo(annotation=NoneType, required=False, default_factory=ZneOptions)">
+  <Attribute id="qiskit_ibm_runtime.options.ResilienceOptionsV2.zne">
+    Type: [`ZneOptions`](options-zne-options "qiskit_ibm_runtime.options.zne_options.ZneOptions") | `Dict`
+
+    Default value: `FieldInfo(annotation=NoneType, required=False, default_factory=ZneOptions)`
+
     Additional zero-noise extrapolation mitigation options.
 
     See [`ZneOptions`](options-zne-options "qiskit_ibm_runtime.options.ZneOptions") for all options.
@@ -90,7 +118,11 @@ python_api_name: qiskit_ibm_runtime.options.ResilienceOptionsV2
 
   ### zne\_mitigation
 
-  <Attribute id="qiskit_ibm_runtime.options.ResilienceOptionsV2.zne_mitigation" attributeTypeHint="UnsetType | bool" attributeValue="Unset">
+  <Attribute id="qiskit_ibm_runtime.options.ResilienceOptionsV2.zne_mitigation">
+    Type: `UnsetType` | `bool`
+
+    Default value: `Unset`
+
     Whether to turn on Zero-Noise Extrapolation error mitigation method.
 
     If you enable ZNE, you can fine-tune its options by using [`zne`](#qiskit_ibm_runtime.options.ResilienceOptionsV2.zne "qiskit_ibm_runtime.options.ResilienceOptionsV2.zne"). See [`ZneOptions`](options-zne-options "qiskit_ibm_runtime.options.ZneOptions") for additional ZNE related options.
