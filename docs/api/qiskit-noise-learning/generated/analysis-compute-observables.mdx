@@ -1,0 +1,50 @@
+---
+title: ComputeObservables (latest version)
+description: API reference for qiskit_noise_learning.analysis.ComputeObservables in the latest version of qiskit-noise-learning
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_noise_learning.analysis.ComputeObservables
+---
+
+<span id="qiskit-noise-learning-analysis-computeobservables" />
+
+# qiskit\_noise\_learning.analysis.ComputeObservables
+
+<Class id="qiskit_noise_learning.analysis.ComputeObservables" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/analysis/compute_observables.py" signature="qiskit_noise_learning.analysis.ComputeObservables" modifiers="class">
+  Bases: [`AnalysisStage`](analysis-analysis-stage "qiskit_noise_learning.analysis.analysis_pipeline.AnalysisStage")
+
+  Compute observable data from raw data.
+
+  This analysis stage utilizes existing relations between paths and instruction sequences in the [`Fit`](analysis-fit "qiskit_noise_learning.analysis.Fit") to determine how to compute observables. If relations are not specified, they are greedily constructed by exhaustively comparing paths in `fit.paths` and the instruction sequences in `fit.raw_data`. Note that in this latter case, `fit.paths` is not updated and will therefore remain `None`.
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit_noise_learning.analysis.ComputeObservables.__init__" signature="__init__()" />
+
+  ## Methods
+
+  |                                                                                                                                          |                                                                                                                             |
+  | ---------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit_noise_learning.analysis.ComputeObservables.__init__ "qiskit_noise_learning.analysis.ComputeObservables.__init__")() |                                                                                                                             |
+  | `run`(fit)                                                                                                                               | Run this stage, returning a new [`Fit`](analysis-fit "qiskit_noise_learning.analysis.Fit") with the output level populated. |
+
+  ## Attributes
+
+  |                                                                                                                                                    |                                   |
+  | -------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------- |
+  | [`input_level`](#qiskit_noise_learning.analysis.ComputeObservables.input_level "qiskit_noise_learning.analysis.ComputeObservables.input_level")    | The data level this stage reads.  |
+  | [`output_level`](#qiskit_noise_learning.analysis.ComputeObservables.output_level "qiskit_noise_learning.analysis.ComputeObservables.output_level") | The data level this stage writes. |
+
+  ### input\_level
+
+  <Attribute id="qiskit_noise_learning.analysis.ComputeObservables.input_level">
+    The data level this stage reads.
+  </Attribute>
+
+  ### output\_level
+
+  <Attribute id="qiskit_noise_learning.analysis.ComputeObservables.output_level">
+    The data level this stage writes.
+  </Attribute>
+</Class>
+

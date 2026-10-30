@@ -36,9 +36,11 @@ python_api_name: qiskit_fermions.transpiler.passes.MergeOrbitalRotations
 
     Collects every maximal run of consecutive [`OrbitalRotation`](circuit-library-orbital-rotation "qiskit_fermions.circuit.library.OrbitalRotation") gates on the same modes and replaces each run of length two or more with a single [`OrbitalRotation`](circuit-library-orbital-rotation "qiskit_fermions.circuit.library.OrbitalRotation") whose `rotation_unitary` is the run’s rotations multiplied in circuit order. Runs of a single rotation (and all other nodes) are left untouched. The input DAG is modified in place.
 
+    A `Barrier` interrupts a run, so the rotations on either side of one are not merged. Place a barrier between two rotations to keep them apart.
+
     **Parameters**
 
-    **dag** ([*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit)) – the input circuit with fermion-based instructions. Only [`DAGOpNode`](/docs/api/qiskit/qiskit.dagcircuit.DAGOpNode) with [`FermionicGate`](circuit-fermionic-gate "qiskit_fermions.circuit.FermionicGate") instances as their [`op`](/docs/api/qiskit/qiskit.dagcircuit.DAGOpNode#op) are supported.
+    **dag** ([*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit)) – the input circuit with fermion-based instructions. Only [`DAGOpNode`](/docs/api/qiskit/qiskit.dagcircuit.DAGOpNode) with [`FermionicGate`](circuit-fermionic-gate "qiskit_fermions.circuit.FermionicGate") instances as their [`op`](/docs/api/qiskit/qiskit.dagcircuit.DAGOpNode#op) are supported, plus `Barrier` and [`FermionicMeasure`](circuit-library-fermionic-measure "qiskit_fermions.circuit.library.FermionicMeasure"), which are carried through untouched (a measurement keeps the classical bit it writes into).
 
     **Returns**
 
@@ -60,7 +62,7 @@ python_api_name: qiskit_fermions.transpiler.passes.MergeOrbitalRotations
 
     *   **passmanager\_ir** (*IR*) – Qiskit IR to optimize.
     *   **state** ([*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)) – State associated with workflow execution by the pass manager itself.
-    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[*[*Task*](/docs/api/qiskit/qiskit.passmanager.Task)*, IR\_OUT,* [*PropertySet*](/docs/api/qiskit/qiskit.passmanager.PropertySet)*,* [*float*](https://docs.python.org/3/library/functions.html#float)*,* [*int*](https://docs.python.org/3/library/functions.html#int)*], None] | None*) – A callback function which is called per execution of optimization task.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[*[*Task*](/docs/api/qiskit/qiskit.passmanager.Task)*, IR\_OUT,* [*PropertySet*](/docs/api/qiskit/qiskit.passmanager.PropertySet)*,* [*float*](https://docs.python.org/3/builtins/functions.html#float)*,* [*int*](https://docs.python.org/3/builtins/functions.html#int)*], None] | None*) – A callback function which is called per execution of optimization task.
 
     **Returns**
 
@@ -68,7 +70,7 @@ python_api_name: qiskit_fermions.transpiler.passes.MergeOrbitalRotations
 
     **Return type**
 
-    [tuple](https://docs.python.org/3/library/stdtypes.html#tuple)\[*IR\_OUT*, [*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)]
+    [tuple](https://docs.python.org/3/builtins/stdtypes.html#tuple)\[*IR\_OUT*, [*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)]
   </Function>
 
   ### name
@@ -78,7 +80,7 @@ python_api_name: qiskit_fermions.transpiler.passes.MergeOrbitalRotations
 
     **Return type**
 
-    [str](https://docs.python.org/3/library/stdtypes.html#str)
+    [str](https://docs.python.org/3/builtins/stdtypes.html#str)
   </Function>
 
   ### update\_status

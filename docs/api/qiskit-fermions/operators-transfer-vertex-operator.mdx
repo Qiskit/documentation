@@ -9,7 +9,7 @@ python_api_name: qiskit_fermions.operators.TransferVertexOperator
 # TransferVertexOperator
 
 <Class id="qiskit_fermions.operators.TransferVertexOperator" isDedicatedPage={true} signature="TransferVertexOperator(coeffs, left_indices, right_indices, boundaries)" modifiers="class">
-  Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
+  Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
 
   A transfer-vertex operator.
 
@@ -130,7 +130,7 @@ $$
 
   ### Formatting
 
-  In the examples above, the constructed operators have been printed using the output from [`format()`](https://docs.python.org/3/library/functions.html#format), which results in a human-readable form of the operator.
+  In the examples above, the constructed operators have been printed using the output from [`format()`](https://docs.python.org/3/builtins/functions.html#format), which results in a human-readable form of the operator.
 
   ```pycon
   >>> print(format(op))
@@ -145,7 +145,7 @@ $$
     The printing order of `format(op)` gets explicitly sorted before printing. As such, it does not reflect the order of the terms inside the operator.
   </Admonition>
 
-  An alternative form can be obtained from the [`repr()`](https://docs.python.org/3/library/functions.html#repr) function, which results in a Python-interpretable representation. In other words, this output can readily be copied and pasted into a Python shell:
+  An alternative form can be obtained from the [`repr()`](https://docs.python.org/3/builtins/functions.html#repr) function, which results in a Python-interpretable representation. In other words, this output can readily be copied and pasted into a Python shell:
 
   ```pycon
   >>> print(repr(op))
@@ -556,39 +556,6 @@ $$
     The set of mode indices which this operator acts upon.
   </Function>
 
-  ##### group\_weights
-
-  <Function id="qiskit_fermions.operators.TransferVertexOperator.group_weights" signature="group_weights()">
-    Returns the mean absolute coefficient magnitude of each group.
-
-    The `i`-th entry is the sum of `abs(coeff)` over the terms in group `i`, divided by the number of terms in that group. If [`groups`](#qiskit_fermions.operators.TransferVertexOperator.groups "qiskit_fermions.operators.TransferVertexOperator.groups") is `None`, this function also returns `None`.
-
-    This is the sampling weight of a randomized product formula (e.g. qDRIFT) that draws whole groups rather than individual terms. Computing it natively is considerably cheaper than reducing [`get_coeffs()`](#qiskit_fermions.operators.TransferVertexOperator.get_coeffs "qiskit_fermions.operators.TransferVertexOperator.get_coeffs") and [`groups`](#qiskit_fermions.operators.TransferVertexOperator.groups "qiskit_fermions.operators.TransferVertexOperator.groups") in NumPy, because those two accessors each copy one value per *ungrouped* term out of the operator only for it to be aggregated back down to one value per group, whereas this returns just the [`num_groups()`](#qiskit_fermions.operators.TransferVertexOperator.num_groups "qiskit_fermions.operators.TransferVertexOperator.num_groups") reduced values.
-
-    <Admonition title="Note" type="note">
-      A group index that no term carries weighs `0.0`, which keeps it out of the sample.
-    </Admonition>
-
-    ```pycon
-    >>> from qiskit_fermions.operators import TransferVertexOperator
-    >>> op = TransferVertexOperator(
-    ...     [1.0, 2.0, -1.0],
-    ...     [0, 1, 2, 3],
-    ...     [1, 0, 3, 2],
-    ...     [0, 1, 3, 4],
-    ... )
-    >>> print(op.group_weights())
-    None
-    >>> op.groups = [0, 1, 0]
-    >>> op.group_weights()
-    [1.0, 2.0]
-    ```
-
-    **Returns**
-
-    The mean absolute coefficient magnitude of each group index.
-  </Function>
-
   ##### has\_groups
 
   <Function id="qiskit_fermions.operators.TransferVertexOperator.has_groups" signature="has_groups()">
@@ -813,7 +780,7 @@ $$
 
     **Raises**
 
-    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – if `permutation` contains duplicate entries, or is too short to relabel some mode the operator acts upon.
+    [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – if `permutation` contains duplicate entries, or is too short to relabel some mode the operator acts upon.
   </Function>
 
   ##### simplify

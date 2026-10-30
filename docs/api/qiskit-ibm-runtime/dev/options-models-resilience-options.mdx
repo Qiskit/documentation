@@ -1,0 +1,119 @@
+---
+title: ResilienceOptions (dev version)
+description: API reference for qiskit_ibm_runtime.options_models.ResilienceOptions in the dev version of qiskit-ibm-runtime
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_ibm_runtime.options_models.ResilienceOptions
+---
+
+<span id="qiskit-ibm-runtime-options-models-resilienceoptions" />
+
+# qiskit\_ibm\_runtime.options\_models.ResilienceOptions
+
+<Class id="qiskit_ibm_runtime.options_models.ResilienceOptions" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/options_models/resilience.py#L24-L69" signature="ResilienceOptions" modifiers="pydantic model">
+  Bases: `BaseOptionsModel`
+
+  Resilience options for V2 Estimator.
+
+  **Config**
+
+  *   **validate\_assignment**: *bool = True*
+  *   **extra**: *str = forbid*
+
+  ### layer\_noise\_model
+
+  <Attribute id="qiskit_ibm_runtime.options_models.ResilienceOptions.layer_noise_model" modifiers="field">
+    Type: `list`\[`LayerNoiseModel`] | `None`
+
+    Default value: `None`
+
+    Noise model specified by a collection of instructions and the noise that affects them.
+  </Attribute>
+
+  ### measure\_mitigation
+
+  <Attribute id="qiskit_ibm_runtime.options_models.ResilienceOptions.measure_mitigation" modifiers="field">
+    Type: `bool` | `None`
+
+    Default value: `None`
+
+    Whether to enable measurement error mitigation method.
+
+    If you enable measurement mitigation, you can fine-tune its noise learning by using [`measure_noise_learning`](#qiskit_ibm_runtime.options_models.ResilienceOptions.measure_noise_learning "qiskit_ibm_runtime.options_models.ResilienceOptions.measure_noise_learning"). See [`MeasureNoiseLearningOptions`](options-models-measure-noise-learning-options "qiskit_ibm_runtime.options_models.MeasureNoiseLearningOptions") for all measurement mitigation noise learning options.
+
+    If `measure_mitigation` is `None`, it is determined by the according to the resilience level: it is `False` for resilience level `0`, and `True` for resilience levels `1` and `2`.
+  </Attribute>
+
+  ### measure\_noise\_learning
+
+  <Attribute id="qiskit_ibm_runtime.options_models.ResilienceOptions.measure_noise_learning" modifiers="field">
+    Type: [`MeasureNoiseLearningOptions`](options-models-measure-noise-learning-options "qiskit_ibm_runtime.options_models.MeasureNoiseLearningOptions")
+
+    Default value: `MeasureNoiseLearningOptions(num_randomizations='auto')`
+
+    Additional measurement noise learning options.
+  </Attribute>
+
+  ### pec
+
+  <Attribute id="qiskit_ibm_runtime.options_models.ResilienceOptions.pec" modifiers="field">
+    Type: [`PecOptions`](options-models-pec-options "qiskit_ibm_runtime.options_models.PecOptions")
+
+    Default value: `PecOptions(max_overhead=100, noise_gain='auto')`
+
+    Additional probabalistic error cancellation mitigation options.
+  </Attribute>
+
+  ### pec\_mitigation
+
+  <Attribute id="qiskit_ibm_runtime.options_models.ResilienceOptions.pec_mitigation" modifiers="field">
+    Type: `bool`
+
+    Default value: `False`
+
+    Whether to turn on Probabilistic Error Cancellation error mitigation method.
+
+    If you enable PEC, you can fine-tune its options by using [`pec`](#qiskit_ibm_runtime.options_models.ResilienceOptions.pec "qiskit_ibm_runtime.options_models.ResilienceOptions.pec"). See [`PecOptions`](options-models-pec-options "qiskit_ibm_runtime.options_models.PecOptions") for additional PEC-related options.
+
+    You must also provide a noise model via `noise_model` when enabling PEC.
+  </Attribute>
+
+  ### zne
+
+  <Attribute id="qiskit_ibm_runtime.options_models.ResilienceOptions.zne" modifiers="field">
+    Type: [`ZneOptions`](options-models-zne-options "qiskit_ibm_runtime.options_models.ZneOptions")
+
+    Default value: `ZneOptions(amplifier='gate_folding', noise_factors='auto', extrapolator=('exponential', 'linear'), extrapolated_noise_factors='auto')`
+
+    Additional zero noise extrapolation mitigation options.
+  </Attribute>
+
+  ### zne\_mitigation
+
+  <Attribute id="qiskit_ibm_runtime.options_models.ResilienceOptions.zne_mitigation" modifiers="field">
+    Type: `bool` | `None`
+
+    Default value: `None`
+
+    Whether to turn on Zero-Noise Extrapolation error mitigation method.
+
+    If you enable ZNE, you can fine-tune its options by using [`zne`](#qiskit_ibm_runtime.options_models.ResilienceOptions.zne "qiskit_ibm_runtime.options_models.ResilienceOptions.zne"). See [`ZneOptions`](options-models-zne-options "qiskit_ibm_runtime.options_models.ZneOptions") for additional ZNE related options.
+
+    If `zne_mitigation` is left as `None`, it inherits the default for the configured [`resilience_level`](options-models-estimator-options#resilience_level "qiskit_ibm_runtime.options_models.EstimatorOptions.resilience_level"): `False` for resilience levels `0` and `1`, and `True` for resilience level `2`.
+  </Attribute>
+
+  ### update
+
+  <Function id="qiskit_ibm_runtime.options_models.ResilienceOptions.update" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/options_models/base.py#L46-L54" signature="update(**kwargs)">
+    Update the options.
+
+    **Parameters**
+
+    **kwargs** (*Any*)
+
+    **Return type**
+
+    None
+  </Function>
+</Class>
+

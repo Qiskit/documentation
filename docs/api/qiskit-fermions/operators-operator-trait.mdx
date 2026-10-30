@@ -41,11 +41,11 @@ python_api_name: qiskit_fermions.operators.OperatorTrait
     **Parameters**
 
     *   **other** ([*Self*](https://docs.python.org/3/library/typing.html#typing.Self))
-    *   **atol** ([*float*](https://docs.python.org/3/library/functions.html#float))
+    *   **atol** ([*float*](https://docs.python.org/3/builtins/functions.html#float))
 
     **Return type**
 
-    [bool](https://docs.python.org/3/library/functions.html#bool)
+    [bool](https://docs.python.org/3/builtins/functions.html#bool)
   </Function>
 
   ### from\_terms
@@ -83,7 +83,7 @@ python_api_name: qiskit_fermions.operators.OperatorTrait
 
     **Return type**
 
-    [list](https://docs.python.org/3/library/stdtypes.html#list)\[[complex](https://docs.python.org/3/library/functions.html#complex)]
+    [list](https://docs.python.org/3/builtins/stdtypes.html#list)\[[complex](https://docs.python.org/3/builtins/functions.html#complex)]
   </Function>
 
   ### get\_support
@@ -93,19 +93,7 @@ python_api_name: qiskit_fermions.operators.OperatorTrait
 
     **Return type**
 
-    [frozenset](https://docs.python.org/3/library/stdtypes.html#frozenset)\[[int](https://docs.python.org/3/library/functions.html#int)]
-  </Function>
-
-  ### group\_weights
-
-  <Function id="qiskit_fermions.operators.OperatorTrait.group_weights" signature="group_weights()">
-    Returns the mean absolute coefficient magnitude of each group.
-
-    This is equivalent to (but cheaper than) reducing [`get_coeffs()`](#qiskit_fermions.operators.OperatorTrait.get_coeffs "qiskit_fermions.operators.OperatorTrait.get_coeffs") and [`groups`](#qiskit_fermions.operators.OperatorTrait.groups "qiskit_fermions.operators.OperatorTrait.groups") down to one value per group in NumPy, because it does not copy one value per *ungrouped* term out of the operator just to aggregate it away again.
-
-    **Return type**
-
-    [list](https://docs.python.org/3/library/stdtypes.html#list)\[[float](https://docs.python.org/3/library/functions.html#float)] | None
+    [frozenset](https://docs.python.org/3/builtins/stdtypes.html#frozenset)\[[int](https://docs.python.org/3/builtins/functions.html#int)]
   </Function>
 
   ### has\_groups
@@ -117,7 +105,7 @@ python_api_name: qiskit_fermions.operators.OperatorTrait
 
     **Return type**
 
-    [bool](https://docs.python.org/3/library/functions.html#bool)
+    [bool](https://docs.python.org/3/builtins/functions.html#bool)
   </Function>
 
   ### ichop
@@ -127,7 +115,31 @@ python_api_name: qiskit_fermions.operators.OperatorTrait
 
     **Parameters**
 
-    **atol** ([*float*](https://docs.python.org/3/library/functions.html#float))
+    **atol** ([*float*](https://docs.python.org/3/builtins/functions.html#float))
+  </Function>
+
+  ### is\_hermitian
+
+  <Function id="qiskit_fermions.operators.OperatorTrait.is_hermitian" signature="is_hermitian(atol=1e-08)">
+    Returns whether this operator is Hermitian.
+
+    The check reduces the difference of this operator and its [`adjoint()`](#qiskit_fermions.operators.OperatorTrait.adjoint "qiskit_fermions.operators.OperatorTrait.adjoint") to a normal form (see [`normal_ordered()`](#qiskit_fermions.operators.OperatorTrait.normal_ordered "qiskit_fermions.operators.OperatorTrait.normal_ordered")) and compares the result against [`zero()`](#qiskit_fermions.operators.OperatorTrait.zero "qiskit_fermions.operators.OperatorTrait.zero"). It is therefore only as strong as the normal form that the specific operator type reduces through.
+
+    <Admonition title="Note" type="note">
+      A `True` result is always reliable. A `False` result is reliable only for operator types whose normal form is a genuine canonical form; for the others this check is *conservative* and can return `False` for an operator that is in fact Hermitian. Consult the specific implementation to find out which of the two applies.
+    </Admonition>
+
+    **Parameters**
+
+    **atol** ([*float*](https://docs.python.org/3/builtins/functions.html#float)) – The numerical accuracy upto which coefficients are considered equal. This value defaults to `1e-8`.
+
+    **Returns**
+
+    Whether this operator is Hermitian.
+
+    **Return type**
+
+    [bool](https://docs.python.org/3/builtins/functions.html#bool)
   </Function>
 
   ### iter\_terms
@@ -171,7 +183,7 @@ python_api_name: qiskit_fermions.operators.OperatorTrait
 
     **Return type**
 
-    [int](https://docs.python.org/3/library/functions.html#int) | None
+    [int](https://docs.python.org/3/builtins/functions.html#int) | None
   </Function>
 
   ### one
@@ -191,7 +203,7 @@ python_api_name: qiskit_fermions.operators.OperatorTrait
 
     **Parameters**
 
-    **permutation** ([*list*](https://docs.python.org/3/library/stdtypes.html#list)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]*)
+    **permutation** ([*list*](https://docs.python.org/3/builtins/stdtypes.html#list)*\[*[*int*](https://docs.python.org/3/builtins/functions.html#int)*]*)
 
     **Return type**
 
@@ -205,7 +217,7 @@ python_api_name: qiskit_fermions.operators.OperatorTrait
 
     **Parameters**
 
-    **atol** ([*float*](https://docs.python.org/3/library/functions.html#float))
+    **atol** ([*float*](https://docs.python.org/3/builtins/functions.html#float))
 
     **Return type**
 
@@ -223,11 +235,11 @@ python_api_name: qiskit_fermions.operators.OperatorTrait
 
     **Parameters**
 
-    **group\_indices** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*] | None*)
+    **group\_indices** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*int*](https://docs.python.org/3/builtins/functions.html#int)*] | None*)
 
     **Return type**
 
-    [list](https://docs.python.org/3/library/stdtypes.html#list)\[[*Self*](https://docs.python.org/3/library/typing.html#typing.Self)]
+    [list](https://docs.python.org/3/builtins/stdtypes.html#list)\[[*Self*](https://docs.python.org/3/library/typing.html#typing.Self)]
   </Function>
 
   ### zero

@@ -266,10 +266,7 @@ test("API reference caption: entries are rewritten to /docs/api/<package>, ignor
   });
 });
 
-test("API reference caption: local apidocs/index with its full subtree is collapsed to /docs/api/<package>", async () => {
-  // Mirrors what Sphinx/Furo actually render when index.rst's "API reference"
-  // toctree references a local apidocs/index: a has-children <li> with the
-  // package's entire class/function subtree nested inside it.
+test("API reference caption: internal pydoc entry with children maps to a flat /docs/api link", async () => {
   const { artifactDir } = await makeTestDirs(
     [{ href: "#", title: "Home" }],
     [
@@ -277,11 +274,11 @@ test("API reference caption: local apidocs/index with its full subtree is collap
         caption: "API reference",
         items: [
           {
-            href: "apidocs/index.html",
+            href: "pydoc/index.html",
             title: "Python API reference",
             children: [
-              { href: "apidocs/my_addon.foo.html", title: "Foo" },
-              { href: "apidocs/my_addon.bar.html", title: "Bar" },
+              { href: "pydoc/my_addon.foo.html", title: "my_addon.foo" },
+              { href: "pydoc/my_addon.bar.html", title: "my_addon.bar" },
             ],
           },
         ],
@@ -298,68 +295,99 @@ test("API reference caption: local apidocs/index with its full subtree is collap
   ]);
 });
 
-test("API reference caption: multi-language entries are matched positionally against Pkg.apiReferencePackages", async () => {
+test("API reference caption: stubs, apidocs, and apidoc entries map to /docs/api/{pkg}", async () => {
   const { artifactDir } = await makeTestDirs(
     [{ href: "#", title: "Home" }],
     [
       {
         caption: "API reference",
         items: [
-          { href: "apidocs/index.html", title: "Python API reference" },
-          { href: "cdoc/index.html", title: "C API reference" },
-          { href: "release-notes.html", title: "Release notes" },
+          { href: "stubs/index.html", title: "Stubs" },
+          { href: "apidocs/index.html", title: "Apidocs" },
+          { href: "apidoc/my_addon.html", title: "Apidoc" },
         ],
       },
     ],
   );
 
-  const pkg = new Pkg({
-    name: "my-addon",
-    title: "My Addon",
-    version: "1.2.0",
-    versionWithoutPatch: "1.2",
-    type: "latest",
-    language: "Python",
-    releaseNotesConfig: new ReleaseNotesConfig({ enabled: false }),
-    kebabCaseAndShortenUrls: true,
-    apiReferencePackages: ["my-addon", "my-addon-c"],
-  });
+  const pkg = await makePkg();
   const toc = await generateAddonToc(pkg, artifactDir);
   const apiSection = toc.children.find((c) => c.title === "API reference");
 
   expect(apiSection?.children).toEqual([
-    { title: "Python API reference", url: "/docs/api/my-addon" },
-    { title: "C API reference", url: "/docs/api/my-addon-c" },
-    { title: "Release notes", url: "/docs/api/my-addon/release-notes" },
+    { title: "Stubs", url: "/docs/api/my-addon" },
+    { title: "Apidocs", url: "/docs/api/my-addon" },
+    { title: "Apidoc", url: "/docs/api/my-addon" },
   ]);
 });
 
-test("API reference caption: entry count mismatched with Pkg.apiReferencePackages throws", async () => {
+test("API reference caption: internal cdoc entry maps to /docs/api/{pkg}-c", async () => {
   const { artifactDir } = await makeTestDirs(
     [{ href: "#", title: "Home" }],
     [
       {
         caption: "API reference",
-        items: [{ href: "apidocs/index.html", title: "Python API reference" }],
+        items: [
+          { href: "pydoc/index.html", title: "Python API reference" },
+          {
+            href: "cdoc/index.html",
+            title: "C API reference",
+            children: [{ href: "cdoc/qf-foo.html", title: "QfFoo" }],
+          },
+        ],
       },
     ],
   );
 
-  const pkg = new Pkg({
-    name: "my-addon",
-    title: "My Addon",
-    version: "1.2.0",
-    versionWithoutPatch: "1.2",
-    type: "latest",
-    language: "Python",
-    releaseNotesConfig: new ReleaseNotesConfig({ enabled: false }),
-    kebabCaseAndShortenUrls: true,
-    apiReferencePackages: ["my-addon", "my-addon-c"],
-  });
+  const pkg = await makePkg("qiskit-fermions");
+  const toc = await generateAddonToc(pkg, artifactDir);
+  const apiSection = toc.children.find((c) => c.title === "API reference");
 
-  await expect(generateAddonToc(pkg, artifactDir)).rejects.toThrow(
-    /apiReferencePackages/,
+  expect(apiSection?.children).toEqual([
+    { title: "Python API reference", url: "/docs/api/qiskit-fermions" },
+    { title: "C API reference", url: "/docs/api/qiskit-fermions-c" },
+  ]);
+});
+
+test("API reference caption: cdoc entry without a {pkg}-c package throws", async () => {
+  const { artifactDir } = await makeTestDirs(
+    [{ href: "#", title: "Home" }],
+    [
+      {
+        caption: "API reference",
+        items: [{ href: "cdoc/index.html", title: "C API reference" }],
+      },
+    ],
   );
+
+  const pkg = await makePkg();
+  await expect(generateAddonToc(pkg, artifactDir)).rejects.toThrow(
+    /no my-addon-c package/,
+  );
+});
+
+test("release-notes entry is matched by href even when renamed", async () => {
+  const { artifactDir } = await makeTestDirs(
+    [{ href: "#", title: "Home" }],
+    [
+      {
+        caption: "API reference",
+        items: [
+          { href: "release-notes.html", title: "Changelog" },
+          { href: "release_notes.html", title: "What's new" },
+        ],
+      },
+    ],
+  );
+
+  const pkg = await makePkg();
+  const toc = await generateAddonToc(pkg, artifactDir);
+  const apiSection = toc.children.find((c) => c.title === "API reference");
+
+  expect(apiSection?.children).toEqual([
+    { title: "Changelog", url: "/docs/api/my-addon/release-notes" },
+    { title: "What's new", url: "/docs/api/my-addon/release-notes" },
+  ]);
 });
 
 test("sidebar order is preserved exactly", async () => {
