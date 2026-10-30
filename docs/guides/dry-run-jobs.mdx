@@ -7,7 +7,7 @@ description: Use dry-run jobs to get the usage in resource units and service-sid
 
 A dry-run job runs your workload through IBM Quantum&reg; Compute Service without using any QPU time. Use a dry-run job to do the following before you commit to a real run:
 
-- **Get the usage, in [resource units (RUs)](/docs/guides/plans-overview#rus),** that the job would incur on the real QPU.
+- **Get the usage that the job would incur on the real QPU.
 - **Validate the job.** Quantum Compute checks the job's parameters, the same way it does for a real job.
 - **Get the [circuit timing schedule](/docs/guides/qiskit-runtime-circuit-timing)**, if you request it, to debug the job before you run it for real.
 
@@ -49,7 +49,7 @@ Circuit size, shots, and other limits are the same as for any job of that progra
 
 The usage of a completed dry-run job is the usage the same job would incur on the real QPU, except in rare situations where calibration data changes significantly after the dry-run job and before the job on a real QPU.
 
-- `job.usage()` with no argument returns the same value in seconds.
+- `job.usage()` returns the usage in seconds.
 - `job.metrics()["usage"]` returns the same data together with the usage status.
 
 Dry-run usage is not charged, does not consume your plan allocation, and does not count against any limits.
