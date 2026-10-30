@@ -99,7 +99,7 @@ A class for specifying a circuit containing coherent spacetime Pauli checks.
     **Parameters**
 
     *   **payload\_layers** ([*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)*\[*[*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)*\[*[*tuple*](https://docs.python.org/3/builtins/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/builtins/functions.html#int)*,* [*int*](https://docs.python.org/3/builtins/functions.html#int)*]]] | None*) – The unique entangling layers of the bare payload circuit. Each inner list contains the edges for one unique layer. Edges should not be repeated within the same layer, but may appear in multiple layers; each stratum of the boxed circuit is then consistent with (a subset of) one of these layers.
-    *   **\*\*kwargs** – Overrides for [`generate_boxing_pass_manager()`](/docs/addons/samplomatic/api/auto/transpiler-generate-boxing-pass-manager#samplomatic.transpiler.generate_boxing_pass_manager "(in samplomatic)"). Defaults to the key-value pairs in [`BOXING_DEFAULTS`](#qiskit_paulice.checked_circuit.BOXING_DEFAULTS "qiskit_paulice.checked_circuit.BOXING_DEFAULTS").
+    *   **\*\*kwargs** – Overrides for [`generate_boxing_pass_manager()`](/docs/api/samplomatic/auto/transpiler-generate-boxing-pass-manager "(in samplomatic)"). Defaults to the key-value pairs in [`BOXING_DEFAULTS`](#qiskit_paulice.checked_circuit.BOXING_DEFAULTS "qiskit_paulice.checked_circuit.BOXING_DEFAULTS").
 
     **Returns**
 
@@ -140,7 +140,7 @@ A class for specifying a circuit containing coherent spacetime Pauli checks.
 
     *   **payload\_layers** ([*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)*\[*[*Iterable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable)*\[*[*tuple*](https://docs.python.org/3/builtins/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/builtins/functions.html#int)*,* [*int*](https://docs.python.org/3/builtins/functions.html#int)*]]] | None*) – The `payload_layers` argument of [`box()`](#qiskit_paulice.checked_circuit.CheckedCircuit.box "qiskit_paulice.checked_circuit.CheckedCircuit.box"). Only used with `box=True`.
 
-    *   **box\_options** ([*Mapping*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping)*\[*[*str*](https://docs.python.org/3/builtins/stdtypes.html#str)*,* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*] | None*) – Overrides for [`generate_boxing_pass_manager()`](/docs/addons/samplomatic/api/auto/transpiler-generate-boxing-pass-manager#samplomatic.transpiler.generate_boxing_pass_manager "(in samplomatic)"), as the `**kwargs` of [`box()`](#qiskit_paulice.checked_circuit.CheckedCircuit.box "qiskit_paulice.checked_circuit.CheckedCircuit.box"). Only used with `box=True`.
+    *   **box\_options** ([*Mapping*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping)*\[*[*str*](https://docs.python.org/3/builtins/stdtypes.html#str)*,* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*] | None*) – Overrides for [`generate_boxing_pass_manager()`](/docs/api/samplomatic/auto/transpiler-generate-boxing-pass-manager "(in samplomatic)"), as the `**kwargs` of [`box()`](#qiskit_paulice.checked_circuit.CheckedCircuit.box "qiskit_paulice.checked_circuit.CheckedCircuit.box"). Only used with `box=True`.
 
     **Returns**
 
@@ -413,6 +413,6 @@ A class for specifying a circuit containing coherent spacetime Pauli checks.
 
   Default value: `{'inject_noise_site': 'after', 'inject_noise_strategy': 'individual_modification', 'inject_noise_targets': 'gates', 'measure_annotations': 'all', 'remove_barriers': 'after_stratification', 'twirling_strategy': 'active'}`
 
-  Options [`CheckedCircuit.box()`](#qiskit_paulice.checked_circuit.CheckedCircuit.box "qiskit_paulice.checked_circuit.CheckedCircuit.box") passes to [`generate_boxing_pass_manager()`](/docs/addons/samplomatic/api/auto/transpiler-generate-boxing-pass-manager#samplomatic.transpiler.generate_boxing_pass_manager "(in samplomatic)"), before `**kwargs` overrides.
+  Options [`CheckedCircuit.box()`](#qiskit_paulice.checked_circuit.CheckedCircuit.box "qiskit_paulice.checked_circuit.CheckedCircuit.box") passes to [`generate_boxing_pass_manager()`](/docs/api/samplomatic/auto/transpiler-generate-boxing-pass-manager "(in samplomatic)"), before `**kwargs` overrides.
 </Attribute>
 
