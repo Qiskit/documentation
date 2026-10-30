@@ -133,6 +133,7 @@ const QISKIT_REMOVED_PAGES_TO_LOAD = [
 const RUNTIME_GLOBS_TO_LOAD = [
   "docs/api/qiskit/*.mdx",
   "docs/api/qiskit-ibm-runtime/options.mdx",
+  "docs/api/qiskit-ibm-runtime/runtime-service.mdx",
   "docs/guides/*.{mdx,ipynb}",
   "docs/guides/*.{mdx,ipynb}",
   ...QISKIT_REMOVED_PAGES_TO_LOAD,
