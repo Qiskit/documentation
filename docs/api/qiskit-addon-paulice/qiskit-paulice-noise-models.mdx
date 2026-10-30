@@ -18,14 +18,14 @@ Noise model specification for evaluating spacetime Pauli checks.
 
 ### NoiseModel
 
-<Class id="qiskit_paulice.noise_models.NoiseModel" github="https://github.com/Qiskit/qiskit-paulice/tree/main/qiskit_paulice/noise_models.py#L121-L359" signature="NoiseModel(gate_noise=None, readout_noise=None, idling_noise=None)" modifiers="class">
+<Class id="qiskit_paulice.noise_models.NoiseModel" github="https://github.com/Qiskit/qiskit-paulice/tree/stable/0.3/qiskit_paulice/noise_models.py#L121-L359" signature="NoiseModel(gate_noise=None, readout_noise=None, idling_noise=None)" modifiers="class">
   Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
 
   Noise model used to find optimal circuit locations for spacetime Pauli checks.
 
   #### from\_backend
 
-  <Function id="qiskit_paulice.noise_models.NoiseModel.from_backend" github="https://github.com/Qiskit/qiskit-paulice/tree/main/qiskit_paulice/noise_models.py#L143-L265" signature="from_backend(backend, layout, uniform_gate_noise=False, pauli_bases=None)" modifiers="classmethod">
+  <Function id="qiskit_paulice.noise_models.NoiseModel.from_backend" github="https://github.com/Qiskit/qiskit-paulice/tree/stable/0.3/qiskit_paulice/noise_models.py#L143-L265" signature="from_backend(backend, layout, uniform_gate_noise=False, pauli_bases=None)" modifiers="classmethod">
     Instantiate a [`NoiseModel`](#qiskit_paulice.noise_models.NoiseModel "qiskit_paulice.noise_models.NoiseModel") from backend calibration data.
 
     Edge keys in the resulting [`GateWiseNoise`](#qiskit_paulice.noise_models.GateWiseNoise "qiskit_paulice.noise_models.GateWiseNoise") dict use **virtual** qubit indices (positions in `layout`). If the input circuit has a layout that maps virtual to physical consistently with `layout`, the keys also serve as physical indices.
@@ -54,7 +54,7 @@ Noise model specification for evaluating spacetime Pauli checks.
 
   #### from\_pauli\_lindblad\_maps
 
-  <Function id="qiskit_paulice.noise_models.NoiseModel.from_pauli_lindblad_maps" github="https://github.com/Qiskit/qiskit-paulice/tree/main/qiskit_paulice/noise_models.py#L267-L359" signature="from_pauli_lindblad_maps(layer_noise, readout_noise=None)" modifiers="classmethod">
+  <Function id="qiskit_paulice.noise_models.NoiseModel.from_pauli_lindblad_maps" github="https://github.com/Qiskit/qiskit-paulice/tree/stable/0.3/qiskit_paulice/noise_models.py#L267-L359" signature="from_pauli_lindblad_maps(layer_noise, readout_noise=None)" modifiers="classmethod">
     Create a NoiseModel from Pauli-Lindblad maps.
 
     This method constructs a [`NoiseModel`](#qiskit_paulice.noise_models.NoiseModel "qiskit_paulice.noise_models.NoiseModel") from `PauliLindbladMap` instances that represent noise channels affecting gates and, optionally, measurements. Gate noise is specified with the `layer_noise` argument. Each `PauliLindbladMap` instance is assumed to act on a unique layer of entangling gates. Readout noise is specified by a single `PauliLindbladMap` containing single-qubit Pauli-X generators and their associated rates.
