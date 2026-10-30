@@ -28,61 +28,53 @@ isa_circuit = pm.run(circuit)  # transpiled for ibm_phoenix
 sampler = Sampler(mode=backend)
 job = sampler.run([isa_circuit], dry_run=True)
 job.result()  # wait for completion
-print(job.usage(resource_units=True))  # RUs the real QPU would charge for this job
+print(job.usage())
 ```
 
-`dry_run` is an argument of the `run()` method (the default is `False`), not a runtime option. It is available on `SamplerV2.run()`, `EstimatorV2.run()`, [client-side Sampler and Estimator](/docs/guides/migrate-to-client-side-primitives), and `Session.run()`.
+`dry_run` is an argument of the `run()` method (the default is `False`), not a runtime option. It is available to all primitives.
 
 
 A dry-run job has the following characteristics:
 
 - It runs in IBM Quantum Compute Service in the cloud, not on your machine.
-- It is calibrated like the real device at any given time. The calibration is live, not a snapshot.
+- It uses the calibration data from the real QPU, not just a snapshot. 
 - Its results keep the expected schema and follow the expected shape of results from the real QPU, but contain randomized mock data. They are not actual or simulated measurement results, so do not use them to check physical correctness.
 - Processing happens on the server, so the job might not finish immediately.
 
 Circuit size, shots, and other limits are the same as for any job of that program.
 
-If the mock counterpart is not visible to the instance, `run()` raises the following error:
-
-```text
-QiskitBackendNotFoundError: Unable to use dry_run mode: backend 'mock_<name>' was not found
-```
-
 `dry_run=True` also works when the backend is already a mock device.
 
 ## Read the usage
 
-The usage of a completed dry-run job is the usage the same job would incur on the real QPU. Use this value as your usage estimate.
+The usage of a completed dry-run job is the usage the same job would incur on the real QPU, except in rare situations where calibration data changes significantly after the dry-run job and before the job on a real QPU.
 
-- `job.usage(resource_units=True)` returns the usage in RUs.
 - `job.usage()` with no argument returns the same value in seconds.
 - `job.metrics()["usage"]` returns the same data together with the usage status.
 
 Dry-run usage is not charged, does not consume your plan allocation, and does not count against any limits.
 
 <Admonition type="caution" title="Do not use job.usage_estimation with dry-run jobs">
-Do not use `job.usage_estimation` on a dry-run job. To find the number of RUs that the real QPU would charge, use `job.usage(resource_units=True)`.
+Do not use `job.usage_estimation` on a dry-run job. Use `job.usage()`.
 </Admonition>
 
 `job.usage()` returns `0` until the usage calculation is final, so wait for the job to finish before you read it.
 
 ## Circuit timing schedule
 
-A dry-run job only changes where the job runs, so to request the circuit timing schedule, use the same option as for a real job. For full details, see [Visualize circuit timing](/docs/guides/qiskit-runtime-circuit-timing).
+To request the circuit timing schedule, use the same option as for a real job. For full details, see [Visualize circuit timing](/docs/guides/qiskit-runtime-circuit-timing).
 
 
 ## Limitations
 
-- **Job and batch modes only.** The service blocks sessions on mock devices. Dry-run jobs support [job mode](/docs/guides/execution-modes#job-mode) and [batch mode](/docs/guides/execution-modes#batch-mode) only.
+- **Job and batch modes only.** Dry-run jobs can only run in [job mode](/docs/guides/execution-modes#job-mode) and [batch mode](/docs/guides/execution-modes#batch-mode).
 - **Flex, Premium, and On-Prem plans only.** Dry-run jobs are not available on the Open or Pay-As-You-Go plans.
-- **Circuit timing is Sampler-only and experimental.** See [Circuit timing schedule](#circuit-timing-schedule).
 
 ## Mock devices
 
 Mock devices are the implementation behind dry-run jobs. Dry-run jobs hide mock devices by default, but you encounter them in these cases:
 
-- **Instances configured to access only mock devices.** Example: if you use `service.backend("ibm_phoenix")` to submit a dry-run job on `ibm_phoenix`, you will get the "not found" error shown in the [How it works](#how-it-works) section. Instead, select the mock device directly with `service.backend("mock_phoenix")`.
+- **Instances configured to access only mock devices.** Example: if you use `service.backend("ibm_phoenix")` to submit a dry-run job on `ibm_phoenix`, but your instance doesn't have access to `ibm_phoenix`,  you will get a `QiskitBackendNotFoundError`. Instead, select the mock device directly with `service.backend("mock_phoenix")`.
 - **Compute resources.** Mock devices are hidden by default on the [Compute resources](https://quantum.cloud.ibm.com/computers) page. The table on the page has a filter option to include them, but only the Flex, Premium, and On-Prem plans have access to mock devices.
 - **Workloads table.** Jobs from mock devices are hidden by default on the [Workloads](https://quantum.cloud.ibm.com/workloads) page. The table has a filter option (the funnel icon) to display them.
 - **Python API.** `service.backends()` and `service.jobs()` exclude mock devices unless you call them with `include_mocks=True`. `IBMBackend.is_mock` indicates whether a backend is a mock device. `service.least_busy()` never returns a mock device.
@@ -90,7 +82,7 @@ Mock devices are the implementation behind dry-run jobs. Dry-run jobs hide mock 
 <span id="mock-vs-fake"></span>
 ## Mock devices compared to fake backends
 
-The names are similar, but a mock device and a [fake backend](/docs/guides/local-testing-mode) are different things. A fake backend is a local object in your Python environment. A mock device is a cloud resource in IBM Quantum Compute Service.
+The names are similar, but a mock device and a [fake backend](/docs/api/qiskit-ibm-runtime/fake-provider) are different things. A fake backend is a local object in your Python environment. A mock device is a cloud resource in IBM Quantum Compute Service.
 
 | | Mock device (for example `mock_phoenix`) | Fake backend (for example `FakeManilaV2`) |
 | --- | --- | --- |
@@ -101,17 +93,17 @@ The names are similar, but a mock device and a [fake backend](/docs/guides/local
 | Calibration | Live, matches the real device at any time | Fixed snapshot shipped with the installed package |
 | Results | Randomized data with the expected schema. Not a simulation | Noisy simulation that uses the snapshot's noise model |
 | Physically meaningful results | No. Never use them to check correctness | Approximately, within the limits of the noise model |
-| Usage reported | Yes. `job.usage(resource_units=True)` returns the RUs the job would incur on the real QPU | None |
+| Usage reported | Yes | None |
 | Charged or counted against plan allocation or limits | No | No |
 | Job validation | Done by the service, same as a real job | Limited to what the client checks |
-| Timing schedule | Available on request (Sampler, experimental) | Not available |
+| Timing schedule | Available on request  | Not available |
 | Execution modes | Job and batch mode only. Sessions are blocked | Session syntax accepted but ignored (local mode has no real sessions or batches) |
 | Completion | Asynchronous, on the server | Runs locally and returns when finished |
 | Shown in platform interface and API lists | Hidden by default (Compute resources, Workloads table, `backends()`, `jobs()`). Opt in to show | Never, because nothing is sent to the service |
 
 ### How to choose
 
-- To find out **what the job will use, or whether the service will accept it**, use a dry-run job.
+- To find out **how much usage the job will consume, or whether the service will accept it**, use a dry-run job.
 - To find out **what the output might look like**, or to work offline, use a fake backend or Aer.
 - To do both, iterate on circuits and results with a fake backend, then dry-run as the last check before the real QPU.
 
@@ -120,7 +112,7 @@ The names are similar, but a mock device and a [fake backend](/docs/guides/local
 - **A mock device is not a simulator.** Its output is random, so sampling a Bell circuit on `mock_phoenix` does not return a Bell distribution. If you want realistic noisy output, use a fake backend.
 - **A fake backend is not the live device.** Its calibration is a snapshot and might be out of date. A mock device tracks the real calibration, so transpiled circuits and timing match what the QPU sees today.
 - **Neither runs on real hardware.** Neither consumes QPU time, but only a dry-run job goes through the service.
-- **`usage_estimation` is not the dry-run estimate.** For a dry-run job, read `job.usage(resource_units=True)`, which returns the RUs the real QPU would charge.
+- **`usage_estimation` is not the dry-run estimate.** For a dry-run job, `job.usage()` returns the seconds of usage your job would be charged on a real QPU.
 
 ## Use cases
 
@@ -143,7 +135,7 @@ backend = service.backend("ibm_phoenix")
 sampler = Sampler(mode=backend)
 job = sampler.run([isa_circuit], dry_run=True)
 job.result()
-print(job.usage(resource_units=True))  # RUs to budget for this job
+print(job.usage()) 
 ```
 
 ### Final check before running on a real QPU
