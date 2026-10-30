@@ -33,7 +33,7 @@ Find the latest package release summaries and platform updates from IBM Quantum&
     * **Circuit timing chart** — shows a scheduled timeline of a circuit's operations (gates, channels, durations). Available for Sampler and Executor jobs. Requires [enabling timing data retrieval](https://quantum.cloud.ibm.com/docs/guides/qiskit-runtime-circuit-timing#enable-timing-data-retrieval).  
     * **Chunk/span execution diagnostics panel** — a new panel on job details showing chunk- and span-level execution diagnostics. See [Sampler input/output](https://quantum.cloud.ibm.com/docs/guides/sampler-input-output) for what this data means and how to enable it when submitting jobs.  
     * **Device calibration data at a glance** — job details now show the device calibration data from the time of submission or execution via a "View calibration history" link.  
-    * **Executor results visualization** — job details pages now render results for Executor jobs. See the [Directed execution model (beta)](https://quantum.cloud.ibm.com/docs/guides/directed-execution-model) guide for more on Executor.  
+    * **Executor results visualization** — job details pages now render results for Executor jobs. See the [Directed execution model (beta)](https://quantum.cloud.ibm.com/docs/ibm-quantum-compute/directed-execution-model) guide for more on Executor.  
     * **Dynamic circuits now render on job details** — with OpenQASM 3.0 support in Composer (see more below), circuits that previously failed to render (for example, those using dynamic circuits) now display correctly on the job details page.  
     * **Histogram improvements** — faster loading, smoother zoom in/out, and a new selection tool for narrowing in on specific result ranges.  
     * **`qiskit-ibm-runtime` code snippets in job results** — copy-ready code to retrieve a job by ID; for Executor jobs, an additional snippet lets you replicate the job.  
@@ -138,8 +138,6 @@ Find the latest package release summaries and platform updates from IBM Quantum&
 
   Qiskit Code Assistant models will remain available for local use. To continue using them, move to a local deployment and a community-supported editor integration or other local tooling.
 
-  For setup guidance, see the [Qiskit Code Assistant](/docs/guides/qiskit-code-assistant) guide.
-
   ### Nighthawk arrives in the EU
 
   Premium and Flex Plans now have early access to [`ibm_berlin`](https://quantum.cloud.ibm.com/computers?system=ibm_berlin)! It is the first IBM Quantum Nighthawk r1 QPU in the EU (`eu-de` region) and the second Nighthawk in our global fleet, after [`ibm_miami`](https://quantum.cloud.ibm.com/computers?system=ibm_miami) in the US (`us-east` region). `ibm_berlin` features faster two-qubit gates than `ibm_miami` (68 ns versus 138 ns, median) while maintaining similar fleet-leading coherence (T$_1$ of ~350 &#181;s).
@@ -155,13 +153,13 @@ Find the latest package release summaries and platform updates from IBM Quantum&
 
   As we expand EU capacity and roll out the latest Nighthawk and Heron processors, `ibm_brussels` and `ibm_strasbourg` are scheduled to be retired on or around 30 April 2026.
 
-  Once these QPUs are retired, they will no longer accept jobs. If your workflows target `ibm_brussels` or `ibm_strasbourg`, please migrate to another active QPU ahead of the retirement date to take advantage of the latest systems. For guidance on retrieving data from past jobs, refer to the following [documentation](/docs/guides/retired-qpus#retrieve-a-job-from-a-retired-qpu).
+  Once these QPUs are retired, they will no longer accept jobs. If your workflows target `ibm_brussels` or `ibm_strasbourg`, please migrate to another active QPU ahead of the retirement date to take advantage of the latest systems. For guidance on retrieving data from past jobs, refer to the following [documentation](/docs/ibm-quantum-platform/retired-qpus#retrieve-a-job-from-a-retired-qpu).
 
   ### `ibm_torino` is now retired
 
   The quantum computer `ibm_torino` has been retired and will no longer accept workload submissions. Any workloads that were already queued on this QPU might still be processed and return results.
 
-  If you would like to retrieve job data from important workloads run on this QPU, refer to [these instructions](/docs/guides/retired-qpus#retrieve-a-job-from-a-retired-qpu).
+  If you would like to retrieve job data from important workloads run on this QPU, refer to [these instructions](/docs/ibm-quantum-platform/retired-qpus#retrieve-a-job-from-a-retired-qpu).
 
   ### ibm_brussels and ibm_strasbourg are now retired
     
@@ -169,7 +167,7 @@ Find the latest package release summaries and platform updates from IBM Quantum&
 
   This change is part of the continued evolution and expansion of the IBM Quantum fleet in the EU, including the recently released Nighthawk QPU [`ibm_berlin`](https://quantum.cloud.ibm.com/computers?system=ibm_berlin) and the upgraded Heron r3 QPU [`ibm_aachen`](https://quantum.cloud.ibm.com/computers?system=ibm_aachen). The global fleet has now fully transitioned away from Eagle, IBM Quantum's first utility‑scale processor family, introduced in 2021.
 
-  If your workflows target `ibm_brussels` or `ibm_strasbourg`, please migrate to another active QPU to take advantage of the latest hardware. For guidance on retrieving data from past jobs, refer to the [documentation](/docs/guides/retired-qpus#retrieve-a-job-from-a-retired-qpu).
+  If your workflows target `ibm_brussels` or `ibm_strasbourg`, please migrate to another active QPU to take advantage of the latest hardware. For guidance on retrieving data from past jobs, refer to the [documentation](/docs/ibm-quantum-platform/retired-qpus#retrieve-a-job-from-a-retired-qpu).
 
 ## March 2026
 
@@ -184,7 +182,7 @@ Find the latest package release summaries and platform updates from IBM Quantum&
 
   The `ibm_torino` QPU will retire on or around 1 April 2026. Once this QPU is retired, it will no longer accept jobs.
 
-  If you would like to retrieve job data from important past jobs, please refer to the following [documentation](/docs/guides/retired-qpus#retrieve-a-job-from-a-retired-qpu).
+  If you would like to retrieve job data from important past jobs, please refer to the following [documentation](/docs/ibm-quantum-platform/retired-qpus#retrieve-a-job-from-a-retired-qpu).
 
   ### Increase in repetition delay time maximum
 
@@ -261,7 +259,7 @@ You can still filter the Compute resources table by region using the funnel icon
 
 The quantum computer `ibm_brisbane` has been retired and will no longer accept workload submissions. Any workloads that were already queued on these QPUs might still be processed and return results.
 
-If you would like to retrieve job data from important workloads run on this QPU, refer to [these instructions](/docs/guides/retired-qpus#retrieve-a-job-from-a-retired-qpu).
+If you would like to retrieve job data from important workloads run on this QPU, refer to [these instructions](/docs/ibm-quantum-platform/retired-qpus#retrieve-a-job-from-a-retired-qpu).
 
 #### October 2025
 
@@ -390,7 +388,7 @@ Users of other plans (for example, Premium Plan or On-Prem Plan) should wait for
 
 `ibm_kyiv` has been retired and will no longer accept workload submissions. Any workloads that were already queued on these QPUs might still be processed and return results.
 
-If you would like to retrieve job data from important workloads run on this QPU, refer to [these instructions](/docs/guides/retired-qpus#retrieve-a-job-from-a-retired-qpu).
+If you would like to retrieve job data from important workloads run on this QPU, refer to [these instructions](/docs/ibm-quantum-platform/retired-qpus#retrieve-a-job-from-a-retired-qpu).
 
 #### 10 April 2025
 - Updated navigation to remove duplicated pages:
