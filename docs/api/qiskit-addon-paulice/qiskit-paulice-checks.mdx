@@ -18,22 +18,25 @@ Functionality for finding effective spacetime Pauli checks.
 
 ### add\_pauli\_checks
 
-<Function id="qiskit_paulice.checks.add_pauli_checks" github="https://github.com/Qiskit/qiskit-paulice/tree/main/qiskit_paulice/checks.py#L36-L346" signature="add_pauli_checks(circuit, target_qubits, noise_model, cost='gamma', cost_nshots=10000, method='windowed', ancilla_qubits=None, check_creg_name='checks_c', check_qreg_name='checks_q', seed=None)">
+<Function id="qiskit_paulice.checks.add_pauli_checks" github="https://github.com/Qiskit/qiskit-paulice/tree/main/qiskit_paulice/checks.py#L40-L490" signature="add_pauli_checks(circuit, target_qubits, noise_model, cost='gamma', cost_nshots=10000, method='windowed', ancilla_qubits=None, check_creg_name='checks_c', check_qreg_name='checks_q', seed=None, stabilizers=None)">
   Add spacetime Pauli checks to a Clifford circuit.
+
+  Checks are found for the circuit’s terminal measurements or, when `stabilizers` is given, for stabilizers of the state the circuit prepares:
+
+  *   **Measurements** (`stabilizers=None`): `circuit` ends with Z-basis measurements. A check is valid if its forward-propagated image is diagonal on the measured qubits, so its syndrome bit is the parity of the check ancilla and the payload bits listed in [`check_support`](qiskit-paulice-checked-circuit#check_support "qiskit_paulice.checked_circuit.CheckedCircuit.check_support"). The `cost` counts an error as logical if it flips a measured bit. The checks are only valid for this measurement basis.
+  *   **Stabilizers** (`stabilizers` given): `circuit` contains no measurements. A check is valid if it back-propagates to a stabilizer of the input state $|0\ldots0\rangle$, so its syndrome is the ancilla bit alone and it stays valid whatever is measured afterwards. The `cost` counts an error as logical if it flips one of the given stabilizers of the prepared state; with `"all"` that is any error that changes the state. The returned circuits measure only the check ancillas. Append your own basis rotations and payload measurements, then rebuild the [`CheckedCircuit`](qiskit-paulice-checked-circuit#checkedcircuit "qiskit_paulice.checked_circuit.CheckedCircuit") with [`dataclasses.replace()`](https://docs.python.org/3/library/dataclasses.html#dataclasses.replace) so post-selection sees the final classical register layout.
 
   The check picking algorithm finds valid, low weight checks on each target qubit in the order they are specified in `target_qubits` and chooses the check which provides the most error detection coverage (i.e. minimizes the `cost` value). Once a check is committed on `target_qubits[0]`, it will be set for the remainder of the algorithm and a search for a good check on `target_qubits[1]` will begin. For this reason, the ordering of `target_qubits` can have some impact on the set of checks produced by the function.
 
-  This function produces `qiskit_paulice.CheckedCircuit` instances containing numbers of checks ranging from `0` to one check per target qubit. It can be instructive to view the convergence of the cost function as more checks are added, as one may see convergence of the cost using fewer checks.
-
-  For details on finding effective spacetime Pauli checks, see [Supplemental Sec. II-VI of Martiel, Javadi](https://arxiv.org/abs/2504.15725).
+  This function produces [`CheckedCircuit`](qiskit-paulice-checked-circuit#checkedcircuit "qiskit_paulice.checked_circuit.CheckedCircuit") instances containing numbers of checks ranging from `0` to one check per target qubit. It can be instructive to view the convergence of the cost function as more checks are added, as one may see convergence of the cost using fewer checks.
 
   **Parameters**
 
-  *   **circuit** ([*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit)) – The Clifford circuit to dress with spacetime Pauli checks. The circuit must be terminated with a measurement on at least one qubit. The circuit may be defined on virtual or physical qubits. If the circuit has a layout, the user must provide `ancilla_qubits`.
+  *   **circuit** ([*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit)) – The Clifford circuit to dress with spacetime Pauli checks. Unless `stabilizers` is given, the circuit must be terminated with a measurement on at least one qubit, and a measured qubit may have nothing but barriers after its measurement (a `ValueError` is raised otherwise). With `stabilizers` it must contain no measurements. The circuit may be defined on virtual or physical qubits. If the circuit has a layout, the user must provide `ancilla_qubits`.
 
-  *   **target\_qubits** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]*) – Qubit indices of `circuit` which will be used to entangle the check qubits to the payload. When `circuit` has a layout (ISA mode), these are physical qubit indices, in the same index space as `ancilla_qubits`.
+  *   **target\_qubits** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*int*](https://docs.python.org/3/builtins/functions.html#int)*]*) – Qubit indices of `circuit` which will be used to entangle the check qubits to the payload. When `circuit` has a layout (ISA mode), these are physical qubit indices, in the same index space as `ancilla_qubits`.
 
-  *   **noise\_model** ([*NoiseModel*](qiskit-paulice-noise-models#noisemodel "qiskit_paulice.noise_models.NoiseModel")) – A noise model describing the effect of noise on the target device. This model will be used to estimate the effect of a given check during the check picking process. While one can generate a noise model from learned Pauli-Lindblad noise, a rougher approximation of the noise generated from backend benchmark data is often sufficient. Ancilla/target edges introduced by check insertion that aren’t in the supplied `GateWiseNoise` or `LayeredNoise` are auto-inferred (median rate per Pauli pair across the supplied data); supply them explicitly to override.
+  *   **noise\_model** ([*NoiseModel*](qiskit-paulice-noise-models#noisemodel "qiskit_paulice.noise_models.NoiseModel")) – A noise model describing the effect of noise on the target device. This model will be used to estimate the effect of a given check during the check picking process. While one can generate a noise model from learned Pauli-Lindblad noise, a rougher approximation of the noise generated from backend benchmark data is often sufficient. Ancilla/target edges introduced by check insertion that aren’t in the supplied `GateWiseNoise` or `LayeredGateNoise` are auto-inferred (median rate per Pauli pair across the supplied data); supply them explicitly to override. Idling noise is not supported and raises a `ValueError`.
 
   *   **cost** ([*Literal*](https://docs.python.org/3/library/typing.html#typing.Literal)*\['gamma', 'LER']*) –
 
@@ -42,7 +45,7 @@ Functionality for finding effective spacetime Pauli checks.
       *   `"gamma"`: The gamma value associated with the inverse logical noise channel (i.e. the noise channel consisting of errors within the measurement lightcone that are undetectable by the checks).
       *   `"LER"`: The empirical logical error rate after postselection. Performs Monte Carlo simulations to calculate the fraction of postselected shots affected by uncovered logical noise.
 
-  *   **cost\_nshots** ([*int*](https://docs.python.org/3/library/functions.html#int)) – Number of Monte Carlo shots used by Monte Carlo-based cost metrics (currently only `"LER"`).
+  *   **cost\_nshots** ([*int*](https://docs.python.org/3/builtins/functions.html#int)) – Number of Monte Carlo shots used by Monte Carlo-based cost metrics (currently only `"LER"`).
 
   *   **method** ([*Literal*](https://docs.python.org/3/library/typing.html#typing.Literal)*\['windowed', 'genetic', 'windowed\_genetic']*) –
 
@@ -52,16 +55,72 @@ Functionality for finding effective spacetime Pauli checks.
       *   `"genetic"`: Evolve a set of candidate checks from the full wire-space of each target qubit
       *   `"windowed_genetic"`: Run a genetic search within random windows of wires on each target qubit
 
-  *   **ancilla\_qubits** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*] | None*) – List of physical qubit indices (one per index in `target_qubits`) specifying where to place the check ancillas in the output circuit. Required when `circuit.layout` is not `None`. `ancilla_qubits[i]` will share entangling gates with `target_qubits[i]` when implementing the `i`\ th check.
+  *   **ancilla\_qubits** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*int*](https://docs.python.org/3/builtins/functions.html#int)*] | None*) – List of physical qubit indices (one per index in `target_qubits`) specifying where to place the check ancillas in the output circuit. Required when `circuit.layout` is not `None`. `ancilla_qubits[i]` will share entangling gates with `target_qubits[i]` when implementing the `i`\ th check.
 
-  *   **check\_creg\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – Name of the classical register for check measurements (default: “checks\_c”)
+  *   **check\_creg\_name** ([*str*](https://docs.python.org/3/builtins/stdtypes.html#str)) – Name of the classical register for check measurements (default: “checks\_c”)
 
-  *   **check\_qreg\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str)) – Name of the quantum register holding the check ancillas in the output circuits (default: “checks\_q”). Ignored in ISA mode.
+  *   **check\_qreg\_name** ([*str*](https://docs.python.org/3/builtins/stdtypes.html#str)) – Name of the quantum register holding the check ancillas in the output circuits (default: “checks\_q”). Ignored in ISA mode.
 
-  *   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – Random seed for controlling randomness during the search for good checks. While this seed controls some randomness in the algorithm, some non-determinism still exists when using `LER` cost function, or either variety of genetic check picking method. The combination of `cost="gamma"` and `method="windowed"` is fully deterministic if `seed` is not `None`.
+  *   **seed** ([*int*](https://docs.python.org/3/builtins/functions.html#int) *| None*) – Random seed for controlling randomness during the search for good checks. While this seed controls some randomness in the algorithm, some non-determinism still exists when using `LER` cost function, or either variety of genetic check picking method. The combination of `cost="gamma"` and `method="windowed"` is fully deterministic if `seed` is not `None`.
+
+  *   **stabilizers** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*Pauli*](/docs/api/qiskit/qiskit.quantum_info.Pauli)  *|*[*str*](https://docs.python.org/3/builtins/stdtypes.html#str)*] |* [*Literal*](https://docs.python.org/3/library/typing.html#typing.Literal)*\['all'] | None*) – Stabilizers of the state `circuit` prepares to find checks for, or `None` to find checks for the circuit’s terminal measurements. `"all"` protects the whole state. Otherwise a sequence of [`Pauli`](/docs/api/qiskit/qiskit.quantum_info.Pauli) or labels on the qubits of `circuit` in Qiskit convention, so the rightmost character of a label acts on qubit `0`; a sign is permitted and ignored. In ISA mode they must act as the identity on every qubit outside the payload. Each must stabilize the prepared state, i.e. propagate back through the circuit to a product of `Z`s (a `ValueError` is raised otherwise). Since no payload qubit is measured in this mode, `readout_noise` only affects the check ancillas and so never counts toward the cost.
 
   **Returns**
 
-  A list of `qiskit_paulice.CheckedCircuit` instances – instances containing the bare circuit with no checks and one for each added check. The final element in the output contains the `qiskit_paulice.CheckedCircuit` with checks on every target qubit, assuming a valid set of checks could be found.
+  A list of [`CheckedCircuit`](qiskit-paulice-checked-circuit#checkedcircuit "qiskit_paulice.checked_circuit.CheckedCircuit") instances – instances containing the bare circuit with no checks and one for each added check. The final element in the output contains the [`CheckedCircuit`](qiskit-paulice-checked-circuit#checkedcircuit "qiskit_paulice.checked_circuit.CheckedCircuit") with checks on every target qubit, assuming a valid set of checks could be found.
+
+  Each element’s [`circuit`](qiskit-paulice-checked-circuit#circuit "qiskit_paulice.checked_circuit.CheckedCircuit.circuit") is assembled the first time it is read, not before this function returns. Check metadata – [`cost`](qiskit-paulice-checked-circuit#cost "qiskit_paulice.checked_circuit.CheckedCircuit.cost") and the qubit tuples – is always available, so reading only `[c.cost for c in result]` to watch the cost converge assembles nothing, and reading only `result[-1].circuit` assembles one circuit instead of all of them. If the requested gate set cannot express the inserted checks, the resulting warning is raised on that first read rather than here.
+
+  **Raises**
+
+  *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – `circuit` has no entangling gate, so there is nothing for a check to protect; a qubit has an instruction other than a barrier after its measurement; or a measurement targets a clbit outside every classical register.
+  *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – `circuit` has neither terminal measurements nor `stabilizers`, or has both. The checks are anchored at exactly one of the two.
+  *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – An entry of `stabilizers` acts on a different number of qubits than `circuit`, is not a stabilizer of the prepared state (it does not propagate back to a product of `Z`s), or in ISA mode acts on a qubit outside the payload; `stabilizers` is an empty sequence or a string other than `"all"`.
+  *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – `target_qubits` are out of range, or in ISA mode are not payload qubits.
+  *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – In ISA mode `ancilla_qubits` is missing, has a different length than `target_qubits`, is out of range, repeats a qubit, or overlaps the payload.
+  *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – `check_creg_name` or `check_qreg_name` equals the other or the name of a register `circuit` already has.
+  *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – `cost` is not `"gamma"` or `"LER"`; `noise_model` is empty, sets `idling_noise`, or has a rate outside its allowed range (see [`NoiseModel`](qiskit-paulice-noise-models#noisemodel "qiskit_paulice.noise_models.NoiseModel")).
+
+  **Example**
+
+  Checks for a circuit’s measurements post-select its results directly:
+
+  ```python
+  from qiskit import QuantumCircuit
+  from qiskit_paulice import NoiseModel, add_pauli_checks
+
+  circuit = QuantumCircuit(3)
+  circuit.h(0)
+  circuit.cx(0, 1)
+  circuit.s(1)
+  circuit.cx(1, 2)
+  circuit.measure_all()
+
+  checked = add_pauli_checks(circuit, [1], NoiseModel(gate_noise=1e-3))[-1]
+  accept = checked.get_postselection_method()  # takes a bitstring of ``checked.circuit``
+  ```
+
+  Checks for stabilizers leave the payload unmeasured. Measure it however you like, then rebind the checked circuit so post-selection reads the final registers:
+
+  ```python
+  from dataclasses import replace
+  from qiskit import ClassicalRegister
+
+  payload = circuit.remove_final_measurements(inplace=False)
+  noise = NoiseModel(gate_noise=1e-3)
+  checked = add_pauli_checks(payload, [1], noise, stabilizers="all")[-1]
+
+  measured = checked.circuit.copy()
+  measured.h(range(3))  # any basis rotation of the payload
+  meas = ClassicalRegister(3, "meas")
+  measured.add_register(meas)
+  measured.measure(range(3), meas)
+  checked = replace(checked, circuit=measured)
+  accept = checked.get_postselection_method()  # takes a bitstring of ``measured``
+  ```
+
+  **References**
+
+  S. Martiel and A. Javadi-Abhari, *Low-overhead error detection with spacetime codes*, [arXiv:2504.15725](https://arxiv.org/abs/2504.15725). Supplementary Sections II to VI describe how effective checks are found.
 </Function>
 
