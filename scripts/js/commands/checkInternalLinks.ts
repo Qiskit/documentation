@@ -163,7 +163,10 @@ const QISKIT_GLOBS_TO_LOAD = [
 // This is reused amongst all the addons to make this config less verbose.
 // It includes the addon guide pages (docs/addons/**) since historical addon
 // API docs may link to them,
-const ADDON_GLOBS_TO_LOAD = ["docs/api/qiskit/*.mdx", "docs/addons/**/*.mdx"];
+const ADDON_GLOBS_TO_LOAD = [
+  "docs/api/qiskit/*.mdx",
+  "docs/addons/**/*.{mdx,ipynb}",
+];
 
 async function determineFileBatches(args: Arguments): Promise<FileBatch[]> {
   const currentBatch = await determineCurrentDocsFileBatch(args);
