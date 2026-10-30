@@ -1,0 +1,40 @@
+---
+title: Advanced techniques with Q-CTRL Performance Management
+description: Choose between the Estimator and Sampler primitives, set shots or precision, and reuse sessions with Q-CTRL Performance Management.
+---
+
+# Advanced techniques with Q-CTRL Performance Management
+
+Use the following techniques to get the most out of Q-CTRL Performance Management. For every parameter and its default value, see the [API reference](/docs/api/functions/q-ctrl-performance-management).
+
+## Submit abstract circuits
+
+Performance Management accepts abstract circuits, in contrast to the native IBM Quantum&reg; primitives, which accept only circuits written in the target backend's Instruction Set Architecture (ISA). Do not transpile circuits before you submit them. Fire Opal applies its own transpilation and error suppression pipeline, and pre-transpiled circuits can reduce its effectiveness.
+
+## Choose a primitive
+
+Set the `primitive` argument of `run()` to match the output that your algorithm needs:
+
+- Use `"estimator"` to compute expectation values of observables, for example, in energy estimation or variational algorithms.
+- Use `"sampler"` to get bitstring distributions, for example, in combinatorial optimization or algorithms that read out a hidden bitstring.
+
+## Set shots or precision
+
+Both primitives accept a `default_shots` option, which defaults to `2048`. The Estimator primitive also accepts `default_precision`, the target precision for each expectation value.
+
+- Use `default_precision` when you have an accuracy target.
+- Use `default_shots` when you have a fixed shot budget.
+
+You can also set the shot count or precision for an individual PUB. For details, see the Estimator and Sampler input sections of the [API reference](/docs/api/functions/q-ctrl-performance-management).
+
+## Reuse a session
+
+To run several jobs in the same session, pass an existing session ID in the `session_id` option. If you do not set `session_id`, the function opens a new session for each job.
+
+## Tag jobs
+
+Use the `job_tags` option to attach a list of tags to each job, so that you can filter and find related jobs later.
+
+## Request backend support
+
+If you want to use a backend that this function does not currently support, [contact Q-CTRL](https://form.typeform.com/to/iuujEAEI?typeform-source=q-ctrl.com) to add support.
