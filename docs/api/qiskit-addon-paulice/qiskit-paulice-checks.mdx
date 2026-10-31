@@ -18,7 +18,7 @@ Functionality for finding effective spacetime Pauli checks.
 
 ### add\_pauli\_checks
 
-<Function id="qiskit_paulice.checks.add_pauli_checks" github="https://github.com/Qiskit/qiskit-paulice/tree/main/qiskit_paulice/checks.py#L40-L490" signature="add_pauli_checks(circuit, target_qubits, noise_model, cost='gamma', cost_nshots=10000, method='windowed', ancilla_qubits=None, check_creg_name='checks_c', check_qreg_name='checks_q', seed=None, stabilizers=None)">
+<Function id="qiskit_paulice.checks.add_pauli_checks" github="https://github.com/Qiskit/qiskit-paulice/tree/stable/0.3/qiskit_paulice/checks.py#L39-L468" signature="add_pauli_checks(circuit, target_qubits, noise_model, cost='gamma', cost_nshots=10000, method='windowed', ancilla_qubits=None, check_creg_name='checks_c', check_qreg_name='checks_q', seed=None, stabilizers=None)">
   Add spacetime Pauli checks to a Clifford circuit.
 
   Checks are found for the circuit’s terminal measurements or, when `stabilizers` is given, for stabilizers of the state the circuit prepares:
@@ -68,8 +68,6 @@ Functionality for finding effective spacetime Pauli checks.
   **Returns**
 
   A list of [`CheckedCircuit`](qiskit-paulice-checked-circuit#checkedcircuit "qiskit_paulice.checked_circuit.CheckedCircuit") instances – instances containing the bare circuit with no checks and one for each added check. The final element in the output contains the [`CheckedCircuit`](qiskit-paulice-checked-circuit#checkedcircuit "qiskit_paulice.checked_circuit.CheckedCircuit") with checks on every target qubit, assuming a valid set of checks could be found.
-
-  Each element’s [`circuit`](qiskit-paulice-checked-circuit#circuit "qiskit_paulice.checked_circuit.CheckedCircuit.circuit") is assembled the first time it is read, not before this function returns. Check metadata – [`cost`](qiskit-paulice-checked-circuit#cost "qiskit_paulice.checked_circuit.CheckedCircuit.cost") and the qubit tuples – is always available, so reading only `[c.cost for c in result]` to watch the cost converge assembles nothing, and reading only `result[-1].circuit` assembles one circuit instead of all of them. If the requested gate set cannot express the inserted checks, the resulting warning is raised on that first read rather than here.
 
   **Raises**
 
