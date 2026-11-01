@@ -18,13 +18,13 @@ Use a managed workflow when no [pre-built Catalog Function](/docs/guides/compute
 - **Run long jobs in the cloud.** A managed workflow keeps running when you close your laptop, and you can reconnect to the job later.
 - **Use large-memory and GPU nodes.** Choose the memory, CPU, and GPU resources that the workload needs.
 - **Run tasks in parallel.** Scale out by running many single-node jobs at the same time.
-- **Share a reusable program.** Upload the workflow once, and collaborators in your instance can reuse it. *NOTE: check for launch.*
+- **Share a reusable program.** Upload the workflow one time, and collaborators in your instance can reuse it. *NOTE: check for launch.*
 
 You provide the workflow code, its dependencies, and the compute sizes that it supports. Functions runs the workflow on IBM-managed compute in a pre-built environment with your packages installed, and provides cloud storage for the files that the workflow reads and writes.
 
 ## How managed workflows work
 
-You upload a workflow once and run as many jobs as you need. Every job works in the following ways:
+You upload a workflow one time and run as many jobs as you need. Every job works in the following ways:
 
 - The job starts in a new environment with an empty local disk. Functions shuts down the environment after the job ends.
 - The job runs on one of the compute sizes that you define when you upload the workflow. You can choose a different size for each run.
@@ -36,7 +36,7 @@ Because each job starts with an empty local disk, a later job can find only the 
 
 Each job runs asynchronously for up to 24 hours. You can run up to 20 jobs at the same time if your instance has enough allocation.
 
-![From your Python session, you call upload() once to upload the workflow's code, packages, and compute profiles. No job exists yet. Each call to run(args) creates a job that moves through these stages: Queue, where it waits for allocation with status QUEUED; Start, where Functions creates the environment with status INITIALIZING; Running, where your code can optionally set stages with update_status(): Mapping (RUNNING: MAPPING), Optimizing (RUNNING: OPTIMIZING_FOR_HARDWARE), Waiting for QPU (RUNNING: WAITING_FOR_QPU), Executing QPU (RUNNING: EXECUTING_QPU), and Post-processing (RUNNING: POST_PROCESSING); and Result, where the environment shuts down with status DONE, ERROR, or CANCELED. While running, the job reads and writes workflow file storage, which exists outside the job, is shared by all runs, and persists before and after each job. From your session, you can read status() from Queue onward, logs() from Running onward, and result() once the job reaches Result. All three remain available after the job ends.](/docs/images/guides/managed-workflows/lifecycle.svg)
+![From your Python session, you call upload() one time to upload the workflow's code, packages, and compute profiles. No job exists yet. Each call to run(args) creates a job that moves through these stages: Queue, where it waits for allocation with status QUEUED; Start, where Functions creates the environment with status INITIALIZING; Running, where your code can optionally set stages with update_status(): Mapping (RUNNING: MAPPING), Optimizing (RUNNING: OPTIMIZING_FOR_HARDWARE), Waiting for QPU (RUNNING: WAITING_FOR_QPU), Executing QPU (RUNNING: EXECUTING_QPU), and Post-processing (RUNNING: POST_PROCESSING); and Result, where the environment shuts down with status DONE, ERROR, or CANCELED. While running, the job reads and writes workflow file storage, which exists outside the job, is shared by all runs, and persists before and after each job. From your session, you can read status() from Queue onward, logs() from Running onward, and result() after the job reaches Result. All three remain available after the job ends.](/docs/images/guides/managed-workflows/lifecycle.svg)
 
 The following table describes each stage in the diagram and the job status that you see during that stage:
 
@@ -50,7 +50,7 @@ The following table describes each stage in the diagram and the job status that 
 
 ### What a running job can access
 
-Each job runs in an isolated environment, so it's important to know what your code can reach. The following diagram and table show the resources that a running job can use.
+Each job runs in an isolated environment. The following diagram and table show the resources that a running job can use.
 
 ![You call run() with arguments from your Python session and receive status, logs, and the result. Inside the managed workflow, each run executes in an isolated job environment with access to its compute (CPU, RAM, and optionally GPU), your code and packages, and its arguments. The job produces outputs with save_result(), logs, and update_status(), and submits QPU jobs that run on your instance. File storage and your instance, which provides access and cost management, are shared across all managed workflow jobs and persist after the job ends. The job has no internet access.](/docs/images/guides/managed-workflows/architecture.svg)
 
@@ -66,7 +66,7 @@ Each job runs in an isolated environment, so it's important to know what your co
 
 ### Security and isolation
 
-Isolation also protects your work. Functions isolates each job from other jobs and limits the privileges of the code that runs in it. The access boundaries in the preceding table are part of this isolation. Functions also applies the following protections:
+Functions isolates each job from other jobs and limits the privileges of the code that runs in it. The access boundaries in the preceding table are part of this isolation. Functions also applies the following protections:
 
 - **Job isolation.** No other job runs in your job's environment. This includes other users' jobs and your own jobs that run at the same time.
 - **Results, logs, storage.** Only the user who ran a job can read its results and logs. *Note: check how this works with instance / user permission model*
@@ -75,16 +75,16 @@ Isolation also protects your work. Functions isolates each job from other jobs a
 
 ## Compare with on-premises HPC
 
-If you've used an on-premises HPC cluster, this section maps familiar tasks to managed workflows. Managed workflows differ from an on-premises HPC cluster in how you get compute time, set up software, and submit jobs. The following table compares common tasks.
+Managed workflows differ from an on-premises HPC cluster in how you get compute time, set up software, and submit jobs. The following table compares common tasks.
 
 | Task | On-premises HPC cluster | Managed workflows |
 |---|---|---|
 | Get compute time | Request an allocation or a reservation from the cluster administrator. | Use the allocation of your IBM Quantum instance. Functions queues each job when you call `run()`. |
 | Access the system | Connect to a login node with SSH. | Use the Python client on your local computer. Managed workflows do not provide a login node. |
-| Install software | Build software, load modules, or ask an administrator to install packages. | Declare packages when you upload the workflow. Each package must be on the supported list and pinned to an exact version. Functions installs the packages before any job starts. |
+| Install software | Build software, load modules, or ask an administrator to install packages. | Use the supported packages that are installed in every environment, or upload wheels for other packages. |
 | Submit a job | Write a batch script and submit it to the scheduler. | Call `run()` with the job arguments. |
 | Request resources | Request nodes, CPUs, memory, and GPUs. | Select one of the compute sizes that are defined for the workflow. Each job runs on a single node. |
-| Run a parameter sweep | Submit a job array. | Call `run()` once for each set of arguments. |
+| Run a parameter sweep | Submit a job array. | Call `run()` one time for each set of arguments. |
 | Store shared files | Write to a shared scratch file system. | Write to the file storage for the workflow. |
 | Limit run time | Set a wall-time limit. | Functions cancels a job after 24 hours. |
 | Checkpoint long jobs | Write checkpoints to scratch storage. | Save intermediate results to file storage. |

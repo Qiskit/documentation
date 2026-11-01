@@ -13,7 +13,8 @@ description: "Install the managed workflows client package, authenticate to IBM 
 
 ## Prerequisites
 
-- Managed workflows is [enabled on your IBM Quantum&reg; Platform instances](https://quantum.cloud.ibm.com/instances). Contact your administrator to enable for your instances. *Note: we need an internal link to the admin section*
+- Managed workflows is [enabled on your IBM Quantum&reg; Platform instances](https://quantum.cloud.ibm.com/instances). Contact your administrator to enable it.
+  {/* REVIEW: add an internal link to the administrator section. */}
 - An API key and the CRN of your instance. See [Find your access credentials](/docs/ibm-quantum-platform/save-credentials#find-credentials).
 - Python 3.10 or later, in an active virtual environment. See [Install Qiskit](/docs/qiskit/install-qiskit#local) for how to set up an environment.
 
@@ -21,7 +22,7 @@ description: "Install the managed workflows client package, authenticate to IBM 
 
 {/* REVIEW: managed workflows skill is in review (qiskit-function-templates PR #54). Add install steps after it is published. */}
 
-You can use [Qiskit AI skills](/docs/guides/ai-skills) to help you install `qiskit-ibm-catalog`, package your existing local code, and deploy to managed workflows service.
+You can use [Qiskit AI skills](/docs/guides/ai-skills) to help you install `qiskit-ibm-catalog`, package your existing local code, and deploy it as a managed workflow.
 
 ## Install the client package
 
@@ -33,7 +34,7 @@ pip install qiskit-ibm-catalog
 
 This command also installs `qiskit-serverless`, `qiskit`, and `qiskit-ibm-runtime` as dependencies. You do not need to install `qiskit-serverless` separately.
 
-Two of these packages matter for managed workflows, and they run in different places:
+You use two of these packages directly, in different places:
 
 - `qiskit-ibm-catalog` is the client that you use on your local computer to upload workflows, run them, and get their results.
 - `qiskit-serverless` runs inside your workflow code. It provides helpers such as `get_arguments()`, `update_status()`, and `save_result()`.
@@ -90,7 +91,7 @@ serverless = QiskitServerless()
 serverless.list()
 ```
 
-*Note: maybe figure out how to call the version?*
+{/* REVIEW: show how to print the client version. */}
 
 If you have not uploaded a workflow yet, the output is an empty list (`[]`). If you see an authentication error, the client did not find valid credentials. Check the account that you saved in the [Authenticate](#authenticate) section.
 
