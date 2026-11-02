@@ -18,7 +18,7 @@ description: API reference for Rimay Quantum Feature Extraction, a Qiskit Functi
 </CardGroup>
 
 <Admonition type="caution" title="Keep your mapping_id">
-  A `"fit-transform"` run returns a `mapping_id`, which is the only way to reach the mapping it fitted. It cannot be looked up or recovered, and it authorizes the use of that mapping, so treat it like a credential. If you lose it, you have to fit a new mapping, which costs another run on quantum hardware.
+  A `"fit-transform"` run returns a `mapping_id`, which is the only way to reach the mapping it fitted. It cannot be looked up or recovered, and it authorizes the use of that mapping, so treat it like a credential. If you lose it, you must fit a new mapping, which costs another run on quantum hardware.
 </Admonition>
 
 ## Inputs
@@ -28,16 +28,16 @@ Which inputs a run needs depends on its [`mode`](#mode). A `"delete"` run needs 
 ### `mode`
 <Attribute attributeTypeHint="str">
 What the run does:
-- `"fit-transform"`: fit a new quantum feature mapping on the training data, map the training data and, if given, the test data with it, and store the mapping.
-- `"transform"`: map new data with a mapping fitted earlier, identified by [`mapping_id`](#mapping_id).
-- `"delete"`: remove a stored mapping. This does no quantum work.
+- `"fit-transform"`: Fit a new quantum feature mapping on the training data, map the training data and, if given, the test data with it, and store the mapping.
+- `"transform"`: Map new data with a mapping fitted earlier, identified by [`mapping_id`](#mapping_id).
+- `"delete"`: Remove a stored mapping. A deletion does no quantum work.
 - Required: Yes
 - Example: `"fit-transform"`
 </Attribute>
 
 ### `input_file`
 <Attribute attributeTypeHint="list[str]">
-Names of the CSV files to read, uploaded beforehand with `file_upload()`. The list is positional: its length and order define what each file is. See [Input files](#input-files) for the file format. A job reads the files when it starts, so an upload under the same name before then replaces what it reads; give the files of jobs that run at the same time their own names.
+Names of the CSV files to read, uploaded beforehand with `file_upload()`. The list is positional: its length and order define what each file is. See [Input files](#input-files) for the file format. A job reads the files when it starts, so an upload under the same name before then replaces what it reads. Give the files of jobs that run at the same time their own names.
 - `"fit-transform"`: `[x_train, y_train]`, or `[x_train, y_train, x_test]` to map a test set in the same run
 - `"transform"`: `[x_inference]`
 - Required: For `"fit-transform"` and `"transform"`
@@ -46,9 +46,9 @@ Names of the CSV files to read, uploaded beforehand with `file_upload()`. The li
 
 ### `backend_name`
 <Attribute attributeTypeHint="str">
-Name of the IBM Quantum processor that runs the circuits. It must be a processor your instance has access to, with at least as many qubits as the data has features.
+Name of the IBM Quantum processor that runs the circuits. It must be a processor that your instance has access to, with at least as many qubits as the data has features.
 
-A `"transform"` run must name the processor of the fit that produced its [`mapping_id`](#mapping_id). Any other processor is refused before anything is submitted.
+A `"transform"` run must name the processor of the fit that produced its [`mapping_id`](#mapping_id). The function rejects any other processor before it submits anything.
 - Required: For `"fit-transform"` and `"transform"`
 - Example: `"ibm_boston"`
 </Attribute>
@@ -93,7 +93,7 @@ Metadata of the run. The quantum-transformed features are written to the files l
 
 #### `output_files`
 <Attribute attributeTypeHint="list[str]">
-Names of the files the run wrote. Each name starts with the ID of the job that wrote it (`job.job_id`), so a later run never overwrites the files of an earlier one. Download the files by the names listed here.
+Names of the files that the run wrote. Each name starts with the ID of the job that wrote it (`job.job_id`), so a later run never overwrites the files of an earlier one. Download the files by the names listed here.
 - `"fit-transform"`: `["<job_id>_xq_train.csv"]`, or `["<job_id>_xq_train.csv", "<job_id>_xq_test.csv"]` when a test set was given
 - `"transform"`: `["<job_id>_xq_inference.csv"]`
 - `"delete"`: `[]`
@@ -106,7 +106,7 @@ The mode of the run.
 
 #### `backend_name`
 <Attribute attributeTypeHint="str">
-The processor the circuits ran on.
+The processor that the circuits ran on.
 - Modes: `"fit-transform"`, `"transform"`
 </Attribute>
 
@@ -119,7 +119,7 @@ Number of samples mapped, which equals the number of circuits run. Training and 
 <span id="output-mapping_id"></span>
 #### `mapping_id`
 <Attribute attributeTypeHint="str">
-The mapping the run fitted, used, or deleted. Pass the one a `"fit-transform"` run returns to later `"transform"` and `"delete"` runs.
+The mapping that the run fitted, used, or deleted. Pass the ID that a `"fit-transform"` run returns to later `"transform"` and `"delete"` runs.
 </Attribute>
 
 #### `deleted`
@@ -131,14 +131,19 @@ The mapping the run fitted, used, or deleted. Pass the one a `"fit-transform"` r
 #### `metadata`
 <Attribute attributeTypeHint="dict[str, Any]">
 Information about the run.
-- `version` (`str`): the version of the function that ran.
-- `resource_usage` (`dict`): one entry per execution phase the run went through, `"RUNNING: MAPPING"` and `"RUNNING: POST_PROCESSING"`, and on a quantum processor usually `"RUNNING: WAITING_FOR_QPU"` as well, each `{"CPU_TIME": float, "QPU_TIME": float | None}` in seconds. `CPU_TIME` is wall-clock time. `"RUNNING: WAITING_FOR_QPU"` is the time the jobs waited in the IBM queue, taken from IBM's job timestamps and not counted in `"RUNNING: MAPPING"`; it is absent when IBM does not report those timestamps for every job, and the wait is then part of `"RUNNING: MAPPING"`. On a quantum processor, the QPU time that IBM billed is booked against `"RUNNING: MAPPING"`. IBM finishes its usage calculation some time after a job finishes, and the run waits up to about a minute for it; usage still being calculated then is not included, and the final usage shows on IBM Quantum Platform. `QPU_TIME` is `None` when the usage could not be read from IBM.
+- `version` (`str`): The version of the function that ran.
+- `resource_usage` (`dict`): One entry for each execution phase that the run went through: `"RUNNING: MAPPING"`, `"RUNNING: POST_PROCESSING"`, and, on a QPU, usually `"RUNNING: WAITING_FOR_QPU"`. Each entry is `{"CPU_TIME": float, "QPU_TIME": float | None}`, in seconds.
+  - `CPU_TIME` is wall-clock time.
+  - `"RUNNING: WAITING_FOR_QPU"` is the time that the jobs waited in the IBM queue, taken from the IBM job timestamps and not counted in `"RUNNING: MAPPING"`. If IBM does not report those timestamps for every job, the entry is absent, and the wait is part of `"RUNNING: MAPPING"`.
+  - On a QPU, the QPU time that IBM billed is recorded under `"RUNNING: MAPPING"`.
+  - IBM finishes its usage calculation some time after a job finishes, and the run waits up to about a minute for it. Usage that is still being calculated after that time is not included, and the final usage is shown on IBM Quantum Platform.
+  - `QPU_TIME` is `None` if the usage cannot be read from IBM.
 - Example: `{"version": "0.3.0", "resource_usage": {"RUNNING: MAPPING": {"CPU_TIME": 12.4, "QPU_TIME": 6.0}, "RUNNING: WAITING_FOR_QPU": {"CPU_TIME": 28.8, "QPU_TIME": 0.0}, "RUNNING: POST_PROCESSING": {"CPU_TIME": 0.3, "QPU_TIME": 0.0}}}`
 </Attribute>
 
 ### Output files
 
-`<job_id>` is the ID of the job that wrote the file. Every output file is a CSV file with a header row, one row per row of the corresponding input file, in the same order, and one column per quantum-transformed feature. Columns whose names start with `corr_` hold two-body expectation values. The files hold no label column; the labels stay in your own `y_train` file.
+`<job_id>` is the ID of the job that wrote the file. Every output file is a CSV file with a header row, one row per row of the corresponding input file, in the same order, and one column per quantum-transformed feature. Columns whose names start with `corr_` hold two-body expectation values. The files hold no label column. The labels stay in your own `y_train` file.
 
 | File | Written by | Rows from |
 | :-- | :-- | :-- |
@@ -148,9 +153,9 @@ Information about the run.
 
 ## Error handling
 
-Before a job is created, IBM Quantum checks the inputs against Rimay's input schema. An input that is missing or unknown, a value of the wrong type, the wrong number of files in `input_file`, a `backend_name` that does not start with `ibm_`, or `shots` smaller than 1 is refused right away with an error that names the input. No job is created and nothing is billed. To check inputs without running a job, call `rimay.validate_arguments({...})` with the same inputs you would pass to `rimay.run`.
+Before a job is created, IBM Quantum checks the inputs against the Rimay input schema. If an input is missing or unknown, a value has the wrong type, `input_file` has the wrong number of files, `backend_name` does not start with `ibm_`, or `shots` is smaller than 1, the check fails immediately with an error that names the input. No job is created and nothing is billed. To check inputs without running a job, call `rimay.validate_arguments({...})` with the same inputs you would pass to `rimay.run`.
 
-Every error Rimay reports for a job carries a code from the [IBM Quantum error codes](/docs/errors), a message, and a solution that names the value passed and the value allowed. Fetch it with `job.result()` when the job status is `ERROR`.
+Every error that Rimay reports for a job carries a code from the [IBM Quantum error codes](/docs/errors), a message, and a solution that names the value passed and the value allowed. Fetch it with `job.result()` when the job status is `ERROR`.
 
 | Code | Cause |
 | :-- | :-- |
@@ -159,19 +164,19 @@ Every error Rimay reports for a job carries a code from the [IBM Quantum error c
 | `1221` | `x_train` and `y_train` have different numbers of rows, `x_test` does not have the columns of `x_train`, `y_train` is not one numeric column, or a feature column is not numeric. |
 | `1221` | `mapping_id` does not match a stored mapping, because it is mistyped or the mapping was deleted. |
 | `1221` | A `"transform"` run names a different `backend_name` than the fit that produced its mapping. |
-| `1216` | The instance the job runs under has no processor named `backend_name`. The solution lists the processors it does have. |
-| `1200` | The API key does not have access to the instance the job runs under. |
-| `1219` | IBM Quantum did not accept the API key the job runs under: it may be incorrect, expired, or revoked. |
-| `1279` | IBM Quantum could not find the instance the job runs under, or the instance is no longer active. |
+| `1216` | The instance that the job runs under has no processor named `backend_name`. The solution lists the processors it does have. |
+| `1200` | The API key does not have access to the instance that the job runs under. |
+| `1219` | IBM Quantum did not accept the API key that the job runs under. The key might be incorrect, expired, or revoked. |
+| `1279` | IBM Quantum could not find the instance that the job runs under, or the instance is no longer active. |
 | `1229` | The processor named `backend_name` is not accepting jobs right now, for example because it is in maintenance. |
 | `1233` | The processor named `backend_name` is reserved and runs only the jobs of its reservation. |
-| `1218` | The instance the job runs under has reached its usage limit. |
-| `1010` | IBM Quantum reported the job as failed. The solution names IBM's error code, if IBM gave one. |
+| `1218` | The instance that the job runs under has reached its usage limit. |
+| `1010` | IBM Quantum reported the job as failed. The solution names the IBM error code, if there is one. |
 | `1305` | The job ran longer than the maximum execution time IBM Quantum allows. |
-| `1323` | The function could not access its storage, or could not reach IBM Quantum on your behalf. Retry the job, and contact support with the job ID if it recurs. |
+| `1323` | The function could not access its storage, or could not reach IBM Quantum on your behalf. Retry the job. If the error recurs, contact support with the job ID. |
 | `3200` | `backend_name` does not start with `ibm_`. |
 | `4500` | The data has more features than the processor has qubits. |
 | `6000` | The number of samples times `shots` exceeds 10 million executions. |
 | `6001` | `shots` is smaller than 1. |
 | `6002` | The data has more samples, or more features, than a run allows. |
-| `1500` | An unexpected error. Retry the job, and contact support@kipu-quantum.com with the job ID if it recurs. |
+| `1500` | An unexpected error. Retry the job. If the error recurs, contact support@kipu-quantum.com with the job ID. |
