@@ -118,6 +118,21 @@ Specifies the type of problem to enable specialized post-processing. At the mome
 </Attribute>
 
 
+### `function_size`
+
+<Attribute attributeTypeHint="str" attributeValue='"M"'>
+The function size to run the job at. The size required is set by the number of variables in `problem` and their interaction density: the fraction of all variable pairs that appear together in a term.
+- `S`: at most 50 variables and density at most 0.1. Compute profile `8x32` (8 vCPU, 32 GB RAM).
+- `M`: at most 100 variables and density at most 0.25. Compute profile `16x128` (16 vCPU, 128 GB RAM).
+- `L`: either above the `M` bound. Compute profile `16x128` (16 vCPU, 128 GB RAM).
+
+If the size is smaller than the problem requires, the job fails with error `4600`. If it is larger, the job runs normally and records a `4601` advisory event.
+Calculate the size before submitting with the size calculator in the [guide](/docs/guides/parity-twine-optimizer#function-sizes). `function.sizes_map` returns the mapping from size to compute profile, and `function.default_size` returns the default. See [Function sizes](./function-sizes.ipynb) for how sizes work across Qiskit Functions.
+- Required: No
+- Choices: `S`, `M`, `L`
+- Default: `M`
+</Attribute>
+
 ### Options
 
 {/*
