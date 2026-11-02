@@ -5,17 +5,17 @@ description: "Documentation for the latest version of Shaded lightcones"
 
 # Shaded lightcones (SLC)
 
-![\_images/lightcones.png](/docs/images/addons/qiskit-addon-slc/lightcones.avif)
+![Two copies of the same brickwork circuit ending in a measurement. On the left, a conventional lightcone is uniformly shaded yellow. On the right, a shaded lightcone fades from yellow to transparent according to how much each gate matters to the measured observable.](/docs/images/addons/qiskit-addon-slc/lightcones.avif)
 
 `qiskit-addon-slc` is a package for computing the shaded lightcone (SLC) [\[1\]](#references) of an observable with respect to a quantum circuit. In the context of probabilistic error cancellation (PEC), shaded lightcones are similar to conventional binary lightcones in that not mitigating errors outside the lightcone can reduce the variance (i.e. sampling cost). Lightcone shading allows this strategy to be pushed further by assigning scales to Pauli error generators within the causal lightcone. Errors that are assigned smaller scales have less effect on the observable; truncating them from the noise model can reduce variance (i.e. sampling cost) at the cost of some bias. The `qiskit-addon-slc` package gives users the ability to do lightcone shading and control the tradeoff between sampling cost and bias.
 
 ## Getting started
 
-A simple guide to help you get started quickly with this package is available in the [quickstart guide](guides/quickstart).
+A simple guide to help you get started quickly with this package is available in the [quickstart guide](/docs/addons/qiskit-addon-slc/guides/quickstart).
 
 ## Use case examples
 
-This technique has been used to improve the sampling cost of PEC on a 20-qubit mirrored Ising circuit [\[tutorial\]](/docs/tutorials/pec-with-shaded-lightcones).
+This technique has been used to lower the sampling cost of probabilistic error cancellation (PEC) for operator Loschmidt echo experiments with 56 qubits on an IBM Heron processor. [\[2\]](#references).
 
 ## Technical discussion
 
@@ -26,19 +26,19 @@ Shaded lightcones are calculated and used in 5 steps:
 1.  Compute a bound on the effect of each Pauli error term on the observable at the end of the circuit (forward bound)
 2.  Compute a bound on the effect of each Pauli error term on the initial state at the beginning of the circuit (backward bound)
 
-![\_images/bounds.png](/docs/images/addons/qiskit-addon-slc/bounds.avif)
+![A three-qubit circuit with four unitary layers and a grid of error terms E1 to E12 between them. Error term E8 is highlighted. One arrow from E8 back to the initial state rho is labeled backward bound, and another arrow from E8 to the final observable A is labeled forward bound.](/docs/images/addons/qiskit-addon-slc/bounds.avif)
 
 3.  Approximate a bias contribution for each Pauli error term using the forward/backward bounds and the term’s error rate
 
-![\_images/merge\_bounds.png](/docs/images/addons/qiskit-addon-slc/merge_bounds.avif)
+![Two 3-by-4 grids of numbered error terms, one shaded by backward bound and one by forward bound. Arrows from both point to a third grid labeled partition and merge, which combines the two sets of bounds and highlights term 8.](/docs/images/addons/qiskit-addon-slc/merge_bounds.avif)
 
 4.  Prioritize error terms based on their error rate and bounds. Truncate terms from the noise model which have the least effect on the observable expectation value until the user-specified bias tolerance is hit. Alternatively, one can add the most impactful error terms to a noise model until the user-specified sampling cost budget is filled.
 
-![\_images/prioritize\_and\_truncate.png](/docs/images/addons/qiskit-addon-slc/prioritize_and_truncate.avif)
+![A row of numbered error terms sorted from most to least impactful, starting with term 8 and ending with terms 1, 2, 10 and 12. The last five terms, shaded darkest, are separated from the rest and labeled truncate.](/docs/images/addons/qiskit-addon-slc/prioritize_and_truncate.avif)
 
 5.  Mitigate the truncated noise model. Using the [directed execution model](/docs/guides/directed-execution-model) from Qiskit Runtime, specifying error terms to ignore during PEC sampling is straightforward. See the [tutorial](/docs/tutorials/pec-with-shaded-lightcones) for details.
 
-![\_images/reduced\_pec.png](/docs/images/addons/qiskit-addon-slc/reduced_pec.avif)
+![The prioritized list of retained error terms, 8, 11, 7, 5, 6, 3 and 4, with an arrow pointing to a three-qubit circuit. Each retained term appears in the circuit as an inverse noise gate, labeled lambda inverse, between the unitary layers.](/docs/images/addons/qiskit-addon-slc/reduced_pec.avif)
 
 ### Software features
 
@@ -55,7 +55,6 @@ Shaded lightcones are calculated and used in 5 steps:
 ### Future work
 
 *   Rust-accelerated eigenvalue computation for computing forward bounds
-*   Additional guides coming soon
 
 ## Contributing
 
@@ -92,4 +91,5 @@ We use [GitHub issues](https://github.com/Qiskit/qiskit-addon-slc/issues/new/cho
 ## References
 
 1.  Andrew Eddins, et al., [Lightcone shading for classically accelerated quantum error mitigation](https://arxiv.org/abs/2409.04401v1), arXiv:2409.04401v1 \[quant-ph].
+2.  Samantha V. Barron, et al., [Observable Estimation in the Absence of Classical Verification](https://arxiv.org/pdf/2607.25998), arXiv:2607.25998 \[quant-ph].
 

@@ -1,0 +1,30 @@
+---
+title: suffix_creg_identifier (latest version)
+description: API reference for qiskit_noise_learning.analysis.suffix_creg_identifier in the latest version of qiskit-noise-learning
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit_noise_learning.analysis.suffix_creg_identifier
+---
+
+<span id="qiskit-noise-learning-analysis-suffix-creg-identifier" />
+
+# qiskit\_noise\_learning.analysis.suffix\_creg\_identifier
+
+<Function id="qiskit_noise_learning.analysis.suffix_creg_identifier" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/analysis/flip_post_select.py" signature="qiskit_noise_learning.analysis.suffix_creg_identifier(suffix: str = '_ps') → Callable[[list[str]], Iterator[tuple[str, ...]]]">
+  Return a creg identifier that pairs each creg named `"*<suffix>"` with `"*"`.
+
+  The returned callable is suitable as the `creg_identifier` argument of [`FlipPostSelect`](analysis-flip-post-select "qiskit_noise_learning.analysis.FlipPostSelect"), and is the default that class uses. Given the names of the cregs present in a dataset, it yields one tuple for every name ending in `suffix`: the pair `(base, name)` when the corresponding `base` name is also present, and the singleton `(name,)` when it is not. Names that do not end in `suffix` are not post-selected on.
+
+  **Parameters**
+
+  **suffix** – The complete creg name suffix marking a post-selection register, including any separator. The default pairs `"meas_ps"` with `"meas"`.
+
+  **Returns**
+
+  A callable mapping a list of creg names to an iterator over groups of creg names.
+
+  **Raises**
+
+  [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If *suffix* is empty, which would pair every creg with itself.
+</Function>
+

@@ -11,7 +11,7 @@ python_api_name: qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerato
 # qiskit\_noise\_learning.circuit\_generator.ExecutorCircuitGenerator
 
 <Class id="qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/circuit_generator/executor/executor_circuit_generator.py" signature="qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator(gate_set: QiskitGateSet, creg_prefix: str = 'meas', local_clifford_ref_prefix: str = 'c', pass_manager: PassManager | None = None)" modifiers="class">
-  Bases: `CircuitGenerator`\[[`QuantumProgram`](/docs/api/qiskit-ibm-runtime/quantum-program-quantum-program "(in Qiskit Runtime IBM Client)"), [`QuantumProgramResult`](/docs/api/qiskit-ibm-runtime/results-quantum-program-result "(in Qiskit Runtime IBM Client)")]
+  Bases: `CircuitGenerator`\[[`QuantumProgram`](/docs/api/samplomatic/auto/quantum-program-quantum-program "(in samplomatic)"), [`QuantumProgramResult`](/docs/api/samplomatic/auto/quantum-program-quantum-program-result "(in samplomatic)")]
 
   A circuit generator that converts sequences of Qiskit gates into a samplex items.
 
@@ -23,6 +23,8 @@ python_api_name: qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerato
   *   **pass\_manager** – An optional `PassManager` to apply to all template circuits produced by [`ExecutorCircuitGenerator.generate()`](#qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator.generate "qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator.generate"). Pass managers should not modify the details of the existing circuit (e.g. re-order qubits or rename measurements).
 
   Pure preparation gates (those with `prep_idxs` and no operations) at the beginning of an instruction sequence are not explicitly included as a box in the template circuit. Instead, any single-qubit gates (e.g. basis rotation) associated with preparation are absorbed into the subsequent box’s left-dressing.
+
+  Each [`PartialPauliPermutation`](sequences-partial-pauli-permutation "qiskit_noise_learning.sequences.PartialPauliPermutation") of an instruction sequence is emitted as the left-dressing of the box that follows it. A box dresses only the qubits it acts on, so a permutation must be the identity on every qubit of [`qubit_subset`](gate-sets-gate-set#qubit_subset "qiskit_noise_learning.gate_sets.GateSet.qubit_subset") that the following gate does not act on. Qubits outside that subset take no part in the experiment, and a permutation acting on them is ignored.
 
   ### \_\_init\_\_
 
@@ -102,6 +104,7 @@ python_api_name: qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerato
     *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If any of the instruction sequences is not complete.
     *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If any of the instruction sequences have different structure.
     *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If a twirled box is not left-dressed.
+    *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If the single-qubit Clifford layer preceding a box is non-identity on a gate-set qubit that the box’s gate does not act on.
   </Function>
 </Class>
 

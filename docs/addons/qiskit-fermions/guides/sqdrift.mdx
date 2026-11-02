@@ -400,7 +400,11 @@ You can add an additional optimization step to the transpilation pipeline that m
 </Admonition>
 
 <Admonition title="Important" type="danger">
-  In order to perform the correct subspace diagonalization, the bitstrings sampled from circuits that were transpiled with the [`RelabelModes`](/docs/api/qiskit-fermions/transpiler-passes-relabel-modes#qiskit_fermions.transpiler.passes.RelabelModes "qiskit_fermions.transpiler.passes.RelabelModes") optimization pass must be post-processed based on the `permutation` information contained in the circuits’ metadata!
+  The relabeling changes which mode a given qubit carries, so the subspace diagonalization only gets the right bitstrings if that is accounted for. Where the accounting happens depends on where you measure.
+
+  Add the measurements to the [`FermionicCircuit`](/docs/api/qiskit-fermions/circuit-fermionic-circuit#qiskit_fermions.circuit.FermionicCircuit "qiskit_fermions.circuit.FermionicCircuit") with [`FermionicCircuit.measure_all()`](/docs/api/qiskit-fermions/circuit-fermionic-circuit#qiskit_fermions.circuit.FermionicCircuit.measure_all "qiskit_fermions.circuit.FermionicCircuit.measure_all") before transpiling, and there is nothing to do: each measurement names the mode it reads, so the relabeling carries it along and the sampled bitstrings are indexed by the original mode.
+
+  Measure the transpiled [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit) instead, and the bitstrings must be post-processed using the `permutation` recorded in the circuit’s metadata. See the [`RelabelModes`](/docs/api/qiskit-fermions/transpiler-passes-relabel-modes#qiskit_fermions.transpiler.passes.RelabelModes "qiskit_fermions.transpiler.passes.RelabelModes") documentation for the recipe.
 </Admonition>
 
 ## Next steps

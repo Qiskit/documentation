@@ -1,0 +1,163 @@
+---
+title: trim (latest version)
+description: API reference for qiskit_addon_sqd.trim in the latest version of qiskit-addon-sqd
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit_addon_sqd.trim
+---
+
+<span id="module-qiskit_addon_sqd.trim" />
+
+<span id="trim-qiskit-addon-sqd-trim" />
+
+# Trim
+
+`qiskit_addon_sqd.trim`
+
+Trim SQD, a schedule that screens more configurations than it diagonalizes.
+
+[`diagonalize_fermionic_hamiltonian()`](fermion#diagonalize_fermionic_hamiltonian "qiskit_addon_sqd.fermion.diagonalize_fermionic_hamiltonian") diagonalizes each subsampled batch and keeps the best result. *Trim SQD* instead treats the batches as candidates to be screened: each is diagonalized, trimmed down to the configurations carrying the largest weight, and the survivors of all the batches are merged and diagonalized together. The energy of that merged diagonalization is what the iteration reports, and its own trimmed output seeds the next one.
+
+The point is that screening is cheaper than diagonalizing. Each batch is roughly the size of the merged subspace, so a set of candidates several times larger than the affordable subspace can be ranked for the cost of a few extra diagonalizations of that size.
+
+This is expressed as a [`SubspacePolicy`](fermion#subspacepolicy "qiskit_addon_sqd.fermion.SubspacePolicy"), so it describes the schedule and leaves the diagonalizations themselves to whatever `sci_solver` the caller passes.
+
+### TrimPolicy
+
+<Class id="qiskit_addon_sqd.trim.TrimPolicy" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.14/qiskit_addon_sqd/trim.py#L47-L252" signature="TrimPolicy(*, trim_ratio=0.1, carryover_threshold=0.0001, carryover_ratio=0.1, max_strings_per_trim=None, max_carryover=None)" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
+
+  A [`SubspacePolicy`](fermion#subspacepolicy "qiskit_addon_sqd.fermion.SubspacePolicy") that screens disjoint batches.
+
+  Each iteration diagonalizes every batch, keeps the highest-weight CI strings of each, merges them, and performs one further diagonalization over the merged subspace. That diagonalization’s energy is what the iteration reports, and its own trimmed CI strings seed the next one.
+
+  Pass an instance as the `policy` argument of [`diagonalize_fermionic_hamiltonian()`](fermion#diagonalize_fermionic_hamiltonian "qiskit_addon_sqd.fermion.diagonalize_fermionic_hamiltonian"):
+
+  ```python
+  result = diagonalize_fermionic_hamiltonian(
+      hcore,
+      eri,
+      bit_array,
+      samples_per_batch=300,
+      norb=norb,
+      nelec=nelec,
+      num_batches=5,
+      policy=TrimPolicy(trim_ratio=0.1),
+  )
+  ```
+
+  The cost of an iteration is `num_batches + 1` diagonalizations rather than `num_batches`, and the merged subspace is bounded by what the batches retain.
+
+  The batches are drawn as one pool of `samples_per_batch * num_batches` bitstrings divided among them, so that no *bitstring* appears in more than one. Screening selects among the batches, so it is only as useful as the batches differ: batches drawn independently would overlap heavily, which shrinks the pool of distinct candidates and gives a bitstring appearing in several batches several chances to survive the trim. Because that follows from what this schedule does, it is not something to configure.
+
+  What this makes disjoint is the configurations. The per-spin CI string arrays derived from them can still share strings between batches, since two configurations may agree on one of their halves.
+
+  <Admonition title="Note" type="note">
+    A subspace here is spanned by the Cartesian product of a spin-alpha and a spin-beta CI string array, so trimming to a given number of *configurations* retains close to that many strings in each spin sector, whose product is larger. `max_strings_per_trim` and `max_carryover` bound the strings per sector, and the `max_dim` argument of [`diagonalize_fermionic_hamiltonian()`](fermion#diagonalize_fermionic_hamiltonian "qiskit_addon_sqd.fermion.diagonalize_fermionic_hamiltonian") bounds the subspace that the next iteration builds from them.
+  </Admonition>
+
+  <Admonition title="Note" type="note">
+    Whether screening improves the result depends on the system and the scale. It is worth comparing against a run without it, which is what passing `num_batches=1` amounts to: the single batch is diagonalized, trimmed and diagonalized again, with no cross-batch selection. Screening has the most to offer when the sampled configurations greatly outnumber what can be diagonalized at once, and the least when a subspace of the affordable size already captures most of the wavefunction.
+  </Admonition>
+
+  Initialize the policy.
+
+  This policy performs two kinds of trim, and they are bounded separately. The *screening* trims shrink each batch of the first round, once per batch; the *carryover* trim shrinks the merged subspace to what seeds the next iteration. The carryover applies the same amplitude cutoff as [`StandardPolicy`](fermion#standardpolicy "qiskit_addon_sqd.fermion.StandardPolicy"), then a fraction of what survives it.
+
+  **Parameters**
+
+  *   **trim\_ratio** ([*float*](https://docs.python.org/3/builtins/functions.html#float)) – The fraction of each batch’s CI strings, per spin sector, that survive screening and enter the merged subspace. Ranked by summed squared amplitude over the other spin sector.
+
+  *   **carryover\_threshold** ([*float*](https://docs.python.org/3/builtins/functions.html#float)) – Amplitude cutoff for the CI strings that seed the next iteration, applied exactly as [`StandardPolicy`](fermion#standardpolicy "qiskit_addon_sqd.fermion.StandardPolicy") applies it, with the same default. This bounds the weight discarded rather than the number of strings kept.
+
+  *   **carryover\_ratio** ([*float*](https://docs.python.org/3/builtins/functions.html#float)) – The fraction of the strings surviving `carryover_threshold` that seed the next iteration, ranked by summed squared amplitude over the other spin sector. The cutoff runs first and the fraction narrows what it left, so the two bound different things: the cutoff the weight discarded, the fraction the count.
+
+  *   **max\_strings\_per\_trim** ([*int*](https://docs.python.org/3/builtins/functions.html#int) *| None*) –
+
+      Ceiling on the number of CI strings, per spin sector, that any one screening trim retains. Where it binds it lowers the effective ratio, so a trim keeps `min(ceil(trim_ratio * len(strings)), max_strings_per_trim)` strings in each sector. Defaults to `None`, leaving `trim_ratio` to decide.
+
+      Reach for it when a ratio would retain more than intended: `symmetrize_spin` merges the two spin sectors into a single list and so roughly doubles what each batch offers, and a large `samples_per_batch` does the same.
+
+      **This is not a bound on a subspace.** It applies once per batch, and the contributions are merged, so the merged subspace can hold up to `num_batches` times as many strings per sector – in practice close to that, since the batches have little in common. The `max_dim` argument of [`diagonalize_fermionic_hamiltonian()`](fermion#diagonalize_fermionic_hamiltonian "qiskit_addon_sqd.fermion.diagonalize_fermionic_hamiltonian") is what bounds a subspace.
+
+  *   **max\_carryover** ([*int*](https://docs.python.org/3/builtins/functions.html#int) *| None*) – Ceiling on the number of CI strings, per spin sector, that seed the next iteration, applied together with `carryover_ratio` to the marginal-weight ranking of whatever survived `carryover_threshold`. Unlike `max_strings_per_trim` this governs a single trim of the merged subspace, so it bounds the carryover as a whole.
+
+  <Admonition title="Note" type="note">
+    Neither ceiling constrains a solver that selects its own carryover through [`carryover`](fermion#carryover "qiskit_addon_sqd.fermion.SCIResult.carryover"), whose selection is used as given.
+  </Admonition>
+
+  **Raises**
+
+  [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – A ratio was not in `(0, 1]`, or a ceiling was less than one.
+
+  **Parameters**
+
+  *   **trim\_ratio** ([*float*](https://docs.python.org/3/builtins/functions.html#float))
+  *   **carryover\_threshold** ([*float*](https://docs.python.org/3/builtins/functions.html#float))
+  *   **carryover\_ratio** ([*float*](https://docs.python.org/3/builtins/functions.html#float))
+  *   **max\_strings\_per\_trim** ([*int*](https://docs.python.org/3/builtins/functions.html#int) *| None*)
+  *   **max\_carryover** ([*int*](https://docs.python.org/3/builtins/functions.html#int) *| None*)
+
+  #### prepare\_subspaces
+
+  <Function id="qiskit_addon_sqd.trim.TrimPolicy.prepare_subspaces" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.14/qiskit_addon_sqd/trim.py#L234-L252" signature="prepare_subspaces(request)">
+    Divide one pool of bitstrings among the batches, so that they are disjoint.
+
+    **Parameters**
+
+    **request** ([*SubspaceRequest*](fermion#subspacerequest "qiskit_addon_sqd.fermion.SubspaceRequest"))
+
+    **Return type**
+
+    [list](https://docs.python.org/3/builtins/stdtypes.html#list)\[[tuple](https://docs.python.org/3/builtins/stdtypes.html#tuple)\[[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray), [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)]]
+  </Function>
+
+  #### refine
+
+  <Function id="qiskit_addon_sqd.trim.TrimPolicy.refine" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.14/qiskit_addon_sqd/trim.py#L183-L208" signature="refine(results, round_index)">
+    Merge what the batches retained, then stop after diagonalizing it.
+
+    The screening round’s results are trimmed to their highest-weight CI strings and merged into a single subspace, which the loop diagonalizes as the second round.
+
+    **Parameters**
+
+    *   **results** ([*list*](https://docs.python.org/3/builtins/stdtypes.html#list)*\[*[*SCIResult*](fermion#sciresult "qiskit_addon_sqd.fermion.SCIResult")*]*)
+    *   **round\_index** ([*int*](https://docs.python.org/3/builtins/functions.html#int))
+
+    **Return type**
+
+    [list](https://docs.python.org/3/builtins/stdtypes.html#list)\[[tuple](https://docs.python.org/3/builtins/stdtypes.html#tuple)\[[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray), [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)]] | None
+  </Function>
+
+  #### select\_carryover
+
+  <Function id="qiskit_addon_sqd.trim.TrimPolicy.select_carryover" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.14/qiskit_addon_sqd/trim.py#L215-L232" signature="select_carryover(result, *, symmetrize_spin=False)">
+    Carry over the highest-weight CI strings of the merged diagonalization.
+
+    The amplitude cutoff is applied exactly as [`StandardPolicy`](fermion#standardpolicy "qiskit_addon_sqd.fermion.StandardPolicy") applies it, with the same default, and `carryover_ratio` and `max_carryover` then bound the count, which the cutoff alone does not. The treatment of `symmetrize_spin` is the same too: it ranks the two sectors together before merging them.
+
+    **Parameters**
+
+    *   **result** ([*SCIResult*](fermion#sciresult "qiskit_addon_sqd.fermion.SCIResult"))
+    *   **symmetrize\_spin** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool))
+
+    **Return type**
+
+    [tuple](https://docs.python.org/3/builtins/stdtypes.html#tuple)\[[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray), [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)]
+  </Function>
+
+  #### select\_result
+
+  <Function id="qiskit_addon_sqd.trim.TrimPolicy.select_result" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.14/qiskit_addon_sqd/trim.py#L210-L213" signature="select_result(results)">
+    Report the merged diagonalization, which is the only result of the last round.
+
+    **Parameters**
+
+    **results** ([*list*](https://docs.python.org/3/builtins/stdtypes.html#list)*\[*[*SCIResult*](fermion#sciresult "qiskit_addon_sqd.fermion.SCIResult")*]*)
+
+    **Return type**
+
+    [*SCIResult*](fermion#sciresult "qiskit_addon_sqd.fermion.SCIResult")
+  </Function>
+</Class>
+

@@ -50,9 +50,11 @@ python_api_name: qiskit_fermions.transpiler.passes.MergeSlaterDeterminantPrepara
 
     Walks the input DAG in topological order, rewriting each matched [`InitializeModes`](circuit-library-initialize-modes "qiskit_fermions.circuit.library.InitializeModes")-then-[`OrbitalRotation`](circuit-library-orbital-rotation "qiskit_fermions.circuit.library.OrbitalRotation") pattern into [`PrepareSlaterDeterminant`](circuit-library-prepare-slater-determinant "qiskit_fermions.circuit.library.PrepareSlaterDeterminant") gate(s) and copying every other node through unchanged.
 
+    The pattern requires the rotation to immediately follow the initialization, so any node between the two prevents the fusion. That is a `Barrier`, which is the way to keep the initialization and the rotation as separate gates on purpose, but equally a [`FermionicMeasure`](circuit-library-fermionic-measure "qiskit_fermions.circuit.library.FermionicMeasure"), which must not be fused across since that would change what the circuit reads out.
+
     **Parameters**
 
-    **dag** ([*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit)) – the input circuit with fermion-based instructions. Only [`DAGOpNode`](/docs/api/qiskit/qiskit.dagcircuit.DAGOpNode) with [`FermionicGate`](circuit-fermionic-gate "qiskit_fermions.circuit.FermionicGate") instances as their [`op`](/docs/api/qiskit/qiskit.dagcircuit.DAGOpNode#op) are supported.
+    **dag** ([*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit)) – the input circuit with fermion-based instructions. Only [`DAGOpNode`](/docs/api/qiskit/qiskit.dagcircuit.DAGOpNode) with [`FermionicGate`](circuit-fermionic-gate "qiskit_fermions.circuit.FermionicGate") instances as their [`op`](/docs/api/qiskit/qiskit.dagcircuit.DAGOpNode#op) are supported, plus `Barrier` and [`FermionicMeasure`](circuit-library-fermionic-measure "qiskit_fermions.circuit.library.FermionicMeasure"), which are carried through untouched (a measurement keeps the classical bit it writes into).
 
     **Returns**
 

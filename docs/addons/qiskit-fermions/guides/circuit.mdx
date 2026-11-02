@@ -41,44 +41,150 @@ The example below implements the time evolution described in the previous sectio
 
 The example also demonstrates how to incorporate domain knowledge into an operator by using [operator term grouping](grouping#grouping-explanation). By assigning group indices to the Hamiltonian terms, you preserve structural information that optimization passes can exploit throughout the transpilation stack.
 
-<Tabs group="tab">
-  <TabItem value="python" label="Python">
-    ```python
-    >>> from qiskit_fermions.circuit import FermionicCircuit
-    >>> from qiskit_fermions.circuit.library import Evolution
-    >>> from qiskit_fermions.operators import FermionOperator, cre, ann
-    >>>
-    >>> # Create a circuit with 4 fermionic modes
-    >>> circuit = FermionicCircuit(4)
-    >>>
-    >>> # Define a simple fermionic Hamiltonian
-    >>> hamiltonian = FermionOperator.from_terms([
-    ...     ([cre(0), ann(2)], 0.5),
-    ...     ([cre(2), ann(0)], 0.5),
-    ...     ([cre(1), ann(3)], 0.5),
-    ...     ([cre(3), ann(1)], 0.5),
-    ... ])
-    >>> # Add some problem structure by grouping our Hamiltonian terms
-    >>> hamiltonian.groups = [0, 0, 1, 1]
-    >>>
-    >>> # Add an evolution gate to implement exp(-i * t * H)
-    >>> evolution = Evolution(4, hamiltonian, time=1.0)
-    >>> circuit.append(evolution, circuit.register)
-    ```
-  </TabItem>
-
-  <TabItem value="c" label="C">
-    ```c
-    // The C API for FermionicCircuit is not available yet.
-    ```
-  </TabItem>
-</Tabs>
+```python
+>>> from qiskit_fermions.circuit import FermionicCircuit
+>>> from qiskit_fermions.circuit.library import Evolution
+>>> from qiskit_fermions.operators import FermionOperator, cre, ann
+>>>
+>>> # Create a circuit with 4 fermionic modes
+>>> circuit = FermionicCircuit(4)
+>>>
+>>> # Define a simple fermionic Hamiltonian
+>>> hamiltonian = FermionOperator.from_terms([
+...     ([cre(0), ann(2)], 0.5),
+...     ([cre(2), ann(0)], 0.5),
+...     ([cre(1), ann(3)], 0.5),
+...     ([cre(3), ann(1)], 0.5),
+... ])
+>>> # Add some problem structure by grouping our Hamiltonian terms
+>>> hamiltonian.groups = [0, 0, 1, 1]
+>>>
+>>> # Add an evolution gate to implement exp(-i * t * H)
+>>> evolution = Evolution(4, hamiltonian, time=1.0)
+>>> circuit.append(evolution, circuit.register)
+```
 
 ![A simple \`FermionicCircuit\` with a single time evolution gate.](/docs/images/addons/qiskit-fermions/circuit-2.avif)
 
 ![A decomposed \`FermionicCircuit\` with several time evolution gates.](/docs/images/addons/qiskit-fermions/circuit-3.avif)
 
 Notice how the operator term grouping is preserved even in simple operations like decomposition. This demonstrates how structural information flows through the circuit stack. To understand the full transpilation to qubits, refer to the [Transpiling fermionic circuits](transpilation#transpilation-explanation) guide.
+
+## Keep gates apart with a barrier
+
+The optimization passes fuse neighboring gates where they can. For example, [`MergeOrbitalRotations`](/docs/api/qiskit-fermions/transpiler-passes-merge-orbital-rotations#qiskit_fermions.transpiler.passes.MergeOrbitalRotations "qiskit_fermions.transpiler.passes.MergeOrbitalRotations") combines a run of consecutive [`OrbitalRotation`](/docs/api/qiskit-fermions/circuit-library-orbital-rotation#qiskit_fermions.circuit.library.OrbitalRotation "qiskit_fermions.circuit.library.OrbitalRotation") gates into one, and [`MergeSlaterDeterminantPreparation`](/docs/api/qiskit-fermions/transpiler-passes-merge-slater-determinant-preparation#qiskit_fermions.transpiler.passes.MergeSlaterDeterminantPreparation "qiskit_fermions.transpiler.passes.MergeSlaterDeterminantPreparation") folds an [`InitializeModes`](/docs/api/qiskit-fermions/circuit-library-initialize-modes#qiskit_fermions.circuit.library.InitializeModes "qiskit_fermions.circuit.library.InitializeModes") into the rotation that follows it.
+
+Use [`FermionicCircuit.barrier()`](/docs/api/qiskit-fermions/circuit-fermionic-circuit#qiskit_fermions.circuit.FermionicCircuit.barrier "qiskit_fermions.circuit.FermionicCircuit.barrier") when you want to prevent that. A barrier carries no unitary effect, so it does not change the state your circuit prepares; it only marks a point that the passes do not fuse across. Call it without arguments to span every mode, or pass the modes to restrict it to:
+
+```python
+>>> from qiskit_fermions.circuit.library import OrbitalRotation
+>>> import numpy as np
+>>>
+>>> rotations = FermionicCircuit(4)
+>>> rotations.append(OrbitalRotation(np.eye(4, dtype=complex)), rotations.register)
+>>> rotations.barrier()
+>>> rotations.append(OrbitalRotation(np.eye(4, dtype=complex)), rotations.register)
+```
+
+![A \`FermionicCircuit\` with a barrier separating two orbital rotations.](/docs/images/addons/qiskit-fermions/circuit-5.avif)
+
+Barriers survive the fermion-to-qubit transpilation, so they also constrain the qubit-level optimization that follows. The [Transpile fermionic circuits](transpilation#transpilation-explanation) guide covers that stage.
+
+## Repeat a circuit
+
+Many algorithms apply the same block of gates many times over. Time evolution is the common case: a Trotter step is built once, then repeated to reach the target time. Use [`repeat()`](/docs/api/qiskit-fermions/circuit-fermionic-circuit#qiskit_fermions.circuit.FermionicCircuit.repeat "qiskit_fermions.circuit.FermionicCircuit.repeat") to build the repeated circuit, and [`compose()`](/docs/api/qiskit-fermions/circuit-fermionic-circuit#qiskit_fermions.circuit.FermionicCircuit.compose "qiskit_fermions.circuit.FermionicCircuit.compose") to join it to a state preparation prefix.
+
+The example below builds a second-order Trotter step for a Fermi-Hubbard model. The step is symmetric: it splits the hopping term into two half-duration [`OrbitalRotation`](/docs/api/qiskit-fermions/circuit-library-orbital-rotation#qiskit_fermions.circuit.library.OrbitalRotation "qiskit_fermions.circuit.library.OrbitalRotation") gates surrounding the on-site interaction.
+
+```python
+>>> import scipy.linalg
+>>> from qiskit_fermions.circuit.library import InitializeModes, OrbitalRotation
+>>>
+>>> norb, reps, time = 2, 3, 1.0
+>>> num_modes = 2 * norb
+>>> dt = time / reps
+>>>
+>>> hopping = np.zeros((norb, norb))
+>>> hopping[0, 1] = hopping[1, 0] = -1.0
+>>> interaction = FermionOperator.from_dict(
+...     {(cre(p), ann(p), cre(p + norb), ann(p + norb)): 2.0 for p in range(norb)}
+... )
+>>>
+>>> def rotation(duration):
+...     propagator = scipy.linalg.expm(-1j * duration * hopping)
+...     # the same rotation acts on the alpha and beta halves of the register
+...     return scipy.linalg.block_diag(propagator, propagator)
+>>>
+>>> trotter_step = FermionicCircuit(num_modes)
+>>> trotter_step.append(OrbitalRotation(rotation(dt / 2)), trotter_step.modes)
+>>> trotter_step.append(
+...     Evolution(num_modes, interaction, dt, atomic=True), trotter_step.modes
+... )
+>>> trotter_step.append(OrbitalRotation(rotation(dt / 2)), trotter_step.modes)
+```
+
+Repeating the step and composing it onto a Hartree-Fock reference gives the full evolution:
+
+```python
+>>> evolution = FermionicCircuit(num_modes)
+>>> evolution.append(InitializeModes([True, False, True, False]), evolution.modes)
+>>> evolution.compose(trotter_step.repeat(reps), inplace=True)
+>>> evolution.count_ops()["OrbitalRotation"]
+6
+```
+
+![A \`FermionicCircuit\` with repeated steps.](/docs/images/addons/qiskit-fermions/circuit-8.avif)
+
+The repetitions are flattened into the returned circuit rather than wrapped in a single gate, so [`count_ops()`](/docs/api/qiskit-fermions/circuit-fermionic-circuit#qiskit_fermions.circuit.FermionicCircuit.count_ops "qiskit_fermions.circuit.FermionicCircuit.count_ops") counts two rotations per step. That flattening is what makes the redundancy at the step boundaries visible to the transpiler: the trailing half-duration rotation of one step and the leading one of the next are adjacent, so [`MergeOrbitalRotations`](/docs/api/qiskit-fermions/transpiler-passes-merge-orbital-rotations#qiskit_fermions.transpiler.passes.MergeOrbitalRotations "qiskit_fermions.transpiler.passes.MergeOrbitalRotations") combines them into a single rotation.
+
+```python
+>>> from qiskit_fermions.transpiler import FermionicPassManager
+>>> from qiskit_fermions.transpiler.passes import MergeOrbitalRotations
+>>>
+>>> merged = FermionicPassManager([MergeOrbitalRotations()]).run(evolution)
+>>> merged.count_ops()["OrbitalRotation"]
+4
+```
+
+![A \`FermionicCircuit\` with repeated steps and merged orbital rotations.](/docs/images/addons/qiskit-fermions/circuit-10.avif)
+
+The result costs one rotation per step plus one, which is what you get by fusing those half-steps by hand. Writing the step in its natural symmetric form and repeating it produces the same circuit, so the fusion is left to the optimization stage.
+
+When you need the repetitions kept apart, pass `insert_barriers=True` to place a [`barrier()`](/docs/api/qiskit-fermions/circuit-fermionic-circuit#qiskit_fermions.circuit.FermionicCircuit.barrier "qiskit_fermions.circuit.FermionicCircuit.barrier") between them. The optimization passes do not fuse gates across a barrier, so every rotation survives:
+
+```python
+>>> separated = trotter_step.repeat(reps, insert_barriers=True)
+>>> FermionicPassManager([MergeOrbitalRotations()]).run(separated).count_ops()[
+...     "OrbitalRotation"
+... ]
+6
+```
+
+![A \`FermionicCircuit\` with repeated steps separated by barriers.](/docs/images/addons/qiskit-fermions/circuit-12.avif)
+
+<Admonition title="Note" type="note">
+  The `reps` argument of [`FermionicSuzukiTrotter`](/docs/api/qiskit-fermions/circuit-library-synthesis-fermionic-suzuki-trotter#qiskit_fermions.circuit.library.synthesis.FermionicSuzukiTrotter "qiskit_fermions.circuit.library.synthesis.FermionicSuzukiTrotter") is a different concept. It subdivides a single [`Evolution`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution "qiskit_fermions.circuit.library.Evolution") gate into more, shorter factors, whereas [`repeat()`](/docs/api/qiskit-fermions/circuit-fermionic-circuit#qiskit_fermions.circuit.FermionicCircuit.repeat "qiskit_fermions.circuit.FermionicCircuit.repeat") duplicates whole circuits. Repeating a circuit that holds one [`Evolution`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution "qiskit_fermions.circuit.library.Evolution") only multiplies its total evolution time.
+</Admonition>
+
+## Measure fermionic modes
+
+[`measure_all()`](/docs/api/qiskit-fermions/circuit-fermionic-circuit#qiskit_fermions.circuit.FermionicCircuit.measure_all "qiskit_fermions.circuit.FermionicCircuit.measure_all") reads every mode out into a classical bit of its own, pairing mode `i` with bit `i`. Use [`measure()`](/docs/api/qiskit-fermions/circuit-fermionic-circuit#qiskit_fermions.circuit.FermionicCircuit.measure "qiskit_fermions.circuit.FermionicCircuit.measure") with your own [`ClassicalRegister`](/docs/api/qiskit/circuit#qiskit.circuit.ClassicalRegister) to read out only some of them.
+
+```python
+>>> measured = trotter_step.measure_all(inplace=False)
+>>> measured.count_ops()["measure"]
+4
+```
+
+Passing `inplace=False` returns a measured copy and leaves the original alone, which matters because a measurement is not unitary: a circuit carrying one can no longer be applied to a state vector, so keep an unmeasured circuit around if you also want to simulate it.
+
+Measuring here, rather than on the transpiled [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit), is what keeps the sampled bitstrings easy to read. A fermionic measurement names the mode it reads, so every stage that moves modes around ([`RelabelModes`](/docs/api/qiskit-fermions/transpiler-passes-relabel-modes#qiskit_fermions.transpiler.passes.RelabelModes "qiskit_fermions.transpiler.passes.RelabelModes") at the fermionic level, layout and routing at the qubit level) carries the measurement along with it, and the bitstring stays indexed by the mode you asked about.
+
+<Admonition title="Note" type="note">
+  Unlike [`measure_all()`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit#measure_all), no [`barrier()`](/docs/api/qiskit-fermions/circuit-fermionic-circuit#qiskit_fermions.circuit.FermionicCircuit.barrier "qiskit_fermions.circuit.FermionicCircuit.barrier") is inserted before the measurements. Call [`barrier()`](/docs/api/qiskit-fermions/circuit-fermionic-circuit#qiskit_fermions.circuit.FermionicCircuit.barrier "qiskit_fermions.circuit.FermionicCircuit.barrier") yourself first if you want one there.
+
+  Whether a measured bit means what you expect depends on the fermion-to-qubit encoding, which is chosen during transpilation rather than here. Under an occupation-basis encoding such as Jordan-Wigner each mode is carried by one qubit and the bit is that mode’s occupation; see [`FermionicMeasure`](/docs/api/qiskit-fermions/circuit-library-fermionic-measure#qiskit_fermions.circuit.library.FermionicMeasure "qiskit_fermions.circuit.library.FermionicMeasure").
+</Admonition>
 
 ## Transpile fermionic circuits
 

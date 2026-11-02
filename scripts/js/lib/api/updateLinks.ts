@@ -256,7 +256,13 @@ function rewriteQiskitAddonLinks(link: Link) {
   if (!addonName || !Pkg.ADDON_NAMES.includes(addonName)) return;
 
   const anchor = rest.includes("#") ? rest.split("#")[1] : undefined;
-  const pagePath = pathParts.map((s) => removeSuffix(s, ".html")).join("/");
+  // Guide pages on disk use kebab-case slugs (see hrefToSlug in
+  // generateAddonToc.ts), so kebab-case the final segment to match, e.g.
+  // `guides/trim_sqd.html` → `guides/trim-sqd`.
+  const segments = pathParts.map((s) => removeSuffix(s, ".html"));
+  const page = segments.pop();
+  if (page) segments.push(kebabCaseAndShortenPage(page, addonName));
+  const pagePath = segments.join("/");
   const url = anchor
     ? `/docs/addons/${addonName}/${pagePath}#${anchor}`
     : `/docs/addons/${addonName}/${pagePath}`;

@@ -20,14 +20,18 @@ This module provides various functions for computing the error bounds that make 
 
 ### compute\_forward\_bounds
 
-<Function id="qiskit_addon_slc.bounds.compute_forward_bounds" github="https://github.com/Qiskit/qiskit-addon-slc/tree/main/qiskit_addon_slc/bounds/forward.py#L205-L315" signature="compute_forward_bounds(circuit, noise_model_paulis, /, observable, *, evolution_max_terms=1000000, eigval_max_qubits=14, atol=1e-08, atol_simplify=1e-08, atol_eigenvalue=1e-08, **kwargs)">
+<Function id="qiskit_addon_slc.bounds.compute_forward_bounds" github="https://github.com/Qiskit/qiskit-addon-slc/tree/stable/0.2/python/qiskit_addon_slc/bounds/forward.py#L215-L332" signature="compute_forward_bounds(circuit, noise_model_paulis, /, observable, *, evolution_max_terms=1000000, eigval_max_qubits=14, atol=1e-08, atol_simplify=1e-08, atol_eigenvalue=1e-10, **kwargs)">
   Compute the forward-evolved unequal-time commutator bounds.
 
   Starting at the end of the circuit, compute the forward-evolved unequal-time commutator bounds for all Pauli error terms of each noisy layer in the target circuit.
 
   That is, compute $\| \left[ E_F, A_F \right] \|_2$ for all error terms, $E_F$, where $A_F$ is the target `observable` to be measured on `circuit`.
 
-  The error terms, $E_I$, are dictated by `noise_model_paulis`. This dictionary maps noise model identifiers (`samplomatic.InjectNoise.ref`) to a list of Pauli error terms. The corresponding terms will be used whenever a [`BoxOp`](/docs/api/qiskit/qiskit.circuit.BoxOp) with a matching [`InjectNoise`](/docs/api/samplomatic/auto/inject-noise#samplomatic.InjectNoise "(in samplomatic)") annotation is encountered during the iteration over `circuit`.
+  The error terms, $E_I$, are dictated by `noise_model_paulis`. This dictionary maps noise model identifiers (`samplomatic.InjectNoise.ref`) to a list of Pauli error terms. The corresponding terms will be used whenever a [`BoxOp`](/docs/api/qiskit/qiskit.circuit.BoxOp) with a matching [`InjectNoise`](/docs/api/samplomatic/auto/inject-noise "(in samplomatic)") annotation is encountered during the iteration over `circuit`.
+
+  <Admonition title="Important" type="danger">
+    Every [`BoxOp`](/docs/api/qiskit/qiskit.circuit.BoxOp) with an [`InjectNoise`](/docs/api/samplomatic/auto/inject-noise "(in samplomatic)") annotation **must** have a unique `modifier_ref`, since the bounds are keyed by it. Boxing a circuit with [`generate_boxing_pass_manager()`](/docs/api/samplomatic/auto/transpiler-generate-boxing-pass-manager "(in samplomatic)") provides this only with `inject_noise_strategy="individual_modification"`. Otherwise, the bounds of boxes sharing a `modifier_ref` silently overwrite each other.
+  </Admonition>
 
   <Admonition title="Deprecated since version 0.2.0" type="danger">
     `qiskit_addon_slc.bounds.forward.compute_forward_bounds()`’s argument `atol` is deprecated as of qiskit-addon-slc 0.2.0. It will be removed no earlier than 3 months after the release date. Use atol\_simplify and atol\_eigenvalue instead.
@@ -36,13 +40,13 @@ This module provides various functions for computing the error bounds that make 
   **Parameters**
 
   *   **circuit** ([*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit)) – the target circuit.
-  *   **noise\_model\_paulis** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*,* [*QubitSparsePauliList*](/docs/api/qiskit/qiskit.quantum_info.QubitSparsePauliList)*]*) – the Pauli error terms to consider for each noise model.
+  *   **noise\_model\_paulis** ([*dict*](https://docs.python.org/3/builtins/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/builtins/stdtypes.html#str)*,* [*QubitSparsePauliList*](/docs/api/qiskit/qiskit.quantum_info.QubitSparsePauliList)*]*) – the Pauli error terms to consider for each noise model.
   *   **observable** ([*Pauli*](/docs/api/qiskit/qiskit.quantum_info.Pauli)  *|*[*PauliList*](/docs/api/qiskit/qiskit.quantum_info.PauliList)  *|*[*SparseObservable*](/docs/api/qiskit/qiskit.quantum_info.SparseObservable)  *|*[*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp)) – the target observable to be measured at the end of the circuit.
-  *   **evolution\_max\_terms** ([*int*](https://docs.python.org/3/library/functions.html#int)) – the maximum number of operator terms to keep track of during the evolution.
-  *   **eigval\_max\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int)) – the maximum number of qubits of a commutator for which the eigenvalue will still be attempted to be computed. When this value is exceeded, the bound is approximated via a simpler and more loose triangle inequality.
-  *   **atol** ([*float*](https://docs.python.org/3/library/functions.html#float)) – **DEPRECATED** use `atol_simplify` and `atol_eigenvalue` instead!
-  *   **atol\_simplify** ([*float*](https://docs.python.org/3/library/functions.html#float)) – the absolute tolerance used for trimming terms from the commutator. Loosening this tolerance will result in a greater truncation of the commutator’s terms, rendering the computation of its eigenvalue cheaper but less accurate.
-  *   **atol\_eigenvalue** ([*float*](https://docs.python.org/3/library/functions.html#float)) – the absolute tolerance used for detecting convergence of the commutator’s eigenvalue. Loosening this tolerance will result in a less accurate eigenvalue as computed by the iterative Davidson eigensolver.
+  *   **evolution\_max\_terms** ([*int*](https://docs.python.org/3/builtins/functions.html#int)) – the maximum number of operator terms to keep track of during the evolution.
+  *   **eigval\_max\_qubits** ([*int*](https://docs.python.org/3/builtins/functions.html#int)) – the maximum number of qubits of a commutator for which the eigenvalue will still be attempted to be computed. When this value is exceeded, the bound is approximated via a simpler and more loose triangle inequality.
+  *   **atol** ([*float*](https://docs.python.org/3/builtins/functions.html#float)) – **DEPRECATED** use `atol_simplify` and `atol_eigenvalue` instead!
+  *   **atol\_simplify** ([*float*](https://docs.python.org/3/builtins/functions.html#float)) – the absolute tolerance used for trimming terms from the commutator. Loosening this tolerance will result in a greater truncation of the commutator’s terms, rendering the computation of its eigenvalue cheaper but less accurate.
+  *   **atol\_eigenvalue** ([*float*](https://docs.python.org/3/builtins/functions.html#float)) – the absolute tolerance used for detecting convergence of the commutator’s eigenvalue. Loosening this tolerance will result in a less accurate eigenvalue as computed by the iterative Davidson eigensolver.
   *   **kwargs** – any additional keyword arguments will be forward to [`compute_bounds()`](#qiskit_addon_slc.bounds.compute_bounds "qiskit_addon_slc.bounds.compute_bounds").
 
   **Returns**
@@ -51,25 +55,25 @@ This module provides various functions for computing the error bounds that make 
 
   **Raises**
 
-  [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError) – when the `observable` contains more than a single Pauli term. If you run into this, you will need to call this function for each target Pauli separately.
+  [**NotImplementedError**](https://docs.python.org/3/builtins/exceptions.html#NotImplementedError) – when the `observable` contains more than a single Pauli term. If you run into this, you will need to call this function for each target Pauli separately.
 
   **Return type**
 
-  [dict](https://docs.python.org/3/library/stdtypes.html#dict)\[[str](https://docs.python.org/3/library/stdtypes.html#str), [*PauliLindbladMap*](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap)]
+  [dict](https://docs.python.org/3/builtins/stdtypes.html#dict)\[[str](https://docs.python.org/3/builtins/stdtypes.html#str), [*PauliLindbladMap*](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap)]
 </Function>
 
 ### tighten\_with\_speed\_limit
 
-<Function id="qiskit_addon_slc.bounds.tighten_with_speed_limit" github="https://github.com/Qiskit/qiskit-addon-slc/tree/main/qiskit_addon_slc/bounds/speed_limit.py#L226-L318" signature="tighten_with_speed_limit(bounds, circuit, noise_model_paulis, /, observable)">
+<Function id="qiskit_addon_slc.bounds.tighten_with_speed_limit" github="https://github.com/Qiskit/qiskit-addon-slc/tree/stable/0.2/python/qiskit_addon_slc/bounds/speed_limit.py#L226-L318" signature="tighten_with_speed_limit(bounds, circuit, noise_model_paulis, /, observable)">
   Tighten the provided bounds using limits on the speed of information propagation.
 
   Inspired by the ideas behind the Lieb-Robinson bounds, this function leverages limits on the speed of information propagation to tighten previously computed forward-evolved unequal-time commutator bounds (see also [`compute_forward_bounds()`](#qiskit_addon_slc.bounds.compute_forward_bounds "qiskit_addon_slc.bounds.compute_forward_bounds")).
 
   **Parameters**
 
-  *   **bounds** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*,* [*PauliLindbladMap*](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap)*]*) – the previously computed forward-evolved unequal-time commutator bounds.
+  *   **bounds** ([*dict*](https://docs.python.org/3/builtins/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/builtins/stdtypes.html#str)*,* [*PauliLindbladMap*](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap)*]*) – the previously computed forward-evolved unequal-time commutator bounds.
   *   **circuit** ([*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit)) – the target circuit.
-  *   **noise\_model\_paulis** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*,* [*QubitSparsePauliList*](/docs/api/qiskit/qiskit.quantum_info.QubitSparsePauliList)*]*) – the Pauli error terms to consider for each noise model.
+  *   **noise\_model\_paulis** ([*dict*](https://docs.python.org/3/builtins/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/builtins/stdtypes.html#str)*,* [*QubitSparsePauliList*](/docs/api/qiskit/qiskit.quantum_info.QubitSparsePauliList)*]*) – the Pauli error terms to consider for each noise model.
   *   **observable** ([*Pauli*](/docs/api/qiskit/qiskit.quantum_info.Pauli)  *|*[*PauliList*](/docs/api/qiskit/qiskit.quantum_info.PauliList)  *|*[*SparseObservable*](/docs/api/qiskit/qiskit.quantum_info.SparseObservable)  *|*[*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp)) – the target observable to be measured at the end of the circuit.
 
   **Returns**
@@ -78,24 +82,28 @@ This module provides various functions for computing the error bounds that make 
 
   **Raises**
 
-  *   [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError) – when the `observable` contains more than a single Pauli term. If you run into this, you will need to call this function for each target Pauli separately.
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – when encountering a gate that acts on more than 2 qubits.
+  *   [**NotImplementedError**](https://docs.python.org/3/builtins/exceptions.html#NotImplementedError) – when the `observable` contains more than a single Pauli term. If you run into this, you will need to call this function for each target Pauli separately.
+  *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – when encountering a gate that acts on more than 2 qubits.
 
   **Return type**
 
-  [dict](https://docs.python.org/3/library/stdtypes.html#dict)\[[str](https://docs.python.org/3/library/stdtypes.html#str), [*PauliLindbladMap*](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap)]
+  [dict](https://docs.python.org/3/builtins/stdtypes.html#dict)\[[str](https://docs.python.org/3/builtins/stdtypes.html#str), [*PauliLindbladMap*](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap)]
 </Function>
 
 ### compute\_backward\_bounds
 
-<Function id="qiskit_addon_slc.bounds.compute_backward_bounds" github="https://github.com/Qiskit/qiskit-addon-slc/tree/main/qiskit_addon_slc/bounds/backward.py#L104-L164" signature="compute_backward_bounds(circuit, noise_model_paulis, /, *, evolution_max_terms=1000000, **kwargs)">
+<Function id="qiskit_addon_slc.bounds.compute_backward_bounds" github="https://github.com/Qiskit/qiskit-addon-slc/tree/stable/0.2/python/qiskit_addon_slc/bounds/backward.py#L112-L179" signature="compute_backward_bounds(circuit, noise_model_paulis, /, *, evolution_max_terms=1000000, **kwargs)">
   Compute the backward-evolved unequal-time commutator bounds.
 
   Starting at the beginning of the circuit, compute the backward-evolved unequal-time commutator bounds for all Pauli error terms of each noisy layer in the target circuit.
 
   That is, compute $\| \left[ E_I, \rho_I \right] \|_1$ (using the Schatten 1-norm aka nuclear norm) for all error terms, $E_I$, where $\rho_I$ is assumed to be the all-zero state, $\ket{0 \ldots 0}$, on all active qubits in `circuit`.
 
-  The error terms, $E_I$, are dictated by `noise_model_paulis`. This dictionary maps noise model identifiers (`samplomatic.InjectNoise.ref`) to a list of Pauli error terms. The corresponding terms will be used whenever a [`BoxOp`](/docs/api/qiskit/qiskit.circuit.BoxOp) with a matching [`InjectNoise`](/docs/api/samplomatic/auto/inject-noise#samplomatic.InjectNoise "(in samplomatic)") annotation is encountered during the iteration over `circuit`.
+  The error terms, $E_I$, are dictated by `noise_model_paulis`. This dictionary maps noise model identifiers (`samplomatic.InjectNoise.ref`) to a list of Pauli error terms. The corresponding terms will be used whenever a [`BoxOp`](/docs/api/qiskit/qiskit.circuit.BoxOp) with a matching [`InjectNoise`](/docs/api/samplomatic/auto/inject-noise "(in samplomatic)") annotation is encountered during the iteration over `circuit`.
+
+  <Admonition title="Important" type="danger">
+    Every [`BoxOp`](/docs/api/qiskit/qiskit.circuit.BoxOp) with an [`InjectNoise`](/docs/api/samplomatic/auto/inject-noise "(in samplomatic)") annotation **must** have a unique `modifier_ref`, since the bounds are keyed by it. Boxing a circuit with [`generate_boxing_pass_manager()`](/docs/api/samplomatic/auto/transpiler-generate-boxing-pass-manager "(in samplomatic)") provides this only with `inject_noise_strategy="individual_modification"`. Otherwise, this function may never return.
+  </Admonition>
 
   <Admonition title="Caution" type="note">
     Before computing the bounds, this function removes **all** `Measure` operations from `circuit`. This is required because the circuit is being inverted before being processed in reverse order, which allows the backward evolution to be treated like a forward evolution (in the inverted circuit).
@@ -104,8 +112,8 @@ This module provides various functions for computing the error bounds that make 
   **Parameters**
 
   *   **circuit** ([*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit)) – the target circuit.
-  *   **noise\_model\_paulis** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*,* [*QubitSparsePauliList*](/docs/api/qiskit/qiskit.quantum_info.QubitSparsePauliList)*]*) – the Pauli error terms to consider for each noise model.
-  *   **evolution\_max\_terms** ([*int*](https://docs.python.org/3/library/functions.html#int)) – the maximum number of operator terms to keep track of during the evolution. (If the operator exceeds this size, the smallest terms are truncated).
+  *   **noise\_model\_paulis** ([*dict*](https://docs.python.org/3/builtins/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/builtins/stdtypes.html#str)*,* [*QubitSparsePauliList*](/docs/api/qiskit/qiskit.quantum_info.QubitSparsePauliList)*]*) – the Pauli error terms to consider for each noise model.
+  *   **evolution\_max\_terms** ([*int*](https://docs.python.org/3/builtins/functions.html#int)) – the maximum number of operator terms to keep track of during the evolution. (If the operator exceeds this size, the smallest terms are truncated).
   *   **kwargs** – any additional keyword arguments will be forward to [`compute_bounds()`](#qiskit_addon_slc.bounds.compute_bounds "qiskit_addon_slc.bounds.compute_bounds").
 
   **Returns**
@@ -114,12 +122,12 @@ This module provides various functions for computing the error bounds that make 
 
   **Return type**
 
-  [dict](https://docs.python.org/3/library/stdtypes.html#dict)\[[str](https://docs.python.org/3/library/stdtypes.html#str), [*PauliLindbladMap*](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap)]
+  [dict](https://docs.python.org/3/builtins/stdtypes.html#dict)\[[str](https://docs.python.org/3/builtins/stdtypes.html#str), [*PauliLindbladMap*](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap)]
 </Function>
 
 ### merge\_bounds
 
-<Function id="qiskit_addon_slc.bounds.merge_bounds" github="https://github.com/Qiskit/qiskit-addon-slc/tree/main/qiskit_addon_slc/bounds/merge.py#L36-L162" signature="merge_bounds(circuit, forward_bounds, backward_bounds, /, noise_rates=None, *, is_clifford_circuit=False)">
+<Function id="qiskit_addon_slc.bounds.merge_bounds" github="https://github.com/Qiskit/qiskit-addon-slc/tree/stable/0.2/python/qiskit_addon_slc/bounds/merge.py#L36-L162" signature="merge_bounds(circuit, forward_bounds, backward_bounds, /, noise_rates=None, *, is_clifford_circuit=False)">
   Merge forward and backward bounds.
 
   The layer at which the switch from using backward bounds to using forward bounds takes place will be the same for all qubits. It is determined by taking into account the provided learned `noise_rates`. If these are not provided, uniform noise rates are assumed. While this is an unrealistic assumption, previewing the merged bounds may still be useful.
@@ -127,10 +135,10 @@ This module provides various functions for computing the error bounds that make 
   **Parameters**
 
   *   **circuit** ([*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit)) – the target circuit.
-  *   **forward\_bounds** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*,* [*PauliLindbladMap*](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap)*] | None*) – the forward bounds (see also [`compute_forward_bounds()`](#qiskit_addon_slc.bounds.compute_forward_bounds "qiskit_addon_slc.bounds.compute_forward_bounds")).
-  *   **backward\_bounds** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*,* [*PauliLindbladMap*](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap)*] | None*) – the backward bounds (see also [`compute_backward_bounds()`](#qiskit_addon_slc.bounds.compute_backward_bounds "qiskit_addon_slc.bounds.compute_backward_bounds")).
-  *   **noise\_rates** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*,* [*PauliLindbladMap*](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap) *| None] | None*) – the noise rates learned on the target backend.
-  *   **is\_clifford\_circuit** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – whether the target circuit is fully Clifford.
+  *   **forward\_bounds** ([*dict*](https://docs.python.org/3/builtins/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/builtins/stdtypes.html#str)*,* [*PauliLindbladMap*](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap)*] | None*) – the forward bounds (see also [`compute_forward_bounds()`](#qiskit_addon_slc.bounds.compute_forward_bounds "qiskit_addon_slc.bounds.compute_forward_bounds")).
+  *   **backward\_bounds** ([*dict*](https://docs.python.org/3/builtins/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/builtins/stdtypes.html#str)*,* [*PauliLindbladMap*](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap)*] | None*) – the backward bounds (see also [`compute_backward_bounds()`](#qiskit_addon_slc.bounds.compute_backward_bounds "qiskit_addon_slc.bounds.compute_backward_bounds")).
+  *   **noise\_rates** ([*dict*](https://docs.python.org/3/builtins/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/builtins/stdtypes.html#str)*,* [*PauliLindbladMap*](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap) *| None] | None*) – the noise rates learned on the target backend.
+  *   **is\_clifford\_circuit** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) – whether the target circuit is fully Clifford.
 
   **Returns**
 
@@ -138,20 +146,20 @@ This module provides various functions for computing the error bounds that make 
 
   **Raises**
 
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – when both provided bounds are `None`.
-  *   [**KeyError**](https://docs.python.org/3/library/exceptions.html#KeyError) – when the `bounds` contain an `InjectNoise.modifier_ref` key which does not occur in the target `circuit` or whose `InjectNoise.ref` is not found.
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – if the noise model Pauli terms whose bounds are computed for a given `InjectNoise.modifier_ref` do not match between the `forward_bounds` and `backward_bounds`.
-  *   [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError) – when `is_clifford_circuit` is `True`.
+  *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – when both provided bounds are `None`.
+  *   [**KeyError**](https://docs.python.org/3/builtins/exceptions.html#KeyError) – when the `bounds` contain an `InjectNoise.modifier_ref` key which does not occur in the target `circuit` or whose `InjectNoise.ref` is not found.
+  *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – if the noise model Pauli terms whose bounds are computed for a given `InjectNoise.modifier_ref` do not match between the `forward_bounds` and `backward_bounds`.
+  *   [**NotImplementedError**](https://docs.python.org/3/builtins/exceptions.html#NotImplementedError) – when `is_clifford_circuit` is `True`.
 
   **Return type**
 
-  [dict](https://docs.python.org/3/library/stdtypes.html#dict)\[[str](https://docs.python.org/3/library/stdtypes.html#str), [*PauliLindbladMap*](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap)] | None
+  [dict](https://docs.python.org/3/builtins/stdtypes.html#dict)\[[str](https://docs.python.org/3/builtins/stdtypes.html#str), [*PauliLindbladMap*](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap)] | None
 </Function>
 
 ### compute\_local\_scales
 
-<Function id="qiskit_addon_slc.bounds.compute_local_scales" github="https://github.com/Qiskit/qiskit-addon-slc/tree/main/qiskit_addon_slc/bounds/local_scales.py#L35-L163" signature="compute_local_scales(circuit, bounds, /, noise_rates, *, sampling_cost_budget=inf, bias_tolerance=0.0)">
-  Computes the `local_scales` argument to a [`Samplex`](/docs/api/samplomatic/auto/samplex-samplex-output#samplomatic.samplex.SamplexOutput "(in samplomatic)").
+<Function id="qiskit_addon_slc.bounds.compute_local_scales" github="https://github.com/Qiskit/qiskit-addon-slc/tree/stable/0.2/python/qiskit_addon_slc/bounds/local_scales.py#L35-L206" signature="compute_local_scales(circuit, bounds, /, noise_rates, *, sampling_cost_budget=inf, bias_tolerance=0.0, apply_in_post=False)">
+  Computes the `local_scales` argument to a [`Samplex`](/docs/api/samplomatic/auto/samplex-samplex "(in samplomatic)").
 
   This `local_scales` argument is used to specify which individual error terms to mitigate.
 
@@ -164,14 +172,28 @@ This module provides various functions for computing the error bounds that make 
   **Parameters**
 
   *   **circuit** ([*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit)) – the target circuit.
-  *   **bounds** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*,* [*PauliLindbladMap*](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap)*]*) – the shaded lightcone bounds.
-  *   **noise\_rates** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*,* [*PauliLindbladMap*](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap) *| None]*) – the learned noise model rates.
-  *   **sampling\_cost\_budget** ([*float*](https://docs.python.org/3/library/functions.html#float)) – the maximum sampling cost to allow.
-  *   **bias\_tolerance** ([*float*](https://docs.python.org/3/library/functions.html#float)) – the maximum bias to tolerate.
+
+  *   **bounds** ([*dict*](https://docs.python.org/3/builtins/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/builtins/stdtypes.html#str)*,* [*PauliLindbladMap*](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap)*]*) – the shaded lightcone bounds.
+
+  *   **noise\_rates** ([*dict*](https://docs.python.org/3/builtins/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/builtins/stdtypes.html#str)*,* [*PauliLindbladMap*](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap) *| None]*) – the learned noise model rates.
+
+  *   **sampling\_cost\_budget** ([*float*](https://docs.python.org/3/builtins/functions.html#float)) – the maximum sampling cost to allow.
+
+  *   **bias\_tolerance** ([*float*](https://docs.python.org/3/builtins/functions.html#float)) – the maximum bias to tolerate.
+
+  *   **apply\_in\_post** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) –
+
+      whether SLC will be applied in post-processing rather than at sampling time. By default (`False`), the returned `local_scales` are provided as an input to the [`Samplex`](/docs/api/samplomatic/auto/samplex-samplex "(in samplomatic)"), such that Paulis are only injected for the error terms selected for mitigation. Set this to `True` when the experiment is instead run as standard PEC (i.e. Paulis are injected for all error terms) and SLC is applied to the resulting data afterwards. This is necessary whenever the error terms to mitigate are not known at the time of the experiment, for example, when computing multiple observables (each with its own shaded lightcone) from a single dataset, or when computing even a single observable retroactively from existing PEC data.
+
+      In this setting, the minus signs of the error terms which are not selected for mitigation are ignored. Their injected Paulis therefore act as noise rather than antinoise, effectively doubling their error rates. Setting this to `True` accounts for that by ranking the error terms greedily by their “value density” (i.e., their bias bound divided by their noise rate) instead of using the default prioritization.
+
+        <Admonition title="Warning" type="caution">
+          When this is `True`, the returned `local_scales` must **not** be provided to the [`Samplex`](/docs/api/samplomatic/auto/samplex-samplex "(in samplomatic)"), since the experiment must inject Paulis for all error terms. Instead, they specify which error terms’ signs to apply when processing the experiment’s results. Providing them to the samplex silently yields wrong results.
+        </Admonition>
 
   **Returns**
 
-  *   the `local_scales` dictionary to be provided as the direct input to the [`samplomatic.samplex.Samplex.inputs()`](/docs/api/samplomatic/auto/samplex-samplex-output#samplomatic.samplex.SamplexOutput "(in samplomatic)").
+  *   the `local_scales` dictionary to be provided as the direct input to the [`samplomatic.samplex.Samplex.inputs()`](/docs/api/samplomatic/auto/samplex-samplex#inputs "(in samplomatic)") (unless `apply_in_post` is `True`, in which case it is used in post-processing instead).
   *   the sampling cost overhead ($\gamma^2$) required to perform the sampling of `local_scales`.
   *   the remaining bias on expectation values computed with these bounds.
 
@@ -181,8 +203,8 @@ This module provides various functions for computing the error bounds that make 
 
   **Raises**
 
-  *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – if non-default values are provided for both, the `sampling_cost_budget` and `bias_tolerance`.
-  *   [**KeyError**](https://docs.python.org/3/library/exceptions.html#KeyError) – if `noise_rates` is missing an entry for any noise model identifier (`InjectNoise.ref`) encountered in `circuit`.
+  *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – if non-default values are provided for both, the `sampling_cost_budget` and `bias_tolerance`.
+  *   [**KeyError**](https://docs.python.org/3/builtins/exceptions.html#KeyError) – if `noise_rates` is missing an entry for any noise model identifier (`InjectNoise.ref`) encountered in `circuit`.
 </Function>
 
 ***
@@ -191,23 +213,27 @@ This module also contains some lower level functions which are usually not acces
 
 ### compute\_bounds
 
-<Function id="qiskit_addon_slc.bounds.compute_bounds" github="https://github.com/Qiskit/qiskit-addon-slc/tree/main/qiskit_addon_slc/bounds/commutator_bounds.py#L90-L280" signature="compute_bounds(circuit, noise_model_paulis, light_cone, norm_fn, *, backwards, max_num_boxes=None, num_processes=1, timeout=None)">
+<Function id="qiskit_addon_slc.bounds.compute_bounds" github="https://github.com/Qiskit/qiskit-addon-slc/tree/stable/0.2/python/qiskit_addon_slc/bounds/commutator_bounds.py#L115-L345" signature="compute_bounds(circuit, noise_model_paulis, light_cone, norm_fn, *, backwards, max_num_boxes=None, num_processes=1, timeout=None)">
   Computes the unequal time commutator bounds.
 
   Given a circuit with `BoxOp` instructions with `InjectNoise` annotations and a mapping of noise model identifiers (`InjectNoise.ref`) to list of Pauli error terms (`noise_model_paulis`), this function computes the unequal time commutator bounds (the details of which are implemented by `norm_fn`). In doing so, it only considers gates that lie within the light-cone of the observable (initialized by `light_cone`). These computed bounds form the basis of the shaded light-cone.
+
+  <Admonition title="Important" type="danger">
+    The computed bounds are keyed by `InjectNoise.modifier_ref`, so every `BoxOp` with an `InjectNoise` annotation **must** have a unique `modifier_ref`. Boxing a circuit with [`generate_boxing_pass_manager()`](/docs/api/samplomatic/auto/transpiler-generate-boxing-pass-manager "(in samplomatic)") provides this only with `inject_noise_strategy="individual_modification"`. With any other strategy, several boxes share a `modifier_ref`, which leads to silently wrong forward bounds or a backward computation that never finishes.
+  </Admonition>
 
   Since this function performs a long-running computation, it gracefully handles `KeyboardInterrupt` exceptions, allowing the user to interrupt the computation at an arbitrary point in time and still obtain the results that have been computed up to that point.
 
   **Parameters**
 
   *   **circuit** ([*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit)) – the target circuit.
-  *   **noise\_model\_paulis** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*,* [*QubitSparsePauliList*](/docs/api/qiskit/qiskit.quantum_info.QubitSparsePauliList)*]*) – the Pauli error terms to consider for each noise model.
-  *   **light\_cone** (*LightCone*) – the initialized and stateful `LightCone` tracker.
-  *   **norm\_fn** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[*[*Pauli*](/docs/api/qiskit/qiskit.quantum_info.Pauli)*,* [*RotationGates*](/docs/api/pauli-prop/propagation#pauli_prop.propagation.RotationGates "(in Pauli propagation)")*],* [*CommutatorBounds*](#qiskit_addon_slc.bounds.CommutatorBounds "qiskit_addon_slc.bounds.commutator_bounds.CommutatorBounds")*]*) – the function implementing the specific unequal time commutator.
-  *   **backwards** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – whether to iterate over the `circuit` in reverse.
-  *   **max\_num\_boxes** ([*int*](https://docs.python.org/3/library/functions.html#int) *| None*) – the maximum number of boxes for which to compute bounds. Bounds for any additional boxes will be given the trivial upper bound value of $2.0$.
-  *   **num\_processes** ([*int*](https://docs.python.org/3/library/functions.html#int)) – the number of parallel processes to use.
-  *   **timeout** ([*float*](https://docs.python.org/3/library/functions.html#float) *| None*) – an optional timeout (in seconds) after which all remaining layers are filled with trivial numerical bounds of `2.0`. Note, that this is not a strict timeout and the layer being processed at the time of reaching this timeout will complete normally.
+  *   **noise\_model\_paulis** ([*dict*](https://docs.python.org/3/builtins/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/builtins/stdtypes.html#str)*,* [*QubitSparsePauliList*](/docs/api/qiskit/qiskit.quantum_info.QubitSparsePauliList)*]*) – the Pauli error terms to consider for each noise model.
+  *   **light\_cone** ([*LightCone*](#qiskit_addon_slc.bounds.LightCone "qiskit_addon_slc.bounds.light_cone.LightCone")) – the initialized and stateful [`LightCone`](#qiskit_addon_slc.bounds.LightCone "qiskit_addon_slc.bounds.LightCone") tracker.
+  *   **norm\_fn** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[*[*Pauli*](/docs/api/qiskit/qiskit.quantum_info.Pauli)*,* [*RotationGates*](/docs/api/pauli-prop/propagation#pauli_prop.propagation.RotationGates "(in Pauli propagation)")*],* [*CommutatorBounds*](#qiskit_addon_slc.bounds.CommutatorBounds "qiskit_addon_slc.bounds.commutator_bounds.CommutatorBounds")*]*) – the function implementing the specific unequal time commutator. It gets called as `norm_fn(pauli, gates)` for every Pauli error term, where `gates` are the non-Clifford gates within the light-cone that the error term must be evolved through.
+  *   **backwards** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) – whether to iterate over the `circuit` in reverse.
+  *   **max\_num\_boxes** ([*int*](https://docs.python.org/3/builtins/functions.html#int) *| None*) – the maximum number of boxes for which to compute bounds. Bounds for any additional boxes will be given the trivial upper bound value of $2.0$.
+  *   **num\_processes** ([*int*](https://docs.python.org/3/builtins/functions.html#int)) – the number of parallel processes to use.
+  *   **timeout** ([*float*](https://docs.python.org/3/builtins/functions.html#float) *| None*) – an optional timeout (in seconds) after which all remaining layers are filled with trivial numerical bounds of `2.0`. Note, that this is not a strict timeout and the layer being processed at the time of reaching this timeout will complete normally.
 
   **Returns**
 
@@ -215,12 +241,174 @@ This module also contains some lower level functions which are usually not acces
 
   **Return type**
 
-  [dict](https://docs.python.org/3/library/stdtypes.html#dict)\[[str](https://docs.python.org/3/library/stdtypes.html#str), [*PauliLindbladMap*](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap)]
+  [dict](https://docs.python.org/3/builtins/stdtypes.html#dict)\[[str](https://docs.python.org/3/builtins/stdtypes.html#str), [*PauliLindbladMap*](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap)]
 </Function>
+
+### time\_evolved\_norm\_forward
+
+<Function id="qiskit_addon_slc.bounds.time_evolved_norm_forward" github="https://github.com/Qiskit/qiskit-addon-slc/tree/stable/0.2/python/qiskit_addon_slc/bounds/forward.py#L59-L212" signature="time_evolved_norm_forward(pauli, gates, observable, *, evolution_max_terms=1000000, eigval_max_qubits=14, comm_norm_order=2, atol_simplify=1e-08, atol_eigenvalue=1e-10)">
+  Compute the bound of an error Pauli term evolved forward to the target observable.
+
+  Given an error Pauli term (`pauli`), the non-Clifford component of a circuit (`gates`), and a target observable (`observable`) that is to be measured at the end of the circuit, this function computes the unequal-time commutator between the noise term and observable. That means, the error Pauli term (which may reside anywhere in the middle of the target circuit) is being evolved forwards to the *end* of the circuit where the target observable is being measured. In doing so, it must be evolved through the non-Clifford component of the circuit within the light-cone (here, given by `gates`).
+
+  **Parameters**
+
+  *   **pauli** ([*Pauli*](/docs/api/qiskit/qiskit.quantum_info.Pauli)) – the error Pauli term to be evolved.
+  *   **gates** ([*RotationGates*](/docs/api/pauli-prop/propagation#pauli_prop.propagation.RotationGates "(in Pauli propagation)")) – the non-Clifford circuit component encoded as rotation gates (as produced by [`propagate_through_rotation_gates()`](/docs/api/pauli-prop/propagation#pauli_prop.propagation.propagate_through_rotation_gates "(in Pauli propagation)")).
+  *   **observable** ([*Pauli*](/docs/api/qiskit/qiskit.quantum_info.Pauli)) – the target observable to be measured at the end of the circuit.
+  *   **evolution\_max\_terms** ([*int*](https://docs.python.org/3/builtins/functions.html#int)) – the maximum number of operator terms to keep track of during the evolution.
+  *   **eigval\_max\_qubits** ([*int*](https://docs.python.org/3/builtins/functions.html#int)) – the maximum number of qubits of a commutator for which the eigenvalue computation will still be attempted. When this value is exceeded, the bound is approximated via a simpler and more loose triangle inequality.
+  *   **comm\_norm\_order** ([*int*](https://docs.python.org/3/builtins/functions.html#int)) – the order of the commutator norm to compute.
+  *   **atol\_simplify** ([*float*](https://docs.python.org/3/builtins/functions.html#float)) – the absolute tolerance used for trimming terms from the commutator. Loosening this tolerance will result in a greater truncation of the commutator’s terms, rendering the computation of its eigenvalue cheaper but less accurate.
+  *   **atol\_eigenvalue** ([*float*](https://docs.python.org/3/builtins/functions.html#float)) – the absolute tolerance used for detecting convergence of the commutator’s eigenvalue. Loosening this tolerance will result in a less accurate eigenvalue as computed by the iterative Davidson eigensolver.
+
+  **Returns**
+
+  The unequal-time commutator bound.
+
+  **Return type**
+
+  [*CommutatorBounds*](#qiskit_addon_slc.bounds.CommutatorBounds "qiskit_addon_slc.bounds.commutator_bounds.CommutatorBounds")
+</Function>
+
+### time\_evolved\_norm\_backward
+
+<Function id="qiskit_addon_slc.bounds.time_evolved_norm_backward" github="https://github.com/Qiskit/qiskit-addon-slc/tree/stable/0.2/python/qiskit_addon_slc/bounds/backward.py#L49-L109" signature="time_evolved_norm_backward(pauli, gates, *, evolution_max_terms=1000000)">
+  Bound the effect of an error Pauli term on the quantum state by evolving the error backward.
+
+  Evolving backwards means moving the error through the circuit to its start.
+
+  Given an error Pauli term (`pauli`) and the non-Clifford component of a circuit (`gates`), this function computes the unequal-time commutator between the Pauli error and the quantum state. The error Pauli term (which may reside anywhere in the middle of the target circuit) is evolved backwards to the *start* of the circuit. In doing so, it must be evolved through the non-Clifford component of the circuit within the light-cone (here, given by `gates`).
+
+  The state is assumed to be the all-zero state, $\ket{0 \ldots 0}$, which is what [`compute_backward_bounds()`](#qiskit_addon_slc.bounds.compute_backward_bounds "qiskit_addon_slc.bounds.compute_backward_bounds") assumes for every active qubit of the circuit.
+
+  Note, that this function is designed for the context of [`compute_backward_bounds()`](#qiskit_addon_slc.bounds.compute_backward_bounds "qiskit_addon_slc.bounds.compute_backward_bounds") which inverts the target circuit first. Hence, a backward evolution actually amounts to the Schrödinger frame evolution of `pauli` through `gates`.
+
+  **Parameters**
+
+  *   **pauli** ([*Pauli*](/docs/api/qiskit/qiskit.quantum_info.Pauli)) – the error Pauli term to be evolved.
+  *   **gates** ([*RotationGates*](/docs/api/pauli-prop/propagation#pauli_prop.propagation.RotationGates "(in Pauli propagation)")) – the non-Clifford circuit component encoded as rotation gates (as produced by [`propagate_through_rotation_gates()`](/docs/api/pauli-prop/propagation#pauli_prop.propagation.propagate_through_rotation_gates "(in Pauli propagation)")).
+  *   **evolution\_max\_terms** ([*int*](https://docs.python.org/3/builtins/functions.html#int)) – the maximum number of operator terms to keep track of during the evolution.
+
+  **Returns**
+
+  The unequal-time commutator bound $\| \left[E, \rho\right] \|_1$ for Pauli error $E$ and state $\rho$, where the norm is the Schatten 1 norm (nuclear norm).
+
+  **Return type**
+
+  [*CommutatorBounds*](#qiskit_addon_slc.bounds.CommutatorBounds "qiskit_addon_slc.bounds.commutator_bounds.CommutatorBounds")
+</Function>
+
+### LightCone
+
+<Class id="qiskit_addon_slc.bounds.LightCone" github="https://github.com/Qiskit/qiskit-addon-slc/tree/stable/0.2/python/qiskit_addon_slc/bounds/light_cone.py#L35-L178" signature="LightCone(qubits, operations, offset_cache)" modifiers="class">
+  Bases: [`NamedTuple`](https://docs.python.org/3/library/typing.html#typing.NamedTuple)
+
+  A stateful light cone, grown one circuit instruction at a time.
+
+  [`compute_bounds()`](#qiskit_addon_slc.bounds.compute_bounds "qiskit_addon_slc.bounds.compute_bounds") uses a light cone to skip work: while iterating a circuit, any instruction that [`commutes()`](#qiskit_addon_slc.bounds.LightCone.commutes "qiskit_addon_slc.bounds.LightCone.commutes") with the light cone cannot affect what is being bounded, and any instruction that does not commute is added to it, widening the cone.
+
+  The light cone is *seeded* with the operator that the error terms are bounded against. The two classmethods cover the cases of the built-in bounds: [`initialize_from_pauli()`](#qiskit_addon_slc.bounds.LightCone.initialize_from_pauli "qiskit_addon_slc.bounds.LightCone.initialize_from_pauli") seeds it with a Pauli observable, as [`compute_forward_bounds()`](#qiskit_addon_slc.bounds.compute_forward_bounds "qiskit_addon_slc.bounds.compute_forward_bounds") does, and [`initialize_from_measurements()`](#qiskit_addon_slc.bounds.LightCone.initialize_from_measurements "qiskit_addon_slc.bounds.LightCone.initialize_from_measurements") seeds it with a set of qubits, such as every active qubit of the circuit, as [`compute_backward_bounds()`](#qiskit_addon_slc.bounds.compute_backward_bounds "qiskit_addon_slc.bounds.compute_backward_bounds") does. To bound against anything else, construct it directly from the qubits it spans and the operations it starts out with, and an empty [`offset_cache`](#qiskit_addon_slc.bounds.LightCone.offset_cache "qiskit_addon_slc.bounds.LightCone.offset_cache").
+
+  <Admonition title="Caution" type="note">
+    A light cone is mutated by [`commutes()`](#qiskit_addon_slc.bounds.LightCone.commutes "qiskit_addon_slc.bounds.LightCone.commutes"), so a fresh one is needed for every call to [`compute_bounds()`](#qiskit_addon_slc.bounds.compute_bounds "qiskit_addon_slc.bounds.compute_bounds").
+  </Admonition>
+
+  Create new instance of LightCone(qubits, operations, offset\_cache)
+
+  **Parameters**
+
+  *   **qubits** ([*set*](https://docs.python.org/3/builtins/stdtypes.html#set)*\[*[*Qubit*](/docs/api/qiskit/circuit#qiskit.circuit.Qubit)*]*)
+  *   **operations** ([*list*](https://docs.python.org/3/builtins/stdtypes.html#list)*\[*[*tuple*](https://docs.python.org/3/builtins/stdtypes.html#tuple)*\[*[*Gate*](/docs/api/qiskit/qiskit.circuit.Gate)*,* [*list*](https://docs.python.org/3/builtins/stdtypes.html#list)*\[*[*Qubit*](/docs/api/qiskit/circuit#qiskit.circuit.Qubit)*]]]*)
+  *   **offset\_cache** ([*dict*](https://docs.python.org/3/builtins/stdtypes.html#dict)*\[*[*tuple*](https://docs.python.org/3/builtins/stdtypes.html#tuple)*\[*[*str*](https://docs.python.org/3/builtins/stdtypes.html#str)*,* [*tuple*](https://docs.python.org/3/builtins/stdtypes.html#tuple)*\[*[*float*](https://docs.python.org/3/builtins/functions.html#float)*],* [*tuple*](https://docs.python.org/3/builtins/stdtypes.html#tuple)*\[*[*Qubit*](/docs/api/qiskit/circuit#qiskit.circuit.Qubit)*]],* [*int*](https://docs.python.org/3/builtins/functions.html#int)*]*)
+
+  #### commutes
+
+  <Function id="qiskit_addon_slc.bounds.LightCone.commutes" github="https://github.com/Qiskit/qiskit-addon-slc/tree/stable/0.2/python/qiskit_addon_slc/bounds/light_cone.py#L70-L130" signature="commutes(inst)">
+    Checks whether the provided instruction commutes with this light cone.
+
+    If it does not, the instruction gets added to this light cone.
+
+    **Parameters**
+
+    **inst** ([*CircuitInstruction*](/docs/api/qiskit/qiskit.circuit.CircuitInstruction)) – the circuit instruction to check.
+
+    **Returns**
+
+    Whether the instruction commutes with this light cone.
+
+    **Return type**
+
+    [bool](https://docs.python.org/3/builtins/functions.html#bool)
+  </Function>
+
+  #### initialize\_from\_measurements
+
+  <Function id="qiskit_addon_slc.bounds.LightCone.initialize_from_measurements" github="https://github.com/Qiskit/qiskit-addon-slc/tree/stable/0.2/python/qiskit_addon_slc/bounds/light_cone.py#L150-L178" signature="initialize_from_measurements(circuit, *, measure_active=False, measure_all=False)" modifiers="classmethod">
+    Initialize a LightCone using the measurement gates inside the circuit.
+
+    **Parameters**
+
+    *   **circuit** ([*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit)) – the QuantumCircuit for which to initialize the LightCone.
+    *   **measure\_active** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) – ignore any measurement information from the circuit and simply assume all non-idle qubits to be measured.
+    *   **measure\_all** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) – ignore any measurement information from the circuit and simply assume all qubits to be measured. This takes precedence over `measure_active`.
+
+    **Returns**
+
+    An empty LightCone initialized with the to-be-measured qubits.
+
+    **Return type**
+
+    [*Self*](https://docs.python.org/3/library/typing.html#typing.Self)
+  </Function>
+
+  #### initialize\_from\_pauli
+
+  <Function id="qiskit_addon_slc.bounds.LightCone.initialize_from_pauli" github="https://github.com/Qiskit/qiskit-addon-slc/tree/stable/0.2/python/qiskit_addon_slc/bounds/light_cone.py#L132-L148" signature="initialize_from_pauli(circuit, pauli)" modifiers="classmethod">
+    Initialize a LightCone assuming the given pauli is measured on the given circuit.
+
+    **Parameters**
+
+    *   **circuit** ([*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit)) – the QuantumCircuit for which to initialize the LightCone.
+    *   **pauli** ([*Pauli*](/docs/api/qiskit/qiskit.quantum_info.Pauli)) – the Pauli to be measured.
+
+    **Returns**
+
+    An empty LightCone initialized with the provided pauli measured on the circuit.
+
+    **Return type**
+
+    [*Self*](https://docs.python.org/3/library/typing.html#typing.Self)
+  </Function>
+
+  #### offset\_cache
+
+  <Attribute id="qiskit_addon_slc.bounds.LightCone.offset_cache">
+    Type: [`dict`](https://docs.python.org/3/builtins/stdtypes.html#dict)\[[`tuple`](https://docs.python.org/3/builtins/stdtypes.html#tuple)\[[`str`](https://docs.python.org/3/builtins/stdtypes.html#str), [`tuple`](https://docs.python.org/3/builtins/stdtypes.html#tuple)\[[`float`](https://docs.python.org/3/builtins/functions.html#float)], [`tuple`](https://docs.python.org/3/builtins/stdtypes.html#tuple)\[[`Qubit`](/docs/api/qiskit/circuit#qiskit.circuit.Qubit)]], [`int`](https://docs.python.org/3/builtins/functions.html#int)]
+
+    A cache mapping circuit instructions to the offset in [`operations`](#qiskit_addon_slc.bounds.LightCone.operations "qiskit_addon_slc.bounds.LightCone.operations") up to which they commute.
+  </Attribute>
+
+  #### operations
+
+  <Attribute id="qiskit_addon_slc.bounds.LightCone.operations">
+    Type: [`list`](https://docs.python.org/3/builtins/stdtypes.html#list)\[[`tuple`](https://docs.python.org/3/builtins/stdtypes.html#tuple)\[[`Gate`](/docs/api/qiskit/qiskit.circuit.Gate), [`list`](https://docs.python.org/3/builtins/stdtypes.html#list)\[[`Qubit`](/docs/api/qiskit/circuit#qiskit.circuit.Qubit)]]]
+
+    The operations contained in the light cone.
+  </Attribute>
+
+  #### qubits
+
+  <Attribute id="qiskit_addon_slc.bounds.LightCone.qubits">
+    Type: [`set`](https://docs.python.org/3/builtins/stdtypes.html#set)\[[`Qubit`](/docs/api/qiskit/circuit#qiskit.circuit.Qubit)]
+
+    The qubits spanned by the light cone.
+  </Attribute>
+</Class>
 
 ### CommutatorBounds
 
-<Class id="qiskit_addon_slc.bounds.CommutatorBounds" github="https://github.com/Qiskit/qiskit-addon-slc/tree/main/qiskit_addon_slc/bounds/commutator_bounds.py#L52-L87" signature="CommutatorBounds(commutator_bound, truncation_bias, fallback_to_tri_ineq)" modifiers="class">
+<Class id="qiskit_addon_slc.bounds.CommutatorBounds" github="https://github.com/Qiskit/qiskit-addon-slc/tree/stable/0.2/python/qiskit_addon_slc/bounds/commutator_bounds.py#L77-L112" signature="CommutatorBounds(commutator_bound, truncation_bias, fallback_to_tri_ineq)" modifiers="class">
   Bases: [`NamedTuple`](https://docs.python.org/3/library/typing.html#typing.NamedTuple)
 
   A dataclass to store metadata about the computed commutator bounds.
@@ -229,14 +417,14 @@ This module also contains some lower level functions which are usually not acces
 
   **Parameters**
 
-  *   **commutator\_bound** ([*float*](https://docs.python.org/3/library/functions.html#float))
-  *   **truncation\_bias** ([*float*](https://docs.python.org/3/library/functions.html#float))
-  *   **fallback\_to\_tri\_ineq** ([*bool*](https://docs.python.org/3/library/functions.html#bool))
+  *   **commutator\_bound** ([*float*](https://docs.python.org/3/builtins/functions.html#float))
+  *   **truncation\_bias** ([*float*](https://docs.python.org/3/builtins/functions.html#float))
+  *   **fallback\_to\_tri\_ineq** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool))
 
   #### commutator\_bound
 
   <Attribute id="qiskit_addon_slc.bounds.CommutatorBounds.commutator_bound">
-    Type: [`float`](https://docs.python.org/3/library/functions.html#float)
+    Type: [`float`](https://docs.python.org/3/builtins/functions.html#float)
 
     The bound on the commutator.
 
@@ -250,14 +438,14 @@ This module also contains some lower level functions which are usually not acces
   #### fallback\_to\_tri\_ineq
 
   <Attribute id="qiskit_addon_slc.bounds.CommutatorBounds.fallback_to_tri_ineq">
-    Type: [`bool`](https://docs.python.org/3/library/functions.html#bool)
+    Type: [`bool`](https://docs.python.org/3/builtins/functions.html#bool)
 
     Whether [`commutator_bound`](#qiskit_addon_slc.bounds.CommutatorBounds.commutator_bound "qiskit_addon_slc.bounds.CommutatorBounds.commutator_bound") was computed “loosely” using a simple triangle inequality.
   </Attribute>
 
   #### min
 
-  <Function id="qiskit_addon_slc.bounds.CommutatorBounds.min" github="https://github.com/Qiskit/qiskit-addon-slc/tree/main/qiskit_addon_slc/bounds/commutator_bounds.py#L78-L87" signature="min()">
+  <Function id="qiskit_addon_slc.bounds.CommutatorBounds.min" github="https://github.com/Qiskit/qiskit-addon-slc/tree/stable/0.2/python/qiskit_addon_slc/bounds/commutator_bounds.py#L103-L112" signature="min()">
     Returns the minimum bound encoded by this metadata.
 
     The minimal bound is the smaller of the sum of [`commutator_bound`](#qiskit_addon_slc.bounds.CommutatorBounds.commutator_bound "qiskit_addon_slc.bounds.CommutatorBounds.commutator_bound") and [`truncation_bias`](#qiskit_addon_slc.bounds.CommutatorBounds.truncation_bias "qiskit_addon_slc.bounds.CommutatorBounds.truncation_bias") or the theoretical bound of `2.0`.
@@ -266,13 +454,13 @@ This module also contains some lower level functions which are usually not acces
 
     **Return type**
 
-    [float](https://docs.python.org/3/library/functions.html#float)
+    [float](https://docs.python.org/3/builtins/functions.html#float)
   </Function>
 
   #### truncation\_bias
 
   <Attribute id="qiskit_addon_slc.bounds.CommutatorBounds.truncation_bias">
-    Type: [`float`](https://docs.python.org/3/library/functions.html#float)
+    Type: [`float`](https://docs.python.org/3/builtins/functions.html#float)
 
     The bias on the bound due to truncation of the commutator.
   </Attribute>

@@ -18,6 +18,10 @@ The C API provides efficient implementations of commonly used operator represent
 | [`qf_maj_op_jordan_wigner()`](#qf_maj_op_jordan_wigner "qf_maj_op_jordan_wigner")                               | Map a [`QfMajoranaOperator`](qf-maj-op#qfmajoranaoperator "QfMajoranaOperator") to a [QkObs](/docs/api/qiskit-c/qk-obs) under the Jordan-Wigner transformation.                               |
 | [`qf_edge_op_jordan_wigner()`](#qf_edge_op_jordan_wigner "qf_edge_op_jordan_wigner")                            | Map a [`QfEdgeVertexOperator`](qf-edge-op#qfedgevertexoperator "QfEdgeVertexOperator") to a [QkObs](/docs/api/qiskit-c/qk-obs) under the Jordan-Wigner transformation.                        |
 | [`qf_transfer_op_jordan_wigner()`](#qf_transfer_op_jordan_wigner "qf_transfer_op_jordan_wigner")                | Map a [`QfTransferVertexOperator`](qf-transfer-op#qftransfervertexoperator "QfTransferVertexOperator") to a [QkObs](/docs/api/qiskit-c/qk-obs) under the Jordan-Wigner transformation.        |
+| [`qf_ferm_op_ternary_tree()`](#qf_ferm_op_ternary_tree "qf_ferm_op_ternary_tree")                               | Map a [`QfFermionOperator`](qf-ferm-op#qffermionoperator "QfFermionOperator") to a [QkObs](/docs/api/qiskit-c/qk-obs) through a ternary-tree encoding.                                        |
+| [`qf_maj_op_ternary_tree()`](#qf_maj_op_ternary_tree "qf_maj_op_ternary_tree")                                  | Map a [`QfMajoranaOperator`](qf-maj-op#qfmajoranaoperator "QfMajoranaOperator") to a [QkObs](/docs/api/qiskit-c/qk-obs) through a ternary-tree encoding.                                      |
+| [`qf_edge_op_ternary_tree()`](#qf_edge_op_ternary_tree "qf_edge_op_ternary_tree")                               | Map a [`QfEdgeVertexOperator`](qf-edge-op#qfedgevertexoperator "QfEdgeVertexOperator") to a [QkObs](/docs/api/qiskit-c/qk-obs) through a ternary-tree encoding.                               |
+| [`qf_transfer_op_ternary_tree()`](#qf_transfer_op_ternary_tree "qf_transfer_op_ternary_tree")                   | Map a [`QfTransferVertexOperator`](qf-transfer-op#qftransfervertexoperator "QfTransferVertexOperator") to a [QkObs](/docs/api/qiskit-c/qk-obs) through a ternary-tree encoding.               |
 | [`qf_fermion_to_majorana()`](#qf_fermion_to_majorana "qf_fermion_to_majorana")                                  | Map a [`QfFermionOperator`](qf-ferm-op#qffermionoperator "QfFermionOperator") to a [`QfMajoranaOperator`](qf-maj-op#qfmajoranaoperator "QfMajoranaOperator").                                 |
 | [`qf_majorana_to_fermion()`](#qf_majorana_to_fermion "qf_majorana_to_fermion")                                  | Map a [`QfMajoranaOperator`](qf-maj-op#qfmajoranaoperator "QfMajoranaOperator") to a [`QfFermionOperator`](qf-ferm-op#qffermionoperator "QfFermionOperator").                                 |
 | [`qf_edge_vertex_to_fermion()`](#qf_edge_vertex_to_fermion "qf_edge_vertex_to_fermion")                         | Map a [`QfEdgeVertexOperator`](qf-edge-op#qfedgevertexoperator "QfEdgeVertexOperator") to a [`QfFermionOperator`](qf-ferm-op#qffermionoperator "QfFermionOperator").                          |
@@ -155,7 +159,7 @@ $$
 
   **Returns**
 
-  An exit code. This is `>0` if an error occurred. In particular, a `QfExitCode_ValueError` is returned if `num_qubits` is too small to hold the operator’s support.
+  An exit code. This is `>0` if an error occurred. In particular, a `QfExitCode_NullPointerError` is returned if `op` or `out` is `NULL`, and a `QfExitCode_ValueError` if `num_qubits` is too small to hold the operator’s support.
 </Function>
 
 ### qf\_maj\_op\_jordan\_wigner
@@ -213,7 +217,7 @@ $$
 
   **Returns**
 
-  An exit code. This is `>0` if an error occurred. In particular, a `QfExitCode_ValueError` is returned if `num_qubits` is too small to hold the operator’s support.
+  An exit code. This is `>0` if an error occurred. In particular, a `QfExitCode_NullPointerError` is returned if `op` or `out` is `NULL`, and a `QfExitCode_ValueError` if `num_qubits` is too small to hold the operator’s support.
 </Function>
 
 ### qf\_edge\_op\_jordan\_wigner
@@ -289,7 +293,7 @@ $$
 
   **Returns**
 
-  An exit code. This is `>0` if an error occurred. In particular, a `QfExitCode_ValueError` is returned if `num_qubits` is too small to hold the operator’s support.
+  An exit code. This is `>0` if an error occurred. In particular, a `QfExitCode_NullPointerError` is returned if `op` or `out` is `NULL`, and a `QfExitCode_ValueError` if `num_qubits` is too small to hold the operator’s support.
 </Function>
 
 ### qf\_transfer\_op\_jordan\_wigner
@@ -365,7 +369,7 @@ $$
 
   **Returns**
 
-  An exit code. This is `>0` if an error occurred. In particular, a `QfExitCode_ValueError` is returned if `num_qubits` is too small to hold the operator’s support.
+  An exit code. This is `>0` if an error occurred. In particular, a `QfExitCode_NullPointerError` is returned if `op` or `out` is `NULL`, and a `QfExitCode_ValueError` if `num_qubits` is too small to hold the operator’s support.
 </Function>
 
 ### qf\_fermion\_to\_majorana
@@ -446,18 +450,147 @@ $$
   A pointer to the mapped fermion operator.
 </Function>
 
+### qf\_ferm\_op\_ternary\_tree
+
+<Function id="qf_ferm_op_ternary_tree" signature="QfExitCode qf_ferm_op_ternary_tree(const QfFermionOperator *op, const QfTernaryTreeEncoding *encoding, uint32_t num_qubits, QkObs **out)">
+  Maps a fermionic operator through a ternary-tree encoding.
+
+  On a chain along `Z` this produces the same observable as [`qf_ferm_op_jordan_wigner()`](#qf_ferm_op_jordan_wigner "qf_ferm_op_jordan_wigner"); other trees trade that encoding’s Pauli weight, linear in the number of modes, for a shallower one.
+
+  <span id="id28" />
+
+  #### Example
+
+  ```c
+  QfTernaryTree *tree;
+  QfPauliLabel order[3] = {QfPauliLabel_X, QfPauliLabel_Y, QfPauliLabel_Z};
+  qf_ternary_tree_breadth_first(4, 3, order, &tree);
+
+  QfTernaryTreeEncoding *encoding;
+  qf_ternary_tree_encoding_new(tree, NULL, &encoding);
+
+  QkObs *result;
+  QfExitCode exit = qf_ferm_op_ternary_tree(hamil, encoding, 4, &result);
+
+  assert(exit == QfExitCode_Success);
+
+  qf_ternary_tree_encoding_free(encoding);
+  qf_ternary_tree_free(tree);
+  ```
+
+  <span id="group__qf__mapper__library_1autotoc_md6" />
+
+  #### Safety
+
+  <span id="group__qf__mapper__library_1autotoc_md6" />
+
+  `op` and `encoding` must each be `NULL` or a valid pointer to its type, and `out` must be `NULL` or aligned.
+
+  **Parameters**
+
+  *   **op** – A pointer to the fermionic operator to be mapped.
+  *   **encoding** – A pointer to the compiled encoding to map through.
+  *   **num\_qubits** – The number of qubits for the mapped operator. This must be at least the encoding’s mode count; a larger value pads with the identity.
+  *   **out** – A pointer to where the created qubit operator will be written on success. It is left untouched if the transformation fails.
+
+  **Returns**
+
+  An exit code. This is `>0` if an error occurred. In particular, a `QfExitCode_NullPointerError` is returned if any pointer is `NULL`, and a `QfExitCode_ValueError` if `op` acts on a mode the encoding does not cover or `num_qubits` is below the encoding’s mode count. The latter holds whatever modes `op` acts on, since even one mode’s image can span the whole encoding.
+</Function>
+
+### qf\_maj\_op\_ternary\_tree
+
+<Function id="qf_maj_op_ternary_tree" signature="QfExitCode qf_maj_op_ternary_tree(const QfMajoranaOperator *op, const QfTernaryTreeEncoding *encoding, uint32_t num_qubits, QkObs **out)">
+  Maps a Majorana operator through a ternary-tree encoding.
+
+  Each Majorana operator’s image is a single Pauli string, whatever the tree, so a term that is a product of several of them composes those strings rather than inflating into a sum.
+
+  <span id="group__qf__mapper__library_1autotoc_md7" />
+
+  #### Safety
+
+  <span id="group__qf__mapper__library_1autotoc_md7" />
+
+  `op` and `encoding` must each be `NULL` or a valid pointer to its type, and `out` must be `NULL` or aligned.
+
+  **Parameters**
+
+  *   **op** – A pointer to the Majorana operator to be mapped.
+  *   **encoding** – A pointer to the compiled encoding to map through.
+  *   **num\_qubits** – The number of qubits for the mapped operator. This must be at least the encoding’s mode count; a larger value pads with the identity.
+  *   **out** – A pointer to where the created qubit operator will be written on success. It is left untouched if the transformation fails.
+
+  **Returns**
+
+  An exit code. This is `>0` if an error occurred. In particular, a `QfExitCode_NullPointerError` is returned if any pointer is `NULL`, and a `QfExitCode_ValueError` if `op` acts on a mode the encoding does not cover or `num_qubits` is below the encoding’s mode count. The latter holds whatever modes `op` acts on, since even one mode’s image can span the whole encoding. Note that Majorana index :math:`m` acts on mode :math:`\lfloor m/2 \rfloor`.
+</Function>
+
+### qf\_edge\_op\_ternary\_tree
+
+<Function id="qf_edge_op_ternary_tree" signature="QfExitCode qf_edge_op_ternary_tree(const QfEdgeVertexOperator *op, const QfTernaryTreeEncoding *encoding, uint32_t num_qubits, QkObs **out)">
+  Maps an edge-vertex operator through a ternary-tree encoding.
+
+  <span id="group__qf__mapper__library_1autotoc_md8" />
+
+  #### Safety
+
+  <span id="group__qf__mapper__library_1autotoc_md8" />
+
+  `op` and `encoding` must each be `NULL` or a valid pointer to its type, and `out` must be `NULL` or aligned.
+
+  <Admonition title="Note" type="note">
+    Unlike under Jordan-Wigner, a vertex operator is not in general the weight-1 Pauli $Z_l$. That is a property of the chain, where the two Majorana strings’ $Z$ chains cancel; on the balanced tree at four modes a vertex operator has weight 3.
+  </Admonition>
+
+  **Parameters**
+
+  *   **op** – A pointer to the edge-vertex operator to be mapped.
+  *   **encoding** – A pointer to the compiled encoding to map through.
+  *   **num\_qubits** – The number of qubits for the mapped operator. This must be at least the encoding’s mode count; a larger value pads with the identity.
+  *   **out** – A pointer to where the created qubit operator will be written on success. It is left untouched if the transformation fails.
+
+  **Returns**
+
+  An exit code. This is `>0` if an error occurred. In particular, a `QfExitCode_NullPointerError` is returned if any pointer is `NULL`, and a `QfExitCode_ValueError` if `op` acts on a mode the encoding does not cover or `num_qubits` is below the encoding’s mode count. The latter holds whatever modes `op` acts on, since even one mode’s image can span the whole encoding.
+</Function>
+
+### qf\_transfer\_op\_ternary\_tree
+
+<Function id="qf_transfer_op_ternary_tree" signature="QfExitCode qf_transfer_op_ternary_tree(const QfTransferVertexOperator *op, const QfTernaryTreeEncoding *encoding, uint32_t num_qubits, QkObs **out)">
+  Maps a transfer-vertex operator through a ternary-tree encoding.
+
+  <span id="group__qf__mapper__library_1autotoc_md9" />
+
+  #### Safety
+
+  <span id="group__qf__mapper__library_1autotoc_md9" />
+
+  `op` and `encoding` must each be `NULL` or a valid pointer to its type, and `out` must be `NULL` or aligned.
+
+  **Parameters**
+
+  *   **op** – A pointer to the transfer-vertex operator to be mapped.
+  *   **encoding** – A pointer to the compiled encoding to map through.
+  *   **num\_qubits** – The number of qubits for the mapped operator. This must be at least the encoding’s mode count; a larger value pads with the identity.
+  *   **out** – A pointer to where the created qubit operator will be written on success. It is left untouched if the transformation fails.
+
+  **Returns**
+
+  An exit code. This is `>0` if an error occurred. In particular, a `QfExitCode_NullPointerError` is returned if any pointer is `NULL`, and a `QfExitCode_ValueError` if `op` acts on a mode the encoding does not cover or `num_qubits` is below the encoding’s mode count. The latter holds whatever modes `op` acts on, since even one mode’s image can span the whole encoding.
+</Function>
+
 ### qf\_transfer\_vertex\_to\_fermion
 
 <Function id="qf_transfer_vertex_to_fermion" signature="QfFermionOperator *qf_transfer_vertex_to_fermion(const QfTransferVertexOperator *transfer_op)">
   Map a `QfTransferVertexOperator` to a `QfFermionOperator`.
 
-  <span id="id28" />
+  <span id="id29" />
 
   #### Definition
 
   This function decomposes the transfer and vertex operators in terms of the fermionic creation and annihilation operators, as defined [here](qf-transfer-op#qf-transfer-op-definition).
 
-  <span id="id29" />
+  <span id="id30" />
 
   #### Example
 
@@ -487,13 +620,13 @@ $$
 <Function id="qf_transfer_vertex_to_majorana" signature="QfMajoranaOperator *qf_transfer_vertex_to_majorana(const QfTransferVertexOperator *transfer_op)">
   Map a `QfTransferVertexOperator` to a `QfMajoranaOperator`.
 
-  <span id="id30" />
+  <span id="id31" />
 
   #### Definition
 
   This function decomposes the transfer and vertex operators in terms of the Majorana operators, as defined [here](qf-transfer-op#qf-transfer-op-definition).
 
-  <span id="id31" />
+  <span id="id32" />
 
   #### Example
 
@@ -523,13 +656,13 @@ $$
 <Function id="qf_transfer_vertex_to_edge_vertex" signature="QfEdgeVertexOperator *qf_transfer_vertex_to_edge_vertex(const QfTransferVertexOperator *transfer_op)">
   Map a `QfTransferVertexOperator` to a `QfEdgeVertexOperator`.
 
-  <span id="id32" />
+  <span id="id33" />
 
   #### Definition
 
   This function rewrites each transfer operator in terms of the edge and vertex operators. A vertex operator maps to itself, whereas a transfer operator $T_{jk}$ becomes a length-two product of an edge and a vertex operator.
 
-  <span id="id33" />
+  <span id="id34" />
 
   #### Example
 
