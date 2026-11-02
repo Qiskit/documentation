@@ -1,6 +1,6 @@
 ---
 title: JIJ SQOA Solver API reference
-description: API reference for SQOA Solver, a Qiskit Function by JIJ
+description: API reference for SQOA Solver, a Qiskit Function by JIJ, including inputs, outputs, options, and accepted problem formats
 ---
 
 {/* cspell:ignore SQOA, sqoa, OMMX, HUBO, quadratized */}
@@ -30,10 +30,10 @@ The optimization problem in one of the following formats. For more information, 
     ```python
     EiYQARoJEQAAAAAAAPA/IgF4KgEAMhEKCnN1YnNjcmlwdHMSA1swXRIoCAEQARoJEQAAAAAAAPA/IgF4KgEBMhEKCnN1YnNjcmlwdHMSA1sxXRosGioKAQASAQEaCAAAAAAAAADAIhgKCwgBEQAAAAAAAPA/CgkRAAAAAAAA8D8oAjoA
     ```
-- A coefficient dictionary whose keys are stringified tuples of variable IDs, where The values are the coefficients: 
+- A coefficient dictionary whose keys are stringified tuples of variable IDs, and whose values are the coefficients:
     - `"()"` for the constant
     - `"(i,)"` for a linear term
-    - `"(i, j)"` for a quadratic term. 
+    - `"(i, j)"` for a quadratic term
     - Example: `{"()": 2.5, "(7,)": -1, "(11,)": 2, "(7, 11)": 3}`
 - Required: Yes
 </Attribute>
@@ -50,8 +50,8 @@ The domain of the decision variables: `"binary"` for variables in `{0, 1}` or `"
 
 ### `backend_name`
 <Attribute attributeTypeHint="str or None" attributeValue="None">
-Name of the IBM Quantum&reg; Compute backend that runs the sampling jobs. When supplied, the value must be a non-empty string without leading or trailing whitespace, and it must name a backend that is accessible to the instance used to run the function. 
-    - A name that cannot be resolved raises an error; the function does not fall back to automatic selection. 
+Name of the IBM Quantum&reg; backend that runs the sampling jobs. When supplied, the value must be a non-empty string without leading or trailing whitespace, and it must name a backend that is accessible to the instance used to run the function. 
+    - A name that cannot be resolved raises an error. The function does not fall back to automatic selection.
     - When omitted or `None`, the function selects the least busy operational QPU that is accessible to that instance, equivalent to `QiskitRuntimeService.least_busy(operational=True, simulator=False)`, and records the selected backend in the job logs.
 - Required: No
 - Example: `"ibm_fez"`
@@ -60,7 +60,7 @@ Name of the IBM Quantum&reg; Compute backend that runs the sampling jobs. When s
 <span id="options-list"></span>
 ### Options
 <Attribute attributeTypeHint="dict[str, Any]">
-Options that control the sampling budget, reproducibility, session usage, classical post-processing, and job tags. Options are specified as a dictionary. Unknown keys are rejected. See the following list of available options and their default values.
+Options that control the sampling budget, reproducibility, session usage, classical post-processing, and job tags. Specify options as a dictionary. The function rejects unknown keys. See the following list of available options and their default values.
 - Required: No
 
 Example:
@@ -82,7 +82,7 @@ Total number of measurement shots for one function run. The function generates i
 
 #### `seed`
 <Attribute attributeTypeHint="`int` or `None`" attributeValue="None">
-Seed for the classically randomized stages of the workflow, in the inclusive range (`0` - `4294967295`). When omitted or `None`, the function generates a seed and reports it in the result. 
+Seed for the classically randomized stages of the workflow, in the inclusive range `0` to `4294967295`. When omitted or `None`, the function generates a seed and reports it in the result. 
 
 The seed does not control QPU shot noise, so hardware results are reproducible only up to sampling noise. The string `"Auto"` is not accepted.
 </Attribute>
@@ -104,7 +104,7 @@ Level of classical post-processing applied to the rounded solution.
 <Attribute attributeTypeHint="`list[str]` or `None`" attributeValue="None">
 Additional tags assigned to every Quantum Compute job that the function submits. 
 
-- The tags `JIJ` and `SQOASolver` are always present; any user-provided tags are added to this list. 
+- The tags `JIJ` and `SQOASolver` are always present. Any tags that you provide are added to this list.
 - Omitting the option, passing `None`, and passing an empty list have the same effect. 
 - The tags do not apply to the function job itself. 
 - A top-level `job_tags` input is rejected.
@@ -129,16 +129,16 @@ $$
 \min_{x \in \{0, 1\}^n} \; \text{or} \; \max_{x \in \{0, 1\}^n} \quad c + \sum_{i} b_i x_i + \sum_{i < j} q_{ij} x_i x_j .
 $$
 
-A supported instance has the following:
+A supported instance has the following properties:
 
-- at least one decision variable;
-- no active constraints;
-- an objective of degree at most two with finite coefficients;
-- only `Binary` decision variables among the variables used by the objective.
+- At least one decision variable
+- No active constraints
+- An objective of degree at most two with finite coefficients
+- Only `Binary` decision variables among the variables that the objective uses
 
-Both `MINIMIZE` and `MAXIMIZE` senses are supported, and linear or constant objectives are accepted. Decision variables that the objective does not use may be of any kind other than `Continuous`. The solver ignores them and assigns each one the value nearest to zero within its bounds when it evaluates the final state.
+Both `MINIMIZE` and `MAXIMIZE` senses are supported, and linear or constant objectives are accepted. Decision variables that the objective does not use can be of any kind other than `Continuous`. The solver ignores them and assigns each one the value nearest to zero within its bounds when it evaluates the final state.
 
-The function does not convert constrained or higher-order problems. Convert them on the client with the OMMX SDK before submission, for example with `instance.to_qubo(uniform_penalty_weight=...)`. This method converts the instance in place and returns a QUBO dictionary and an offset. Serialize the converted instance, not the returned dictionary, so that the OMMX conversion metadata is kept: it is needed to reconstruct the original and slack variables and to evaluate feasibility. Choosing an adequate penalty weight is your responsibility: the default penalty weight of `1.0` does not guarantee that the optimal QUBO state is feasible for the original constrained problem. To submit an instance in OMMX format, serialize it with `to_bytes()`, encode the bytes as padded Base64, and pass the string as `problem` together with `variable_type="binary"`:
+The function does not convert constrained or higher-order problems. Convert them on the client with the OMMX SDK before submission, for example with `instance.to_qubo(uniform_penalty_weight=...)`. This method converts the instance in place and returns a QUBO dictionary and an offset. Serialize the converted instance, not the returned dictionary, so that the OMMX conversion metadata is kept. This metadata is needed to reconstruct the original and slack variables and to evaluate feasibility. You are responsible for choosing an adequate penalty weight. The default penalty weight of `1.0` does not guarantee that the optimal QUBO state is feasible for the original constrained problem. To submit an instance in OMMX format, serialize it with `to_bytes()`, encode the bytes as padded Base64, and pass the string as `problem` together with `variable_type="binary"`:
 
 ```python
 instance.to_qubo(uniform_penalty_weight=...)  # only for a constrained instance
@@ -162,7 +162,7 @@ problem = {"()": 2.5, "(7,)": -1, "(11,)": 2, "(7, 11)": 3}
     - The comma in a linear key is required. 
     - Whitespace inside a key and a trailing comma in a pair are accepted.
 - **Variable IDs** 
-    - Integers in the range (`0` - `2**64 - 1`) and are distinct within a term.
+    - Variable IDs are integers in the range `0` to `2**64 - 1`, and are distinct within a term.
     - Reversed pairs such as `"(7, 11)"` and `"(11, 7)"` are added together. 
     - A key with more than two IDs is rejected, so higher-order (HUBO) problems must be quadratized before submission.
 - A binary diagonal term `(i, i)` must be folded into the linear term `"(i,)"` before submission. 
@@ -171,7 +171,7 @@ problem = {"()": 2.5, "(7,)": -1, "(11,)": 2, "(7, 11)": 3}
     - Booleans, strings, `None`, `NaN`, and infinity are rejected. 
     - Zero coefficients are accepted and keep the variable in the problem. 
 - Empty dictionaries and dictionaries without any variables are rejected. Dictionaries are always minimized. 
-- Binary variables take the values `0` and `1` and spin variables accept the values `-1` and `+1`, as selected by `variable_type`. 
+- Binary variables take the values `0` and `1`, and spin variables take the values `-1` and `+1`, as selected by `variable_type`. 
 - Spin problems are converted internally with `s_i = 1 - 2 x_i`, which preserves the constant term and every variable ID.
 
 To submit a converted OMMX instance as a dictionary instead of serializing it, build the keys from the QUBO returned by `to_qubo`:
@@ -224,7 +224,7 @@ Example:
 The single best assignment found after all post-processing, keyed by variable. If several candidates share the best objective value, one of them is returned.
 
 Each key is `name_ID`: the variable name followed by an underscore and the decimal decision variable ID, for example `x_17`. Keys are listed in ascending ID order, which keeps them unique even when names repeat.
-- For an OMMX instance, the name and ID come from the instance; a variable without a name uses `x`, and subscripts are not part of the key. 
+- For an OMMX instance, the name and ID come from the instance. A variable without a name uses `x`, and subscripts are not part of the key.
 - For a dictionary problem, the keys are `x_ID` with the IDs used in the submitted dictionary. 
 
 The assignment is complete. For an OMMX instance, it includes variables fixed by pre-processing, dependent and slack variables reconstructed from the OMMX conversion metadata, and variables that the objective does not use. 
@@ -269,11 +269,11 @@ It is recorded even if the search made no improvement, and it might be infeasibl
 </Attribute>
 ###### `ommx_solution`
 <Attribute attributeTypeHint="`str`">
-The canonical result for an OMMX instance: an `ommx.v1.Solution` serialized with `to_bytes()` and encoded as padded Base64. 
+The canonical result for an OMMX instance, as an `ommx.v1.Solution` serialized with `to_bytes()` and encoded as padded Base64. 
 
 Decode it with `Solution.from_bytes(base64.b64decode(value, validate=True))` to access the objective, the decision variable values by name, feasibility, and the constraint evaluations through the OMMX SDK. 
 
-Present only when the problem was submitted as an OMMX instance; dictionary problems omit it.
+Present only when the problem was submitted as an OMMX instance. Dictionary problems omit it.
 </Attribute>
 </Attribute>
 
