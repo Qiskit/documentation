@@ -64,6 +64,9 @@ The PES curve is shown with the FCI reference and initial guess from RHF, togeth
 ![Image showing that HI-VQE produces solutions within chemical accuracy of a classical reference PES curve for the Li2S system](/docs/images/functions/qunova-chemistry/Li2S_PES.avif).
 
 The calculations have been conducted with the following geometries and options.
+The code below runs them in the full STO-3G basis, which takes 38 qubits. With
+`max_states=2000`, the size calculator gives `M` for each of the three runs; see
+[Function sizes](/docs/functions/qunova-chemistry/get-started#function-sizes).
 
 ```python
 # Define Li2S geometries
@@ -87,7 +90,12 @@ for geom in ["Li2S_1.51", "Li2S_2.40", "Li2S_3.80"]:
     # Run HI-VQE
     job = function.run(
         geometry=Li2S_geoms[geom],
-        backend_name=backend_name,  # can use any device with at least 38 qubits
+        backend_name=backend_name,  # a backend you have access to
+        function_size=calculate_function_size(
+            Li2S_geoms[geom],
+            max_states=2000,
+            molecule_options=molecule_options,
+        ),
         max_states=2000,
         max_expansion_states=10,
         molecule_options=molecule_options,
@@ -132,15 +140,16 @@ You can send an email to [qiskit.support@qunovacomputing.com](mailto:qiskit.supp
 
 If you want help with troubleshooting a specific error, please provide the Function job ID of the job that encountered the error.
 
+The job log gives the random seed of each run. To have a run repeated, send us the seed together with the input you ran it with.
+
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
 
 - Run your first workload with the [get started guide](/docs/functions/qunova-chemistry/get-started).
 - Tune your workloads with [advanced techniques](/docs/functions/qunova-chemistry/performance-tuning).
-- Request access to the function by filling in [this form](https://forms.office.com/r/zN3hvMTqJ1).
+- Request a license, if you need one, by filling in [this form](https://forms.office.com/r/zN3hvMTqJ1).
 - Visit the [API reference](/docs/api/functions/qunova-chemistry) for this Qiskit Function.
-- Try the [Compute dissociation PES curve for FeP-NO with HI-VQE](/docs/tutorials/qunova-hivqe) tutorial.
 - Review [Pellow-Jarman, A., et al. (2025).  HIVQE: Handover Iterative Variational Quantum Eigensolver for Efficient Quantum Chemistry Calculations. arXiv preprint arXiv:2503.06292](https://arxiv.org/abs/2503.06292).
 - Try the [Dissociation PES curves with Qunova HiVQE](/docs/tutorials/qunova-hivqe) tutorial.
 </Admonition>

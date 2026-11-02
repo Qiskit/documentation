@@ -5,4 +5,22 @@ description: Updates to the HI-VQE Chemistry Qiskit Function by Qunova Computing
 
 # Qunova HI-VQE Chemistry changelog
 
+## 5.1.0
+
+- Function sizes: each run uses the `function_size` you choose (`S`, `M` or `L`), set by the problem's qubits and `max_states`. A size too small for the problem is rejected before any QPU time is spent. See [Function sizes](/docs/functions/qunova-chemistry/get-started#function-sizes).
+- Licensing is handled by IBM on your IBM Cloud account; no license token is needed. A token passed through `hivqe-qiskit-function-utils` is ignored and the job log says so, so you can stop using that wrapper. Trial access is limited to function size `S`. See [Ways to use HI-VQE](/docs/functions/qunova-chemistry/get-started#ways-to-use-hi-vqe).
+- Arguments are checked when you call `run()`, and a malformed call is refused before a job is created. Check them in advance with `validate_arguments()`. See [Check the arguments](/docs/functions/qunova-chemistry/get-started#check-the-arguments).
+- A size calculator gives the function size a problem needs, on your own machine. See [Calculate the size before submitting](/docs/functions/qunova-chemistry/get-started#calculate-the-size-before-submitting).
+- Problems can be given as an uploaded FCIDUMP file in place of a geometry. See [Run from an FCIDUMP file](/docs/functions/qunova-chemistry/get-started#example-run-from-an-fcidump-file).
+- Every error carries an error code and a message saying what went wrong, which `job.error_message()` returns. See [Fetch error messages](/docs/functions/qunova-chemistry/get-started#fetch-error-messages).
+- The job log has one record per line, with each iteration's time and the QPU time used. The result includes `"function_version"` and the time spent in each stage. See [Read the job log](/docs/functions/qunova-chemistry/get-started#read-the-job-log).
+- A stopped job returns what the run had computed so far. See [Results of a stopped job](/docs/functions/qunova-chemistry/get-started#results-of-a-stopped-job).
+
+## 4.0.0
+
+- The result no longer includes `"states"` or `"eigenvector"`. They are now saved in an HDF5 results file, together with `"final_energy"`, `"final_energy_variance"`, and `"energy_history"`.
+- Added `"results_file_name"` to the result. It gives the name of the results file, which you can download with `serverless.file_download()`. Reading the file requires the `h5py` package. See the [Example](/docs/functions/qunova-chemistry/get-started#example-nh3-from-a-geometry) section for how to download and read it.
+
+## Earlier
+
 - 2025-03-10: HI-VQE Chemistry was added to the Qiskit Functions Catalog.
