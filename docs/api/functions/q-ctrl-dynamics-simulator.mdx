@@ -21,7 +21,7 @@ description: "API reference for Q-CTRL Dynamics Simulator, including inputs, out
 
 ## Inputs
 
-See the following list for all input parameters this API accepts. All inputs are passed as keyword arguments. `model`, `simulation`, and `observables` can each be given either as a Python dictionary (list of dictionaries for `observables`) or as a JSON string. Unknown top-level arguments are rejected.
+See the following list for all input parameters that this API accepts. All inputs are passed as keyword arguments. `model`, `simulation`, and `observables` can each be given either as a Python dictionary (list of dictionaries for `observables`) or as a JSON string. The function rejects unknown top-level arguments.
 
 ### `model`
 
@@ -124,7 +124,7 @@ The number of shots to use for each circuit execution. Must be a positive intege
 ### `backend_name`
 
 <Attribute attributeTypeHint="str" attributeValue="Automatic selection">
-Name of the backend to use. If not provided, a backend with enough qubits is selected automatically.
+Name of the backend to use. If you don't provide a name, the function automatically selects a backend with enough qubits.
 - Required: No
 - Example: `"ibm_phoenix"`
 </Attribute>
@@ -132,7 +132,7 @@ Name of the backend to use. If not provided, a backend with enough qubits is sel
 ### Options
 
 <Attribute attributeTypeHint="dict" attributeValue="{}">
-Additional run options, passed as `options`. Options are specified as a nested dictionary. See the [options list](#options-list) below for details and default values.
+Additional run options, passed as `options`. Options are specified as a nested dictionary. See the [options list](#options-list) for details and default values.
 - Required: No
 - Example: `{"job_tags": ["my_tag"]}`
 </Attribute>
@@ -156,11 +156,11 @@ A list of job tags.
 
 ## Outputs
 
-The output of this API is a `dict` containing the simulation results and metadata. The results include the expectation values of the requested observables at every time step of the Trotterized time evolution.
+The output of this API is a `dict` that contains the simulation results and metadata. The results include the expectation values of the requested observables at every time step of the Trotterized time evolution.
 
 <Attribute attributeTypeHint="dict[str, Any]">
 The simulation results and metadata listed under [Output structure](#output-structure).
-- Example: `{"observable_expectation_values": [ [1.0, 0.96, 0.91],[0.0, 0.04, 0.08]], "observables": [{"operators": [[["Nup", 0]]],"coefficients": [1.0]}], "warnings": [], "metadata": {}`}
+- Example: `{"observable_expectation_values": [ [1.0, 0.96, 0.91],[0.0, 0.04, 0.08]], "observables": [{"operators": [[["Nup", 0]]],"coefficients": [1.0]}], "warnings": [], "metadata": {}}`
 </Attribute>
 
 ### Output structure
