@@ -14,6 +14,9 @@ This checklist covers bringing a new Qiskit Function's documentation into this r
 - [ ] Guide: `docs/guides/<slug>.ipynb` (a notebook if it has non-trivial code).
 - [ ] Tutorials: `docs/tutorials/<descriptive-name>.ipynb`.
 - [ ] Frontmatter on every page: `title`, plus a `description` of 50–160 characters with no colons, semicolons, backticks, or pipes.
+- [ ] Version-info cell in guide notebooks: the notebook tester fills in a cell tagged `version-info` with the package versions used, and `tox -e lint` fails if a guide notebook has none, or more than one.
+  - Put the frontmatter, the `cspell:ignore` comment, and the H1 heading in the first markdown cell. If that cell also contains body content, split the body into its own cell.
+  - Insert an empty markdown cell immediately after the heading cell, and add `version-info` to its `tags` metadata.
 - [ ] Internal links use `/docs/...` with no file extension. Rewrite any links to the partner's private repo or to relative files.
 - [ ] Style pass against [style-guide.md](style-guide.md): sentence-case headings, no "please"/"may"/Latin abbreviations, &reg; on first use, and wording that machine-translates well.
 
