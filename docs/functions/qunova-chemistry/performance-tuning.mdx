@@ -11,7 +11,7 @@ Use the following techniques to get the most out of Qunova HI-VQE Chemistry. For
 
 ## Control the subspace size
 
-`max_states` sets the maximum subspace dimension for the diagonalization, and `max_expansion_states` sets the maximum number of classically generated configurations added in each iteration. Larger values can improve accuracy but increase the classical diagonalization cost.
+`max_states` sets the maximum subspace dimension for the diagonalization, and `max_expansion_states` sets the maximum number of classically generated configurations added in each iteration. Larger values can improve accuracy but increase the classical diagonalization cost. `max_states` also decides, with the number of qubits, the [function size](/docs/functions/qunova-chemistry/get-started#function-sizes) a run needs.
 
 ## Choose an ansatz
 
@@ -29,7 +29,7 @@ Use `overlap_screening_tolerance` to remove configurations predicted to contribu
 
 ## Restart from a previous result
 
-Pass the `"states"` from a previous result as `initial_basis_states` to restart the algorithm from those configurations.
+Pass the `"states"` saved in the results file of a previous run (see [Download the results file](/docs/functions/qunova-chemistry/get-started#download-the-results-file)) as `initial_basis_states` to restart the algorithm from those configurations.
 
 <Admonition type="note">
   This page is a starting point. Qunova Computing is invited to add further tuning guidance for this function.
