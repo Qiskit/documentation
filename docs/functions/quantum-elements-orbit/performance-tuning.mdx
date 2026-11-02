@@ -1,0 +1,38 @@
+---
+title: Advanced techniques with Quantum Elements Orbit
+description: Compare execution modes, choose a transpilation mode, customize dynamical decoupling, and preview DD insertion with Quantum Elements Orbit.
+---
+
+# Advanced techniques with Quantum Elements Orbit
+
+Use the following techniques to get the most out of Quantum Elements Orbit. For every option and its default value, see the [API reference](/docs/api/functions/quantum-elements-orbit).
+
+## Compare modes in one job
+
+Duplicate a PUB and set one `pub_options` entry for each copy. `{"mode": "raw"}` skips Orbit optimization, dynamical decoupling (DD), and measurement error mitigation (MEM); `{"mode": "orbit"}` uses Orbit defaults; and `{"mode": "custom"}` overrides `transpilation_mode`, `physical_layout`, `dd_qubits`, `dd_strategy`, `dynamic_dd_seq`, and `mem` for that PUB. Compare each configuration against the raw baseline to see which techniques help your circuit and backend.
+
+## Choose a transpilation mode
+
+- `"optimize"` (default) tries `num_transpilation_steps` stochastic seeds (default `300`) and keeps the candidate with the lowest two-qubit depth.
+- `"prepare"` runs level-0 preparation and scheduling. Combine it with `physical_layout` to pin logical qubits to physical qubits.
+- `"validate"` keeps your own transpilation. Use it for circuits that are already physically prepared, such as quantum error correction circuits.
+
+## Customize dynamical decoupling
+
+`dd_strategy` defaults to `[[{"dd_sequence": "auto", "pulse_density": 0.25, "dd_reps": 1}]]`. Replace `"auto"` with a built-in sequence, such as `"XY4"`, `"XY8"`, or `"KDD"`, or with a custom pulse-group list, and tune `pulse_density` and `dd_reps`. For dynamic circuits, `dynamic_dd_seq` (default `"XY8"`) sets the sequence for feedforward regions. The [QFT with dynamic circuits tutorial](/docs/tutorials/quantum-elements-orbit-qft-with-dynamic-circuits) shows custom DD strategies in practice.
+
+## Control measurement error mitigation
+
+MEM applies to Sampler PUBs only. Orbit mode enables it by default. Set `mem` to `False` to keep raw counts, or to `True` to enable it in custom mode. Unmitigated counts remain available in the Orbit metadata.
+
+## Preview before you run
+
+Set `preview=True` to get a DD insertion report without submitting a job or using QPU time. Add `debug_return_circuits=True` to include the prepared circuit for each PUB.
+
+## Batch independent workloads
+
+For parameter sweeps or other independent PUBs, pass a `batch` configuration so that Orbit partitions the PUBs across child jobs in a server-side batch.
+
+<Admonition type="note">
+  Quantum Elements: add tuning guidance from your experience with Orbit to this page.
+</Admonition>
