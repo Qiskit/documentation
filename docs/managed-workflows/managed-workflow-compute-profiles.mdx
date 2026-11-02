@@ -9,7 +9,7 @@ description: "Choose the CPU, memory, and GPU resources for a managed workflow, 
 - **Client class name.** `QiskitServerless` is being renamed. Update the code examples after the new name is decided.
 - **Profile discovery.** `compute_profiles()` and `compute_profile()` come from `qiskit-serverless` PR 2647. Publish after a `qiskit-serverless` release that includes it, and a `qiskit-ibm-catalog` release that exposes both methods on the client.
 - **Profiles and startup times.** Confirm the profile list and the startup times before publishing.
-- **Concurrent job limits.** This section moved to [Run workflows in parallel](/docs/managed-workflows/run-managed-workflows-in-parallel). Apply that change before publishing.
+- **Concurrent job limits.** This section moved to [Active job limit](/docs/managed-workflows/run-parameter-sweep#active-job-limit). Apply that change before publishing.
 </Admonition>
 
 Managed workflows run on compute profiles. A compute profile is a fixed combination of vCPUs, memory, and GPUs, much like the resources that you request from an HPC scheduler. When you upload a workflow, you map its sizes, such as `S` and `M`, to profiles, and each run picks one of those sizes. The job then runs on its own node with that profile, and keeps the profile until the job ends.

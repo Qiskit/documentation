@@ -1,11 +1,11 @@
 ---
-title: "Manage files across workflows"
+title: "Manage files across runs"
 description: "Upload input files for a managed workflow, read and write them in a job, and download the outputs."
 ---
 
 {/* cspell:ignore libmagic */}
 
-# Manage files across workflows
+# Manage files across runs
 
 <Admonition type="caution" title="Placeholder content">
 - **Client class name.** `QiskitServerless` is being renamed. Update the code examples after the new name is decided.
@@ -16,7 +16,7 @@ description: "Upload input files for a managed workflow, read and write them in 
 
 A managed workflow job works like a batch job on an HPC compute node. The job's local disk is scratch space: the job can write to it, but Functions deletes it when the job ends. 
 
-You can leverage file stroage to persist data beyond a workflow's lifecycle:
+You can leverage file storage to persist data beyond a workflow's lifecycle:
 - File storage works like your own storage bucket. 
 - Files that you upload or your workflow saves remain after the job ends
 - Future workflow runs can read the files.
@@ -258,11 +258,11 @@ Keep the following points in mind:
 - **Choose an interval that matches the cost of a step.** Save often enough that you do not lose much work, but not so often that writing checkpoints slows the job.
 - **Delete checkpoints after the run succeeds**, so that a later run with the same name starts from the beginning.
 
-For a job that is canceled, you can also save partial results in a [`SIGTERM` handler](/docs/managed-workflows/managed-workflow-errors-and-progress#clean-up-when-a-job-is-canceled).
+For a job that is canceled, you can also save partial results in a [`SIGTERM` handler](/docs/managed-workflows/managed-workflow-logs-and-errors#clean-up-when-a-job-is-canceled).
 
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
-- [Run workflows in parallel](/docs/managed-workflows/run-managed-workflows-in-parallel) to start one job for each input.
-- [Handle errors and report progress](/docs/managed-workflows/managed-workflow-errors-and-progress) to save partial results when a job is canceled.
+- [Run a parameter sweep](/docs/managed-workflows/run-parameter-sweep) to start one job for each input.
+- [Write logs and handle errors](/docs/managed-workflows/managed-workflow-logs-and-errors) to save partial results when a job is canceled.
 </Admonition>
