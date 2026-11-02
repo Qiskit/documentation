@@ -8,20 +8,20 @@ description: Use the IBM Cloud Resource Controller REST API to get, list, update
 
 # Use IBM Cloud Resource Controller API for instance management
 
-You can use the IBM Cloud&reg; Resource Controller REST API to programmatically get, create, and update [instances](/docs/guides/instances). 
+You can use the IBM Cloud&reg; Resource Controller REST API to programmatically get, create, and update [instances](/docs/ibm-quantum-platform/instances). 
 
-All Resource Controller endpoints require that you authenticate by passing a header called `Authorization` with the bearer token. Refer to the [REST API setup guide](/docs/guides/cloud-setup-rest-api).
+All Resource Controller endpoints require that you authenticate by passing a header called `Authorization` with the bearer token. Refer to the [REST API setup guide](/docs/ibm-quantum-platform/cloud-setup-rest-api).
 
 ## Get an instance
 
-Use the [`GET /v2/resource_instances/{crn}`](https://cloud.ibm.com/apidocs/resource-controller/resource-controller#get-resource-instance) endpoint to get information about a particular instance. The [CRN](/docs/guides/instances) must be URL-encoded in the path.
+Use the [`GET /v2/resource_instances/{crn}`](https://cloud.ibm.com/apidocs/resource-controller/resource-controller#get-resource-instance) endpoint to get information about a particular instance. The [CRN](/docs/ibm-quantum-platform/instances) must be URL-encoded in the path.
 
 In addition to the standard Resource Controller fields, the response includes quantum-specific fields in both `parameters` and `extensions`. `extensions` stores the instance's normalized metadata, whereas `parameters` only stores the most recent request to modify the instance. Therefore, you should read from `extensions` rather than `parameters`.
 
 The `extensions` object includes these fields:
 
-- `instance_limit_seconds` — Integer, or `null`. The usage time limit for the instance. See [Set instance allocation limits](/docs/guides/allocation-limits).
-- `usage_allocation_seconds` — Integer, or `null`. The time allocated to this instance, used by the [fair-share scheduler](/docs/guides/fair-share-scheduler) to determine queue priority. See [Set instance allocation limits](/docs/guides/allocation-limits).
+- `instance_limit_seconds` — Integer, or `null`. The usage time limit for the instance. See [Set instance allocation limits](/docs/ibm-quantum-platform/allocation-limits).
+- `usage_allocation_seconds` — Integer, or `null`. The time allocated to this instance, used by the [fair-share scheduler](/docs/ibm-quantum-platform/fair-share-scheduler) to determine queue priority. See [Set instance allocation limits](/docs/ibm-quantum-platform/allocation-limits).
 - `backends` — Array of strings. The allowlist of backend names available to this instance. `["ANY"]` means all backends on the plan are available (the default). `[]` means no backends are available.
 
 <Admonition type="caution" title="The backends field may be outdated">
@@ -107,12 +107,12 @@ Each result includes the same `extensions` field as described in [Get an instanc
 
 ## Update an instance
 
-Use the [`PATCH /v2/resource_instances/{crn}`](https://cloud.ibm.com/apidocs/resource-controller/resource-controller#update-resource-instance) endpoint to update the limit, allocation, and permitted backends for an instance. The [CRN](/docs/guides/instances) must be URL-encoded in the path.
+Use the [`PATCH /v2/resource_instances/{crn}`](https://cloud.ibm.com/apidocs/resource-controller/resource-controller#update-resource-instance) endpoint to update the limit, allocation, and permitted backends for an instance. The [CRN](/docs/ibm-quantum-platform/instances) must be URL-encoded in the path.
 
 Pass a `parameters` JSON object in the request body with the fields you want to change, along with the header `"Content-Type: application/json"`. Omitted fields are left unchanged.
 
-- `instance_limit_seconds` — Integer, or `null`. The usage time limit for the instance. See [Set instance allocation limits](/docs/guides/allocation-limits).
-- `usage_allocation_seconds` — Integer, or `null`. The time allocated to this instance, used by the [fair-share scheduler](/docs/guides/fair-share-scheduler) to determine queue priority. See [Set instance allocation limits](/docs/guides/allocation-limits). Not applicable to Pay-As-You-Go instances.
+- `instance_limit_seconds` — Integer, or `null`. The usage time limit for the instance. See [Set instance allocation limits](/docs/ibm-quantum-platform/allocation-limits).
+- `usage_allocation_seconds` — Integer, or `null`. The time allocated to this instance, used by the [fair-share scheduler](/docs/ibm-quantum-platform/fair-share-scheduler) to determine queue priority. See [Set instance allocation limits](/docs/ibm-quantum-platform/allocation-limits). Not applicable to Pay-As-You-Go instances.
 - `backends` — Array of strings. The allowlist of backend names available to this instance. `["ANY"]` means all backends on the plan are available. `[]` means no backends are available.
 
 <Admonition type="caution" title="Always include a unique timestamp">
@@ -189,8 +189,8 @@ Required fields:
 
 You can also include a `parameters` object to set quantum-specific values:
 
-- `instance_limit_seconds` — Integer, or `null`. The usage time limit for the instance. See [Set instance allocation limits](/docs/guides/allocation-limits).
-- `usage_allocation_seconds` — Integer, or `null`. The time allocated to this instance, used by the [fair-share scheduler](/docs/guides/fair-share-scheduler) to determine queue priority. See [Set instance allocation limits](/docs/guides/allocation-limits). Not applicable to Pay-As-You-Go instances.
+- `instance_limit_seconds` — Integer, or `null`. The usage time limit for the instance. See [Set instance allocation limits](/docs/ibm-quantum-platform/allocation-limits).
+- `usage_allocation_seconds` — Integer, or `null`. The time allocated to this instance, used by the [fair-share scheduler](/docs/ibm-quantum-platform/fair-share-scheduler) to determine queue priority. See [Set instance allocation limits](/docs/ibm-quantum-platform/allocation-limits). Not applicable to Pay-As-You-Go instances.
 - `backends` — Array of strings. The allowlist of backend names available to this instance. `["ANY"]` means all backends on the plan are available. `[]` means no backends are available.
 
 <Tabs>
