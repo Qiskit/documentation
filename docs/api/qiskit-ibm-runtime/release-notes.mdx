@@ -737,7 +737,7 @@ The qiskit-ibm-runtime `v0.41.0` release focuses on the removal of IBM Quantum P
 
 ### Other Notes
 
-*   The deprecated [`IBMBackend`](/docs/api/qiskit-ibm-runtime/ibm-backend#qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.IBMBackend") attributes, `max_shots` and `max_experiments`, have been removed and the `IBMBackend.max_circuits()` method now returns `None`. See the [job limits guide](/docs/guides/job-limits#job-limits) for details. ([2235](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2235))
+*   The deprecated [`IBMBackend`](/docs/api/qiskit-ibm-runtime/ibm-backend#qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.IBMBackend") attributes, `max_shots` and `max_experiments`, have been removed and the `IBMBackend.max_circuits()` method now returns `None`. See the [job limits guide](/docs/ibm-quantum-compute/job-limits#job-limits) for details. ([2235](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2235))
 *   The deprecated [`IBMBackend`](/docs/api/qiskit-ibm-runtime/ibm-backend#qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.IBMBackend") and `FakeBackendV2` `defaults()` methods have been removed. They were deprecated in the v0.38.0 release. Pulse defaults have also been removed from all fake backends. ([2238](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2238))
 *   Improved the error message returned when [`ExecutionSpan.mask()`](/docs/api/qiskit-ibm-runtime/execution-span-execution-span#qiskit_ibm_runtime.execution_span.ExecutionSpan.mask "qiskit_ibm_runtime.execution_span.ExecutionSpan.mask") is called for a PUB that’s not contained in the span. ([2311](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2311))
 
@@ -906,7 +906,7 @@ The qiskit-ibm-runtime `v0.41.0` release focuses on the removal of IBM Quantum P
 
 ### Deprecation Notes
 
-*   The `IBMBackend` attributes `max_shots` and `max_experiments`, as well as the property `max_circuits` have all been deprecated. These attribute values used to represent the maximum number of shots and circuits that could be submitted in one job but that is no longer the case. See the [job limits guide](/docs/guides/job-limits#job-limits) for details. ([2166](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2166))
+*   The `IBMBackend` attributes `max_shots` and `max_experiments`, as well as the property `max_circuits` have all been deprecated. These attribute values used to represent the maximum number of shots and circuits that could be submitted in one job but that is no longer the case. See the [job limits guide](/docs/ibm-quantum-compute/job-limits#job-limits) for details. ([2166](https://github.com/Qiskit/qiskit-ibm-runtime/pull/2166))
 
 <span id="id73" />
 
@@ -1157,7 +1157,7 @@ The qiskit-ibm-runtime `v0.41.0` release focuses on the removal of IBM Quantum P
 
 ### New Features
 
-*   Added new methods `Session.usage()`, `Batch.usage()`, and `Job.usage()` that all return information regarding job and session usage. Please find more information [here](/docs/guides/choose-execution-mode). ([1827](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1827))
+*   Added new methods `Session.usage()`, `Batch.usage()`, and `Job.usage()` that all return information regarding job and session usage. Please find more information [here](/docs/ibm-quantum-compute/choose-execution-mode). ([1827](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1827))
 
 *   Added `ConvertISAToClifford` transpilation pass to convert the gates of a circuit to Clifford gates. ([1887](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1887))
 
@@ -1364,7 +1364,7 @@ The qiskit-ibm-runtime `v0.41.0` release focuses on the removal of IBM Quantum P
 
     `qiskit_ibm_runtime.RuntimeJob.program_id()` is deprecated and will be replaced by `qiskit_ibm_runtime.RuntimeJob.primitive_id()`. ([1238](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1238))
 
-*   The `backend` argument in [Sampler](/docs/guides/get-started-with-sampler) and [Estimator](/docs/guides/get-started-with-estimator) has been deprecated. Please use `mode` instead. The `session` argument in [Sampler](/docs/guides/get-started-with-sampler) and [Estimator](/docs/guides/get-started-with-estimator) has also been deprecated. Please use `mode` instead. ([1556](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1556))
+*   The `backend` argument in [Sampler](/docs/ibm-quantum-compute/get-started-with-sampler) and [Estimator](/docs/ibm-quantum-compute/get-started-with-estimator) has been deprecated. Please use `mode` instead. The `session` argument in [Sampler](/docs/ibm-quantum-compute/get-started-with-sampler) and [Estimator](/docs/ibm-quantum-compute/get-started-with-estimator) has also been deprecated. Please use `mode` instead. ([1556](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1556))
 
 *   `qiskit_ibm_runtime.QiskitRuntimeService.get_backend()` is deprecated. Please [`qiskit_ibm_runtime.QiskitRuntimeService.backend()`](/docs/api/qiskit-ibm-runtime/qiskit-runtime-service#qiskit_ibm_runtime.QiskitRuntimeService.backend "qiskit_ibm_runtime.QiskitRuntimeService.backend") use instead. The V1 fake backends, `FakeBackend`, along with `FakeProvider` are also being deprecated in favor of the V2 fake backends and [`FakeProviderForBackendV2`](/docs/api/qiskit-ibm-runtime/fake-provider-fake-provider-for-backend-v2#qiskit_ibm_runtime.fake_provider.FakeProviderForBackendV2 "qiskit_ibm_runtime.fake_provider.FakeProviderForBackendV2"). ([1689](https://github.com/Qiskit/qiskit-ibm-runtime/pull/1689))
 
@@ -1503,7 +1503,7 @@ The qiskit-ibm-runtime `v0.41.0` release focuses on the removal of IBM Quantum P
 
 ### Upgrade Notes
 
-*   Circuits that do not match the target hardware definition are no longer supported by Qiskit Runtime primitives, unless `channel_strategy="q-ctrl"` is used. See the transpilation documentation ([transpile](/docs/guides/transpile)) for instructions to transform circuits and the primitive examples ([run/primitives-examples](/docs/guides/estimator-examples)) to see this coupled with operator transformations.
+*   Circuits that do not match the target hardware definition are no longer supported by Qiskit Runtime primitives, unless `channel_strategy="q-ctrl"` is used. See the transpilation documentation ([transpile](/docs/guides/transpile)) for instructions to transform circuits and the primitive examples ([run/primitives-examples](/docs/ibm-quantum-compute/estimator-examples)) to see this coupled with operator transformations.
 
 <span id="id149" />
 
@@ -1533,7 +1533,7 @@ The qiskit-ibm-runtime `v0.41.0` release focuses on the removal of IBM Quantum P
 
 *   Python 3.12 is now supported.
 
-*   Sessions will now be started with a new `/sessions` endpoint that allows for different execution modes. Batch mode is now supported through `Batch`, and [Session](/docs/api/qiskit-ibm-runtime/session) will work the same as way as before. Please see [run/sessions](/docs/guides/execution-modes#session-mode) for more information.
+*   Sessions will now be started with a new `/sessions` endpoint that allows for different execution modes. Batch mode is now supported through `Batch`, and [Session](/docs/api/qiskit-ibm-runtime/session) will work the same as way as before. Please see [run/sessions](/docs/ibm-quantum-compute/execution-modes#session-mode) for more information.
 
     Note that `Session` and `Batch` created from `qiskit-ibm-runtime` prior to this release will no longer be supported after March 31, 2024. Please update your `qiskit-ibm-runtime` version as soon as possible before this date.
 
@@ -1547,7 +1547,7 @@ The qiskit-ibm-runtime `v0.41.0` release focuses on the removal of IBM Quantum P
 
 ### Deprecation Notes
 
-*   Circuits that do not match the target hardware definition will no longer be supported after March 1, 2024. See the transpilation documentation ([transpile](/docs/guides/transpile)) for instructions to transform circuits and the primitive examples ([run/primitives-examples](/docs/guides/estimator-examples)) to see this coupled with operator transformations.
+*   Circuits that do not match the target hardware definition will no longer be supported after March 1, 2024. See the transpilation documentation ([transpile](/docs/guides/transpile)) for instructions to transform circuits and the primitive examples ([run/primitives-examples](/docs/ibm-quantum-compute/estimator-examples)) to see this coupled with operator transformations.
 
 <span id="id154" />
 

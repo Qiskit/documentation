@@ -30,10 +30,10 @@ Find the latest package release summaries and platform updates from IBM Quantum&
   - Job results & workloads  
 
     * **Bit-by-bit outcomes view** — a new way to view Sampler measurement results, breaking down outcomes bit by bit instead of by full state. Useful as an alternative to the Measurement outcomes view when results contain many distinct states.  
-    * **Circuit timing chart** — shows a scheduled timeline of a circuit's operations (gates, channels, durations). Available for Sampler and Executor jobs. Requires [enabling timing data retrieval](https://quantum.cloud.ibm.com/docs/guides/qiskit-runtime-circuit-timing#enable-timing-data-retrieval).  
-    * **Chunk/span execution diagnostics panel** — a new panel on job details showing chunk- and span-level execution diagnostics. See [Sampler input/output](https://quantum.cloud.ibm.com/docs/guides/sampler-input-output) for what this data means and how to enable it when submitting jobs.  
+    * **Circuit timing chart** — shows a scheduled timeline of a circuit's operations (gates, channels, durations). Available for Sampler and Executor jobs. Requires [enabling timing data retrieval](https://quantum.cloud.ibm.com/docs/ibm-quantum-compute/qiskit-runtime-circuit-timing#enable-timing-data-retrieval).  
+    * **Chunk/span execution diagnostics panel** — a new panel on job details showing chunk- and span-level execution diagnostics. See [Sampler input/output](https://quantum.cloud.ibm.com/docs/ibm-quantum-compute/sampler-input-output) for what this data means and how to enable it when submitting jobs.  
     * **Device calibration data at a glance** — job details now show the device calibration data from the time of submission or execution via a "View calibration history" link.  
-    * **Executor results visualization** — job details pages now render results for Executor jobs. See the [Directed execution model (beta)](https://quantum.cloud.ibm.com/docs/guides/directed-execution-model) guide for more on Executor.  
+    * **Executor results visualization** — job details pages now render results for Executor jobs. See the [Directed execution model (beta)](https://quantum.cloud.ibm.com/docs/ibm-quantum-compute/directed-execution-model) guide for more on Executor.  
     * **Dynamic circuits now render on job details** — with OpenQASM 3.0 support in Composer (see more below), circuits that previously failed to render (for example, those using dynamic circuits) now display correctly on the job details page.  
     * **Histogram improvements** — faster loading, smoother zoom in/out, and a new selection tool for narrowing in on specific result ranges.  
     * **`qiskit-ibm-runtime` code snippets in job results** — copy-ready code to retrieve a job by ID; for Executor jobs, an additional snippet lets you replicate the job.  
@@ -99,7 +99,7 @@ Find the latest package release summaries and platform updates from IBM Quantum&
 
     To use the store instruction, first ensure you're running the latest version of `qiskit-ibm-runtime` (`pip install --upgrade qiskit-ibm-runtime`), then see the [documentation](/docs/guides/classical-feedforward-and-control-flow#store) for more information and an example.
 
-    *Note that before submitting jobs, you should verify compatibility with each primitive's options in the documentation*: [Sampler options](/docs/guides/sampler-options) | [Estimator options](/docs/guides/estimator-options) | [Executor options](/docs/guides/executor-options)
+    *Note that before submitting jobs, you should verify compatibility with each primitive's options in the documentation*: [Sampler options](/docs/ibm-quantum-compute/sampler-options) | [Estimator options](/docs/ibm-quantum-compute/estimator-options) | [Executor options](/docs/ibm-quantum-compute/executor-options)
 
 ## April 2026
 <span id="classroom-accounts"></span>
@@ -190,7 +190,7 @@ Find the latest package release summaries and platform updates from IBM Quantum&
 
   To provide more flexibility for users, we have expanded the allowable repetition delay time range from 20-500 &#181;s to 20-2000 &#181;s on our Heron and Eagle QPUs. The Nighthawk QPU delay time range continues to be 1000-4000 &#181;s as previously announced. Note that if you choose to increase repetition delay (`rep_delay`), it will have a direct impact on your execution time and capacity consumption, but it might improve the fidelity of certain circuits. The default `rep_delay` remains unchanged on all QPUs.
 
-  You can find more information about repetition delay time, including how to change it, in [Qubit initialization](/docs/guides/repetition-rate-execution).
+  You can find more information about repetition delay time, including how to change it, in [Qubit initialization](/docs/ibm-quantum-compute/repetition-rate-execution).
 
 ## January 2026
 
@@ -221,7 +221,7 @@ Find the latest package release summaries and platform updates from IBM Quantum&
       - All archived instances are neatly organized under a dedicated "Archived" tab.
       - Administrators can reactivate an instance at any time.
 
-  - [**Directed execution model.**](/docs/guides/directed-execution-model) This new execution model allows you to fine-tune error mitigation and other techniques without sacrificing performance by providing the ingredients to capture design intents on the client side, and shifting the costly generation of circuit variants to the server side. For example, you can use the [Samplomatic library](/docs/addons/samplomatic/index) to define the exact layers in your circuits to apply Pauli-twirling and to inject noise. The new [Executor primitive](/docs/guides/directed-execution-model#executor-primitive) will then follow your directives to generate and execute the randomized circuit variants in Qiskit Runtime.
+  - [**Directed execution model.**](/docs/ibm-quantum-compute/directed-execution-model) This new execution model allows you to fine-tune error mitigation and other techniques without sacrificing performance by providing the ingredients to capture design intents on the client side, and shifting the costly generation of circuit variants to the server side. For example, you can use the [Samplomatic library](/docs/addons/samplomatic/index) to define the exact layers in your circuits to apply Pauli-twirling and to inject noise. The new [Executor primitive](/docs/ibm-quantum-compute/directed-execution-model#executor-primitive) will then follow your directives to generate and execute the randomized circuit variants in Qiskit Runtime.
 
 ## Previous updates
 
