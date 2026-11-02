@@ -9,7 +9,7 @@ A dry-run job runs your workload through IBM Quantum&reg; Compute Service withou
 
 - **Get the usage that the job would incur on the real QPU.
 - **Validate the job.** Quantum Compute checks the job's parameters, the same way it does for a real job.
-- **Get the [circuit timing schedule](/docs/guides/qiskit-runtime-circuit-timing)**, if you request it, to debug the job before you run it for real.
+- **Get the [circuit timing schedule](/docs/ibm-quantum-compute/qiskit-runtime-circuit-timing)**, if you request it, to debug the job before you run it for real.
 
 Unlike dry-run jobs, local testing (fake backends and [Qiskit Aer](/docs/guides/simulate-with-qiskit-aer)) runs on your own machine and therefore cannot provide usage numbers, service-side validation, or service timing information. To compare the two approaches, see [Mock devices compared to fake backends](#mock-vs-fake).
 
@@ -62,12 +62,12 @@ Do not use `job.usage_estimation` on a dry-run job. Use `job.usage()`.
 
 ## Circuit timing schedule
 
-To request the circuit timing schedule, use the same option as for a real job. For full details, see [Visualize circuit timing](/docs/guides/qiskit-runtime-circuit-timing).
+To request the circuit timing schedule, use the same option as for a real job. For full details, see [Visualize circuit timing](/docs/ibm-quantum-compute/qiskit-runtime-circuit-timing).
 
 
 ## Limitations
 
-- **Job and batch modes only.** Dry-run jobs can only run in [job mode](/docs/guides/execution-modes#job-mode) and [batch mode](/docs/guides/execution-modes#batch-mode).
+- **Job and batch modes only.** Dry-run jobs can only run in [job mode](/docs/ibm-quantum-compute/execution-modes#job-mode) and [batch mode](/docs/ibm-quantum-compute/execution-modes#batch-mode).
 - **Flex, Premium, and On-Prem plans only.** Dry-run jobs are not available on the Open or Pay-As-You-Go plans.
 
 ## Mock devices
@@ -156,8 +156,8 @@ job = sampler.run([isa_circuit])
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
-    - Test programs on your own machine with [Local testing mode](/docs/guides/local-testing-mode).
-    - Learn how [workload usage](/docs/guides/estimate-job-run-time) is measured.
-    - Visualize the [circuit timing schedule](/docs/guides/qiskit-runtime-circuit-timing).
+    - Test programs on your own machine with [Local testing mode](/docs/ibm-quantum-compute/local-testing-mode).
+    - Learn how [workload usage](/docs/ibm-quantum-compute/estimate-job-run-time) is measured.
+    - Visualize the [circuit timing schedule](/docs/ibm-quantum-compute/qiskit-runtime-circuit-timing).
     - Understand [resource units](/docs/guides/plans-overview#rus) and the available plans.
 </Admonition>
