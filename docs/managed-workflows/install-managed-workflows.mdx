@@ -6,7 +6,7 @@ description: "Install the managed workflows client package, authenticate to IBM 
 # Install
 
 <Admonition type="caution" title="Placeholder content">
-- **Client class name.** `QiskitServerless` is being renamed. Update the code examples after the new name is decided.
+- **Class names.** The code examples import `QiskitServerless` as `ManagedWorkflowClient` and `QiskitFunction` as `ManagedWorkflow`. Replace the aliases with the new class names after the rename lands in `qiskit-ibm-catalog`.
 - **Method to list workflows.** The current release uses `list()`. An open pull request in `qiskit-ibm-catalog` (#139) renames it to `functions()`.
 - **AI skill.** The Qiskit AI skills repository does not have a managed workflows skill yet. A managed workflows skill is in review in the `qiskit-function-templates` repository. Update the "Add AI skills" section after it is published.
 </Admonition>
@@ -67,9 +67,9 @@ If you have not saved an account, save your API key and instance CRN one time in
 
 {/* REVIEW: class rename pending */}
 ```python
-from qiskit_ibm_catalog import QiskitServerless
+from qiskit_ibm_catalog import QiskitServerless as ManagedWorkflowClient
 
-QiskitServerless.save_account(
+ManagedWorkflowClient.save_account(
     token="<your-api-key>",
     instance="<your-instance-crn>",
 )
@@ -85,10 +85,10 @@ Connect to managed workflows with your saved account, and list the workflows tha
 
 {/* REVIEW: class rename pending. list() is renamed to functions() in qiskit-ibm-catalog PR #139. */}
 ```python
-from qiskit_ibm_catalog import QiskitServerless
+from qiskit_ibm_catalog import QiskitServerless as ManagedWorkflowClient
 
-serverless = QiskitServerless()
-serverless.list()
+client = ManagedWorkflowClient()
+client.list()
 ```
 
 {/* REVIEW: show how to print the client version. */}

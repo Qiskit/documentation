@@ -9,10 +9,10 @@ description: "Declare the Python packages that your managed workflow needs."
 
 <Admonition type="caution" title="Placeholder content">
 - Waiting on a pull request: `add_wheels()`, `dependency_report()`, and `install_uploaded_wheels()` come from [Qiskit/qiskit-serverless#2652](https://github.com/Qiskit/qiskit-serverless/pull/2652), which builds on [#2651](https://github.com/Qiskit/qiskit-serverless/pull/2651). Both are open drafts and are not in a release yet. 
-- `QiskitServerless` is also being renamed, and the catalog client does not expose these methods yet. Update the code examples and output after the PRs merge and the name is decided.
+- The catalog client (imported as `ManagedWorkflowClient`) does not expose these methods yet. Update the code examples and output after the PRs merge and the class rename lands.
 </Admonition>
 
-A managed workflow runs in an environment that Functions prepares in advance, like a virtual environment that someone else set up for you. The job cannot reach the internet, so it cannot `pip install` packages. Instead, Qiskit and a list of [supported packages](#check-which-packages-are-installed) are already installed, and you can [upload wheels](#add-your-own-packages) for any other package that your workflow needs.
+A managed workflow runs in a Python environment that Functions prepares in advance. The job cannot reach the internet, so it cannot `pip install` packages. Instead, Qiskit and a list of [supported packages](#check-which-packages-are-installed) are already installed, and you can [upload wheels](#add-your-own-packages) for any other package that your workflow needs.
 
 ## Check which packages are installed
 
@@ -27,10 +27,10 @@ To see the supported packages and their versions, call `dependencies_versions()`
 {/* REVIEW: dependencies_versions() lists only requirements-dynamic-dependencies.txt. It omits qiskit, qiskit-ibm-runtime, qiskit-serverless, and numpy, although they are installed. */}
 <CodeTitle title="run_workflow_remotely.ipynb" />
 ```python
-from qiskit_ibm_catalog import QiskitServerless
+from qiskit_ibm_catalog import QiskitServerless as ManagedWorkflowClient
 
-serverless = QiskitServerless()
-serverless.dependencies_versions()
+client = ManagedWorkflowClient()
+client.dependencies_versions()
 ```
 
 Your workflow can import any of these packages without setup. Functions installs them when it builds the environment, not when a job starts, so they do not add to the start time of a job.
@@ -41,7 +41,7 @@ Functions does not read a `requirements.txt` or `pyproject.toml` file, so nothin
 
 ### Request a package
 
-If a package is widely useful, [request it on GitHub](https://github.com/Qiskit/qiskit-serverless/issues/new?template=pip_dependency_request.yaml). An accepted package is added to the environment in a later release. Until then, or for a private package, [add it as a wheel](#add-your-own-packages).
+If other users would also need a package, [request it on GitHub](https://github.com/Qiskit/qiskit-serverless/issues/new?template=pip_dependency_request.yaml). An accepted package is added to the environment in a later release. Until then, or for a private package, [add it as a wheel](#add-your-own-packages).
 
 {/* REVIEW: issue #2017 removes the request template, but the public PR Qiskit/qiskit-serverless#2651 keeps it. Confirm that the link remains. */}
 
@@ -75,13 +75,13 @@ Upload the wheels from your local notebook with `add_wheels()`:
 {/* REVIEW: an upload request can be up to 50 MB (MAX_REQUEST_BODY_SIZE_MB). Confirm whether this limits the size of one wheel. */}
 <CodeTitle title="run_workflow_remotely.ipynb" />
 ```python
-from qiskit_ibm_catalog import QiskitServerless
+from qiskit_ibm_catalog import QiskitServerless as ManagedWorkflowClient
 
-serverless = QiskitServerless()
-my_workflow = serverless.load("my-workflow")
+client = ManagedWorkflowClient()
+my_workflow = client.load("my-workflow")
 
-serverless.add_wheels(my_workflow, ["wheels/*.whl"])
-print(serverless.files(my_workflow))
+client.add_wheels(my_workflow, ["wheels/*.whl"])
+print(client.files(my_workflow))
 ```
 
 Each path can be a file name or a glob pattern, and `add_wheels()` returns the names of the uploaded wheels. If a pattern matches no files, or matches a file that is not a `.whl` file, `add_wheels()` raises a `QiskitServerlessException`.
@@ -117,7 +117,7 @@ Before you upload, check your requirements with `dependency_report()` from your 
 {/* REVIEW: PR #2652 adds dependency_report() to ServerlessClient only. Confirm that the catalog client exposes it. */}
 <CodeTitle title="run_workflow_remotely.ipynb" />
 ```python
-print(serverless.dependency_report(["pendulum==3.1.0", "qiskit-aer", "qiskit-addon-sqd==0.10.0"]))
+print(client.dependency_report(["pendulum==3.1.0", "qiskit-aer", "qiskit-addon-sqd==0.10.0"]))
 ```
 
 ```text

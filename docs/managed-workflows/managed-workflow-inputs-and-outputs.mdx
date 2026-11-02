@@ -8,7 +8,7 @@ description: "Pass arguments into a managed workflow and return results from it.
 # Define inputs and outputs
 
 <Admonition type="caution" title="Placeholder content">
-- **Client class name.** `QiskitServerless` is being renamed. Update the code examples after the new name is decided.
+- **Class names.** The code examples import `QiskitServerless` as `ManagedWorkflowClient` and `QiskitFunction` as `ManagedWorkflow`. Replace the aliases with the new class names after the rename lands in `qiskit-ibm-catalog`.
 - **Confirm the maximum argument size**. I have 32 MB but needs confirmation.
 </Admonition>
 
@@ -51,7 +51,7 @@ circuits = arguments["circuits"]
 shots = arguments.get("shots", 4096)
 ```
 
-The dictionary contains only the arguments that the run passed, so use `arguments.get()` with a default value for optional arguments. You can freely name arguments except the following protected keywords: `config` and `function_size`, because `run()` uses these directly.
+The dictionary contains only the arguments that the run passed, so use `arguments.get()` with a default value for optional arguments. Any argument name works except the following protected keywords: `config` and `function_size`, because `run()` uses these directly.
 
 {/* REVIEW: run() also rejects compute_profile (function.py RunnableQiskitFunction.run). Decide whether to mention it. */}
 
@@ -67,7 +67,7 @@ Some objects cannot be passed as arguments. For example, pass a backend's name a
 
 ### Size limits
 
-The arguments of one run can be up to 32 MB after encoding. Encoded objects are much larger than they look in Python. For example, one 100-qubit circuit with a depth of 100 encodes to about 39 KB, so a single run can take a batch of about 800 such circuits. For larger inputs, [upload a file](/docs/managed-workflows/manage-files-across-managed-workflows) and pass its name as an argument.
+The arguments of one run can be up to 32 MB after encoding. For example, one 100-qubit circuit with a depth of 100 encodes to about 39 KB, so a single run can take a batch of about 800 such circuits. For larger inputs, [upload a file](/docs/managed-workflows/manage-files-across-managed-workflows) and pass its name as an argument.
 
 {/* REVIEW: 32 MB is MAX_ARGUMENTS_LENGTH_MB, which is checked when the workflow declares a schema. The 50 MB request body limit applies to every run. Confirm the number to publish. */}
 
@@ -106,7 +106,10 @@ Set the schema with `arguments_schema` when you upload the workflow. Pass a dict
 
 <CodeTitle title="run_workflow_remotely.ipynb" />
 ```python
-from qiskit_ibm_catalog import QiskitFunction, QiskitServerless
+from qiskit_ibm_catalog import (
+    QiskitFunction as ManagedWorkflow,
+    QiskitServerless as ManagedWorkflowClient,
+)
 
 arguments_schema = {
     "type": "object",
@@ -133,10 +136,10 @@ arguments_schema = {
     },
 }
 
-serverless = QiskitServerless()
+client = ManagedWorkflowClient()
 
-my_workflow = serverless.upload(
-    QiskitFunction(
+my_workflow = client.upload(
+    ManagedWorkflow(
         title="my-workflow",
         entrypoint="my_workflow.py",
         working_dir="./my_workflow/",

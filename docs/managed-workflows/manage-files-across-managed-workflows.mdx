@@ -8,20 +8,17 @@ description: "Upload input files for a managed workflow, read and write them in 
 # Manage files across runs
 
 <Admonition type="caution" title="Placeholder content">
-- **Client class name.** `QiskitServerless` is being renamed. Update the code examples after the new name is decided.
+- **Class names.** The code examples import `QiskitServerless` as `ManagedWorkflowClient` and `QiskitFunction` as `ManagedWorkflow`. Replace the aliases with the new class names after the rename lands in `qiskit-ibm-catalog`.
 - **File storage path.** `/function_user_data` is the path where the Fleets runner mounts file storage. Confirm that it is a supported path before publishing.
 - **Supported file types.** The list of accepted and rejected types comes from the upload check in the gateway. Confirm the list, and whether CSV files will be accepted, before publishing.
 - **Max file size.** I think it's 50 MB? 
 </Admonition>
 
-A managed workflow job works like a batch job on an HPC compute node. The job's local disk is scratch space: the job can write to it, but Functions deletes it when the job ends. 
-
-You can leverage file storage to persist data beyond a workflow's lifecycle:
-- File storage works like your own storage bucket. 
-- Files that you upload or your workflow saves remain after the job ends
-- Future workflow runs can read the files.
+A managed workflow job works like a batch job on an HPC compute node. The job's local disk is scratch space: the job can write to it, but Functions deletes it when the job ends. To keep files after the job ends, save them to file storage, which works like your own storage bucket. Files that you upload, and files that your workflow saves, remain in file storage, and later runs of the workflow can read them.
 
 Each workflow has its own file storage for each user. Other users who run the same workflow do not see your files.
+
+![File storage for the workflow sits at the center. Your local notebook reaches it with the client file methods file_upload(), files(), file_download(), and file_delete(). File storage is yours only, because other users of the workflow do not see your files. It is kept after each job ends and is shared by all of your runs, and a file with the same name replaces the earlier file. Each job sees file storage as the folder /function_user_data. Run 1 also has a local disk at /tmp, which is deleted when the job ends, and copies finished files from /tmp to /function_user_data. Run 2 reads the files that earlier runs saved.](/docs/images/guides/managed-workflows/manage-files.svg)
 
 ## Upload an input file
 
@@ -29,13 +26,13 @@ Upload a file from your local notebook with `file_upload()`, then list the files
 
 <CodeTitle title="run_workflow_remotely.ipynb" />
 ```python
-from qiskit_ibm_catalog import QiskitServerless
+from qiskit_ibm_catalog import QiskitServerless as ManagedWorkflowClient
 
-serverless = QiskitServerless()
-my_workflow = serverless.load("my-workflow")
+client = ManagedWorkflowClient()
+my_workflow = client.load("my-workflow")
 
-serverless.file_upload("hamiltonian.npz", my_workflow)
-print(serverless.files(my_workflow))
+client.file_upload("hamiltonian.npz", my_workflow)
+print(client.files(my_workflow))
 ```
 
 ```text
@@ -111,7 +108,7 @@ result = job.result()
 print(result["output_files"])  # ['energies.npy', 'summary.json']
 ```
 
-You can set this up as follows. Save each output file at the top level of `/function_user_data`, and return the file names with `save_result()`:
+To enable this, save each output file at the top level of `/function_user_data`, and return the file names with `save_result()`:
 
 <CodeTitle title="my_workflow/my_workflow.py" />
 ```python
@@ -140,7 +137,7 @@ from pathlib import Path
 Path("outputs").mkdir(exist_ok=True)
 
 for name in result["output_files"]:
-    serverless.file_download(name, my_workflow, target_name=name, download_location="outputs")
+    client.file_download(name, my_workflow, target_name=name, download_location="outputs")
 ```
 
 Without `target_name`, `file_download()` adds a random prefix to the local file name, such as `downloaded_3f2a9c1b_energies.npy`, and returns the name that it used.
@@ -153,7 +150,7 @@ If a job saves many output files, or files in subfolders, bundle them into one a
 ```python
 import tarfile
 
-serverless.file_download(result["archive"], my_workflow, target_name=result["archive"], download_location="outputs")
+client.file_download(result["archive"], my_workflow, target_name=result["archive"], download_location="outputs")
 
 with tarfile.open(Path("outputs") / result["archive"]) as tar:
     tar.extractall("outputs", filter="data")
@@ -187,16 +184,16 @@ Functions does not delete files from file storage, so files remain until you del
 
 <CodeTitle title="run_workflow_remotely.ipynb" />
 ```python
-serverless.file_delete("hamiltonian.npz", my_workflow)
+client.file_delete("hamiltonian.npz", my_workflow)
 ```
 
 `file_delete()` reports success even if the file does not exist, so check the name with `files()` first. To delete all the files of one run, filter `files()` by the run's name prefix, as described in the next section:
 
 <CodeTitle title="run_workflow_remotely.ipynb" />
 ```python
-for name in serverless.files(my_workflow):
+for name in client.files(my_workflow):
     if name.startswith("theta-0.1_"):
-        serverless.file_delete(name, my_workflow)
+        client.file_delete(name, my_workflow)
 ```
 
 {/* REVIEW: on Fleets, deleting a missing file returns "Requested file was deleted." because gateway/core/ibm_cloud/cos/cos_client.py delete_object() treats a missing key as deleted. Confirm whether file_delete() should return 404 instead. */}

@@ -6,7 +6,7 @@ description: "Choose the CPU, memory, and GPU resources for a managed workflow, 
 # Choose a compute profile
 
 <Admonition type="caution" title="Placeholder content">
-- **Client class name.** `QiskitServerless` is being renamed. Update the code examples after the new name is decided.
+- **Class names.** The code examples import `QiskitServerless` as `ManagedWorkflowClient` and `QiskitFunction` as `ManagedWorkflow`. Replace the aliases with the new class names after the rename lands in `qiskit-ibm-catalog`.
 - **Profile discovery.** `compute_profiles()` and `compute_profile()` come from `qiskit-serverless` PR 2647. Publish after a `qiskit-serverless` release that includes it, and a `qiskit-ibm-catalog` release that exposes both methods on the client.
 - **Profiles and startup times.** Confirm the profile list and the startup times before publishing.
 - **Concurrent job limits.** This section moved to [Active job limit](/docs/managed-workflows/run-parameter-sweep#active-job-limit). Apply that change before publishing.
@@ -34,10 +34,10 @@ To see which profiles are available, call `compute_profiles()`:
 {/* REVIEW: requires release with PR 2647 */}
 <CodeTitle title="run_workflow_remotely.ipynb" />
 ```python
-from qiskit_ibm_catalog import QiskitServerless
+from qiskit_ibm_catalog import QiskitServerless as ManagedWorkflowClient
 
-serverless = QiskitServerless()
-print(serverless.compute_profiles())
+client = ManagedWorkflowClient()
+print(client.compute_profiles())
 ```
 
 ```text
@@ -58,7 +58,7 @@ Instead of typing a profile ID, you can describe the resources that your workflo
 {/* REVIEW: requires release with PR 2647 */}
 <CodeTitle title="run_workflow_remotely.ipynb" />
 ```python
-profile = serverless.compute_profile(cpu=24, memory=120, gpu="1l40s")
+profile = client.compute_profile(cpu=24, memory=120, gpu="1l40s")
 print(profile)  # 24x120x1l40s
 ```
 
@@ -66,7 +66,7 @@ print(profile)  # 24x120x1l40s
 
 <CodeTitle title="run_workflow_remotely.ipynb" />
 ```python
-gpu_profiles = [p for p in serverless.compute_profiles() if p.gpu]
+gpu_profiles = [p for p in client.compute_profiles() if p.gpu]
 ```
 
 ## Set a default compute profile for your workflow
@@ -75,12 +75,15 @@ Most workflows start with one size. Map it to a profile with `sizes_map`, and ma
 
 <CodeTitle title="run_workflow_remotely.ipynb" />
 ```python
-from qiskit_ibm_catalog import QiskitFunction, QiskitServerless
+from qiskit_ibm_catalog import (
+    QiskitFunction as ManagedWorkflow,
+    QiskitServerless as ManagedWorkflowClient,
+)
 
-serverless = QiskitServerless()
+client = ManagedWorkflowClient()
 
-my_workflow = serverless.upload(
-    QiskitFunction(
+my_workflow = client.upload(
+    ManagedWorkflow(
         title="my-workflow",
         entrypoint="my_workflow.py",
         working_dir="./my_workflow/",
@@ -115,8 +118,8 @@ You can map up to four sizes, for small (`S`), medium (`M`), large (`L`), and ex
 ```python
 sizes_map = {"S": "8x32", "M": "16x128", "L": "128x1500"}
 
-my_workflow = serverless.upload(
-    QiskitFunction(
+my_workflow = client.upload(
+    ManagedWorkflow(
         title="my-workflow",
         entrypoint="my_workflow.py",
         working_dir="./my_workflow/",
