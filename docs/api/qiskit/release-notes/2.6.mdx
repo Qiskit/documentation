@@ -14,9 +14,37 @@ in_page_toc_max_heading_level: 3
 
 <span id="id1" />
 
+## 2.6.1
+
+<span id="relnotes-2-6-1-prelude" />
+
+### Prelude
+
+Qiskit v2.6.1 is a patch release that includes bug fixes for issues identified since the release of v2.6.0.
+
+<span id="relnotes-2-6-1-bug-fixes" />
+
+### Bug Fixes
+
+*   Various C-API functions that return strings (either directly or as error messages) will no longer panic if the backing string contains interior nul bytes.
+
+*   Fixed an issue on Linux systems when using Qiskit with other Python packages that dynamically load shared libraries (such as [Qiskit Aer](https://qiskit.github.io/qiskit-aer/) or [scikit-learn](https://scikit-learn.org/stable/)) that also were using thread local storage and in some cases could fill the available static TLS space from glibc. This would result in an [`ImportError`](https://docs.python.org/3/builtins/exceptions.html#ImportError) with an error message like `cannot allocate memory in static TLS block`. This was fixed by changing how Qiskit build’s mimalloc to use a different [TLS model](https://www.akkadia.org/drepper/tls.pdf) that doesn’t use the static TLS. See [#17213](https://github.com/Qiskit/qiskit/issues/17213).
+
+*   Fixed an issue where [`CPhaseGate.power()`](/docs/api/qiskit/qiskit.circuit.library.CPhaseGate#power "qiskit.circuit.library.CPhaseGate.power"), [`CSGate.power()`](/docs/api/qiskit/qiskit.circuit.library.CSGate#power "qiskit.circuit.library.CSGate.power"), and [`CSdgGate.power()`](/docs/api/qiskit/qiskit.circuit.library.CSdgGate#power "qiskit.circuit.library.CSdgGate.power") dropped the `ctrl_state` attribute of the gate, causing open-controlled gates (`ctrl_state=0`) to lose their control state and fall back to the default control state: `1`.
+
+    Fixed [#17222](https://github.com/Qiskit/qiskit/issues/17222).
+
+*   Fixed [`TwoQubitBasisDecomposer.decomp0()`](/docs/api/qiskit/qiskit.synthesis.TwoQubitBasisDecomposer#decomp0 "qiskit.synthesis.TwoQubitBasisDecomposer.decomp0"), [`TwoQubitBasisDecomposer.decomp1()`](/docs/api/qiskit/qiskit.synthesis.TwoQubitBasisDecomposer#decomp1 "qiskit.synthesis.TwoQubitBasisDecomposer.decomp1"), [`TwoQubitBasisDecomposer.decomp2_supercontrolled()`](/docs/api/qiskit/qiskit.synthesis.TwoQubitBasisDecomposer#decomp2_supercontrolled "qiskit.synthesis.TwoQubitBasisDecomposer.decomp2_supercontrolled"), and [`TwoQubitBasisDecomposer.decomp3_supercontrolled()`](/docs/api/qiskit/qiskit.synthesis.TwoQubitBasisDecomposer#decomp3_supercontrolled "qiskit.synthesis.TwoQubitBasisDecomposer.decomp3_supercontrolled") so they correctly accept [`TwoQubitWeylDecomposition`](/docs/api/qiskit/qiskit.synthesis.TwoQubitWeylDecomposition "qiskit.synthesis.TwoQubitWeylDecomposition") arguments.
+
+<span id="relnotes-2-6-0" />
+
+<span id="id2" />
+
 ## 2.6.0
 
 <span id="relnotes-2-6-0-prelude" />
+
+<span id="id3" />
 
 ### Prelude
 
@@ -249,6 +277,8 @@ This release introduces important new functionality into the Qiskit SDK, includi
 *   [`SparsePauliOp.simplify()`](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp#simplify "qiskit.quantum_info.SparsePauliOp.simplify") no longer requires the optional `sympy` dependency when simplifying operators with [`ParameterExpression`](/docs/api/qiskit/qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") coefficients. It instead relies on Qiskit’s internal symbolic engine.
 
 <span id="relnotes-2-6-0-bug-fixes" />
+
+<span id="id4" />
 
 ### Bug Fixes
 

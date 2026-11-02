@@ -25,7 +25,7 @@ You can view an instance's usage on the [Instances](https://quantum.cloud.ibm.co
 <span id="open-plan"></span>
 ## Open Plan instance
 
-Open Plan users can run quantum circuits on the world's best QPUs for free (up to 10 minutes per 28-day rolling window). The QPU usage can be tracked on the [Platform dashboard](https://quantum.cloud.ibm.com/) and the [Workloads](https://quantum.cloud.ibm.com/workloads) pages.
+Open Plan users can run quantum circuits on the world's best QPUs for free (the resource unit (RU) equivalent of 10 minutes of quantum processing unit (QPU) usage per 28-day rolling window). Usage can be tracked on the [Platform dashboard](https://quantum.cloud.ibm.com/) and the [Workloads](https://quantum.cloud.ibm.com/workloads) pages.
 
 <span id="standard-plan"></span>
 ## Pay-As-You-Go Plan instance
@@ -103,13 +103,14 @@ Follow these steps to create an instance and add it to your account. If you are 
 1. From the Instances page, click **Create instance**.
     * Enter a name and optionally add tags.
     * If you have access to more than one resource group in IBM Cloud&reg;, you can choose to change the resource group this instance belongs to. See [Managing resource groups](https://cloud.ibm.com/docs/account?topic=account-rgs&interface=ui) and [Giving access to resources in resource groups](https://cloud.ibm.com/docs/account?topic=account-rgs_manage_access) for more information.
-1. Select the pricing plan this instance is associated with (for example, Pay-As-You-Go). Depending on the pricing plan selected, you can specify other options, such as the cost limit or the number of minutes to allocate to this instance. Note that if this instance is not associated with a free plan, a cost will be incurred when this instance is used to run workloads.
+1. Select the pricing plan this instance is associated with (for example, Pay-As-You-Go). Depending on the pricing plan selected, you can specify other options, such as the cost limit or the number of RUs to allocate to this instance. Note that if this instance is not associated with a free plan, a cost will be incurred when this instance is used to run workloads.
 1. Click **Next**. A list of the QPUs the instance can access is shown.
     - If you want the instance to have access to all the QPUs listed (and all QPUs added to this plan in the future), click **Next**.
     - If you are not setting up an open instance, you can customize which QPUs can be accessed with this instance. Click the "Customize allocated compute resources" toggle. Select specific QPUs that this instance can access, then click **Next**.
         <Admonition type="note">
       If you customize the allocated compute resources, the available QPUs will never be automatically updated, regardless of any changes made to the parent plan.  However, you can manually add or remove QPUs later. If you do not customize them, you will always have access to any QPU to which the account has access on the plan. So if in the future there is a new QPU added to the plan, the instance automatically has access to it.
         </Admonition>
+      Mock devices are hidden in this list by default. Turn on the toggle to show them, then select the mock devices to include. You can restrict an instance to mock devices only by selecting only the mock devices. This is useful for students or course participants, who can then validate their payloads end-to-end without consuming real QPU time or RUs. Because the instance has access only to mock devices, users select the backend by its mock name, for example `service.backend("mock_phoenix")`. For more information, see [Dry-run jobs](/docs/guides/dry-run-jobs).
 1. The Access group pane opens. A "collaborators" access group is automatically created for this instance. Users added to this access group can use the time allocated to this instance. You can [modify or create additional access groups](/docs/guides/access-groups) by using the [IBM Cloud console](https://cloud.ibm.com/iam/groups). See [Setting up access groups](https://cloud.ibm.com/docs/account?topic=account-groups&interface=ui) for instructions.
 1. Click **Create instance**. You can now view the instance on the [Instances](https://quantum.cloud.ibm.com/instances) page. If you have set up multiple plans on your account, each plan type has its own tab on the Instances table.
 
