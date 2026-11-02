@@ -1,0 +1,49 @@
+---
+title: Advanced techniques with Q-CTRL Optimization Solver
+description: Choose a problem format, add hard constraints, reuse sessions, and inspect results with the Q-CTRL Optimization Solver.
+---
+
+# Advanced techniques with Q-CTRL Optimization Solver
+
+Use the following techniques to get the most out of the Q-CTRL Optimization Solver. For every parameter and its default value, see the [API reference](/docs/api/functions/q-ctrl-optimization-solver).
+
+## Choose a problem format
+
+The Solver accepts three problem formats. Choose the one that matches how you define your problem:
+
+- **Objective function:** Pass a polynomial as a string created with `sympy.srepr`. Use this format for arbitrary objective functions, including higher-order terms. Do not set `problem_type`.
+- **Graph:** Pass a networkx graph converted with `nx.readwrite.json_graph.adjacency_data`, and set `problem_type="maxcut"`.
+- **Spin chain:** Pass a `SparsePauliOp`, and set `problem_type="spin_chain"`.
+
+You do not need to map your problem to the device topology. The Solver supports arbitrary qubit connectivity.
+
+## Add hard constraints
+
+Use the `constraint` input to enforce Hamming-weight-1 constraints, where exactly one variable in each group equals 1. The Solver enforces these constraints directly, instead of adding penalty terms to the objective function.
+
+- Each key is a tuple of variable indices, or variable names when you use a polynomial `problem` input.
+- Each value must be `1`.
+- You do not need to constrain every variable. Variables that are not in `constraint` remain unconstrained, so you can solve partially constrained problems.
+
+If you do not set `constraint`, the Solver treats the problem as unconstrained.
+
+## Reuse a session
+
+To run several problems in the same session, pass an existing session ID in the `session_id` option. If you do not set `session_id`, the Solver creates a new session.
+
+## Tag jobs
+
+Use the `job_tags` option to attach a list of tags to each job, so that you can filter and find related jobs later.
+
+## Inspect the result
+
+Beyond `solution_bitstring` and `solution_bitstring_cost`, the result dictionary includes fields that help you analyze a run:
+
+- `variables_to_bitstring_index_map` maps each variable to its bit in the solution bitstring. Use it to decode the solution, because the bit order might not match the variable order.
+- `final_bitstring_distribution` contains the bitstring counts for the iteration with the minimum cost.
+- `iteration_count` and `best_parameters` describe the QAOA optimization loop.
+- `warnings` lists any warnings from compiling or running the problem.
+
+## Request backend support
+
+If you want to use a backend that this function does not currently support, [contact Q-CTRL](https://form.typeform.com/to/iuujEAEI?typeform-source=q-ctrl.com) to add support.
