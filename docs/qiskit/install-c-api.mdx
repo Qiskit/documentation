@@ -6,7 +6,7 @@ description: How to install and use the Qiskit C API as standalone library
 
 # Install the Qiskit C API
 
-This guide describes how to install and use the Qiskit C API. After the install is complete, read [Extend Python with the Qiskit C API](/docs/guides/c-extension-for-python).
+This guide describes how to install and use the Qiskit C API. After the install is complete, read [Extend Python with the Qiskit C API](/docs/qiskit/c-extension-for-python).
 
 The following example builds an observable with C:
 ```c
@@ -47,7 +47,7 @@ This section provides build instructions for UNIX-like systems.
 ### Requirements
 
 Compilation requires the following tools:
-* A Rust compiler: see for example the [guide on installing Qiskit from source](/docs/guides/install-qiskit-source)
+* A Rust compiler: see for example the [guide on installing Qiskit from source](/docs/qiskit/install-qiskit-source)
 * A C compiler: for example, GCC on Linux and Clang on MacOS. Qiskit's C API is compatible with a compiler conforming to the [C11](https://en.wikipedia.org/wiki/C11_(C_standard_revision)) standard.
 * [`cbindgen`](https://github.com/mozilla/cbindgen): a tool to create the C header, which you can install with `cargo install cbindgen`
    Running the tool from the command line should be enabled, which might require exporting your `PATH` variable to include `/path/to/.cargo/bin`.
@@ -314,7 +314,7 @@ Do NOT run `pip install --upgrade qiskit` after setup. Upgrading to a new minor 
 
 Run the following code in each new Python session (for example, each time you restart a Jupyter kernel). It locates and loads the MSVC developer environment automatically so you don't need the x64 built-in command prompt.
 
-The example in this documentation builds C extension modules by using `setuptools` with MSVC. Generally, you define `QISKIT_PYTHON_EXTENSION`, include `qiskit.h`, and call `qk_import()` in your init function. Only headers from `qiskit.capi.get_include()` are needed at build time — no library is linked. See [Extend Qiskit in Python with C](/docs/guides/c-extension-for-python) for details.
+The example in this documentation builds C extension modules by using `setuptools` with MSVC. Generally, you define `QISKIT_PYTHON_EXTENSION`, include `qiskit.h`, and call `qk_import()` in your init function. Only headers from `qiskit.capi.get_include()` are needed at build time — no library is linked. See [Extend Qiskit in Python with C](/docs/qiskit/c-extension-for-python) for details.
 
 <Accordion>
   <AccordionItem title="Load the MSVC environment">
@@ -396,7 +396,7 @@ elif all(checks.values()):
 
 Run the following code.  It writes source files to `_smoke_pkg/`, builds a C extension against the Qiskit C API, and imports the result. If it prints "SMOKE TEST PASSED", your toolchain is ready.
 
-The package follows the [Extend Qiskit in Python with C](/docs/guides/c-extension-for-python) process and uses functions from the [Qiskit C API reference](/docs/api/qiskit-c).
+The package follows the [Extend Qiskit in Python with C](/docs/qiskit/c-extension-for-python) process and uses functions from the [Qiskit C API reference](/docs/api/qiskit-c).
 
 <Accordion>
   <AccordionItem title="Smoke test code">
@@ -688,7 +688,7 @@ The `--passive --wait` flags block PowerShell while the installer runs in the ba
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
-  - Learn how to [extend Python with the Qiskit C API](/docs/guides/c-extension-for-python).
-  - [Install Qiskit](/docs/guides/install-qiskit).
+  - Learn how to [extend Python with the Qiskit C API](/docs/qiskit/c-extension-for-python).
+  - [Install Qiskit](/docs/qiskit/install-qiskit).
   - Explore the [Qiskit C API reference](/docs/api/qiskit-c).
 </Admonition>
