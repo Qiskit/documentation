@@ -62,6 +62,11 @@ export class Pkg {
    * C API packages share the docs page of their Python sibling.
    */
   readonly hasAddonDocs: boolean;
+  /**
+   * The git ref used for `sphinx.ext.viewcode` source links. Most packages use
+   * `stable/X.Y` branches, but some only publish version tags like `v0.21.0`.
+   */
+  readonly sourceLinkRef: "stable-branch" | "version-tag";
   /** Slugs of docs/tutorials/ notebooks to surface under this addon's tutorials route. */
 
   static ADDON_NAMES = [
@@ -86,6 +91,7 @@ export class Pkg {
     "qiskit",
     "qiskit-ibm-runtime",
     "qiskit-ibm-transpiler",
+    "qiskit-ibm-catalog",
     "qiskit-c",
     ...Pkg.ADDON_NAMES,
   ];
@@ -104,6 +110,7 @@ export class Pkg {
     artifactPackageName?: string;
     hasRootNamespaceFile?: boolean;
     hasAddonDocs?: boolean;
+    sourceLinkRef?: "stable-branch" | "version-tag";
   }) {
     this.name = kwargs.name;
     this.title = kwargs.title;
@@ -119,6 +126,7 @@ export class Pkg {
     this.artifactPackageName = kwargs.artifactPackageName ?? this.name;
     this.hasRootNamespaceFile = kwargs.hasRootNamespaceFile ?? false;
     this.hasAddonDocs = kwargs.hasAddonDocs ?? false;
+    this.sourceLinkRef = kwargs.sourceLinkRef ?? "stable-branch";
   }
 
   static async fromArgs(
@@ -173,6 +181,20 @@ export class Pkg {
         githubSlug: "qiskit/qiskit-ibm-transpiler",
         kebabCaseAndShortenUrls: true,
         language: "Python",
+      });
+    }
+
+    if (name === "qiskit-ibm-catalog") {
+      return new Pkg({
+        ...args,
+        title: "Qiskit Functions Catalog client",
+        githubSlug: "Qiskit/qiskit-ibm-catalog",
+        kebabCaseAndShortenUrls: true,
+        language: "Python",
+        // qiskit-ibm-catalog doesn't publish reno release notes in its Sphinx docs.
+        releaseNotesConfig: new ReleaseNotesConfig({ enabled: false }),
+        // qiskit-ibm-catalog has no stable/X.Y branches, only vX.Y.Z tags.
+        sourceLinkRef: "version-tag",
       });
     }
 
@@ -357,6 +379,7 @@ export class Pkg {
     kebabCaseAndShortenUrls?: boolean;
     artifactPackageName?: string;
     hasAddonDocs?: boolean;
+    sourceLinkRef?: "stable-branch" | "version-tag";
   }): Pkg {
     return new Pkg({
       name: kwargs.name ?? "my-quantum-project",
@@ -371,6 +394,7 @@ export class Pkg {
       kebabCaseAndShortenUrls: kwargs.kebabCaseAndShortenUrls ?? false,
       artifactPackageName: kwargs.artifactPackageName,
       hasAddonDocs: kwargs.hasAddonDocs,
+      sourceLinkRef: kwargs.sourceLinkRef,
     });
   }
 
@@ -460,7 +484,9 @@ export class Pkg {
     const branchName =
       this.type === "dev" && this.version.endsWith("-dev")
         ? "main"
-        : `stable/${this.versionWithoutPatch}`;
+        : this.sourceLinkRef === "version-tag"
+          ? `v${this.version}`
+          : `stable/${this.versionWithoutPatch}`;
     const baseUrl = `https://github.com/${this.githubSlug}/tree/${branchName}`;
     return (fileName) => {
       if (!this.githubSlug) {
