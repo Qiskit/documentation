@@ -18,7 +18,6 @@ Use a managed workflow when no [pre-built Catalog Function](/docs/guides/compute
 - **Run long jobs in the cloud.** A managed workflow keeps running when you close your laptop, and you can reconnect to the job later.
 - **Use large-memory and GPU nodes.** Choose the memory, CPU, and GPU resources that the workload needs.
 - **Run tasks in parallel.** Scale out by running many single-node jobs at the same time.
-- **Share a reusable program.** Upload the workflow one time, and collaborators in your instance can reuse it. *NOTE: check for launch.*
 
 You provide the workflow code, its dependencies, and the compute sizes that it supports. Functions runs the workflow on IBM-managed compute in a pre-built environment with your packages installed, and provides cloud storage for the files that the workflow reads and writes.
 
@@ -69,7 +68,7 @@ Each job runs in an isolated environment. The following diagram and table show t
 Functions isolates each job from other jobs and limits the privileges of the code that runs in it. The access boundaries in the preceding table are part of this isolation. Functions also applies the following protections:
 
 - **Job isolation.** No other job runs in your job's environment. This includes other users' jobs and your own jobs that run at the same time.
-- **Results, logs, storage.** Only the user who ran a job can read its results and logs. *Note: check how this works with instance / user permission model*
+- **Results, logs, storage.** Only the user who ran a job can read its results and logs.
 - **Credentials.** Functions encrypts the credentials that a job uses, including your API token, when it stores them. Your workflow code can read these credentials while the job runs.
 - **Privileges.** Functions removes administrator-level privileges from the environment before your entrypoint starts.
 
