@@ -1,47 +1,23 @@
 ---
-title: Introduction to IBM Quantum primitives
-description: Introduction to IBM Quantum primitives, and an explanation of available primitives
+title: Run on quantum hardware with IBM Quantum Compute Service 
+description: Introduction to IBM Quantum Compute Service for running workloads on quantum hardware
 ---
 
-# Introduction to IBM Quantum primitives
+<span id="qiskit-runtime"></span>
+# Run on quantum hardware with IBM Quantum Compute Service
 
-Primitives were created to simplify the most common tasks for quantum computers: namely, sampling quantum states and calculating expectation values. The IBM Quantum&reg; primitives ([`Estimator`](/docs/api/qiskit-ibm-runtime/executor-estimator-estimator) and [`Sampler`](/docs/api/qiskit-ibm-runtime/executor-sampler-sampler)) are implementations of the Qiskit [primitives base classes](/docs/guides/primitives). They provide a more sophisticated implementation (for example, by including error mitigation) as a cloud-based service and are used to access IBM Quantum&reg; hardware.
+IBM Quantum Compute Service, formerly called the Qiskit Runtime Service, is the cloud-based service for executing quantum computations on IBM Quantum hardware. The `qiskit-ibm-runtime` package is a client for that service, and is the successor to the Qiskit IBM Provider.  Quantum Compute streamlines quantum computations and provides optimal implementations of the Qiskit primitive base classes for IBM Quantum hardware. To get started with IBM Quantum primitives, visit the [documentation](/docs/guides/primitives).
 
-The newest IBM Quantum primitive, [Executor](/docs/api/qiskit-ibm-runtime/executor) (which is in beta), provides a lower-level interface that gives more visibility and control without sacrificing performance. 
-`Executor` also exposes **additional capabilities that Sampler does not offer**, such as additional twirling groups and twirling for circuits with fractional gates. Refer to [Migrate from Sampler to Executor](/docs/guides/migrate-from-sampler-to-executor) for more information on whether to migrate to `Executor`. 
+Quantum Compute is designed to use additional classical and quantum compute resources, including techniques such as error suppression and error mitigation, to return a higher-quality result from executing quantum circuits on quantum processors. Examples include dynamical decoupling for error suppression, and readout mitigation and zero-noise extrapolation (ZNE) for error mitigation. Learn how to configure these options on the [Configure error mitigation](/docs/guides/error-mitigation-and-suppression-techniques) page.
 
-<CardGroup>
-    <Card
-      title="Estimator"
-      description="Computes the expectation values for one or more observables with respect to states prepared by quantum circuits.  Has built-in error suppression and mitigation methods."
-      href="/docs/ibm-quantum-compute/get-started-with-estimator"
-      analyticsName="Estimator quickstart"
-      linkText="Estimator quickstart"
-    />
+Quantum Compute also includes three types of execution modes for running your quantum program on IBM&reg; hardware: [Job, Session, and Batch](/docs/ibm-quantum-compute/execution-modes), each of which have different use cases and implications for the quantum job queue. A Job is a single query to a primitive that can be run over a specified number of shots. Sessions allow you to efficiently run multiple jobs in iterative workloads on quantum computers. Batch mode allows you to submit all your jobs at once for parallel processing. Note that Open Plan users cannot submit session jobs.
 
-    <Card
-      title="Sampler"
-      description="Samples the output register from the execution of one or more quantum circuits."
-      href="/docs/ibm-quantum-compute/get-started-with-sampler"
-      analyticsName="Sampler quickstart"
-      linkText="Sampler quickstart"
-    />
+To quickly install the IBM Quantum Compute client, run the following command:
+```bash
+pip install qiskit-ibm-runtime
+```
 
-        <Card
-      title="Executor (beta)"
-      description="Samples output registers from quantum circuit executions based on input directives and gives you full control and transparency over customizing error mitigation methods."
-      href="/docs/ibm-quantum-compute/get-started-with-executor"
-      analyticsName="Executor quickstart"
-      linkText="Executor quickstart"
-    />
-</CardGroup>
+See the [installation page](/docs/guides/install-qiskit) to set up a development environment for building quantum programs.
 
-## Next steps
-
-<Admonition type="tip" title="Recommendations">
-    - Learn about the [primitive base classes](/docs/guides/primitives) that the IBM Quantum primitives are based on.
-    - Review detailed [Estimator](/docs/ibm-quantum-compute/estimator-examples), [Sampler](/docs/ibm-quantum-compute/sampler-examples), or [Executor](/docs/ibm-quantum-compute/executor-examples) examples.
-    - See the input and output details for [Estimator](/docs/ibm-quantum-compute/estimator-input-output), [Executor](/docs/ibm-quantum-compute/executor-input-output), and [Sampler](/docs/ibm-quantum-compute/sampler-input-output).
-    - Practice with primitives by working through the [Cost function lesson](/learning/courses/variational-algorithm-design/cost-functions) in IBM Quantum Learning.
-    - See the [Estimator API reference](/docs/api/qiskit-ibm-runtime/executor-estimator-estimator), [Sampler API reference](/docs/api/qiskit-ibm-runtime/executor-sampler-sampler), and [Executor API reference](/docs/api/qiskit-ibm-runtime/executor).
-</Admonition>
+### Is Quantum Compute open-source?
+The short answer is, _not all of it_. The software that handles the technicalities of running your quantum program on an IBM Quantum device (including any error mitigation and suppression) is **not** open-source. However, the client software library `qiskit-ibm-runtime` (which is the interface for users to access IBM Quantum Compute Service), the Qiskit SDK running on the server side, and some of the software used for error mitigation, **are** open-source.  To get involved with Qiskit open-source efforts, visit our GitHub organization at [github.com/Qiskit](https://github.com/Qiskit) and [github.com/Qiskit-Extensions](https://github.com/Qiskit-Extensions/).
