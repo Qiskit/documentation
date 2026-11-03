@@ -1,0 +1,99 @@
+---
+title: QiskitServerless (latest version)
+description: API reference for qiskit_ibm_catalog.serverless.QiskitServerless in the latest version of qiskit-ibm-catalog
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_ibm_catalog.serverless.QiskitServerless
+---
+
+<span id="qiskit-ibm-catalog-serverless-qiskitserverless" />
+
+# qiskit\_ibm\_catalog.serverless.QiskitServerless
+
+<Class id="qiskit_ibm_catalog.serverless.QiskitServerless" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-catalog/tree/v0.21.0/qiskit_ibm_catalog/serverless.py" signature="QiskitServerless(token=None, channel=None, instance=None, name=None, *, host=None)" modifiers="class">
+  A client for connecting to the Qiskit serverless.
+
+  Credentials can be saved to disk by calling the save\_account() method:
+
+  ```python
+  from qiskit_ibm_catalog import QiskitServerless
+  QiskitServerless.save_account(token=<INSERT_IBM_QUANTUM_TOKEN>, instance=<INSERT_CRN>)
+  ```
+
+  Once the credentials are saved, you can simply instantiate the serverless with no constructor args, as shown below.
+
+  > from qiskit\_ibm\_catalog import QiskitServerless serverless = QiskitServerless()
+
+  You can also enable an account just for the current session by instantiating the serverless with the API token and CRN:
+
+  ```python
+  from qiskit_ibm_catalog import QiskitServerless
+  serverless = QiskitServerless(token=<INSERT_IBM_QUANTUM_TOKEN>, instance=<INSERT_CRN>)
+  ```
+
+  Initialize qiskit serverless client.
+
+  If a `token` is used to initialize an instance, the `name` argument will be ignored.
+
+  If only a `name` is provided, the token for the named account will be retrieved from the user’s local IBM Quantum account config file.
+
+  **Parameters**
+
+  *   **channel** (`Optional`\[`str`]) – identifies the method to use to authenticate the user
+  *   **token** (`Optional`\[`str`]) – IBM quantum token or IBM Cloud Api Key
+  *   **instance** (`Optional`\[`str`]) – IBM Cloud CRN
+  *   **name** (`Optional`\[`str`]) – Name of the account to load
+
+  ### \_\_init\_\_
+
+  <Function id="qiskit_ibm_catalog.serverless.QiskitServerless.__init__" signature="__init__(token=None, channel=None, instance=None, name=None, *, host=None)">
+    Initialize qiskit serverless client.
+
+    If a `token` is used to initialize an instance, the `name` argument will be ignored.
+
+    If only a `name` is provided, the token for the named account will be retrieved from the user’s local IBM Quantum account config file.
+
+    **Parameters**
+
+    *   **channel** (`Optional`\[`str`]) – identifies the method to use to authenticate the user
+    *   **token** (`Optional`\[`str`]) – IBM quantum token or IBM Cloud Api Key
+    *   **instance** (`Optional`\[`str`]) – IBM Cloud CRN
+    *   **name** (`Optional`\[`str`]) – Name of the account to load
+  </Function>
+
+  ## Methods
+
+  |                                                                                                                                                                           |                                                                                                                |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+  | [`__init__`](#qiskit_ibm_catalog.serverless.QiskitServerless.__init__ "qiskit_ibm_catalog.serverless.QiskitServerless.__init__")(\[token, channel, instance, name, host]) | Initialize qiskit serverless client.                                                                           |
+  | `backend`(name, \*\*kwargs)                                                                                                                                               | Returns a single backend by name.                                                                              |
+  | `backends`(\*\*kwargs)                                                                                                                                                    | Returns the backends accessible through the active instance.                                                   |
+  | `events`(job\_id, \*\*kwargs)                                                                                                                                             | Returns events of the job.                                                                                     |
+  | `file_delete`(file, function)                                                                                                                                             | Deletes a file available to the user for the specific Qiskit Function.                                         |
+  | `file_download`(file, function\[, target\_name, ...])                                                                                                                     | Download a file available to the user for the specific Qiskit Function.                                        |
+  | `file_upload`(file, function)                                                                                                                                             | Uploads a file in the specific user's Qiskit Function folder.                                                  |
+  | `files`(function)                                                                                                                                                         | Returns the list of files available for the user in the Qiskit Function folder.                                |
+  | `get_job_by_id`(job\_id)                                                                                                                                                  | Returns job by id.                                                                                             |
+  | `job`(job\_id)                                                                                                                                                            | Returns job by id.                                                                                             |
+  | `jobs`(\[function, limit, offset, status, ...])                                                                                                                           | Returns list of jobs from serverless.                                                                          |
+  | `least_busy`(\*\*kwargs)                                                                                                                                                  | Returns the backend with the fewest pending jobs.                                                              |
+  | `list`(\*\[, limit, offset])                                                                                                                                              | Returns list of functions uploaded by user.                                                                    |
+  | `load`(title\[, provider])                                                                                                                                                | Loads qiskit function by title.                                                                                |
+  | `provider_file_delete`(file, function)                                                                                                                                    | Deletes a file available to the provider for the specific Qiskit Function.                                     |
+  | `provider_file_download`(file, function\[, ...])                                                                                                                          | Download a file available to the provider for the specific Qiskit Function.                                    |
+  | `provider_file_upload`(file, function)                                                                                                                                    | Uploads a file in the specific provider's Qiskit Function folder.                                              |
+  | `provider_files`(function)                                                                                                                                                | Returns the list of files available for the provider in the Qiskit Function folder.                            |
+  | `provider_jobs`(function, \*\[, limit, offset, ...])                                                                                                                      | List of jobs created by the provider for this function.                                                        |
+  | `runtime_jobs`(job\_id\[, runtime\_session])                                                                                                                              | Returns list of qiskit runtime job ids associated to the serverless job id and optionally filtered by session. |
+  | `runtime_sessions`(job\_id)                                                                                                                                               | Returns list of qiskit runtime session ids associated to the serverless job id.                                |
+  | `save_account`(\[token, channel, instance, ...])                                                                                                                          | Save the account to disk for future use.                                                                       |
+  | `upload`(function)                                                                                                                                                        | Uploads qiskit function.                                                                                       |
+  | `usage`()                                                                                                                                                                 | Returns runtime usage information for the active instance.                                                     |
+
+  ## Attributes
+
+  |                      |   |
+  | -------------------- | - |
+  | `PRE_FILTER_KEYWORD` |   |
+</Class>
+
