@@ -13,7 +13,7 @@ description: "Synthesize an Evolution gate in fermionic space for the latest ver
 
 An [`Evolution`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution "qiskit_fermions.circuit.library.Evolution") gate carries the time evolution $e^{-itH}$ of a whole operator. A fermion-to-fermion synthesis rewrites that gate into a [`FermionicCircuit`](/docs/api/qiskit-fermions/circuit-fermionic-circuit#qiskit_fermions.circuit.FermionicCircuit "qiskit_fermions.circuit.FermionicCircuit") of smaller fermionic gates. Both sides of the rewrite stay in fermionic space, which is what distinguishes it from the fermion-to-qubit synthesis that follows: the operator’s [`groups`](/docs/api/qiskit-fermions/operators-operator-trait#qiskit_fermions.operators.OperatorTrait.groups "qiskit_fermions.operators.OperatorTrait.groups") (see [Group operator terms: use the operator structure](grouping#grouping-explanation)) survive it, whereas a fermion-to-qubit mapping returns a [`SparseObservable`](/docs/api/qiskit/qiskit.quantum_info.SparseObservable), which has no concept of grouping.
 
-Two knobs select the method. [`Evolution.synthesis`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution.synthesis "qiskit_fermions.circuit.library.Evolution.synthesis") sets it on one gate, and the [`FermionicTrotterization`](/docs/api/qiskit-fermions/transpiler-passes-fermionic-trotterization#qiskit_fermions.transpiler.passes.FermionicTrotterization "qiskit_fermions.transpiler.passes.FermionicTrotterization") transpiler pass sets it across a whole circuit. Both take a [`FermionicEvolutionSynthesis`](/docs/api/qiskit-fermions/circuit-library-synthesis-fermionic-evolution-synthesis#qiskit_fermions.circuit.library.synthesis.FermionicEvolutionSynthesis "qiskit_fermions.circuit.library.synthesis.FermionicEvolutionSynthesis"), the interface any such rewrite implements. The methods this package currently provides are product formulas, which is what the rest of this guide uses: [`FermionicLieTrotter`](/docs/api/qiskit-fermions/circuit-library-synthesis-fermionic-lie-trotter#qiskit_fermions.circuit.library.synthesis.FermionicLieTrotter "qiskit_fermions.circuit.library.synthesis.FermionicLieTrotter") for a first-order formula (the default) and [`FermionicSuzukiTrotter`](/docs/api/qiskit-fermions/circuit-library-synthesis-fermionic-suzuki-trotter#qiskit_fermions.circuit.library.synthesis.FermionicSuzukiTrotter "qiskit_fermions.circuit.library.synthesis.FermionicSuzukiTrotter") for a higher even order. Anything else implementing the interface is selected the same way, and the sections on the two knobs apply to it unchanged.
+Two knobs select the method. `Evolution.synthesis` sets it on one gate, and the [`F2FSynthesis`](/docs/api/qiskit-fermions/transpiler-passes-f-2-f-synthesis#qiskit_fermions.transpiler.passes.F2FSynthesis "qiskit_fermions.transpiler.passes.F2FSynthesis") transpiler pass sets it across a whole circuit. Both take an [`F2FSynthesisPlugin`](/docs/api/qiskit-fermions/circuit-library-synthesis-f-2-f-synthesis-plugin#qiskit_fermions.circuit.library.synthesis.F2FSynthesisPlugin "qiskit_fermions.circuit.library.synthesis.F2FSynthesisPlugin"), the interface any such rewrite implements. The methods this package currently provides for an evolution are product formulas, which is what the rest of this guide uses: [`FermionicLieTrotter`](/docs/api/qiskit-fermions/circuit-library-synthesis-fermionic-lie-trotter#qiskit_fermions.circuit.library.synthesis.FermionicLieTrotter "qiskit_fermions.circuit.library.synthesis.FermionicLieTrotter") for a first-order formula (the default) and [`FermionicSuzukiTrotter`](/docs/api/qiskit-fermions/circuit-library-synthesis-fermionic-suzuki-trotter#qiskit_fermions.circuit.library.synthesis.FermionicSuzukiTrotter "qiskit_fermions.circuit.library.synthesis.FermionicSuzukiTrotter") for a higher even order. Anything else implementing the interface is selected the same way, and the sections on the two knobs apply to it unchanged.
 
 <Admonition title="Note" type="note">
   This fermion-to-fermion step is **optional**. An [`Evolution`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution "qiskit_fermions.circuit.library.Evolution") gate can go straight to the fermion-to-qubit stage, which maps and synthesizes it whole however many terms it holds. Splitting it first is a choice, made because the resulting gates are individually cheaper or because the split exposes structure that a later stage can use.
@@ -104,39 +104,53 @@ Pass a synthesis method to the gate, then decompose it. Each gate it emits comes
 >>> factors(FermionicSuzukiTrotter(order=2))
 5
 >>> factors(FermionicSuzukiTrotter(order=2, reps=4))
+17
+>>> factors(FermionicSuzukiTrotter(order=2, reps=4, merge_adjacent=False))
 20
 ```
 
-First order emits one factor per group. Order two emits the symmetric palindrome, so the two outer groups appear twice at half the time each, giving five. Four repetitions of that give twenty. Every order splits the operator the same way; what changes is the ordering of the factors and their evolution times, not the partition.
+First order emits one factor per group. Order two emits the symmetric palindrome, so the two outer groups appear twice at half the time each, giving five. Four repetitions of that would give twenty, but each repetition ends on the same group the next one begins with. Those neighboring gates evolve under the same operator, so they are fused into one gate with the summed time, which saves one gate per seam. Pass `merge_adjacent=False` to keep the textbook sequence. Every order splits the operator the same way; what changes is the ordering of the factors and their evolution times, not the partition.
 
 <Admonition title="Note" type="note">
-  The factors are marked [`atomic`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution.atomic "qiskit_fermions.circuit.library.Evolution.atomic"), so decomposing again leaves them in place rather than splitting them further. The decomposition has a fixed point, which is what makes it safe to call [`decompose()`](/docs/api/qiskit-fermions/circuit-fermionic-circuit#qiskit_fermions.circuit.FermionicCircuit.decompose "qiskit_fermions.circuit.FermionicCircuit.decompose") repeatedly.
+  The factors are marked `atomic`, so decomposing again leaves them in place rather than splitting them further. The decomposition has a fixed point, which is what makes it safe to call [`decompose()`](/docs/api/qiskit-fermions/circuit-fermionic-circuit#qiskit_fermions.circuit.FermionicCircuit.decompose "qiskit_fermions.circuit.FermionicCircuit.decompose") repeatedly.
 </Admonition>
 
 ## Set the method for a whole pipeline
 
-Setting [`synthesis`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution.synthesis "qiskit_fermions.circuit.library.Evolution.synthesis") per gate means threading the choice through everything that builds one, including [`UCC`](/docs/api/qiskit-fermions/circuit-library-ucc#qiskit_fermions.circuit.library.UCC "qiskit_fermions.circuit.library.UCC") and [`UCJ`](/docs/api/qiskit-fermions/circuit-library-ucj#qiskit_fermions.circuit.library.UCJ "qiskit_fermions.circuit.library.UCJ"), which construct their gates internally. The [`FermionicTrotterization`](/docs/api/qiskit-fermions/transpiler-passes-fermionic-trotterization#qiskit_fermions.transpiler.passes.FermionicTrotterization "qiskit_fermions.transpiler.passes.FermionicTrotterization") pass applies one method to every [`Evolution`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution "qiskit_fermions.circuit.library.Evolution") in a circuit instead, so the choice is made once for the pipeline:
+Setting `synthesis` per gate means threading the choice through everything that builds one, including [`UCC`](/docs/api/qiskit-fermions/circuit-library-ucc#qiskit_fermions.circuit.library.UCC "qiskit_fermions.circuit.library.UCC") and [`UCJ`](/docs/api/qiskit-fermions/circuit-library-ucj#qiskit_fermions.circuit.library.UCJ "qiskit_fermions.circuit.library.UCJ"), which construct their gates internally. The [`F2FSynthesis`](/docs/api/qiskit-fermions/transpiler-passes-f-2-f-synthesis#qiskit_fermions.transpiler.passes.F2FSynthesis "qiskit_fermions.transpiler.passes.F2FSynthesis") pass applies one method to every [`Evolution`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution "qiskit_fermions.circuit.library.Evolution") in a circuit instead, so the choice is made once for the pipeline. It is configured by gate name, the same way [`F2QSynthesis`](/docs/api/qiskit-fermions/transpiler-passes-f-2-q-synthesis#qiskit_fermions.transpiler.passes.F2QSynthesis "qiskit_fermions.transpiler.passes.F2QSynthesis") is, and a gate that is not named is left as it is:
 
 ```python
 >>> from qiskit_fermions.transpiler import FermionicPassManager
->>> from qiskit_fermions.transpiler.passes import FermionicTrotterization
+>>> from qiskit_fermions.transpiler.passes import F2FSynthesis
 >>>
 >>> circuit = FermionicCircuit(num_sites)
 >>> circuit.append(Evolution(num_sites, hamiltonian, time=total_time), circuit.modes)
 >>>
 >>> expanded = FermionicPassManager(
-...     FermionicTrotterization(FermionicSuzukiTrotter(order=2, reps=4))
+...     F2FSynthesis({"Evolution": ("SuzukiTrotter", (), {"order": 2, "reps": 4})})
 ... ).run(circuit)
 >>> expanded.count_ops()["Evolution"]
-20
+17
 ```
 
-Twenty gates: five factors per order-two sweep, times four repetitions (the same count [`decompose()`](/docs/api/qiskit-fermions/circuit-fermionic-circuit#qiskit_fermions.circuit.FermionicCircuit.decompose "qiskit_fermions.circuit.FermionicCircuit.decompose") gives for that method above). The pass carries the formula out itself, so no separate expansion step is needed, and running it twice changes nothing, since the factors it emits are [`atomic`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution.atomic "qiskit_fermions.circuit.library.Evolution.atomic") and so carry no definition of their own.
+This is the same count [`decompose()`](/docs/api/qiskit-fermions/circuit-fermionic-circuit#qiskit_fermions.circuit.FermionicCircuit.decompose "qiskit_fermions.circuit.FermionicCircuit.decompose") gives for that method above. The [`MergeEvolutions`](/docs/api/qiskit-fermions/transpiler-passes-merge-evolutions#qiskit_fermions.transpiler.passes.MergeEvolutions "qiskit_fermions.transpiler.passes.MergeEvolutions") pass applies the same fusion to neighboring gates that did not come from one synthesis, such as the seams between consecutive circuits. The pass carries the formula out itself, so no separate expansion step is needed, and running it twice changes nothing, since the factors it emits are `atomic` and so carry no definition of their own.
 
 <Admonition title="Note" type="note">
   Pass `apply=False` to only *select* the method and leave the expansion to something else, such as Qiskit’s [`Decompose`](/docs/api/qiskit/qiskit.transpiler.passes.Decompose) (naming the gate as `Decompose("Evolution")` restricts it to the evolutions, leaving the other fermionic gates to their own synthesis plugins).
 
-  Be aware of what an unexpanded gate does, though: it reaches the fermion-to-qubit stage whole, where it is mapped without [`synthesis`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution.synthesis "qiskit_fermions.circuit.library.Evolution.synthesis") being consulted. That makes for an easy mistake when comparing methods, because every one of them then produces identical output and the comparison silently measures nothing. On the Hamiltonian above, leaving the order-two gate unexpanded collapses the much larger circuit below to the cost of a single mapped evolution, no matter which method was selected.
+  This is useful to choose the method for a whole circuit up front while deferring the expansion to the point where it is wanted, for example to inspect the circuit first:
+
+  ```python
+  >>> selected = FermionicPassManager(
+  ...     F2FSynthesis({"Evolution": ("SuzukiTrotter", (), {"order": 2})}, apply=False)
+  ... ).run(circuit)
+  >>> selected.count_ops()["Evolution"]  # selected, not yet expanded
+  1
+  >>> selected.decompose().count_ops()["Evolution"]  # expanded on demand
+  5
+  ```
+
+  Be aware of what an unexpanded gate does, though: it reaches the fermion-to-qubit stage whole, where it is mapped without `synthesis` being consulted. That makes for an easy mistake when comparing methods, because every one of them then produces identical output and the comparison silently measures nothing. On the Hamiltonian above, leaving the order-two gate unexpanded collapses the much larger circuit below to the cost of a single mapped evolution, no matter which method was selected.
 </Admonition>
 
 ## Measure the payoff
@@ -168,7 +182,7 @@ The error is measured with [ffsim](https://qiskit-community.github.io/ffsim/), w
 ...         circuit.modes,
 ...     )
 ...     # the method is set on the gate, so decompose() is what expands it here; a pipeline
-...     # would reach for FermionicTrotterization instead (see the note above)
+...     # would reach for F2FSynthesis instead (see the note above)
 ...     circuit = circuit.decompose()
 ...     evolved = ffsim.apply_unitary(initial, circuit, norb=norb, nelec=nelec)
 ...     error = 1 - abs(np.vdot(evolved, exact)) ** 2
@@ -197,7 +211,7 @@ order 2, reps 4   error 0.000421
 
 The two-qubit cost is left out of that table on purpose. It depends on the qubit-side synthesis Qiskit selects, which improves between releases, so the numbers printed here would be a snapshot rather than a property of the product formula. The figure below plots them instead, and what the comparison rests on is asserted as a relation:
 
-![Grouped bars of CX count and depth per method, with order two at four repetitions clearly shorter than order one at ten.](/docs/images/addons/qiskit-fermions/fermionic_synthesis-7.avif)
+![Grouped bars of CX count and depth per method, with order two at four repetitions clearly shorter than order one at ten.](/docs/images/addons/qiskit-fermions/fermionic_synthesis-8.avif)
 
 Read the last two methods together, because they are the comparison that matters. Order two with four repetitions is roughly ten times more accurate than order one with ten, and it gets there with fewer entangling gates rather than more, as the figure shows. Spending a gate budget on a higher order beats spending it on more first-order steps here.
 
@@ -233,7 +247,7 @@ A higher order only helps when the factors do not commute. If they all commute, 
 18
 ```
 
-Both circuits are exact, so the second spends 80% more entangling gates for nothing. The diagonal Coulomb operators of a [`UCJ`](/docs/api/qiskit-fermions/circuit-library-ucj#qiskit_fermions.circuit.library.UCJ "qiskit_fermions.circuit.library.UCJ") have this shape, which is why [`FermionicTrotterization.filter`](/docs/api/qiskit-fermions/transpiler-passes-fermionic-trotterization#qiskit_fermions.transpiler.passes.FermionicTrotterization.filter "qiskit_fermions.transpiler.passes.FermionicTrotterization.filter") exists: it takes a predicate over the [`DAGOpNode`](/docs/api/qiskit/qiskit.dagcircuit.DAGOpNode) and leaves the rejected gates untouched, so one pass can raise the order on the gates that benefit and leave the rest at first order.
+Both circuits are exact, so the second spends 80% more entangling gates for nothing. The diagonal Coulomb operators of a [`UCJ`](/docs/api/qiskit-fermions/circuit-library-ucj#qiskit_fermions.circuit.library.UCJ "qiskit_fermions.circuit.library.UCJ") have this shape, which is why [`F2FSynthesis.filter`](/docs/api/qiskit-fermions/transpiler-passes-f-2-f-synthesis#qiskit_fermions.transpiler.passes.F2FSynthesis.filter "qiskit_fermions.transpiler.passes.F2FSynthesis.filter") exists: it takes a predicate over the [`DAGOpNode`](/docs/api/qiskit/qiskit.dagcircuit.DAGOpNode) and leaves the rejected gates untouched, so one pass can raise the order on the gates that benefit and leave the rest at first order.
 
 A circuit holding both kinds of evolution shows what that saves. The predicate below accepts a gate only when its operator moves particles between modes, which is exactly when the groups fail to commute and a higher order has something to buy:
 
@@ -260,12 +274,12 @@ A circuit holding both kinds of evolution shows what that saves. The predicate b
 >>> order_2 = FermionicSuzukiTrotter(order=2)
 >>>
 >>> everywhere = two_qubit_cost(
-...     FermionicPassManager(FermionicTrotterization(order_2)).run(mixed_circuit())
+...     FermionicPassManager(F2FSynthesis({"Evolution": order_2})).run(mixed_circuit())
 ... )
 >>> restricted = two_qubit_cost(
 ...     FermionicPassManager(
-...         FermionicTrotterization(
-...             order_2, filter=lambda node: not is_diagonal(node.op.operator)
+...         F2FSynthesis(
+...             {"Evolution": order_2}, filter=lambda node: not is_diagonal(node.op.operator)
 ...         )
 ...     ).run(mixed_circuit())
 ... )
@@ -290,5 +304,5 @@ The gates the filter saves are exactly the ones order two spent on the diagonal 
 *   Read [Group operator terms: use the operator structure](grouping#grouping-explanation) for how the groups these product formulas split on are assigned.
 *   Read [Transpile fermionic circuits](transpilation#transpilation-explanation) for the stages a [`FermionicCircuit`](/docs/api/qiskit-fermions/circuit-fermionic-circuit#qiskit_fermions.circuit.FermionicCircuit "qiskit_fermions.circuit.FermionicCircuit") passes through.
 *   See [Simulate 1D Fermi-Hubbard dynamics with flow sets](1-d-fermi-hubbard#d-fermi-hubbard) for a worked case where the fermionic formula supplies the step count that a custom qubit-side synthesis cannot.
-*   Consult [`synthesis`](/docs/api/qiskit-fermions/circuit-library-synthesis#module-qiskit_fermions.circuit.library.synthesis "qiskit_fermions.circuit.library.synthesis") for the synthesis methods themselves, and [`QDriftTrotterization`](/docs/api/qiskit-fermions/transpiler-passes-q-drift-trotterization#qiskit_fermions.transpiler.passes.QDriftTrotterization "qiskit_fermions.transpiler.passes.QDriftTrotterization") for a randomized alternative.
+*   Consult [`synthesis`](/docs/api/qiskit-fermions/circuit-library-synthesis#module-qiskit_fermions.circuit.library.synthesis "qiskit_fermions.circuit.library.synthesis") for the synthesis methods themselves, and [`FermionicQDrift`](/docs/api/qiskit-fermions/circuit-library-synthesis-fermionic-q-drift#qiskit_fermions.circuit.library.synthesis.FermionicQDrift "qiskit_fermions.circuit.library.synthesis.FermionicQDrift") for a randomized alternative.
 
