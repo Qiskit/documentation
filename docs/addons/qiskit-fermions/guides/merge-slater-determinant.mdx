@@ -194,7 +194,7 @@ Compare that to synthesizing the same orbital rotation on its own. With no prece
 >>> reference.append(OrbitalRotation(rotation), reference.modes)
 >>> reference_prepared = pm.run(reference)
 >>> print(dict(sorted(reference_prepared.count_ops().items())))
-{'p': 6, 'xx_plus_yy': 15}
+{'rz': 6, 'xx_plus_yy': 15}
 ```
 
 ```python
@@ -206,7 +206,23 @@ Compare that to synthesizing the same orbital rotation on its own. With no prece
 
 The reduced decomposition drops all six phase gates and nearly halves the two-qubit rotation count. The prepared determinant is correct up to a global phase (physically irrelevant for state preparation), which is what the phase gates would have fixed.
 
+## Two ways to break the gate down
+
+A [`PrepareSlaterDeterminant`](/docs/api/qiskit-fermions/circuit-library-prepare-slater-determinant#qiskit_fermions.circuit.library.PrepareSlaterDeterminant "qiskit_fermions.circuit.library.PrepareSlaterDeterminant") can be broken down in two different ways, and they are not interchangeable:
+
+## [`decompose()`](/docs/api/qiskit-fermions/circuit-fermionic-circuit#qiskit_fermions.circuit.FermionicCircuit.decompose "qiskit_fermions.circuit.FermionicCircuit.decompose")
+
+Expands the gate into its *definition*: the [`InitializeModes`](/docs/api/qiskit-fermions/circuit-library-initialize-modes#qiskit_fermions.circuit.library.InitializeModes "qiskit_fermions.circuit.library.InitializeModes") of the reference followed by the full [`OrbitalRotation`](/docs/api/qiskit-fermions/circuit-library-orbital-rotation#qiskit_fermions.circuit.library.OrbitalRotation "qiskit_fermions.circuit.library.OrbitalRotation"). This is equivalent to the gate as an *operator*, for any input state.
+
+## `PrepareSlaterDeterminant.synthesis`, applied by [`F2FSynthesis`](/docs/api/qiskit-fermions/transpiler-passes-f-2-f-synthesis#qiskit_fermions.transpiler.passes.F2FSynthesis "qiskit_fermions.transpiler.passes.F2FSynthesis")
+
+Replaces the gate with the reduced decomposition of this guide. This is equivalent to the gate only as a *state preparation*: it produces the same determinant, up to a global phase, when the modes start in the vacuum. It is cheaper precisely because it assumes that.
+
+Use the synthesis when the gate prepares a state on the vacuum, which is what the gate is for and what the transpiler does for you. Use [`decompose()`](/docs/api/qiskit-fermions/circuit-fermionic-circuit#qiskit_fermions.circuit.FermionicCircuit.decompose "qiskit_fermions.circuit.FermionicCircuit.decompose") when the gate has to keep acting as an operator, for example because other gates precede it on the same modes, or when you want to inspect or simulate the plain gates. The [`F2FSynthesis`](/docs/api/qiskit-fermions/transpiler-passes-f-2-f-synthesis#qiskit_fermions.transpiler.passes.F2FSynthesis "qiskit_fermions.transpiler.passes.F2FSynthesis") pass cannot know which case it is looking at, so it is up to the circuit you give it to prepare the determinant from the vacuum.
+
+Simulating a circuit with ffsim needs neither: every gate applies its whole unitary, so a circuit holding a [`PrepareSlaterDeterminant`](/docs/api/qiskit-fermions/circuit-library-prepare-slater-determinant#qiskit_fermions.circuit.library.PrepareSlaterDeterminant "qiskit_fermions.circuit.library.PrepareSlaterDeterminant") is simulated as it is, and stays on the fast path for the [`OrbitalRotation`](/docs/api/qiskit-fermions/circuit-library-orbital-rotation#qiskit_fermions.circuit.library.OrbitalRotation "qiskit_fermions.circuit.library.OrbitalRotation") gates around it. Breaking only the Slater gate down with `circuit.decompose("PrepareSlaterDeterminant")` leaves those rotations whole, too.
+
 <Admonition title="See also" type="note">
-  [`PrepareSlaterDeterminant`](/docs/api/qiskit-fermions/circuit-library-prepare-slater-determinant#qiskit_fermions.circuit.library.PrepareSlaterDeterminant "qiskit_fermions.circuit.library.PrepareSlaterDeterminant"), [`InitializeModes`](/docs/api/qiskit-fermions/circuit-library-initialize-modes#qiskit_fermions.circuit.library.InitializeModes "qiskit_fermions.circuit.library.InitializeModes"), [`OrbitalRotation`](/docs/api/qiskit-fermions/circuit-library-orbital-rotation#qiskit_fermions.circuit.library.OrbitalRotation "qiskit_fermions.circuit.library.OrbitalRotation"), [`MergeOrbitalRotations`](/docs/api/qiskit-fermions/transpiler-passes-merge-orbital-rotations#qiskit_fermions.transpiler.passes.MergeOrbitalRotations "qiskit_fermions.transpiler.passes.MergeOrbitalRotations"), [`GivensDecompositionSlaterDeterminantSynthesis`](/docs/api/qiskit-fermions/transpiler-passes-synthesis-givens-decomposition-slater-determinant-synthesis#qiskit_fermions.transpiler.passes.synthesis.GivensDecompositionSlaterDeterminantSynthesis "qiskit_fermions.transpiler.passes.synthesis.GivensDecompositionSlaterDeterminantSynthesis"), and the [LUCJ guide](lucj#lucj-transpilation) for the workflow that produces the global-initialization pattern.
+  [`PrepareSlaterDeterminant`](/docs/api/qiskit-fermions/circuit-library-prepare-slater-determinant#qiskit_fermions.circuit.library.PrepareSlaterDeterminant "qiskit_fermions.circuit.library.PrepareSlaterDeterminant"), [`InitializeModes`](/docs/api/qiskit-fermions/circuit-library-initialize-modes#qiskit_fermions.circuit.library.InitializeModes "qiskit_fermions.circuit.library.InitializeModes"), [`OrbitalRotation`](/docs/api/qiskit-fermions/circuit-library-orbital-rotation#qiskit_fermions.circuit.library.OrbitalRotation "qiskit_fermions.circuit.library.OrbitalRotation"), [`MergeOrbitalRotations`](/docs/api/qiskit-fermions/transpiler-passes-merge-orbital-rotations#qiskit_fermions.transpiler.passes.MergeOrbitalRotations "qiskit_fermions.transpiler.passes.MergeOrbitalRotations"), [`F2FSynthesis`](/docs/api/qiskit-fermions/transpiler-passes-f-2-f-synthesis#qiskit_fermions.transpiler.passes.F2FSynthesis "qiskit_fermions.transpiler.passes.F2FSynthesis"), [`FermionicSlaterGivensDecomposition`](/docs/api/qiskit-fermions/circuit-library-synthesis-fermionic-slater-givens-decomposition#qiskit_fermions.circuit.library.synthesis.FermionicSlaterGivensDecomposition "qiskit_fermions.circuit.library.synthesis.FermionicSlaterGivensDecomposition"), and the [LUCJ guide](lucj#lucj-transpilation) for the workflow that produces the global-initialization pattern.
 </Admonition>
 
