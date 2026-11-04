@@ -60,11 +60,11 @@ function lowerCaseIfMarkdownAnchor(url: string): string {
     return url;
   }
   const [base, anchor] = url.split("#");
-  if (anchor.includes(".")) {
-    return url;
-  }
-  const newAnchor = anchor.toLowerCase();
-  return `${base}#${newAnchor}`;
+  return `${base}#${normalizeSphinxAnchor(anchor)}`;
+}
+
+export function normalizeSphinxAnchor(anchor: string): string {
+  return anchor.includes(".") ? anchor : anchor.toLowerCase();
 }
 
 function hasDefinitionAncestor(node: any): boolean {
