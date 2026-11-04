@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.options_models.NoiseLearnerV3Options
 
 # qiskit\_ibm\_runtime.options\_models.NoiseLearnerV3Options
 
-<Class id="qiskit_ibm_runtime.options_models.NoiseLearnerV3Options" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.50/qiskit_ibm_runtime/options_models/noise_learner_v3.py#L28-L82" signature="NoiseLearnerV3Options" modifiers="pydantic model">
+<Class id="qiskit_ibm_runtime.options_models.NoiseLearnerV3Options" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.51/qiskit_ibm_runtime/options_models/noise_learner_v3.py#L28-L82" signature="NoiseLearnerV3Options" modifiers="pydantic model">
   Bases: `BaseOptionsModel`
 
   Options for [`NoiseLearnerV3`](noise-learner-v3-noise-learner-v3 "qiskit_ibm_runtime.noise_learner_v3.NoiseLearnerV3").
@@ -108,16 +108,6 @@ python_api_name: qiskit_ibm_runtime.options_models.NoiseLearnerV3Options
     *   **ge** = 1
   </Attribute>
 
-  ### post\_selection
-
-  <Attribute id="qiskit_ibm_runtime.options_models.NoiseLearnerV3Options.post_selection" modifiers="field">
-    Type: [`PostSelectionOptions`](options-models-post-selection-options "qiskit_ibm_runtime.options_models.PostSelectionOptions")
-
-    Default value: `PostSelectionOptions(enable=False, x_pulse_type='xslow', strategy='node')`
-
-    Options for post selecting the results of noise learning circuits.
-  </Attribute>
-
   ### shots\_per\_randomization
 
   <Attribute id="qiskit_ibm_runtime.options_models.NoiseLearnerV3Options.shots_per_randomization" modifiers="field">
@@ -132,9 +122,19 @@ python_api_name: qiskit_ibm_runtime.options_models.NoiseLearnerV3Options
     *   **ge** = 1
   </Attribute>
 
+  ### simulator
+
+  <Attribute id="qiskit_ibm_runtime.options_models.NoiseLearnerV3Options.simulator" modifiers="field">
+    Type: [`SimulatorOptions`](options-models-simulator-options "qiskit_ibm_runtime.options_models.SimulatorOptions")
+
+    Default value: `SimulatorOptions(angle_decimals=5, layer_noise_model=None, seed_simulator=None, warn_absent=True)`
+
+    Options related to local mode simulations.
+  </Attribute>
+
   ### update
 
-  <Function id="qiskit_ibm_runtime.options_models.NoiseLearnerV3Options.update" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.50/qiskit_ibm_runtime/options_models/base.py#L46-L54" signature="update(**kwargs)">
+  <Function id="qiskit_ibm_runtime.options_models.NoiseLearnerV3Options.update" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.51/qiskit_ibm_runtime/options_models/base.py#L46-L54" signature="update(**kwargs)">
     Update the options.
 
     **Parameters**

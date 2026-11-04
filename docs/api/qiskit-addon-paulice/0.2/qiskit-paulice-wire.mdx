@@ -1,0 +1,64 @@
+---
+title: wire (v0.2)
+description: API reference for qiskit_paulice.wire in qiskit-addon-paulice v0.2
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit_paulice.wire
+---
+
+<span id="module-qiskit_paulice.wire" />
+
+<span id="wire-qiskit-paulice-wire" />
+
+# Wire
+
+`qiskit_paulice.wire`
+
+Wires: the stretches of a qubit’s timeline between consecutive gates.
+
+### Wire
+
+<Class id="qiskit_paulice.wire.Wire" github="https://github.com/Qiskit/qiskit-paulice/tree/main/qiskit_paulice/wire.py#L21-L33" signature="Wire(qubit, after_instruction)" modifiers="class">
+  Bases: [`NamedTuple`](https://docs.python.org/3/library/typing.html#typing.NamedTuple)
+
+  A stretch of one qubit’s timeline between two consecutive gates on that qubit.
+
+  Barriers and measurements are not gates, so they do not start or end a wire.
+
+  #### qubit
+
+  <Attribute id="qiskit_paulice.wire.Wire.qubit">
+    Index of the qubit.
+
+    **Type**
+
+    [int](https://docs.python.org/3/builtins/functions.html#int)
+  </Attribute>
+
+  #### after\_instruction
+
+  <Attribute id="qiskit_paulice.wire.Wire.after_instruction">
+    Index into `QuantumCircuit.data` of the gate on `qubit` that the wire follows. `None` denotes the qubit’s input wire, before its first gate.
+
+    **Type**
+
+    [int](https://docs.python.org/3/builtins/functions.html#int) | None
+  </Attribute>
+
+  Create new instance of Wire(qubit, after\_instruction)
+
+  #### count
+
+  <Function id="qiskit_paulice.wire.Wire.count" signature="count(value, /)">
+    Return number of occurrences of value.
+  </Function>
+
+  #### index
+
+  <Function id="qiskit_paulice.wire.Wire.index" signature="index(value, start=0, stop=9223372036854775807, /)">
+    Return first index of value.
+
+    Raises ValueError if the value is not present.
+  </Function>
+</Class>
+

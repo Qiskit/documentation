@@ -20,8 +20,10 @@ In addition to the standard Resource Controller fields, the response includes qu
 
 The `extensions` object includes these fields:
 
-- `instance_limit_seconds` — Integer, or `null`. The usage time limit for the instance. See [Set instance allocation limits](/docs/guides/allocation-limits).
-- `usage_allocation_seconds` — Integer, or `null`. The time allocated to this instance, used by the [fair-share scheduler](/docs/guides/fair-share-scheduler) to determine queue priority. See [Set instance allocation limits](/docs/guides/allocation-limits).
+- `instance_limit_seconds` — Integer, or `null`. The usage time limit for the instance, in seconds. See [Set instance allocation limits](/docs/guides/allocation-limits).
+- `instance_limit_ru` — Float, or `null`. The usage limit for the instance, in resource units (RUs).
+- `usage_allocation_seconds` — Integer, or `null`. The time allocated to this instance, in seconds, used by the [fair-share scheduler](/docs/guides/fair-share-scheduler) to determine queue priority. See [Set instance allocation limits](/docs/guides/allocation-limits).
+- `usage_allocation_ru` — Float, or `null`. The allocation for this instance, in resource units (RUs).
 - `backends` — Array of strings. The allowlist of backend names available to this instance. `["ANY"]` means all backends on the plan are available (the default). `[]` means no backends are available.
 
 <Admonition type="caution" title="The backends field may be outdated">
@@ -111,9 +113,15 @@ Use the [`PATCH /v2/resource_instances/{crn}`](https://cloud.ibm.com/apidocs/res
 
 Pass a `parameters` JSON object in the request body with the fields you want to change, along with the header `"Content-Type: application/json"`. Omitted fields are left unchanged.
 
-- `instance_limit_seconds` — Integer, or `null`. The usage time limit for the instance. See [Set instance allocation limits](/docs/guides/allocation-limits).
-- `usage_allocation_seconds` — Integer, or `null`. The time allocated to this instance, used by the [fair-share scheduler](/docs/guides/fair-share-scheduler) to determine queue priority. See [Set instance allocation limits](/docs/guides/allocation-limits). Not applicable to Pay-As-You-Go instances.
+- `instance_limit_seconds` — Integer, or `null`. The usage time limit for the instance, in seconds. See [Set instance allocation limits](/docs/guides/allocation-limits).
+- `instance_limit_ru` — Float, or `null`. The usage limit for the instance, in resource units (RUs).
+- `usage_allocation_seconds` — Integer, or `null`. The time allocated to this instance, in seconds, used by the [fair-share scheduler](/docs/guides/fair-share-scheduler) to determine queue priority. See [Set instance allocation limits](/docs/guides/allocation-limits). Not applicable to Pay-As-You-Go instances.
+- `usage_allocation_ru` — Float, or `null`. The allocation for this instance, in resource units (RUs).
 - `backends` — Array of strings. The allowlist of backend names available to this instance. `["ANY"]` means all backends on the plan are available. `[]` means no backends are available.
+
+<Admonition type="note" title="Resource units and seconds">
+ You cannot specify parameters that use both seconds and RUs in the same request; specifying both returns an error. If you specify seconds, the corresponding RU value is automatically computed, and vice versa.
+</Admonition>
 
 <Admonition type="caution" title="Always include a unique timestamp">
   The API silently ignores the request if `parameters` is identical to the previous request. In the `parameters` object, always include a `timestamp` field set to the current time so each request is treated as unique.
@@ -189,9 +197,15 @@ Required fields:
 
 You can also include a `parameters` object to set quantum-specific values:
 
-- `instance_limit_seconds` — Integer, or `null`. The usage time limit for the instance. See [Set instance allocation limits](/docs/guides/allocation-limits).
-- `usage_allocation_seconds` — Integer, or `null`. The time allocated to this instance, used by the [fair-share scheduler](/docs/guides/fair-share-scheduler) to determine queue priority. See [Set instance allocation limits](/docs/guides/allocation-limits). Not applicable to Pay-As-You-Go instances.
+- `instance_limit_seconds` — Integer, or `null`. The usage time limit for the instance, in seconds. See [Set instance allocation limits](/docs/guides/allocation-limits).
+- `instance_limit_ru` — Float, or `null`. The usage limit for the instance, in resource units (RUs).
+- `usage_allocation_seconds` — Integer, or `null`. The time allocated to this instance, in seconds, used by the [fair-share scheduler](/docs/guides/fair-share-scheduler) to determine queue priority. See [Set instance allocation limits](/docs/guides/allocation-limits). Not applicable to Pay-As-You-Go instances.
+- `usage_allocation_ru` — Float, or `null`. The allocation for this instance, in resource units (RUs).
 - `backends` — Array of strings. The allowlist of backend names available to this instance. `["ANY"]` means all backends on the plan are available. `[]` means no backends are available.
+
+<Admonition type="note" title="Resource units and seconds">
+ You cannot specify parameters that use both seconds and RUs in the same request; specifying both returns an error. If you specify seconds, the corresponding RU value is automatically computed, and vice versa.
+</Admonition>
 
 <Tabs>
   <TabItem value="curl" label="cURL">

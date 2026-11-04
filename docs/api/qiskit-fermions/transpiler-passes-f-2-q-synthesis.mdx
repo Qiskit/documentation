@@ -29,7 +29,6 @@ python_api_name: qiskit_fermions.transpiler.passes.F2QSynthesis
       ...     "Evolution": ("MapperFn", (jordan_wigner,)),
       ...     "FermionicMeasure": "TrivialOccupation",
       ...     "InitializeModes": "TrivialOccupation",
-      ...     "OrbitalRotation": "GivensDecomposition",
       ... }
       >>> synth = passes.F2QSynthesis(config)
       ```
@@ -44,7 +43,6 @@ python_api_name: qiskit_fermions.transpiler.passes.F2QSynthesis
       >>> synth.methods["Evolution"] = passes.MapperFnEvolutionSynthesis(jordan_wigner)
       >>> synth.methods["FermionicMeasure"] = passes.TrivialOccupationFermionicMeasureSynthesis()
       >>> synth.methods["InitializeModes"] = passes.TrivialOccupationInitializeModesSynthesis()
-      >>> synth.methods["OrbitalRotation"] = passes.GivensDecompositionOrbitalRotationSynthesis()
       ```
 
       Through this manual approach it is also possible to inject custom [`F2QSynthesisPlugin`](transpiler-passes-synthesis-f-2-q-synthesis-plugin "qiskit_fermions.transpiler.passes.synthesis.F2QSynthesisPlugin") implementations without requiring them to be registered through an [entry-point](https://setuptools.pypa.io/en/latest/userguide/entry_point.html).
@@ -53,7 +51,12 @@ python_api_name: qiskit_fermions.transpiler.passes.F2QSynthesis
 
   **Parameters**
 
-  **config** ([*F2QSynthesisConfig*](transpiler-passes-synthesis-synthesis-f-2-q-synthesis-config "qiskit_fermions.transpiler.passes.synthesis.synthesis.F2QSynthesisConfig") *| None*) – an optional dictionary to pre-populate the [`methods`](#qiskit_fermions.transpiler.passes.F2QSynthesis.methods "qiskit_fermions.transpiler.passes.F2QSynthesis.methods") with plugins provided by the [`F2QSynthesisPluginManager`](transpiler-passes-synthesis-f-2-q-synthesis-plugin-manager "qiskit_fermions.transpiler.passes.synthesis.F2QSynthesisPluginManager").
+  **config** ([*F2QSynthesisConfig*](transpiler-passes-synthesis-f-2-q-synthesis-f-2-q-synthesis-config "qiskit_fermions.transpiler.passes.synthesis.f2q_synthesis.F2QSynthesisConfig") *| None*) – an optional dictionary to pre-populate the [`methods`](#qiskit_fermions.transpiler.passes.F2QSynthesis.methods "qiskit_fermions.transpiler.passes.F2QSynthesis.methods") with plugins provided by the [`F2QSynthesisPluginManager`](transpiler-passes-synthesis-f-2-q-synthesis-plugin-manager "qiskit_fermions.transpiler.passes.synthesis.F2QSynthesisPluginManager"), or with plugin instances. See `F2QSynthesisConfig`.
+
+  **Raises**
+
+  *   [**KeyError**](https://docs.python.org/3/builtins/exceptions.html#KeyError) – if `config` names an instruction or a method for which no plugin is installed.
+  *   [**TypeError**](https://docs.python.org/3/builtins/exceptions.html#TypeError) – if `config` gives a value that is none of the forms of `F2QSynthesisConfig`.
 
   ## Attributes
 
@@ -98,7 +101,7 @@ python_api_name: qiskit_fermions.transpiler.passes.F2QSynthesis
     [*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit)
   </Function>
 
-  **Inherited Methods**
+  ## Inherited Methods
 
   ### execute
 

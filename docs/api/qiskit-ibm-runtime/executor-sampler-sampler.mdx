@@ -8,7 +8,7 @@ python_api_name: qiskit_ibm_runtime.executor_sampler.Sampler
 
 # Sampler
 
-<Class id="qiskit_ibm_runtime.executor_sampler.Sampler" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.50/qiskit_ibm_runtime/executor_sampler/sampler.py#L47-L235" signature="Sampler(mode=None, options=None)" modifiers="class">
+<Class id="qiskit_ibm_runtime.executor_sampler.Sampler" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.51/qiskit_ibm_runtime/executor_sampler/sampler.py#L47-L233" signature="Sampler(mode=None, options=None)" modifiers="class">
   Bases: [`BaseSamplerV2`](/docs/api/qiskit/qiskit.primitives.BaseSamplerV2)
 
   Client-side Sampler primitive for IBM Quantum Compute (formerly Qiskit Runtime).
@@ -82,7 +82,7 @@ python_api_name: qiskit_ibm_runtime.executor_sampler.Sampler
 
   ### backend
 
-  <Function id="qiskit_ibm_runtime.executor_sampler.Sampler.backend" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.50/qiskit_ibm_runtime/executor_sampler/sampler.py#L129-L131" signature="backend()">
+  <Function id="qiskit_ibm_runtime.executor_sampler.Sampler.backend" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.51/qiskit_ibm_runtime/executor_sampler/sampler.py#L129-L131" signature="backend()">
     Return the backend the primitive query will be run on.
 
     **Return type**
@@ -92,7 +92,7 @@ python_api_name: qiskit_ibm_runtime.executor_sampler.Sampler
 
   ### finalize\_options
 
-  <Function id="qiskit_ibm_runtime.executor_sampler.Sampler.finalize_options" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.50/qiskit_ibm_runtime/executor_sampler/sampler.py#L171-L182" signature="finalize_options()">
+  <Function id="qiskit_ibm_runtime.executor_sampler.Sampler.finalize_options" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.51/qiskit_ibm_runtime/executor_sampler/sampler.py#L171-L182" signature="finalize_options()">
     Construct and finalize the Sampler options.
 
     This method produces the final [`SamplerOptions`](options-models-sampler-options "qiskit_ibm_runtime.options_models.SamplerOptions") instance used inside a call to [`run()`](#qiskit_ibm_runtime.executor_sampler.Sampler.run "qiskit_ibm_runtime.executor_sampler.Sampler.run") by resolving the `None` in the twirling options as documented in [`TwirlingOptions`](options-models-twirling-options "qiskit_ibm_runtime.options_models.TwirlingOptions").
@@ -108,7 +108,7 @@ python_api_name: qiskit_ibm_runtime.executor_sampler.Sampler
 
   ### find\_unique\_layers
 
-  <Function id="qiskit_ibm_runtime.executor_sampler.Sampler.find_unique_layers" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.50/qiskit_ibm_runtime/executor_sampler/sampler.py#L142-L169" signature="find_unique_layers(pubs, types='gates')">
+  <Function id="qiskit_ibm_runtime.executor_sampler.Sampler.find_unique_layers" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.51/qiskit_ibm_runtime/executor_sampler/sampler.py#L142-L169" signature="find_unique_layers(pubs, types='gates')">
     Return the unique boxed layers found across the given PUBs of a given type.
 
     The `types` of layers can be either `"gates"` or `"all"`, corresponding to only gate layers or all layers, respectively. The returned list then contains one instance of each distinct boxed layer (represented as a `CircuitInstruction`) appearing in the input PUBs.
@@ -129,10 +129,10 @@ python_api_name: qiskit_ibm_runtime.executor_sampler.Sampler
 
   ### run
 
-  <Function id="qiskit_ibm_runtime.executor_sampler.Sampler.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.50/qiskit_ibm_runtime/executor_sampler/sampler.py#L184-L235" signature="run(pubs, *, shots=None, dry_run=False)">
+  <Function id="qiskit_ibm_runtime.executor_sampler.Sampler.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/stable/0.51/qiskit_ibm_runtime/executor_sampler/sampler.py#L184-L233" signature="run(pubs, *, shots=None, dry_run=False)">
     Submit a request to the sampler primitive.
 
-    For moderate and complex workloads, the client-side processing done to map sampler inputs to executor inputs can be resource intensive and cause a delay between invoking the function and the `job` being submitted. In order to check the progress of the call, it is recommended to setup logging (with an `INFO` level) - see [IBM Quantum Compute documentation](/docs/api/qiskit-ibm-runtime/runtime-service#logging) for more information.
+    For moderate and complex workloads, the client-side processing done to map sampler inputs to executor inputs can be resource intensive and cause a delay between invoking the function and the `job` being submitted. In order to check the progress of the call, it is recommended to setup logging (with an `INFO` level) - see [IBM Quantum Compute Logging information](/docs/api/qiskit-ibm-runtime/runtime-service#logging-guide) for more details.
 
     **Parameters**
 

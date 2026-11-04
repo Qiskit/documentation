@@ -22,6 +22,8 @@ IBM Quantum content follows IBM style guidelines, which include rules for ensuri
 - Avoid first-person (I, we, us); use second-person instead (you -- whether explicit or understood) EXCEPTION: it is often acceptable to use "we" in Learning content (anything in the `learning/` directory)
 - Choose active voice over passive voice (for example, "The Estimator primitive returns a list of values." instead of "A list of values is returned by the Estimator primitive.")
 - Avoid future tense as well as future perfect tense (for example, ask yourself any time you use the word "will" if you really need it)
+- When a gerund phrase is the subject of a sentence, rewrite it as a second-person clause. For example, use "To write that as an operator, you must choose..." instead of "Writing that as an operator requires a choice...", or "If you run the pass again, nothing changes" instead of "Running the pass again does nothing." A noun can also work: "A bound on the occupation is not enough" instead of "Bounding the occupation is not enough."
+  - Exception: keep a gerund that names a technical operation, where a rewrite would change the meaning (for example, "Mapping does not commute with normal ordering").
 
 ## Lists
 
@@ -44,6 +46,9 @@ IBM Quantum content follows IBM style guidelines, which include rules for ensuri
 - Avoid using "above" and "below" when referring to software versions/fix levels; instead, use "earlier" and "later". Also avoid "above" and "below" to indicate the location of content within a page. Instead, use "preceding" or "previous" and "later"
 - Avoid anthropomorphizing or stating that inanimate objects grant abilities to people, as in “the product lets you / allows you / enables you to…” or "the software understands/hopes/believes...". Whenever possible, use a direct, user-focused alternative such as “you can use the product to…” or “with this product, users can…”
 - Use DD Monthname YYYY to format dates (note no comma after the month); for example, '13 February 2024'
+- Use bold and italics only on nouns, or to introduce a term the first time it appears (for example, "pick a **truncation** _d_"). Do not use them on adjectives, adverbs, verbs, conjunctions, prepositions, or whole sentences ("does **not** commute," "on _both_ axes"). Exception: bold lead-in sentences in a summary list are acceptable, because they help readers scan the list.
+- Remove "here," "now," and similar pointing words when the sentence is complete without them ("so nothing here is specific to a chain" becomes "so nothing is specific to a chain"). Keep the word when it is the grammatical subject ("Here is the result") or when a contrast needs it ("They agree here, but differ away from it").
+- Do not start a sentence with "And," "But," "So," or "Or." Join the sentence to the previous one, or use a transition such as "however," "therefore," or "also."
 
 ## Translation and accessibility concerns
 
