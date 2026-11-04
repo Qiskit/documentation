@@ -132,7 +132,7 @@ Because the target reflects the selected calibration, transpile your circuits ag
 The `qec_experimental` calibration and the `for_loop` instruction are experimental. Both support only the use case described on this page and might change or be removed without notice.
 </Admonition>
 
-The `qec_experimental` calibration might not be available on all backends. With this calibration, you can use the `for_loop` instruction to repeat a block of operations a fixed number of times, without unrolling the block into the circuit. The block can include mid-circuit measurements. Use this calibration for quantum error correction (QEC) experiments, such as running many rounds of a repetition code.
+The `qec_experimental` calibration might not be available on all backends. With this calibration, you can use the `for_loop` instruction to repeat a block of operations a fixed number of times, without unrolling the block into the circuit. The block can include mid-circuit measurements. Use this calibration for repetition code experiments. In these experiments, you measure two-qubit parity checks across a chain of qubits for many rounds. You can then decode the measurement results to study processor performance at low error rates over long computations.
 
 The `for_loop` instruction has these restrictions:
 
