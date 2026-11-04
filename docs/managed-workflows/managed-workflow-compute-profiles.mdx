@@ -86,7 +86,7 @@ my_workflow = client.upload(
     ManagedWorkflow(
         title="my-workflow",
         entrypoint="my_workflow.py",
-        working_dir="./my_workflow/",
+        working_dir="./source_files/",
         runner="fleets",
         sizes_map={"M": "16x128"},
         default_size="M",
@@ -122,7 +122,7 @@ my_workflow = client.upload(
     ManagedWorkflow(
         title="my-workflow",
         entrypoint="my_workflow.py",
-        working_dir="./my_workflow/",
+        working_dir="./source_files/",
         runner="fleets",
         sizes_map=sizes_map,
         default_size="M",
@@ -166,6 +166,16 @@ job = my_workflow.run(circuits=circuits)  # Runs on the default size, M
 ```
 
 `sizes()` and `get_default_size()` return the sizes that were stored when you loaded the workflow. To see sizes that changed after that, load the workflow again.
+
+To read the size and compute profile of the job, call `get_function_size()` and `get_compute_profile()` in your workflow code:
+
+<CodeTitle title="source_files/my_workflow.py" />
+```python
+from qiskit_serverless import get_compute_profile, get_function_size
+
+print(get_function_size())  # 'L'
+print(get_compute_profile())  # '128x1500'
+```
 
 ## Troubleshoot sizes
 

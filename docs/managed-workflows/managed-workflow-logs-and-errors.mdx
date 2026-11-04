@@ -29,7 +29,7 @@ Anything that the workflow writes to standard output or standard error goes to t
 
 Use the `logging` module from the Python standard library. `logging.basicConfig()` writes to standard error, which reaches the logs without delay. The format in the following example adds a timestamp to each line:
 
-<CodeTitle title="my_workflow/my_workflow.py" />
+<CodeTitle title="source_files/my_workflow.py" />
 ```python
 import logging
 
@@ -64,7 +64,7 @@ job = my_workflow.run(circuits=circuits, log_level="DEBUG")
 
 To enable this, set the level of your logger from the argument:
 
-<CodeTitle title="my_workflow/my_workflow.py" />
+<CodeTitle title="source_files/my_workflow.py" />
 ```python
 from qiskit_serverless import get_arguments
 
@@ -111,7 +111,7 @@ print(job.error_message())
 
 To enable this, raise `ServerlessError` where the error happens, and wrap the code of your entrypoint in a `try` block that sends any error with `send_error()`. Functions adds this handler to Catalog Functions, but not to custom workflows:
 
-<CodeTitle title="my_workflow/my_workflow.py" />
+<CodeTitle title="source_files/my_workflow.py" />
 ```python
 from qiskit_serverless import ServerlessError, send_error
 
@@ -153,7 +153,7 @@ except Exception as error:
 
 `send_error()` does not stop the workflow or change its status, so you can also report problems that the workflow recovers from, such as each circuit that it skips:
 
-<CodeTitle title="my_workflow/my_workflow.py" />
+<CodeTitle title="source_files/my_workflow.py" />
 ```python
 valid_circuits = []
 for index, circuit in enumerate(circuits):
@@ -189,7 +189,7 @@ print(job.result())  # {'status': 'canceled', 'partial_results': [...]}
 
 To enable this, add the handler at the start of your entrypoint:
 
-<CodeTitle title="my_workflow/my_workflow.py" />
+<CodeTitle title="source_files/my_workflow.py" />
 ```python
 import signal
 import sys

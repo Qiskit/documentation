@@ -69,7 +69,7 @@ job = my_workflow.run(input_file="hamiltonian.npz")
 
 To enable this, edit your workflow code to read the file from `/function_user_data`, which is where every job sees file storage:
 
-<CodeTitle title="my_workflow/my_workflow.py" />
+<CodeTitle title="source_files/my_workflow.py" />
 ```python
 from pathlib import Path
 
@@ -86,7 +86,7 @@ Inside a job, read and write files through this folder. The client file methods,
 
 To read an archive, extract it to the local disk:
 
-<CodeTitle title="my_workflow/my_workflow.py" />
+<CodeTitle title="source_files/my_workflow.py" />
 ```python
 import tarfile
 
@@ -110,7 +110,7 @@ print(result["output_files"])  # ['energies.npy', 'summary.json']
 
 To enable this, save each output file at the top level of `/function_user_data`, and return the file names with `save_result()`:
 
-<CodeTitle title="my_workflow/my_workflow.py" />
+<CodeTitle title="source_files/my_workflow.py" />
 ```python
 import json
 
@@ -158,7 +158,7 @@ with tarfile.open(Path("outputs") / result["archive"]) as tar:
 
 To enable this, write the outputs to a folder on the local disk, add the folder to an archive in `/tmp`, and copy the archive to file storage:
 
-<CodeTitle title="my_workflow/my_workflow.py" />
+<CodeTitle title="source_files/my_workflow.py" />
 ```python
 import shutil
 import tarfile
@@ -212,7 +212,7 @@ for theta in [0.1, 0.2, 0.3]:
     jobs[run_name] = my_workflow.run(run_name=run_name, theta=theta, input_file="hamiltonian.npz")
 ```
 
-<CodeTitle title="my_workflow/my_workflow.py" />
+<CodeTitle title="source_files/my_workflow.py" />
 ```python
 run_name = arguments["run_name"]
 np.save(FILE_STORAGE / f"{run_name}_energies.npy", energies)
@@ -226,7 +226,7 @@ Use run names that you can recognize later, and that contain only letters, digit
 
 A job that is canceled, fails, or reaches the 24-hour limit loses everything that is not in file storage. For long runs, save a checkpoint to file storage at regular intervals, and resume from it when you run the workflow again with the same run name:
 
-<CodeTitle title="my_workflow/my_workflow.py" />
+<CodeTitle title="source_files/my_workflow.py" />
 ```python
 import json
 import shutil

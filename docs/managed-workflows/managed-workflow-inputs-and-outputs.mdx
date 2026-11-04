@@ -29,7 +29,7 @@ In a managed workflow, `run()` is the call, `get_arguments()` gives the workflow
 - **The call does not wait.** `run()` returns a job right away, and you read the result later with `job.result()`. See [Save results](#save-results).
 - **Nothing checks the call.** A Python function rejects an unknown keyword argument, but a workflow ignores it unless you attach a schema. See [Best practice: validate arguments with a schema](#best-practice-validate-arguments-with-a-schema).
 
-![Your local notebook, run_workflow_remotely.ipynb, calls run(args). Functions runs an optional schema check, then creates the managed workflow job, my_workflow/my_workflow.py. The job reads its arguments with get_arguments(), runs your code, such as mapping, transpiling circuits, running primitives, and post-processing, and returns a result with save_result(). Functions stores the result, and your notebook reads it with job.result().](/docs/images/guides/managed-workflows/inputs-outputs.svg)
+![Your local notebook, run_workflow_remotely.ipynb, calls run(args). Functions runs an optional schema check, then creates the managed workflow job, source_files/my_workflow.py. The job reads its arguments with get_arguments(), runs your code, such as mapping, transpiling circuits, running primitives, and post-processing, and returns a result with save_result(). Functions stores the result, and your notebook reads it with job.result().](/docs/images/guides/managed-workflows/inputs-outputs.svg)
 
 ## Read arguments in your workflow
 
@@ -42,7 +42,7 @@ job = my_workflow.run(circuits=circuits, shots=1024)
 
 To enable this, edit your workflow code to fetch arguments with `get_arguments()`, which is a dictionary whose keys are the argument names:
 
-<CodeTitle title="my_workflow/my_workflow.py" />
+<CodeTitle title="source_files/my_workflow.py" />
 ```python
 from qiskit_serverless import get_arguments
 
@@ -52,6 +52,17 @@ shots = arguments.get("shots", 4096)
 ```
 
 The dictionary contains only the arguments that the run passed, so use `arguments.get()` with a default value for optional arguments. Any argument name works except the following protected keywords: `config` and `function_size`, because `run()` uses these directly.
+
+To read the size that the job runs at, call `get_function_size()` in your workflow code:
+
+<CodeTitle title="source_files/my_workflow.py" />
+```python
+from qiskit_serverless import get_function_size
+
+size = get_function_size()  # For example, "M"
+```
+
+If the run does not pass `function_size`, `get_function_size()` returns the workflow's default size. See [Choose a size for each run](/docs/managed-workflows/managed-workflow-compute-profiles#choose-a-size-for-each-run).
 
 {/* REVIEW: run() also rejects compute_profile (function.py RunnableQiskitFunction.run). Decide whether to mention it. */}
 
@@ -82,7 +93,7 @@ result = job.result()
 
 You can set this up as follows:
 
-<CodeTitle title="my_workflow/my_workflow.py" />
+<CodeTitle title="source_files/my_workflow.py" />
 ```python
 from qiskit_serverless import save_result
 
@@ -142,7 +153,7 @@ my_workflow = client.upload(
     ManagedWorkflow(
         title="my-workflow",
         entrypoint="my_workflow.py",
-        working_dir="./my_workflow/",
+        working_dir="./source_files/",
         runner="fleets",
         arguments_schema=arguments_schema,
     )
