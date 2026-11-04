@@ -1,0 +1,118 @@
+---
+title: occupation_encoding (latest version)
+description: API reference for qiskit_bosons.mappers.library.occupation_encoding in the latest version of qiskit-bosons
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit_bosons.mappers.library.occupation_encoding
+---
+
+<span id="occupation-encoding" />
+
+# occupation\_encoding
+
+<Function id="qiskit_bosons.mappers.library.occupation_encoding" isDedicatedPage={true} signature="occupation_encoding(op, spec, num_qubits=None)">
+  Map a [`BosonOperator`](operators-boson-operator "qiskit_bosons.operators.BosonOperator") to a [`SparseObservable`](/docs/api/qiskit/qiskit.quantum_info.SparseObservable).
+
+  **Parameters**
+
+  *   **op** – the bosonic operator to map.
+  *   **spec** – the [`LevelSpec`](mappers-level-spec "qiskit_bosons.mappers.LevelSpec") with the cutoff of every mode and the encoding that lays the occupation levels out on qubits. There is deliberately **no default** cutoff; see [Truncation](#boson-truncation) below. See [Choosing an encoding](#boson-encoding-choice) for the encoding.
+  *   **num\_qubits** – the number of qubits of the result. This may exceed what the modes need, in which case the surplus qubits are idle and sit at the end. If omitted (`None`), the result has exactly as many qubits as the modes need.
+
+  **Returns**
+
+  The mapped qubit operator. Duplicate terms are merged as the result is assembled, with a tolerance of $10^{-15}$ relative to the largest coefficient, so the result is typically already simplified. It is not guaranteed to be in any particular order, nor to be free of terms below that tolerance. Call [`simplify()`](/docs/api/qiskit/qiskit.quantum_info.SparseObservable#simplify) if you need the canonical form. This does not affect the operator that the result represents.
+
+  **Raises**
+
+  [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – if `spec` has one cutoff per mode and `op` acts on a mode beyond the last, or if `num_qubits` is smaller than the register the modes need.
+
+  **Definition**
+
+  This is the mapper for the occupation (Fock) basis: level $n$ of a mode is the state with $n$ bosons. Each bosonic mode is truncated to $d = n_\text{max} + 1$ occupation levels, where $n_\text{max}$ is its cutoff in `spec`, and laid out on consecutive qubits. Mode $m$ starts at the offset the spec assigns it, which is the number of qubits of the modes before it, so modes with different cutoffs may occupy a different number of qubits. A spec with a single shared cutoff is applied to the [`min_num_modes()`](operators-boson-operator#min_num_modes "qiskit_bosons.operators.BosonOperator.min_num_modes") modes of the operator; a spec with one cutoff per mode keeps all of its modes. How the $d$ levels are placed on a mode’s qubits is the choice of the [`LevelEncoding`](mappers-level-encoding "qiskit_bosons.mappers.LevelEncoding").
+
+  Under the unary encodings the ladder operator takes the form
+
+$$
+b^\dagger = \sum_{n=0}^{d-2} \sqrt{n+1} \, \lvert 1 \rangle\langle 0 \rvert_{n+1}
+\otimes \lvert 0 \rangle\langle 1 \rvert_{n} \, ,
+$$
+
+  each term moving the single excitation up one level. The two unary encodings differ in what happens on the other qubits of the mode. With [`LevelEncoding.UNARY_UNPROJECTED`](mappers-level-encoding#unary_unprojected "qiskit_bosons.mappers.LevelEncoding.UNARY_UNPROJECTED") they are left alone, so each term has exactly two $X$/$Y$ factors, on the qubits of levels $n$ and $n+1$. With [`LevelEncoding.UNARY_PROJECTED`](mappers-level-encoding#unary_projected "qiskit_bosons.mappers.LevelEncoding.UNARY_PROJECTED") the mapped operator also keeps the one-hot constraint, by putting a projector $\lvert 0 \rangle\langle 0 \rvert$ on each of the other qubits of the mode. A term then touches all $d$ qubits of the mode, although only two of its factors are not diagonal, and it costs more to synthesize. The two are equal on the one-hot subspace.
+
+  <span id="boson-truncation" />
+
+  **Truncation**
+
+  A bosonic mode has an **infinite-dimensional** Fock space, so it must be truncated before it fits on qubits. Truncation is lossy in a specific, quantifiable way: writing $\bar{b}$ for the truncated operator,
+
+$$
+[\bar{b}, \bar{b}^\dagger] = 1 - d \, \lvert d-1 \rangle\langle d-1 \rvert \, ,
+$$
+
+  that is, the canonical commutator holds on every level except the highest.   <span id="id1" />[\[1\]](#id2) A consequence worth spelling out is that the span of $\{\bar{b}^\dagger, \bar{b}\}$ is **not closed** under the commutator, from which Somma et al. conclude that no direct mapping of the bosonic algebra onto the spin-1/2 algebra exists: a bosonic encoding maps states (and operators acting within the truncated subspace), not an algebra.
+
+  <Admonition title="Warning" type="caution">
+    **Mapping does not commute with normal ordering.** For an operator whose normal ordering requires a contraction, `occupation_encoding(op, ...)` and `occupation_encoding(op.normal_ordered(), ...)` are *different* qubit operators, differing by exactly the $d \lvert d-1 \rangle\langle d-1 \rvert$ defect above. For example $b b^\dagger$ truncates to a top diagonal entry of $0$ ($b^\dagger$ sends the top level out of the retained space, so there is nothing left for $b$ to act on), whereas the algebraically equal $b^\dagger b + 1$ gives $d$. The two agree on every other level.
+
+    This is inherent, not an implementation artifact: normal ordering is an exact identity in the untruncated Fock space, so truncating before versus after applying it gives different operators. Decide once whether your Hamiltonian is defined in normal-ordered form and stay consistent.
+  </Admonition>
+
+  <Admonition title="Warning" type="caution">
+    The cutoff of every mode must bound the occupation **reachable** in that mode by the operator being simulated, not merely that of the initial state. A two-mode beamsplitter acting on $\lvert 1, 1 \rangle$ populates $\lvert 2, 0 \rangle$, so a cutoff of 1 is insufficient for that state even though neither mode starts above occupation 1. [`BosonOperator.mode_occupations()`](operators-boson-operator#mode_occupations "qiskit_bosons.operators.BosonOperator.mode_occupations") reports how far a single application of the operator can raise each mode, and [`LevelSpec.truncation()`](mappers-level-spec#truncation "qiskit_bosons.mappers.LevelSpec.truncation") compares that with the cutoffs of a spec. Because it is a rise, the cutoff of a mode needs to be at least its initial occupation plus that bound, and even then it is a lower bound and not a guarantee. The beamsplitter above reports a bound of one in each mode, yet needs a cutoff of two for $\lvert 1, 1 \rangle$.
+  </Admonition>
+
+  <span id="boson-encoding-choice" />
+
+  **Choosing an encoding**
+
+  There is no universally best [`LevelEncoding`](mappers-level-encoding "qiskit_bosons.mappers.LevelEncoding"), so all of them are offered on an equal footing; the trade-offs are described in its documentation. For bosonic modes, the unary encodings give ladder terms with only two non-diagonal factors, at a cost of $d$ qubits per mode, while the two compact encodings need only $\lceil \log_2 d \rceil$ qubits but produce terms with more non-diagonal factors. Of the two unary encodings, the unprojected one is the cheaper to synthesize and is undefined outside the one-hot subspace; the projected one keeps a projector on every idle qubit.
+
+  **Usage**
+
+  The number operator $n_0 = b^\dagger_0 b_0$ is diagonal, so it maps to a weighted sum of occupation projectors:
+
+  ```pycon
+  >>> from qiskit_bosons.mappers import LevelSpec
+  >>> from qiskit_bosons.mappers.library import occupation_encoding
+  >>> from qiskit_bosons.operators import BosonOperator, ann, cre
+  >>> n0 = BosonOperator.from_dict({(cre(0), ann(0)): 1.0})
+  >>> obs = occupation_encoding(n0, LevelSpec(2, "unary_projected"))
+  >>> obs.num_qubits
+  3
+  >>> terms = sorted(obs.to_sparse_list())
+  >>> [(label, round(coeff.real, 6)) for label, _, coeff in terms]
+  [('001', 2.0), ('010', 1.0)]
+  ```
+
+  Under the unary encodings, level $n$ of the mode is qubit $n$. In a label, `1` is the projector $\lvert 1 \rangle\langle 1 \rvert$ and `0` is $\lvert 0 \rangle\langle 0 \rvert$, so the first term is $2$ times the projector onto level 2 and the second is the projector onto level 1, each with $\lvert 0 \rangle\langle 0 \rvert$ on the other qubits.
+
+  The compact encodings place the same operator on fewer qubits, and the encoding may be given by its name or as a [`LevelEncoding`](mappers-level-encoding "qiskit_bosons.mappers.LevelEncoding"):
+
+  ```pycon
+  >>> from qiskit_bosons.mappers import LevelEncoding
+  >>> gray = occupation_encoding(n0, LevelSpec(3, LevelEncoding.GRAY))
+  >>> gray.num_qubits
+  2
+  >>> occupation_encoding(n0, LevelSpec(3, "gray")) == gray
+  True
+  ```
+
+  Modes may have different cutoffs, and so occupy a different number of qubits. Here mode 0 keeps five levels (three qubits) and mode 1 keeps three (two qubits), and a wider register leaves the surplus qubits idle:
+
+  ```pycon
+  >>> n01 = BosonOperator.from_dict({(cre(0), ann(0)): 1.0, (cre(1), ann(1)): 1.0})
+  >>> spec = LevelSpec([4, 2], "gray")
+  >>> occupation_encoding(n01, spec).num_qubits
+  5
+  >>> occupation_encoding(n01, spec, num_qubits=8).num_qubits
+  8
+  ```
+
+  <span id="id2" />
+
+  \[[1](#id1)]
+
+  R. Somma et al., Quantum Simulations of Physics Problems, [arXiv:quant-ph/0304063](https://arxiv.org/abs/quant-ph/0304063), Sec. 4, Eq. 22.
+</Function>
+

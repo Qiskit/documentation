@@ -1,0 +1,109 @@
+---
+title: transpiler (latest version)
+description: API reference for qiskit_bosons.transpiler in the latest version of qiskit-bosons
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit_bosons.transpiler
+---
+
+<span id="module-qiskit_bosons.transpiler" />
+
+# Transpiler
+
+## Overview
+
+Transpilation is the process of rewriting a given input circuit to conform with desired criteria such as topological and operational constraints of the hardware used to execute the final circuit. We are not going to explain this in more detail here, and instead refer to Qiskit’s documentation of the [`qiskit.transpiler`](/docs/api/qiskit/transpiler#module-qiskit.transpiler) module.
+
+The focus here lies on explaining how we achieve the transpilation of a [`BosonicCircuit`](/docs/api/qiskit-bosons/circuit-bosonic-circuit#qiskit_bosons.circuit.BosonicCircuit "qiskit_bosons.circuit.BosonicCircuit") to a [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit).
+
+## Stages
+
+Conceptually, we split the transpilation process into several stages:
+
+| Stage                                                        | Description                                |
+| ------------------------------------------------------------ | ------------------------------------------ |
+| [Input](#qiskit-bosons-transpiler-stage-input)               | convert to DAG data structure              |
+| [Optimization](#qiskit-bosons-transpiler-stage-optimization) | bosonic-level optimization                 |
+| [Layout](#qiskit-bosons-transpiler-stage-layout)             | boson-to-qubit layouting                   |
+| [Synthesis](#qiskit-bosons-transpiler-stage-synthesis)       | boson-to-qubit synthesis                   |
+| [Qubit](#qiskit-bosons-transpiler-stage-qubit)               | continued transpilation on the qubit-level |
+| [Output](#qiskit-bosons-transpiler-stage-output)             | convert from DAG data structure            |
+
+<span id="qiskit-bosons-transpiler-stage-input" />
+
+### Input
+
+The various transpiler passes are implemented to work with [`BosonicDAGCircuit`](/docs/api/qiskit-bosons/circuit-bosonic-dag-circuit#qiskit_bosons.circuit.BosonicDAGCircuit "qiskit_bosons.circuit.BosonicDAGCircuit") as the underlying data structure to store the circuit operations. Such directed acyclic graphs (DAGs) provide an efficient data model for the traversal and manipulation of circuits.
+
+However, an end-user is more likely to work with a [`BosonicCircuit`](/docs/api/qiskit-bosons/circuit-bosonic-circuit#qiskit_bosons.circuit.BosonicCircuit "qiskit_bosons.circuit.BosonicCircuit") as it provides a more intuitive interface and data model. As such, this input stage simply runs the [`BosonicCircuitToDAG`](/docs/api/qiskit-bosons/transpiler-bosonic-circuit-to-dag#qiskit_bosons.transpiler.BosonicCircuitToDAG "qiskit_bosons.transpiler.BosonicCircuitToDAG") transpiler pass.
+
+<span id="qiskit-bosons-transpiler-stage-optimization" />
+
+### Optimization
+
+This stage of the transpilation pipeline can implement circuit optimizations while preserving the type of circuit to be an instance of [`BosonicDAGCircuit`](/docs/api/qiskit-bosons/circuit-bosonic-dag-circuit#qiskit_bosons.circuit.BosonicDAGCircuit "qiskit_bosons.circuit.BosonicDAGCircuit"). As such, no qubit information is required (or necessarily available) at this point in the transpilation pipeline.
+
+<span id="qiskit-bosons-transpiler-stage-layout" />
+
+### Layout
+
+One global configuration setting for the transpilation process is the boson-to-qubit “layout”. This must be provided by the user and it must match the provided boson-to-qubit mapping (in the sense that, if a chosen mapping encodes a fixed number of bosons with a different number of qubits, the configured layout must account for that).
+
+In the general case, bosonic modes are not always encoded with an occupation-basis into the qubit register. Consequently, we cannot associate a single bosonic mode with a single qubit. Therefore, the user-provided boson-to-qubit layout ([`B2QLayout`](/docs/api/qiskit-bosons/transpiler-b-2-q-layout#qiskit_bosons.transpiler.B2QLayout "qiskit_bosons.transpiler.B2QLayout")) associates [`BosonicRegister`](/docs/api/qiskit-bosons/circuit-bosonic-register#qiskit_bosons.circuit.BosonicRegister "qiskit_bosons.circuit.BosonicRegister") instances with [`QuantumRegister`](/docs/api/qiskit/circuit#qiskit.circuit.QuantumRegister) ones.
+
+|                                                                                                                                        |                                                           |
+| -------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
+| [`B2QLayout`](/docs/api/qiskit-bosons/transpiler-b-2-q-layout#qiskit_bosons.transpiler.B2QLayout "qiskit_bosons.transpiler.B2QLayout") | A mapping of bosonic mode registers to quantum registers. |
+
+The way to configure this global setting, is by placing a [`B2QLayout`](/docs/api/qiskit-bosons/transpiler-b-2-q-layout#qiskit_bosons.transpiler.B2QLayout "qiskit_bosons.transpiler.B2QLayout") instance in the `b2q_layout` field of the `property_set`. For more details refer to [Layouting Passes](transpiler-passes#qiskit-bosons-transpiler-passes-layout).
+
+<span id="qiskit-bosons-transpiler-stage-synthesis" />
+
+### Synthesis
+
+At its core, the transpilation is handled by the [`B2QSynthesis`](/docs/api/qiskit-bosons/transpiler-passes-b-2-q-synthesis#qiskit_bosons.transpiler.passes.B2QSynthesis "qiskit_bosons.transpiler.passes.B2QSynthesis") transpiler pass. It is conceptually similar to Qiskit’s [`HighLevelSynthesis`](/docs/api/qiskit/qiskit.transpiler.passes.HighLevelSynthesis) pass, which uses various plugins for transpiling high-level circuit instructions. For more details, refer to the documentation of [`B2QSynthesis`](/docs/api/qiskit-bosons/transpiler-passes-b-2-q-synthesis#qiskit_bosons.transpiler.passes.B2QSynthesis "qiskit_bosons.transpiler.passes.B2QSynthesis") directly.
+
+How a given [`BosonicGate`](/docs/api/qiskit-bosons/circuit-bosonic-gate#qiskit_bosons.circuit.BosonicGate "qiskit_bosons.circuit.BosonicGate") can be synthesized in terms of qubit-based operations will depend on the particular gate type as well as the user-chosen boson-to-qubit mapping. For more details, refer to [Transpiler Pass Synthesis (B2Q)](transpiler-passes-synthesis#qiskit-bosons-transpiler-passes-synthesis-plugins).
+
+<span id="qiskit-bosons-transpiler-stage-qubit" />
+
+### Qubit
+
+At this point in the transpilation process, we have reached a [`DAGCircuit`](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit) instance and can continue to use Qiskit’s transpilation pipeline as one would usually.
+
+<Admonition title="Hint" type="note">
+  Additional transpiler passes for optimizations on the qubit-level that take into account the knowledge of a circuit originating from a [`BosonicCircuit`](/docs/api/qiskit-bosons/circuit-bosonic-circuit#qiskit_bosons.circuit.BosonicCircuit "qiskit_bosons.circuit.BosonicCircuit") may be added in the future!
+</Admonition>
+
+<span id="qiskit-bosons-transpiler-stage-output" />
+
+### Output
+
+This stage implements effectively the reverse of [Input](#qiskit-bosons-transpiler-stage-input), by calling the [`QuantumDAGToCircuit`](/docs/api/qiskit-bosons/transpiler-quantum-dag-to-circuit#qiskit_bosons.transpiler.QuantumDAGToCircuit "qiskit_bosons.transpiler.QuantumDAGToCircuit") transpiler pass.
+
+## Pass Managers
+
+All of the stages above are the default stages by how the [`presets`](transpiler-presets#module-qiskit_bosons.transpiler.presets "qiskit_bosons.transpiler.presets") orchestrate the various `MultiStagePassManager`.
+
+The individual stages can be either a single pass (when they change from one internal representation (IR) to another, such as the [Input](#qiskit-bosons-transpiler-stage-input), [Synthesis](#qiskit-bosons-transpiler-stage-synthesis), and [Output](#qiskit-bosons-transpiler-stage-output) stages above) or a stage can be a [`BasePassManager`](/docs/api/qiskit/qiskit.passmanager.BasePassManager) whose internal passes can be modified.
+
+For the stages operating on bosonic circuits ([Optimization](#qiskit-bosons-transpiler-stage-optimization) and [Layout](#qiskit-bosons-transpiler-stage-layout)), the type of passmanager to use is [`BosonicPassManager`](/docs/api/qiskit-bosons/transpiler-bosonic-pass-manager#qiskit_bosons.transpiler.BosonicPassManager "qiskit_bosons.transpiler.BosonicPassManager").
+
+|                                                                                                                                                                                                     |                                                                                                                                                                                                      |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`BosonicPassManager`](/docs/api/qiskit-bosons/transpiler-bosonic-pass-manager#qiskit_bosons.transpiler.BosonicPassManager "qiskit_bosons.transpiler.BosonicPassManager")(\[tasks, max\_iteration]) | A transpiler pass manager converting one [`BosonicCircuit`](/docs/api/qiskit-bosons/circuit-bosonic-circuit#qiskit_bosons.circuit.BosonicCircuit "qiskit_bosons.circuit.BosonicCircuit") to another. |
+
+### Conversion Passes
+
+Some very basic conversion passes are provided directly by this module:
+
+|                                                                                                                                                                                  |                                                                                                                                                                                                                                                                                                                               |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`BosonicCircuitToDAG`](/docs/api/qiskit-bosons/transpiler-bosonic-circuit-to-dag#qiskit_bosons.transpiler.BosonicCircuitToDAG "qiskit_bosons.transpiler.BosonicCircuitToDAG")() | Converts a [`BosonicCircuit`](/docs/api/qiskit-bosons/circuit-bosonic-circuit#qiskit_bosons.circuit.BosonicCircuit "qiskit_bosons.circuit.BosonicCircuit") to a [`BosonicDAGCircuit`](/docs/api/qiskit-bosons/circuit-bosonic-dag-circuit#qiskit_bosons.circuit.BosonicDAGCircuit "qiskit_bosons.circuit.BosonicDAGCircuit"). |
+| [`BosonicDAGToCircuit`](/docs/api/qiskit-bosons/transpiler-bosonic-dag-to-circuit#qiskit_bosons.transpiler.BosonicDAGToCircuit "qiskit_bosons.transpiler.BosonicDAGToCircuit")() | Converts a [`BosonicDAGCircuit`](/docs/api/qiskit-bosons/circuit-bosonic-dag-circuit#qiskit_bosons.circuit.BosonicDAGCircuit "qiskit_bosons.circuit.BosonicDAGCircuit") to a [`BosonicCircuit`](/docs/api/qiskit-bosons/circuit-bosonic-circuit#qiskit_bosons.circuit.BosonicCircuit "qiskit_bosons.circuit.BosonicCircuit"). |
+| [`QuantumDAGToCircuit`](/docs/api/qiskit-bosons/transpiler-quantum-dag-to-circuit#qiskit_bosons.transpiler.QuantumDAGToCircuit "qiskit_bosons.transpiler.QuantumDAGToCircuit")() | Converts a [`DAGCircuit`](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit) to a [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit).                                                                                                                                                                             |
+
+### Presets
+
+For user convenience, the [`qiskit_bosons.transpiler.presets`](transpiler-presets#module-qiskit_bosons.transpiler.presets "qiskit_bosons.transpiler.presets") module provides a number of functions for quickly building pre-defined transpilation pipelines.
+
