@@ -12,7 +12,7 @@ description: "Choose the CPU, memory, and GPU resources for a managed workflow, 
 - **Concurrent job limits.** This section moved to [Active job limit](/docs/managed-workflows/run-parameter-sweep#active-job-limit). Apply that change before publishing.
 </Admonition>
 
-Managed workflows run on compute profiles. A compute profile is a fixed combination of vCPUs, memory, and GPUs, much like the resources that you request from an HPC scheduler. When you upload a workflow, you map its sizes, such as `S` and `M`, to profiles, and each run picks one of those sizes. The job then runs on its own node with that profile, and keeps the profile until the job ends.
+Managed workflows run on compute profiles. A compute profile is a fixed combination of vCPUs, memory, and GPUs, similar to the resources that you request from an HPC scheduler. When you upload a workflow, you map its sizes, such as `S` and `M`, to profiles, and each run picks one of those sizes. The job then runs on its own node with that profile, and keeps the profile until the job ends.
 
 | Profile | vCPUs | Memory (GB) | GPUs | Startup time |
 | - | - | - | - | - |
@@ -62,7 +62,7 @@ profile = client.compute_profile(cpu=24, memory=120, gpu="1l40s")
 print(profile)  # 24x120x1l40s
 ```
 
-`compute_profiles()` returns a list, so you can also filter it yourself, for example to find the GPU profiles:
+`compute_profiles()` returns a list, so you can also filter it yourself. For example, the following code finds the GPU profiles:
 
 <CodeTitle title="run_workflow_remotely.ipynb" />
 ```python
@@ -94,7 +94,7 @@ my_workflow = client.upload(
 )
 ```
 
-Every run of the workflow uses this profile, so you don't need to pass a size when you run it:
+Every run of the workflow uses this profile, so you do not need to pass a size when you run it:
 
 <CodeTitle title="run_workflow_remotely.ipynb" />
 ```python
@@ -103,16 +103,16 @@ job = my_workflow.run(circuits=circuits)  # Runs on 16x128
 
 ## Best practice: match sizes to problem sizes
 
-Your workflows are designed to solve specific problems, and might require different compute profiles as you increase scale and complexity. With a workflow-specific `sizes_map`, you can do the following:
+A workflow solves specific problems, and it might require different compute profiles as the problems increase in scale and complexity. With a `sizes_map` for each workflow, you can do the following:
 
 - Give large problems enough compute resources to run to completion.
-- Keep small problems from taking a larger node than they need.
+- Prevent small problems from using a larger node than they need.
 
-You can base the sizes on whatever drives your workflow's memory and CPU use, such as the subspace size, the number of batches, or the number of qubits.
+You can base the sizes on the factors that determine your workflow's memory and CPU use, such as the subspace size, the number of batches, or the number of qubits.
 
 ### Define the sizes
 
-You can map up to four sizes, for small (`S`), medium (`M`), large (`L`), and extra-large (`XL`) problems. For example, a workflow with three sizes looks like this:
+You can map up to four sizes, for small (`S`), medium (`M`), large (`L`), and extra-large (`XL`) problems. For example, the following code defines a workflow with three sizes:
 
 <CodeTitle title="run_workflow_remotely.ipynb" />
 ```python
@@ -130,10 +130,9 @@ my_workflow = client.upload(
 )
 ```
 
-
 ### Size rules
 
-Size labels must be `S`, `M`, `L`, or `XL`, so a workflow can define up to four sizes. Functions matches labels without regard to case and stores them in uppercase. Two sizes can map to the same profile.
+Size labels must be `S`, `M`, `L`, or `XL`, so a workflow can define up to four sizes. Functions matches labels in uppercase or lowercase, and stores them in uppercase. Two sizes can map to the same profile.
 
 Functions rejects the first upload of a workflow in the following cases:
 
@@ -148,9 +147,9 @@ When you upload the workflow again with the same `title`, Functions handles the 
 
 - If you set `sizes_map`, the new sizes replace all of the stored sizes.
 - If you omit `sizes_map`, Functions keeps the stored sizes and the default.
-- To change only the default, set `default_size` without `sizes_map`. It must be one of the stored sizes.
+- To change only the default, set `default_size` without `sizes_map`. The value of `default_size` must be one of the stored sizes.
 
-Set `default_size` every time that you set `sizes_map`. A re-upload does not require it, so if the new sizes do not include the old default, the workflow has no default, and every run without `function_size` fails.
+Set `default_size` every time that you set `sizes_map`. A re-upload does not require `default_size`. If the new sizes do not include the old default, the workflow has no default, and every run without `function_size` fails.
 
 ## Choose a size for each run
 
@@ -165,7 +164,7 @@ job = my_workflow.run(function_size="L", circuits=circuits)  # Runs on 128x1500
 job = my_workflow.run(circuits=circuits)  # Runs on the default size, M
 ```
 
-`sizes()` and `get_default_size()` return the sizes that were stored when you loaded the workflow. To see sizes that changed after that, load the workflow again.
+`sizes()` and `get_default_size()` return the sizes that were stored when you loaded the workflow. To see sizes that changed after you loaded the workflow, load it again.
 
 To read the size and compute profile of the job, call `get_function_size()` and `get_compute_profile()` in your workflow code:
 

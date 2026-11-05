@@ -36,7 +36,7 @@ Your workflow can import any of these packages without setup. Functions installs
 
 {/* REVIEW: GPU compute profiles also include CUDA packages, such as cupy-cuda12x and gpu4pyscf-cuda12x, which dependencies_versions() does not list. qiskit-serverless PR #2607 moves them to a separate GPU image. Decide whether to document them. */}
 
-Functions does not read a `requirements.txt` or `pyproject.toml` file, so nothing installs the packages that it lists.
+Functions does not read a `requirements.txt` or `pyproject.toml` file, so it does not install the packages that these files list.
 
 ### Request a package
 
@@ -62,7 +62,7 @@ pip download --only-binary=:all: --platform manylinux_2_28_x86_64 \
     --python-version 3.12 --dest wheels pendulum==3.1.0
 ```
 
-With `--platform` and `--python-version`, `pip download` gets wheels for the job's platform, also on macOS or Windows. It also downloads the package's dependencies, such as `python-dateutil`, `six`, and `tzdata` for `pendulum`. Because the job installs each wheel without its dependencies, upload a wheel for every dependency that the environment lacks, and delete the others.
+With `--platform` and `--python-version`, `pip download` gets wheels for the job's platform, even when you run it on macOS or Windows. It also downloads the package's dependencies, such as `python-dateutil`, `six`, and `tzdata` for `pendulum`. Because the job installs each wheel without its dependencies, upload a wheel for every dependency that the environment lacks, and delete the other wheels from the folder.
 
 A pure-Python wheel (`py3-none-any.whl`) works on any platform. If a package with compiled code has no Linux x86_64 wheel on PyPI, build one on Linux, for example in a `python:3.12` container. Keep the original file names, because `pip` reads the package name, version, and platform from them.
 
@@ -98,7 +98,7 @@ client.list_wheels(my_workflow)
 client.remove_wheels(my_workflow, ["mypkg-1.0-py3-none-any.whl"])
 ```
 
-To upgrade a package, remove the old wheel, then add the new one. A new version has a different file name, so if you keep the old wheel, `install_uploaded_wheels()` installs both versions.
+To upgrade a package, remove the old wheel, and then add the new one. A new version has a different file name, so if you keep the old wheel, `install_uploaded_wheels()` installs both versions.
 
 <CodeTitle title="run_workflow_remotely.ipynb" />
 ```python
@@ -108,7 +108,7 @@ client.add_wheels(my_workflow, ["wheels/mypkg-1.1-*.whl"])
 
 ### Install wheels in your workflow
 
-To enable this, edit your workflow code to call `install_uploaded_wheels()` before it imports the packages:
+Edit your workflow code to call `install_uploaded_wheels()` before it imports the packages:
 
 <CodeTitle title="source_files/my_workflow.py" />
 ```python
@@ -142,11 +142,11 @@ qiskit-addon-sqd==0.10.0  clash   image ships qiskit-addon-sqd==0.13.1
 
 The report gives each requirement one of the following statuses:
 
-- `baked`: the environment already provides the package. Do not upload a wheel for it.
-- `bring`: the environment lacks the package. Upload a wheel for it.
-- `clash`: the environment provides a different version. Change the version that your code requires, or rebuild your package for the installed version.
+- `baked`: The environment already provides the package. Do not upload a wheel for it.
+- `bring`: The environment lacks the package. Upload a wheel for it.
+- `clash`: The environment provides a different version. Change the version that your code requires, or rebuild your package for the installed version.
 
-The report checks only the supported packages, so it shows `qiskit`, `qiskit-ibm-runtime`, `qiskit-serverless`, and `numpy` as `bring`. The environment includes them, so do not upload wheels for them. A `clash` is reported only for an exact `==` version; a range, such as `>=0.10`, is reported as `baked`. The report uploads nothing.
+The report checks only the supported packages, so it shows `qiskit`, `qiskit-ibm-runtime`, `qiskit-serverless`, and `numpy` as `bring`. The environment includes them, so do not upload wheels for them. The report shows `clash` only for an exact `==` version. It shows a range, such as `>=0.10`, as `baked`. The report does not upload any files.
 
 ## Troubleshoot dependencies
 

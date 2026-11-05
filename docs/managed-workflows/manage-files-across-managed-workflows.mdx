@@ -11,10 +11,10 @@ description: "Upload input files for a managed workflow, read and write them in 
 - **Class names.** The code examples import `QiskitServerless` as `ManagedWorkflowClient` and `QiskitFunction` as `ManagedWorkflow`. Replace the aliases with the new class names after the rename lands in `qiskit-ibm-catalog`.
 - **File storage path.** `/function_user_data` is the path where the Fleets runner mounts file storage. Confirm that it is a supported path before publishing.
 - **Supported file types.** The list of accepted and rejected types comes from the upload check in the gateway. Confirm the list, and whether CSV files will be accepted, before publishing.
-- **Max file size.** I think it's 50 MB? 
+{/*- **Maximum file size.** Confirm the maximum file size (possibly 50 MB) before publishing.*/}
 </Admonition>
 
-A managed workflow job works like a batch job on an HPC compute node. The job's local disk is scratch space: the job can write to it, but Functions deletes it when the job ends. To keep files after the job ends, save them to file storage, which works like your own storage bucket. Files that you upload, and files that your workflow saves, remain in file storage, and later runs of the workflow can read them.
+A managed workflow job works like a batch job on an HPC compute node. The job's local disk is scratch space. The job can write to it, but Functions deletes it when the job ends. To keep files after the job ends, save them to file storage, which works like your own storage bucket. Files that you upload, and files that your workflow saves, remain in file storage, and later runs of the workflow can read them.
 
 Each workflow has its own file storage for each user. Other users who run the same workflow do not see your files.
 
@@ -22,7 +22,7 @@ Each workflow has its own file storage for each user. Other users who run the sa
 
 ## Upload an input file
 
-Upload a file from your local notebook with `file_upload()`, then list the files in storage with `files()`:
+Upload a file from your local notebook with `file_upload()`, and then list the files in storage with `files()`:
 
 <CodeTitle title="run_workflow_remotely.ipynb" />
 ```python
@@ -49,7 +49,7 @@ Functions checks the contents of each uploaded file, not its extension, and reje
 | - | - |
 | JSON, plain text, YAML, and Python files; binary files such as NumPy (`.npy`, `.npz`), QPY, and pickle files; tar, gzip, and zip archives | CSV, PNG, PDF, HDF5, and empty files |
 
-Note: let's figure out if this is recent, and what the file size limitation actually is (50 MB?)
+{/* REVIEW: let's figure out if this is recent, and what the file size limitation actually is (50 MB?) */}
 
 ### File names
 
@@ -94,7 +94,7 @@ with tarfile.open(FILE_STORAGE / "inputs.tar.gz") as tar:
     tar.extractall("/tmp/inputs", filter="data")
 ```
 
-Write temporary files to `/tmp`. File storage is object storage that the job sees as a folder, so it is slower than the local disk. Do heavy reads and writes on the local disk, and copy finished files to file storage.
+Write temporary files to `/tmp`. File storage is object storage that the job sees as a folder, so file storage is slower than the local disk. Do heavy reads and writes on the local disk, and copy finished files to file storage.
 
 {/* REVIEW: confirm how the mount behaves for appends, renames, and partial writes, and how soon a file that one job writes is visible to a job that is running at the same time. */}
 
@@ -200,7 +200,7 @@ for name in client.files(my_workflow):
 
 ## Best practice: give each run's files a unique name
 
-All of your runs of a workflow share the same file storage, and a file that a job saves replaces any stored file with the same name. If you start several runs at once and each run saves `energies.npy`, only the last one is kept.
+All of your runs of a workflow share the same file storage, and a file that a job saves replaces any stored file with the same name. If you start several runs at the same time and each run saves `energies.npy`, only the last one is kept.
 
 As a best practice, pass a run name as an argument, and start the name of every file that the run saves with it:
 
@@ -218,7 +218,7 @@ run_name = arguments["run_name"]
 np.save(FILE_STORAGE / f"{run_name}_energies.npy", energies)
 ```
 
-All runs can read the same input file, `hamiltonian.npz`, because they only read it. Upload a shared input once, before you start the runs.
+All runs can read the same input file, `hamiltonian.npz`, because they only read it. Upload a shared input one time, before you start the runs.
 
 Use run names that you can recognize later, and that contain only letters, digits, underscores, hyphens, and periods. With one prefix for each run, you can find, download, and [delete](#delete-files) the files of a run together.
 
@@ -251,9 +251,9 @@ To continue a run that stopped, call `run()` again with the same arguments.
 
 Keep the following points in mind:
 
-- **Write the checkpoint to the local disk first, then copy it.** If the job stops during a write, the stored checkpoint is incomplete, and the next run cannot read it.
+- **Write the checkpoint to the local disk first, and then copy it.** If the job stops during a write, the stored checkpoint is incomplete, and the next run cannot read it.
 - **Choose an interval that matches the cost of a step.** Save often enough that you do not lose much work, but not so often that writing checkpoints slows the job.
-- **Delete checkpoints after the run succeeds**, so that a later run with the same name starts from the beginning.
+- **Delete checkpoints after the run succeeds.** A later run with the same name then starts from the beginning.
 
 For a job that is canceled, you can also save partial results in a [`SIGTERM` handler](/docs/managed-workflows/managed-workflow-logs-and-errors#clean-up-when-a-job-is-canceled).
 

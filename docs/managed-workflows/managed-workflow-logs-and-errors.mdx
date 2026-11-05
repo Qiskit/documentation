@@ -23,7 +23,7 @@ Set up your workflow code to write logs, report errors to your local notebook, a
 
 ## Write logs
 
-Anything that the workflow writes to standard output or standard error goes to the job's logs, which you read with `job.logs()` while the job runs or after it ends.
+Anything that the workflow writes to standard output or standard error goes to the job's logs. Read the logs with `job.logs()` while the job runs or after it ends.
 
 ### Set up a logger
 
@@ -47,7 +47,7 @@ logger.info("Transpiled %d circuits: depth %d -> %d", len(circuits), 1250, 730)
 2026-11-01 21:57:35,195 INFO my_workflow: Transpiled 12 circuits: depth 1250 -> 730
 ```
 
-`level=logging.WARNING` hides `INFO` messages from other packages, and `logger.setLevel(logging.INFO)` keeps them for your own logger. `qiskit_ibm_runtime` sets its own level with the `QISKIT_IBM_RUNTIME_LOG_LEVEL` environment variable.
+`level=logging.WARNING` hides `INFO` messages from other packages, and `logger.setLevel(logging.INFO)` keeps `INFO` messages for your own logger. `qiskit_ibm_runtime` sets its own level with the `QISKIT_IBM_RUNTIME_LOG_LEVEL` environment variable.
 
 `print()` also reaches the logs, but standard output is buffered, so printed lines might not appear until the job ends. If you use `print()`, pass `flush=True`.
 
@@ -79,16 +79,16 @@ If the workflow has an [argument schema](/docs/managed-workflows/managed-workflo
 Log enough to reconstruct a run from its logs:
 
 - **At the start, log what the run received.** Log the backend name, the number of circuits, and the other settings that change between runs.
-- **Log the start and end of each stage**, with fixed messages that you can search for.
-- **Log iterations at a fixed interval**, such as `iteration 10/200, energy=-1.1000`, instead of every iteration.
-- **Log exceptions with `logger.exception()`** inside an `except` block. The line includes the full traceback, even if the workflow recovers from the error.
+- **Log the start and end of each stage.** Use fixed messages that you can search for.
+- **Log iterations at a fixed interval.** For example, log a line such as `iteration 10/200, energy=-1.1000` every 10 iterations, instead of every iteration.
+- **Log exceptions with `logger.exception()` inside an `except` block.** The line includes the full traceback, even if the workflow recovers from the error.
 - **Turn off progress bars.** The logs store each refresh of a progress bar, such as one from `tqdm`, as a separate line. Pass `disable=True` to `tqdm`, or log at an interval instead.
 - **Keep the logs small.** Do not log large data, such as every shot. Functions keeps only the newest 50 MB of logs for each job.
-- **Use the words "error" and "exception" only in messages about failures.** If a failed job did not [report its error](#best-practice-report-errors-with-send_error), the message of the exception that `job.result()` raises is made of the log lines that contain these words.
+- **Use the words "error" and "exception" only in messages about failures.** If a failed job did not [report its error](#best-practice-report-errors-with-send_error), the exception that `job.result()` raises contains only the log lines that include these words.
 
 ## Best practice: report errors with send_error()
 
-When the workflow raises an exception, the job ends with the `ERROR` status, and the traceback goes to the logs. Functions does not store the error, even for a `ServerlessError`: `job.error_message()` returns `{}`, and the exception that `job.result()` raises contains only the log lines that include `error` or `exception`. Checks of argument types and ranges belong in an [argument schema](/docs/managed-workflows/managed-workflow-inputs-and-outputs#best-practice-validate-arguments-with-a-schema), which rejects a bad run before the job starts.
+When the workflow raises an exception, the job ends with the `ERROR` status, and the traceback goes to the logs. Functions does not store the error, even for a `ServerlessError`. `job.error_message()` returns `{}`, and the exception that `job.result()` raises contains only the log lines that include `error` or `exception`. Checks of argument types and ranges belong in an [argument schema](/docs/managed-workflows/managed-workflow-inputs-and-outputs#best-practice-validate-arguments-with-a-schema), which rejects a bad run before the job starts.
 
 Report every error that stops the workflow with `send_error()`, so that your local notebook gets a short error with a code and details:
 
@@ -177,7 +177,7 @@ for index, circuit in enumerate(circuits):
 
 ## Clean up when a job is canceled
 
-When you cancel a job, Functions sends `SIGTERM` to your entrypoint, uploads the final logs, and shuts down the environment. Without a handler, Python stops right away, and `finally` blocks do not run. Functions also tries to cancel the QPU jobs and sessions that the workflow started with `get_runtime_service()`. See [Cancel linked QPU jobs](/docs/managed-workflows/manage-quantum-classical-workflows#cancel-linked-qpu-jobs).
+When you cancel a job, Functions sends `SIGTERM` to your entrypoint, uploads the final logs, and shuts down the environment. Without a handler, Python stops immediately, and `finally` blocks do not run. Functions also tries to cancel the QPU jobs and sessions that the workflow started with `get_runtime_service()`. See [Cancel linked QPU jobs](/docs/managed-workflows/manage-quantum-classical-workflows#cancel-linked-qpu-jobs).
 
 To keep partial work, register a handler for `SIGTERM`. Your local notebook then gets the partial result from a canceled job:
 
