@@ -10,7 +10,7 @@ python_api_name: Ternary Trees
 
 # Ternary Trees
 
-A ternary tree on $N$ nodes defines a fermion-to-qubit encoding of $N$ fermionic modes onto $N$ qubits. Each node is a qubit carrying three downward **links**, labelled `X`, `Y` and `Z`. A link either descends to a child node (an *edge*) or terminates (a *leg*), and each leg’s path back to the root spells a Pauli string: crossing the link labelled $P$ that descends *from* node $u$ contributes $P$ on qubit $u$, with the identity everywhere else.
+A ternary tree on $N$ nodes defines a fermion-to-qubit encoding of $N$ fermionic modes onto $N$ qubits. Each node is a qubit carrying three downward **links**, labeled `X`, `Y` and `Z`. A link either descends to a child node (an *edge*) or terminates (a *leg*), and each leg’s path back to the root spells a Pauli string: crossing the link labeled $P$ that descends *from* node $u$ contributes $P$ on qubit $u$, with the identity everywhere else.
 
 Every tree of this shape yields a valid encoding, and the encodings named in the literature are simply particular shapes:
 
@@ -55,7 +55,7 @@ Once built, a tree is compiled into a `QfTernaryTreeEncoding` with [`qf_ternary_
 <Function id="qf_ternary_tree_new" signature="QfExitCode qf_ternary_tree_new(uint32_t num_nodes, uint32_t root, const uint32_t *parents, const QfPauliLabel *labels, QfTernaryTree **out)">
   Constructs a ternary tree from a parent-and-label specification.
 
-  A ternary tree on $N$ nodes defines a fermion-to-qubit encoding of $N$ fermionic modes onto $N$ qubits. Each node is a qubit carrying three downward **links**, labelled `X`, `Y` and `Z`. A link either descends to a child node (an *edge*) or terminates (a *leg*), and each leg’s path back to the root spells a Pauli string: crossing the link labelled $P$ that descends *from* node $u$ contributes $P$ on qubit $u$.
+  A ternary tree on $N$ nodes defines a fermion-to-qubit encoding of $N$ fermionic modes onto $N$ qubits. Each node is a qubit carrying three downward **links**, labeled `X`, `Y` and `Z`. A link either descends to a child node (an *edge*) or terminates (a *leg*), and each leg’s path back to the root spells a Pauli string: crossing the link labeled $P$ that descends *from* node $u$ contributes $P$ on qubit $u$.
 
   Every tree of this shape yields a valid encoding, and the familiar ones are particular shapes. This is the general constructor; [`qf_ternary_tree_chain()`](#qf_ternary_tree_chain "qf_ternary_tree_chain") and [`qf_ternary_tree_breadth_first()`](#qf_ternary_tree_breadth_first "qf_ternary_tree_breadth_first") build the two uniform families more conveniently.
 
