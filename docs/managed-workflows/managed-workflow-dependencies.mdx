@@ -1,0 +1,160 @@
+---
+title: "Declare dependencies"
+description: "Declare the Python packages that your managed workflow needs."
+---
+
+{/* cspell:ignore manylinux mypkg pendulum dateutil tzdata cupy CUDA */}
+
+# Declare dependencies
+
+<Admonition type="caution" title="Placeholder content">
+- Waiting on a pull request: `add_wheels()`, `list_wheels()`, `remove_wheels()`, `dependency_report()`, and `install_uploaded_wheels()` come from [Qiskit/qiskit-serverless#2652](https://github.com/Qiskit/qiskit-serverless/pull/2652), which builds on [#2651](https://github.com/Qiskit/qiskit-serverless/pull/2651). Both are open and target the qiskit-serverless 0.38.0 release.
+- The catalog client (imported as `ManagedWorkflowClient`) forwards these methods and `dependencies_versions()` in [Qiskit/qiskit-ibm-catalog#161](https://github.com/Qiskit/qiskit-ibm-catalog/pull/161), which pins `qiskit-serverless~=0.38.0` and releases after it. Update the code examples and output after the PRs merge and the class rename lands.
+</Admonition>
+
+A managed workflow runs in a Python environment that Functions prepares in advance. The job cannot reach the internet, so it cannot `pip install` packages. Instead, Qiskit and a list of [supported packages](#check-which-packages-are-installed) are already installed, and you can [upload wheels](#add-your-own-packages) for any other package that your workflow needs.
+
+## Check which packages are installed
+
+Every job runs with Python 3.12 on Linux (x86_64), with the following packages installed:
+
+- `qiskit`, `qiskit-ibm-runtime`, `qiskit-serverless`, and their dependencies, such as `numpy`.
+- The supported packages, such as `qiskit-aer`, `qiskit-addon-sqd`, `qiskit-addon-utils`, `ffsim`, and `pyscf`. Each is installed at one fixed version.
+
+To see the supported packages and their versions, call `dependencies_versions()` from your local notebook:
+
+{/* REVIEW: dependencies_versions() lists only requirements-dynamic-dependencies.txt. It omits qiskit, qiskit-ibm-runtime, qiskit-serverless, and numpy, although they are installed. */}
+<CodeTitle title="run_workflow_remotely.ipynb" />
+```python
+from qiskit_ibm_catalog import QiskitServerless as ManagedWorkflowClient
+
+client = ManagedWorkflowClient()
+client.dependencies_versions()
+```
+
+Your workflow can import any of these packages without setup. Functions installs them when it builds the environment, not when a job starts, so they do not add to the start time of a job.
+
+{/* REVIEW: GPU compute profiles also include CUDA packages, such as cupy-cuda12x and gpu4pyscf-cuda12x, which dependencies_versions() does not list. qiskit-serverless PR #2607 moves them to a separate GPU image. Decide whether to document them. */}
+
+Functions does not read a `requirements.txt` or `pyproject.toml` file, so nothing installs the packages that it lists.
+
+### Request a package
+
+If other users would also need a package, [request it on GitHub](https://github.com/Qiskit/qiskit-serverless/issues/new?template=pip_dependency_request.yaml). An accepted package is added to the environment in a later release. Until then, or for a private package, [add it as a wheel](#add-your-own-packages).
+
+{/* REVIEW: issue #2017 removes the request template, but the public PR Qiskit/qiskit-serverless#2651 keeps it. Confirm that the link remains. */}
+
+## Add your own packages
+
+To use a package that is not installed, collect its wheel files on your computer, upload them to the workflow's file storage, and install them at the start of the workflow. You upload them again only when they change.
+
+### Build wheels
+
+The job installs wheels without an internet connection, so each wheel must work with Python 3.12 on Linux (x86_64). Collect the wheels in one folder:
+
+<CodeTitle title="Local terminal" />
+```bash
+# Your own package
+pip wheel --no-deps --wheel-dir wheels ./mypkg
+
+# A package from PyPI, for the job's platform
+pip download --only-binary=:all: --platform manylinux_2_28_x86_64 \
+    --python-version 3.12 --dest wheels pendulum==3.1.0
+```
+
+With `--platform` and `--python-version`, `pip download` gets wheels for the job's platform, also on macOS or Windows. It also downloads the package's dependencies, such as `python-dateutil`, `six`, and `tzdata` for `pendulum`. Because the job installs each wheel without its dependencies, upload a wheel for every dependency that the environment lacks, and delete the others.
+
+A pure-Python wheel (`py3-none-any.whl`) works on any platform. If a package with compiled code has no Linux x86_64 wheel on PyPI, build one on Linux, for example in a `python:3.12` container. Keep the original file names, because `pip` reads the package name, version, and platform from them.
+
+### Upload wheels
+
+Upload the wheels from your local notebook with `add_wheels()`:
+
+{/* REVIEW: an upload request can be up to 50 MB (MAX_REQUEST_BODY_SIZE_MB). Confirm whether this limits the size of one wheel. */}
+<CodeTitle title="run_workflow_remotely.ipynb" />
+```python
+from qiskit_ibm_catalog import QiskitServerless as ManagedWorkflowClient
+
+client = ManagedWorkflowClient()
+my_workflow = client.load("my-workflow")
+
+client.add_wheels(my_workflow, ["wheels/*.whl"])
+print(client.list_wheels(my_workflow))
+```
+
+Each path can be a file name or a glob pattern, and `add_wheels()` returns the names of the uploaded wheels. If a pattern matches no files, or matches a file that is not a `.whl` file, `add_wheels()` raises a `QiskitServerlessException`.
+
+Upload the workflow before you add wheels, because the wheels are stored with it. They go to a `wheels` folder in the workflow's [file storage](/docs/managed-workflows/manage-files-across-managed-workflows), separate from your other files.
+
+#### Replace or remove wheels
+
+To see the wheels that are uploaded to a workflow, call `list_wheels()`. To remove wheels, pass their file names to `remove_wheels()`:
+
+<CodeTitle title="run_workflow_remotely.ipynb" />
+```python
+client.list_wheels(my_workflow)
+# ['mypkg-1.0-py3-none-any.whl']
+
+client.remove_wheels(my_workflow, ["mypkg-1.0-py3-none-any.whl"])
+```
+
+To upgrade a package, remove the old wheel, then add the new one. A new version has a different file name, so if you keep the old wheel, `install_uploaded_wheels()` installs both versions.
+
+<CodeTitle title="run_workflow_remotely.ipynb" />
+```python
+client.remove_wheels(my_workflow, ["mypkg-1.0-py3-none-any.whl"])
+client.add_wheels(my_workflow, ["wheels/mypkg-1.1-*.whl"])
+```
+
+### Install wheels in your workflow
+
+To enable this, edit your workflow code to call `install_uploaded_wheels()` before it imports the packages:
+
+<CodeTitle title="source_files/my_workflow.py" />
+```python
+from qiskit_serverless import install_uploaded_wheels
+
+install_uploaded_wheels()
+
+import pendulum  # Installed from an uploaded wheel
+```
+
+`install_uploaded_wheels()` installs every wheel in the `wheels` folder. If the workflow has no wheels, the call does nothing. The wheels are installed again in every run, so a large set of wheels adds to the start time of each job.
+
+## Best practice: bring only missing packages
+
+As a best practice, upload wheels only for the packages that the environment lacks. A wheel for an installed package, such as `numpy`, installs a second copy, and the code that imports it can get either copy. Errors from a mismatch appear only when the job runs.
+
+Before you upload, check your requirements with `dependency_report()` from your local notebook:
+
+{/* REVIEW: dependency_report() compares with dependencies_versions() only, so it reports numpy, qiskit, qiskit-ibm-runtime, and qiskit-serverless as "bring", although the environment includes them (tested with the PR #2652 client). Fix the report, or keep the note after the list. */}
+<CodeTitle title="run_workflow_remotely.ipynb" />
+```python
+print(client.dependency_report(["pendulum==3.1.0", "qiskit-aer", "qiskit-addon-sqd==0.10.0"]))
+```
+
+```text
+requirement               status  note
+pendulum==3.1.0           bring   not in image — upload a wheel
+qiskit-aer                baked   already in image (qiskit-aer==0.17.2)
+qiskit-addon-sqd==0.10.0  clash   image ships qiskit-addon-sqd==0.13.1
+```
+
+The report gives each requirement one of the following statuses:
+
+- `baked`: the environment already provides the package. Do not upload a wheel for it.
+- `bring`: the environment lacks the package. Upload a wheel for it.
+- `clash`: the environment provides a different version. Change the version that your code requires, or rebuild your package for the installed version.
+
+The report checks only the supported packages, so it shows `qiskit`, `qiskit-ibm-runtime`, `qiskit-serverless`, and `numpy` as `bring`. The environment includes them, so do not upload wheels for them. A `clash` is reported only for an exact `==` version; a range, such as `>=0.10`, is reported as `baked`. The report uploads nothing.
+
+## Troubleshoot dependencies
+
+| Problem | Cause |
+| - | - |
+| `pip install` fails inside the workflow. | The job cannot reach the internet. [Upload a wheel](#add-your-own-packages) instead. |
+| `ModuleNotFoundError` for a package that you uploaded. | The workflow imports the package before it calls `install_uploaded_wheels()`. |
+| `ModuleNotFoundError` for a dependency of a package that you uploaded. | Wheels are installed without their dependencies. Upload a wheel for the missing dependency. |
+| The error says that a wheel `is not a supported wheel on this platform`. | The wheel is for another operating system or Python version. Get a wheel for Python 3.12 on Linux x86_64. |
+| `install_uploaded_wheels()` fails with `ResolutionImpossible`. | The `wheels` folder has two versions of the same package. Remove the old wheel with [`remove_wheels()`](#replace-or-remove-wheels). |
+| An installed package, such as `numpy`, fails after you upload wheels. | A wheel installed a second copy of a package that the environment provides. Remove that wheel with [`remove_wheels()`](#replace-or-remove-wheels). |
