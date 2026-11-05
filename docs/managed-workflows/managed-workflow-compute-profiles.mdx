@@ -132,9 +132,9 @@ my_workflow = client.upload(
 
 ### Size rules
 
-Size labels must be `S`, `M`, `L`, or `XL`, so a workflow can define up to four sizes. Functions matches labels in uppercase or lowercase, and stores them in uppercase. Two sizes can map to the same profile.
+Size labels must be `S`, `M`, `L`, or `XL`, so a workflow can define up to four sizes. A managed workflow matches labels in uppercase or lowercase, and stores them in uppercase. Two sizes can map to the same profile.
 
-Functions rejects the first upload of a workflow in the following cases:
+A workflow rejects the first upload in the following cases:
 
 - A label is not `S`, `M`, `L`, or `XL`.
 - You set `sizes_map` without `default_size`, or `default_size` without `sizes_map`.
@@ -143,10 +143,10 @@ Functions rejects the first upload of a workflow in the following cases:
 
 ### Change sizes on re-upload
 
-When you upload the workflow again with the same `title`, Functions handles the sizes as follows:
+When you upload the workflow again with the same `title`, A workflow handles the sizes as follows:
 
 - If you set `sizes_map`, the new sizes replace all of the stored sizes.
-- If you omit `sizes_map`, Functions keeps the stored sizes and the default.
+- If you omit `sizes_map`, the workflow keeps the stored sizes and the default.
 - To change only the default, set `default_size` without `sizes_map`. The value of `default_size` must be one of the stored sizes.
 
 Set `default_size` every time that you set `sizes_map`. A re-upload does not require `default_size`. If the new sizes do not include the old default, the workflow has no default, and every run without `function_size` fails.
