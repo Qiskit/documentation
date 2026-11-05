@@ -14,7 +14,7 @@ description: "Upload input files for a managed workflow, read and write them in 
 {/*- **Maximum file size.** Confirm the maximum file size (possibly 50 MB) before publishing.*/}
 </Admonition>
 
-A managed workflow job works like a batch job on an HPC compute node. The job's local disk is scratch space. The job can write to it, but Functions deletes it when the job ends. To keep files after the job ends, save them to file storage, which works like your own storage bucket. Files that you upload, and files that your workflow saves, remain in file storage, and later runs of the workflow can read them.
+A managed workflow job works like a batch job on an HPC compute node. The job's local disk is scratch space. The job can write to it, but the workflow deletes it when the job ends. To keep files after the job ends, save them to file storage, which works like your own storage bucket. Files that you upload, and files that your workflow saves, remain in file storage, and later runs of the workflow can read them.
 
 Each workflow has its own file storage for each user. Other users who run the same workflow do not see your files.
 
@@ -43,7 +43,7 @@ print(client.files(my_workflow))
 
 ### Supported file types
 
-Functions checks the contents of each uploaded file, not its extension, and rejects files of other types:
+A managed workflow checks the contents of each uploaded file, not its extension, and rejects files of other types:
 
 | Accepted | Rejected |
 | - | - |
@@ -53,7 +53,7 @@ Functions checks the contents of each uploaded file, not its extension, and reje
 
 ### File names
 
-- **Use only letters, digits, underscores (`_`), hyphens (`-`), and periods (`.`).** Functions removes other characters, such as spaces, from the name when you download or delete a file. For example, you can upload `my results.json`, but you cannot download it.
+- **Use only letters, digits, underscores (`_`), hyphens (`-`), and periods (`.`).** A managed workflow removes other characters, such as spaces, from the name when you download or delete a file. For example, you can upload `my results.json`, but you cannot download it.
 - **File storage has no folders.** `file_upload()` keeps only the file name, so `inputs/params.json` is stored as `params.json`.
 
 {/* REVIEW: upload does not sanitize file names, but download and delete do (gateway/api/utils.py sanitize_file_name()). Confirm whether upload should reject or sanitize these names. */}
@@ -180,7 +180,7 @@ Because the archive is built on the local disk and copied in one step, file stor
 
 ## Delete files
 
-Functions does not delete files from file storage, so files remain until you delete them with `file_delete()`:
+A managed workflow does not delete files from file storage, so files remain until you delete them with `file_delete()`:
 
 <CodeTitle title="run_workflow_remotely.ipynb" />
 ```python
