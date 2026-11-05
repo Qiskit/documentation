@@ -12,7 +12,7 @@ description: "Declare the Python packages that your managed workflow needs."
 - The catalog client (imported as `ManagedWorkflowClient`) forwards these methods and `dependencies_versions()` in [Qiskit/qiskit-ibm-catalog#161](https://github.com/Qiskit/qiskit-ibm-catalog/pull/161), which pins `qiskit-serverless~=0.38.0` and releases after it. Update the code examples and output after the PRs merge and the class rename lands.
 </Admonition>
 
-A managed workflow runs in a Python environment that Functions prepares in advance. The job cannot reach the internet, so it cannot `pip install` packages. Instead, Qiskit and a list of [supported packages](#check-which-packages-are-installed) are already installed, and you can [upload wheels](#add-your-own-packages) for any other package that your workflow needs.
+A managed workflow runs in a Python environment that it prepares in advance. The job cannot reach the internet, so it cannot `pip install` packages. Instead, Qiskit and a list of [supported packages](#check-which-packages-are-installed) are already installed, and you can [upload wheels](#add-your-own-packages) for any other package that your workflow needs.
 
 ## Check which packages are installed
 
@@ -32,11 +32,11 @@ client = ManagedWorkflowClient()
 client.dependencies_versions()
 ```
 
-Your workflow can import any of these packages without setup. Functions installs them when it builds the environment, not when a job starts, so they do not add to the start time of a job.
+Your workflow can import any of these packages without setup. The workflow installs them when it builds the environment, not when a job starts, so they do not add to the start time of a job.
 
 {/* REVIEW: GPU compute profiles also include CUDA packages, such as cupy-cuda12x and gpu4pyscf-cuda12x, which dependencies_versions() does not list. qiskit-serverless PR #2607 moves them to a separate GPU image. Decide whether to document them. */}
 
-Functions does not read a `requirements.txt` or `pyproject.toml` file, so it does not install the packages that these files list.
+A workflow does not read a `requirements.txt` or `pyproject.toml` file, so it does not install the packages that these files list.
 
 ### Request a package
 

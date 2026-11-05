@@ -83,12 +83,12 @@ Log enough to reconstruct a run from its logs:
 - **Log iterations at a fixed interval.** For example, log a line such as `iteration 10/200, energy=-1.1000` every 10 iterations, instead of every iteration.
 - **Log exceptions with `logger.exception()` inside an `except` block.** The line includes the full traceback, even if the workflow recovers from the error.
 - **Turn off progress bars.** The logs store each refresh of a progress bar, such as one from `tqdm`, as a separate line. Pass `disable=True` to `tqdm`, or log at an interval instead.
-- **Keep the logs small.** Do not log large data, such as every shot. Functions keeps only the newest 50 MB of logs for each job.
+- **Keep the logs small.** Do not log large data, such as every shot. A managed workflow keeps only the newest 50 MB of logs for each job.
 - **Use the words "error" and "exception" only in messages about failures.** If a failed job did not [report its error](#best-practice-report-errors-with-send_error), the exception that `job.result()` raises contains only the log lines that include these words.
 
 ## Best practice: report errors with send_error()
 
-When the workflow raises an exception, the job ends with the `ERROR` status, and the traceback goes to the logs. Functions does not store the error, even for a `ServerlessError`. `job.error_message()` returns `{}`, and the exception that `job.result()` raises contains only the log lines that include `error` or `exception`. Checks of argument types and ranges belong in an [argument schema](/docs/managed-workflows/managed-workflow-inputs-and-outputs#best-practice-validate-arguments-with-a-schema), which rejects a bad run before the job starts.
+When the workflow raises an exception, the job ends with the `ERROR` status, and the traceback goes to the logs. A managed workflow does not store the error, even for a `ServerlessError`. `job.error_message()` returns `{}`, and the exception that `job.result()` raises contains only the log lines that include `error` or `exception`. Checks of argument types and ranges belong in an [argument schema](/docs/managed-workflows/managed-workflow-inputs-and-outputs#best-practice-validate-arguments-with-a-schema), which rejects a bad run before the job starts.
 
 Report every error that stops the workflow with `send_error()`, so that your local notebook gets a short error with a code and details:
 
@@ -109,7 +109,7 @@ print(job.error_message())
 
 `job.result()` raises a `QiskitServerlessException` with the same text.
 
-To enable this, raise `ServerlessError` where the error happens, and wrap the code of your entrypoint in a `try` block that sends any error with `send_error()`. Functions adds this handler to Catalog Functions, but not to custom workflows:
+To enable this, raise `ServerlessError` where the error happens, and wrap the code of your entrypoint in a `try` block that sends any error with `send_error()`. A workflow adds this handler to Catalog Functions, but not to managed workflows:
 
 <CodeTitle title="source_files/my_workflow.py" />
 ```python
@@ -171,13 +171,13 @@ for index, circuit in enumerate(circuits):
 `job.events(type="ERROR")` returns every error that the workflow reported, including the errors of a job that ended with the `DONE` status. See [Find the cause of an error](/docs/managed-workflows/run-managed-workflow#find-the-cause-of-an-error).
 
 - **Pass numbers and strings in `args`.** `error_message()` shows only the first item of a list.
-- **Check the return value.** If Functions cannot store the error, for example because the code runs outside a job, `send_error()` writes the error to the logs and returns `False`.
+- **Check the return value.** If a workflow cannot store the error, for example because the code runs outside a job, `send_error()` writes the error to the logs and returns `False`.
 
 {/* REVIEW: confirm which error codes user workflows should use. Catalog Function codes come from the IBM Quantum error code registry, which might not apply to user workflows. */}
 
 ## Clean up when a job is canceled
 
-When you cancel a job, Functions sends `SIGTERM` to your entrypoint, uploads the final logs, and shuts down the environment. Without a handler, Python stops immediately, and `finally` blocks do not run. Functions also tries to cancel the QPU jobs and sessions that the workflow started with `get_runtime_service()`. See [Cancel linked QPU jobs](/docs/managed-workflows/manage-quantum-classical-workflows#cancel-linked-qpu-jobs).
+When you cancel a job, the workflow sends `SIGTERM` to your entrypoint, uploads the final logs, and shuts down the environment. Without a handler, Python stops immediately, and `finally` blocks do not run. The workflow also tries to cancel the QPU jobs and sessions that the workflow started with `get_runtime_service()`. See [Cancel linked QPU jobs](/docs/managed-workflows/manage-quantum-classical-workflows#cancel-linked-qpu-jobs).
 
 To keep partial work, register a handler for `SIGTERM`. Your local notebook then gets the partial result from a canceled job:
 
@@ -209,7 +209,7 @@ signal.signal(signal.SIGTERM, handle_sigterm)
 
 `sys.exit()` in the handler raises `SystemExit` in the code that is running, so `finally` blocks run before the script ends. The job still ends with the `CANCELED` status.
 
-Keep the handler short, because Functions shuts down the environment soon after `SIGTERM`. For long runs, also save checkpoints, so that a later run can resume after a job fails or reaches the 24-hour limit. See [Best practice: checkpoint long jobs](/docs/managed-workflows/manage-files-across-managed-workflows#best-practice-checkpoint-long-jobs).
+Keep the handler short, because the workflow shuts down the environment soon after `SIGTERM`. For long runs, also save checkpoints, so that a later run can resume after a job fails or reaches the 24-hour limit. See [Best practice: checkpoint long jobs](/docs/managed-workflows/manage-files-across-managed-workflows#best-practice-checkpoint-long-jobs).
 
 {/* REVIEW: confirm the time between SIGTERM and shutdown. The cancel is a Code Engine hard stop (fleets/handler.py cancel_job, cancel_processing_tasks=True), and the repo sets no grace period. Tested with qiskit-serverless 0.37.0, the real fleet_custom_job_wrapper.py, and docker stop: the handler runs, save_result() writes the result, and result() on a CANCELED job returns it (the result endpoint does not check the status). Confirm on Fleets that a result written in the handler reaches storage before the hard stop. */}
 

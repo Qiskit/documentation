@@ -29,7 +29,7 @@ In a managed workflow, `run()` is the call, `get_arguments()` gives the workflow
 - **The call does not wait.** `run()` returns a job immediately, and you read the result later with `job.result()`. See [Save results](#save-results).
 - **Nothing checks the call.** A Python function rejects an unknown keyword argument, but a workflow ignores it unless you attach a schema. See [Best practice: validate arguments with a schema](#best-practice-validate-arguments-with-a-schema).
 
-![Your local notebook, run_workflow_remotely.ipynb, calls run(args). Functions runs an optional schema check, then creates the managed workflow job, source_files/my_workflow.py. The job reads its arguments with get_arguments(), runs your code, such as mapping, transpiling circuits, running primitives, and post-processing, and returns a result with save_result(). Functions stores the result, and your notebook reads it with job.result().](/docs/images/managed-workflows/inputs-outputs.svg)
+![Your local notebook, run_workflow_remotely.ipynb, calls run(args). A workflow runs an optional schema check, then creates the managed workflow job, source_files/my_workflow.py. The job reads its arguments with get_arguments(), runs your code, such as mapping, transpiling circuits, running primitives, and post-processing, and returns a result with save_result(). A workflow stores the result, and your notebook reads it with job.result().](/docs/images/managed-workflows/inputs-outputs.svg)
 
 ## Read arguments in your workflow
 
@@ -111,7 +111,7 @@ To return files, such as large arrays or plots, save them to [file storage](/doc
 
 ## Best practice: validate arguments with a schema
 
-As a best practice, attach a [JSON Schema](https://json-schema.org/) to every workflow that takes arguments. The schema describes the arguments that the workflow accepts, and Functions checks the arguments of every run against it before it creates the job. If the arguments do not match, `run()` fails immediately with an error that names the bad field, and Functions does not create a job. Without a schema, bad arguments reach the workflow after the job starts, and the workflow ignores a misspelled argument name.
+As a best practice, attach a [JSON Schema](https://json-schema.org/) to every workflow that takes arguments. The schema describes the arguments that the workflow accepts, and the workflow checks the arguments of every run against it before it creates the job. If the arguments do not match, `run()` fails immediately with an error that names the bad field, and the workflow does not create a job. Without a schema, bad arguments reach the workflow after the job starts, and the workflow ignores a misspelled argument name.
 
 Set the schema with `arguments_schema` when you upload the workflow. Pass a dictionary, not a JSON string:
 
@@ -179,7 +179,7 @@ A schema checks the type, shape, and range of each argument. A schema cannot che
 
 - To replace the schema, set a new `arguments_schema` and upload the workflow again.
 - To remove the schema, upload the workflow with `arguments_schema={}`.
-- If you upload the workflow without `arguments_schema`, Functions keeps the stored schema.
+- If you upload the workflow without `arguments_schema`, the workflow keeps the stored schema.
 
 To see the schema that is in effect, read `my_workflow.arguments_schema`. A value of `None` means that the workflow has no schema.
 
@@ -197,7 +197,7 @@ If the arguments are not valid, `validate_arguments()` raises a `QiskitServerles
 
 ### Schema rules
 
-Functions rejects the upload if the schema breaks any of the following rules:
+A managed workflow rejects the upload if the schema breaks any of the following rules:
 
 - The schema can be up to 64 KiB, with up to 64 levels of nesting and up to 200 subschemas.
 - References must point inside the same schema, such as `#/$defs/circuit`, and every reference must resolve. References to URLs or files are not allowed.
@@ -205,7 +205,7 @@ Functions rejects the upload if the schema breaks any of the following rules:
 
 Also avoid the following problems, which the upload does not catch:
 
-- **Nested quantifiers in `pattern`.** A pattern such as `^(a+)+$` can take a very long time to evaluate. Functions stops validation after a CPU time limit and rejects the run. Write patterns without a quantifier around a group that already contains one, such as `^ibm_[a-z0-9_]{1,40}$`.
+- **Nested quantifiers in `pattern`.** A pattern such as `^(a+)+$` can take a very long time to evaluate. A workflow stops validation after a CPU time limit and rejects the run. Write patterns without a quantifier around a group that already contains one, such as `^ibm_[a-z0-9_]{1,40}$`.
 - **`false` as a schema.** The schema `false` rejects every run. To remove validation, use `{}`.
 
 ### Troubleshoot a schema
