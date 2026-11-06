@@ -65,4 +65,15 @@ test("Pkg.determineGithubUrlFn()", () => {
   expect(rc("qiskit/exceptions")).toEqual(
     "https://github.com/qiskit/qiskit/tree/stable/1.0/qiskit/exceptions.py",
   );
+  const versionTag = Pkg.mock({
+    name: "qiskit-ibm-catalog",
+    githubSlug: "Qiskit/qiskit-ibm-catalog",
+    type: "latest",
+    version: "0.21.0",
+    versionWithoutPatch: "0.21",
+    sourceLinkRef: "version-tag",
+  }).determineGithubUrlFn();
+  expect(versionTag("qiskit_ibm_catalog/catalog")).toEqual(
+    "https://github.com/Qiskit/qiskit-ibm-catalog/tree/v0.21.0/qiskit_ibm_catalog/catalog.py",
+  );
 });
