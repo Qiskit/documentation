@@ -135,7 +135,7 @@ const RUNTIME_GLOBS_TO_LOAD = [
   "docs/api/qiskit-ibm-runtime/options.mdx",
   "docs/api/qiskit-ibm-runtime/runtime-service.mdx",
   "docs/guides/*.{mdx,ipynb}",
-  "docs/guides/*.{mdx,ipynb}",
+  "docs/ibm-quantum-compute/*.{mdx,ipynb}",
   ...QISKIT_REMOVED_PAGES_TO_LOAD,
 ];
 const TRANSPILER_GLOBS_TO_LOAD = ["docs/api/qiskit/*.mdx"];
