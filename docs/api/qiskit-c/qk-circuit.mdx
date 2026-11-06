@@ -1111,7 +1111,7 @@ The circuit C API currently only supports creating circuits that contain operati
 <Function id="qk_circuit_inst_unitary" signature="void qk_circuit_inst_unitary(QkCircuit *circuit, size_t index, QkComplex64 *out)">
   Copy out the unitary matrix for a given instruction in the circuit.
 
-  Panics if the instruction at the given index is not a unitary.
+  After this function, `out` will always point to initialized data. However, if the Qiskit instruction is in an inconsistent state (e.g. the matrix parameter does not match the stated instruction size), then the buffer will be filled with `nan`.
 
   <span id="group__QkCircuit_1autotoc_md61" />
 

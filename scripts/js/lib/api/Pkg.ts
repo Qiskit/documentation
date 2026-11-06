@@ -80,6 +80,7 @@ export class Pkg {
     "qiskit-noise-learning",
     "samplomatic",
     "qiskit-mitigation",
+    "qiskit-bosons",
   ];
 
   static VALID_NAMES = [
@@ -304,6 +305,15 @@ export class Pkg {
         ...args,
         title: "Qiskit addon utilities",
         githubSlug: "Qiskit/qiskit-addon-utils",
+        kebabCaseAndShortenUrls: true,
+        language: "Python",
+      });
+    }
+    if (name === "qiskit-bosons") {
+      return new Pkg({
+        ...args,
+        title: "Qiskit bosons",
+        githubSlug: "Qiskit/qiskit-bosons",
         kebabCaseAndShortenUrls: true,
         language: "Python",
       });
