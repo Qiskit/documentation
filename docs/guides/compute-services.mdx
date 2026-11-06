@@ -9,12 +9,12 @@ In addition to the open-source tools of the Qiskit SDK, Qiskit addons, and other
 <span id="qiskit-runtime"></span>
 ## IBM Quantum Compute Service
 
-IBM Quantum Compute Service, formerly called the Qiskit Runtime Service, is the cloud-based service for executing quantum computations on IBM Quantum hardware. The `qiskit-ibm-runtime` package is a client for that service, and is the successor to the Qiskit IBM Provider.  Quantum Compute streamlines quantum computations and provides optimal implementations of the Qiskit primitive base classes for IBM Quantum hardware. To get started with IBM Quantum primitives, visit the [documentation](/docs/qiskit/primitives).
+IBM Quantum Compute Service, formerly called the Qiskit Runtime Service, is the cloud-based service for executing quantum computations on IBM Quantum hardware. The `qiskit-ibm-runtime` package is a client for that service, and is the successor to the Qiskit IBM Provider.  Quantum Compute streamlines quantum computations and provides optimal implementations of the Qiskit primitive base classes for IBM Quantum hardware. To get started with IBM Quantum primitives, visit the [documentation](/docs/ibm-quantum-compute/qiskit-runtime-primitives).
 
 Quantum Compute is designed to use additional classical and quantum compute resources, including techniques such as error suppression and error mitigation, to return a higher-quality result from executing quantum circuits on quantum processors. Examples include dynamical decoupling for error suppression, and readout mitigation and zero-noise extrapolation (ZNE) for error mitigation. Learn how to configure these options on the [Configure error mitigation](/docs/guides/error-mitigation-and-suppression-techniques) page.
 
 
-Quantum Compute also includes three types of execution modes for running your quantum program on IBM&reg; hardware: [Job, Session, and Batch](/docs/guides/execution-modes), each of which have different use cases and implications for the quantum job queue. A Job is a single query to a primitive that can be run over a specified number of shots. Sessions allow you to efficiently run multiple jobs in iterative workloads on quantum computers. Batch mode allows you to submit all your jobs at once for parallel processing. Note that Open Plan users cannot submit session jobs.
+Quantum Compute also includes three types of execution modes for running your quantum program on IBM&reg; hardware: [Job, Session, and Batch](/docs/ibm-quantum-compute/execution-modes), each of which have different use cases and implications for the quantum job queue. A Job is a single query to a primitive that can be run over a specified number of shots. Sessions allow you to efficiently run multiple jobs in iterative workloads on quantum computers. Batch mode allows you to submit all your jobs at once for parallel processing. Note that Open Plan users cannot submit session jobs.
 
 To quickly install the IBM Quantum Compute client, run the following command:
 ```bash
@@ -35,18 +35,16 @@ To run quantum jobs, users create an [instance](/docs/guides/instances) within t
 For more details, read the [setup documentation](/docs/guides/cloud-setup) for getting started with IBM Quantum Platform.
 
 
-## Qiskit Serverless
+## Managed workflows
 
-Creating utility-scale quantum applications generally requires a variety of compute resource requirements. Qiskit Serverless (`qiskit-ibm-catalog.QiskitServerless`) provides a simple interface to run workloads across quantum-classical resources. This includes deploying programs to IBM Quantum Platform and running workloads remotely, as well as easy resource management for multi-cloud and quantum-centric supercomputing use cases. See more information in the [Qiskit Serverless documentation](/docs/guides/serverless) about how to use this collection of tools to:
+Use managed workflows when creating utility-scale quantum applications to help manage the variety of compute resource requirements. Managed workflows run your own Python code on classical compute that IBM Quantum Platform manages for you, alongside the quantum hardware. A managed workflow also manages the environment: it sets up storage, and installs and pre-compiles all packages before your job starts. Use a managed workflow to:
 
-- Parallelize classical tasks, such as pre-processing and post-processing
 - Persist long-running workloads in the cloud, even if your laptop is turned off
+- Use large-memory and GPU nodes by choosing a compute profile
+- Parallelize classical tasks, such as pre-processing and post-processing
 - Deploy reusable programs in the cloud
 
-To start using Qiskit Serverless right away, install it with pip:
-```bash
-pip install qiskit_serverless
-```
+To get started, see [Managed workflows](/docs/managed-workflows).
 
 
 ## Qiskit Functions

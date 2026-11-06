@@ -362,7 +362,7 @@ Default target precision used for Estimator PUBs that do not specify precision e
 
 <Attribute attributeTypeHint="dict">
 
-[IBM Quantum primitive options](/docs/guides/runtime-options-overview) passed through to the underlying SamplerV2 or EstimatorV2 primitive.
+[IBM Quantum primitive options](/docs/ibm-quantum-compute/runtime-options-overview) passed through to the underlying SamplerV2 or EstimatorV2 primitive.
 - Required: No
 - Default value: `{"resilience_level": 0, "dynamical_decoupling": {"enable": false}}`
 - Valid input types: `dict`
@@ -490,14 +490,14 @@ The value is specified in seconds.
 
 <Attribute attributeTypeHint="dict or None" attributeValue="None">
 
-Server-side [`qiskit-ibm-runtime` batch](/docs/guides/run-jobs-batch) configuration.
+Server-side [`qiskit-ibm-runtime` batch](/docs/ibm-quantum-compute/run-jobs-batch) configuration.
 - Required: No
 - Default value: `None`
 - Valid input types: `dict` or `None`
 
 - When omitted or `None`, Orbit submits all prepared PUBs as one Quantum Compute primitive job.
 - When supplied, Orbit partitions the prepared PUBs in input order, creates the authenticated batch inside the remote Function, submits all child jobs, closes the batch, and then collects and merges the child results in the original PUB order.
-- Batch mode is intended for independent workloads whose PUBs are known up front, such as parameter sweeps or curve generation. Use [session mode](/docs/guides/run-jobs-session) instead when later inputs depend on earlier results.
+- Batch mode is intended for independent workloads whose PUBs are known up front, such as parameter sweeps or curve generation. Use [session mode](/docs/ibm-quantum-compute/run-jobs-session) instead when later inputs depend on earlier results.
 - Batch mode requires execution on a real IBM Quantum backend and is incompatible with `preview=True` or `simulator=True`.
 - The configuration must be JSON serializable. Do not create a local `qiskit_ibm_runtime.Batch` object and pass it to `orbit.run(...)`; a caller-created batch cannot control the asynchronous Qiskit Function execution environment.
 - If the PUB count is less than or equal to `max_pubs_per_job`, Orbit creates one child job and the batch provides no partition parallelism.
