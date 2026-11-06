@@ -486,7 +486,7 @@ Functions for the study of fermionic systems.
 
 ### batch\_to\_ci\_strings
 
-<Function id="qiskit_addon_sqd.fermion.batch_to_ci_strings" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.14/qiskit_addon_sqd/fermion.py#L888-L947" signature="batch_to_ci_strings(batch, norb, carryover_strings_a=None, carryover_strings_b=None, *, symmetrize_spin=False)">
+<Function id="qiskit_addon_sqd.fermion.batch_to_ci_strings" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.14/qiskit_addon_sqd/fermion.py#L890-L949" signature="batch_to_ci_strings(batch, norb, carryover_strings_a=None, carryover_strings_b=None, *, symmetrize_spin=False)">
   Convert a batch of bitstrings into a pair of per-spin CI string arrays.
 
   The strings of each spin sector are returned in descending order of the number of times they were sampled, with any carryover strings ahead of them. That order is what a later truncation to a maximum dimension keeps, so it matters.
@@ -512,7 +512,7 @@ Functions for the study of fermionic systems.
 
 ### bitstring\_matrix\_to\_ci\_strs
 
-<Function id="qiskit_addon_sqd.fermion.bitstring_matrix_to_ci_strs" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.14/qiskit_addon_sqd/fermion.py#L1602-L1633" signature="bitstring_matrix_to_ci_strs(bitstring_matrix, open_shell=False)">
+<Function id="qiskit_addon_sqd.fermion.bitstring_matrix_to_ci_strs" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.14/qiskit_addon_sqd/fermion.py#L1612-L1643" signature="bitstring_matrix_to_ci_strs(bitstring_matrix, open_shell=False)">
   Convert bitstrings (rows) in a `bitstring_matrix` into integer representations of determinants.
 
   This function separates each bitstring in `bitstring_matrix` in half, translates them into integer representations, and finally appends them to their respective (spin-up or spin-down) lists. Those lists are sorted and output from this function.
@@ -533,7 +533,7 @@ Functions for the study of fermionic systems.
 
 ### diagonalize\_fermionic\_hamiltonian
 
-<Function id="qiskit_addon_sqd.fermion.diagonalize_fermionic_hamiltonian" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.14/qiskit_addon_sqd/fermion.py#L454-L840" signature="diagonalize_fermionic_hamiltonian(one_body_tensor, two_body_tensor, bit_array, samples_per_batch, norb, nelec, *, num_batches=1, energy_tol=1e-08, occupancies_tol=1e-05, max_iterations=100, sci_solver=None, policy=None, symmetrize_spin=False, max_dim=None, include_configurations=None, initial_occupancies=None, carryover_threshold=None, callback=None, seed=None)">
+<Function id="qiskit_addon_sqd.fermion.diagonalize_fermionic_hamiltonian" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.14/qiskit_addon_sqd/fermion.py#L454-L842" signature="diagonalize_fermionic_hamiltonian(one_body_tensor, two_body_tensor, bit_array, samples_per_batch, norb, nelec, *, num_batches=1, energy_tol=1e-08, occupancies_tol=1e-05, max_iterations=100, sci_solver=None, policy=None, symmetrize_spin=False, max_dim=None, include_configurations=None, initial_occupancies=None, carryover_threshold=None, callback=None, seed=None)">
   Run the sample-based quantum diagonalization (SQD) algorithm.
 
   **Parameters**
@@ -564,7 +564,7 @@ Functions for the study of fermionic systems.
 
       Inputs:
 
-      *   List of pairs (strings\_a, strings\_b) of arrays of spin-alpha CI strings and spin-beta CI strings whose Cartesian product give the basis of the subspace in which to perform a diagonalization. Every subspace of an iteration is passed in a single call, so that a solver may diagonalize them concurrently rather than one after another.
+      *   List of pairs (strings\_a, strings\_b) of arrays of spin-alpha CI strings and spin-beta CI strings whose Cartesian product give the basis of the subspace in which to perform a diagonalization. Every subspace of an iteration is passed in a single call, so that a solver may diagonalize them concurrently rather than one after another. Both arrays are sorted in ascending order, so a solver may rely on that ordering when mapping amplitudes back to determinants.
       *   One-body tensor of the Hamiltonian.
       *   Two-body tensor of the Hamiltonian.
       *   The number of spatial orbitals.
@@ -640,7 +640,7 @@ Functions for the study of fermionic systems.
 
 ### enlarge\_batch\_from\_transitions
 
-<Function id="qiskit_addon_sqd.fermion.enlarge_batch_from_transitions" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.14/qiskit_addon_sqd/fermion.py#L1636-L1659" signature="enlarge_batch_from_transitions(bitstring_matrix, transition_operators)">
+<Function id="qiskit_addon_sqd.fermion.enlarge_batch_from_transitions" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.14/qiskit_addon_sqd/fermion.py#L1646-L1669" signature="enlarge_batch_from_transitions(bitstring_matrix, transition_operators)">
   Apply the set of transition operators to the configurations represented in `bitstring_matrix`.
 
   **Parameters**
@@ -659,7 +659,7 @@ Functions for the study of fermionic systems.
 
 ### solve\_fermion
 
-<Function id="qiskit_addon_sqd.fermion.solve_fermion" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.14/qiskit_addon_sqd/fermion.py#L1343-L1443" signature="solve_fermion(bitstring_matrix, /, hcore, eri, *, open_shell=False, spin_sq=None, shift=0.1, **kwargs)">
+<Function id="qiskit_addon_sqd.fermion.solve_fermion" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.14/qiskit_addon_sqd/fermion.py#L1353-L1453" signature="solve_fermion(bitstring_matrix, /, hcore, eri, *, open_shell=False, spin_sq=None, shift=0.1, **kwargs)">
   Approximate the ground state given molecular integrals and a set of electronic configurations.
 
   **Parameters**
@@ -699,12 +699,12 @@ Functions for the study of fermionic systems.
 
 ### solve\_sci
 
-<Function id="qiskit_addon_sqd.fermion.solve_sci" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.14/qiskit_addon_sqd/fermion.py#L1282-L1340" signature="solve_sci(ci_strings, one_body_tensor, two_body_tensor, norb, nelec, *, spin_sq=None, **kwargs)">
+<Function id="qiskit_addon_sqd.fermion.solve_sci" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.14/qiskit_addon_sqd/fermion.py#L1289-L1350" signature="solve_sci(ci_strings, one_body_tensor, two_body_tensor, norb, nelec, *, spin_sq=None, **kwargs)">
   Diagonalize Hamiltonian in subspace defined by CI strings.
 
   **Parameters**
 
-  *   **ci\_strings** ([*tuple*](https://docs.python.org/3/builtins/stdtypes.html#tuple)*\[*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)*,* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)*]*) – Pair (strings\_a, strings\_b) of arrays of spin-alpha CI strings and spin-beta CI strings whose Cartesian product give the basis of the subspace in which to perform a diagonalization.
+  *   **ci\_strings** ([*tuple*](https://docs.python.org/3/builtins/stdtypes.html#tuple)*\[*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)*,* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)*]*) – Pair (strings\_a, strings\_b) of arrays of spin-alpha CI strings and spin-beta CI strings whose Cartesian product give the basis of the subspace in which to perform a diagonalization. Both arrays must be sorted in ascending order. The underlying PySCF solver locates excitations by binary search, so unsorted strings yield a wrong energy rather than an error.
 
   *   **one\_body\_tensor** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)) – The one-body tensor of the Hamiltonian.
 
@@ -731,12 +731,12 @@ Functions for the study of fermionic systems.
 
 ### solve\_sci\_batch
 
-<Function id="qiskit_addon_sqd.fermion.solve_sci_batch" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.14/qiskit_addon_sqd/fermion.py#L1241-L1279" signature="solve_sci_batch(ci_strings, one_body_tensor, two_body_tensor, norb, nelec, *, spin_sq=None, **kwargs)">
+<Function id="qiskit_addon_sqd.fermion.solve_sci_batch" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.14/qiskit_addon_sqd/fermion.py#L1245-L1286" signature="solve_sci_batch(ci_strings, one_body_tensor, two_body_tensor, norb, nelec, *, spin_sq=None, **kwargs)">
   Diagonalize Hamiltonian in subspaces.
 
   **Parameters**
 
-  *   **ci\_strings** ([*list*](https://docs.python.org/3/builtins/stdtypes.html#list)*\[*[*tuple*](https://docs.python.org/3/builtins/stdtypes.html#tuple)*\[*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)*,* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)*]]*) – List of pairs (strings\_a, strings\_b) of arrays of spin-alpha CI strings and spin-beta CI strings whose Cartesian product give the basis of the subspace in which to perform a diagonalization.
+  *   **ci\_strings** ([*list*](https://docs.python.org/3/builtins/stdtypes.html#list)*\[*[*tuple*](https://docs.python.org/3/builtins/stdtypes.html#tuple)*\[*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)*,* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)*]]*) – List of pairs (strings\_a, strings\_b) of arrays of spin-alpha CI strings and spin-beta CI strings whose Cartesian product give the basis of the subspace in which to perform a diagonalization. Both arrays in each pair must be sorted in ascending order. The underlying PySCF solver locates excitations by binary search, so unsorted strings yield a wrong energy rather than an error.
 
   *   **one\_body\_tensor** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)) – The one-body tensor of the Hamiltonian.
 
@@ -763,7 +763,7 @@ Functions for the study of fermionic systems.
 
 ### optimize\_orbitals
 
-<Function id="qiskit_addon_sqd.fermion.optimize_orbitals" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.14/qiskit_addon_sqd/fermion.py#L1446-L1558" signature="optimize_orbitals(bitstring_matrix, /, hcore, eri, k_flat, *, open_shell=False, spin_sq=0.0, num_iters=10, num_steps_grad=10000, learning_rate=0.01, **kwargs)">
+<Function id="qiskit_addon_sqd.fermion.optimize_orbitals" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.14/qiskit_addon_sqd/fermion.py#L1456-L1568" signature="optimize_orbitals(bitstring_matrix, /, hcore, eri, k_flat, *, open_shell=False, spin_sq=0.0, num_iters=10, num_steps_grad=10000, learning_rate=0.01, **kwargs)">
   Optimize orbitals to produce a minimal ground state.
 
   The process involves iterating over 3 steps:
@@ -824,7 +824,7 @@ Functions for the study of fermionic systems.
 
 ### rotate\_integrals
 
-<Function id="qiskit_addon_sqd.fermion.rotate_integrals" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.14/qiskit_addon_sqd/fermion.py#L1561-L1599" signature="rotate_integrals(hcore, eri, k_flat)">
+<Function id="qiskit_addon_sqd.fermion.rotate_integrals" github="https://github.com/Qiskit/qiskit-addon-sqd/tree/stable/0.14/qiskit_addon_sqd/fermion.py#L1571-L1609" signature="rotate_integrals(hcore, eri, k_flat)">
   Perform a similarity transform on the integrals.
 
   The transformation is described as:
