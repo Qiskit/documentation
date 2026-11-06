@@ -144,8 +144,11 @@ To use it, pass `calibration_id="qec_experimental"` when you retrieve the backen
 
 ```python
 from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister
+from qiskit import transpile
 from qiskit.circuit.classical import expr, types
 from qiskit_ibm_runtime import QiskitRuntimeService
+from qiskit_ibm_runtime import Executor
+from qiskit_ibm_runtime.quantum_program import QuantumProgram
 
 service = QiskitRuntimeService()
 backend = service.backend("<backend_name>", calibration_id="qec_experimental")
@@ -154,27 +157,54 @@ num_data_qubits = 5
 num_rounds = 100
 
 data = QuantumRegister(num_data_qubits, "data")
-syndrome = QuantumRegister(num_data_qubits - 1, "syndrome")
+ancilla = QuantumRegister(num_data_qubits - 1, "syndrome")
+
 # Holds the current round's measurement results
 cache = ClassicalRegister(num_data_qubits - 1, "cache")
+
 # One register per syndrome qubit, one bit per round
-rounds = [
+checks = [
     ClassicalRegister(num_rounds, f"syndrome_{i}")
     for i in range(num_data_qubits - 1)
 ]
-qc = QuantumCircuit(data, syndrome, cache, *rounds)
+
+# Final readout of data qubits
+final_data = ClassicalRegister(data.size, "data")
+
+qc = QuantumCircuit(data, ancilla, cache, *checks, final_data)
 
 with qc.for_loop(range(num_rounds), expr.Var.new("r", types.Uint(32))) as r:
     qc.barrier()
     for i in range(num_data_qubits - 1):
-        qc.cx(data[i], syndrome[i])
+        qc.cx(data[i], ancilla[i])
     for i in range(num_data_qubits - 1):
-        qc.cx(data[i + 1], syndrome[i])
+        qc.cx(data[i + 1], ancilla[i])
     qc.barrier()
     for i in range(num_data_qubits - 1):
-        qc.measure(syndrome[i], cache[i])
+        qc.measure(ancilla[i], cache[i])
         # Copy the result into this round's bit
-        qc.store(expr.index(rounds[i], r), cache[i])
+        qc.store(expr.index(checks[i], r), cache[i])
+
+# Measure data qubits
+for i in range(num_data_qubits):
+    qc.measure(data[i], final_data[i])
+
+# Layout and transpilation
+tqc = transpile(
+    qc,
+    backend,
+    initial_layout=[0, 2, 4, 6, 8, 1, 3, 5, 7],
+    optimization_level=0,
+)
+
+executor = Executor(mode=backend)
+program = QuantumProgram(shots=10000)
+program.append_circuit_item(tqc)
+job = executor.run(program)
+result = job.result()
+
+# Boolean array with shape (shots, num_rounds)
+syndrome_0 = result[0]["syndrome_0"]
 ```
 
 ## Next steps
