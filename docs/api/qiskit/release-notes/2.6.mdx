@@ -14,15 +14,63 @@ in_page_toc_max_heading_level: 3
 
 <span id="id1" />
 
+## 2.6.2
+
+<span id="relnotes-2-6-2-prelude" />
+
+### Prelude
+
+Qiskit v2.6.2 is a patch release that includes bug fixes for issues identified since the release of v2.6.1.
+
+<span id="relnotes-2-6-2-qpy-upgrade-notes" />
+
+### QPY Upgrade Notes
+
+*   Using `qpy.load()` to deserialize QPY payload formats \< 10 and QPY formats 10 through 12 with `sympy` expression encoding no longer requires `sympy` to be installed. Previously `sympy` was required to recreate any [`ParameterExpression`](/docs/api/qiskit/qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") objects in the payload, but starting in this release they are directly created from the payload.
+
+<span id="relnotes-2-6-2-security-issues" />
+
+### Security Issues
+
+*   Fixed a potential buffer overwrite in [`qk_circuit_inst_unitary()`](/docs/api/qiskit-c/qk-circuit#qk_circuit_inst_unitary "qk_circuit_inst_unitary") when the internal circuit data structures had become corrupted.
+
+    See [GHSA-5835-q8qp-whcc](https://github.com/Qiskit/qiskit/security/advisories/GHSA-5835-q8qp-whcc).
+
+*   Fixed a potential local denial-of-service when calling [`qpy.load()`](/docs/api/qiskit/qpy#qiskit.qpy.load "qiskit.qpy.load"), [`.qk_qpy_load_file()`](/docs/api/qiskit-c/qk-qpy#qk_qpy_load_file ".qk_qpy_load_file"), or [`.qk_qpy_load_buffer()`](/docs/api/qiskit-c/qk-qpy#qk_qpy_load_buffer ".qk_qpy_load_buffer") to load untrusted input caused by a stack overflow from unbound recursion in the deserialization. See the [advisory](https://github.com/Qiskit/qiskit/security/advisories/GHSA-9g9r-qpqr-c8fr) for more details.
+
+*   Fixed a security vulnerability in [`qpy.load()`](/docs/api/qiskit/qpy#qiskit.qpy.load "qiskit.qpy.load") when loading payloads that used `sympy` to serialize [`ParameterExpression`](/docs/api/qiskit/qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") objects and other symbolic expressions. This potentially includes any QPY payload using QPY version \< 10, and optionally 10, 11, and 12 depending on the symbolic encoding specified in the QPY payload.
+
+<span id="relnotes-2-6-2-bug-fixes" />
+
+### Bug Fixes
+
+*   Fixed compilation to Clifford+T basis sets (for example, using [`generate_preset_clifford_t_pass_manager()`](/docs/api/qiskit/qiskit.transpiler.generate_preset_clifford_t_pass_manager "qiskit.transpiler.generate_preset_clifford_t_pass_manager")) to correctly handle control-flow instructions.
+
+    See [#17314](https://github.com/Qiskit/qiskit/issues/17314).
+
+*   Fixed [`qasm3.dump()`](/docs/api/qiskit/qasm3#qiskit.qasm3.dump "qiskit.qasm3.dump") and [`qasm3.dumps()`](/docs/api/qiskit/qasm3#qiskit.qasm3.dumps "qiskit.qasm3.dumps") raising a `TypeError` when exporting gates that store array-valued parameters, such as [`PermutationGate`](/docs/api/qiskit/qiskit.circuit.library.PermutationGate "qiskit.circuit.library.PermutationGate"). Such gates are exported through a parameterless OpenQASM 3 decomposition, but the exporter was still emitting the original parameters at the call site, which also made the output invalid when `disable_constants=True`. Fixed [#16995](https://github.com/Qiskit/qiskit/issues/16995).
+
+*   Fixed a bug in [`WrapAngles`](/docs/api/qiskit/qiskit.transpiler.passes.WrapAngles "qiskit.transpiler.passes.WrapAngles") that caused angle bounds to be ignored for gates inside control-flow blocks. Fixed [#17316](https://github.com/Qiskit/qiskit/issues/17316).
+
+*   The [`SynthesizeRZRotations`](/docs/api/qiskit/qiskit.transpiler.passes.SynthesizeRZRotations "qiskit.transpiler.passes.SynthesizeRZRotations") transpiler pass now correctly synthesizes rotations withon control-flow blocks.
+
+<span id="relnotes-2-6-1" />
+
+<span id="id2" />
+
 ## 2.6.1
 
 <span id="relnotes-2-6-1-prelude" />
+
+<span id="id3" />
 
 ### Prelude
 
 Qiskit v2.6.1 is a patch release that includes bug fixes for issues identified since the release of v2.6.0.
 
 <span id="relnotes-2-6-1-bug-fixes" />
+
+<span id="id4" />
 
 ### Bug Fixes
 
@@ -38,13 +86,13 @@ Qiskit v2.6.1 is a patch release that includes bug fixes for issues identified s
 
 <span id="relnotes-2-6-0" />
 
-<span id="id2" />
+<span id="id5" />
 
 ## 2.6.0
 
 <span id="relnotes-2-6-0-prelude" />
 
-<span id="id3" />
+<span id="id6" />
 
 ### Prelude
 
@@ -256,6 +304,8 @@ This release introduces important new functionality into the Qiskit SDK, includi
 
 <span id="relnotes-2-6-0-qpy-upgrade-notes" />
 
+<span id="id7" />
+
 ### QPY Upgrade Notes
 
 *   Added a new QPY format version, 18, which is now used by default in [`qpy.dump()`](/docs/api/qiskit/qpy#qiskit.qpy.dump "qiskit.qpy.dump"). If needed, users can specify a previous QPY format version by specifying the `version` argument of the on [`qpy.dump()`](/docs/api/qiskit/qpy#qiskit.qpy.dump "qiskit.qpy.dump"). For more information about the format changes see the [QPY Version 18 docs](/docs/api/qiskit/qpy#qpy-version-18).
@@ -278,7 +328,7 @@ This release introduces important new functionality into the Qiskit SDK, includi
 
 <span id="relnotes-2-6-0-bug-fixes" />
 
-<span id="id4" />
+<span id="id8" />
 
 ### Bug Fixes
 
