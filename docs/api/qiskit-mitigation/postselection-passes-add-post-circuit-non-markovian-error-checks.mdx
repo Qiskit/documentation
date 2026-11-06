@@ -8,7 +8,7 @@ python_api_name: qiskit_mitigation.postselection.passes.AddPostCircuitNonMarkovi
 
 # AddPostCircuitNonMarkovianErrorChecks
 
-<Class id="qiskit_mitigation.postselection.passes.AddPostCircuitNonMarkovianErrorChecks" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-mitigation/tree/stable/0.1/qiskit_mitigation/postselection/passes/add_post_circuit_checks.py#L34-L190" signature="AddPostCircuitNonMarkovianErrorChecks(*args, **kwargs)" modifiers="class">
+<Class id="qiskit_mitigation.postselection.passes.AddPostCircuitNonMarkovianErrorChecks" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-mitigation/tree/main/qiskit_mitigation/postselection/passes/add_post_circuit_checks.py#L34-L186" signature="AddPostCircuitNonMarkovianErrorChecks(*args, **kwargs)" modifiers="class">
   Bases: [`TransformationPass`](/docs/api/qiskit/qiskit.transpiler.TransformationPass)
 
   Add non-Markovian error checks at the end of the circuit on active qubits terminated by a measurement.
@@ -16,10 +16,6 @@ python_api_name: qiskit_mitigation.postselection.passes.AddPostCircuitNonMarkovi
   A post-circuit non-Markovian error check consists of a narrowband X-pulse located after a terminal measurement that flips the state of the qubit from the measured state $|x\rangle\mapsto|x\oplus1\rangle$. The state is then measured, and if the QPU failed to flip the qubit on a given shot, that sample may be considered unreliable and discarded. Postselecting only samples that pass all checks can improve the fidelity of distributions sampled from the QPU.
 
   The added measurements write to new classical registers that are copies of the DAG’s registers, with modified names (by default, appending `"_ps"` to the register name).
-
-  <Admonition title="Note" type="note">
-    These passes are only supported on Heron QPUs where [fractional gates](http://quantum.cloud.ibm.com/docs/ibm-quantum-compute/fractional-gates) are supported.
-  </Admonition>
 
   Initialize the pass.
 
@@ -81,7 +77,7 @@ python_api_name: qiskit_mitigation.postselection.passes.AddPostCircuitNonMarkovi
 
   ### run
 
-  <Function id="qiskit_mitigation.postselection.passes.AddPostCircuitNonMarkovianErrorChecks.run" github="https://github.com/Qiskit/qiskit-mitigation/tree/stable/0.1/qiskit_mitigation/postselection/passes/add_post_circuit_checks.py#L78-L126" signature="run(dag)">
+  <Function id="qiskit_mitigation.postselection.passes.AddPostCircuitNonMarkovianErrorChecks.run" github="https://github.com/Qiskit/qiskit-mitigation/tree/main/qiskit_mitigation/postselection/passes/add_post_circuit_checks.py#L74-L122" signature="run(dag)">
     Run a pass on the DAGCircuit. This is implemented by the pass developer.
 
     **Parameters**
