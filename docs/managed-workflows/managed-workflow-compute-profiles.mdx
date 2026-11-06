@@ -5,25 +5,18 @@ description: "Choose the CPU, memory, and GPU resources for a managed workflow, 
 
 # Choose a compute profile
 
-<Admonition type="caution" title="Placeholder content">
-- **Class names.** The code examples import `QiskitServerless` as `ManagedWorkflowClient` and `QiskitFunction` as `ManagedWorkflow`. Replace the aliases with the new class names after the rename lands in `qiskit-ibm-catalog`.
-- **Profile discovery.** `compute_profiles()` and `compute_profile()` come from `qiskit-serverless` PR 2647. Publish after a `qiskit-serverless` release that includes it, and a `qiskit-ibm-catalog` release that exposes both methods on the client.
-- **Profiles and startup times.** Confirm the profile list and the startup times before publishing.
-- **Concurrent job limits.** This section moved to [Active job limit](/docs/managed-workflows/run-parameter-sweep#active-job-limit). Apply that change before publishing.
-</Admonition>
-
 Managed workflows run on compute profiles. A compute profile is a fixed combination of vCPUs, memory, and GPUs, similar to the resources that you request from an HPC scheduler. When you upload a workflow, you map its sizes, such as `S` and `M`, to profiles, and each run picks one of those sizes. The job then runs on its own node with that profile, and keeps the profile until the job ends.
 
-| Profile | vCPUs | Memory (GB) | GPUs | Startup time |
-| - | - | - | - | - |
-| `8x32` | 8 | 32 | None | TBD |
-| `16x128` | 16 | 128 | None | TBD |
-| `48x768` | 48 | 768 | None | TBD |
-| `128x1500` | 128 | 1500 | None | TBD |
-| `24x120x1l40s` | 24 | 120 | 1 L40S | TBD |
-| `20x320x2a100` | 20 | 320 | 2 A100 | TBD |
-| `80x1200x8a100` | 80 | 1200 | 8 A100 | TBD |
-| `160x1792x8h100` | 160 | 1792 | 8 H100 | TBD |
+| Profile | vCPUs | Memory (GB) | GPUs |
+| - | - | - | - |
+| `8x32` | 8 | 32 | None |
+| `16x128` | 16 | 128 | None |
+| `48x768` | 48 | 768 | None |
+| `128x1500` | 128 | 1500 | None |
+| `24x120x1l40s` | 24 | 120 | 1 L40S |
+| `20x320x2a100` | 20 | 320 | 2 A100 |
+| `80x1200x8a100` | 80 | 1200 | 8 A100 |
+| `160x1792x8h100` | 160 | 1792 | 8 H100 |
 
 A profile ID has the form `{cpu}x{memory}`, with memory in GB, or `{cpu}x{memory}x{count}{gpu}` for a profile with GPUs. For example, `24x120x1l40s` has 24 vCPUs, 120 GB of memory, and one NVIDIA L40S GPU.
 
@@ -31,10 +24,9 @@ A profile ID has the form `{cpu}x{memory}`, with memory in GB, or `{cpu}x{memory
 
 To see which profiles are available, call `compute_profiles()`:
 
-{/* REVIEW: requires release with PR 2647 */}
 <CodeTitle title="run_workflow_remotely.ipynb" />
 ```python
-from qiskit_ibm_catalog import QiskitServerless as ManagedWorkflowClient
+from qiskit_ibm_catalog import ManagedWorkflowClient
 
 client = ManagedWorkflowClient()
 print(client.compute_profiles())
@@ -55,12 +47,15 @@ print(client.compute_profiles())
 
 Instead of typing a profile ID, you can describe the resources that your workflow needs with `compute_profile()`, and use the result as a value in `sizes_map`. Pass `cpu` and `memory` in GB, and pass `gpu` for a GPU profile:
 
-{/* REVIEW: requires release with PR 2647 */}
 <CodeTitle title="run_workflow_remotely.ipynb" />
 ```python
 profile = client.compute_profile(cpu=24, memory=120, gpu="1l40s")
 print(profile)  # 24x120x1l40s
+
+sizes_map = {"S": "8x32", "L": profile}
 ```
+
+A `sizes_map` accepts profile IDs and the profiles that `compute_profile()` returns, and you can mix both in one map. To check a profile ID before you upload, pass it to `compute_profile()`, for example `client.compute_profile("16x128")`. If no profile matches, the error lists the available profiles.
 
 `compute_profiles()` returns a list, so you can also filter it yourself. For example, the following code finds the GPU profiles:
 
@@ -75,10 +70,7 @@ Most workflows start with one size. Map it to a profile with `sizes_map`, and ma
 
 <CodeTitle title="run_workflow_remotely.ipynb" />
 ```python
-from qiskit_ibm_catalog import (
-    QiskitFunction as ManagedWorkflow,
-    QiskitServerless as ManagedWorkflowClient,
-)
+from qiskit_ibm_catalog import ManagedWorkflow, ManagedWorkflowClient
 
 client = ManagedWorkflowClient()
 
@@ -87,7 +79,6 @@ my_workflow = client.upload(
         title="my-workflow",
         entrypoint="my_workflow.py",
         working_dir="./source_files/",
-        runner="fleets",
         sizes_map={"M": "16x128"},
         default_size="M",
     )
@@ -123,7 +114,6 @@ my_workflow = client.upload(
         title="my-workflow",
         entrypoint="my_workflow.py",
         working_dir="./source_files/",
-        runner="fleets",
         sizes_map=sizes_map,
         default_size="M",
     )
@@ -143,7 +133,7 @@ A workflow rejects the first upload in the following cases:
 
 ### Change sizes on re-upload
 
-When you upload the workflow again with the same `title`, A workflow handles the sizes as follows:
+When you upload the workflow again with the same `title`, the managed workflow handles the sizes as follows:
 
 - If you set `sizes_map`, the new sizes replace all of the stored sizes.
 - If you omit `sizes_map`, the workflow keeps the stored sizes and the default.

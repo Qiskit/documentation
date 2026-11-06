@@ -33,7 +33,7 @@ Because each job starts with an empty local disk, a later job can find only the 
 
 ### Lifecycle of a run
 
-Each job runs asynchronously for up to 24 hours. You can have up to 20 [active jobs](/docs/managed-workflows/run-parameter-sweep#active-job-limit) at the same time if your instance has enough allocation.
+Each job runs asynchronously for up to 24 hours. You can have up to 50 [active jobs](/docs/managed-workflows/run-parameter-sweep#active-job-limit) at the same time if your instance has enough allocation.
 
 ![From your Python session, you call upload() one time to upload the workflow's code, packages, and compute profiles. No job exists yet. Each call to run(args) creates a job that moves through these stages: Queue, where it waits for allocation with status QUEUED; Start, where the managed workflow creates the environment with status INITIALIZING; Running, where your code can optionally set stages with update_status(): Mapping (RUNNING: MAPPING), Optimizing (RUNNING: OPTIMIZING_FOR_HARDWARE), Waiting for QPU (RUNNING: WAITING_FOR_QPU), Executing QPU (RUNNING: EXECUTING_QPU), and Post-processing (RUNNING: POST_PROCESSING); and Result, where the environment shuts down with status DONE, ERROR, or CANCELED. While running, the job reads and writes workflow file storage, which exists outside the job, is shared by all runs, and persists before and after each job. From your session, you can read status() from Queue onward, logs() from Running onward, and result() after the job reaches Result. All three remain available after the job ends.](/docs/images/managed-workflows/lifecycle.svg)
 

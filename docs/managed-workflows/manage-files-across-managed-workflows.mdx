@@ -8,7 +8,6 @@ description: "Upload input files for a managed workflow, read and write them in 
 # Manage files across runs
 
 <Admonition type="caution" title="Placeholder content">
-- **Class names.** The code examples import `QiskitServerless` as `ManagedWorkflowClient` and `QiskitFunction` as `ManagedWorkflow`. Replace the aliases with the new class names after the rename lands in `qiskit-ibm-catalog`.
 - **File storage path.** `/function_user_data` is the path where the Fleets runner mounts file storage. Confirm that it is a supported path before publishing.
 - **Supported file types.** The list of accepted and rejected types comes from the upload check in the gateway. Confirm the list, and whether CSV files will be accepted, before publishing.
 {/*- **Maximum file size.** Confirm the maximum file size (possibly 50 MB) before publishing.*/}
@@ -26,7 +25,7 @@ Upload a file from your local notebook with `file_upload()`, and then list the f
 
 <CodeTitle title="run_workflow_remotely.ipynb" />
 ```python
-from qiskit_ibm_catalog import QiskitServerless as ManagedWorkflowClient
+from qiskit_ibm_catalog import ManagedWorkflowClient
 
 client = ManagedWorkflowClient()
 my_workflow = client.load("my-workflow")

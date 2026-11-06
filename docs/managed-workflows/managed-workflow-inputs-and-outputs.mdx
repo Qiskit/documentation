@@ -8,7 +8,6 @@ description: "Pass arguments into a managed workflow and return results from it.
 # Define inputs and outputs
 
 <Admonition type="caution" title="Placeholder content">
-- **Class names.** The code examples import `QiskitServerless` as `ManagedWorkflowClient` and `QiskitFunction` as `ManagedWorkflow`. Replace the aliases with the new class names after the rename lands in `qiskit-ibm-catalog`.
 {/*- **Maximum argument size.** Confirm the maximum argument size (currently 32 MB) before publishing.*/}
 </Admonition>
 
@@ -51,7 +50,7 @@ circuits = arguments["circuits"]
 shots = arguments.get("shots", 4096)
 ```
 
-The dictionary contains only the arguments that the run passed, so use `arguments.get()` with a default value for optional arguments. You can use any argument name except the protected keywords `config` and `function_size`, because `run()` uses these keywords directly.
+The dictionary contains only the arguments that the run passed, so use `arguments.get()` with a default value for optional arguments. You can use any argument name except the protected keywords `config` and `function_size`, because `run()` uses these keywords directly. `run()` also rejects `compute_profile`. To choose compute resources, pass `function_size`.
 
 To read the size that the job runs at, call `get_function_size()` in your workflow code:
 
@@ -63,8 +62,6 @@ size = get_function_size()  # For example, "M"
 ```
 
 If the run does not pass `function_size`, `get_function_size()` returns the workflow's default size. See [Choose a size for each run](/docs/managed-workflows/managed-workflow-compute-profiles#choose-a-size-for-each-run).
-
-{/* REVIEW: run() also rejects compute_profile (function.py RunnableQiskitFunction.run). Decide whether to mention it. */}
 
 ### Supported argument types
 
@@ -117,10 +114,7 @@ Set the schema with `arguments_schema` when you upload the workflow. Pass a dict
 
 <CodeTitle title="run_workflow_remotely.ipynb" />
 ```python
-from qiskit_ibm_catalog import (
-    QiskitFunction as ManagedWorkflow,
-    QiskitServerless as ManagedWorkflowClient,
-)
+from qiskit_ibm_catalog import ManagedWorkflow, ManagedWorkflowClient
 
 arguments_schema = {
     "type": "object",
@@ -154,7 +148,6 @@ my_workflow = client.upload(
         title="my-workflow",
         entrypoint="my_workflow.py",
         working_dir="./source_files/",
-        runner="fleets",
         arguments_schema=arguments_schema,
     )
 )
