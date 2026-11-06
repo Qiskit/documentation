@@ -1,0 +1,166 @@
+---
+title: "Work with bosonic circuits"
+description: "Work with bosonic circuits for the latest version of Qiskit bosons"
+---
+
+<span id="bosonic-circuit-explanation" />
+
+# Work with bosonic circuits
+
+A [`BosonicCircuit`](/docs/api/qiskit-bosons/circuit-bosonic-circuit#qiskit_bosons.circuit.BosonicCircuit "qiskit_bosons.circuit.BosonicCircuit") expresses a computation directly on **bosonic modes**. It carries no truncation, no encoding, and no qubit count: those enter later, during transpilation, which is how one circuit can be lowered under several encodings and several truncations without being rebuilt.
+
+It deliberately exposes a reduced API compared to Qiskit’s [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit), so that qubit gates cannot be applied to a bosonic mode, which would not be a well-defined operation. This guide covers the operations that *are* exposed for assembling larger circuits out of smaller ones.
+
+## Why use bosonic circuits
+
+Consider the traditional workflow for putting the time evolution of a bosonic Hamiltonian onto a qubit-based architecture:
+
+1.  Define the bosonic Hamiltonian, for example $H = -\sum_{ij} b^\dagger_i b_j$.
+2.  Choose a truncation and an encoding, and map the Hamiltonian to a qubit operator with them.
+3.  Implement the time evolution in qubit space, by Trotterization or another method.
+
+The second step comes early, and it makes two decisions that are expensive to take back. The truncation fixes how many levels each mode keeps, and the encoding fixes how many qubits that costs, so both are fixed in the qubit operator before anything else has been done with the circuit. To look at the same physics under another cutoff or another encoding, you map the Hamiltonian again and build the circuit again. What the mapping discards, as well, is the bosonic structure: which terms belong together, and that the terms of a hopping pair are each other’s adjoint.
+
+A [`BosonicCircuit`](/docs/api/qiskit-bosons/circuit-bosonic-circuit#qiskit_bosons.circuit.BosonicCircuit "qiskit_bosons.circuit.BosonicCircuit") moves those decisions to the end:
+
+1.  Define the bosonic Hamiltonian.
+2.  Express the time evolution directly on bosonic modes, with bosonic gates.
+3.  Choose the truncation and the encoding as part of the transpilation.
+
+The circuit describes *what* computation to perform, and transpilation decides *how* to put it on qubits. The same circuit is then lowered at every cutoff and under every encoding, and the grouping of the operator is still there for the passes that can use it. The next sections show how such a circuit is assembled; [Transpile bosonic circuits](transpilation#transpilation-explanation) shows it being lowered.
+
+## Generic mode indexing
+
+The [`operators`](/docs/api/qiskit-bosons/operators#module-qiskit_bosons.operators "qiskit_bosons.operators") module and the circuit share one convention for modes. A mode is only an index that labels a bosonic degree of freedom, and it carries no meaning of its own. You can therefore evolve any operator that implements the [`OperatorTrait`](/docs/api/qiskit-bosons/operators-operator-trait#qiskit_bosons.operators.OperatorTrait "qiskit_bosons.operators.OperatorTrait") protocol, whatever it represents, and the circuit never needs to know what mode `2` stands for. The same holds for the size of a mode: a circuit has no occupation cutoff, so nothing here says how many levels a mode has.
+
+## Append gates
+
+Gates are appended onto modes. Only [`BosonicGate`](/docs/api/qiskit-bosons/circuit-bosonic-gate#qiskit_bosons.circuit.BosonicGate "qiskit_bosons.circuit.BosonicGate") instances are accepted:
+
+```python
+>>> from qiskit_bosons.circuit import BosonicCircuit
+>>> from qiskit_bosons.circuit.library import Evolution, InitializeModes
+>>> from qiskit_bosons.operators import BosonOperator, ann, cre
+>>>
+>>> hopping = BosonOperator.from_dict({(cre(0), ann(1)): -1.0, (cre(1), ann(0)): -1.0})
+>>> hopping.groups = [0] * len(hopping)  # the pair is Hermitian, its terms alone are not
+>>>
+>>> prepare = BosonicCircuit(2)
+>>> prepare.append(InitializeModes([2, 0]), prepare.modes)
+>>> step = BosonicCircuit(2)
+>>> step.append(Evolution(2, hopping, time=0.1), step.modes)
+```
+
+Anything else is refused, and the error names the offending type:
+
+```python
+>>> from qiskit.circuit.library import HGate
+>>> try:
+...     prepare.append(HGate(), [0])
+... except ValueError as error:
+...     print(error)
+Unsupported instruction type: <class '...HGate'>
+```
+
+## Compose circuits
+
+[`compose()`](/docs/api/qiskit-bosons/circuit-bosonic-circuit#qiskit_bosons.circuit.BosonicCircuit.compose "qiskit_bosons.circuit.BosonicCircuit.compose") places the instructions of one circuit onto another. They are **inlined**, not wrapped into a single gate, so the result is an ordinary circuit that you can keep decomposing and transpiling.
+
+```python
+>>> program = prepare.compose(step)
+>>> program.draw("mpl", fold=-1)
+<Figure size ... with 1 Axes>
+```
+
+![A composed BosonicCircuit.](/docs/images/addons/qiskit-bosons/circuit-3.avif)
+
+By default a new circuit is returned and both operands are left alone. Pass `inplace=True` to modify the first one instead, and `front=True` to put the operand *before* the existing instructions:
+
+```python
+>>> step.compose(prepare, front=True)._inner.data == program._inner.data
+True
+```
+
+A narrower circuit can be placed onto a chosen subset of the modes:
+
+```python
+>>> single = BosonicCircuit(1)
+>>> single.append(Evolution(1, BosonOperator.from_dict({(cre(0), ann(0)): 1.0}), 0.1), single.modes)
+>>> wide = BosonicCircuit(3).compose(single, [2])
+>>> wide.draw("mpl", fold=-1)
+<Figure size ... with 1 Axes>
+```
+
+![A narrow-composed BosonicCircuit.](/docs/images/addons/qiskit-bosons/circuit-5.avif)
+
+Only another [`BosonicCircuit`](/docs/api/qiskit-bosons/circuit-bosonic-circuit#qiskit_bosons.circuit.BosonicCircuit "qiskit_bosons.circuit.BosonicCircuit") is accepted as the operand, because Qiskit’s own `compose` would inline qubit gates and bypass the check that `append` enforces.
+
+## Repeat a circuit
+
+[`repeat()`](/docs/api/qiskit-bosons/circuit-bosonic-circuit#qiskit_bosons.circuit.BosonicCircuit.repeat "qiskit_bosons.circuit.BosonicCircuit.repeat") repeats a circuit end to end. The repetitions are **flattened**: the result holds the instructions `reps` times in sequence rather than one gate wrapping the circuit. Therefore, the operation counts scale with `reps`, and `decompose` acts on the repeated body instead of removing one repetition.
+
+```python
+>>> len(step.repeat(0)._inner.data)  # zero repetitions is the identity
+0
+>>> step.repeat(5).draw("mpl", fold=-1)
+<Figure size ... with 1 Axes>
+```
+
+![A repeated BosonicCircuit.](/docs/images/addons/qiskit-bosons/circuit-6.avif)
+
+This is the circuit-level way to Trotterize: evolve for a short time, and repeat. See [Synthesize an Evolution gate in bosonic space](bosonic-synthesis#bosonic-synthesis-explanation) for the alternative of choosing a product formula on the gate itself, and why the two are different things that happen to share the word “repetitions”.
+
+## Separate steps with barriers
+
+A **barrier** marks a synchronization point that optimization passes do not fuse gates across. [`barrier()`](/docs/api/qiskit-bosons/circuit-bosonic-circuit#qiskit_bosons.circuit.BosonicCircuit.barrier "qiskit_bosons.circuit.BosonicCircuit.barrier") places one on all modes, or on the modes you name:
+
+```python
+>>> program = BosonicCircuit(2)
+>>> program.append(InitializeModes([2, 0]), program.modes)
+>>> program.barrier()
+>>> program.barrier(program.modes[0], label="zero")
+>>> program.draw("mpl", fold=-1)
+<Figure size ... with 1 Axes>
+```
+
+![A BosonicCircuit with barriers.](/docs/images/addons/qiskit-bosons/circuit-7.avif)
+
+`repeat(..., insert_barriers=True)` puts one between consecutive repetitions, and none after the last:
+
+```python
+>>> step.repeat(3, insert_barriers=True).draw("mpl", fold=-1)
+<Figure size ... with 1 Axes>
+```
+
+![A repeated BosonicCircuit with barriers.](/docs/images/addons/qiskit-bosons/circuit-8.avif)
+
+### Barriers and the encoding
+
+An encoding needs several qubits per mode, so the register of modes and the register of qubits differ in size, and a layout relates *whole registers*. A mode therefore has no qubits of its own to narrow a barrier to. During the boson-to-qubit synthesis a barrier is mapped onto **every qubit of each register it touched**, which is correct under any layout:
+
+```python
+>>> from qiskit_bosons.mappers import LevelSpec
+>>> from qiskit_bosons.transpiler.presets import generate_preset_occupation_pass_manager
+>>> lowered = generate_preset_occupation_pass_manager(LevelSpec(2, "unary_projected")).run(program)
+>>> lowered.draw("mpl", fold=-1)
+<Figure size ... with 1 Axes>
+```
+
+![A QuantumCircuit showing the expansion of barrier to cover the entire qubit register.](/docs/images/addons/qiskit-bosons/circuit-9.avif)
+
+## Read out a bosonic circuit
+
+A [`BosonicCircuit`](/docs/api/qiskit-bosons/circuit-bosonic-circuit#qiskit_bosons.circuit.BosonicCircuit "qiskit_bosons.circuit.BosonicCircuit") has no `measure` or `measure_all`. What a measured bit means depends on the encoding. Under a unary encoding the occupation of a mode is spread over several qubits and has to be read from a pattern of bits, and under a compact one it is a binary number, so a measurement that names a mode would have to know the encoding, which a bosonic circuit deliberately does not. Measure the transpiled [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit) instead, and decode the bitstrings with [`LevelEncoding.level_to_bits()`](/docs/api/qiskit-bosons/mappers-level-encoding#qiskit_bosons.mappers.LevelEncoding.level_to_bits "qiskit_bosons.mappers.LevelEncoding.level_to_bits") and the offsets of the [`LevelSpec`](/docs/api/qiskit-bosons/mappers-level-spec#qiskit_bosons.mappers.LevelSpec "qiskit_bosons.mappers.LevelSpec") that you lowered with. [Simulate Bose-Hubbard dynamics with a choice of encoding](bose-hubbard#bose-hubbard-getting-started) does this for a complete model.
+
+```python
+>>> hasattr(BosonicCircuit, "measure_all")
+False
+```
+
+## Next steps
+
+*   [Transpile bosonic circuits](transpilation#transpilation-explanation) explains how a bosonic circuit becomes a qubit circuit, stage by stage.
+*   [Rotate bosonic modes](mode-rotation#mode-rotation-explanation) covers the gate that mixes modes and conserves the boson number.
+*   [Synthesize an Evolution gate in bosonic space](bosonic-synthesis#bosonic-synthesis-explanation) shows how to Trotterize an evolution in bosonic space.
+*   [Design principles of operator representations](operators#operators-explanation) explains the operators that the gates carry.
+
