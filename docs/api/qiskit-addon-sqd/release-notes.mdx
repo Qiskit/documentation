@@ -26,6 +26,8 @@ in_page_toc_max_heading_level: 2
 
 ### Other Notes
 
+*   Documented that the CI strings passed to the `sci_solver` argument of [`diagonalize_fermionic_hamiltonian()`](/docs/api/qiskit-addon-sqd/fermion#qiskit_addon_sqd.fermion.diagonalize_fermionic_hamiltonian "qiskit_addon_sqd.fermion.diagonalize_fermionic_hamiltonian") are sorted in ascending order. A solver may rely on that ordering when mapping amplitudes back to determinants. This was already the behavior and the Fulqrum guide relied on it; it is now part of the documented interface.
+
 *   [`qiskit_addon_sqd.fermion.SCIState.amplitudes`](/docs/api/qiskit-addon-sqd/fermion#qiskit_addon_sqd.fermion.SCIState.amplitudes "qiskit_addon_sqd.fermion.SCIState.amplitudes") now documents the sign convention its amplitudes must follow, which [`rdm()`](/docs/api/qiskit-addon-sqd/fermion#qiskit_addon_sqd.fermion.SCIState.rdm "qiskit_addon_sqd.fermion.SCIState.rdm") and [`spin_square()`](/docs/api/qiskit-addon-sqd/fermion#qiskit_addon_sqd.fermion.SCIState.spin_square "qiskit_addon_sqd.fermion.SCIState.spin_square") rely on.
 
 <span id="release-notes-0-14-0" />
@@ -40,7 +42,7 @@ in_page_toc_max_heading_level: 2
 
 *   [`qiskit_addon_sqd.fermion.diagonalize_fermionic_hamiltonian()`](/docs/api/qiskit-addon-sqd/fermion#qiskit_addon_sqd.fermion.diagonalize_fermionic_hamiltonian "qiskit_addon_sqd.fermion.diagonalize_fermionic_hamiltonian") now accepts sampled bitstrings as a two-dimensional NumPy boolean array in addition to a Qiskit [`BitArray`](/docs/api/qiskit/qiskit.primitives.BitArray).
 
-*   Adds a [guide](/docs/addons/qiskit-addon-sqd/guides/integrate-fulqrum) showing how to use [fulqrum](https://github.com/qiskit-community/fulqrum) as a subspace solver for fermionic systems. To install the optional dependency, use the `fulqrum` extra:
+*   Adds a [guide](/docs/addons/qiskit-addon-sqd/guides/integrate-fulqrum) showing how to use [fulqrum](https://github.com/Qiskit/fulqrum) as a subspace solver for fermionic systems. To install the optional dependency, use the `fulqrum` extra:
 
     ```python
     pip install 'qiskit-addon-sqd[fulqrum]'

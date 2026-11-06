@@ -10,8 +10,12 @@ python_api_name: qiskit.visualization.array_to_latex
 
 # qiskit.visualization.array\_to\_latex
 
-<Function id="qiskit.visualization.array_to_latex" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.6/qiskit/visualization/array.py#L149-L207" signature="qiskit.visualization.array_to_latex(array, precision=10, prefix='', source=False, max_size=8)">
+<Function id="qiskit.visualization.array_to_latex" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit/tree/stable/2.6/qiskit/visualization/array.py#L149-L213" signature="qiskit.visualization.array_to_latex(array, precision=10, prefix='', source=False, max_size=8)">
   Latex representation of a complex numpy array (with dimension 1 or 2)
+
+  <Admonition title="Warning" type="caution">
+    This method will relies on SymPy internally which is inherently unsafe as SymPy heavily relies on Python’s [`eval()`](https://docs.python.org/3/builtins/functions.html#eval) function. This method is not safe to use with untrusted input.
+  </Admonition>
 
   **Parameters**
 
