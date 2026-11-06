@@ -1,0 +1,52 @@
+---
+title: Advanced techniques with Algorithmiq TEM
+description: Control precision and shots, tune the tensor network, bias the measurements, reuse learned noise models, and inspect unmitigated results with Algorithmiq TEM.
+---
+
+# Advanced techniques with Algorithmiq TEM
+
+Use the following techniques to get the most out of Algorithmiq Tensor-network error mitigation (TEM). For every option and its default value, see the [API reference](/docs/api/functions/algorithmiq-tem).
+
+## Check circuit compatibility
+
+TEM supports loop-free circuits without parameters. Non-unitary operations, such as reset, measure, and control flow, are not supported. If you pass a non-ISA circuit, TEM transpiles it with optimal settings. If you pass an ISA circuit, TEM doesn't transpile it, and you must define the observable on the whole QPU.
+
+## Set the precision
+
+Request precision in one of three ways:
+
+- Pass a precision in the PUB, as `(circuit, observables, None, precision)`, to apply it to that PUB only.
+- Set `default_precision` (default `0.02`) in the options for every PUB that doesn't specify its own.
+- Set `default_shots` to fix the number of shots per PUB. This overrides any other precision setting.
+
+When you request a precision, TEM estimates the number of shots from the error per layered gate (EPLG) of the backend and the number of two-qubit gates in the circuit. Required shots scale with the inverse square of the precision, so halving the precision value roughly quadruples the QPU time. Set `max_execution_time` to cap QPU time.
+
+## Tune the tensor network
+
+`tem_max_bond_dimension` (default `500`) and `tem_compression_cutoff` (default `1e-16`) control the accuracy and classical cost of the noise-inversion tensor network. A lower bond dimension or a higher cutoff reduces classical run time but may reduce accuracy for deep or highly entangling circuits. For circuits on a linear chain of qubits, set `tem_enforce_linear_circuit=True`.
+
+## Bias the measurements
+
+By default, TEM measures each qubit in the Z, X, and Y bases with equal probability (classical shadows). Set `compute_shadows_bias_from_observable=True` to tailor the bias to the PUB observable, or pass an explicit `shadows_bias` array, either of size 3 or of shape (`num_qubits`, 3), in ZXY order. Because the informationally complete measurement outcomes can be reused, keep the default unbiased protocol when you want to estimate many observables from the same data.
+
+## Control noise learning
+
+TEM learns a sparse Pauli-Lindblad noise model for each unique layer of two-qubit gates. Tune learning with `num_randomizations` (default `32`), `shots_per_randomization` (default `128`), `layer_pair_depths` (default `[0, 1, 2, 4, 16, 32]`), and `max_layers_to_learn`.
+
+To skip learning, pass a previously computed result as `layer_noise_model`. Device noise drifts over time, so reuse a noise model only when it was learned recently on the same backend.
+
+## Mitigate readout errors
+
+Readout error mitigation is on by default (`mitigate_readout_error=True`) and uses `num_readout_calibration_shots` (default `10000`) for calibration. Turn it off to isolate the contribution of TEM.
+
+## Compare against unmitigated results
+
+The result metadata includes expectation values and standard errors without mitigation, with TEM only, and with readout mitigation only, in addition to the fully mitigated `evs` and `stds`. Compare them to see which techniques help your circuit and backend. `resource_usage` reports the time each stage used.
+
+## Keep jobs private and reproducible
+
+Set `private=True` to prevent subsequent downloads of the experiment data from confidential jobs. Set `seed` to make randomizations reproducible.
+
+<Admonition type="note">
+  Algorithmiq: add tuning guidance from your experience with TEM to this page.
+</Admonition>
