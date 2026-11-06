@@ -56,7 +56,7 @@ with open('twenty_bells.qpy', 'rb') as fd:
 
 ### load
 
-<Function id="qiskit.qpy.load" github="https://github.com/Qiskit/qiskit/tree/stable/2.6/qiskit/qpy/interface.py#L277-L444" signature="qiskit.qpy.load(file_obj, metadata_deserializer=None, annotation_factories=None)">
+<Function id="qiskit.qpy.load" github="https://github.com/Qiskit/qiskit/tree/stable/2.6/qiskit/qpy/interface.py#L283-L458" signature="qiskit.qpy.load(file_obj, metadata_deserializer=None, annotation_factories=None)">
   Load a QPY binary file
 
   This function is used to load a serialized QPY Qiskit program file and create [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects from its contents. For example:
@@ -79,6 +79,10 @@ with open('twenty_bells.qpy', 'rb') as fd:
   ```
 
   which will read the contents of the qpy and return a list of [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects from the file.
+
+  <Admonition title="Note" type="note">
+    Certain aspects of QPY payload deserialization are recursive, and will raise a [`RecursionError`](https://docs.python.org/3/builtins/exceptions.html#RecursionError) if anything requires excessive depth to evaluate. This maxmimum depth can be adjusted using [`sys.setrecursionlimit()`](https://docs.python.org/3/library/sys.html#sys.setrecursionlimit); the actual limit is one-tenth of this value.
+  </Admonition>
 
   **Parameters**
 
@@ -104,7 +108,7 @@ with open('twenty_bells.qpy', 'rb') as fd:
 
 ### dump
 
-<Function id="qiskit.qpy.dump" github="https://github.com/Qiskit/qiskit/tree/stable/2.6/qiskit/qpy/interface.py#L90-L274" signature="qiskit.qpy.dump(programs, file_obj, metadata_serializer=None, use_symengine=False, version=18, annotation_factories=None)">
+<Function id="qiskit.qpy.dump" github="https://github.com/Qiskit/qiskit/tree/stable/2.6/qiskit/qpy/interface.py#L91-L275" signature="qiskit.qpy.dump(programs, file_obj, metadata_serializer=None, use_symengine=False, version=18, annotation_factories=None)">
   Write QPY binary data to a file
 
   This function is used to save a circuit to a file for later use or transfer between machines. The QPY format is backwards compatible and can be loaded with future versions of Qiskit.
@@ -167,7 +171,7 @@ with open('twenty_bells.qpy', 'rb') as fd:
 
 ### get\_qpy\_version
 
-<Function id="qiskit.qpy.get_qpy_version" github="https://github.com/Qiskit/qiskit/tree/stable/2.6/qiskit/qpy/interface.py#L447-L474" signature="qiskit.qpy.get_qpy_version(file_obj)">
+<Function id="qiskit.qpy.get_qpy_version" github="https://github.com/Qiskit/qiskit/tree/stable/2.6/qiskit/qpy/interface.py#L461-L488" signature="qiskit.qpy.get_qpy_version(file_obj)">
   This function identifies the QPY version of the file.
 
   This function will read the header of `file_obj` and will return the QPY format version. It will **not** advance the cursor of `file_obj`. If you are using this for a subsequent read, such as to call [`load()`](#qiskit.qpy.load "qiskit.qpy.load"), you can pass `file_obj` directly. For example:
@@ -280,6 +284,7 @@ If you’re planning to load a QPY file between different Qiskit versions knowin
 
 | Qiskit (qiskit-terra for \< 1.0.0) version | [`dump()`](#qiskit.qpy.dump "qiskit.qpy.dump") format(s) output versions | [`load()`](#qiskit.qpy.load "qiskit.qpy.load") maximum supported version (older format versions can always be read) |
 | ------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------- |
+| 2.6.2                                      | 13, 14, 15, 16, 17, 18                                                   | 18                                                                                                                  |
 | 2.6.1                                      | 13, 14, 15, 16, 17, 18                                                   | 18                                                                                                                  |
 | 2.6.0                                      | 13, 14, 15, 16, 17, 18                                                   | 18                                                                                                                  |
 | 2.5.2                                      | 13, 14, 15, 16, 17                                                       | 17                                                                                                                  |
