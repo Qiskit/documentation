@@ -1,0 +1,72 @@
+---
+title: Evolution (latest version)
+description: API reference for qiskit_bosons.circuit.library.Evolution in the latest version of qiskit-bosons
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_bosons.circuit.library.Evolution
+---
+
+# Evolution
+
+<Class id="qiskit_bosons.circuit.library.Evolution" isDedicatedPage={true} signature="Evolution(num_modes, operator, time=1.0, *, synthesis=None, atomic=False)" modifiers="class">
+  Bases: [`BosonicGate`](circuit-bosonic-gate "qiskit_bosons.circuit.bosonic_gate.BosonicGate")
+
+  Implements the time evolution of a bosonic operator.
+
+  Given a bosonic `operator` $H$ and an evolution `time` $t$, this gate implements the unitary
+
+$$
+U = e^{-i t H}.
+$$
+
+  For $U$ to be unitary, $H$ must be Hermitian. This is the caller’s responsibility and is not verified; [`is_hermitian()`](operators-boson-operator#is_hermitian "qiskit_bosons.operators.BosonOperator.is_hermitian") can check it.
+
+  <Admonition title="Note" type="note">
+    Breaking this gate down in bosonic space (into a circuit of smaller [`Evolution`](#qiskit_bosons.circuit.library.Evolution "qiskit_bosons.circuit.library.Evolution") gates) is **optional**, and it is what the [`synthesis`](circuit-bosonic-gate#synthesis "qiskit_bosons.circuit.BosonicGate.synthesis") attribute governs. The gate can equally be handed straight to the boson-to-qubit stage, which maps and synthesizes it whole, however many terms its `operator` holds. See [`synthesis`](/docs/api/qiskit-bosons/circuit-library-synthesis#module-qiskit_bosons.circuit.library.synthesis "qiskit_bosons.circuit.library.synthesis").
+
+    When it is decomposed (by [`decompose()`](circuit-bosonic-circuit#decompose "qiskit_bosons.circuit.BosonicCircuit.decompose"), for instance) [`synthesis`](circuit-bosonic-gate#synthesis "qiskit_bosons.circuit.BosonicGate.synthesis") decides how. It defaults to [`BosonicLieTrotter`](circuit-library-synthesis-bosonic-lie-trotter "qiskit_bosons.circuit.library.synthesis.BosonicLieTrotter"), which splits the evolution group-by-group when the `operator` has [`groups`](operators-boson-operator#groups "qiskit_bosons.operators.BosonOperator.groups") assigned (see [Group operator terms: use the operator structure](/docs/addons/qiskit-bosons/guides/grouping#grouping-explanation)), and term-by-term otherwise (exact only when the individual factors mutually commute). Another method can be chosen, for a whole circuit, with the [`B2BSynthesis`](transpiler-passes-b-2-b-synthesis "qiskit_bosons.transpiler.passes.B2BSynthesis") transpiler pass; [`BosonicQDrift`](circuit-library-synthesis-bosonic-q-drift "qiskit_bosons.circuit.library.synthesis.BosonicQDrift"), for example, replaces the evolution with a randomized sample of its terms. The gates it emits are [`atomic`](circuit-bosonic-gate#atomic "qiskit_bosons.circuit.BosonicGate.atomic"), so [`synthesis`](circuit-bosonic-gate#synthesis "qiskit_bosons.circuit.BosonicGate.synthesis") no longer applies to them.
+  </Admonition>
+
+  <Admonition title="Note" type="note">
+    This gate carries **no occupation cutoff**. It is defined purely in terms of the bosonic operator, whose Fock space is infinite-dimensional. The truncation is introduced later, by the boson-to-qubit encoding chosen during transpilation – which is precisely what lets one ansatz be evaluated at several truncation levels without rebuilding it. See [`occupation_encoding()`](mappers-library-occupation-encoding "qiskit_bosons.mappers.library.occupation_encoding").
+  </Admonition>
+
+  Initializing an instance of this gate can be done with the arguments listed below.
+
+  **Parameters**
+
+  *   **num\_modes** ([*int*](https://docs.python.org/3/builtins/functions.html#int)) – the number of bosonic modes on which this gate acts.
+  *   **operator** ([*OperatorTrait*](operators-operator-trait "qiskit_bosons.operators.OperatorTrait")) – the Hermitian operator $H$ under which to time evolve the acted-upon bosonic modes.
+  *   **time** ([*float*](https://docs.python.org/3/builtins/functions.html#float)) – the evolution time $t$ entering the exponent of $e^{-i t H}$. A negative value evolves backwards in time.
+  *   **synthesis** ([*B2BSynthesisPlugin*](circuit-library-synthesis-b-2-b-synthesis-plugin "qiskit_bosons.circuit.library.synthesis.B2BSynthesisPlugin") *| None*) – the boson-to-boson synthesis method with which to decompose this gate, when it gets decomposed at all. If `None` (the default), a [`BosonicLieTrotter`](circuit-library-synthesis-bosonic-lie-trotter "qiskit_bosons.circuit.library.synthesis.BosonicLieTrotter") instance is used.
+  *   **atomic** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) – whether this gate is a fully decomposed factor which must not be broken down any further in bosonic space. See [`BosonicGate.atomic`](circuit-bosonic-gate#atomic "qiskit_bosons.circuit.BosonicGate.atomic").
+
+  ## Attributes
+
+  ### operator
+
+  <Attribute id="qiskit_bosons.circuit.library.Evolution.operator">
+    The operator under which to time evolve the acted-upon bosonic modes.
+  </Attribute>
+
+  ## Methods
+
+  ### inverse
+
+  <Function id="qiskit_bosons.circuit.library.Evolution.inverse" signature="inverse(annotated=False)">
+    Returns the inverse of this gate, $e^{+i t H}$.
+
+    **Parameters**
+
+    **annotated** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) – ignored. The inverse of this gate is another [`Evolution`](#qiskit_bosons.circuit.library.Evolution "qiskit_bosons.circuit.library.Evolution"), so it never needs to be an [`AnnotatedOperation`](/docs/api/qiskit/qiskit.circuit.AnnotatedOperation).
+
+    **Returns**
+
+    An [`Evolution`](#qiskit_bosons.circuit.library.Evolution "qiskit_bosons.circuit.library.Evolution") gate evolving the same operator for the negated time.
+
+    **Return type**
+
+    [*Evolution*](#qiskit_bosons.circuit.library.Evolution "qiskit_bosons.circuit.library.evolution.Evolution")
+  </Function>
+</Class>
+

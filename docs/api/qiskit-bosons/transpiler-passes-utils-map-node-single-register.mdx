@@ -1,0 +1,43 @@
+---
+title: map_node_single_register (latest version)
+description: API reference for qiskit_bosons.transpiler.passes.utils.map_node_single_register in the latest version of qiskit-bosons
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit_bosons.transpiler.passes.utils.map_node_single_register
+---
+
+<span id="map-node-single-register" />
+
+# map\_node\_single\_register
+
+<Function id="qiskit_bosons.transpiler.passes.utils.map_node_single_register" isDedicatedPage={true} signature="map_node_single_register(in_node, b2q_layout)">
+  Map the single bosonic mode register acted upon by the circuit operation.
+
+  Given a [`DAGOpNode`](/docs/api/qiskit/qiskit.dagcircuit.DAGOpNode) and a [`B2QLayout`](transpiler-b-2-q-layout "qiskit_bosons.transpiler.B2QLayout") this function will:
+
+  1.  ensure that all acted-upon bosonic modes belong to the same register
+  2.  map the node’s indices to their global indices with respect to said bosonic mode register
+  3.  map this bosonic mode register to the corresponding qubit register
+
+  <Admonition title="Caution" type="note">
+    The returned global bosonic mode register indices are knowingly dependent on the order of the bosonic modes during the construction of their original [`BosonicRegister`](circuit-bosonic-register "qiskit_bosons.circuit.BosonicRegister"). This is unlikely to cause any issues but makes the usage of [`RelabelModes`](transpiler-passes-relabel-modes "qiskit_bosons.transpiler.passes.RelabelModes") possibly more generally.
+  </Admonition>
+
+  **Parameters**
+
+  *   **in\_node** ([*DAGOpNode*](/docs/api/qiskit/qiskit.dagcircuit.DAGOpNode)) – the node whose indices to parse.
+  *   **b2q\_layout** ([*dict*](https://docs.python.org/3/builtins/stdtypes.html#dict)*\[*[*QuantumRegister*](/docs/api/qiskit/circuit#qiskit.circuit.QuantumRegister)*,* [*QuantumRegister*](/docs/api/qiskit/circuit#qiskit.circuit.QuantumRegister)*]*) – the mapping of bosonic to qubit registers.
+
+  **Returns**
+
+  The list of the global bosonic mode indices and mapped qubit register instance.
+
+  **Raises**
+
+  [**NotImplementedError**](https://docs.python.org/3/builtins/exceptions.html#NotImplementedError) – when the provided node acts on bosonic modes that do not all belong to the same [`BosonicRegister`](circuit-bosonic-register "qiskit_bosons.circuit.BosonicRegister").
+
+  **Return type**
+
+  [tuple](https://docs.python.org/3/builtins/stdtypes.html#tuple)\[[list](https://docs.python.org/3/builtins/stdtypes.html#list)\[[int](https://docs.python.org/3/builtins/functions.html#int)], [*QuantumRegister*](/docs/api/qiskit/circuit#qiskit.circuit.QuantumRegister)]
+</Function>
+
