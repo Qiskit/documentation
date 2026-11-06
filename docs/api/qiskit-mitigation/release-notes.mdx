@@ -1,23 +1,92 @@
 ---
-title: Qiskit Mitigation release notes
-description: Changes made to Qiskit Mitigation
+title: Qiskit mitigation release notes
+description: Changes made to Qiskit mitigation
 in_page_toc_max_heading_level: 2
 ---
 
 <span id="release-notes" />
 
+# Qiskit mitigation release notes
+
+<span id="release-notes-upcoming-release" />
+
+## Upcoming release
+
+<span id="release-notes-upcoming-release-new-features" />
+
+### New Features
+
+*   Gate folding now supports most two-qubit gates.
+
+*   Allow filter box types in the `find_unique_layers` function of the various mitigation classes.
+
+*   Add new functions to the PEC class - [`PEC.generate_slc_bounds_computation_input()`](/docs/api/qiskit-mitigation/pec#qiskit_mitigation.PEC.generate_slc_bounds_computation_input "qiskit_mitigation.PEC.generate_slc_bounds_computation_input") and [`PEC.set_slc_local_scales()`](/docs/api/qiskit-mitigation/pec#qiskit_mitigation.PEC.set_slc_local_scales "qiskit_mitigation.PEC.set_slc_local_scales"), which allow integrating shaded light-cones bounds into the PEC mitigation in order to reduce the sampling overhead of the mitigation in the price of tolerating some pre-determined bias in the result.
+
+*   Added the `trim_measurements` argument to the `prepare` methods of [`MitigationTask`](/docs/api/qiskit-mitigation/mitigation-task#qiskit_mitigation.MitigationTask "qiskit_mitigation.MitigationTask"), [`PEC`](/docs/api/qiskit-mitigation/pec#qiskit_mitigation.PEC "qiskit_mitigation.PEC"), [`PEA`](/docs/api/qiskit-mitigation/zne-pea#qiskit_mitigation.zne.PEA "qiskit_mitigation.zne.PEA") and [`GateFolding`](/docs/api/qiskit-mitigation/zne-gate-folding#qiskit_mitigation.zne.GateFolding "qiskit_mitigation.zne.GateFolding"). When it is `True`, the task measures only the qubits that have instructions on them or are in the support of the observables, and the measured qubits are stored in the `meas_qubits` attribute of the task. Every task finds its own measured qubits, so tasks with different support can be combined in one program. The default is `False`, which keeps measuring all the qubits of the circuit as before.
+
+    When several trimmed tasks share a [`TREX`](/docs/api/qiskit-mitigation/trex#qiskit_mitigation.TREX "qiskit_mitigation.TREX") instance, the TREX calibration measures the union of the qubits measured by the tasks. A task that does not trim its measurements contributes all of its qubits. The calibration register spans the qubits `0` to the highest measured qubit, so that column `i` is always circuit qubit `i`, but qubits that no task measures are not measured.
+
+    When `twirling_strategy="all"` is combined with `trim_measurements=True`, a `UserWarning` is issued because all qubits are active under that strategy and trimming therefore has no effect.
+
+*   Added the `observables` argument to `find_combined_unique_layers()` and to `find_unique_layers` of the mitigation tasks, to find the unique layers of circuits with trimmed measurements. Trimming changes the boxing of the circuit, so pass `observables` to the layer finder if and only if `trim_measurements=True` is passed to `prepare`, and pass the same observables. Noise learned with a different choice is not found by `PEC.prepare` and `PEA.prepare`, which raise a `ValueError` about the missing layer.
+
+*   Added the `trex` argument to `find_combined_unique_layers()` and to `find_unique_layers` of the mitigation tasks. It controls whether the boxing options that `prepare` adds when a [`TREX`](/docs/api/qiskit-mitigation/trex#qiskit_mitigation.TREX "qiskit_mitigation.TREX") is used (measurement boxes annotated for all qubits) are added when finding the layers. In `find_unique_layers` the default `trex=None` adds them if and only if the task has a TREX. In `find_combined_unique_layers()`, `trex` is a `bool` (default `False`) that finds the layers as if all the tasks share a TREX, ignoring the TREX of the given tasks. With `trex=True` the measurement layer of the TREX calibration circuit is also returned, exactly as `TREX.prepare` creates it (without noise injection), in addition to the measurement layers of the individual circuits. The boxing options of the calibration circuit are given by the new `trex_custom_boxing_options` argument, which are the options passed to `TREX.prepare`, and are independent of the `custom_boxing_options` of the tasks.
+
+*   `find_combined_unique_layers()` issues a `UserWarning` when `box_types` is `"measurement"` or `"all"`, `trex` is `False` and at least one of the tasks in `mitigation_types` has a [`TREX`](/docs/api/qiskit-mitigation/trex#qiskit_mitigation.TREX "qiskit_mitigation.TREX"). The measurement boxes are then found without the boxing options that `prepare` adds when a TREX is used, so they do not match the measurement boxes of the tasks prepared with TREX.
+
+<span id="release-notes-upcoming-release-upgrade-notes" />
+
+### Upgrade Notes
+
+*   The programs created by [`MitigationTask`](/docs/api/qiskit-mitigation/mitigation-task#qiskit_mitigation.MitigationTask "qiskit_mitigation.MitigationTask"), [`PEC`](/docs/api/qiskit-mitigation/pec#qiskit_mitigation.PEC "qiskit_mitigation.PEC"), [`PEA`](/docs/api/qiskit-mitigation/zne-pea#qiskit_mitigation.zne.PEA "qiskit_mitigation.zne.PEA") and [`GateFolding`](/docs/api/qiskit-mitigation/zne-gate-folding#qiskit_mitigation.zne.GateFolding "qiskit_mitigation.zne.GateFolding") now save the version `"0.2"` in their passthrough data, together with `meas_qubits` and `circuit_num_qubits`. Older versions of the library cannot post-process them. Programs created with version `"0.1"` can still be loaded and post-processed.
+
+*   [`TREX`](/docs/api/qiskit-mitigation/trex#qiskit_mitigation.TREX "qiskit_mitigation.TREX") now registers a task only at the end of the task’s `prepare`, so a task whose preparation failed no longer remains connected to the TREX instance and no longer widens its calibration.
+
+<span id="release-notes-upcoming-release-deprecation-notes" />
+
+### Deprecation Notes
+
+*   Support for Python 3.10 will be dropped in the next release since it reached its end-of-life.
+
+<span id="release-notes-upcoming-release-bug-fixes" />
+
+### Bug Fixes
+
+*   Fixed a bug in the commutation check between observable terms and measurement bases (notably for terms containing `Y`) which caused incorrect computations in some scenarios.
+
+*   Fixed [`PEC.postprocess()`](/docs/api/qiskit-mitigation/pec#qiskit_mitigation.PEC.postprocess "qiskit_mitigation.PEC.postprocess") failing with `Results must contain 'pauli_signs'` for a circuit with no noisy layers, such as one without entangling gates. Such a circuit has no noise to cancel, so its gamma factor is `1` and its result has no `pauli_signs`; it is now post-processed as a regular twirled result. A missing `pauli_signs` with any other gamma still raises. See [#33](https://github.com/Qiskit/qiskit-mitigation/issues/33).
+
+<span id="release-notes-0-1-1" />
+
 <span id="id1" />
 
-# Qiskit Mitigation release notes
+## 0.1.1
 
-<span id="release-notes-0-1-0" />
-
-<span id="id2" />
-
-## 0.1.0
-
-<span id="release-notes-0-1-0-prelude" />
+<span id="release-notes-0-1-1-prelude" />
 
 ### Prelude
 
-This is the first release of [Qiskit Mitigation](/docs/addons/qiskit-mitigation), which you can use to build custom error mitigation pipelines with techniques such as PEC, ZNE, and TREX directly with Samplomatic.
+This is the first release of Qiskit Mitigation, a package for handling noise in quantum computations. It contains a set of techniques that can be used to build advanced or customized error mitigation pipelines directly with samplomatic.
+
+<span id="release-notes-0-1-1-deprecation-notes" />
+
+<span id="id2" />
+
+### Deprecation Notes
+
+*   Post processing TREX calibration circuit with a register name of `_trex_cal` is deprecated and will not be supported in future versions.
+
+<span id="release-notes-0-1-1-bug-fixes" />
+
+<span id="id3" />
+
+### Bug Fixes
+
+*   Fixed issue where applying TREX on multiple tasks with different number of qubits raised an error.
+
+<span id="release-notes-0-1-1-other-notes" />
+
+### Other Notes
+
+*   The classical register name of the TREX calibration circuit was changed from `_trex_cal` to `_meas` to align with the register names of the rest of the mitigation methods.
+

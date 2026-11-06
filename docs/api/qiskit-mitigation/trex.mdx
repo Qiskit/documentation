@@ -12,7 +12,7 @@ python_api_name: qiskit_mitigation.TREX
 
 ### TREX
 
-<Class id="qiskit_mitigation.TREX" github="https://github.com/Qiskit/qiskit-mitigation/tree/stable/0.1/qiskit_mitigation/trex.py#L37-L330" signature="TREX" modifiers="class">
+<Class id="qiskit_mitigation.TREX" github="https://github.com/Qiskit/qiskit-mitigation/tree/main/qiskit_mitigation/trex.py#L35-L440" signature="TREX" modifiers="class">
   Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
 
   Mitigates readout errors in expectation values using the Twirled Readout Error eXtinction (TREX) method.
@@ -25,13 +25,17 @@ python_api_name: qiskit_mitigation.TREX
 
   ##### prepare
 
-  <Function id="qiskit_mitigation.TREX.prepare" github="https://github.com/Qiskit/qiskit-mitigation/tree/stable/0.1/qiskit_mitigation/trex.py#L100-L133" signature="prepare(num_randomizations, quantum_program, custom_boxing_options=None)">
+  <Function id="qiskit_mitigation.TREX.prepare" github="https://github.com/Qiskit/qiskit-mitigation/tree/main/qiskit_mitigation/trex.py#L111-L168" signature="prepare(num_randomizations, quantum_program, custom_boxing_options=None)">
     Adds a TREX calibration item to the quantum program.
+
+    The created calibration circuit measures the union of the qubits measured by the tasks connected to this instance. A task that does not trim its measurements contributes all the qubits of its circuit. The classical register of the measurement is named `_meas` and has `m + 1` bits, where `m` is the largest measured qubit index, so that column `i` of the calibration is always circuit qubit `i`. Columns of qubits that no task measures are not measured and always hold zeros.
+
+    The calibration item is built without noise maps, so if `custom_boxing_options` sets `inject_noise_targets` to `"all"` or `"measures"`, it is replaced with `"none"` in the calibration circuit.
 
     **Parameters**
 
     *   **num\_randomizations** ([*int*](https://docs.python.org/3/builtins/functions.html#int)) – Number of randomizations for the TREX calibration.
-    *   **quantum\_program** ([*QuantumProgram*](/docs/api/samplomatic/auto/quantum-program-quantum-program#samplomatic.quantum_program.QuantumProgram "(in samplomatic)")) – The quantum program to add an item for.
+    *   **quantum\_program** ([*QuantumProgram*](/docs/addons/samplomatic/api/auto/quantum-program-quantum-program#samplomatic.quantum_program.QuantumProgram "(in samplomatic)")) – The quantum program to add an item for.
     *   **custom\_boxing\_options** ([*dict*](https://docs.python.org/3/builtins/stdtypes.html#dict) *| None*) – The custom boxing options that will be used by `generate_boxing_pass_manager()` function.
 
     **Returns**
@@ -40,12 +44,12 @@ python_api_name: qiskit_mitigation.TREX
 
     **Return type**
 
-    [*QuantumProgram*](/docs/api/samplomatic/auto/quantum-program-quantum-program#samplomatic.quantum_program.QuantumProgram "(in samplomatic)")
+    [*QuantumProgram*](/docs/addons/samplomatic/api/auto/quantum-program-quantum-program#samplomatic.quantum_program.QuantumProgram "(in samplomatic)")
   </Function>
 
   ##### calculate\_trex\_factor
 
-  <Function id="qiskit_mitigation.TREX.calculate_trex_factor" github="https://github.com/Qiskit/qiskit-mitigation/tree/stable/0.1/qiskit_mitigation/trex.py#L267-L301" signature="calculate_trex_factor(noise_data, observable_term)" modifiers="static">
+  <Function id="qiskit_mitigation.TREX.calculate_trex_factor" github="https://github.com/Qiskit/qiskit-mitigation/tree/main/qiskit_mitigation/trex.py#L357-L411" signature="calculate_trex_factor(noise_data, observable_term)" modifiers="static">
     Calculate TREX factor relevant for a given observable term based on noise model.
 
     **Parameters**
@@ -64,7 +68,7 @@ python_api_name: qiskit_mitigation.TREX
 
   ##### trex\_factors\_each\_term
 
-  <Function id="qiskit_mitigation.TREX.trex_factors_each_term" github="https://github.com/Qiskit/qiskit-mitigation/tree/stable/0.1/qiskit_mitigation/trex.py#L303-L330" signature="trex_factors_each_term(measurement_noise_map, observables)" modifiers="static">
+  <Function id="qiskit_mitigation.TREX.trex_factors_each_term" github="https://github.com/Qiskit/qiskit-mitigation/tree/main/qiskit_mitigation/trex.py#L413-L440" signature="trex_factors_each_term(measurement_noise_map, observables)" modifiers="static">
     Calculates TREX mitigation algorithm’s expectation value scale factor for each Pauli term in each observable.
 
     Calculates $\langle Z^N \rangle$ for each non-identity Pauli term in each observable using learned measurement noise, where $N$ are the non-identity indices in the term.
@@ -85,12 +89,12 @@ python_api_name: qiskit_mitigation.TREX
 
   ##### compute\_noise\_model
 
-  <Function id="qiskit_mitigation.TREX.compute_noise_model" github="https://github.com/Qiskit/qiskit-mitigation/tree/stable/0.1/qiskit_mitigation/trex.py#L237-L265" signature="compute_noise_model(results)">
+  <Function id="qiskit_mitigation.TREX.compute_noise_model" github="https://github.com/Qiskit/qiskit-mitigation/tree/main/qiskit_mitigation/trex.py#L305-L315" signature="compute_noise_model(results)">
     Compute noise model from program results.
 
     **Parameters**
 
-    **results** ([*QuantumProgramResult*](/docs/api/samplomatic/auto/quantum-program-quantum-program-result#samplomatic.quantum_program.QuantumProgramResult "(in samplomatic)")) – QuantumProgramResult which contains the TREX calibration circuit results.
+    **results** ([*QuantumProgramResult*](/docs/addons/samplomatic/api/auto/quantum-program-quantum-program-result#samplomatic.quantum_program.QuantumProgramResult "(in samplomatic)")) – QuantumProgramResult which contains the TREX calibration circuit results.
 
     **Returns**
 
@@ -103,7 +107,7 @@ python_api_name: qiskit_mitigation.TREX
 
   ##### has\_calibration\_result
 
-  <Function id="qiskit_mitigation.TREX.has_calibration_result" github="https://github.com/Qiskit/qiskit-mitigation/tree/stable/0.1/qiskit_mitigation/trex.py#L135-L137" signature="has_calibration_result()">
+  <Function id="qiskit_mitigation.TREX.has_calibration_result" github="https://github.com/Qiskit/qiskit-mitigation/tree/main/qiskit_mitigation/trex.py#L170-L172" signature="has_calibration_result()">
     Whether a TREX calibration task has been added to the quantum program.
 
     **Return type**

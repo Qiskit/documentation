@@ -12,7 +12,7 @@ python_api_name: qiskit_mitigation.PEC
 
 ### PEC
 
-<Class id="qiskit_mitigation.PEC" github="https://github.com/Qiskit/qiskit-mitigation/tree/stable/0.1/qiskit_mitigation/pec.py#L48-L700" signature="PEC" modifiers="class">
+<Class id="qiskit_mitigation.PEC" github="https://github.com/Qiskit/qiskit-mitigation/tree/main/qiskit_mitigation/pec.py#L64-L1022" signature="PEC" modifiers="class">
   Bases: [`MitigationTask`](mitigation-task#qiskit_mitigation.MitigationTask "qiskit_mitigation.mitigation_task.MitigationTask")
 
   Calculates expectation values of observables using Probabilistic Error Cancellation (PEC) mitigation method.
@@ -52,17 +52,36 @@ python_api_name: qiskit_mitigation.PEC
 
   ##### find\_unique\_layers
 
-  <Function id="qiskit_mitigation.PEC.find_unique_layers" github="https://github.com/Qiskit/qiskit-mitigation/tree/stable/0.1/qiskit_mitigation/mitigation_task.py#L566-L586" signature="find_unique_layers(circuit, custom_boxing_options=None)">
+  <Function id="qiskit_mitigation.PEC.find_unique_layers" github="https://github.com/Qiskit/qiskit-mitigation/tree/main/qiskit_mitigation/mitigation_task.py#L650-L717" signature="find_unique_layers(circuit, custom_boxing_options=None, box_types='all', observables=None, trex=None)">
     Return the unique boxed layers of the given circuit using the given boxing options.
+
+    If the instance already holds a boxed circuit of the given `circuit` (for example, after calling `prepare`), and `custom_boxing_options` is `None` or equal to the saved boxing options, the saved boxed circuit is used instead of boxing the circuit again.
 
     **Parameters**
 
     *   **circuit** ([*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit)) – The circuit to found its unique layers.
+
     *   **custom\_boxing\_options** ([*dict*](https://docs.python.org/3/builtins/stdtypes.html#dict) *| None*) – The custom boxing options that will be used by `generate_boxing_pass_manager()` function.
+
+    *   **box\_types** ([*Literal*](https://docs.python.org/3/library/typing.html#typing.Literal)*\['gates', 'measurement', 'all']*) – Can be either `"gates"`, `"measurement"` or `"all"`, corresponding to filter boxes with only gate layers, only measurement layers or all layers, respectively.
+
+    *   **observables** ([*ObservablesArray*](/docs/api/qiskit/qiskit.primitives.ObservablesArray)  *|*[*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp)*] | None*) –
+
+        If given, the layers are found for a circuit whose measurements are trimmed to the active and observed qubits, exactly as when `prepare` is called with `trim_measurements=True` and the same observables. If `None` (default), all the qubits are measured.
+
+            <Admonition title="Warning" type="caution">
+              Pass `observables` if and only if `trim_measurements=True` is passed to `prepare`, together with the same observables. The measured qubits change the boxing, so layers learned with a different choice are not found by `prepare`.
+            </Admonition>
+
+    *   **trex** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool) *| None*) – Whether to add the boxing options that `prepare` enforces when a [`TREX`](trex#qiskit_mitigation.TREX "qiskit_mitigation.TREX") is used (measurement boxes annotated for all qubits). If `True`, these options are always added. If `False`, they are never added. If `None` (default), they are added if and only if this task has a TREX mitigation.
 
     **Returns**
 
     Unique boxed layers of the given circuit.
+
+    **Raises**
+
+    [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If `observables` is given and no qubit is active or observed.
 
     **Return type**
 
@@ -71,44 +90,68 @@ python_api_name: qiskit_mitigation.PEC
 
   ##### prepare
 
-  <Function id="qiskit_mitigation.PEC.prepare" github="https://github.com/Qiskit/qiskit-mitigation/tree/stable/0.1/qiskit_mitigation/pec.py#L146-L341" signature="prepare(circuit, observables, parameters, custom_boxing_options=None, shots_per_randomization=64, num_randomizations=128, broadcast_obs_and_params=False, trex=None, quantum_program=None, *, noise_maps=None, scale_randomizations_by_gamma=True, noise_gain='auto', max_sampling_overhead=100)">
+  <Function id="qiskit_mitigation.PEC.prepare" github="https://github.com/Qiskit/qiskit-mitigation/tree/main/qiskit_mitigation/pec.py#L168-L422" signature="prepare(circuit, observables, parameters, custom_boxing_options=None, shots_per_randomization=64, num_randomizations=128, broadcast_obs_and_params=False, trex=None, quantum_program=None, trim_measurements=False, *, noise_maps=None, scale_randomizations_by_gamma=True, noise_gain='auto', max_sampling_overhead=100)">
     Creates a `QuantumProgram` with PEC mitigated item for executing via Executor.
 
-    Creates an item for a `QuantumProgram`, that can be executed via Executor and is PEC mitigated (injects inverse noise to cancel the learned noise). If a `quantum_program` is provided, the new item will be added to the existing program, otherwise, a new program will be created, containing only the created item. If `broadcast_obs_and_params` is True, the observables and parameters will be broadcasted using the samplomatic broadcasting rules, to allow attaching some of the parameters to some of the observables. Otherwise, every parameter will be executed for each observable (outer product of the parameters and observables). Note that the post-processing of an outer product is usually faster.
+    Creates an item for a `QuantumProgram`, that can be executed via Executor and is PEC mitigated (injects inverse noise to cancel the learned noise). If a `quantum_program` is provided, the new item will be added to the existing program, otherwise, a new program will be created, containing only the created item. In the created program item the final measurement layer of the given circuit is removed and a new measurement layer with a dedicated classical register named `_meas` is added. If `broadcast_obs_and_params` is True, the observables and parameters will be broadcasted using the samplomatic broadcasting rules, to allow attaching some of the parameters to some of the observables. Otherwise, every parameter will be executed for each observable (outer product of the parameters and observables). Note that the post-processing of an outer product is usually faster.
 
     **Parameters**
 
     *   **circuit** ([*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit)) – The quantum circuit.
+
     *   **observables** ([*ObservablesArray*](/docs/api/qiskit/qiskit.primitives.ObservablesArray)  *|*[*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp)*]*) – The observables to calculate their expectation values.
+
     *   **parameters** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)  *|*[*BindingsArray*](/docs/api/qiskit/qiskit.primitives.BindingsArray) *| None*) – The parameters of a parametric circuit.
+
     *   **custom\_boxing\_options** ([*dict*](https://docs.python.org/3/builtins/stdtypes.html#dict) *| None*) – The custom boxing options that will be used by `generate_boxing_pass_manager()` function.
+
     *   **shots\_per\_randomization** ([*int*](https://docs.python.org/3/builtins/functions.html#int)) – The number of shots per randomization.
+
     *   **num\_randomizations** ([*int*](https://docs.python.org/3/builtins/functions.html#int)) – The number of randomizations.
+
     *   **broadcast\_obs\_and\_params** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) – Whether to broadcast observables and parameters.
+
     *   **trex** ([*TREX*](trex#qiskit_mitigation.TREX "qiskit_mitigation.trex.TREX") *| None*) – A TREX mitigation instance that will be used to mitigate readout errors.
-    *   **quantum\_program** ([*QuantumProgram*](/docs/api/samplomatic/auto/quantum-program-quantum-program#samplomatic.quantum_program.QuantumProgram "(in samplomatic)") *| None*) – The quantum program to add an item for. If None, a new program will be created.
-    *   **noise\_maps** ([*dict*](https://docs.python.org/3/builtins/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/builtins/stdtypes.html#str)*,* [*PauliLindbladMap*](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap)*] | None*) – A mapping between layer ref to a noise model to use for PEC mitigation method. The dict might contain layers not present in the given circuit, but must contain all the mitigated layers. Assumes that the unique layers used for noise learning were extracted using the `find_unique_layers` method with the same custom boxing options.
+
+    *   **quantum\_program** ([*QuantumProgram*](/docs/addons/samplomatic/api/auto/quantum-program-quantum-program#samplomatic.quantum_program.QuantumProgram "(in samplomatic)") *| None*) – The quantum program to add an item for. If None, a new program will be created.
+
+    *   **trim\_measurements** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) –
+
+        Whether to measure only the qubits that have instructions on them or are in the support of the observables, instead of all the qubits of the circuit. The measured qubits are available in `meas_qubits` after the call.
+
+            <Admonition title="Warning" type="caution">
+              Trimming changes the boxing of the circuit, so `noise_maps` must be learned on the layers of a trimmed circuit: pass `observables` to the layer finder (`find_combined_unique_layers()` or [`find_unique_layers()`](mitigation-task#qiskit_mitigation.MitigationTask.find_unique_layers "qiskit_mitigation.MitigationTask.find_unique_layers")) if and only if `trim_measurements=True` is passed to `prepare`, and pass the same observables.
+            </Admonition>
+
+    *   **noise\_maps** ([*dict*](https://docs.python.org/3/builtins/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/builtins/stdtypes.html#str)*,* [*PauliLindbladMap*](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap)*] | None*) – A mapping between layer ref to a noise model to use for PEC mitigation method. The dict might contain layers not present in the given circuit, but must contain all the mitigated layers. Assumes that the unique layers used for noise learning were extracted using the `find_unique_layers` method with the same custom boxing options, and with `observables` passed if and only if `trim_measurements=True`.
+
     *   **scale\_randomizations\_by\_gamma** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) – Whether to automatically scale the number of randomizations by gamma\*\*2.
-    *   **noise\_gain** ([*float*](https://docs.python.org/3/builtins/functions.html#float)  *|*[*Literal*](https://docs.python.org/3/library/typing.html#typing.Literal)*\['auto']*) – The fraction of noise to keep after the mitigation. A value of `0` corresponds to removing the full learned noise. A value of `1` corresponds to no removal of the learned noise. A value between `0` and `1` corresponds to partially removing the learned noise. A value greater than one corresponds to amplifying the learned noise. If `"auto"`, the value in the range `[0, 1]` will be chosen automatically by the formula `1 - log(max_overhead) / log(gamma^2)`.
+
+    *   **noise\_gain** ([*float*](https://docs.python.org/3/builtins/functions.html#float)  *|*[*Literal*](https://docs.python.org/3/library/typing.html#typing.Literal)*\['auto', 'slc\_local\_scales']*) – The fraction of noise to keep after the mitigation. A value of `0` corresponds to removing the full learned noise. A value of `1` corresponds to no removal of the learned noise. A value between `0` and `1` corresponds to partially removing the learned noise. A value greater than one corresponds to amplifying the learned noise. A value of “slc\_local\_scales” corresponds to partially removing the learned noise of each box according to the local scales learned using shaded light-cones (slc). In order to compute those local scales, first use [`generate_slc_bounds_computation_input()`](#qiskit_mitigation.PEC.generate_slc_bounds_computation_input "qiskit_mitigation.PEC.generate_slc_bounds_computation_input") and the `qiskit-addon-slc` bounds functions, and then use [`set_slc_local_scales()`](#qiskit_mitigation.PEC.set_slc_local_scales "qiskit_mitigation.PEC.set_slc_local_scales") (see its documentation). If `"auto"`, the value in the range `[0, 1]` will be chosen automatically by the formula `1 - log(max_overhead) / log(gamma^2)`.
+
     *   **max\_sampling\_overhead** ([*float*](https://docs.python.org/3/builtins/functions.html#float) *| None*) – If scale\_randomizations\_by\_gamma is True, limit the multiplicative ratio of the number of randomizations.
 
     **Returns**
 
     A `QuantumProgram` with PEC mitigated item that can be executed via Executor.
 
+    **Raises**
+
+    [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If `trim_measurements` is `True` and no qubit is active or observed.
+
     **Return type**
 
-    [*QuantumProgram*](/docs/api/samplomatic/auto/quantum-program-quantum-program#samplomatic.quantum_program.QuantumProgram "(in samplomatic)")
+    [*QuantumProgram*](/docs/addons/samplomatic/api/auto/quantum-program-quantum-program#samplomatic.quantum_program.QuantumProgram "(in samplomatic)")
   </Function>
 
   ##### postprocess
 
-  <Function id="qiskit_mitigation.PEC.postprocess" github="https://github.com/Qiskit/qiskit-mitigation/tree/stable/0.1/qiskit_mitigation/pec.py#L343-L380" signature="postprocess(results, measure_noise_data=None)">
+  <Function id="qiskit_mitigation.PEC.postprocess" github="https://github.com/Qiskit/qiskit-mitigation/tree/main/qiskit_mitigation/pec.py#L424-L467" signature="postprocess(results, measure_noise_data=None)">
     Process expectation values for a single pec mitigated item result.
 
     **Parameters**
 
-    *   **results** ([*QuantumProgramItemResult*](/docs/api/samplomatic/auto/quantum-program-quantum-program-item-result#samplomatic.quantum_program.QuantumProgramItemResult "(in samplomatic)")  *|*[*QuantumProgramResult*](/docs/api/samplomatic/auto/quantum-program-quantum-program-result#samplomatic.quantum_program.QuantumProgramResult "(in samplomatic)")) – The execution results. Can be either the entire results object or the pec mitigated item result of this task. If TREX calibration task is added to the quantum program, its results will be used to compute the measure noise data if the entire results object is provided.
+    *   **results** ([*QuantumProgramItemResult*](/docs/addons/samplomatic/api/auto/quantum-program-quantum-program-item-result#samplomatic.quantum_program.QuantumProgramItemResult "(in samplomatic)")  *|*[*QuantumProgramResult*](/docs/addons/samplomatic/api/auto/quantum-program-quantum-program-result#samplomatic.quantum_program.QuantumProgramResult "(in samplomatic)")) – The execution results. Can be either the entire results object or the pec mitigated item result of this task. If TREX calibration task is added to the quantum program, its results will be used to compute the measure noise data if the entire results object is provided.
     *   **measure\_noise\_data** ([*PauliLindbladMap*](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap)  *|*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray) *| None*) – The learned measurement noise data to use for TREX mitigation. If None and a calibration task is present the quantum program, the measure noise will be computed from the calibration task results if the entire results object is provided.
 
     **Returns**
@@ -128,14 +171,14 @@ python_api_name: qiskit_mitigation.PEC
 
   ##### compute\_expectation\_value\_pec
 
-  <Function id="qiskit_mitigation.PEC.compute_expectation_value_pec" github="https://github.com/Qiskit/qiskit-mitigation/tree/stable/0.1/qiskit_mitigation/pec.py#L581-L700" signature="compute_expectation_value_pec(item_result, observables, gamma, param_shape=None, param_basis_pairs=None, meas_bases=None, broadcast_obs_and_params=False, measure_noise_data=None)" modifiers="static">
+  <Function id="qiskit_mitigation.PEC.compute_expectation_value_pec" github="https://github.com/Qiskit/qiskit-mitigation/tree/main/qiskit_mitigation/pec.py#L886-L1022" signature="compute_expectation_value_pec(item_result, observables, gamma, param_shape=None, param_basis_pairs=None, meas_bases=None, broadcast_obs_and_params=False, measure_noise_data=None, meas_qubits=None, circuit_num_qubits=None)" modifiers="static">
     Process expectation values for a single pec mitigated item result.
 
     This function can be used to calculate expectation values for a single pec mitigated item result without instantiating a new class instance.
 
     **Parameters**
 
-    *   **item\_result** ([*QuantumProgramItemResult*](/docs/api/samplomatic/auto/quantum-program-quantum-program-item-result#samplomatic.quantum_program.QuantumProgramItemResult "(in samplomatic)")) – The item result.
+    *   **item\_result** ([*QuantumProgramItemResult*](/docs/addons/samplomatic/api/auto/quantum-program-quantum-program-item-result#samplomatic.quantum_program.QuantumProgramItemResult "(in samplomatic)")) – The item result.
     *   **observables** ([*ObservablesArray*](/docs/api/qiskit/qiskit.primitives.ObservablesArray)  *|*[*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp)*]*) – The observables to calculate expectation values for.
     *   **gamma** ([*float*](https://docs.python.org/3/builtins/functions.html#float)) – The gamma factor of the learned noise model for the executed circuit.
     *   **param\_shape** ([*tuple*](https://docs.python.org/3/builtins/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/builtins/functions.html#int)*, ...] | None*) – The shape of the parameter values.
@@ -143,6 +186,8 @@ python_api_name: qiskit_mitigation.PEC
     *   **meas\_bases** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*Pauli*](/docs/api/qiskit/qiskit.quantum_info.Pauli)*] |* [*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*str*](https://docs.python.org/3/builtins/stdtypes.html#str)*] |* [*PauliList*](/docs/api/qiskit/qiskit.quantum_info.PauliList) *| None*) – A list of the measured Pauli bases. The `i` th item is a measurement basis assumed to correspond to the `i` th slice of the data in `item_result`.
     *   **broadcast\_obs\_and\_params** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) – Whether to broadcast observables and parameter values.
     *   **measure\_noise\_data** ([*PauliLindbladMap*](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap)  *|*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray) *| None*) – Measurement noise calibration data for TREX mitigation.
+    *   **meas\_qubits** ([*list*](https://docs.python.org/3/builtins/stdtypes.html#list)*\[*[*int*](https://docs.python.org/3/builtins/functions.html#int)*] | None*) – Sorted list of the circuit qubit indices that were measured, if the task was prepared with `trim_measurements=True` (available as `task.meas_qubits`). Must be given together with `circuit_num_qubits`. If `None`, all the qubits are assumed to be measured, which gives wrong results for trimmed data.
+    *   **circuit\_num\_qubits** ([*int*](https://docs.python.org/3/builtins/functions.html#int) *| None*) – The total number of qubits in the circuit. Used together with `meas_qubits` to expand the data back to the full width. Must be given together with `meas_qubits`.
 
     **Returns**
 
@@ -152,8 +197,9 @@ python_api_name: qiskit_mitigation.PEC
 
     *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If `item_result` has no `'_meas'` key.
     *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If `item_result['_meas']` has invalid number of axes.
-    *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If `item_result` has no `'pauli_signs'` key.
+    *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If `item_result` has no `'pauli_signs'` key and `gamma` is not `1`.
     *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If `param_shape` and `observables.shape` cannot be broadcasted against each other.
+    *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If only one of `meas_qubits` and `circuit_num_qubits` is given.
 
     **Return type**
 
@@ -162,7 +208,7 @@ python_api_name: qiskit_mitigation.PEC
 
   ##### create\_instance\_from\_passthrough\_data
 
-  <Function id="qiskit_mitigation.PEC.create_instance_from_passthrough_data" github="https://github.com/Qiskit/qiskit-mitigation/tree/stable/0.1/qiskit_mitigation/pec.py#L538-L579" signature="create_instance_from_passthrough_data(passthrough, trex=None)" modifiers="static">
+  <Function id="qiskit_mitigation.PEC.create_instance_from_passthrough_data" github="https://github.com/Qiskit/qiskit-mitigation/tree/main/qiskit_mitigation/pec.py#L833-L884" signature="create_instance_from_passthrough_data(passthrough, trex=None)" modifiers="static">
     Create a PEC instance from a passthrough dictionary loaded from a quantum program execution result.
 
     **Parameters**
@@ -177,6 +223,103 @@ python_api_name: qiskit_mitigation.PEC
     **Return type**
 
     [*PEC*](#qiskit_mitigation.PEC "qiskit_mitigation.pec.PEC")
+  </Function>
+
+  ##### generate\_slc\_bounds\_computation\_input
+
+  <Function id="qiskit_mitigation.PEC.generate_slc_bounds_computation_input" github="https://github.com/Qiskit/qiskit-mitigation/tree/main/qiskit_mitigation/pec.py#L535-L612" signature="generate_slc_bounds_computation_input(circuit, coupling_map=None, custom_boxing_options=None)">
+    Prepare the inputs required for computing the shaded light-cone (SLC) bounds of a circuit.
+
+    The circuit is boxed, and the Pauli error terms of each noisy layer are generated using `qiskit_addon_slc.utils.generate_noise_model_paulis()`. The circuit, boxed circuit and the boxing options are saved in the class instance. If the instance already holds a boxed circuit of the given `circuit` (for example, from a previous call to this function or to `prepare`), and `custom_boxing_options` is `None` or equal to the saved boxing options, the saved boxed circuit is reused instead of boxing the circuit again.
+
+    <Admonition title="Important" type="danger">
+      The bounds are keyed by the `modifier_ref` of each noisy box, so `custom_boxing_options["inject_noise_strategy"]` must be `"individual_modification"` (see `qiskit_addon_slc.bounds.compute_forward_bounds()`). If it is not specified, it is set to `"individual_modification"`. If `custom_boxing_options` is `None` and the saved boxing options are used, the same rule applies to them.
+    </Admonition>
+
+    <Admonition title="Note" type="note">
+      This function uses the optional dependency of `qiskit-addon-slc` package.
+    </Admonition>
+
+    **Parameters**
+
+    *   **circuit** ([*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit)) – The target circuit to compute bounds for.
+    *   **coupling\_map** ([*CouplingMap*](/docs/api/qiskit/qiskit.transpiler.CouplingMap) *| None*) – The coupling map of the backend on which the instructions have been laid out. Used to generate all the relevant Pauli error terms. If `None`, a 1d line of qubits is assumed.
+    *   **custom\_boxing\_options** ([*dict*](https://docs.python.org/3/builtins/stdtypes.html#dict) *| None*) – The custom boxing options that will be used by `generate_boxing_pass_manager()` function. If `None` and `circuit` is the same object as the circuit saved in the class instance (e.g. from a previous call to `prepare`), the `custom_boxing_options` saved in the instance are used.
+
+    **Returns**
+
+    *   The boxed circuit.
+    *   A dict mapping the ref of each noise model to the Pauli error terms to consider. Can be given as the `noise_model_paulis` input of the `qiskit-addon-slc` bounds functions.
+
+    **Raises**
+
+    *   **MissingOptionalLibraryError** – if `qiskit-addon-slc` package is not installed.
+    *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If the circuit has unbounded parameters.
+    *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If `custom_boxing_options["inject_noise_strategy"]` is specified and is not `"individual_modification"`.
+
+    **Return type**
+
+    [tuple](https://docs.python.org/3/builtins/stdtypes.html#tuple)\[[*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit), [dict](https://docs.python.org/3/builtins/stdtypes.html#dict)\[[str](https://docs.python.org/3/builtins/stdtypes.html#str), [*QubitSparsePauliList*](/docs/api/qiskit/qiskit.quantum_info.QubitSparsePauliList)]]
+  </Function>
+
+  ##### set\_slc\_local\_scales
+
+  <Function id="qiskit_mitigation.PEC.set_slc_local_scales" github="https://github.com/Qiskit/qiskit-mitigation/tree/main/qiskit_mitigation/pec.py#L614-L675" signature="set_slc_local_scales(local_scales, reduced_gamma, reduced_bias=None)">
+    Set the shaded light-cone (SLC) local scales and reduced gamma on the instance.
+
+    These values determine which individual Pauli error terms are mitigated and at what cost when `noise_gain="slc_local_scales"` is passed to [`prepare()`](#qiskit_mitigation.PEC.prepare "qiskit_mitigation.PEC.prepare").
+
+    The parameters `local_scales`, `reduced_gamma`, and `reduced_bias` can be computed using the `qiskit-addon-slc` package. See the [package guide](/docs/addons/qiskit-addon-slc/guides/quickstart) for more information. A summary of the computation flow is shown below.
+
+    1.  Call [`generate_slc_bounds_computation_input()`](#qiskit_mitigation.PEC.generate_slc_bounds_computation_input "qiskit_mitigation.PEC.generate_slc_bounds_computation_input") with the target circuit to obtain the boxed circuit and `noise_model_paulis`.
+
+    2.  Compute the bounds to pass to `qiskit_addon_slc.bounds.compute_local_scales()`. At least one direction is required. Examples:
+
+        *   **Forward only** (optionally tightened):
+
+            ```python
+            bounds = compute_forward_bounds(boxed_circuit, noise_model_paulis, observable)
+            bounds = tighten_with_speed_limit(bounds, boxed_circuit, noise_model_paulis, observable)  # optional
+            ```
+
+        *   **Backward only**:
+
+            ```python
+            bounds = compute_backward_bounds(boxed_circuit, noise_model_paulis)
+            ```
+
+        *   **Both directions merged** (use `qiskit_addon_slc.bounds.merge_bounds()`):
+
+            ```python
+            bounds = merge_bounds(
+                boxed_circuit,
+                tighten_with_speed_limit(
+                    compute_forward_bounds(boxed_circuit, noise_model_paulis, observable),
+                    boxed_circuit, noise_model_paulis, observable,
+                ),
+                compute_backward_bounds(boxed_circuit, noise_model_paulis),
+                noise_maps,
+            )
+            ```
+
+    3.  Call `qiskit_addon_slc.bounds.compute_local_scales()` with either a `sampling_cost_budget` (upper bound on gamma^2) or a `bias_tolerance` (upper bound on the remaining bias) to obtain `local_scales`, `sampling_cost`, and `reduced_bias`. Pass `sqrt(sampling_cost)` as `reduced_gamma`:
+
+        ```python
+        local_scales, sampling_cost, reduced_bias = compute_local_scales(
+            boxed_circuit, bounds, noise_maps, sampling_cost_budget=<budget>
+        )
+        pec.set_slc_local_scales(local_scales, float(np.sqrt(sampling_cost)), reduced_bias)
+        ```
+
+    **Parameters**
+
+    *   **local\_scales** ([*dict*](https://docs.python.org/3/builtins/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/builtins/stdtypes.html#str)*,* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)*]*) – Dict mapping each box ref to an array of per-term local scales, indicating which individual error terms to mitigate.
+    *   **reduced\_gamma** ([*float*](https://docs.python.org/3/builtins/functions.html#float)) – The square root of the sampling cost overhead (gamma) associated with the given `local_scales`.
+    *   **reduced\_bias** ([*float*](https://docs.python.org/3/builtins/functions.html#float) *| None*) – The remaining bias on expectation values for the given `local_scales`. If `None`, no bias value is stored.
+
+    **Return type**
+
+    None
   </Function>
 </Class>
 
