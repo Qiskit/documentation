@@ -1,0 +1,49 @@
+---
+title: passes (latest version)
+description: API reference for qiskit_bosons.transpiler.passes in the latest version of qiskit-bosons
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit_bosons.transpiler.passes
+---
+
+<span id="module-qiskit_bosons.transpiler.passes" />
+
+# Transpiler Passes
+
+This module provides various transpiler passes for the stages explained in [`qiskit_bosons.transpiler`](transpiler#module-qiskit_bosons.transpiler "qiskit_bosons.transpiler").
+
+<span id="qiskit-bosons-transpiler-passes-optimization" />
+
+## Optimization Passes
+
+These passes provide different kinds of optimization of [`BosonicDAGCircuit`](/docs/api/qiskit-bosons/circuit-bosonic-dag-circuit#qiskit_bosons.circuit.BosonicDAGCircuit "qiskit_bosons.circuit.BosonicDAGCircuit") instances.
+
+|                                                                                                                                                                                                                                                                                     |                                                                                                                                                                                                                                            |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [`B2BSynthesis`](/docs/api/qiskit-bosons/transpiler-passes-b-2-b-synthesis#qiskit_bosons.transpiler.passes.B2BSynthesis "qiskit_bosons.transpiler.passes.B2BSynthesis")(\[config, apply, filter])                                                                                   | A transpilation pass breaking gates down into smaller ones in bosonic space.                                                                                                                                                               |
+| [`B2BSynthesisConfig`](/docs/api/qiskit-bosons/transpiler-passes-optimization-b-2-b-synthesis-b-2-b-synthesis-config#qiskit_bosons.transpiler.passes.optimization.b2b_synthesis.B2BSynthesisConfig "qiskit_bosons.transpiler.passes.optimization.b2b_synthesis.B2BSynthesisConfig") | The dictionary type used to configure the [`B2BSynthesis.methods`](/docs/api/qiskit-bosons/transpiler-passes-b-2-b-synthesis#qiskit_bosons.transpiler.passes.B2BSynthesis.methods "qiskit_bosons.transpiler.passes.B2BSynthesis.methods"). |
+| [`MergeEvolutions`](/docs/api/qiskit-bosons/transpiler-passes-merge-evolutions#qiskit_bosons.transpiler.passes.MergeEvolutions "qiskit_bosons.transpiler.passes.MergeEvolutions")(\[atol])                                                                                          | A transpilation pass merging consecutive [`Evolution`](/docs/api/qiskit-bosons/circuit-library-evolution#qiskit_bosons.circuit.library.Evolution "qiskit_bosons.circuit.library.Evolution") gates of the same operator.                    |
+| [`RelabelModes`](/docs/api/qiskit-bosons/transpiler-passes-relabel-modes#qiskit_bosons.transpiler.passes.RelabelModes "qiskit_bosons.transpiler.passes.RelabelModes")(permutation)                                                                                                  | A transpilation pass to relabel the bosonic modes.                                                                                                                                                                                         |
+
+<span id="qiskit-bosons-transpiler-passes-layout" />
+
+## Layouting Passes
+
+These passes are designed to help configuring the global [`B2QLayout`](/docs/api/qiskit-bosons/transpiler-b-2-q-layout#qiskit_bosons.transpiler.B2QLayout "qiskit_bosons.transpiler.B2QLayout") setting for the transpilation process. This setting needs to be placed in the `b2q_layout` field of the [`property_set`](/docs/api/qiskit/qiskit.passmanager.PassManagerState#property_set), from where it will be read during the [Synthesis Passes](#qiskit-bosons-transpiler-passes-synthesis).
+
+|                                                                                                                                                                                                            |                                                                                                                                                                                  |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`CustomB2QLayout`](/docs/api/qiskit-bosons/transpiler-passes-custom-b-2-q-layout#qiskit_bosons.transpiler.passes.CustomB2QLayout "qiskit_bosons.transpiler.passes.CustomB2QLayout")(layout)               | Sets the user-provided [`B2QLayout`](/docs/api/qiskit-bosons/transpiler-b-2-q-layout#qiskit_bosons.transpiler.B2QLayout "qiskit_bosons.transpiler.B2QLayout") in the transpiler. |
+| [`OccupationB2QLayout`](/docs/api/qiskit-bosons/transpiler-passes-occupation-b-2-q-layout#qiskit_bosons.transpiler.passes.OccupationB2QLayout "qiskit_bosons.transpiler.passes.OccupationB2QLayout")(spec) | Maps bosonic modes to the qubits a [`LevelSpec`](/docs/api/qiskit-bosons/mappers-level-spec#qiskit_bosons.mappers.LevelSpec "qiskit_bosons.mappers.LevelSpec") assigns them.     |
+
+<span id="qiskit-bosons-transpiler-passes-synthesis" />
+
+## Synthesis Passes
+
+The main logic for mapping a [`BosonicDAGCircuit`](/docs/api/qiskit-bosons/circuit-bosonic-dag-circuit#qiskit_bosons.circuit.BosonicDAGCircuit "qiskit_bosons.circuit.BosonicDAGCircuit") to a [`DAGCircuit`](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit) is implemented by a single synthesis pass, namely the [`B2QSynthesis`](/docs/api/qiskit-bosons/transpiler-passes-b-2-q-synthesis#qiskit_bosons.transpiler.passes.B2QSynthesis "qiskit_bosons.transpiler.passes.B2QSynthesis"). It is conceptually similar to Qiskit’s [`HighLevelSynthesis`](/docs/api/qiskit/qiskit.transpiler.passes.HighLevelSynthesis) because it simply iterates over the [`BosonicDAGCircuit`](/docs/api/qiskit-bosons/circuit-bosonic-dag-circuit#qiskit_bosons.circuit.BosonicDAGCircuit "qiskit_bosons.circuit.BosonicDAGCircuit") instructions and delegates the mapping to qubit-based instructions to [Transpiler Pass Synthesis (B2Q)](transpiler-passes-synthesis#qiskit-bosons-transpiler-passes-synthesis-plugins) for each of the encountered types of [`BosonicGate`](/docs/api/qiskit-bosons/circuit-bosonic-gate#qiskit_bosons.circuit.BosonicGate "qiskit_bosons.circuit.BosonicGate").
+
+|                                                                                                                                                                                                                                                                            |                                                                                                                                                                                                                                            |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [`B2QSynthesis`](/docs/api/qiskit-bosons/transpiler-passes-b-2-q-synthesis#qiskit_bosons.transpiler.passes.B2QSynthesis "qiskit_bosons.transpiler.passes.B2QSynthesis")(\[config])                                                                                         | A transpilation pass to map boson-based circuit instructions to qubit-based ones.                                                                                                                                                          |
+| [`B2QSynthesisConfig`](/docs/api/qiskit-bosons/transpiler-passes-synthesis-b-2-q-synthesis-b-2-q-synthesis-config#qiskit_bosons.transpiler.passes.synthesis.b2q_synthesis.B2QSynthesisConfig "qiskit_bosons.transpiler.passes.synthesis.b2q_synthesis.B2QSynthesisConfig") | The dictionary type used to configure the [`B2QSynthesis.methods`](/docs/api/qiskit-bosons/transpiler-passes-b-2-q-synthesis#qiskit_bosons.transpiler.passes.B2QSynthesis.methods "qiskit_bosons.transpiler.passes.B2QSynthesis.methods"). |
+

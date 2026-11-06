@@ -10,6 +10,24 @@ in_page_toc_max_heading_level: 2
 
 # Qiskit Paulice release notes
 
+<span id="release-notes-upcoming-release" />
+
+## Upcoming release
+
+<span id="release-notes-upcoming-release-new-features" />
+
+### New Features
+
+*   `qiskit_paulice.add_pauli_checks()` no longer builds the output circuits that are never read. `add_pauli_checks(...)[-1].circuit` assembles one circuit instead of one per target qubit, and reading `[c.cost for c in result]` to watch the cost converge as checks are added assembles none at all.
+
+<span id="release-notes-upcoming-release-upgrade-notes" />
+
+### Upgrade Notes
+
+*   `qiskit_paulice.add_pauli_checks()` now assembles each output circuit the first time [`circuit`](/docs/api/qiskit-addon-paulice/qiskit-paulice-checked-circuit#qiskit_paulice.checked_circuit.CheckedCircuit.circuit "qiskit_paulice.checked_circuit.CheckedCircuit.circuit") is read, rather than assembling all of them before it returns. Check metadata ([`cost`](/docs/api/qiskit-addon-paulice/qiskit-paulice-checked-circuit#qiskit_paulice.checked_circuit.CheckedCircuit.cost "qiskit_paulice.checked_circuit.CheckedCircuit.cost") and the qubit tuples) is still populated eagerly, so nothing about the returned sequence’s shape or contents changes.
+
+    One consequence is visible: when the input gate set cannot express the inserted checks, the resulting [`UserWarning`](https://docs.python.org/3/builtins/exceptions.html#UserWarning) is now raised on that first read of [`circuit`](/docs/api/qiskit-addon-paulice/qiskit-paulice-checked-circuit#qiskit_paulice.checked_circuit.CheckedCircuit.circuit "qiskit_paulice.checked_circuit.CheckedCircuit.circuit") instead of from `add_pauli_checks()` itself. Code that suppresses or asserts on that warning needs the circuit read inside the same block.
+
 <span id="release-notes-0-3-0" />
 
 <span id="id2" />
@@ -17,6 +35,8 @@ in_page_toc_max_heading_level: 2
 ## 0.3.0
 
 <span id="release-notes-0-3-0-new-features" />
+
+<span id="id3" />
 
 ### New Features
 
@@ -33,6 +53,8 @@ in_page_toc_max_heading_level: 2
 *   [`add_pauli_checks()`](/docs/api/qiskit-addon-paulice/qiskit-paulice-checks#qiskit_paulice.checks.add_pauli_checks "qiskit_paulice.checks.add_pauli_checks") can now find checks for circuit stabilizers, rather than being restricted to only finding checks with respect to terminal measurements. Use the new `stabilizers` argument to specify a subset of stabilizers for which to find valid checks.
 
 <span id="release-notes-0-3-0-upgrade-notes" />
+
+<span id="id4" />
 
 ### Upgrade Notes
 
@@ -54,13 +76,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-2-1" />
 
-<span id="id3" />
+<span id="id5" />
 
 ## 0.2.1
 
 <span id="release-notes-0-2-1-bug-fixes" />
 
-<span id="id4" />
+<span id="id6" />
 
 ### Bug Fixes
 
@@ -70,13 +92,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-2-0" />
 
-<span id="id5" />
+<span id="id7" />
 
 ## 0.2.0
 
 <span id="release-notes-0-2-0-new-features" />
 
-<span id="id6" />
+<span id="id8" />
 
 ### New Features
 
@@ -84,7 +106,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-1-1" />
 
-<span id="id7" />
+<span id="id9" />
 
 ## 0.1.1
 

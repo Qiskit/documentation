@@ -1,0 +1,30 @@
+---
+title: circuit (latest version)
+description: API reference for qiskit_bosons.circuit in the latest version of qiskit-bosons
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit_bosons.circuit
+---
+
+<span id="module-qiskit_bosons.circuit" />
+
+# Circuit Representation
+
+With this module you can build [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit) objects that are interpreted as acting on bosonic modes rather than qubits.
+
+The following objects are simple type aliases to make this re-interpretation more clear:
+
+|                                                                                                                                                              |                                                                                |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| [`BosonicDAGCircuit`](/docs/api/qiskit-bosons/circuit-bosonic-dag-circuit#qiskit_bosons.circuit.BosonicDAGCircuit "qiskit_bosons.circuit.BosonicDAGCircuit") | A type alias of [`DAGCircuit`](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit). |
+| [`BosonicMode`](/docs/api/qiskit-bosons/circuit-bosonic-mode#qiskit_bosons.circuit.BosonicMode "qiskit_bosons.circuit.BosonicMode")                          | A type alias of [`Qubit`](/docs/api/qiskit/circuit#qiskit.circuit.Qubit).      |
+| [`BosonicRegister`](/docs/api/qiskit-bosons/circuit-bosonic-register#qiskit_bosons.circuit.BosonicRegister "qiskit_bosons.circuit.BosonicRegister")          | A type alias of `QubitRegister`.                                               |
+| [`BosonicSpecifier`](/docs/api/qiskit-bosons/circuit-bosonic-specifier#qiskit_bosons.circuit.BosonicSpecifier "qiskit_bosons.circuit.BosonicSpecifier")      | A type alias equivalent to Qiskit's `QubitSpecifier` but for bosonic modes.    |
+
+For actually expressing your circuits, you should use the [`BosonicCircuit`](/docs/api/qiskit-bosons/circuit-bosonic-circuit#qiskit_bosons.circuit.BosonicCircuit "qiskit_bosons.circuit.BosonicCircuit") class along with the [`library`](circuit-library#module-qiskit_bosons.circuit.library "qiskit_bosons.circuit.library") of [`BosonicGate`](/docs/api/qiskit-bosons/circuit-bosonic-gate#qiskit_bosons.circuit.BosonicGate "qiskit_bosons.circuit.BosonicGate") implementations.
+
+|                                                                                                                                                                          |                                                                                                                      |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------- |
+| [`BosonicCircuit`](/docs/api/qiskit-bosons/circuit-bosonic-circuit#qiskit_bosons.circuit.BosonicCircuit "qiskit_bosons.circuit.BosonicCircuit")(num\_modes)              | A wrapper around [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit) for expressing bosonic circuits. |
+| [`BosonicGate`](/docs/api/qiskit-bosons/circuit-bosonic-gate#qiskit_bosons.circuit.BosonicGate "qiskit_bosons.circuit.BosonicGate")(name, num\_modes, /\[, params, ...]) | The base class for all bosonic gates.                                                                                |
+

@@ -1,0 +1,45 @@
+---
+title: operators (latest version)
+description: API reference for qiskit_bosons.operators in the latest version of qiskit-bosons
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit_bosons.operators
+---
+
+<span id="module-qiskit_bosons.operators" />
+
+# Operator Representations
+
+This module provides the data structures for representing bosonic operators.
+
+|                                                                                                                                                                       |                                                                    |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| [`OperatorTrait`](/docs/api/qiskit-bosons/operators-operator-trait#qiskit_bosons.operators.OperatorTrait "qiskit_bosons.operators.OperatorTrait")(\*args, \*\*kwargs) | A protocol indicating all methods implemented by operator classes. |
+
+## Boson Operator
+
+This operator represents bosonic operators in terms of the second-quantization creation and annihilation operators, which obey the canonical commutation relations
+
+$$
+\left[b_i, b^\dagger_j\right] = \delta_{ij}, \qquad
+\left[b_i, b_j\right] = \left[b^\dagger_i, b^\dagger_j\right] = 0 \, .
+$$
+
+|                                                                                                                                                                                  |                                            |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
+| [`BosonAction`](/docs/api/qiskit-bosons/operators-boson-action-boson-action#qiskit_bosons.operators.boson_action.BosonAction "qiskit_bosons.operators.boson_action.BosonAction") | A bosonic creation or annihilation action. |
+
+|                                                                                                                                                                                       |                                                                  |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| [`BosonOperator`](/docs/api/qiskit-bosons/operators-boson-operator#qiskit_bosons.operators.BosonOperator "qiskit_bosons.operators.BosonOperator")(coeffs, actions, modes, boundaries) | A bosonic operator.                                              |
+| [`cre`](/docs/api/qiskit-bosons/operators-cre#qiskit_bosons.operators.cre "qiskit_bosons.operators.cre")(mode)                                                                        | Constructs a creation action on the bosonic mode at `mode`.      |
+| [`ann`](/docs/api/qiskit-bosons/operators-ann#qiskit_bosons.operators.ann "qiskit_bosons.operators.ann")(mode)                                                                        | Constructs an annihilation action on the bosonic mode at `mode`. |
+
+<Admonition title="Note" type="note">
+  A bosonic mode has an **infinite-dimensional** Fock space. [`BosonOperator`](/docs/api/qiskit-bosons/operators-boson-operator#qiskit_bosons.operators.BosonOperator "qiskit_bosons.operators.BosonOperator") is exact and carries no occupation cutoff; a truncation is introduced only when mapping to qubits (see [`qiskit_bosons.mappers`](mappers#module-qiskit_bosons.mappers "qiskit_bosons.mappers")). Two consequences are visible directly in this API: a mode index may repeat within a single term, and [`max_occupation()`](/docs/api/qiskit-bosons/operators-boson-operator#qiskit_bosons.operators.BosonOperator.max_occupation "qiskit_bosons.operators.BosonOperator.max_occupation") and [`mode_occupations()`](/docs/api/qiskit-bosons/operators-boson-operator#qiskit_bosons.operators.BosonOperator.mode_occupations "qiskit_bosons.operators.BosonOperator.mode_occupations") report the cutoff such a term demands.
+</Admonition>
+
+## Operator Library
+
+A library of the model Hamiltonians that recur in bosonic simulation is provided in [`qiskit_bosons.operators.library`](operators-library#module-qiskit_bosons.operators.library "qiskit_bosons.operators.library").
+
