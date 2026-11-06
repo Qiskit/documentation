@@ -1,0 +1,36 @@
+---
+title: mappers (latest version)
+description: API reference for qiskit_bosons.mappers in the latest version of qiskit-bosons
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit_bosons.mappers
+---
+
+<span id="module-qiskit_bosons.mappers" />
+
+# Representation Mappers
+
+This module provides a framework for implementing custom boson-to-qubit mapper routines.
+
+## Level encodings
+
+A [`LevelEncoding`](/docs/api/qiskit-bosons/mappers-level-encoding#qiskit_bosons.mappers.LevelEncoding "qiskit_bosons.mappers.LevelEncoding") decides how the $d$ levels of a single system are laid out on qubits. It says nothing about what the levels are, so it is shared by every mapper that works in a basis of discrete levels: the occupation-number basis of a truncated bosonic mode, vibrational modals, or the points of a position grid. The mappers in [`library`](mappers-library#module-qiskit_bosons.mappers.library "qiskit_bosons.mappers.library") are given one as part of a [`LevelSpec`](/docs/api/qiskit-bosons/mappers-level-spec#qiskit_bosons.mappers.LevelSpec "qiskit_bosons.mappers.LevelSpec") (see below); for example [`occupation_encoding()`](/docs/api/qiskit-bosons/mappers-library-occupation-encoding#qiskit_bosons.mappers.library.occupation_encoding "qiskit_bosons.mappers.library.occupation_encoding") maps a [`BosonOperator`](/docs/api/qiskit-bosons/operators-boson-operator#qiskit_bosons.operators.BosonOperator "qiskit_bosons.operators.BosonOperator") in the occupation basis.
+
+|                                                                                                                                               |                                                        |
+| --------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
+| [`LevelEncoding`](/docs/api/qiskit-bosons/mappers-level-encoding#qiskit_bosons.mappers.LevelEncoding "qiskit_bosons.mappers.LevelEncoding")() | The layout of the levels of a single system on qubits. |
+
+A [`LevelSpec`](/docs/api/qiskit-bosons/mappers-level-spec#qiskit_bosons.mappers.LevelSpec "qiskit_bosons.mappers.LevelSpec") combines a level encoding with the truncation of every mode of a register. It holds one cutoff per mode (or one cutoff shared by all modes) and from them derives how many qubits each mode occupies and where its qubits start, so everything that has to agree about that is handed the same spec.
+
+|                                                                                                                                                        |                                                                                            |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| [`LevelSpec`](/docs/api/qiskit-bosons/mappers-level-spec#qiskit_bosons.mappers.LevelSpec "qiskit_bosons.mappers.LevelSpec")(max\_occupation, encoding) | The truncation of a register of bosonic modes and the encoding that lays it out on qubits. |
+
+## Generator-based mappers
+
+The [`library`](mappers-library#module-qiskit_bosons.mappers.library "qiskit_bosons.mappers.library") submodule ships the ready-made mappers. The generator function below is the extension point for writing your own: supply the qubit operator that a single [`BosonAction`](/docs/api/qiskit-bosons/operators-boson-action-boson-action#qiskit_bosons.operators.boson_action.BosonAction "qiskit_bosons.operators.boson_action.BosonAction") maps to, and it lifts that into a mapper over whole operators.
+
+|                                                                                                                                                                                                                           |                                                                                                                                                                                   |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`map_boson_action_generators`](/docs/api/qiskit-bosons/mappers-map-boson-action-generators#qiskit_bosons.mappers.map_boson_action_generators "qiskit_bosons.mappers.map_boson_action_generators")(operator, ...\[, ...]) | Map a [`BosonOperator`](/docs/api/qiskit-bosons/operators-boson-operator#qiskit_bosons.operators.BosonOperator "qiskit_bosons.operators.BosonOperator") to another operator type. |
+
