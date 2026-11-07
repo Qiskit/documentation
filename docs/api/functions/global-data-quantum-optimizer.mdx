@@ -100,7 +100,7 @@ Settings of the ansatz. To modify the default options, create a dictionary for t
 - `tailored` (Only for `ibm_torino` backend, 7 assets, 4 time steps, and 4 resolution qubits)
 
 <span id="double-star"></span>
-** If ``multiple_passmanager`` is set to ``False``, the function uses the default Qiskit pass manager with `optimization_level=3`. If set to ``True``, the ``multiple_passmanager`` subroutine compares three pass managers: the previous default Qiskit pass manager, a pass manager mapping qubits over the QPU first neighbors chain, and the [AI transpiler](/docs/guides/ai-transpiler-passes) services. Then, the pass manager with the estimated lower cumulative error is selected.
+** If ``multiple_passmanager`` is set to ``False``, the function uses the default Qiskit pass manager with `optimization_level=3`. If set to ``True``, the ``multiple_passmanager`` subroutine compares three pass managers: the previous default Qiskit pass manager, a pass manager mapping qubits over the QPU first neighbors chain, and the [AI transpiler](/docs/qiskit/ai-transpiler-passes) services. Then, the pass manager with the estimated lower cumulative error is selected.
 
 - Required: No
 </Attribute>
@@ -195,7 +195,7 @@ Ensure compliance with IBM Quantum Compute Service job limits.
 - Sampler: `sampler_shots <= 10_000_000`.
 - Estimator: `max_batchsize * estimator_shots * observable_size <= 10_000_000` (for this function, all the terms of the observable commute, so `observable_size=1`).
 
-See the [Job limits](/docs/guides/job-limits) guide for more information.
+See the [Job limits](/docs/ibm-quantum-compute/job-limits) guide for more information.
 </Admonition>
 
 ## Output
