@@ -18,6 +18,10 @@ python_api_name: qiskit_serverless.core.function.RunnableQiskitFunction
   <Function id="qiskit_serverless.core.function.RunnableQiskitFunction.get_default_size" signature="get_default_size()">
     Returns the size label used when a run doesn't pass `function_size`.
 
+    ```python
+    print(qesem_function.get_default_size())
+    ```
+
     **Return type**
 
     `str | None` – `None` if the function doesn't declare a default.
@@ -27,6 +31,11 @@ python_api_name: qiskit_serverless.core.function.RunnableQiskitFunction
 
   <Function id="qiskit_serverless.core.function.RunnableQiskitFunction.jobs" signature="jobs(**kwargs)">
     Lists the jobs created with this function. Replaces the deprecated `get_jobs()`.
+
+    ```python
+    for job in qesem_function.jobs():
+        print(job.job_id, job.status())
+    ```
 
     **Return type**
 
@@ -62,6 +71,10 @@ python_api_name: qiskit_serverless.core.function.RunnableQiskitFunction
   <Function id="qiskit_serverless.core.function.RunnableQiskitFunction.sizes" signature="sizes()">
     Returns the size labels the function declares.
 
+    ```python
+    print(qesem_function.sizes())
+    ```
+
     **Return type**
 
     `dict[str, str]` – Empty if the function declares no sizes.
@@ -71,6 +84,12 @@ python_api_name: qiskit_serverless.core.function.RunnableQiskitFunction
 
   <Function id="qiskit_serverless.core.function.RunnableQiskitFunction.validate_arguments" signature="validate_arguments(arguments)">
     Checks arguments against the function's schema without creating a job.
+
+    ```python
+    qesem_function.validate_arguments(
+        {"pubs": [(circuit, observable)], "backend_name": "ibm_fez"}
+    )
+    ```
 
     **Parameters**
 

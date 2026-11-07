@@ -36,6 +36,10 @@ python_api_name: qiskit_ibm_catalog.QiskitFunctionsCatalog
   <Function id="qiskit_ibm_catalog.QiskitFunctionsCatalog.backend" signature="backend(name, **kwargs)">
     Returns a single backend by name.
 
+    ```python
+    backend = catalog.backend("ibm_fez")
+    ```
+
     **Parameters**
 
     *   **name** (*str*) – Backend name.
@@ -51,6 +55,10 @@ python_api_name: qiskit_ibm_catalog.QiskitFunctionsCatalog
   <Function id="qiskit_ibm_catalog.QiskitFunctionsCatalog.backends" signature="backends(**kwargs)">
     Returns the backends your instance can access.
 
+    ```python
+    print([backend.name for backend in catalog.backends(simulator=False)])
+    ```
+
     **Parameters**
 
     *   **\*\*kwargs** – Filters forwarded to the backend query, such as `name`, `min_num_qubits`, `filters`, and `refresh_cache`.
@@ -64,6 +72,11 @@ python_api_name: qiskit_ibm_catalog.QiskitFunctionsCatalog
 
   <Function id="qiskit_ibm_catalog.QiskitFunctionsCatalog.events" signature="events(job_id, **kwargs)">
     Returns the events of a job.
+
+    ```python
+    for event in catalog.events(job.job_id):
+        print(event.event_type, event.data)
+    ```
 
     **Parameters**
 
@@ -80,6 +93,10 @@ python_api_name: qiskit_ibm_catalog.QiskitFunctionsCatalog
   <Function id="qiskit_ibm_catalog.QiskitFunctionsCatalog.file_delete" signature="file_delete(file, function)">
     Deletes a file from your folder for a function.
 
+    ```python
+    catalog.file_delete("X_train.npy.tar", singularity)
+    ```
+
     **Parameters**
 
     *   **file** (*str*) – File name.
@@ -90,6 +107,10 @@ python_api_name: qiskit_ibm_catalog.QiskitFunctionsCatalog
 
   <Function id="qiskit_ibm_catalog.QiskitFunctionsCatalog.file_download" signature="file_download(file, function, target_name=None, download_location='./')">
     Downloads a file from your folder for a function.
+
+    ```python
+    catalog.file_download("my_classifier.pkl.tar", singularity, download_location="outputs")
+    ```
 
     **Parameters**
 
@@ -104,6 +125,11 @@ python_api_name: qiskit_ibm_catalog.QiskitFunctionsCatalog
   <Function id="qiskit_ibm_catalog.QiskitFunctionsCatalog.file_upload" signature="file_upload(file, function)">
     Uploads a local file to your folder for a function.
 
+    ```python
+    singularity = catalog.load("multiverse/singularity")
+    catalog.file_upload("X_train.npy.tar", singularity)
+    ```
+
     **Parameters**
 
     *   **file** (*str*) – Path of the local file.
@@ -114,6 +140,10 @@ python_api_name: qiskit_ibm_catalog.QiskitFunctionsCatalog
 
   <Function id="qiskit_ibm_catalog.QiskitFunctionsCatalog.files" signature="files(function)">
     Lists the files in your folder for a function.
+
+    ```python
+    print(catalog.files(singularity))
+    ```
 
     **Parameters**
 
@@ -129,6 +159,11 @@ python_api_name: qiskit_ibm_catalog.QiskitFunctionsCatalog
   <Function id="qiskit_ibm_catalog.QiskitFunctionsCatalog.job" signature="job(job_id)">
     Returns a job by ID. Replaces the deprecated `get_job_by_id()`.
 
+    ```python
+    job = catalog.job("<JOB_ID>")
+    print(job.status())
+    ```
+
     **Parameters**
 
     *   **job\_id** (*str*) – Job ID.
@@ -142,6 +177,15 @@ python_api_name: qiskit_ibm_catalog.QiskitFunctionsCatalog
 
   <Function id="qiskit_ibm_catalog.QiskitFunctionsCatalog.jobs" signature="jobs(function=None, *, limit=10, offset=0, status=None, created_after=None, **kwargs)">
     Lists your Qiskit Functions jobs.
+
+    ```python
+    recent_errors = catalog.jobs(
+        function=qesem_function,
+        status="ERROR",
+        created_after="2026-01-01T00:00:00Z",
+        limit=5,
+    )
+    ```
 
     **Parameters**
 
@@ -161,6 +205,10 @@ python_api_name: qiskit_ibm_catalog.QiskitFunctionsCatalog
   <Function id="qiskit_ibm_catalog.QiskitFunctionsCatalog.least_busy" signature="least_busy(**kwargs)">
     Returns the backend with the fewest pending jobs.
 
+    ```python
+    backend_name = catalog.least_busy(operational=True, simulator=False).name
+    ```
+
     **Parameters**
 
     *   **\*\*kwargs** – Filters forwarded to the backend query, such as `min_num_qubits` and `filters`.
@@ -174,6 +222,11 @@ python_api_name: qiskit_ibm_catalog.QiskitFunctionsCatalog
 
   <Function id="qiskit_ibm_catalog.QiskitFunctionsCatalog.list" signature="list(*, limit=None, offset=None, **kwargs)">
     Lists the functions available to you in the catalog.
+
+    ```python
+    for function in catalog.list():
+        print(function.title)
+    ```
 
     **Parameters**
 
@@ -190,6 +243,10 @@ python_api_name: qiskit_ibm_catalog.QiskitFunctionsCatalog
   <Function id="qiskit_ibm_catalog.QiskitFunctionsCatalog.load" signature="load(title, provider=None)">
     Loads a function by title.
 
+    ```python
+    qesem_function = catalog.load("qedma/qesem")
+    ```
+
     **Parameters**
 
     *   **title** (*str*) – Function title, in `provider/function-name` form. For example, `"qedma/qesem"`.
@@ -204,6 +261,10 @@ python_api_name: qiskit_ibm_catalog.QiskitFunctionsCatalog
 
   <Function id="qiskit_ibm_catalog.QiskitFunctionsCatalog.runtime_jobs" signature="runtime_jobs(job_id, runtime_session=None)">
     Returns the Qiskit Runtime job IDs created by a function job.
+
+    ```python
+    runtime_job_ids = catalog.runtime_jobs(job.job_id)
+    ```
 
     **Parameters**
 
@@ -220,6 +281,10 @@ python_api_name: qiskit_ibm_catalog.QiskitFunctionsCatalog
   <Function id="qiskit_ibm_catalog.QiskitFunctionsCatalog.runtime_sessions" signature="runtime_sessions(job_id)">
     Returns the Qiskit Runtime session IDs created by a function job.
 
+    ```python
+    sessions = catalog.runtime_sessions(job.job_id)
+    ```
+
     **Return type**
 
     `list[str]`
@@ -229,6 +294,11 @@ python_api_name: qiskit_ibm_catalog.QiskitFunctionsCatalog
 
   <Function id="qiskit_ibm_catalog.QiskitFunctionsCatalog.save_account" signature="save_account(token=None, channel=None, instance=None, name=None, overwrite=False)" modifiers="static">
     Saves the account to disk for future use.
+
+    ```python
+    QiskitFunctionsCatalog.save_account(token="<API_KEY>", instance="<CRN>", overwrite=True)
+    catalog = QiskitFunctionsCatalog()
+    ```
 
     **Parameters**
 
@@ -243,6 +313,10 @@ python_api_name: qiskit_ibm_catalog.QiskitFunctionsCatalog
 
   <Function id="qiskit_ibm_catalog.QiskitFunctionsCatalog.usage" signature="usage()">
     Returns runtime usage for the active instance.
+
+    ```python
+    print(catalog.usage())
+    ```
 
     **Return type**
 

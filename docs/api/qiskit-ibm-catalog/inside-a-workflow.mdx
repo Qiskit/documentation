@@ -39,6 +39,13 @@ save_result({"energy": -1.137})         # 5. Return results
 <Function id="qiskit_serverless.install_uploaded_wheels" signature="qiskit_serverless.install_uploaded_wheels(wheelhouse=None, target='/tmp/site')">
   Installs the wheels you uploaded with [`add_wheels()`](managed-workflow-client#add_wheels) and makes them importable. Call it before you import those packages. It installs offline and without dependencies, so build wheels that rely only on packages the runtime image already ships. It does nothing if there are no wheels. See [Declare dependencies](/docs/managed-workflows/managed-workflow-dependencies).
 
+  ```python
+  from qiskit_serverless import install_uploaded_wheels
+
+  install_uploaded_wheels()
+  import my_package
+  ```
+
   **Parameters**
 
   *   **wheelhouse** (*str | None*) – Directory to install from. Defaults to the `QISKIT_FUNCTIONS_WHEELHOUSE` environment variable if set, otherwise `/function_user_data`.
@@ -56,6 +63,13 @@ save_result({"energy": -1.137})         # 5. Return results
 <Function id="qiskit_serverless.get_arguments" signature="qiskit_serverless.get_arguments()">
   Returns the keyword arguments that were passed to [`run()`](managed-workflow#run). See [Define inputs and outputs](/docs/managed-workflows/managed-workflow-inputs-and-outputs).
 
+  ```python
+  from qiskit_serverless import get_arguments
+
+  arguments = get_arguments()
+  shots = arguments.get("shots", 1024)
+  ```
+
   **Return type**
 
   `dict[str, Any]`
@@ -66,6 +80,12 @@ save_result({"energy": -1.137})         # 5. Return results
 <Function id="qiskit_serverless.get_function_size" signature="qiskit_serverless.get_function_size()">
   Returns the size label the job runs at: the `function_size` passed to `run()`, or the workflow's `default_size`.
 
+  ```python
+  from qiskit_serverless import get_function_size
+
+  size = get_function_size()  # For example, "M"
+  ```
+
   **Return type**
 
   `str` – For example, `"m"`.
@@ -75,6 +95,12 @@ save_result({"energy": -1.137})         # 5. Return results
 
 <Function id="qiskit_serverless.get_compute_profile" signature="qiskit_serverless.get_compute_profile()">
   Returns the compute profile that the job's size maps to. This is the resource allocation the job runs with, not the size of the physical worker node. See [Choose a compute profile](/docs/managed-workflows/managed-workflow-compute-profiles).
+
+  ```python
+  from qiskit_serverless import get_compute_profile
+
+  print(get_compute_profile())  # '128x1500'
+  ```
 
   **Return type**
 
@@ -87,6 +113,16 @@ save_result({"energy": -1.137})         # 5. Return results
 
 <Function id="qiskit_serverless.get_runtime_service" signature="qiskit_serverless.get_runtime_service(channel=None, token=None, instance=None, url=None)">
   Returns a `QiskitRuntimeService` for submitting Qiskit Runtime jobs. It links those jobs to the workflow job, so [`Job.runtime_jobs()`](managed-workflow-job#runtime_jobs) can find them. Call it without arguments; it reads your credentials from the job's environment. See [Run quantum jobs from a workflow](/docs/managed-workflows/manage-quantum-classical-workflows).
+
+  ```python
+  from qiskit_ibm_runtime import SamplerV2 as Sampler
+  from qiskit_serverless import get_arguments, get_runtime_service
+
+  arguments = get_arguments()
+  service = get_runtime_service()
+  backend = service.backend(arguments["backend_name"])
+  sampler = Sampler(mode=backend)
+  ```
 
   To reach Qiskit Runtime through a private endpoint, set the `QISKIT_IBM_PRIVATE_ENDPOINT` environment variable to `true`. The instance must be a CRN.
 
@@ -170,6 +206,15 @@ except Exception as error:
 <Function id="qiskit_serverless.send_error" signature="qiskit_serverless.send_error(code, message, exception, args=None)">
   Reports an error to the caller. [`Job.error_message()`](managed-workflow-job#error_message) and `Job.events(type="ERROR")` return it.
 
+  ```python
+  send_error(
+      code="4500",
+      message="The circuit has more qubits than the backend.",
+      exception="InputError",
+      args={"circuit_qubits": 156, "backend_qubits": 127},
+  )
+  ```
+
   **Parameters**
 
   *   **code** (*str | int*) – Error code.
@@ -182,6 +227,18 @@ except Exception as error:
 
 <Class id="qiskit_serverless.ServerlessError" signature="qiskit_serverless.ServerlessError(code, message, details=None)" modifiers="exception">
   Exception to raise from workflow code. Its string form is `[code] message`, followed by `details` if set. Raising it doesn't report the error to the caller; pass it to [`send_error()`](#send_error).
+
+  ```python
+  class InputError(ServerlessError):
+      """The arguments are valid, but the workflow cannot use them."""
+
+
+  raise InputError(
+      code="4500",
+      message="The circuit has more qubits than the backend.",
+      details={"circuit_qubits": 156, "backend_qubits": 127},
+  )
+  ```
 
   **Parameters**
 

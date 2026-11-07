@@ -51,6 +51,10 @@ python_api_name: qiskit_ibm_catalog.ManagedWorkflow
   <Function id="qiskit_serverless.core.function.RunnableQiskitFunction.get_default_size" signature="get_default_size()">
     Returns the size label used when a run doesn't pass `function_size`.
 
+    ```python
+    print(my_workflow.get_default_size())  # 'M'
+    ```
+
     **Return type**
 
     `str | None` – `None` if the workflow doesn't declare a default.
@@ -60,6 +64,11 @@ python_api_name: qiskit_ibm_catalog.ManagedWorkflow
 
   <Function id="qiskit_serverless.core.function.RunnableQiskitFunction.jobs" signature="jobs(**kwargs)">
     Lists the jobs created with this workflow. Replaces the deprecated `get_jobs()`.
+
+    ```python
+    for job in my_workflow.jobs():
+        print(job.job_id, job.status())
+    ```
 
     **Return type**
 
@@ -95,6 +104,10 @@ python_api_name: qiskit_ibm_catalog.ManagedWorkflow
   <Function id="qiskit_serverless.core.function.RunnableQiskitFunction.sizes" signature="sizes()">
     Returns the size labels the workflow declares and the compute profile each one maps to.
 
+    ```python
+    print(my_workflow.sizes())  # {'S': '8x32', 'M': '16x128', 'L': '128x1500'}
+    ```
+
     **Return type**
 
     `dict[str, str]` – Empty if the workflow declares no sizes.
@@ -104,6 +117,10 @@ python_api_name: qiskit_ibm_catalog.ManagedWorkflow
 
   <Function id="qiskit_serverless.core.function.RunnableQiskitFunction.validate_arguments" signature="validate_arguments(arguments)">
     Checks arguments against the workflow's `arguments_schema` without creating a job.
+
+    ```python
+    my_workflow.validate_arguments({"circuits": [circuit], "shots": 1024})
+    ```
 
     **Parameters**
 
