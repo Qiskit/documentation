@@ -20,8 +20,8 @@ python_api_name: qiskit_ibm_catalog.ManagedWorkflow
       title="my-workflow",
       entrypoint="main.py",
       working_dir="./src",
-      sizes_map={"s": "24x120", "m": "16x128"},
-      default_size="s",
+      sizes_map={"S": "8x32", "M": "16x128", "L": "128x1500"},
+      default_size="M",
   )
   ```
 
@@ -52,7 +52,13 @@ python_api_name: qiskit_ibm_catalog.ManagedWorkflow
     Returns the size label used when a run doesn't pass `function_size`.
 
     ```python
-    print(my_workflow.get_default_size())  # 'M'
+    print(my_workflow.get_default_size())
+    ```
+
+    Output:
+
+    ```text
+    M
     ```
 
     **Return type**
@@ -81,7 +87,7 @@ python_api_name: qiskit_ibm_catalog.ManagedWorkflow
     Starts a job and returns immediately.
 
     ```python
-    job = workflow.run(circuits=[qc], function_size="s")
+    job = workflow.run(circuits=[qc], function_size="L")
     ```
 
     **Parameters**
@@ -105,7 +111,13 @@ python_api_name: qiskit_ibm_catalog.ManagedWorkflow
     Returns the size labels the workflow declares and the compute profile each one maps to.
 
     ```python
-    print(my_workflow.sizes())  # {'S': '8x32', 'M': '16x128', 'L': '128x1500'}
+    print(my_workflow.sizes())
+    ```
+
+    Output:
+
+    ```text
+    {'S': '8x32', 'M': '16x128', 'L': '128x1500'}
     ```
 
     **Return type**
@@ -120,6 +132,12 @@ python_api_name: qiskit_ibm_catalog.ManagedWorkflow
 
     ```python
     my_workflow.validate_arguments({"circuits": [circuit], "shots": 1024})
+    ```
+
+    Output:
+
+    ```text
+    {'valid': True}
     ```
 
     **Parameters**

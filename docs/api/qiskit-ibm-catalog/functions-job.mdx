@@ -19,151 +19,7 @@ python_api_name: qiskit_serverless.Job
   result = job.result()
   ```
 
-  ## Methods
-
-  ### cancel
-
-  <Function id="qiskit_serverless.Job.cancel" signature="cancel(service=None)">
-    Cancels the job. Replaces the deprecated `stop()`.
-
-    ```python
-    job.cancel()
-    print(job.wait_for_final_state())  # 'CANCELED'
-    ```
-
-    **Parameters**
-
-    *   **service** (*QiskitRuntimeService | None*) – Qiskit Runtime service to cancel the job's Qiskit Runtime jobs with.
-  </Function>
-
-  ### error\_message
-
-  <Function id="qiskit_serverless.Job.error_message" signature="error_message()">
-    Returns the error message if the job failed.
-
-    ```python
-    if job.status() == "ERROR":
-        print(job.error_message())
-    ```
-
-    **Return type**
-
-    `str`
-  </Function>
-
-  ### events
-
-  <Function id="qiskit_serverless.Job.events" signature="events(**kwargs)">
-    Returns the job's events.
-
-    ```python
-    for event in job.events():
-        print(event.event_type, event.data)
-    ```
-
-    **Return type**
-
-    `list[JobEvent]`
-  </Function>
-
-  ### filtered\_logs
-
-  <Function id="qiskit_serverless.Job.filtered_logs" signature="filtered_logs(include=None, exclude=None)">
-    Returns the job's logs, filtered by line.
-
-    ```python
-    print(job.filtered_logs(include="iteration"))
-    ```
-
-    **Parameters**
-
-    *   **include** (*str | None*) – Regular expression. Keep only matching lines.
-    *   **exclude** (*str | None*) – Regular expression. Drop matching lines.
-
-    **Return type**
-
-    `str`
-  </Function>
-
-  ### in\_terminal\_state
-
-  <Function id="qiskit_serverless.Job.in_terminal_state" signature="in_terminal_state()">
-    Returns whether the job has finished.
-
-    ```python
-    if job.in_terminal_state():
-        result = job.result()
-    ```
-
-    **Return type**
-
-    `bool`
-  </Function>
-
-  ### logs
-
-  <Function id="qiskit_serverless.Job.logs" signature="logs()">
-    Returns the job's logs.
-
-    ```python
-    print(job.logs())
-    ```
-
-    **Return type**
-
-    `str`
-  </Function>
-
-  ### result
-
-  <Function id="qiskit_serverless.Job.result" signature="result(wait=True, cadence=30, verbose=False, maxwait=0)">
-    Returns the job's result. See the function's API reference for its output format.
-
-    ```python
-    result = job.result()
-    ```
-
-    **Parameters**
-
-    *   **wait** (*bool*) – Wait for the job to finish.
-    *   **cadence** (*int*) – Seconds between status checks while waiting.
-    *   **verbose** (*bool*) – Log a line at each check.
-    *   **maxwait** (*int*) – Maximum number of checks. `0` waits until the job finishes.
-
-    **Raises**
-
-    `QiskitServerlessException` – If the job ended in `ERROR`.
-  </Function>
-
-  ### runtime\_jobs
-
-  <Function id="qiskit_serverless.Job.runtime_jobs" signature="runtime_jobs(runtime_session=None)">
-    Returns the IDs of the Qiskit Runtime jobs this job created, optionally filtered by session.
-
-    ```python
-    sessions = job.runtime_sessions()
-    if sessions:
-        print(job.runtime_jobs(runtime_session=sessions[0]))
-    ```
-
-    **Return type**
-
-    `list[str]`
-  </Function>
-
-  ### runtime\_sessions
-
-  <Function id="qiskit_serverless.Job.runtime_sessions" signature="runtime_sessions()">
-    Returns the IDs of the Qiskit Runtime sessions this job created.
-
-    ```python
-    sessions = job.runtime_sessions()
-    ```
-
-    **Return type**
-
-    `list[str]`
-  </Function>
+  ## Status
 
   ### status
 
@@ -172,6 +28,12 @@ python_api_name: qiskit_serverless.Job
 
     ```python
     print(job.status())
+    ```
+
+    Output:
+
+    ```text
+    QUEUED
     ```
 
     **Return type**
@@ -202,5 +64,157 @@ python_api_name: qiskit_serverless.Job
 
     *   `TimeoutError` – If the job doesn't finish within `timeout`. The job keeps running.
     *   `QiskitServerlessException` – On other errors, or if retried errors continue for 5 minutes.
+  </Function>
+
+  ### in\_terminal\_state
+
+  <Function id="qiskit_serverless.Job.in_terminal_state" signature="in_terminal_state()">
+    Returns whether the job has finished.
+
+    ```python
+    if job.in_terminal_state():
+        result = job.result()
+    ```
+
+    **Return type**
+
+    `bool`
+  </Function>
+
+  ### events
+
+  <Function id="qiskit_serverless.Job.events" signature="events(**kwargs)">
+    Returns the job's events.
+
+    ```python
+    for event in job.events():
+        print(event.event_type, event.data)
+    ```
+
+    **Return type**
+
+    `list[JobEvent]`
+  </Function>
+
+  ## Results and logs
+
+  ### result
+
+  <Function id="qiskit_serverless.Job.result" signature="result(wait=True, cadence=30, verbose=False, maxwait=0)">
+    Returns the job's result. See the function's API reference for its output format.
+
+    ```python
+    result = job.result()
+    ```
+
+    **Parameters**
+
+    *   **wait** (*bool*) – Wait for the job to finish.
+    *   **cadence** (*int*) – Seconds between status checks while waiting.
+    *   **verbose** (*bool*) – Log a line at each check.
+    *   **maxwait** (*int*) – Maximum number of checks. `0` waits until the job finishes.
+
+    **Raises**
+
+    `QiskitServerlessException` – If the job ended in `ERROR`.
+  </Function>
+
+  ### logs
+
+  <Function id="qiskit_serverless.Job.logs" signature="logs()">
+    Returns the job's logs.
+
+    ```python
+    print(job.logs())
+    ```
+
+    **Return type**
+
+    `str`
+  </Function>
+
+  ### filtered\_logs
+
+  <Function id="qiskit_serverless.Job.filtered_logs" signature="filtered_logs(include=None, exclude=None)">
+    Returns the job's logs, filtered by line.
+
+    ```python
+    print(job.filtered_logs(include="iteration"))
+    ```
+
+    **Parameters**
+
+    *   **include** (*str | None*) – Regular expression. Keep only matching lines.
+    *   **exclude** (*str | None*) – Regular expression. Drop matching lines.
+
+    **Return type**
+
+    `str`
+  </Function>
+
+  ### error\_message
+
+  <Function id="qiskit_serverless.Job.error_message" signature="error_message()">
+    Returns the error message if the job failed.
+
+    ```python
+    if job.status() == "ERROR":
+        print(job.error_message())
+    ```
+
+    **Return type**
+
+    `str`
+  </Function>
+
+  ## Control
+
+  ### cancel
+
+  <Function id="qiskit_serverless.Job.cancel" signature="cancel(service=None)">
+    Cancels the job. Replaces the deprecated `stop()`.
+
+    ```python
+    job.cancel()
+    print(job.wait_for_final_state())  # 'CANCELED'
+    ```
+
+    **Parameters**
+
+    *   **service** (*QiskitRuntimeService | None*) – Qiskit Runtime service to cancel the job's Qiskit Runtime jobs with.
+  </Function>
+
+  ## Qiskit Runtime jobs
+
+  The Qiskit Runtime jobs and sessions that this job submitted.
+
+  ### runtime\_jobs
+
+  <Function id="qiskit_serverless.Job.runtime_jobs" signature="runtime_jobs(runtime_session=None)">
+    Returns the IDs of the Qiskit Runtime jobs this job created, optionally filtered by session.
+
+    ```python
+    sessions = job.runtime_sessions()
+    if sessions:
+        print(job.runtime_jobs(runtime_session=sessions[0]))
+    ```
+
+    **Return type**
+
+    `list[str]`
+  </Function>
+
+  ### runtime\_sessions
+
+  <Function id="qiskit_serverless.Job.runtime_sessions" signature="runtime_sessions()">
+    Returns the IDs of the Qiskit Runtime sessions this job created.
+
+    ```python
+    sessions = job.runtime_sessions()
+    ```
+
+    **Return type**
+
+    `list[str]`
   </Function>
 </Class>
