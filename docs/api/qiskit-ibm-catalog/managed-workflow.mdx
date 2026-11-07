@@ -76,6 +76,13 @@ python_api_name: qiskit_ibm_catalog.ManagedWorkflow
         print(job.job_id, job.status())
     ```
 
+    Output:
+
+    ```text
+    e6b1ffa1-cd26-437d-bd53-b265dd4ba952 DONE
+    11308f2a-8d7a-40a0-a970-7fdeca2b171b ERROR
+    ```
+
     **Return type**
 
     list\[[`Job`](managed-workflow-job)]
@@ -87,7 +94,14 @@ python_api_name: qiskit_ibm_catalog.ManagedWorkflow
     Starts a job and returns immediately.
 
     ```python
-    job = workflow.run(circuits=[qc], function_size="L")
+    job = my_workflow.run(circuits=[qc], function_size="L")
+    print(job.job_id)
+    ```
+
+    Output:
+
+    ```text
+    e6b1ffa1-cd26-437d-bd53-b265dd4ba952
     ```
 
     **Parameters**

@@ -48,6 +48,18 @@ python_api_name: qiskit_serverless.Job
 
     ```python
     status = job.wait_for_final_state(timeout=600, verbose=True)
+    print(status)
+    ```
+
+    Output:
+
+    ```text
+    Waiting for job e6b1ffa1-cd26-437d-bd53-b265dd4ba952
+    0:00:00  QUEUED
+    0:00:17  INITIALIZING
+    0:03:00  RUNNING
+    0:03:14  DONE
+    DONE
     ```
 
     **Parameters**
@@ -72,8 +84,13 @@ python_api_name: qiskit_serverless.Job
     Returns whether the job has finished.
 
     ```python
-    if job.in_terminal_state():
-        result = job.result()
+    print(job.in_terminal_state())
+    ```
+
+    Output:
+
+    ```text
+    True
     ```
 
     **Return type**
@@ -88,7 +105,16 @@ python_api_name: qiskit_serverless.Job
 
     ```python
     for event in job.events():
-        print(event.event_type, event.data)
+        print(event.created, event.event_type, event.data.get("status"))
+    ```
+
+    Output:
+
+    ```text
+    2026-11-02T14:43:07.134377Z STATUS_CHANGE QUEUED
+    2026-11-02T14:43:24.474199Z STATUS_CHANGE PENDING
+    2026-11-02T14:46:07.309519Z STATUS_CHANGE RUNNING
+    2026-11-02T14:46:21.115038Z STATUS_CHANGE SUCCEEDED
     ```
 
     **Return type**
@@ -105,6 +131,13 @@ python_api_name: qiskit_serverless.Job
 
     ```python
     result = job.result()
+    print(result)
+    ```
+
+    Output:
+
+    ```text
+    PrimitiveResult([PubResult(data=DataBin(evs=np.ndarray(<shape=(), dtype=float64>), stds=np.ndarray(<shape=(), dtype=float64>), ensemble_standard_error=np.ndarray(<shape=(), dtype=float64>)), metadata={'shots': 4096, 'target_precision': 0.015625, ...})], metadata={...})
     ```
 
     **Parameters**
@@ -158,8 +191,13 @@ python_api_name: qiskit_serverless.Job
     Returns the error message if the job failed.
 
     ```python
-    if job.status() == "ERROR":
-        print(job.error_message())
+    print(job.error_message())
+    ```
+
+    Output:
+
+    ```text
+    qiskit.exceptions.QiskitError: 'Workflow execution failed -- https://docs.quantum.ibm.com/errors#9999'
     ```
 
     **Return type**
@@ -176,7 +214,13 @@ python_api_name: qiskit_serverless.Job
 
     ```python
     job.cancel()
-    print(job.wait_for_final_state())  # 'CANCELED'
+    print(job.wait_for_final_state())
+    ```
+
+    Output:
+
+    ```text
+    CANCELED
     ```
 
     **Parameters**
@@ -194,9 +238,17 @@ python_api_name: qiskit_serverless.Job
     Returns the IDs of the Qiskit Runtime jobs this job created, optionally filtered by session.
 
     ```python
+    print(job.runtime_jobs())
+
     sessions = job.runtime_sessions()
-    if sessions:
-        print(job.runtime_jobs(runtime_session=sessions[0]))
+    print(job.runtime_jobs(runtime_session=sessions[0]))
+    ```
+
+    Output:
+
+    ```text
+    ['dbl6lst8ft8s738secf0']
+    ['dbl6lst8ft8s738secf0']
     ```
 
     **Return type**
@@ -210,7 +262,13 @@ python_api_name: qiskit_serverless.Job
     Returns the IDs of the Qiskit Runtime sessions this job created.
 
     ```python
-    sessions = job.runtime_sessions()
+    print(job.runtime_sessions())
+    ```
+
+    Output:
+
+    ```text
+    ['cw2q70c79ws0008z6g4g']
     ```
 
     **Return type**

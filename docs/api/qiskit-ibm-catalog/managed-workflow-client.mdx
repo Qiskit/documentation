@@ -92,8 +92,13 @@ python_api_name: qiskit_ibm_catalog.ManagedWorkflowClient
     Lists the workflows you uploaded.
 
     ```python
-    for workflow in client.list():
-        print(workflow.title)
+    print(client.list())
+    ```
+
+    Output:
+
+    ```text
+    [QiskitFunction(my-workflow), QiskitFunction(template_hamiltonian_simulation)]
     ```
 
     **Return type**
@@ -108,6 +113,13 @@ python_api_name: qiskit_ibm_catalog.ManagedWorkflowClient
 
     ```python
     my_workflow = client.load("my-workflow")
+    print(my_workflow)
+    ```
+
+    Output:
+
+    ```text
+    QiskitFunction(my-workflow)
     ```
 
     **Return type**
@@ -182,7 +194,13 @@ python_api_name: qiskit_ibm_catalog.ManagedWorkflowClient
 
     ```python
     installed = client.dependencies_versions()
-    print([d for d in installed if d.startswith("qiskit")])
+    print([d for d in installed if d.startswith(("qiskit-aer", "qiskit-addon-sqd"))])
+    ```
+
+    Output:
+
+    ```text
+    ['qiskit-aer==0.17.2', 'qiskit-addon-sqd==0.13.1']
     ```
 
     **Return type**
@@ -219,7 +237,13 @@ python_api_name: qiskit_ibm_catalog.ManagedWorkflowClient
     Uploads locally built wheels to a workflow. Install them from your entrypoint with [`install_uploaded_wheels()`](inside-a-workflow#install_uploaded_wheels). To update a wheel, remove it with [`remove_wheels()`](#remove_wheels) and add the new build. See [Declare dependencies](/docs/managed-workflows/managed-workflow-dependencies).
 
     ```python
-    client.add_wheels(my_workflow, ["wheels/*.whl"])
+    print(client.add_wheels(my_workflow, ["wheels/*.whl"]))
+    ```
+
+    Output:
+
+    ```text
+    ['mypkg-1.0-py3-none-any.whl']
     ```
 
     **Parameters**
@@ -241,6 +265,12 @@ python_api_name: qiskit_ibm_catalog.ManagedWorkflowClient
     print(client.list_wheels(my_workflow))
     ```
 
+    Output:
+
+    ```text
+    ['mypkg-1.0-py3-none-any.whl']
+    ```
+
     **Return type**
 
     `list[str]`
@@ -252,8 +282,15 @@ python_api_name: qiskit_ibm_catalog.ManagedWorkflowClient
     Removes uploaded wheels from a workflow.
 
     ```python
-    client.remove_wheels(my_workflow, ["my_package-1.0-py3-none-any.whl"])
-    client.add_wheels(my_workflow, ["wheels/my_package-1.1-*.whl"])
+    client.remove_wheels(my_workflow, ["mypkg-1.0-py3-none-any.whl"])
+    client.add_wheels(my_workflow, ["wheels/mypkg-1.1-*.whl"])
+    print(client.list_wheels(my_workflow))
+    ```
+
+    Output:
+
+    ```text
+    ['mypkg-1.1-py3-none-any.whl']
     ```
 
     **Parameters**
@@ -273,6 +310,12 @@ python_api_name: qiskit_ibm_catalog.ManagedWorkflowClient
 
     ```python
     print(client.files(my_workflow))
+    ```
+
+    Output:
+
+    ```text
+    ['hamiltonian.npz', 'results.npz']
     ```
 
     **Return type**
@@ -323,6 +366,13 @@ python_api_name: qiskit_ibm_catalog.ManagedWorkflowClient
 
     ```python
     client.file_delete("hamiltonian.npz", my_workflow)
+    print(client.files(my_workflow))
+    ```
+
+    Output:
+
+    ```text
+    ['results.npz']
     ```
 
   </Function>
@@ -365,8 +415,14 @@ python_api_name: qiskit_ibm_catalog.ManagedWorkflowClient
     Returns a job by ID. Replaces the deprecated `get_job_by_id()`.
 
     ```python
-    job = client.job("<JOB_ID>")
-    result = job.result()
+    job = client.job("e6b1ffa1-cd26-437d-bd53-b265dd4ba952")
+    print(job.status())
+    ```
+
+    Output:
+
+    ```text
+    DONE
     ```
 
     **Return type**
@@ -381,7 +437,16 @@ python_api_name: qiskit_ibm_catalog.ManagedWorkflowClient
 
     ```python
     for event in client.events(job.job_id):
-        print(event.event_type, event.data)
+        print(event.created, event.event_type, event.data.get("status"))
+    ```
+
+    Output:
+
+    ```text
+    2026-11-02T14:43:07.134377Z STATUS_CHANGE QUEUED
+    2026-11-02T14:43:24.474199Z STATUS_CHANGE PENDING
+    2026-11-02T14:46:07.309519Z STATUS_CHANGE RUNNING
+    2026-11-02T14:46:21.115038Z STATUS_CHANGE SUCCEEDED
     ```
 
     **Return type**
@@ -415,7 +480,13 @@ python_api_name: qiskit_ibm_catalog.ManagedWorkflowClient
     Returns the Qiskit Runtime session IDs created by a workflow job.
 
     ```python
-    sessions = client.runtime_sessions(job.job_id)
+    print(client.runtime_sessions(job.job_id))
+    ```
+
+    Output:
+
+    ```text
+    ['cw2q70c79ws0008z6g4g']
     ```
 
     **Return type**
@@ -452,6 +523,13 @@ python_api_name: qiskit_ibm_catalog.ManagedWorkflowClient
 
     ```python
     backend = client.backend("ibm_fez")
+    print(backend.name, backend.num_qubits)
+    ```
+
+    Output:
+
+    ```text
+    ibm_fez 156
     ```
 
     **Return type**
@@ -465,8 +543,14 @@ python_api_name: qiskit_ibm_catalog.ManagedWorkflowClient
     Returns the backend with the fewest pending jobs.
 
     ```python
-    backend_name = client.least_busy(operational=True, simulator=False).name
-    job = my_workflow.run(backend_name=backend_name)
+    backend = client.least_busy(operational=True, simulator=False)
+    print(backend.name)
+    ```
+
+    Output:
+
+    ```text
+    ibm_kingston
     ```
 
     **Return type**
@@ -480,7 +564,13 @@ python_api_name: qiskit_ibm_catalog.ManagedWorkflowClient
     Returns runtime usage for the active instance.
 
     ```python
-    print(client.usage())
+    print(sorted(client.usage()))
+    ```
+
+    Output:
+
+    ```text
+    ['usage_consumed_seconds', 'usage_limit_reached', 'usage_limit_seconds', 'usage_remaining_seconds']
     ```
 
     **Return type**

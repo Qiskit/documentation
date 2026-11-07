@@ -42,8 +42,14 @@ save_result({"energy": -1.137})         # 5. Return results
   ```python
   from qiskit_serverless import install_uploaded_wheels
 
-  install_uploaded_wheels()
-  import my_package
+  print(install_uploaded_wheels())
+  import mypkg
+  ```
+
+  Output:
+
+  ```text
+  /tmp/site
   ```
 
   **Parameters**
@@ -67,7 +73,13 @@ save_result({"energy": -1.137})         # 5. Return results
   from qiskit_serverless import get_arguments
 
   arguments = get_arguments()
-  shots = arguments.get("shots", 1024)
+  print(arguments)
+  ```
+
+  Output:
+
+  ```text
+  {'theta': 0.5}
   ```
 
   **Return type**
@@ -127,13 +139,18 @@ save_result({"energy": -1.137})         # 5. Return results
   Returns a `QiskitRuntimeService` for submitting Qiskit Runtime jobs. It links those jobs to the workflow job, so [`Job.runtime_jobs()`](managed-workflow-job#runtime_jobs) can find them. Call it without arguments; it reads your credentials from the job's environment. See [Run quantum jobs from a workflow](/docs/managed-workflows/manage-quantum-classical-workflows).
 
   ```python
-  from qiskit_ibm_runtime import SamplerV2 as Sampler
   from qiskit_serverless import get_arguments, get_runtime_service
 
   arguments = get_arguments()
   service = get_runtime_service()
   backend = service.backend(arguments["backend_name"])
-  sampler = Sampler(mode=backend)
+  print(backend.name)
+  ```
+
+  Output:
+
+  ```text
+  ibm_fez
   ```
 
   To reach Qiskit Runtime through a private endpoint, set the `QISKIT_IBM_PRIVATE_ENDPOINT` environment variable to `true`. The instance must be a CRN.
@@ -158,7 +175,13 @@ save_result({"energy": -1.137})         # 5. Return results
   Reports the job's current stage. [`Job.status()`](managed-workflow-job#status) on the caller's side then returns the stage, as shown in the following table.
 
   ```python
-  update_status(Job.WAITING_QPU)
+  print(update_status(Job.WAITING_QPU))
+  ```
+
+  Output:
+
+  ```text
+  True
   ```
 
   | Pass | `status()` returns |
@@ -271,6 +294,13 @@ except Exception as error:
       arguments = get_arguments()
   else:
       arguments = {"shots": 100}
+  print(arguments)
+  ```
+
+  Output:
+
+  ```text
+  {'shots': 100}
   ```
 
   **Return type**

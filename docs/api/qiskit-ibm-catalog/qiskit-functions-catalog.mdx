@@ -88,6 +88,13 @@ python_api_name: qiskit_ibm_catalog.QiskitFunctionsCatalog
 
     ```python
     qesem_function = catalog.load("qedma/qesem")
+    print(qesem_function)
+    ```
+
+    Output:
+
+    ```text
+    QiskitFunction(qedma/qesem)
     ```
 
     **Parameters**
@@ -142,8 +149,14 @@ python_api_name: qiskit_ibm_catalog.QiskitFunctionsCatalog
     Returns a job by ID. Replaces the deprecated `get_job_by_id()`.
 
     ```python
-    job = catalog.job("<JOB_ID>")
-    print(job.status())
+    job = catalog.job("f6c29f49-4d5f-4fff-aca6-2e9a115b9763")
+    print(job)
+    ```
+
+    Output:
+
+    ```text
+    <Job | f6c29f49-4d5f-4fff-aca6-2e9a115b9763>
     ```
 
     **Parameters**
@@ -162,7 +175,16 @@ python_api_name: qiskit_ibm_catalog.QiskitFunctionsCatalog
 
     ```python
     for event in catalog.events(job.job_id):
-        print(event.event_type, event.data)
+        print(event.created, event.event_type, event.data.get("status"))
+    ```
+
+    Output:
+
+    ```text
+    2026-11-02T14:43:07.134377Z STATUS_CHANGE QUEUED
+    2026-11-02T14:43:24.474199Z STATUS_CHANGE PENDING
+    2026-11-02T14:46:07.309519Z STATUS_CHANGE RUNNING
+    2026-11-02T14:46:21.115038Z STATUS_CHANGE SUCCEEDED
     ```
 
     **Parameters**
@@ -206,7 +228,13 @@ python_api_name: qiskit_ibm_catalog.QiskitFunctionsCatalog
     Returns the Qiskit Runtime session IDs created by a function job.
 
     ```python
-    sessions = catalog.runtime_sessions(job.job_id)
+    print(catalog.runtime_sessions(job.job_id))
+    ```
+
+    Output:
+
+    ```text
+    ['cw2q70c79ws0008z6g4g']
     ```
 
     **Return type**
@@ -323,6 +351,13 @@ python_api_name: qiskit_ibm_catalog.QiskitFunctionsCatalog
 
     ```python
     backend = catalog.backend("ibm_fez")
+    print(backend.name, backend.num_qubits)
+    ```
+
+    Output:
+
+    ```text
+    ibm_fez 156
     ```
 
     **Parameters**
@@ -341,7 +376,14 @@ python_api_name: qiskit_ibm_catalog.QiskitFunctionsCatalog
     Returns the backend with the fewest pending jobs.
 
     ```python
-    backend_name = catalog.least_busy(operational=True, simulator=False).name
+    backend = catalog.least_busy(operational=True, simulator=False)
+    print(backend.name)
+    ```
+
+    Output:
+
+    ```text
+    ibm_kingston
     ```
 
     **Parameters**
@@ -359,7 +401,13 @@ python_api_name: qiskit_ibm_catalog.QiskitFunctionsCatalog
     Returns runtime usage for the active instance.
 
     ```python
-    print(catalog.usage())
+    print(sorted(catalog.usage()))
+    ```
+
+    Output:
+
+    ```text
+    ['usage_consumed_seconds', 'usage_limit_reached', 'usage_limit_seconds', 'usage_remaining_seconds']
     ```
 
     **Return type**

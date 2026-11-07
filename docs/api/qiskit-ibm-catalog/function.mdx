@@ -22,6 +22,12 @@ python_api_name: qiskit_serverless.core.function.RunnableQiskitFunction
     print(qesem_function.get_default_size())
     ```
 
+    Output:
+
+    ```text
+    None
+    ```
+
     **Return type**
 
     `str | None` – `None` if the function doesn't declare a default.
@@ -37,6 +43,13 @@ python_api_name: qiskit_serverless.core.function.RunnableQiskitFunction
         print(job.job_id, job.status())
     ```
 
+    Output:
+
+    ```text
+    f6c29f49-4d5f-4fff-aca6-2e9a115b9763 DONE
+    7f08c9d5-471b-4da2-92e7-4f2cb94c23a8 ERROR
+    ```
+
     **Return type**
 
     list\[[`Job`](functions-job)]
@@ -48,7 +61,17 @@ python_api_name: qiskit_serverless.core.function.RunnableQiskitFunction
     Starts a job and returns immediately.
 
     ```python
-    job = function.run(circuits=[qc], backend_name="ibm_fez")
+    job = qesem_function.run(
+        pubs=[(circuit, observable)],
+        backend_name="ibm_fez",
+    )
+    print(job.job_id)
+    ```
+
+    Output:
+
+    ```text
+    f6c29f49-4d5f-4fff-aca6-2e9a115b9763
     ```
 
     **Parameters**
@@ -73,6 +96,12 @@ python_api_name: qiskit_serverless.core.function.RunnableQiskitFunction
 
     ```python
     print(qesem_function.sizes())
+    ```
+
+    Output:
+
+    ```text
+    {}
     ```
 
     **Return type**
