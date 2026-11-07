@@ -7,7 +7,7 @@ description: Considerations for setting up IBM Quantum Platform in an organizati
 
 # Considerations for setting up IBM Quantum Platform for an organization
 
-IBM Quantum&reg; Platform is the dashboard for your IBM Cloud&reg; account's IBM Quantum Compute Service instances and workloads, and provides a simplified view of access management. An organization's IBM Cloud account can have multiple users and multiple Quantum Compute instances, each with its own allocation. Identity and Access Management (IAM) controls which users can access which service instances, so you can enable collaboration while restricting visibility where needed. Access management becomes more relevant if you have service instances on paid plans. See [IBM Cloud account structure](/docs/guides/cloud-account-structure) for an overview of how accounts, users, instances, and access fit together. Refer to the [IBM Cloud IAM documentation](https://cloud.ibm.com/docs/account?topic=account-iamoverview) for full details on the IAM concepts referenced in this guide, such as access groups, policies, roles, and resource groups.
+IBM Quantum&reg; Platform is the dashboard for your IBM Cloud&reg; account's IBM Quantum Compute Service instances and workloads, and provides a simplified view of access management. An organization's IBM Cloud account can have multiple users and multiple Quantum Compute instances, each with its own allocation. Identity and Access Management (IAM) controls which users can access which service instances, so you can enable collaboration while restricting visibility where needed. Access management becomes more relevant if you have service instances on paid plans. See [IBM Cloud account structure](/docs/ibm-quantum-platform/cloud-account-structure) for an overview of how accounts, users, instances, and access fit together. Refer to the [IBM Cloud IAM documentation](https://cloud.ibm.com/docs/account?topic=account-iamoverview) for full details on the IAM concepts referenced in this guide, such as access groups, policies, roles, and resource groups.
 
 This guide describes the decisions and tradeoffs involved in setting up access for an organization with multiple service instances &mdash; for example, assigning one instance per team or workload.
 
@@ -35,7 +35,7 @@ The following personas are mentioned in this guide:
 This guide uses the following terms:
 
 * _Resource_: A generic IBM Cloud term that refers to an object that can be managed through the Cloud user interface, CLI, or API. For this guide, a _resource_ is a Quantum Compute Service instance.
-* _Service instance_: A service instance is used to access Cloud services - specifically, quantum computers, through IBM Quantum Compute Service. It is defined through the catalog. You can define several service instances based on the same or different plans, which offer access to different quantum computing backends. See [Available IBM Cloud plans](/docs/guides/plans-overview) for details.
+* _Service instance_: A service instance is used to access Cloud services - specifically, quantum computers, through IBM Quantum Compute Service. It is defined through the catalog. You can define several service instances based on the same or different plans, which offer access to different quantum computing backends. See [Available IBM Cloud plans](/docs/ibm-quantum-platform/plans-overview) for details.
 
 <span id="xplanning-orgx"></span>
 ## Plan your setup
@@ -73,7 +73,7 @@ To achieve that, define two different custom roles, such as `MLreader` and `MLwr
 When using dynamic rules, that is, when the IDP administrator manages access through custom IDP user attributes, do not use IDP custom user attributes that are substrings of each other. For instance, don't use `ml` and `mlReader`, as the string comparison of `ml` would also accept `mlReader`. You could use `MLreader` and `MLwriter` to avoid this conflict.
 </Admonition>
 
-For an example, see [Set up custom roles](/docs/guides/custom-roles#custom).
+For an example, see [Set up custom roles](/docs/ibm-quantum-platform/custom-roles#custom).
 
 <span id="shared-access"></span>
 ### Shared workload access
@@ -112,12 +112,12 @@ resource "ibm_resource_instance" "instance1" {
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
-   * See [Configure IBM Quantum Platform for an organization](/docs/guides/quickstart-steps-org) for the steps to set up IBM Quantum Platform.
-   * [Understand available plans](/docs/guides/plans-overview).
-   * [Create instances](/docs/guides/instances).
-   * [Understand the IBM Cloud account structure](/docs/guides/cloud-account-structure).
-   * [Create policies and access groups](/docs/guides/access-groups).
-   * [Manage users](/docs/guides/invite-and-manage-users).
+   * See [Configure IBM Quantum Platform for an organization](/docs/ibm-quantum-platform/quickstart-steps-org) for the steps to set up IBM Quantum Platform.
+   * [Understand available plans](/docs/ibm-quantum-platform/plans-overview).
+   * [Create instances](/docs/ibm-quantum-platform/instances).
+   * [Understand the IBM Cloud account structure](/docs/ibm-quantum-platform/cloud-account-structure).
+   * [Create policies and access groups](/docs/ibm-quantum-platform/access-groups).
+   * [Manage users](/docs/ibm-quantum-platform/invite-and-manage-users).
    * [IBM Cloud IAM documentation](https://cloud.ibm.com/docs/account?topic=account-iamoverview) for full IAM details.
    * [IBM Cloud Enterprise documentation](https://cloud.ibm.com/docs/account?topic=account-what-is-enterprise) for managing multiple linked accounts.
 </Admonition>

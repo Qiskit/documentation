@@ -63,4 +63,5 @@ const IGNORE_TITLE_MISMATCHES: string[] = [
   "docs/guides/qedma-qesem.ipynb", // ok
   "docs/guides/changelog-qiskit.mdx",
   "docs/guides/changelog-quantum-compute.mdx",
+  "docs/ibm-quantum-platform/index.mdx",
 ];

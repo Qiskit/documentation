@@ -16,11 +16,11 @@ Find the latest package release summaries and platform updates from IBM Quantum&
 
 - **Introducing `ibm_chicago`** &mdash; Premium, Flex, and Pay-As-You-Go Plans now have access to [`ibm_chicago`](https://quantum.cloud.ibm.com/computers?system=ibm_chicago), expanding Nighthawk r2 capacity for your most demanding workloads. Like `ibm_phoenix`, it is a high-connectivity, square-lattice 120-programmable-qubit QPU that delivers up to 25x higher throughput and 25x lower initialization error than Heron, while matching its gate fidelity.
 
-- **Jobs with QPY versions older than 13 are no longer supported** &mdash; For security reasons, IBM Quantum Compute Service no longer supports circuits serialized with QPY versions older than 13. Jobs that include them are rejected, for example with [error 1502](https://quantum.cloud.ibm.com/docs/errors#1502).
+- **Jobs with QPY versions older than 13 are no longer supported** &mdash; For security reasons, IBM Quantum Compute Service no longer supports circuits serialized with QPY versions older than 13. Jobs that include them are rejected, for example with [error 1502](/docs/errors#1502).
 
     Most users are not impacted. QPY version 13 was introduced in Qiskit v1.3, so if your jobs are rejected, make sure you use Qiskit v1.3 or later. Alternatively, upgrade to the latest version of `qiskit-ibm-runtime`, which requires Qiskit v2.x and gives you the latest features and security fixes.
 
-- **[Usage](/docs/ibm-quantum-compute/estimate-job-run-time#workload-usage) is now tracked in _[resource units (RUs)](/docs/guides/plans-overview#rus)_** &mdash; In support of upcoming capabilities coming to the platform, IBM Quantum is evolving its consumption model from minutes to RUs. For current standard QPU workloads, 1 RU = 1 minute of QPU compute time (and, for Premium Plan: 1 RU = 1 Value Unit).  Therefore, there are no changes to current QPU pricing.
+- **[Usage](/docs/ibm-quantum-compute/estimate-job-run-time#workload-usage) is now tracked in _[resource units (RUs)](/docs/ibm-quantum-platform/plans-overview#rus)_** &mdash; In support of upcoming capabilities coming to the platform, IBM Quantum is evolving its consumption model from minutes to RUs. For current standard QPU workloads, 1 RU = 1 minute of QPU compute time (and, for Premium Plan: 1 RU = 1 Value Unit).  Therefore, there are no changes to current QPU pricing.
 
 <span id="platform-sep26"></span>
 ## September 2026
@@ -41,10 +41,10 @@ Find the latest package release summaries and platform updates from IBM Quantum&
   - Job results & workloads  
 
     * **Bit-by-bit outcomes view** — a new way to view Sampler measurement results, breaking down outcomes bit by bit instead of by full state. Useful as an alternative to the Measurement outcomes view when results contain many distinct states.  
-    * **Circuit timing chart** — shows a scheduled timeline of a circuit's operations (gates, channels, durations). Available for Sampler and Executor jobs. Requires [enabling timing data retrieval](https://quantum.cloud.ibm.com/docs/ibm-quantum-compute/qiskit-runtime-circuit-timing#enable-timing-data-retrieval).  
-    * **Chunk/span execution diagnostics panel** — a new panel on job details showing chunk- and span-level execution diagnostics. See [Sampler input/output](https://quantum.cloud.ibm.com/docs/ibm-quantum-compute/sampler-input-output) for what this data means and how to enable it when submitting jobs.  
+    * **Circuit timing chart** — shows a scheduled timeline of a circuit's operations (gates, channels, durations). Available for Sampler and Executor jobs. Requires [enabling timing data retrieval](/docs/ibm-quantum-compute/qiskit-runtime-circuit-timing#enable-timing-data-retrieval).  
+    * **Chunk/span execution diagnostics panel** — a new panel on job details showing chunk- and span-level execution diagnostics. See [Sampler input/output](/docs/ibm-quantum-compute/sampler-input-output) for what this data means and how to enable it when submitting jobs.  
     * **Device calibration data at a glance** — job details now show the device calibration data from the time of submission or execution via a "View calibration history" link.  
-    * **Executor results visualization** — job details pages now render results for Executor jobs. See the [Directed execution model (beta)](https://quantum.cloud.ibm.com/docs/ibm-quantum-compute/directed-execution-model) guide for more on Executor.  
+    * **Executor results visualization** — job details pages now render results for Executor jobs. See the [Directed execution model (beta)](/docs/ibm-quantum-compute/directed-execution-model) guide for more on Executor.  
     * **Dynamic circuits now render on job details** — with OpenQASM 3.0 support in Composer (see more below), circuits that previously failed to render (for example, those using dynamic circuits) now display correctly on the job details page.  
     * **Histogram improvements** — faster loading, smoother zoom in/out, and a new selection tool for narrowing in on specific result ranges.  
     * **`qiskit-ibm-runtime` code snippets in job results** — copy-ready code to retrieve a job by ID; for Executor jobs, an additional snippet lets you replicate the job.  
@@ -115,7 +115,7 @@ Find the latest package release summaries and platform updates from IBM Quantum&
 ## April 2026
 <span id="classroom-accounts"></span>
 ### Classroom accounts
-- **New Classroom Accounts**: Professors can now request a [Classroom Account](/docs/guides/classroom-accounts) to manage and facilitate access for their students. With Classroom Accounts, students can use Open Plan resources without needing to provide personal credit card information.
+- **New Classroom Accounts**: Professors can now request a [Classroom Account](/docs/ibm-quantum-platform/classroom-accounts) to manage and facilitate access for their students. With Classroom Accounts, students can use Open Plan resources without needing to provide personal credit card information.
   - **New export options now available in IBM Quantum**: Introducing new export capabilities that make it easier for account administrators to analyze, share, and work with their data.
 
     - New in the [Analytics](https://quantum.cloud.ibm.com/analytics) page:
@@ -166,13 +166,13 @@ Find the latest package release summaries and platform updates from IBM Quantum&
 
   As we expand EU capacity and roll out the latest Nighthawk and Heron processors, `ibm_brussels` and `ibm_strasbourg` are scheduled to be retired on or around 30 April 2026.
 
-  Once these QPUs are retired, they will no longer accept jobs. If your workflows target `ibm_brussels` or `ibm_strasbourg`, please migrate to another active QPU ahead of the retirement date to take advantage of the latest systems. For guidance on retrieving data from past jobs, refer to the following [documentation](/docs/guides/retired-qpus#retrieve-a-job-from-a-retired-qpu).
+  Once these QPUs are retired, they will no longer accept jobs. If your workflows target `ibm_brussels` or `ibm_strasbourg`, please migrate to another active QPU ahead of the retirement date to take advantage of the latest systems. For guidance on retrieving data from past jobs, refer to the following [documentation](/docs/ibm-quantum-platform/retired-qpus#retrieve-a-job-from-a-retired-qpu).
 
   ### `ibm_torino` is now retired
 
   The quantum computer `ibm_torino` has been retired and will no longer accept workload submissions. Any workloads that were already queued on this QPU might still be processed and return results.
 
-  If you would like to retrieve job data from important workloads run on this QPU, refer to [these instructions](/docs/guides/retired-qpus#retrieve-a-job-from-a-retired-qpu).
+  If you would like to retrieve job data from important workloads run on this QPU, refer to [these instructions](/docs/ibm-quantum-platform/retired-qpus#retrieve-a-job-from-a-retired-qpu).
 
   ### ibm_brussels and ibm_strasbourg are now retired
     
@@ -180,7 +180,7 @@ Find the latest package release summaries and platform updates from IBM Quantum&
 
   This change is part of the continued evolution and expansion of the IBM Quantum fleet in the EU, including the recently released Nighthawk QPU [`ibm_berlin`](https://quantum.cloud.ibm.com/computers?system=ibm_berlin) and the upgraded Heron r3 QPU [`ibm_aachen`](https://quantum.cloud.ibm.com/computers?system=ibm_aachen). The global fleet has now fully transitioned away from Eagle, IBM Quantum's first utility‑scale processor family, introduced in 2021.
 
-  If your workflows target `ibm_brussels` or `ibm_strasbourg`, please migrate to another active QPU to take advantage of the latest hardware. For guidance on retrieving data from past jobs, refer to the [documentation](/docs/guides/retired-qpus#retrieve-a-job-from-a-retired-qpu).
+  If your workflows target `ibm_brussels` or `ibm_strasbourg`, please migrate to another active QPU to take advantage of the latest hardware. For guidance on retrieving data from past jobs, refer to the [documentation](/docs/ibm-quantum-platform/retired-qpus#retrieve-a-job-from-a-retired-qpu).
 
 ## March 2026
 
@@ -195,7 +195,7 @@ Find the latest package release summaries and platform updates from IBM Quantum&
 
   The `ibm_torino` QPU will retire on or around 1 April 2026. Once this QPU is retired, it will no longer accept jobs.
 
-  If you would like to retrieve job data from important past jobs, please refer to the following [documentation](/docs/guides/retired-qpus#retrieve-a-job-from-a-retired-qpu).
+  If you would like to retrieve job data from important past jobs, please refer to the following [documentation](/docs/ibm-quantum-platform/retired-qpus#retrieve-a-job-from-a-retired-qpu).
 
   ### Increase in repetition delay time maximum
 
@@ -272,7 +272,7 @@ You can still filter the Compute resources table by region using the funnel icon
 
 The quantum computer `ibm_brisbane` has been retired and will no longer accept workload submissions. Any workloads that were already queued on these QPUs might still be processed and return results.
 
-If you would like to retrieve job data from important workloads run on this QPU, refer to [these instructions](/docs/guides/retired-qpus#retrieve-a-job-from-a-retired-qpu).
+If you would like to retrieve job data from important workloads run on this QPU, refer to [these instructions](/docs/ibm-quantum-platform/retired-qpus#retrieve-a-job-from-a-retired-qpu).
 
 #### October 2025
 
@@ -401,7 +401,7 @@ Users of other plans (for example, Premium Plan or On-Prem Plan) should wait for
 
 `ibm_kyiv` has been retired and will no longer accept workload submissions. Any workloads that were already queued on these QPUs might still be processed and return results.
 
-If you would like to retrieve job data from important workloads run on this QPU, refer to [these instructions](/docs/guides/retired-qpus#retrieve-a-job-from-a-retired-qpu).
+If you would like to retrieve job data from important workloads run on this QPU, refer to [these instructions](/docs/ibm-quantum-platform/retired-qpus#retrieve-a-job-from-a-retired-qpu).
 
 #### 10 April 2025
 - Updated navigation to remove duplicated pages:
@@ -411,7 +411,7 @@ If you would like to retrieve job data from important workloads run on this QPU,
 - Launched two new QPUs: ibm_aachen (eu-de region) and ibm_kingston (us-east region)
 - Individuals who can view the analytics page can now filter the data to view information per plan.
 - Administrators can now more easily add multiple individuals to an access group due to the addition of an existing account members table.
-- Premium plan instance administrators can set the instance allocation as a usage limit, so that usage in those instances cannot exceed the time alloted. See the [Set instance allocation limits](/docs/guides/allocation-limits) guide for instructions.
+- Premium plan instance administrators can set the instance allocation as a usage limit, so that usage in those instances cannot exceed the time alloted. See the [Set instance allocation limits](/docs/ibm-quantum-platform/allocation-limits) guide for instructions.
 - Note that the sunset date for IBM Quantum Platform Classic has been set for 1 July 2025.
 
 #### 9 April 2025
@@ -423,7 +423,7 @@ View the systems you have access to with your selected instance in the [Compute 
 <AccordionItem title="First quarter">
 
 #### 27 March 2025
-- **Cost limits for Pay-As-You-Go Plan** - Pay-As-You-Go Plan users with sufficient access can now view and edit [maximum cost limits](/docs/guides/manage-cost#cost-limit) for their instances.
+- **Cost limits for Pay-As-You-Go Plan** - Pay-As-You-Go Plan users with sufficient access can now view and edit [maximum cost limits](/docs/ibm-quantum-platform/manage-cost#cost-limit) for their instances.
 
 - **Job management updates** - Now only administrators can delete workloads created by other users in an account, and collaborators will only be able to delete their own workloads.
 
