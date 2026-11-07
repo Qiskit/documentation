@@ -260,11 +260,14 @@ $$
 
   Finally, various methods exist to check certain properties of an operator:
 
-  |                                                                                                                                                                             |                                                              |
-  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
-  | [`is_hermitian`](#qiskit_fermions.operators.FermionOperator.is_hermitian "qiskit_fermions.operators.FermionOperator.is_hermitian")(\[atol])                                 | Returns whether this operator is Hermitian.                  |
-  | [`max_rank`](#qiskit_fermions.operators.FermionOperator.max_rank "qiskit_fermions.operators.FermionOperator.max_rank")()                                                    | Returns the maximum rank of the terms in this operator.      |
-  | [`conserves_particle_number`](#qiskit_fermions.operators.FermionOperator.conserves_particle_number "qiskit_fermions.operators.FermionOperator.conserves_particle_number")() | Returns whether this operator is particle-number conserving. |
+  |                                                                                                                                                                             |                                                                              |
+  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+  | [`is_hermitian`](#qiskit_fermions.operators.FermionOperator.is_hermitian "qiskit_fermions.operators.FermionOperator.is_hermitian")(\[atol])                                 | Returns whether this operator is Hermitian.                                  |
+  | [`get_support`](#qiskit_fermions.operators.FermionOperator.get_support "qiskit_fermions.operators.FermionOperator.get_support")()                                           | Returns the set of mode indices which this operator acts upon.               |
+  | [`max_rank`](#qiskit_fermions.operators.FermionOperator.max_rank "qiskit_fermions.operators.FermionOperator.max_rank")()                                                    | Returns the maximum rank of the terms in this operator.                      |
+  | [`min_num_modes`](#qiskit_fermions.operators.FermionOperator.min_num_modes "qiskit_fermions.operators.FermionOperator.min_num_modes")()                                     | Returns the smallest number of modes that can host this operator.            |
+  | [`conserves_particle_number`](#qiskit_fermions.operators.FermionOperator.conserves_particle_number "qiskit_fermions.operators.FermionOperator.conserves_particle_number")() | Returns whether this operator is particle-number conserving.                 |
+  | [`conserves_sector`](#qiskit_fermions.operators.FermionOperator.conserves_sector "qiskit_fermions.operators.FermionOperator.conserves_sector")(block\_sizes)                | Returns whether every term conserves particle number within each mode block. |
 
   <span id="id2" />
 
@@ -279,7 +282,7 @@ $$
   <Attribute id="qiskit_fermions.operators.FermionOperator.groups">
     An optional vector of group indices for each term.
 
-    For more information refer to the `grouping` module.
+    For more information refer to the [Group operator terms: use the operator structure](/docs/addons/qiskit-fermions/guides/grouping#grouping-explanation) guide.
   </Attribute>
 
   ## Methods
@@ -947,6 +950,36 @@ $$
     The maximum rank of this operator.
   </Function>
 
+  ##### min\_num\_modes
+
+  <Function id="qiskit_fermions.operators.FermionOperator.min_num_modes" signature="min_num_modes()">
+    Returns the smallest number of modes that can host this operator.
+
+    This is one more than the largest mode index which the operator acts upon, which is what determines, for example, the number of qubits a mapping requires. Note that this is not the number of distinct modes: see [`get_support()`](#qiskit_fermions.operators.FermionOperator.get_support "qiskit_fermions.operators.FermionOperator.get_support") for that.
+
+    ```pycon
+    >>> from qiskit_fermions.operators import FermionOperator
+    >>> op = FermionOperator.from_dict(
+    ...     {
+    ...         ((True, 0), (False, 4)): 1,
+    ...         ((True, 1), (True, 3), (False, 4), (False, 7)): 1,
+    ...     }
+    ... )
+    >>> op.min_num_modes()
+    8
+    >>> FermionOperator.zero().min_num_modes()
+    0
+    ```
+
+    **Returns**
+
+    The smallest number of modes, or `0` if the operator acts on no mode.
+
+    <Admonition title="Note" type="note">
+      An operator acting on mode index `2**32 - 1` is not supported: the count would not be representable, and the call panics.
+    </Admonition>
+  </Function>
+
   ##### normal\_ordered
 
   <Function id="qiskit_fermions.operators.FermionOperator.normal_ordered" signature="normal_ordered(sandwich=None)">
@@ -1142,7 +1175,7 @@ $$
     ```
   </Function>
 
-  **Protocol Methods**
+  ## Protocol Methods
 
   ##### \_anti\_commutator\_
 

@@ -1,0 +1,170 @@
+---
+title: Job (managed workflows)
+description: API reference for the Job class, the handle for a managed workflow job
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_serverless.Job
+---
+
+{/* cspell:ignore maxwait */}
+
+# Job
+
+<Class id="qiskit_serverless.Job" isDedicatedPage={true} signature="qiskit_serverless.Job(job_id, job_service, raw_data=None)" modifiers="class">
+  Handle for a managed workflow job. Returned by [`run()`](managed-workflow#run), [`ManagedWorkflowClient.job()`](managed-workflow-client#job), and [`ManagedWorkflowClient.jobs()`](managed-workflow-client#jobs).
+
+  ```python
+  job = workflow.run(**inputs)
+  job.wait_for_final_state(timeout=600, verbose=True)
+  result = job.result()
+  ```
+
+  ## Attributes
+
+  ### Stage constants
+
+  Pass these to [`update_status()`](inside-a-workflow#update_status) from inside a workflow to report its stage.
+
+  | Constant | `status()` returns |
+  | --- | --- |
+  | `Job.MAPPING` | `RUNNING: MAPPING` |
+  | `Job.OPTIMIZING_HARDWARE` | `RUNNING: OPTIMIZING_FOR_HARDWARE` |
+  | `Job.WAITING_QPU` | `RUNNING: WAITING_FOR_QPU` |
+  | `Job.EXECUTING_QPU` | `RUNNING: EXECUTING_QPU` |
+  | `Job.POST_PROCESSING` | `RUNNING: POST_PROCESSING` |
+
+  ## Methods
+
+  ### cancel
+
+  <Function id="qiskit_serverless.Job.cancel" signature="cancel(service=None)">
+    Cancels the job. Replaces the deprecated `stop()`.
+
+    **Parameters**
+
+    *   **service** (*QiskitRuntimeService | None*) – Qiskit Runtime service to cancel the job's Qiskit Runtime jobs with.
+  </Function>
+
+  ### error\_message
+
+  <Function id="qiskit_serverless.Job.error_message" signature="error_message()">
+    Returns the error message if the job failed.
+
+    **Return type**
+
+    `str`
+  </Function>
+
+  ### events
+
+  <Function id="qiskit_serverless.Job.events" signature="events(**kwargs)">
+    Returns the job's events.
+
+    **Return type**
+
+    `list[JobEvent]`
+  </Function>
+
+  ### filtered\_logs
+
+  <Function id="qiskit_serverless.Job.filtered_logs" signature="filtered_logs(include=None, exclude=None)">
+    Returns the job's logs, filtered by line.
+
+    **Parameters**
+
+    *   **include** (*str | None*) – Regular expression. Keep only matching lines.
+    *   **exclude** (*str | None*) – Regular expression. Drop matching lines.
+
+    **Return type**
+
+    `str`
+  </Function>
+
+  ### in\_terminal\_state
+
+  <Function id="qiskit_serverless.Job.in_terminal_state" signature="in_terminal_state()">
+    Returns whether the job has finished.
+
+    **Return type**
+
+    `bool`
+  </Function>
+
+  ### logs
+
+  <Function id="qiskit_serverless.Job.logs" signature="logs()">
+    Returns the job's logs. See [Write logs and handle errors](/docs/managed-workflows/managed-workflow-logs-and-errors).
+
+    **Return type**
+
+    `str`
+  </Function>
+
+  ### result
+
+  <Function id="qiskit_serverless.Job.result" signature="result(wait=True, cadence=30, verbose=False, maxwait=0)">
+    Returns the job's result: the value the job passed to [`save_result()`](inside-a-workflow#save_result).
+
+    **Parameters**
+
+    *   **wait** (*bool*) – Wait for the job to finish.
+    *   **cadence** (*int*) – Seconds between status checks while waiting.
+    *   **verbose** (*bool*) – Log a line at each check.
+    *   **maxwait** (*int*) – Maximum number of checks. `0` waits until the job finishes.
+
+    **Raises**
+
+    `QiskitServerlessException` – If the job ended in `ERROR`.
+  </Function>
+
+  ### runtime\_jobs
+
+  <Function id="qiskit_serverless.Job.runtime_jobs" signature="runtime_jobs(runtime_session=None)">
+    Returns the IDs of the Qiskit Runtime jobs this job created, optionally filtered by session.
+
+    **Return type**
+
+    `list[str]`
+  </Function>
+
+  ### runtime\_sessions
+
+  <Function id="qiskit_serverless.Job.runtime_sessions" signature="runtime_sessions()">
+    Returns the IDs of the Qiskit Runtime sessions this job created.
+
+    **Return type**
+
+    `list[str]`
+  </Function>
+
+  ### status
+
+  <Function id="qiskit_serverless.Job.status" signature="status()">
+    Returns the job status: `QUEUED`, `INITIALIZING`, `RUNNING`, `CANCELING`, `DONE`, `ERROR`, or `CANCELED`. While a workflow reports a stage with [`update_status()`](inside-a-workflow#update_status), `RUNNING` becomes a value such as `RUNNING: WAITING_FOR_QPU`. See [Stage constants](#stage-constants).
+
+    **Return type**
+
+    `str`
+  </Function>
+
+  ### wait\_for\_final\_state
+
+  <Function id="qiskit_serverless.Job.wait_for_final_state" signature="wait_for_final_state(timeout=None, poll_interval=None, verbose=False)">
+    Waits until the job is `DONE`, `ERROR`, or `CANCELED` and returns that status. By default it checks after 1, 2, 4, 8, 16, and 32 seconds, then every 60 seconds. Short network errors are retried.
+
+    **Parameters**
+
+    *   **timeout** (*float | None*) – Seconds to wait. `None` waits until the job ends.
+    *   **poll\_interval** (*float | None*) – Fixed seconds between checks, at least 1. Replaces the default backoff.
+    *   **verbose** (*bool*) – Print one line per status change.
+
+    **Return type**
+
+    `str`
+
+    **Raises**
+
+    *   `TimeoutError` – If the job doesn't finish within `timeout`. The job keeps running.
+    *   `QiskitServerlessException` – On other errors, or if retried errors continue for 5 minutes.
+  </Function>
+</Class>

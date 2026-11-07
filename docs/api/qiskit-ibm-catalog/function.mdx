@@ -1,0 +1,87 @@
+---
+title: Function
+description: API reference for a Qiskit Function loaded from the Functions Catalog
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_serverless.core.function.RunnableQiskitFunction
+---
+
+# Function
+
+<Class id="qiskit_serverless.core.function.RunnableQiskitFunction" isDedicatedPage={true} signature="qiskit_serverless.core.function.RunnableQiskitFunction" modifiers="class">
+  A Qiskit Function loaded with [`QiskitFunctionsCatalog.load()`](qiskit-functions-catalog#load). Its class is `RunnableQiskitFunction`. You don't create it directly.
+
+  ## Methods
+
+  ### get\_default\_size
+
+  <Function id="qiskit_serverless.core.function.RunnableQiskitFunction.get_default_size" signature="get_default_size()">
+    Returns the size label used when a run doesn't pass `function_size`.
+
+    **Return type**
+
+    `str | None` – `None` if the function doesn't declare a default.
+  </Function>
+
+  ### jobs
+
+  <Function id="qiskit_serverless.core.function.RunnableQiskitFunction.jobs" signature="jobs(**kwargs)">
+    Lists the jobs created with this function. Replaces the deprecated `get_jobs()`.
+
+    **Return type**
+
+    list\[[`Job`](functions-job)]
+  </Function>
+
+  ### run
+
+  <Function id="qiskit_serverless.core.function.RunnableQiskitFunction.run" signature="run(**kwargs)">
+    Starts a job and returns immediately.
+
+    ```python
+    job = function.run(circuits=[qc], backend_name="ibm_fez")
+    ```
+
+    **Parameters**
+
+    *   **\*\*kwargs** – The function's inputs. See the function's API reference in [Qiskit Functions](/docs/api/functions).
+    *   **function\_size** (*str | None*) – Size label, if the function declares sizes. Reserved keyword.
+    *   **config** (*Configuration | None*) – Job configuration. Reserved keyword.
+
+    **Return type**
+
+    [`Job`](functions-job)
+
+    **Raises**
+
+    `QiskitServerlessException` – If the arguments are invalid.
+  </Function>
+
+  ### sizes
+
+  <Function id="qiskit_serverless.core.function.RunnableQiskitFunction.sizes" signature="sizes()">
+    Returns the size labels the function declares.
+
+    **Return type**
+
+    `dict[str, str]` – Empty if the function declares no sizes.
+  </Function>
+
+  ### validate\_arguments
+
+  <Function id="qiskit_serverless.core.function.RunnableQiskitFunction.validate_arguments" signature="validate_arguments(arguments)">
+    Checks arguments against the function's schema without creating a job.
+
+    **Parameters**
+
+    *   **arguments** (*dict*) – The arguments to check.
+
+    **Return type**
+
+    `dict` – `{"valid": True}` if the arguments are valid.
+
+    **Raises**
+
+    `QiskitServerlessException` – If the arguments are invalid.
+  </Function>
+</Class>

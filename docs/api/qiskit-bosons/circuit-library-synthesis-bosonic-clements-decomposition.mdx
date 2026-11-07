@@ -1,0 +1,72 @@
+---
+title: BosonicClementsDecomposition (latest version)
+description: API reference for qiskit_bosons.circuit.library.synthesis.BosonicClementsDecomposition in the latest version of qiskit-bosons
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_bosons.circuit.library.synthesis.BosonicClementsDecomposition
+---
+
+# BosonicClementsDecomposition
+
+<Class id="qiskit_bosons.circuit.library.synthesis.BosonicClementsDecomposition" isDedicatedPage={true} signature="BosonicClementsDecomposition(*, tol=1e-12)" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
+
+  The decomposition of a mode rotation into a mesh of two-mode rotations and phases.
+
+  The unitary $U$ of the [`ModeRotation`](circuit-library-mode-rotation "qiskit_bosons.circuit.library.ModeRotation") is factorized with [`givens_decomposition()`](linalg-givens-decomposition "qiskit_bosons.linalg.givens_decomposition") into at most $M(M-1)/2$ rotations between *adjacent* modes plus $M$ single-mode phases, the rectangular mesh of Clements et al.   <span id="id1" />[\[1\]](#id2). Every factor $F$ is itself a mode rotation, whose many-body unitary is $e^{-\mathrm{i} H_F}$ for the Hermitian generator $H_F$ of [`ModeRotation.to_operator()`](circuit-library-mode-rotation#to_operator "qiskit_bosons.circuit.library.ModeRotation.to_operator"). It is therefore emitted as an [`Evolution`](circuit-library-evolution "qiskit_bosons.circuit.library.Evolution") gate at unit time on the one or two modes it acts on.
+
+  The emitted gates are `atomic`, and the operator of each holds a single group. The terms of a two-mode generator do not commute, so splitting it up any further would change the factor: the boson-to-qubit stage maps and synthesizes it whole.
+
+  Because $U \mapsto \exp(\sum_{ij} \log(U)_{ij} b^\dagger_i b_j)$ is a group homomorphism, the product of the factors equals the full rotation exactly on the untruncated Fock space. The mesh itself therefore adds no error on its own. What it buys is locality: every factor acts on the modes of its own, instead of one evolution reaching all of them.
+
+  <Admonition title="Warning" type="caution">
+    A truncation does not preserve the homomorphism, because the truncated algebra is not closed. The product of the truncated factors then differs from the truncation of the full rotation whenever one of the factors takes a mode past the cutoff. A cutoff of at least the total boson number keeps every factor within it, as each factor conserves that number. A smaller cutoff can still be enough, but is then a property of the state and the rotation that has to be converged. Increase the cutoff until the result stops changing.
+  </Admonition>
+
+  <Admonition title="Note" type="note">
+    The emitted [`Evolution`](circuit-library-evolution "qiskit_bosons.circuit.library.Evolution") gates are only exact once the boson-to-qubit stage synthesizes them well. The terms of a two-mode generator do not commute, so a single-step product formula leaves a sizeable error in each factor. Converge it with the `product_formula` of the boson-to-qubit plugin, for example [`LieTrotter`](/docs/api/qiskit/qiskit.synthesis.LieTrotter) with more repetitions.
+  </Admonition>
+
+  <span id="id2" />
+
+  \[[1](#id1)]
+
+  W. R. Clements et al., Optimal design for universal multiport interferometers, Optica 3, 1460 (2016), [arXiv:1603.08788](https://arxiv.org/abs/1603.08788).
+
+  Initializing an instance of this synthesis method can be done with the arguments below.
+
+  **Parameters**
+
+  **tol** ([*float*](https://docs.python.org/3/builtins/functions.html#float)) – factors and entries below this magnitude are dropped. This is applied to the entries of the generator of a factor, see [`ModeRotation.to_operator()`](circuit-library-mode-rotation#to_operator "qiskit_bosons.circuit.library.ModeRotation.to_operator"), and to the angle of a single-mode phase.
+
+  ## Attributes
+
+  ### tol
+
+  <Attribute id="qiskit_bosons.circuit.library.synthesis.BosonicClementsDecomposition.tol">
+    The magnitude below which entries of a generator and angles of a phase are dropped.
+  </Attribute>
+
+  ## Methods
+
+  ### synthesize
+
+  <Function id="qiskit_bosons.circuit.library.synthesis.BosonicClementsDecomposition.synthesize" signature="synthesize(gate)">
+    Synthesizes the gate into the mesh of atomic [`Evolution`](circuit-library-evolution "qiskit_bosons.circuit.library.Evolution") gates.
+
+    See the class documentation for the decomposition this implements.
+
+    **Parameters**
+
+    **gate** ([*ModeRotation*](circuit-library-mode-rotation "qiskit_bosons.circuit.library.ModeRotation")) – the gate to synthesize.
+
+    **Returns**
+
+    A [`BosonicCircuit`](circuit-bosonic-circuit "qiskit_bosons.circuit.BosonicCircuit") holding one [`Evolution`](circuit-library-evolution "qiskit_bosons.circuit.library.Evolution") gate per two-mode rotation and per non-trivial phase, in the order in which they are applied. The rotations come first, then the phases.
+
+    **Return type**
+
+    [BosonicCircuit](circuit-bosonic-circuit "qiskit_bosons.circuit.BosonicCircuit")
+  </Function>
+</Class>
+

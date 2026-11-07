@@ -366,7 +366,7 @@ $$
 
   This pass is designed to be run on a physical circuit and the details of operations on a given qubit is assumed to be the hardware qubit from the target. However, the output of the pass might not use hardware operations, specifically single qubit gates might be emitted outside the target’s supported operations, typically only if a parameterized gate supported by the [`TwoQubitControlledUDecomposer`](/docs/api/qiskit/dev/qiskit.synthesis.TwoQubitControlledUDecomposer#qiskit.synthesis.TwoQubitControlledUDecomposer "qiskit.synthesis.TwoQubitControlledUDecomposer") is used for synthesis. As such if running this pass in a physical optimization stage (such as [Optimization stage](/docs/api/qiskit/dev/transpiler#transpiler-preset-stage-optimization) ) this should be paired with passes such as [`BasisTranslator`](/docs/api/qiskit/dev/qiskit.transpiler.passes.BasisTranslator#qiskit.transpiler.passes.BasisTranslator "qiskit.transpiler.passes.BasisTranslator") and/or [`Optimize1qGatesDecomposition`](/docs/api/qiskit/dev/qiskit.transpiler.passes.Optimize1qGatesDecomposition#qiskit.transpiler.passes.Optimize1qGatesDecomposition "qiskit.transpiler.passes.Optimize1qGatesDecomposition") to ensure that these errant single qubit gates are replaced with hardware supported operations prior to exiting the stage.
 
-  This pass is multithreaded, and will perform the analysis in parallel and use all the cores available on your local system. You can refer to the [configuration guide](/docs/guides/configure-qiskit-local) for details on how to control the threading behavior for Qiskit more broadly which will also control this pass
+  This pass is multithreaded, and will perform the analysis in parallel and use all the cores available on your local system. You can refer to the [configuration guide](/docs/qiskit/configure-qiskit-local) for details on how to control the threading behavior for Qiskit more broadly which will also control this pass
 
   <span id="group__QkTranspilerPasses_1autotoc_md449" />
 
@@ -872,7 +872,7 @@ $$
 
   Refer to the [`qk_transpiler_pass_2q_peephole_optimization()`](#qk_transpiler_pass_2q_peephole_optimization "qk_transpiler_pass_2q_peephole_optimization") function documentation for the pass details.
 
-  This function is multithreaded, and will perform the analysis in parallel and use all the cores available on your local system. You can refer to the [configuration guide](/docs/guides/configure-qiskit-local) for details on how to control the threading behavior for Qiskit more broadly which will also control this pass
+  This function is multithreaded, and will perform the analysis in parallel and use all the cores available on your local system. You can refer to the [configuration guide](/docs/qiskit/configure-qiskit-local) for details on how to control the threading behavior for Qiskit more broadly which will also control this pass
 
   <span id="group__QkTranspilerPassesStandalone_1autotoc_md447" />
 

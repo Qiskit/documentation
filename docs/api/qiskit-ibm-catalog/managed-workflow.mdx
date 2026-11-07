@@ -1,0 +1,120 @@
+---
+title: ManagedWorkflow
+description: API reference for qiskit_ibm_catalog.ManagedWorkflow, the definition of a managed workflow, and the uploaded workflow you run
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_ibm_catalog.ManagedWorkflow
+---
+
+# ManagedWorkflow
+
+<Class id="qiskit_ibm_catalog.ManagedWorkflow" isDedicatedPage={true} signature="qiskit_ibm_catalog.ManagedWorkflow(title, provider=None, entrypoint=None, working_dir='./', env_vars=None, dependencies=None, description=None, version=None, tags=None, raw_data=None, image=None, runner='fleets', arguments_schema=None, type='GENERIC', sizes_map=None, default_size=None)" modifiers="class">
+  Defines a workflow to upload with [`ManagedWorkflowClient.upload()`](managed-workflow-client#upload). `QiskitFunction` is an alias.
+
+  `upload()` and `load()` return an [uploaded workflow](#uploaded-workflow) that you can run.
+
+  ```python
+  from qiskit_ibm_catalog import ManagedWorkflow
+
+  workflow = ManagedWorkflow(
+      title="my-workflow",
+      entrypoint="main.py",
+      working_dir="./src",
+      sizes_map={"s": "24x120", "m": "16x128"},
+      default_size="s",
+  )
+  ```
+
+  **Parameters**
+
+  *   **title** (*str*) – Workflow name.
+  *   **entrypoint** (*str | None*) – Script that runs as the job, relative to `working_dir`. For example, `"main.py"`.
+  *   **working\_dir** (*str*) – Directory that contains the entrypoint. Maximum size is 50 MB.
+  *   **sizes\_map** (*dict\[str, str | ComputeProfile] | None*) – Maps size labels to compute profile IDs or `ComputeProfile` objects. Choose a size per run with `run(function_size=...)`. Labels are case-insensitive. See [Choose a compute profile](/docs/managed-workflows/managed-workflow-compute-profiles).
+  *   **default\_size** (*str | None*) – Size label to use when a run doesn't pass `function_size`. Must be a label in `sizes_map`.
+  *   **arguments\_schema** (*dict | bool | None*) – JSON Schema for the workflow's arguments. `{}` removes a schema stored by an earlier upload. Qiskit objects are checked in their encoded form, so constrain only their `__type__` tag. See [Define inputs and outputs](/docs/managed-workflows/managed-workflow-inputs-and-outputs).
+  *   **env\_vars** (*dict\[str, str] | None*) – Environment variables to set in the job.
+  *   **description** (*str | None*) – Workflow description.
+  *   **version** (*str | None*) – Workflow version.
+  *   **tags** (*list\[str] | None*) – Tags for the workflow.
+  *   **image** (*str | None*) – Container image to run the workflow in.
+  *   **runner** (*str*) – Job runner. Defaults to `"fleets"`.
+  *   **type** (*str*) – One of `"GENERIC"`, `"APPLICATION"`, or `"CIRCUIT"`.
+  *   **dependencies** (*list\[str] | None*) – Deprecated and ignored. Use [`dependencies_versions()`](managed-workflow-client#dependencies_versions) and [`add_wheels()`](managed-workflow-client#add_wheels) instead.
+
+  ## Uploaded workflow
+
+  Returned by [`ManagedWorkflowClient.upload()`](managed-workflow-client#upload) and [`ManagedWorkflowClient.load()`](managed-workflow-client#load). Its class is `RunnableQiskitFunction`.
+
+  ### get\_default\_size
+
+  <Function id="qiskit_serverless.core.function.RunnableQiskitFunction.get_default_size" signature="get_default_size()">
+    Returns the size label used when a run doesn't pass `function_size`.
+
+    **Return type**
+
+    `str | None` – `None` if the workflow doesn't declare a default.
+  </Function>
+
+  ### jobs
+
+  <Function id="qiskit_serverless.core.function.RunnableQiskitFunction.jobs" signature="jobs(**kwargs)">
+    Lists the jobs created with this workflow. Replaces the deprecated `get_jobs()`.
+
+    **Return type**
+
+    list\[[`Job`](managed-workflow-job)]
+  </Function>
+
+  ### run
+
+  <Function id="qiskit_serverless.core.function.RunnableQiskitFunction.run" signature="run(**kwargs)">
+    Starts a job and returns immediately.
+
+    ```python
+    job = workflow.run(circuits=[qc], function_size="s")
+    ```
+
+    **Parameters**
+
+    *   **\*\*kwargs** – The workflow's inputs. Your entrypoint reads them with [`get_arguments()`](inside-a-workflow#get_arguments).
+    *   **function\_size** (*str | None*) – Size label from the workflow's `sizes_map`. Reserved keyword.
+    *   **config** (*Configuration | None*) – Job configuration. Reserved keyword.
+
+    **Return type**
+
+    [`Job`](managed-workflow-job)
+
+    **Raises**
+
+    `QiskitServerlessException` – If the arguments are invalid. Passing `compute_profile` also raises this error; use `function_size` instead.
+  </Function>
+
+  ### sizes
+
+  <Function id="qiskit_serverless.core.function.RunnableQiskitFunction.sizes" signature="sizes()">
+    Returns the size labels the workflow declares and the compute profile each one maps to.
+
+    **Return type**
+
+    `dict[str, str]` – Empty if the workflow declares no sizes.
+  </Function>
+
+  ### validate\_arguments
+
+  <Function id="qiskit_serverless.core.function.RunnableQiskitFunction.validate_arguments" signature="validate_arguments(arguments)">
+    Checks arguments against the workflow's `arguments_schema` without creating a job.
+
+    **Parameters**
+
+    *   **arguments** (*dict*) – The arguments to check.
+
+    **Return type**
+
+    `dict` – `{"valid": True}` if the arguments are valid.
+
+    **Raises**
+
+    `QiskitServerlessException` – If the arguments are invalid.
+  </Function>
+</Class>

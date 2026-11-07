@@ -1,0 +1,305 @@
+---
+title: ManagedWorkflowClient
+description: API reference for qiskit_ibm_catalog.ManagedWorkflowClient, the client for uploading and running managed workflows
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_ibm_catalog.ManagedWorkflowClient
+---
+
+# ManagedWorkflowClient
+
+<Class id="qiskit_ibm_catalog.ManagedWorkflowClient" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-catalog/blob/v0.22.0/qiskit_ibm_catalog/serverless.py" signature="qiskit_ibm_catalog.ManagedWorkflowClient(token=None, channel=None, instance=None, name=None, *, host=None)" modifiers="class">
+  Client for uploading and running your own [managed workflows](/docs/managed-workflows). `QiskitServerless` is an alias.
+
+  This client runs in your own Python session. For the functions your workflow calls while it runs, such as `get_arguments()` and `save_result()`, see [Inside a workflow](inside-a-workflow).
+
+  ```python
+  from qiskit_ibm_catalog import ManagedWorkflow, ManagedWorkflowClient
+
+  client = ManagedWorkflowClient(token="<API_KEY>", instance="<CRN>")
+  workflow = client.upload(
+      ManagedWorkflow(title="my-workflow", entrypoint="main.py", working_dir="./src")
+  )
+  job = workflow.run(**inputs)
+  result = job.result()
+  ```
+
+  **Parameters**
+
+  *   **token** (*str | None*) – IBM Cloud API key. If set, `name` is ignored.
+  *   **channel** (*str | None*) – Authentication method.
+  *   **instance** (*str | None*) – Cloud resource name (CRN) of your IBM Quantum Platform instance.
+  *   **name** (*str | None*) – Name of a saved account to load from the local account config file.
+  *   **host** (*str | None*) – Gateway URL. Defaults to the IBM Quantum Platform gateway.
+
+  ## Methods
+
+  ### add\_wheels
+
+  <Function id="qiskit_ibm_catalog.ManagedWorkflowClient.add_wheels" signature="add_wheels(function, patterns)">
+    Uploads locally built wheels to a workflow. Install them from your entrypoint with [`install_uploaded_wheels()`](inside-a-workflow#install_uploaded_wheels). To update a wheel, remove it with [`remove_wheels()`](#remove_wheels) and add the new build. See [Declare dependencies](/docs/managed-workflows/managed-workflow-dependencies).
+
+    **Parameters**
+
+    *   **function** ([*RunnableQiskitFunction*](managed-workflow#uploaded-workflow)) – The workflow.
+    *   **patterns** (*list\[str]*) – Local paths or globs. Every match must be a `.whl` file. For example, `["dist/my_package-1.0-*.whl"]`.
+
+    **Return type**
+
+    `list[str]` – The uploaded wheel file names.
+  </Function>
+
+  ### backend
+
+  <Function id="qiskit_ibm_catalog.ManagedWorkflowClient.backend" signature="backend(name, **kwargs)">
+    Returns a single backend by name.
+
+    **Return type**
+
+    `Backend`
+  </Function>
+
+  ### backends
+
+  <Function id="qiskit_ibm_catalog.ManagedWorkflowClient.backends" signature="backends(**kwargs)">
+    Returns the backends your instance can access. Keyword arguments such as `name`, `min_num_qubits`, `filters`, and `refresh_cache` are forwarded to the backend query.
+
+    **Return type**
+
+    `list[Backend]`
+  </Function>
+
+  ### compute\_profile
+
+  <Function id="qiskit_ibm_catalog.ManagedWorkflowClient.compute_profile" signature="compute_profile(compute_profile_id=None, *, cpu=None, memory=None, gpu=None)">
+    Returns one registered compute profile, by ID or by exact resources. See [Choose a compute profile](/docs/managed-workflows/managed-workflow-compute-profiles).
+
+    ```python
+    client.compute_profile("24x120")
+    client.compute_profile(cpu=24, memory=120)
+    ```
+
+    **Parameters**
+
+    *   **compute\_profile\_id** (*str | None*) – Profile ID. Don't combine with the resource arguments.
+    *   **cpu** (*int | str | None*) – Number of CPUs. Required when looking up by resources.
+    *   **memory** (*int | str | None*) – Memory in GB. Required when looking up by resources.
+    *   **gpu** (*str | None*) – GPU specifier. Omit for CPU-only profiles.
+
+    **Return type**
+
+    `ComputeProfile`
+  </Function>
+
+  ### compute\_profiles
+
+  <Function id="qiskit_ibm_catalog.ManagedWorkflowClient.compute_profiles" signature="compute_profiles()">
+    Lists the compute profiles you can use in a workflow's `sizes_map`. Prints as a table.
+
+    **Return type**
+
+    `ComputeProfileList`
+  </Function>
+
+  ### dependencies\_versions
+
+  <Function id="qiskit_ibm_catalog.ManagedWorkflowClient.dependencies_versions" signature="dependencies_versions()">
+    Lists the packages and versions already installed in the runtime image, so you know what you don't need to bring.
+
+    **Return type**
+
+    `list[str]` – Requirement strings, such as `"numpy==2.1.0"`.
+  </Function>
+
+  ### dependency\_report
+
+  <Function id="qiskit_ibm_catalog.ManagedWorkflowClient.dependency_report" signature="dependency_report(requirements)">
+    Compares your requirements with the runtime image. For each requirement, reports whether it's already installed, needs a wheel, or conflicts with an installed version. Nothing is uploaded. Prints as a table.
+
+    **Parameters**
+
+    *   **requirements** (*list\[str]*) – Requirement strings, such as `["numpy>=2", "my_package"]`.
+  </Function>
+
+  ### events
+
+  <Function id="qiskit_ibm_catalog.ManagedWorkflowClient.events" signature="events(job_id, **kwargs)">
+    Returns the events of a job.
+
+    **Return type**
+
+    `list[JobEvent]`
+  </Function>
+
+  ### file\_delete
+
+  <Function id="qiskit_ibm_catalog.ManagedWorkflowClient.file_delete" signature="file_delete(file, function)">
+    Deletes a file from a workflow's folder. See [Manage files across runs](/docs/managed-workflows/manage-files-across-managed-workflows).
+  </Function>
+
+  ### file\_download
+
+  <Function id="qiskit_ibm_catalog.ManagedWorkflowClient.file_download" signature="file_download(file, function, target_name=None, download_location='./')">
+    Downloads a file from a workflow's folder.
+
+    **Parameters**
+
+    *   **file** (*str*) – File name.
+    *   **function** ([*RunnableQiskitFunction*](managed-workflow#uploaded-workflow)) – The workflow.
+    *   **target\_name** (*str | None*) – Local file name. Defaults to the remote name.
+    *   **download\_location** (*str*) – Local directory to save the file in.
+  </Function>
+
+  ### file\_upload
+
+  <Function id="qiskit_ibm_catalog.ManagedWorkflowClient.file_upload" signature="file_upload(file, function)">
+    Uploads a local file to a workflow's folder.
+  </Function>
+
+  ### files
+
+  <Function id="qiskit_ibm_catalog.ManagedWorkflowClient.files" signature="files(function)">
+    Lists the files in a workflow's folder.
+
+    **Return type**
+
+    `list[str]`
+  </Function>
+
+  ### job
+
+  <Function id="qiskit_ibm_catalog.ManagedWorkflowClient.job" signature="job(job_id)">
+    Returns a job by ID. Replaces the deprecated `get_job_by_id()`.
+
+    **Return type**
+
+    [`Job`](managed-workflow-job) | `None`
+  </Function>
+
+  ### jobs
+
+  <Function id="qiskit_ibm_catalog.ManagedWorkflowClient.jobs" signature="jobs(function=None, *, limit=10, offset=0, status=None, created_after=None, **kwargs)">
+    Lists your workflow jobs.
+
+    **Parameters**
+
+    *   **function** ([*RunnableQiskitFunction*](managed-workflow#uploaded-workflow) *| None*) – Only return jobs created by this workflow.
+    *   **limit** (*int*) – Maximum number of jobs to return.
+    *   **offset** (*int*) – Number of jobs to skip.
+    *   **status** (*str | None*) – One of `QUEUED`, `RUNNING`, `DONE`, `ERROR`, or `CANCELLED`.
+    *   **created\_after** (*str | None*) – ISO 8601 timestamp, such as `"2026-01-01T00:00:00Z"`.
+
+    **Return type**
+
+    list\[[`Job`](managed-workflow-job)]
+  </Function>
+
+  ### least\_busy
+
+  <Function id="qiskit_ibm_catalog.ManagedWorkflowClient.least_busy" signature="least_busy(**kwargs)">
+    Returns the backend with the fewest pending jobs.
+
+    **Return type**
+
+    `Backend`
+  </Function>
+
+  ### list
+
+  <Function id="qiskit_ibm_catalog.ManagedWorkflowClient.list" signature="list(*, limit=None, offset=None, **kwargs)">
+    Lists the workflows you uploaded.
+
+    **Return type**
+
+    list\[[`RunnableQiskitFunction`](managed-workflow#uploaded-workflow)]
+  </Function>
+
+  ### list\_wheels
+
+  <Function id="qiskit_ibm_catalog.ManagedWorkflowClient.list_wheels" signature="list_wheels(function)">
+    Lists the wheels uploaded to a workflow with [`add_wheels()`](#add_wheels).
+
+    **Return type**
+
+    `list[str]`
+  </Function>
+
+  ### load
+
+  <Function id="qiskit_ibm_catalog.ManagedWorkflowClient.load" signature="load(title, provider=None)">
+    Loads one of your workflows by title.
+
+    **Return type**
+
+    [`RunnableQiskitFunction`](managed-workflow#uploaded-workflow) | `None`
+  </Function>
+
+  ### remove\_wheels
+
+  <Function id="qiskit_ibm_catalog.ManagedWorkflowClient.remove_wheels" signature="remove_wheels(function, names)">
+    Removes uploaded wheels from a workflow.
+
+    **Parameters**
+
+    *   **function** ([*RunnableQiskitFunction*](managed-workflow#uploaded-workflow)) – The workflow.
+    *   **names** (*list\[str]*) – Wheel file names, as returned by [`list_wheels()`](#list_wheels).
+  </Function>
+
+  ### runtime\_jobs
+
+  <Function id="qiskit_ibm_catalog.ManagedWorkflowClient.runtime_jobs" signature="runtime_jobs(job_id, runtime_session=None)">
+    Returns the Qiskit Runtime job IDs created by a workflow job, optionally filtered by session.
+
+    **Return type**
+
+    `list[str]`
+  </Function>
+
+  ### runtime\_sessions
+
+  <Function id="qiskit_ibm_catalog.ManagedWorkflowClient.runtime_sessions" signature="runtime_sessions(job_id)">
+    Returns the Qiskit Runtime session IDs created by a workflow job.
+
+    **Return type**
+
+    `list[str]`
+  </Function>
+
+  ### save\_account
+
+  <Function id="qiskit_ibm_catalog.ManagedWorkflowClient.save_account" signature="save_account(token=None, channel=None, instance=None, name=None, overwrite=False)" modifiers="static">
+    Saves the account to disk for future use.
+
+    **Parameters**
+
+    *   **token** (*str | None*) – IBM Cloud API key.
+    *   **channel** (*str | None*) – Authentication method.
+    *   **instance** (*str | None*) – Instance CRN.
+    *   **name** (*str | None*) – Name to save the account under.
+    *   **overwrite** (*bool*) – Overwrite an existing saved account.
+  </Function>
+
+  ### upload
+
+  <Function id="qiskit_ibm_catalog.ManagedWorkflowClient.upload" signature="upload(function)">
+    Uploads a workflow.
+
+    **Parameters**
+
+    *   **function** ([*ManagedWorkflow*](managed-workflow)) – The workflow definition.
+
+    **Return type**
+
+    [`RunnableQiskitFunction`](managed-workflow#uploaded-workflow)
+  </Function>
+
+  ### usage
+
+  <Function id="qiskit_ibm_catalog.ManagedWorkflowClient.usage" signature="usage()">
+    Returns runtime usage for the active instance.
+
+    **Return type**
+
+    `dict`
+  </Function>
+</Class>
