@@ -398,16 +398,29 @@ python_api_name: qiskit_ibm_catalog.QiskitFunctionsCatalog
   ### usage
 
   <Function id="qiskit_ibm_catalog.QiskitFunctionsCatalog.usage" signature="usage()">
-    Returns runtime usage for the active instance.
+    Returns Qiskit Runtime usage for the active instance in the current usage period. Fields that don't apply to your plan, such as limits, can be missing. `usage_remaining_seconds` is the limit, or the allocation if there's no limit, minus the time consumed. See the [instance usage endpoint](/docs/api/qiskit-runtime-rest/tags/instances#tags__instances__operations__get_usage) for every field.
 
     ```python
-    print(sorted(catalog.usage()))
+    from pprint import pprint
+
+    pprint(catalog.usage(), sort_dicts=False)
     ```
 
     Output:
 
     ```text
-    ['usage_consumed_seconds', 'usage_limit_reached', 'usage_limit_seconds', 'usage_remaining_seconds']
+    {'instance_id': 'crn:v1:bluemix:public:quantum-computing:us-east:a/...',
+     'plan_id': 'flex-plan-id-1',
+     'usage_period': {'start_time': '2026-10-10T00:00:00.000Z',
+                      'end_time': '2026-11-07T00:00:00.000Z'},
+     'usage_consumed_seconds': 12,
+     'usage_consumed_ru': 0.2,
+     'usage_limit_seconds': 60,
+     'usage_limit_ru': 1,
+     'usage_allocation_seconds': 120,
+     'usage_allocation_ru': 2,
+     'usage_limit_reached': False,
+     'usage_remaining_seconds': 48}
     ```
 
     **Return type**
