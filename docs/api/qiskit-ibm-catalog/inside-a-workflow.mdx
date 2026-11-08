@@ -27,7 +27,7 @@ arguments = get_arguments()             # 2. Read inputs
 service = get_runtime_service()         # 3. Connect to quantum computers
 
 update_status(Job.WAITING_QPU)          # 4. Report progress
-# ... submit Qiskit Runtime jobs with service ...
+# ... submit Quantum Compute jobs with service ...
 
 save_result({"energy": -1.137})         # 5. Return results
 ```
@@ -136,7 +136,7 @@ save_result({"energy": -1.137})         # 5. Return results
 ### get\_runtime\_service
 
 <Function id="qiskit_serverless.get_runtime_service" signature="qiskit_serverless.get_runtime_service(channel=None, token=None, instance=None, url=None)">
-  Returns a `QiskitRuntimeService` for submitting Qiskit Runtime jobs. It links those jobs to the workflow job, so [`Job.runtime_jobs()`](managed-workflow-job#runtime_jobs) can find them. Call it without arguments; it reads your credentials from the job's environment. See [Run quantum jobs from a workflow](/docs/managed-workflows/manage-quantum-classical-workflows).
+  Returns a `QiskitRuntimeService` for submitting Quantum Compute jobs. It links those jobs to the workflow job, so [`Job.runtime_jobs()`](managed-workflow-job#runtime_jobs) can find them. Call it without arguments; it reads your credentials from the job's environment. See [Run quantum jobs from a workflow](/docs/managed-workflows/manage-quantum-classical-workflows).
 
   ```python
   from qiskit_serverless import get_arguments, get_runtime_service
@@ -153,14 +153,14 @@ save_result({"energy": -1.137})         # 5. Return results
   ibm_fez
   ```
 
-  To reach Qiskit Runtime through a private endpoint, set the `QISKIT_IBM_PRIVATE_ENDPOINT` environment variable to `true`. The instance must be a CRN.
+  To reach Quantum Compute through a private endpoint, set the `QISKIT_IBM_PRIVATE_ENDPOINT` environment variable to `true`. The instance must be a CRN.
 
   **Parameters**
 
   *   **channel** (*str | None*) – Override the channel.
   *   **token** (*str | None*) – Override the API key.
   *   **instance** (*str | None*) – Override the instance CRN or name.
-  *   **url** (*str | None*) – Override the Qiskit Runtime URL.
+  *   **url** (*str | None*) – Override the Quantum Compute URL.
 
   **Return type**
 
@@ -214,7 +214,7 @@ save_result({"energy": -1.137})         # 5. Return results
 
   **Parameters**
 
-  *   **result** (*dict\[str, Any]*) – The result. Must be JSON-serializable, or one of the Qiskit types that the Qiskit Runtime serializer supports, such as `numpy.ndarray`, `QuantumCircuit`, and `Parameter`.
+  *   **result** (*dict\[str, Any]*) – The result. Must be JSON-serializable, or one of the Qiskit types that the Quantum Compute serializer supports, such as `numpy.ndarray`, `QuantumCircuit`, and `Parameter`.
 </Function>
 
 ## Report errors
