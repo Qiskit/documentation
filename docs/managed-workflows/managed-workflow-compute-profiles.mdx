@@ -7,16 +7,18 @@ description: "Choose the CPU, memory, and GPU resources for a managed workflow, 
 
 Managed workflows run on compute profiles. A compute profile is a fixed combination of vCPUs, memory, and GPUs, similar to the resources that you request from an HPC scheduler. When you upload a workflow, you map its sizes, such as `S` and `M`, to profiles, and each run picks one of those sizes. The job then runs on its own node with that profile, and keeps the profile until the job ends.
 
-| Profile | vCPUs | Memory (GB) | GPUs |
-| - | - | - | - |
-| `8x32` | 8 | 32 | None |
-| `16x128` | 16 | 128 | None |
-| `48x768` | 48 | 768 | None |
-| `128x1500` | 128 | 1500 | None |
-| `24x120x1l40s` | 24 | 120 | 1 L40S |
-| `20x320x2a100` | 20 | 320 | 2 A100 |
-| `80x1200x8a100` | 80 | 1200 | 8 A100 |
-| `160x1792x8h100` | 160 | 1792 | 8 H100 |
+| Profile | vCPUs | Memory (GB) | GPUs | Typical provision time |
+| - | - | - | - | - |
+| `8x32` | 8 | 32 | None | 3 minutes |
+| `16x128` | 16 | 128 | None | 3 minutes |
+| `48x768` | 48 | 768 | None | 3 minutes |
+| `128x1500` | 128 | 1500 | None | 3 minutes |
+| `24x120x1l40s` | 24 | 120 | 1 L40S | 3 minutes |
+| `20x320x2a100` | 20 | 320 | 2 A100 | 9 minutes |
+| `80x1200x8a100` | 80 | 1200 | 8 A100 | 9 minutes |
+| `160x1792x8h100` | 160 | 1792 | 8 H100 | 16 minutes |
+
+The provision time is the time from when you submit a job until it starts to run, while the managed workflow starts a node with the profile. During this time, the job status is `QUEUED` and then `INITIALIZING`. The times in the table are typical values, and they can be longer when demand for a profile is high.
 
 A profile ID has the form `{cpu}x{memory}`, with memory in GB, or `{cpu}x{memory}x{count}{gpu}` for a profile with GPUs. For example, `24x120x1l40s` has 24 vCPUs, 120 GB of memory, and one NVIDIA L40S GPU.
 
