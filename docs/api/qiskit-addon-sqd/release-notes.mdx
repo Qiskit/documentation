@@ -10,11 +10,19 @@ in_page_toc_max_heading_level: 2
 
 # Sample-based quantum diagonalization (SQD) release notes
 
-<span id="release-notes-upcoming-release" />
+<span id="release-notes-0-14-1" />
 
-## Upcoming release
+<span id="id2" />
 
-<span id="release-notes-upcoming-release-bug-fixes" />
+## 0.14.1
+
+<span id="release-notes-0-14-1-upgrade-notes" />
+
+### Upgrade Notes
+
+*   This release adds a dependency on pyscf on all platforms, given the recent availability of binary wheel distributions for Windows. Previously, pyscf was not installable on Windows, so it was not possible to import [`qiskit_addon_sqd.fermion`](/docs/api/qiskit-addon-sqd/fermion#module-qiskit_addon_sqd.fermion "qiskit_addon_sqd.fermion") there.
+
+<span id="release-notes-0-14-1-bug-fixes" />
 
 ### Bug Fixes
 
@@ -22,15 +30,17 @@ in_page_toc_max_heading_level: 2
 
 *   Fixed an issue in [`optimize_orbitals()`](/docs/api/qiskit-addon-sqd/fermion#qiskit_addon_sqd.fermion.optimize_orbitals "qiskit_addon_sqd.fermion.optimize_orbitals") where orbital rotation parameters `k_flat` were not updated during optimization because subtraction of the JAX gradient array rebound the variable in the gradient descent step rather than updating the array in place.
 
-<span id="release-notes-upcoming-release-other-notes" />
+<span id="release-notes-0-14-1-other-notes" />
 
 ### Other Notes
+
+*   Documented that the CI strings passed to the `sci_solver` argument of [`diagonalize_fermionic_hamiltonian()`](/docs/api/qiskit-addon-sqd/fermion#qiskit_addon_sqd.fermion.diagonalize_fermionic_hamiltonian "qiskit_addon_sqd.fermion.diagonalize_fermionic_hamiltonian") are sorted in ascending order. A solver may rely on that ordering when mapping amplitudes back to determinants. This was already the behavior and the Fulqrum guide relied on it; it is now part of the documented interface.
 
 *   [`qiskit_addon_sqd.fermion.SCIState.amplitudes`](/docs/api/qiskit-addon-sqd/fermion#qiskit_addon_sqd.fermion.SCIState.amplitudes "qiskit_addon_sqd.fermion.SCIState.amplitudes") now documents the sign convention its amplitudes must follow, which [`rdm()`](/docs/api/qiskit-addon-sqd/fermion#qiskit_addon_sqd.fermion.SCIState.rdm "qiskit_addon_sqd.fermion.SCIState.rdm") and [`spin_square()`](/docs/api/qiskit-addon-sqd/fermion#qiskit_addon_sqd.fermion.SCIState.spin_square "qiskit_addon_sqd.fermion.SCIState.spin_square") rely on.
 
 <span id="release-notes-0-14-0" />
 
-<span id="id2" />
+<span id="id3" />
 
 ## 0.14.0
 
@@ -40,7 +50,7 @@ in_page_toc_max_heading_level: 2
 
 *   [`qiskit_addon_sqd.fermion.diagonalize_fermionic_hamiltonian()`](/docs/api/qiskit-addon-sqd/fermion#qiskit_addon_sqd.fermion.diagonalize_fermionic_hamiltonian "qiskit_addon_sqd.fermion.diagonalize_fermionic_hamiltonian") now accepts sampled bitstrings as a two-dimensional NumPy boolean array in addition to a Qiskit [`BitArray`](/docs/api/qiskit/qiskit.primitives.BitArray).
 
-*   Adds a [guide](/docs/addons/qiskit-addon-sqd/guides/integrate-fulqrum) showing how to use [fulqrum](https://github.com/qiskit-community/fulqrum) as a subspace solver for fermionic systems. To install the optional dependency, use the `fulqrum` extra:
+*   Adds a [guide](/docs/addons/qiskit-addon-sqd/guides/integrate-fulqrum) showing how to use [fulqrum](https://github.com/Qiskit/fulqrum) as a subspace solver for fermionic systems. To install the optional dependency, use the `fulqrum` extra:
 
     ```python
     pip install 'qiskit-addon-sqd[fulqrum]'
@@ -76,6 +86,8 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-14-0-upgrade-notes" />
 
+<span id="id4" />
+
 ### Upgrade Notes
 
 *   NumPy 2.0 and SciPy 1.14.1 are now the minimum required versions. Support for NumPy 1.x has been dropped, following Qiskit’s adoption of [SPEC 0](https://scientific-python.org/specs/spec-0000/).
@@ -88,7 +100,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-14-0-bug-fixes" />
 
-<span id="id3" />
+<span id="id5" />
 
 ### Bug Fixes
 
@@ -96,13 +108,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-13-0" />
 
-<span id="id4" />
+<span id="id6" />
 
 ## 0.13.0
 
 <span id="release-notes-0-13-0-new-features" />
 
-<span id="id5" />
+<span id="id7" />
 
 ### New Features
 
@@ -118,13 +130,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-12-1" />
 
-<span id="id6" />
+<span id="id8" />
 
 ## 0.12.1
 
 <span id="release-notes-0-12-1-upgrade-notes" />
 
-<span id="id7" />
+<span id="id9" />
 
 ### Upgrade Notes
 
@@ -132,13 +144,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-12-0" />
 
-<span id="id8" />
+<span id="id10" />
 
 ## 0.12.0
 
 <span id="release-notes-0-12-0-new-features" />
 
-<span id="id9" />
+<span id="id11" />
 
 ### New Features
 
@@ -148,7 +160,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-12-0-upgrade-notes" />
 
-<span id="id10" />
+<span id="id12" />
 
 ### Upgrade Notes
 
@@ -156,7 +168,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-12-0-deprecation-notes" />
 
-<span id="id11" />
+<span id="id13" />
 
 ### Deprecation Notes
 
@@ -166,7 +178,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-12-0-bug-fixes" />
 
-<span id="id12" />
+<span id="id14" />
 
 ### Bug Fixes
 
@@ -178,13 +190,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-11-0" />
 
-<span id="id13" />
+<span id="id15" />
 
 ## 0.11.0
 
 <span id="release-notes-0-11-0-new-features" />
 
-<span id="id14" />
+<span id="id16" />
 
 ### New Features
 
@@ -194,7 +206,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-11-0-upgrade-notes" />
 
-<span id="id15" />
+<span id="id17" />
 
 ### Upgrade Notes
 
@@ -202,7 +214,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-11-0-bug-fixes" />
 
-<span id="id16" />
+<span id="id18" />
 
 ### Bug Fixes
 
@@ -210,13 +222,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-10-0" />
 
-<span id="id17" />
+<span id="id19" />
 
 ## 0.10.0
 
 <span id="release-notes-0-10-0-upgrade-notes" />
 
-<span id="id18" />
+<span id="id20" />
 
 ### Upgrade Notes
 
@@ -224,7 +236,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-10-0-deprecation-notes" />
 
-<span id="id19" />
+<span id="id21" />
 
 ### Deprecation Notes
 
@@ -236,7 +248,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-10-0-bug-fixes" />
 
-<span id="id20" />
+<span id="id22" />
 
 ### Bug Fixes
 
@@ -244,13 +256,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-9-0" />
 
-<span id="id21" />
+<span id="id23" />
 
 ## 0.9.0
 
 <span id="release-notes-0-9-0-upgrade-notes" />
 
-<span id="id22" />
+<span id="id24" />
 
 ### Upgrade Notes
 
@@ -258,7 +270,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-9-0-bug-fixes" />
 
-<span id="id23" />
+<span id="id25" />
 
 ### Bug Fixes
 
@@ -268,13 +280,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-8-0" />
 
-<span id="id24" />
+<span id="id26" />
 
 ## 0.8.0
 
 <span id="release-notes-0-8-0-new-features" />
 
-<span id="id25" />
+<span id="id27" />
 
 ### New Features
 
@@ -284,7 +296,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-8-0-upgrade-notes" />
 
-<span id="id26" />
+<span id="id28" />
 
 ### Upgrade Notes
 
@@ -292,13 +304,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-7-0" />
 
-<span id="id27" />
+<span id="id29" />
 
 ## 0.7.0
 
 <span id="release-notes-0-7-0-bug-fixes" />
 
-<span id="id28" />
+<span id="id30" />
 
 ### Bug Fixes
 
@@ -308,13 +320,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-6-0" />
 
-<span id="id29" />
+<span id="id31" />
 
 ## 0.6.0
 
 <span id="release-notes-0-6-0-upgrade-notes" />
 
-<span id="id30" />
+<span id="id32" />
 
 ### Upgrade Notes
 
@@ -365,7 +377,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-6-0-deprecation-notes" />
 
-<span id="id31" />
+<span id="id33" />
 
 ### Deprecation Notes
 
@@ -394,7 +406,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-6-0-bug-fixes" />
 
-<span id="id32" />
+<span id="id34" />
 
 ### Bug Fixes
 
@@ -404,13 +416,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-5-0" />
 
-<span id="id33" />
+<span id="id35" />
 
 ## 0.5.0
 
 <span id="release-notes-0-5-0-upgrade-notes" />
 
-<span id="id34" />
+<span id="id36" />
 
 ### Upgrade Notes
 
@@ -468,7 +480,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-4-0" />
 
-<span id="id35" />
+<span id="id37" />
 
 ## 0.4.0
 
@@ -480,7 +492,7 @@ This is a minor release which introduces a couple of small, but important, break
 
 <span id="release-notes-0-4-0-upgrade-notes" />
 
-<span id="id36" />
+<span id="id38" />
 
 ### Upgrade Notes
 
