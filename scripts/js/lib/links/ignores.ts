@@ -207,6 +207,9 @@ const ALWAYS_IGNORED_URLS__EXPECTED = [
   "https://support.google.com/accounts/answer/27441?hl",
   "https://www.ibm.com/thought-leadership/institute-business-value/report/quantumfinancial",
   "https://www.epo.org/en/news-events/press-centre/press-release/2025/1361562",
+
+  // The following page is published from an internal repo, so it isn't in this repo.
+  "/docs/api/addons",
 ];
 
 // These external URLs cause actual 404s and should probably be fixed.
