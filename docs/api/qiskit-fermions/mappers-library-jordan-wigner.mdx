@@ -13,7 +13,7 @@ python_api_name: qiskit_fermions.mappers.library.jordan_wigner
 <Function id="qiskit_fermions.mappers.library.jordan_wigner" isDedicatedPage={true} signature="jordan_wigner(operator, num_qubits)">
   Map an operator to a `SparseObservable` under the Jordan-Wigner transformation.
 
-  This is the type-agnostic entry point to the Jordan-Wigner transformation. It dispatches on the concrete type of `operator` to the appropriate direct implementation: [`fermion_jordan_wigner()`](mappers-library-fermion-jordan-wigner "qiskit_fermions.mappers.library.fermion_jordan_wigner"), [`majorana_jordan_wigner()`](mappers-library-majorana-jordan-wigner "qiskit_fermions.mappers.library.majorana_jordan_wigner"), [`edge_vertex_jordan_wigner()`](mappers-library-edge-vertex-jordan-wigner "qiskit_fermions.mappers.library.edge_vertex_jordan_wigner") or [`transfer_vertex_jordan_wigner()`](mappers-library-transfer-vertex-jordan-wigner "qiskit_fermions.mappers.library.transfer_vertex_jordan_wigner"). Anything that is not one of the four operator types raises a [`TypeError`](https://docs.python.org/3/builtins/exceptions.html#TypeError).
+  This is the type-agnostic entry point to the Jordan-Wigner transformation. It dispatches on the concrete type of `operator` to the matching direct implementation, listed under [Library implementations](/docs/api/qiskit-fermions/mappers-library#jordan-wigner-mappers) in the [`library`](/docs/api/qiskit-fermions/mappers-library#module-qiskit_fermions.mappers.library "qiskit_fermions.mappers.library") documentation. An operator type without one raises a [`TypeError`](https://docs.python.org/3/builtins/exceptions.html#TypeError).
 
   **Parameters**
 
@@ -28,6 +28,7 @@ python_api_name: qiskit_fermions.mappers.library.jordan_wigner
 
   *   [**TypeError**](https://docs.python.org/3/builtins/exceptions.html#TypeError) – if `operator` is of a type for which no Jordan-Wigner implementation exists.
   *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – if `num_qubits` is too small to hold the operator’s support.
+  *   [**OverflowError**](https://docs.python.org/3/builtins/exceptions.html#OverflowError) – if `num_qubits` is negative or does not fit in 32 bits.
 
   **Return type**
 

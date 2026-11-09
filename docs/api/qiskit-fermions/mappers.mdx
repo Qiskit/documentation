@@ -12,8 +12,12 @@ python_api_name: qiskit_fermions.mappers
 
 This module provides a framework for implementing custom representation mapper routines.
 
+## Generator-based mappers
+
+These build a mapper from the Pauli images of an algebra’s generators.
+
 <Admonition title="Note" type="note">
-  The functions listed below do not have a counterpart in the C API.
+  These four functions do not have a counterpart in the C API.
 </Admonition>
 
 |                                                                                                                                                                                                                                     |                                                                                                                                                                                                                              |
@@ -22,4 +26,15 @@ This module provides a framework for implementing custom representation mapper r
 | [`map_majorana_action_generators`](/docs/api/qiskit-fermions/mappers-map-majorana-action-generators#qiskit_fermions.mappers.map_majorana_action_generators "qiskit_fermions.mappers.map_majorana_action_generators")(operator, ...) | Map a [`MajoranaOperator`](/docs/api/qiskit-fermions/operators-majorana-operator#qiskit_fermions.operators.MajoranaOperator "qiskit_fermions.operators.MajoranaOperator") to another operator type.                          |
 | [`map_edge_vertex_generators`](/docs/api/qiskit-fermions/mappers-map-edge-vertex-generators#qiskit_fermions.mappers.map_edge_vertex_generators "qiskit_fermions.mappers.map_edge_vertex_generators")(operator, ...\[, ...])         | Map a [`EdgeVertexOperator`](/docs/api/qiskit-fermions/operators-edge-vertex-operator#qiskit_fermions.operators.EdgeVertexOperator "qiskit_fermions.operators.EdgeVertexOperator") to another operator type.                 |
 | [`map_transfer_vertex_generators`](/docs/api/qiskit-fermions/mappers-map-transfer-vertex-generators#qiskit_fermions.mappers.map_transfer_vertex_generators "qiskit_fermions.mappers.map_transfer_vertex_generators")(operator, ...) | Map a [`TransferVertexOperator`](/docs/api/qiskit-fermions/operators-transfer-vertex-operator#qiskit_fermions.operators.TransferVertexOperator "qiskit_fermions.operators.TransferVertexOperator") to another operator type. |
+
+## Ternary trees
+
+A ternary tree on $N$ nodes defines a fermion-to-qubit encoding of $N$ modes onto $N$ qubits, and the familiar encodings are particular tree shapes: a chain along `"Z"` is Jordan-Wigner, a chain along `"X"` is the parity encoding, and the balanced tree attains the optimal Pauli weight $\lceil \log_3(2N+1) \rceil$. Arbitrary trees (including the irregular ones grown from a device’s coupling graph) are built by passing a parent-and-label specification to [`TernaryTree`](/docs/api/qiskit-fermions/mappers-ternary-tree#qiskit_fermions.mappers.TernaryTree "qiskit_fermions.mappers.TernaryTree") directly, which is what makes this a framework rather than a fixed set of encodings.
+
+A tree is compiled into a [`TernaryTreeEncoding`](/docs/api/qiskit-fermions/mappers-ternary-tree-encoding#qiskit_fermions.mappers.TernaryTreeEncoding "qiskit_fermions.mappers.TernaryTreeEncoding") once and then passed to any of the ternary-tree mappers in [`library`](mappers-library#module-qiskit_fermions.mappers.library "qiskit_fermions.mappers.library"). Properties derived from the encoding itself, such as [`TernaryTreeEncoding.total_parity()`](/docs/api/qiskit-fermions/mappers-ternary-tree-encoding#qiskit_fermions.mappers.TernaryTreeEncoding.total_parity "qiskit_fermions.mappers.TernaryTreeEncoding.total_parity"), are methods on that class.
+
+|                                                                                                                                                                                                |                                                                          |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| [`TernaryTree`](/docs/api/qiskit-fermions/mappers-ternary-tree#qiskit_fermions.mappers.TernaryTree "qiskit_fermions.mappers.TernaryTree")(spec)                                                | A ternary tree defining a fermion-to-qubit encoding.                     |
+| [`TernaryTreeEncoding`](/docs/api/qiskit-fermions/mappers-ternary-tree-encoding#qiskit_fermions.mappers.TernaryTreeEncoding "qiskit_fermions.mappers.TernaryTreeEncoding")(tree\[, mode\_map]) | A ternary tree compiled into the Pauli images of its Majorana operators. |
 
