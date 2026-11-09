@@ -1,6 +1,6 @@
 ---
 title: QESEM by Qedma API reference
-description: API reference for QESEM, a Qiskit Function by Qedma
+description: API reference for QESEM by Qedma
 ---
 
 # QESEM by Qedma API reference
@@ -87,7 +87,7 @@ For jobs that contain multiple input PUBs or multiple parameter-bound circuit in
 <Attribute attributeValue="batch">
 
 The user can choose to run the QESEM job in either a dedicated [IBM session](/docs/ibm-quantum-compute/execution-modes#session-mode) or across multiple [IBM batches](/docs/ibm-quantum-compute/execution-modes#batch-mode):
--   **Session Mode**: Sessions are more expensive but result in a shorter time-to-result. Once the session begins, the QPU is reserved exclusively for the QESEM job. The usage calculation includes both the time spent on QPU execution and the associated classical computations (performed by QESEM and IBM). The QESEM Qiskit Function takes care of creating and closing the session automatically. For users with unlimited access to QPUs (for example, on-premises setups), it is recommended to use session mode for faster QESEM execution.
+-   **Session Mode**: Sessions are more expensive but result in a shorter time-to-result. Once the session begins, the QPU is reserved exclusively for the QESEM job. The usage calculation includes both the time spent on QPU execution and the associated classical computations (performed by QESEM and IBM). The QESEM quantum function takes care of creating and closing the session automatically. For users with unlimited access to QPUs (for example, on-premises setups), it is recommended to use session mode for faster QESEM execution.
 -   **Batch Mode**: In batch mode, the QPU is released during classical computations, leading to lower QPU usage. As batch jobs typically span a longer period, there is a greater risk of hardware drifts; QESEM incorporates measures to detect and compensate for drifts, retaining reliability over extended runs.
 
 - Choices: `"session"` / `"batch"`

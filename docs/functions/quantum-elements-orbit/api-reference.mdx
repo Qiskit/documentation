@@ -5,7 +5,7 @@ description: "API reference for Quantum Elements Orbit, including inputs, output
 
 # Quantum Elements Orbit API reference
 
-Quantum Elements Orbit is a Qiskit Function that prepares quantum circuits for a selected IBM Quantum&reg; backend, inserts dynamical decoupling (DD) into scheduled idle windows, and runs the resulting workload through an IBM Quantum primitive. Workloads can run as one Quantum Compute job or be partitioned across child jobs in a server-side `qiskit-ibm-runtime` batch. Orbit accepts Sampler and Estimator PUBs and returns a standard [`PrimitiveResult`](/docs/api/qiskit/qiskit.primitives.PrimitiveResult) with Orbit-specific metadata attached to the top-level result and to each [Primitive Unified Bloc (PUB)](/docs/qiskit/primitive-input-output) result.
+Quantum Elements Orbit is a quantum function that prepares quantum circuits for a selected IBM Quantum&reg; backend, inserts dynamical decoupling (DD) into scheduled idle windows, and runs the resulting workload through an IBM Quantum primitive. Workloads can run as one Quantum Compute job or be partitioned across child jobs in a server-side `qiskit-ibm-runtime` batch. Orbit accepts Sampler and Estimator PUBs and returns a standard [`PrimitiveResult`](/docs/api/qiskit/qiskit.primitives.PrimitiveResult) with Orbit-specific metadata attached to the top-level result and to each [Primitive Unified Bloc (PUB)](/docs/qiskit/primitive-input-output) result.
 
 <Admonition type="note" title="Default behavior">
   If `backend_name` is omitted, Orbit selects an eligible least-busy IBM Quantum backend available to IBM Quantum Compute Service. If `options` is omitted or `None`, Orbit uses its built-in defaults: transpile and schedule circuits, insert the default DD strategy, submit to the service, and attach DD insertion metadata to the result.
@@ -499,7 +499,7 @@ Server-side [`qiskit-ibm-runtime` batch](/docs/ibm-quantum-compute/run-jobs-batc
 - When supplied, Orbit partitions the prepared PUBs in input order, creates the authenticated batch inside the remote Function, submits all child jobs, closes the batch, and then collects and merges the child results in the original PUB order.
 - Batch mode is intended for independent workloads whose PUBs are known up front, such as parameter sweeps or curve generation. Use [session mode](/docs/ibm-quantum-compute/run-jobs-session) instead when later inputs depend on earlier results.
 - Batch mode requires execution on a real IBM Quantum backend and is incompatible with `preview=True` or `simulator=True`.
-- The configuration must be JSON serializable. Do not create a local `qiskit_ibm_runtime.Batch` object and pass it to `orbit.run(...)`; a caller-created batch cannot control the asynchronous Qiskit Function execution environment.
+- The configuration must be JSON serializable. Do not create a local `qiskit_ibm_runtime.Batch` object and pass it to `orbit.run(...)`; a caller-created batch cannot control the asynchronous quantum function execution environment.
 - If the PUB count is less than or equal to `max_pubs_per_job`, Orbit creates one child job and the batch provides no partition parallelism.
 
 </Attribute>
@@ -732,7 +732,7 @@ for partition in batch_report["partitions"]:
     print(partition["index"], partition["jobId"], start, stop)
 ```
 
-`job.runtime_jobs()` exposes the child job IDs through the Qiskit Function job, and `job.runtime_sessions()` exposes the batch ID. The batch metadata travels with the `PrimitiveResult`, so use it when a later analysis must map PUBs to child jobs without retaining the original Function job object.
+`job.runtime_jobs()` exposes the child job IDs through the quantum function job, and `job.runtime_sessions()` exposes the batch ID. The batch metadata travels with the `PrimitiveResult`, so use it when a later analysis must map PUBs to child jobs without retaining the original Function job object.
 
 When `save_backend_info=True`, Orbit attempts one backend-calibration snapshot per child job and reports the collection in top-level `backendInfo.snapshots`. If MEM is enabled for Sampler PUBs, Orbit uses each child job's calibration snapshot for the PUBs in that partition before re-merging the results.
 
@@ -870,6 +870,6 @@ Orbit raises structured `qiskit_serverless.ServerlessError` errors for fatal fai
   - QE codes `4703` through `4709` are reserved for future Orbit-specific categories and are not currently assigned.
 </Admonition>
 
-Non-fatal conditions are reported as warnings instead of failing the job when Orbit can safely preserve the result. Run-level warnings appear in `metadata["quantum_elements_orbit"]["warnings"]`; PUB-level warnings appear in each PUB report. Recoverable warning events use code `1300` when the Qiskit Functions environment accepts warning events. Examples include `preview=True` taking precedence over `simulator=True`, `qiskit-ibm-runtime` DD being enabled alongside Orbit DD, Sampler ignoring `runtime_options.resilience_level`, or backend calibration export failing while the primitive result is otherwise available.
+Non-fatal conditions are reported as warnings instead of failing the job when Orbit can safely preserve the result. Run-level warnings appear in `metadata["quantum_elements_orbit"]["warnings"]`; PUB-level warnings appear in each PUB report. Recoverable warning events use code `1300` when the quantum functions environment accepts warning events. Examples include `preview=True` taking precedence over `simulator=True`, `qiskit-ibm-runtime` DD being enabled alongside Orbit DD, Sampler ignoring `runtime_options.resilience_level`, or backend calibration export failing while the primitive result is otherwise available.
 
 Measurement error mitigation failures are also non-fatal. If M3 mitigation cannot be applied, Orbit preserves the raw Sampler result and records `measurementErrorMitigation.status="failed"` with an error message in Orbit metadata.
