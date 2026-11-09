@@ -1,0 +1,300 @@
+---
+title: JIJ SQOA Solver API reference
+description: API reference for SQOA Solver, a Qiskit Function by JIJ, including inputs, outputs, options, and accepted problem formats
+---
+
+{/* cspell:ignore SQOA, sqoa, OMMX, HUBO, quadratized */}
+
+# JIJ SQOA Solver API reference
+
+<CardGroup>
+    <Card
+      title="Qiskit Functions"
+      description="Qiskit Functions &mdash; pre-built tools created by partner organizations &mdash; abstract away parts of the software development workflow to simplify and accelerate utility-scale algorithm discovery and application development. Click to view the guide for this Qiskit Function."
+      href="/docs/guides/jij-sqoa-solver"
+      analyticsName="Functions API: jij-sqoa-solver"
+      linkText="SQOA Solver Qiskit Function guide"
+    />
+</CardGroup>
+
+## Inputs
+
+### `problem`
+<Attribute attributeTypeHint="str or dict[str, float]">
+The optimization problem in one of the following formats. For more information, see [Accepted problem formats](#accepted-problem-formats).
+
+- A serialized [OMMX](https://ommx-en-book.readthedocs.io/en/latest/) instance. Serialize an `ommx.v1.Instance` with `to_bytes()` and encode the bytes as standard padded Base64 (RFC 4648). 
+    - URL-safe Base64, missing padding, and embedded whitespace are rejected. 
+    - The instance must already be in QUBO form.    
+    - Example: `base64.b64encode(instance.to_bytes()).decode()`, which for a two-variable QUBO gives:
+    ```python
+    EiYQARoJEQAAAAAAAPA/IgF4KgEAMhEKCnN1YnNjcmlwdHMSA1swXRIoCAEQARoJEQAAAAAAAPA/IgF4KgEBMhEKCnN1YnNjcmlwdHMSA1sxXRosGioKAQASAQEaCAAAAAAAAADAIhgKCwgBEQAAAAAAAPA/CgkRAAAAAAAA8D8oAjoA
+    ```
+- A coefficient dictionary whose keys are stringified tuples of variable IDs, and whose values are the coefficients:
+    - `"()"` for the constant
+    - `"(i,)"` for a linear term
+    - `"(i, j)"` for a quadratic term
+    - Example: `{"()": 2.5, "(7,)": -1, "(11,)": 2, "(7, 11)": 3}`
+- Required: Yes
+</Attribute>
+
+### `variable_type`
+<Attribute attributeTypeHint="str">
+The domain of the decision variables: `"binary"` for variables in `{0, 1}` or `"spin"` for variables in `{-1, +1}`. 
+    - An OMMX instance must be submitted with `"binary"`.
+    - `"spin"` is accepted only for coefficient dictionaries. 
+    - The result reports the variable values in the same domain.
+- Required: Yes
+- Example: `"binary"`
+</Attribute>
+
+### `backend_name`
+<Attribute attributeTypeHint="str or None" attributeValue="None">
+Name of the IBM Quantum&reg; backend that runs the sampling jobs. When supplied, the value must be a non-empty string without leading or trailing whitespace, and it must name a backend that is accessible to the instance used to run the function. 
+    - A name that cannot be resolved raises an error. The function does not fall back to automatic selection.
+    - When omitted or `None`, the function selects the least busy operational QPU that is accessible to that instance, equivalent to `QiskitRuntimeService.least_busy(operational=True, simulator=False)`, and records the selected backend in the job logs.
+- Required: No
+- Example: `"ibm_fez"`
+</Attribute>
+
+<span id="options-list"></span>
+### Options
+<Attribute attributeTypeHint="dict[str, Any]">
+Options that control the sampling budget, reproducibility, session usage, classical post-processing, and job tags. Specify options as a dictionary. The function rejects unknown keys. See the following list of available options and their default values.
+- Required: No
+
+Example:
+```python
+{
+    "shots": 4096,
+    "seed": 42,
+    "session": True,
+    "postprocessing_level": 1,
+    "job_tags": ["mis"]
+}
+```
+**Available options:**
+
+#### `shots`
+<Attribute attributeTypeHint="`int`" attributeValue="4096">
+Total number of measurement shots for one function run. The function generates its sampling circuits internally and divides this budget across them, so the value is not a per-circuit shot count. Must be a positive integer.
+</Attribute>
+
+#### `seed`
+<Attribute attributeTypeHint="`int` or `None`" attributeValue="None">
+Seed for the classically randomized stages of the workflow, in the inclusive range `0` to `4294967295`. When omitted or `None`, the function generates a seed and reports it in the result. 
+
+The seed does not control QPU shot noise, so hardware results are reproducible only up to sampling noise. The string `"Auto"` is not accepted.
+</Attribute>
+
+#### `session`
+<Attribute attributeTypeHint="`bool`" attributeValue="False">
+Run all related Quantum Compute jobs in [Session mode](/docs/ibm-quantum-compute/run-jobs-session).
+</Attribute>
+
+#### `postprocessing_level`
+<Attribute attributeTypeHint="`int`" attributeValue="1">
+Level of classical post-processing applied to the rounded solution. 
+    - `1` refines the rounded assignment with a classical local search and records the assignment from before the refinement in the result. 
+    - `0` skips the refinement and returns the rounded assignment directly. 
+    - Other values are rejected.
+</Attribute>
+
+#### `job_tags`
+<Attribute attributeTypeHint="`list[str]` or `None`" attributeValue="None">
+Additional tags assigned to every Quantum Compute job that the function submits. 
+
+- The tags `JIJ` and `SQOASolver` are always present. Any tags that you provide are added to this list.
+- Omitting the option, passing `None`, and passing an empty list have the same effect. 
+- The tags do not apply to the function job itself. 
+- A top-level `job_tags` input is rejected.
+</Attribute>
+</Attribute>
+
+<Admonition type="note" title="Validation rules">
+- `problem` and `variable_type` are required. All other fields are optional.
+- Unknown fields are rejected at every level of the request, including a top-level `job_tags` field, which must be passed as `options.job_tags`.
+- `backend_name` can be omitted or `None`. `options` can be omitted or passed as an empty dictionary. Passing `None` for `options`, `shots`, `session`, or `postprocessing_level` is rejected.
+- The problem is validated and converted before the backend is resolved, so an invalid problem is reported even when the backend is unavailable.
+- The function does not impose an upper limit on `shots` beyond the limits of the service and the selected backend.
+</Admonition>
+
+<span id="accepted-problem-formats"></span>
+### Accepted problem formats
+
+#### OMMX instance
+SQOA Solver accepts an `ommx.v1.Instance` in quadratic unconstrained binary optimization (QUBO) form, that is, a problem of the form:
+
+$$
+\min_{x \in \{0, 1\}^n} \; \text{or} \; \max_{x \in \{0, 1\}^n} \quad c + \sum_{i} b_i x_i + \sum_{i < j} q_{ij} x_i x_j .
+$$
+
+A supported instance has the following properties:
+
+- At least one decision variable
+- No active constraints
+- An objective of degree at most two with finite coefficients
+- Only `Binary` decision variables among the variables that the objective uses
+
+Both `MINIMIZE` and `MAXIMIZE` senses are supported, and linear or constant objectives are accepted. Decision variables that the objective does not use can be of any kind other than `Continuous`. The solver ignores them and assigns each one the value nearest to zero within its bounds when it evaluates the final state.
+
+The function does not convert constrained or higher-order problems. Convert them on the client with the OMMX SDK before submission, for example with `instance.to_qubo(uniform_penalty_weight=...)`. This method converts the instance in place and returns a QUBO dictionary and an offset. Serialize the converted instance, not the returned dictionary, so that the OMMX conversion metadata is kept. This metadata is needed to reconstruct the original and slack variables and to evaluate feasibility. You are responsible for choosing an adequate penalty weight. The default penalty weight of `1.0` does not guarantee that the optimal QUBO state is feasible for the original constrained problem. To submit an instance in OMMX format, serialize it with `to_bytes()`, encode the bytes as padded Base64, and pass the string as `problem` together with `variable_type="binary"`:
+
+```python
+instance.to_qubo(uniform_penalty_weight=...)  # only for a constrained instance
+problem = base64.b64encode(instance.to_bytes()).decode()
+job = solver.run(problem=problem, variable_type="binary")
+```
+
+#### Coefficient dictionary
+
+SQOA Solver accepts the problem as a dictionary in the tuple-string format used by [IBM&reg; optimization functions](/docs/tutorials/solve-market-split-problem-with-iskay-quantum-optimizer#convert-qubo-to-iskay-format):
+
+```python
+problem = {"()": 2.5, "(7,)": -1, "(11,)": 2, "(7, 11)": 3}
+```
+
+- **Terms and keys**
+    - `"()"` is the constant term and defaults to zero when omitted. 
+    - `"(i,)"` is a linear term.
+    - `"(i, j)"` is a quadratic term. 
+    - Keys are strings, not Python tuples.
+    - The comma in a linear key is required. 
+    - Whitespace inside a key and a trailing comma in a pair are accepted.
+- **Variable IDs** 
+    - Variable IDs are integers in the range `0` to `2**64 - 1`, and are distinct within a term.
+    - Reversed pairs such as `"(7, 11)"` and `"(11, 7)"` are added together. 
+    - A key with more than two IDs is rejected, so higher-order (HUBO) problems must be quadratized before submission.
+- A binary diagonal term `(i, i)` must be folded into the linear term `"(i,)"` before submission. 
+- For spin variables, the square of a variable is a constant and belongs in `"()"`.
+- **Coefficients** are finite integers or floating-point numbers. 
+    - Booleans, strings, `None`, `NaN`, and infinity are rejected. 
+    - Zero coefficients are accepted and keep the variable in the problem. 
+- Empty dictionaries and dictionaries without any variables are rejected. Dictionaries are always minimized. 
+- Binary variables take the values `0` and `1`, and spin variables take the values `-1` and `+1`, as selected by `variable_type`. 
+- Spin problems are converted internally with `s_i = 1 - 2 x_i`, which preserves the constant term and every variable ID.
+
+To submit a converted OMMX instance as a dictionary instead of serializing it, build the keys from the QUBO returned by `to_qubo`:
+
+```python
+qubo, offset = instance.to_qubo(uniform_penalty_weight=...)
+problem = {"()": offset}
+for (i, j), coefficient in qubo.items():
+    key = str((i,)) if i == j else str(tuple(sorted((i, j))))
+    problem[key] = problem.get(key, 0.0) + coefficient
+job = solver.run(problem=problem, variable_type="binary")
+```
+
+`to_qubo` returns the QUBO of the equivalent minimization problem, so for a `MAXIMIZE` instance, the dictionary objective, and therefore the returned `objective_value`, is the negative of the instance objective. Dictionary submission does not retain the OMMX reconstruction metadata, and the result then omits `ommx_solution`.
+
+## Outputs
+
+<Attribute attributeTypeHint="`dict[str, Any]`">
+Solution and metadata. `job.result()` returns a dictionary with exactly four keys, `solution`, `objective_value`, `feasible`, and `metadata`, described under [Result dictionary](#result-dict).
+
+Example:
+```python
+{
+    'solution': {'x_0': 1.0, 'x_1': 0.0},
+    'objective_value': 1.0,
+    'feasible': True,
+    'metadata': {
+        'solver_info': {
+            'seed': 42,
+            'solution_before_postprocessing': {'x_0': 0.0, 'x_1': 0.0},
+            'ommx_solution': 'Cg8KCREAAAAAAADwPwoCCAER...'
+        },
+        'resource_usage': {
+            'RUNNING: MAPPING': {'CPU_TIME': 0.9},
+            'RUNNING: OPTIMIZING_FOR_HARDWARE': {'CPU_TIME': 2.1},
+            'RUNNING: WAITING_FOR_QPU': {'CPU_TIME': 41.7},
+            'RUNNING: EXECUTING_QPU': {'QPU_TIME': 4.8},
+            'RUNNING: POST_PROCESSING': {'CPU_TIME': 1.3}
+        }
+    }
+}
+```
+</Attribute>
+
+<span id="result-dict"></span>
+### Result dictionary
+
+#### `solution`
+<Attribute attributeTypeHint="`dict[str, float]`">
+The single best assignment found after all post-processing, keyed by variable. If several candidates share the best objective value, one of them is returned.
+
+Each key is `name_ID`: the variable name followed by an underscore and the decimal decision variable ID, for example `x_17`. Keys are listed in ascending ID order, which keeps them unique even when names repeat.
+- For an OMMX instance, the name and ID come from the instance. A variable without a name uses `x`, and subscripts are not part of the key.
+- For a dictionary problem, the keys are `x_ID` with the IDs used in the submitted dictionary. 
+
+The assignment is complete. For an OMMX instance, it includes variables fixed by pre-processing, dependent and slack variables reconstructed from the OMMX conversion metadata, and variables that the objective does not use. 
+
+Values are `0` or `1` for `"binary"` and `-1` or `+1` for `"spin"`.
+</Attribute>
+
+#### `objective_value`
+<Attribute attributeTypeHint="`float`">
+Objective value of the returned assignment, evaluated on the submitted problem rather than on the internal quantum relaxation. 
+- For an OMMX instance, it is the objective of the instance in the sense of the instance. 
+- For a dictionary problem, it is the value of the coefficient dictionary in the original variable domain, including the constant term.
+</Attribute>
+
+#### `feasible`
+<Attribute attributeTypeHint="`bool`">
+Whether the assignment satisfies the constraints recorded in the submitted instance, including constraints that were removed by the OMMX QUBO conversion, as evaluated by the OMMX SDK. A dictionary problem is unconstrained, so its feasibility refers only to the variable domain.
+</Attribute>
+
+#### `metadata`
+<Attribute attributeTypeHint="`dict[str, Any]`">
+Contains exactly two keys, `solver_info` and `resource_usage`.
+
+##### `solver_info`
+<Attribute attributeTypeHint="`dict[str, Any]`">
+Information about the solver run. 
+- `seed` is always present. 
+- Other fields are included only when they are available and are never reported as `None` or as empty objects.
+
+###### `seed`
+<Attribute attributeTypeHint="`int` or `None`">
+The seed that controlled the classically randomized stages of the run. 
+    - An explicit `options.seed` is returned unchanged. 
+    - An automatically generated seed is returned so that the classical stages can be repeated. 
+    - The value is `None` only when the problem structure allowed the function to skip all randomized stages and no seed was supplied.
+</Attribute>
+###### `solution_before_postprocessing`
+<Attribute attributeTypeHint="`dict[str, float]`">
+The rounded assignment immediately before the classical local search, with the same keys and value domain as `solution`. Present only when the local search ran, that is, when `postprocessing_level` is `1` and the randomized stages of the workflow were executed. 
+
+It is recorded even if the search made no improvement, and it might be infeasible for the original problem.
+</Attribute>
+###### `ommx_solution`
+<Attribute attributeTypeHint="`str`">
+The canonical result for an OMMX instance, as an `ommx.v1.Solution` serialized with `to_bytes()` and encoded as padded Base64. 
+
+Decode it with `Solution.from_bytes(base64.b64decode(value, validate=True))` to access the objective, the decision variable values by name, feasibility, and the constraint evaluations through the OMMX SDK. 
+
+Present only when the problem was submitted as an OMMX instance. Dictionary problems omit it.
+</Attribute>
+</Attribute>
+
+##### `resource_usage`
+<Attribute attributeTypeHint="`dict[str, dict[str, float]]`">
+Resource usage of the run, keyed by execution phase. The five phases are always present, in this order:
+
+1. `RUNNING: MAPPING`: Request validation, pre-processing, and encoding of the problem into sampling circuits.
+2. `RUNNING: OPTIMIZING_FOR_HARDWARE`: Transpilation of the circuits for the selected backend.
+3. `RUNNING: WAITING_FOR_QPU`: Submission of the Quantum Compute jobs and queue time.
+4. `RUNNING: EXECUTING_QPU`: Execution on the QPU.
+5. `RUNNING: POST_PROCESSING`: Classical processing of the measured bitstrings, reconstruction of the complete state, evaluation on the submitted instance, and preparation of the result.
+
+- Phases other than `RUNNING: EXECUTING_QPU` report `CPU_TIME`, the wall-clock time of the phase in seconds, when available. 
+- A skipped classical phase reports `0.0`. 
+- The `RUNNING: EXECUTING_QPU` phase reports `QPU_TIME`, the sum of the usage of all Quantum Compute jobs of the run in seconds, as reported by Quantum Compute. 
+- If the final usage cannot be retrieved for every job, the result is still returned, `QPU_TIME` is omitted, and a non-fatal event with error code `1287` is recorded in the job events.
+</Attribute>
+</Attribute>
+
+<Admonition type="note" title="Solution notes">
+- `solution`, `objective_value`, and `feasible` are conveniences derived from the same final solution as `ommx_solution`.
+- All numeric values in the result are finite JSON numbers.
+</Admonition>

@@ -1,0 +1,314 @@
+---
+title: "Rotate bosonic modes"
+description: "Rotate bosonic modes for the latest version of Qiskit bosons"
+---
+
+<span id="mode-rotation-explanation" />
+
+# Rotate bosonic modes
+
+A [`ModeRotation`](/docs/api/qiskit-bosons/circuit-library-mode-rotation#qiskit_bosons.circuit.library.ModeRotation "qiskit_bosons.circuit.library.ModeRotation") mixes bosonic modes with a unitary matrix $U$, as a network of beamsplitters and phase shifters does. It is called **passive** because it conserves the total boson number: it moves bosons between modes and never creates or destroys one. (Squeezing and displacement are the *active* operations, and a mode rotation cannot express them.) It maps the creation operators as
+
+$$
+b^\dagger_i \mapsto \sum_j U_{ji} \, b^\dagger_j \, ,
+$$
+
+which on the full Fock space is the many-body unitary
+
+$$
+\exp\left(\sum_{ij} \log(U)_{ij} \, b^\dagger_i b_j\right) \, .
+$$
+
+This is the gate behind a linear-optical interferometer: send Fock states in, rotate the modes, and read out how the bosons redistribute. Like every gate of a [`BosonicCircuit`](/docs/api/qiskit-bosons/circuit-bosonic-circuit#qiskit_bosons.circuit.BosonicCircuit "qiskit_bosons.circuit.BosonicCircuit") (see [Work with bosonic circuits](circuit#bosonic-circuit-explanation)), it carries no truncation and no encoding. Both enter at transpile time, and this guide shows why the truncation needs particular care for a rotation.
+
+## Build a rotation
+
+The constructor takes the $M \times M$ unitary matrix. The gate acts on $M$ modes. The class does not check that the matrix is unitary, so that is your responsibility.
+
+```python
+>>> import numpy as np
+>>> from qiskit_bosons.circuit.library import ModeRotation
+>>>
+>>> unitary = np.array([[1, -1], [1, 1]]) / np.sqrt(2)
+>>> rotation = ModeRotation(unitary)
+>>> rotation.num_modes  # the gate acts on two modes
+2
+```
+
+Common rotations have dedicated constructors. [`ModeRotation.beamsplitter()`](/docs/api/qiskit-bosons/circuit-library-mode-rotation#qiskit_bosons.circuit.library.ModeRotation.beamsplitter "qiskit_bosons.circuit.library.ModeRotation.beamsplitter") takes a mixing angle $\theta$ and an optional phase $\phi$, and $\theta = \pi/4$ gives the balanced 50:50 beamsplitter. [`ModeRotation.phase_shift()`](/docs/api/qiskit-bosons/circuit-library-mode-rotation#qiskit_bosons.circuit.library.ModeRotation.phase_shift "qiskit_bosons.circuit.library.ModeRotation.phase_shift") takes one phase per mode.
+
+```python
+>>> beamsplitter = ModeRotation.beamsplitter(np.pi / 4)
+>>> np.round(beamsplitter.rotation_unitary.real, 4)
+array([[ 0.7071, -0.7071],
+       [ 0.7071,  0.7071]])
+>>> bool(np.allclose(beamsplitter.rotation_unitary, unitary))
+True
+>>> shift = ModeRotation.phase_shift([0.0, np.pi / 2])
+>>> np.round(np.diag(shift.rotation_unitary), 4)
+array([1.+0.j, 0.+1.j])
+```
+
+You can also start from the anti-Hermitian generator $K$ and let the gate exponentiate it, which gives the rotation $\exp(K)$. The generator is recovered with [`generator()`](/docs/api/qiskit-bosons/circuit-library-mode-rotation#qiskit_bosons.circuit.library.ModeRotation.generator "qiskit_bosons.circuit.library.ModeRotation.generator").
+
+```python
+>>> generator = np.array([[0, -0.3], [0.3, 0]], dtype=complex)
+>>> small = ModeRotation.from_generator(generator)
+>>> np.round(small.rotation_unitary.real, 4)
+array([[ 0.9553, -0.2955],
+       [ 0.2955,  0.9553]])
+>>> bool(np.allclose(small.generator(), generator))
+True
+```
+
+The bridge to the operator algebra is [`to_operator()`](/docs/api/qiskit-bosons/circuit-library-mode-rotation#qiskit_bosons.circuit.library.ModeRotation.to_operator "qiskit_bosons.circuit.library.ModeRotation.to_operator"), which returns the Hermitian generator $H = \sum_{ij} \mathrm{i} \log(U)_{ij} \, b^\dagger_i b_j$ as a [`BosonOperator`](/docs/api/qiskit-bosons/operators-boson-operator#qiskit_bosons.operators.BosonOperator "qiskit_bosons.operators.BosonOperator"), so that the gate is $e^{-\mathrm{i} H}$. For the 50:50 beamsplitter, that is a pair of hopping terms with opposite imaginary coefficients. The operator is Hermitian, which is what an [`Evolution`](/docs/api/qiskit-bosons/circuit-library-evolution#qiskit_bosons.circuit.library.Evolution "qiskit_bosons.circuit.library.Evolution") gate needs, and it conserves the particle number.
+
+```python
+>>> operator = beamsplitter.to_operator()
+>>> # The stored order of the terms is not specified, so sort them before printing.
+>>> sorted((term[0], round(term[1].imag, 4)) for term in operator.iter_terms())
+[([(True, 0), (False, 1)], -0.7854), ([(True, 1), (False, 0)], 0.7854)]
+>>> operator.is_hermitian()
+True
+>>> operator.conserves_particle_number()
+True
+```
+
+Each term reads `(is_creation, mode)` from left to right, so the second one is $\mathrm{i} \tfrac{\pi}{4} \, b^\dagger_1 b_0$.
+
+## Act on Fock states
+
+A rotation moves bosons between modes, so its effect is easiest to see on Fock states. The Hong-Ou-Mandel effect is the standard example. Send one boson into each input mode of a balanced beamsplitter. The two paths that leave the bosons in different output modes interfere destructively, so the state $\lvert 1, 1 \rangle$ disappears and the bosons always leave together, in $\lvert 2, 0 \rangle$ or $\lvert 0, 2 \rangle$, each with probability one half.
+
+Build the circuit on bosonic modes and lower it with the preset pass manager. The [`LevelSpec`](/docs/api/qiskit-bosons/mappers-level-spec#qiskit_bosons.mappers.LevelSpec "qiskit_bosons.mappers.LevelSpec") fixes the truncation and the encoding at this point. A cutoff of `max_occupation=2` keeps the levels 0, 1, and 2 of every mode.
+
+```python
+>>> from qiskit_bosons.circuit import BosonicCircuit
+>>> from qiskit_bosons.circuit.library import InitializeModes
+>>> from qiskit_bosons.mappers import LevelEncoding, LevelSpec
+>>> from qiskit_bosons.transpiler.presets import generate_preset_occupation_pass_manager
+>>>
+>>> circuit = BosonicCircuit(2)
+>>> circuit.append(InitializeModes([1, 1]), circuit.modes)
+>>> circuit.append(ModeRotation.beamsplitter(np.pi / 4), circuit.modes)
+```
+
+The pipeline returns an ordinary qubit circuit. Read the outcome probabilities from the final state, here with Qiskit’s [`Statevector`](/docs/api/qiskit/qiskit.quantum_info.Statevector), which is exact at this size. Any simulator that returns amplitudes or counts works. A Fock state $\lvert n_0, n_1 \rangle$ is a single computational basis state, whose index is given by the bit patterns of [`LevelEncoding.level_to_bits()`](/docs/api/qiskit-bosons/mappers-level-encoding#qiskit_bosons.mappers.LevelEncoding.level_to_bits "qiskit_bosons.mappers.LevelEncoding.level_to_bits"); the second mode’s qubits follow the first mode’s.
+
+```python
+>>> from qiskit.quantum_info import Statevector
+>>> from qiskit.transpiler import PassManager
+>>>
+>>> def fock_probabilities(circuit, max_occupation):
+...     """Maps each pair of occupations to the probability of that outcome."""
+...     encoding = LevelEncoding.UNARY_UNPROJECTED
+...     spec = LevelSpec(max_occupation, encoding)
+...     pass_manager = generate_preset_occupation_pass_manager(spec)
+...     pass_manager.qubit = PassManager()  # keep the evolutions as the pipeline emitted them
+...     qubit_circuit = pass_manager.run(circuit)
+...     state = Statevector(qubit_circuit)
+...     width = encoding.num_qubits(max_occupation + 1)
+...     probabilities = {}
+...     for n0 in range(max_occupation + 1):
+...         for n1 in range(max_occupation + 1):
+...             index = encoding.level_to_bits(n0) | (encoding.level_to_bits(n1) << width)
+...             probability = round(float(abs(state.data[index]) ** 2), 4)
+...             if probability > 0:
+...                 probabilities[(n0, n1)] = probability
+...     return probabilities
+>>>
+>>> fock_probabilities(circuit, max_occupation=2)
+{(0, 2): 0.5, (2, 0): 0.5}
+```
+
+The $\lvert 1, 1 \rangle$ outcome has probability zero, and the two bunched outcomes share the probability equally.
+
+## Choose the cutoff
+
+The previous result needs `max_occupation=2`. Run the same circuit with a cutoff of 1. That is enough to hold the input state $\lvert 1, 1 \rangle$, but not the state that the rotation produces from it, which has weight on $\lvert 2, 0 \rangle$ and $\lvert 0, 2 \rangle$:
+
+```python
+>>> fock_probabilities(circuit, max_occupation=1)
+{(1, 1): 1.0}
+```
+
+The circuit runs without any error, and the answer is wrong: the state stays at $\lvert 1, 1 \rangle$ with probability one. A rotation mixes occupation sectors *within* a mode. Two bosons can end up in the same output mode, so the exact state has weight on occupation 2 in a mode that started with one boson. With a cutoff of 1 that level does not exist, and the truncated generator cannot move the state there.
+
+A bound on the occupation of the initial state is therefore not enough. The cutoff must cover the total boson number that can reach **any single mode** of the rotation. For $N$ bosons in total, the safe choice is a cutoff of $N$.
+
+The same reasoning applies to every mode separately, so a mix of different cutoffs per mode (see [Describe the truncation with a LevelSpec](mappers#level-spec-explanation)) makes a rotation easy to map incorrectly. A mode that can receive bosons needs a cutoff that covers what it can receive, not only what it holds initially. The check [`LevelSpec.truncation()`](/docs/api/qiskit-bosons/mappers-level-spec#qiskit_bosons.mappers.LevelSpec.truncation "qiskit_bosons.mappers.LevelSpec.truncation") compares a spec with the occupation lower bound of an operator. It cannot flag the case above. Each term of the beamsplitter generator holds a single creation operator, so the bound is one and the check reports no shortfall at a cutoff of 1, although the result there is wrong:
+
+```python
+>>> LevelSpec(1, "unary_unprojected").truncation(beamsplitter.to_operator())
+[0, 0]
+```
+
+A further caution follows from the way the transpiler builds a rotation (next section). It applies the rotation as a sequence of two-mode factors, and the plugin documentation warns that a single factor can populate a level that the complete rotation never reaches. The truncated sequence and the truncated single evolution are then different approximations of the same unitary. A search over 1,080 random three-mode rotations, with one boson in each of two input modes and no double occupation in the output, did not turn up such a case, so treat this as a precaution and not as a common failure. Converge the cutoff as you would for any other circuit, by increasing it until the result stops changing.
+
+## How the transpiler synthesizes a rotation
+
+The `optimization` stage of the preset pipeline breaks a [`ModeRotation`](/docs/api/qiskit-bosons/circuit-library-mode-rotation#qiskit_bosons.circuit.library.ModeRotation "qiskit_bosons.circuit.library.ModeRotation") down in bosonic space first, with the [`B2BSynthesis`](/docs/api/qiskit-bosons/transpiler-passes-b-2-b-synthesis#qiskit_bosons.transpiler.passes.B2BSynthesis "qiskit_bosons.transpiler.passes.B2BSynthesis") pass and the [`BosonicClementsDecomposition`](/docs/api/qiskit-bosons/circuit-library-synthesis-bosonic-clements-decomposition#qiskit_bosons.circuit.library.synthesis.BosonicClementsDecomposition "qiskit_bosons.circuit.library.synthesis.BosonicClementsDecomposition") method (registered as `ModeRotation.Clements`). That is a choice of the preset and not a requirement of the framework: a later section lowers the same gate without any decomposition. The decomposition does not exponentiate the full generator in one step. It first factorizes the unitary into at most $M(M-1)/2$ rotations between *adjacent* modes plus $M$ single-mode phases, following the rectangular mesh of Clements et al. <span id="id1" />[\[1\]](#id2). Each factor becomes an atomic [`Evolution`](/docs/api/qiskit-bosons/circuit-library-evolution#qiskit_bosons.circuit.library.Evolution "qiskit_bosons.circuit.library.Evolution") gate, which the boson-to-qubit stage maps like any other.
+
+The factorization itself is [`givens_decomposition()`](/docs/api/qiskit-bosons/linalg-givens-decomposition#qiskit_bosons.linalg.givens_decomposition "qiskit_bosons.linalg.givens_decomposition"), which the decomposition calls. The map from a unitary to the many-body rotation is a group homomorphism, so the product of the factor rotations exactly equals the full rotation on the untruncated space. The mesh therefore adds no error of its own. Its benefit is locality. Each emitted evolution involves only the Pauli terms of the two modes it mixes (or of one mode for a phase), instead of terms across all modes.
+
+Transpile a random three-mode rotation and inspect what the pipeline emitted. A generic $3 \times 3$ unitary needs the maximum of three rotations, plus three phases, and every factor is its own [`PauliEvolutionGate`](/docs/api/qiskit/qiskit.circuit.library.PauliEvolutionGate). All of them are declared on the whole register, but the operators inside act on a few qubits only:
+
+```python
+>>> from qiskit.quantum_info import random_unitary
+>>>
+>>> random = np.asarray(random_unitary(3, seed=7).data)
+>>> spec = LevelSpec(2, "unary_unprojected")
+>>> rotation_circuit = BosonicCircuit(3)
+>>> rotation_circuit.append(InitializeModes([1, 0, 0]), rotation_circuit.modes)
+>>> rotation_circuit.append(ModeRotation(random), rotation_circuit.modes)
+>>> pass_manager = generate_preset_occupation_pass_manager(spec)
+>>> pass_manager.qubit = PassManager()
+>>> qubit_circuit = pass_manager.run(rotation_circuit)
+>>> dict(qubit_circuit.count_ops())
+{'PauliEvolution': 6, 'x': 3}
+>>> for instruction in qubit_circuit.data:
+...     if instruction.operation.name == "PauliEvolution":
+...         terms = instruction.operation.operator.to_sparse_list()
+...         print(len(terms), sorted({qubit for _, indices, _ in terms for qubit in indices}))
+64 [0, 1, 2, 3, 4, 5]
+64 [3, 4, 5, 6, 7, 8]
+64 [0, 1, 2, 3, 4, 5]
+2 [1, 2]
+2 [4, 5]
+2 [7, 8]
+```
+
+With three levels per mode, every mode occupies three qubits. A beamsplitter between two modes touches the six qubits of those modes, and a phase touches the qubits of one mode.
+
+The factors are exact only once each evolution is synthesized well. The terms of a beamsplitter generator do not commute, so the default single-step product formula leaves an error in every factor. Pass a product formula with more repetitions to the [`Evolution`](/docs/api/qiskit-bosons/circuit-library-evolution#qiskit_bosons.circuit.library.Evolution "qiskit_bosons.circuit.library.Evolution") plugin that maps the factors to reduce it:
+
+```python
+>>> from qiskit.passmanager import MultiStagePassManager
+>>> from qiskit.synthesis import LieTrotter
+>>> from qiskit_bosons.circuit.library.synthesis import BosonicClementsDecomposition
+>>> from qiskit_bosons.mappers.library import occupation_encoding
+>>> from qiskit_bosons.transpiler import (
+...     BosonicCircuitToDAG,
+...     BosonicPassManager,
+...     QuantumDAGToCircuit,
+... )
+>>> from qiskit_bosons.transpiler.passes import (
+...     B2BSynthesis,
+...     B2QSynthesis,
+...     MapperFnEvolutionSynthesis,
+...     OccupationB2QLayout,
+...     OccupationInitializeModesSynthesis,
+... )
+>>>
+>>> def with_product_formula(product_formula):
+...     synthesis = B2QSynthesis()
+...     synthesis.methods["Evolution"] = MapperFnEvolutionSynthesis(
+...         lambda operator, num_qubits: occupation_encoding(operator, spec, num_qubits),
+...         product_formula,
+...     )
+...     synthesis.methods["InitializeModes"] = OccupationInitializeModesSynthesis(spec)
+...     return MultiStagePassManager(
+...         input=BosonicCircuitToDAG(),
+...         optimization=BosonicPassManager(
+...             B2BSynthesis({"ModeRotation": BosonicClementsDecomposition()})
+...         ),
+...         layout=OccupationB2QLayout(spec),
+...         synthesis=synthesis,
+...         output=QuantumDAGToCircuit(),
+...     )
+```
+
+A single boson entering mode 0 leaves in mode $j$ with probability $|U_{j0}|^2$. Compare the synthesized circuit with that exact result for increasing repetition counts. Decompose the circuit first so that the product formula is applied; without it, an exact simulator such as [`Statevector`](/docs/api/qiskit/qiskit.quantum_info.Statevector) applies the gate as its full exponential and hides the error.
+
+```python
+>>> encoding = LevelEncoding.UNARY_UNPROJECTED
+>>> width = encoding.num_qubits(3)
+>>> exact = np.abs(random[:, 0]) ** 2
+>>>
+>>> def one_boson_probabilities(qubit_circuit):
+...     """Probability that the single boson sits in mode j, for each j."""
+...     state = Statevector(qubit_circuit)
+...     probabilities = []
+...     for j in range(3):
+...         occupations = [1 if mode == j else 0 for mode in range(3)]
+...         index = sum(
+...             encoding.level_to_bits(n) << (width * mode) for mode, n in enumerate(occupations)
+...         )
+...         probabilities.append(abs(state.data[index]) ** 2)
+...     return np.array(probabilities)
+>>>
+>>> for repetitions in (1, 4, 16):
+...     lowered = with_product_formula(LieTrotter(reps=repetitions)).run(rotation_circuit)
+...     error = np.max(np.abs(one_boson_probabilities(lowered.decompose(reps=2)) - exact))
+...     print(f"{repetitions:2d} repetitions: error {error:.1e}")
+ 1 repetitions: error 1.2e-03
+ 4 repetitions: error 7.6e-05
+16 repetitions: error 4.7e-06
+```
+
+The error falls by a factor of about four for every fourfold increase in repetitions, as expected for a first-order formula. The cost grows in proportion, because every factor is repeated.
+
+<span id="mode-rotation-direct-explanation" />
+
+## Lower a rotation without decomposing it
+
+A decomposition in bosonic space is one way to lower a rotation. (The library does not include another way, but the boson-to-qubit stage does not depend on it.) [`B2QSynthesis`](/docs/api/qiskit-bosons/transpiler-passes-b-2-q-synthesis#qiskit_bosons.transpiler.passes.B2QSynthesis "qiskit_bosons.transpiler.passes.B2QSynthesis") looks a plugin up by the name of the gate, and a [`ModeRotation`](/docs/api/qiskit-bosons/circuit-library-mode-rotation#qiskit_bosons.circuit.library.ModeRotation "qiskit_bosons.circuit.library.ModeRotation") that was left whole reaches it like any other gate. A plugin for it maps the generator of [`ModeRotation.to_operator()`](/docs/api/qiskit-bosons/circuit-library-mode-rotation#qiskit_bosons.circuit.library.ModeRotation.to_operator "qiskit_bosons.circuit.library.ModeRotation.to_operator") in one go and emits a single [`PauliEvolutionGate`](/docs/api/qiskit/qiskit.circuit.library.PauliEvolutionGate) at unit time. That is all of it:
+
+```python
+>>> from qiskit.circuit.library import PauliEvolutionGate
+>>> from qiskit_bosons.transpiler.passes.utils import map_node_single_register
+>>>
+>>> class DirectModeRotationSynthesis:
+...     """Maps the generator of the whole rotation, with no bosonic decomposition."""
+...
+...     def __init__(self, mapper_fn):
+...         self.mapper_fn = mapper_fn
+...
+...     def run(self, in_node, out_dag, *, b2q_layout):
+...         modes, qreg = map_node_single_register(in_node, b2q_layout)
+...         generator = in_node.op.to_operator().relabel_modes(list(modes))
+...         observable = self.mapper_fn(generator, len(qreg))
+...         out_dag.apply_operation_back(PauliEvolutionGate(observable, time=1.0), tuple(qreg))
+```
+
+Register it for the name of the gate in a pass manager that does not decompose it:
+
+```python
+>>> def mapper_fn(operator, num_qubits):
+...     return occupation_encoding(operator, spec, num_qubits)
+>>>
+>>> synthesis = B2QSynthesis()
+>>> synthesis.methods["Evolution"] = MapperFnEvolutionSynthesis(mapper_fn)
+>>> synthesis.methods["InitializeModes"] = OccupationInitializeModesSynthesis(spec)
+>>> synthesis.methods["ModeRotation"] = DirectModeRotationSynthesis(mapper_fn)
+>>> direct = MultiStagePassManager(
+...     input=BosonicCircuitToDAG(),
+...     layout=OccupationB2QLayout(spec),
+...     synthesis=synthesis,
+...     output=QuantumDAGToCircuit(),
+... )
+>>> direct_circuit = direct.run(rotation_circuit)
+>>> dict(direct_circuit.count_ops())
+{'x': 3, 'PauliEvolution': 1}
+>>> terms = direct_circuit.data[-1].operation.operator.to_sparse_list()
+>>> len(terms), sorted({qubit for _, indices, _ in terms for qubit in indices})
+(198, [0, 1, 2, 3, 4, 5, 6, 7, 8])
+```
+
+The rotation is now one evolution over all nine qubits, where the mesh has six, of which none spans more than six. The two are not the same approximation. The truncation is applied once to the generator of the whole rotation here, and to every factor separately in the mesh (hence the warning on the cutoff above). The direct path equals [`occupation_encoding()`](/docs/api/qiskit-bosons/mappers-library-occupation-encoding#qiskit_bosons.mappers.library.occupation_encoding "qiskit_bosons.mappers.library.occupation_encoding") of the operator at any cutoff, so it is the reference to compare a mesh against. What it costs is locality: its terms span all modes, and a product formula has more of them to subdivide.
+
+Neither is better in general, which is the reason to keep the choice open. Write a plugin like this one to compare lowerings, to use an encoding-specific rotation, or to hand the gate to something that understands it natively.
+
+## Next steps
+
+*   [Transpile bosonic circuits](transpilation#transpilation-explanation) explains the stages that the preset pass manager runs, and how to replace the plugin that handles a gate.
+*   [Map operator representations](mappers#mappers-explanation) covers the truncation, the encodings, and the [`LevelSpec`](/docs/api/qiskit-bosons/mappers-level-spec#qiskit_bosons.mappers.LevelSpec "qiskit_bosons.mappers.LevelSpec") that fixes the layout of every mode.
+*   [Work with bosonic circuits](circuit#bosonic-circuit-explanation) shows how to assemble and combine bosonic circuits.
+*   The API documentation lists [`qiskit_bosons.circuit.library`](/docs/api/qiskit-bosons/circuit-library#module-qiskit_bosons.circuit.library "qiskit_bosons.circuit.library") for the gates, [`qiskit_bosons.linalg`](/docs/api/qiskit-bosons/linalg#module-qiskit_bosons.linalg "qiskit_bosons.linalg") for the decomposition, and [`qiskit_bosons.transpiler.passes`](/docs/api/qiskit-bosons/transpiler-passes#module-qiskit_bosons.transpiler.passes "qiskit_bosons.transpiler.passes") for the synthesis plugins.
+
+<span id="id2" />
+
+\[[1](#id1)]
+
+W. R. Clements, P. C. Humphreys, B. J. Metcalf, W. S. Kolthammer, and I. A. Walmsley, Optimal design for universal multiport interferometers, Optica 3, 1460 (2016), [arXiv:1603.08788](https://arxiv.org/abs/1603.08788).
+

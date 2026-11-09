@@ -11,14 +11,14 @@ python_api_name: qiskit_fermions.transpiler.passes.synthesis.GivensDecomposition
 <Class id="qiskit_fermions.transpiler.passes.synthesis.GivensDecompositionOrbitalRotationSynthesis" isDedicatedPage={true} signature="GivensDecompositionOrbitalRotationSynthesis" modifiers="class">
   Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
 
-  A [`F2QSynthesisPlugin`](transpiler-passes-synthesis-f-2-q-synthesis-plugin "qiskit_fermions.transpiler.passes.synthesis.F2QSynthesisPlugin") for transpiling [`OrbitalRotation`](circuit-library-orbital-rotation "qiskit_fermions.circuit.library.OrbitalRotation") into Givens rotations.
+  **DEPRECATED** The former plugin for transpiling an [`OrbitalRotation`](circuit-library-orbital-rotation "qiskit_fermions.circuit.library.OrbitalRotation") into Givens rotations.
 
-  <Admonition title="Warning" type="caution">
-    This transpilation pass plugin makes the following assumptions:
+  This is the [`FermionicGivensDecomposition`](circuit-library-synthesis-fermionic-givens-decomposition "qiskit_fermions.circuit.library.synthesis.FermionicGivensDecomposition") followed by the Jordan-Wigner mapping of its factors.
 
-    *   an occupation-basis encoding (like Jordan-Wigner)
-    *   a trivial fermion-to-qubit layout (i.e. no change in their register lengths)
-    *   a 1-to-1 mapping of fermionic mode indices to qubit indices
+  Initializing this plugin takes no arguments.
+
+  <Admonition title="Deprecated since version 0.4.0" type="danger">
+    The class `qiskit_fermions.transpiler.passes.synthesis._deprecated_givens.GivensDecompositionOrbitalRotationSynthesis` is deprecated as of qiskit-fermions 0.4.0. It will be removed no earlier than 3 months after the release date. Break the gate down with F2FSynthesis(\{‘OrbitalRotation’: ‘Givens’}) in the optimization stage instead, which works with any encoding.
   </Admonition>
 
   ## Methods
@@ -30,27 +30,9 @@ python_api_name: qiskit_fermions.transpiler.passes.synthesis.GivensDecomposition
 
     **Parameters**
 
-    *   **in\_node** ([*DAGOpNode*](/docs/api/qiskit/qiskit.dagcircuit.DAGOpNode)) – the input fermion-based circuit instruction. When this plugin gets called, the `in_node.op` attribute must be of type [`OrbitalRotation`](circuit-library-orbital-rotation "qiskit_fermions.circuit.library.OrbitalRotation").
+    *   **in\_node** ([*DAGOpNode*](/docs/api/qiskit/qiskit.dagcircuit.DAGOpNode)) – the input fermion-based circuit instruction, an [`OrbitalRotation`](circuit-library-orbital-rotation "qiskit_fermions.circuit.library.OrbitalRotation").
     *   **out\_dag** ([*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit)) – the output qubit-based circuit.
     *   **f2q\_layout** ([*dict*](https://docs.python.org/3/builtins/stdtypes.html#dict)*\[*[*QuantumRegister*](/docs/api/qiskit/circuit#qiskit.circuit.QuantumRegister)*,* [*QuantumRegister*](/docs/api/qiskit/circuit#qiskit.circuit.QuantumRegister)*]*) – the global transpilation [`F2QLayout`](transpiler-f-2-q-layout "qiskit_fermions.transpiler.F2QLayout") setting.
-
-    **Return type**
-
-    None
-
-    <Admonition title="See also" type="note">
-      The documentation of [`F2QSynthesisPlugin`](transpiler-passes-synthesis-f-2-q-synthesis-plugin "qiskit_fermions.transpiler.passes.synthesis.F2QSynthesisPlugin") for more detailed explanations of the arguments.
-    </Admonition>
-
-    **Raises**
-
-    [**NotImplementedError**](https://docs.python.org/3/builtins/exceptions.html#NotImplementedError) – when `in_node` acts on fermionic modes that are spread across multiple [`FermionicRegister`](circuit-fermionic-register "qiskit_fermions.circuit.FermionicRegister") instances.
-
-    **Parameters**
-
-    *   **in\_node** ([*DAGOpNode*](/docs/api/qiskit/qiskit.dagcircuit.DAGOpNode))
-    *   **out\_dag** ([*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit))
-    *   **f2q\_layout** ([*dict*](https://docs.python.org/3/builtins/stdtypes.html#dict)*\[*[*QuantumRegister*](/docs/api/qiskit/circuit#qiskit.circuit.QuantumRegister)*,* [*QuantumRegister*](/docs/api/qiskit/circuit#qiskit.circuit.QuantumRegister)*]*)
 
     **Return type**
 

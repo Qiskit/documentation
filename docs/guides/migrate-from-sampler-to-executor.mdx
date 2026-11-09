@@ -13,7 +13,7 @@ primitive to the Executor primitive.
 
 <Admonition type="note" title="Beta release">
 The Executor primitive is part of the
-[directed execution model](/docs/guides/directed-execution-model). All components in the directed execution model are currently in beta and might not be stable. You are invited to test them and provide feedback by opening an issue in the [Samplomatic](https://github.com/Qiskit/samplomatic/issues) or [qiskit-ibm-runtime](https://github.com/Qiskit/qiskit-ibm-runtime/issues) GitHub repositories.
+[directed execution model](/docs/ibm-quantum-compute/directed-execution-model). All components in the directed execution model are currently in beta and might not be stable. You are invited to test them and provide feedback by opening an issue in the [Samplomatic](https://github.com/Qiskit/samplomatic/issues) or [qiskit-ibm-runtime](https://github.com/Qiskit/qiskit-ibm-runtime/issues) GitHub repositories.
 </Admonition>
 
 ## Should you migrate?
@@ -55,7 +55,7 @@ target different users:
   - It makes implicit decisions for you.
   - It is designed so algorithm developers can focus on innovation rather than data.
   conversion.
-- **Executor** is part of the [directed execution model](/docs/guides/directed-execution-model). It differs from Sampler in many ways and has the following characteristics:
+- **Executor** is part of the [directed execution model](/docs/ibm-quantum-compute/directed-execution-model). It differs from Sampler in many ways and has the following characteristics:
   - It has no built-in error suppression or mitigation. Instead, you capture your design intent on the client
   side (by using circuit annotations and a *samplex*), and the costly generation of circuit
   variants is shifted to the server side. 
@@ -88,7 +88,7 @@ The following table demonstrates how Sampler concepts map to Executor.
 | Concept                | Sampler                                   | Executor                                                        |
 | ---------------------- | ----------------------------------------- | --------------------------------------------------------------- |
 | Import                 | `from qiskit_ibm_runtime import SamplerV2`| `from qiskit_ibm_runtime import Executor`                       |
-| Input                  | List of [PUBs](/docs/guides/primitive-input-output#overview-of-pubs) (tuples)                 | A `QuantumProgram` of `QuantumProgramItem` objects          |
+| Input                  | List of [PUBs](/docs/qiskit/primitive-input-output#overview-of-pubs) (tuples)                 | A `QuantumProgram` of `QuantumProgramItem` objects          |
 | Circuit and parameters    | `(circuit, params, shots)` tuple          | `program.append_circuit_item(circuit, circuit_arguments=...)`   |
 | Twirling | `TwirlingOptions`                      | Explicit through annotated boxes and a samplex (`append_samplex_item`) |
 | Run call               | `sampler.run([pub, ...])`                 | `executor.run(program)`                                         |
@@ -166,7 +166,7 @@ independent task and produces its own entry in the results. In general, use `app
 The next sections show each in turn: parameterized circuits that use 
 `append_circuit_item`, and migrating twirling by using `append_samplex_item`.
 
-In the following code examples, `isa_circuit` refers to the circuit that has been transpiled to conform to the target backend's [Instruction Set Architecture](/docs/guides/transpile#instruction-set-architecture) (ISA). This `isa_circuit` contains two parameters.
+In the following code examples, `isa_circuit` refers to the circuit that has been transpiled to conform to the target backend's [Instruction Set Architecture](/docs/qiskit/transpile#instruction-set-architecture) (ISA). This `isa_circuit` contains two parameters.
 
 <span id="param-circuits"></span>
 #### Step 3a. Migrate parameterized circuits
@@ -196,7 +196,7 @@ result_0 = result[0]["meas"]
 
 This is the most significant change. Sampler applies twirling for you by using options. With 
 Executor, you declare that intent explicitly by using annotated boxes and
-a samplex (from [Samplomatic](/docs/guides/directed-execution-model#samplomatic)).
+a samplex (from [Samplomatic](/docs/ibm-quantum-compute/directed-execution-model#samplomatic)).
 
 **Sampler (twirling by using options):**
 ```python
@@ -302,7 +302,7 @@ everything, including choices that affect result post-processing, is configured 
 the primitive's options or in the PUB. 
 
 - With Executor, choices that affect how the job
-results are shaped and post-processed are set on the [`QuantumProgram`](/docs/guides/executor-input-output#inputs-quantum-programs), not on
+results are shaped and post-processed are set on the [`QuantumProgram`](/docs/ibm-quantum-compute/executor-input-output#inputs-quantum-programs), not on
 `ExecutorOptions`. 
 
 Examples:
@@ -480,12 +480,12 @@ meas = result[0]["meas"]
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
-- [Executor quickstart](/docs/guides/get-started-with-executor)
-- [Executor inputs and outputs](/docs/guides/executor-input-output)
-- [Executor options](/docs/guides/executor-options)
-- [Directed execution model](/docs/guides/directed-execution-model)
-- [Sampler quickstart](/docs/guides/get-started-with-sampler)
-- [Sampler inputs and outputs](/docs/guides/sampler-input-output)
+- [Executor quickstart](/docs/ibm-quantum-compute/get-started-with-executor)
+- [Executor inputs and outputs](/docs/ibm-quantum-compute/executor-input-output)
+- [Executor options](/docs/ibm-quantum-compute/executor-options)
+- [Directed execution model](/docs/ibm-quantum-compute/directed-execution-model)
+- [Sampler quickstart](/docs/ibm-quantum-compute/get-started-with-sampler)
+- [Sampler inputs and outputs](/docs/ibm-quantum-compute/sampler-input-output)
 - [Samplomatic documentation](https://qiskit.github.io/samplomatic)
-- [Noise learning helper guide](/docs/guides/noise-learning#NoiseLearnerV3)
+- [Noise learning helper guide](/docs/ibm-quantum-compute/noise-learning#NoiseLearnerV3)
 </Admonition>
