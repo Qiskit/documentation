@@ -134,7 +134,7 @@ Under `primitive_options` and `optimizer_options` keys we set dictionaries with 
 
 | Name              | Type     | Description                              | Required | Default       |
 |-------------------|----------|------------------------------------------|----------|---------------|
-| `num_generations`   | int      | Number of generations                    | No       | 20            |
+| `num_generations`   | int      | Number of generations                    | No       | 3             |
 | `population_size`   | int      | Size of the population                    | No       | 20            |
 | `mutation_range`    | list   | Maximum and minimum mutation factor              | No       | [0, 0.25]     |
 | `recombination`     | float      | Recombination factor                     | No       | 0.4           |
@@ -145,6 +145,7 @@ Under `primitive_options` and `optimizer_options` keys we set dictionaries with 
 
 - The number of generations evaluated by the differential evolution is `num_generations` + 1 since the initial population is included.
 - The total number of circuits is calculated as `(num_generations + 1) * population_size`.
+- If you do not set `num_generations`, the function runs 3 generations. For a problem of more than 50 variables, 3 generations fits size `"M"`, the default [`function_size`](#function_size). If you set 4 or more generations for a problem of more than 50 variables, request `function_size="L"`.
 - Using a larger population size and more generations generally improves the quality of the optimization results. However, it is not recommended to exceed a population size of 120 and a number of generations greater than 20 (for example, ``120 * 21 = 2520`` total circuits), as this would generate an excessive number of circuits, which can be computationally expensive and time-consuming to process.
 
 - The function allows you to resume previous optimization, and it is always possible to increase the number of generations (by providing the same input except for `previous_session_id` and an increased ``num_generations``).
@@ -183,6 +184,13 @@ List of tags to identify the experiment.
 
 - Required: No
 - Example: `["optimization", "quantum_computing"]`
+</Attribute>
+
+### `function_size`
+<Attribute attributeTypeHint="str" attributeValue="&quot;M&quot;">
+Size the job runs at, which is `"S"`, `"M"`, or `"L"`. Pass it to `dpo_solver.run(...)` with the other inputs. The required size depends on the number of variables of the problem, which is the number of assets times `nt` times `nq`, and on the number of generations, `num_generations`: up to 50 variables is `"S"`, more than 50 variables with up to 3 generations is `"M"`, and more than 50 variables with 4 or more generations is `"L"`. To calculate the size before you submit a job, see [Function sizes](/docs/guides/global-data-quantum-optimizer#function-sizes). If the size is too small, the job fails with error `4600`. If the size is larger than the job needs, the job runs normally and records a `4601` advisory event.
+- Required: No
+- Example: `"L"`
 </Attribute>
 
 <Admonition type="caution" title="Warning">
@@ -236,3 +244,12 @@ Data generated during the analysis, including solutions, costs, and metrics.
 | `rest_breaches`           | list[float]    | Maximum constraint deviation within each investment trajectory. Aligned by index.                               | `[0.0, 0.25]`                |
 | `transaction_costs`       | list[float]    | Estimated transaction cost associated with each investment trajectory. Aligned by index.                        | `[0.01, 0.02]`               |
 </Attribute>
+
+## Error handling
+
+The function reports the following errors that relate to `function_size`. For all error codes, see the [IBM Quantum error codes](/docs/errors).
+
+| Code | Cause |
+| :-- | :-- |
+| `4600` | The [`function_size`](#function_size) is too small for the problem. The job fails before it submits anything to the quantum computer, and the message names the size to use. |
+| `4601` | The [`function_size`](#function_size) is larger than the job needs. The job runs normally and records an advisory event that you can read with `job.events()`. |
