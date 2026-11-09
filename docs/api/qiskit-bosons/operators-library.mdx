@@ -1,0 +1,50 @@
+---
+title: library (latest version)
+description: API reference for qiskit_bosons.operators.library in the latest version of qiskit-bosons
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit_bosons.operators.library
+---
+
+<span id="module-qiskit_bosons.operators.library" />
+
+# Operator Library
+
+Building on top of the operator representations provided by [`operators`](operators#module-qiskit_bosons.operators "qiskit_bosons.operators"), this module provides tools to simplify the construction of commonly used operators.
+
+Model Hamiltonians are built directly from your own lattice rather than from helpers here; the [Bose-Hubbard guide](/docs/addons/qiskit-bosons/guides/bose-hubbard#bose-hubbard-getting-started) works one through end to end.
+
+## Commutator Generators
+
+The brackets through which the bosonic algebra is expressed. The commutator is the defining one: $[b_i, b_j^\dagger] = \delta_{ij}$ *is* the bosonic algebra, so these are how that structure gets interrogated in practice (checking whether two terms commute, whether an operator conserves boson number, and so on).
+
+|                                                                                                                                                                                                                     |                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
+| [`commutator`](/docs/api/qiskit-bosons/operators-library-commutator#qiskit_bosons.operators.library.commutator "qiskit_bosons.operators.library.commutator")(op\_a, op\_b)                                          | Computes the commutator of two operators.          |
+| [`anti_commutator`](/docs/api/qiskit-bosons/operators-library-anti-commutator#qiskit_bosons.operators.library.anti_commutator "qiskit_bosons.operators.library.anti_commutator")(op\_a, op\_b)                      | Computes the anti-commutator of two operators.     |
+| [`double_commutator`](/docs/api/qiskit-bosons/operators-library-double-commutator#qiskit_bosons.operators.library.double_commutator "qiskit_bosons.operators.library.double_commutator")(op\_a, op\_b, op\_c, sign) | Computes the double-commutator of three operators. |
+
+## Single-mode building blocks
+
+The dimensionless quadrature operators, which are the pieces most other bosonic operators are written in terms of and whose normalization is easy to get wrong.
+
+These operators are Hermitian and satisfy the commutation relation:
+
+$$
+[\hat{q}_i, \hat{p}_j] = i\delta_{ij}
+$$
+
+```pycon
+>>> from qiskit_bosons.operators import BosonOperator
+>>> from qiskit_bosons.operators.library import commutator, momentum, position
+>>> commutator(position(0), momentum(0)).equiv(1j * BosonOperator.one())
+True
+>>> commutator(position(0), momentum(1)).equiv(BosonOperator.zero())
+True
+```
+
+|                                                                                                                                                            |                                                                           |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| [`position`](/docs/api/qiskit-bosons/operators-library-position#qiskit_bosons.operators.library.position "qiskit_bosons.operators.library.position")(mode) | Builds the dimensionless position (quadrature) operator of a single mode. |
+| [`momentum`](/docs/api/qiskit-bosons/operators-library-momentum#qiskit_bosons.operators.library.momentum "qiskit_bosons.operators.library.momentum")(mode) | Builds the dimensionless momentum (quadrature) operator of a single mode. |
+
