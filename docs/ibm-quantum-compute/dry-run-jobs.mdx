@@ -28,7 +28,7 @@ isa_circuit = pm.run(circuit)  # transpiled for ibm_phoenix
 sampler = Sampler(mode=backend)
 job = sampler.run([isa_circuit], dry_run=True)
 job.result()  # wait for completion
-print(job.usage())
+print(job.usage(resource_units=True)) # RUs the real QPU would charge for this job
 ```
 
 `dry_run` is an argument of the `run()` method (the default is `False`), not a runtime option. It is available to all primitives.
@@ -49,13 +49,14 @@ Circuit size, shots, and other limits are the same as for any job of that progra
 
 The usage of a completed dry-run job is the usage the same job would incur on the real QPU, except in rare situations where calibration data changes significantly after the dry-run job and before the job on a real QPU.
 
+- `job.usage(resource_units=True)` returns the usage in RUs.
 - `job.usage()` returns the usage in seconds.
 - `job.metrics()["usage"]` returns the same data together with the usage status.
 
 Dry-run usage is not charged, does not consume your plan allocation, and does not count against any limits.
 
 <Admonition type="caution" title="Do not use job.usage_estimation with dry-run jobs">
-Do not use `job.usage_estimation` on a dry-run job. Use `job.usage()`.
+Do not use `job.usage_estimation` on a dry-run job. To find the number of RUs that the real QPU would charge, use `job.usage(resource_units=True)`.
 </Admonition>
 
 `job.usage()` returns `0` until the usage calculation is final, so wait for the job to finish before you read it.
@@ -93,7 +94,7 @@ The names are similar, but a mock device and a [fake backend](/docs/api/qiskit-i
 | Calibration | Live, matches the real device at any time | Fixed snapshot shipped with the installed package |
 | Results | Randomized data with the expected schema. Not a simulation | Noisy simulation that uses the snapshot's noise model |
 | Physically meaningful results | No. Never use them to check correctness | Approximately, within the limits of the noise model |
-| Usage reported | Yes | None |
+| Usage reported | Yes. `job.usage(resource_units=True)` returns the RUs the job would incur on the real QPU | None |
 | Charged or counted against plan allocation or limits | No | No |
 | Job validation | Done by the service, same as a real job | Limited to what the client checks |
 | Timing schedule | Available on request  | Not available |
@@ -112,7 +113,7 @@ The names are similar, but a mock device and a [fake backend](/docs/api/qiskit-i
 - **A mock device is not a simulator.** Its output is random, so sampling a Bell circuit on `mock_phoenix` does not return a Bell distribution. If you want realistic noisy output, use a fake backend.
 - **A fake backend is not the live device.** Its calibration is a snapshot and might be out of date. A mock device tracks the real calibration, so transpiled circuits and timing match what the QPU sees today.
 - **Neither runs on real hardware.** Neither consumes QPU time, but only a dry-run job goes through the service.
-- **`usage_estimation` is not the dry-run estimate.** For a dry-run job, `job.usage()` returns the seconds of usage your job would be charged on a real QPU.
+- **`usage_estimation` is not the dry-run estimate.** For a dry-run job, read `job.usage(resource_units=True)`, which returns the RUs the real QPU would charge.
 
 ## Use cases
 
@@ -135,7 +136,7 @@ backend = service.backend("ibm_phoenix")
 sampler = Sampler(mode=backend)
 job = sampler.run([isa_circuit], dry_run=True)
 job.result()
-print(job.usage()) 
+print(job.usage(resource_units=True)) # RUs to budget for this job
 ```
 
 ### Final check before running on a real QPU
