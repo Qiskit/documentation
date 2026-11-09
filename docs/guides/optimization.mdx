@@ -1,0 +1,91 @@
+---
+title: Quantum optimization
+description: Overview of application research tools for solving optimization problems.
+---
+
+{/* cspell:ignore HUBO, rebalancing, Rebalance */}
+
+# Quantum optimization
+
+Quantum optimization is an emerging field that explores how quantum computing can be used to solve optimization problems, where the goal is to find the best solution among many possible alternatives (often under a set of constraints). Applications of this field include logistics and scheduling, portfolio optimization, resource allocation, and materials science.
+
+Quantum optimization approaches include quantum approximate optimization algorithms (QAOA) and hybrid quantum-classical methods that combine quantum processors with classical optimization techniques. Although quantum computing can offer advantages for certain optimization problems, identifying practical performance benefits over classical methods remains an active area of research.
+
+Solving an optimization problem on a quantum computer generally involves two stages. First, formulate the problem, (for example, as a quadratic unconstrained binary optimization (QUBO) problem, a higher-order binary optimization (HUBO) problem, or a problem with explicit constraints), and map that formulation into quantum operators and circuits. Second, run the resulting circuit on quantum hardware and interpret the measurement results as a candidate solution. The tools on this page support these two stages: the mapping tool helps you move from a problem definition to a quantum-ready representation, and the application functions combine mapping, hardware execution, and classical post-processing into a single managed workflow.
+
+## Map domain problems
+
+This capability specializes in mapping domain problems into quantum operators and circuits for execution on a quantum computer. Use it to formulate an optimization problem as a binary model, convert that model between representations, and validate it against classical solvers before running on quantum hardware.
+
+<CardGroup>
+    <Card
+      title="Qiskit Optimization mapper"
+      description="Model optimization problems and map them into representations suitable for a quantum computer."
+      href="https://qiskit.github.io/qiskit-addon-opt-mapper/"
+      analyticsName="Documentation page: Optimization mapper"
+      linkText="Browse documentation"
+    />
+
+</CardGroup>
+
+
+# Application functions for optimization
+
+The following Qiskit Functions package the full optimization workflow, from problem mapping through hardware execution and post-processing, behind a managed interface. Rather than building and tuning your own circuits, you provide a problem definition, such as an objective function, a graph, or an industry-specific input like asset price data, and the function returns an optimized solution. These functions address optimization problems across domains, including unconstrained and constrained binary optimization, portfolio rebalancing in finance, and resource allocation problems defined on graphs.
+
+<Admonition type="note">
+IBM Quantum Functions are an experimental feature available only to IBM Quantum&reg; Premium Plan, Flex Plan, and On-Prem (via IBM Quantum Platform API) Plan users. Refer to [Set up IBM Quantum Functions](https://quantum.cloud.ibm.com/functions) for instructions on getting access.
+</Admonition>
+
+<CardGroup>
+
+    <Card
+      title="Iskay Quantum Optimizer by Kipu Quantum"
+      description="Build workloads for solving unconstrained binary optimization problems as well as QUBO and HUBO optimization problems."
+      href="/docs/functions/kipu-optimization"
+      analyticsName="Documentation page: Iskay Quantum Optimizer by Kipu Quantum"
+      linkText="Browse documentation"
+    />
+
+    <Card
+      title="Optimization Solver by Q-CTRL"
+      description="Solve utility-scale optimization problems, including those with hard constraints, using a noise-aware, fully automated workflow built on QAOA."
+      href="/docs/functions/q-ctrl-optimization-solver"
+      analyticsName="Documentation page: Optimization Solver by Q-CTRL"
+      linkText="Browse documentation"
+    />
+
+    <Card
+      title="Quantum Portfolio Optimizer by Global Data Quantum"
+      description="Rebalance investment portfolios across multiple assets and time steps by solving a dynamic portfolio optimization problem with a tailored VQE implementation."
+      href="/docs/functions/global-data-quantum-optimizer"
+      analyticsName="Documentation page: Quantum Portfolio Optimizer by Global Data Quantum"
+      linkText="Browse documentation"
+    />
+
+    <Card
+      title="Parity Twine Optimizer by ParityQC"
+      description="Solve optimization problems with QAOA circuits compiled to minimize gate counts and circuit depth through the Parity Twine method."
+      href="/docs/functions/parity-twine-optimizer"
+      analyticsName="Documentation page: Parity Twine Optimizer"
+      linkText="Browse documentation"
+    />
+
+    <Card
+      title="Constrained Quantum Optimizer by Aqarios"
+      description="Solve constrained binary optimization problems from an LP file, an MPS file, or a Luna Model using iterative warm-starting QAOA with XY-mixers."
+      href="/docs/functions/aqarios-constrained-quantum-optimizer"
+      analyticsName="Documentation page: Constrained Quantum Optimizer by Aqarios"
+      linkText="Browse documentation"
+    />
+
+    <Card
+      title="SQOA Solver by JIJ"
+      description="Use the Sampling-based Quantum Optimization Algorithm with Quantum Relaxation to handle optimization problems with more variables than the number of qubits available of current quantum devices."
+      href="/docs/functions/jij-sqoa-solver"
+      analyticsName="Documentation page: SQOA Solver by JIJ"
+      linkText="Browse documentation"
+    />
+
+
+</CardGroup>
