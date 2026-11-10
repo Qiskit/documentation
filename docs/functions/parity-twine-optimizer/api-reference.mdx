@@ -103,6 +103,12 @@ Specifies the type of problem to enable specialized post-processing. At the mome
 - Choices: `mis`
 </Attribute>
 
+### `function_size`
+<Attribute attributeTypeHint="str" attributeValue="&quot;M&quot;">
+Size the job runs at: `"S"`, `"M"`, or `"L"`. The required size depends on the number of variables in `problem` and their interaction density, the fraction of all variable pairs that appear together in a term: up to 50 variables and a density of 0.1 is `"S"`, up to 100 variables and a density of 0.25 is `"M"`, and anything larger is `"L"`. To calculate the size before you submit a job, see [Function sizes](/docs/functions/parity-twine-optimizer#function-sizes). If the size is too small, the job fails with error `4600`. If the size is larger than the job needs, the job runs normally and records a `4601` advisory event. `function.sizes_map` returns the mapping from size to compute profile, and `function.default_size` returns the default size.
+- Required: No
+- Example: `"L"`
+</Attribute>
 
 ### Options
 
@@ -343,3 +349,11 @@ Example:
             </Attribute>
     </LeftColoredBar>
 
+## Error handling
+
+The function reports the following errors that relate to `function_size`. For all error codes, see the [IBM Quantum error codes](/docs/errors).
+
+| Code | Cause |
+| :-- | :-- |
+| `4600` | The [`function_size`](#function_size) is too small for the problem. The job fails, and the message names the size to use. |
+| `4601` | The [`function_size`](#function_size) is larger than the job needs. The job runs normally and records an advisory event that you can read with `job.events()`. |
