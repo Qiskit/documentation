@@ -7,16 +7,16 @@ description: "Choose the CPU, memory, and GPU resources for a managed workflow, 
 
 Managed workflows run on compute profiles. A compute profile is a fixed combination of vCPUs, memory, and GPUs, similar to the resources that you request from an HPC scheduler. When you upload a workflow, you map its sizes, such as `S` and `M`, to profiles, and each run picks one of those sizes. The job then runs on its own node with that profile, and keeps the profile until the job ends.
 
-| Profile | vCPUs | Memory (GB) | GPUs |
-| - | - | - | - |
-| `8x32` | 8 | 32 | None |
-| `16x128` | 16 | 128 | None |
-| `48x768` | 48 | 768 | None |
-| `128x1500` | 128 | 1500 | None |
-| `24x120x1l40s` | 24 | 120 | 1 L40S |
-| `20x320x2a100` | 20 | 320 | 2 A100 |
-| `80x1200x8a100` | 80 | 1200 | 8 A100 |
-| `160x1792x8h100` | 160 | 1792 | 8 H100 |
+| Profile | vCPUs | Memory (GB) | GPUs | Cost per second |
+| - | - | - | - | - |
+| `8x32` | 8 | 32 | None | 0.000006 |
+| `16x128` | 16 | 128 | None | 0.000015 |
+| `48x768` | 48 | 768 | None | 0.000063 |
+| `128x1500` | 128 | 1500 | None | 0.00014 |
+| `24x120x1l40s` | 24 | 120 | 1 L40S | 0.000043 |
+| `20x320x2a100` | 20 | 320 | 2 A100 | 0.00011 |
+| `80x1200x8a100` | 80 | 1200 | 8 A100 | 0.00045 |
+| `160x1792x8h100` | 160 | 1792 | 8 H100 | 0.00115 |
 
 A profile ID has the form `{cpu}x{memory}`, with memory in GB, or `{cpu}x{memory}x{count}{gpu}` for a profile with GPUs. For example, `24x120x1l40s` has 24 vCPUs, 120 GB of memory, and one NVIDIA L40S GPU.
 
