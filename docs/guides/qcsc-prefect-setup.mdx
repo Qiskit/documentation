@@ -1,11 +1,11 @@
 ---
-title: Set up qcsc-prefect on a Slurm cluster
+title: Set up QCSC-Prefect on a Slurm cluster
 description: Prepare a Slurm login node as a workflow host with Python environments, a Prefect login, and IBM Quantum credentials for QRMI
 ---
 
 {/* cspell:ignore QRMI SPANK Slurm srun sbatch PMIx plugstack slurmstepd bashrc LAPACK mkdir deps kingston marrakesh pittsburgh */}
 
-# Set up qcsc-prefect on a Slurm cluster
+# Set up QCSC-Prefect on a Slurm cluster
 
 This guide prepares the login node of a Slurm cluster as the workflow host of qcsc-prefect.
 The qcsc-prefect SQD tutorial starts from the result of this guide.
@@ -14,8 +14,8 @@ After you complete this guide, you have the following items:
 
 | Item | Where | Contents |
 |---|---|---|
-| `~/venv/prefect` | Login node, the workflow host | Prefect, the qcsc-prefect packages, and the `qcsc-qrmi` command |
-| `~/venv/sqd-node` | Compute nodes, inside Slurm jobs | The QRMI worker: QRMI with its `task_runner` command, and `qcsc-prefect-qiskit` |
+| `~/venv/qcsc-host` | Login node, the workflow host | Prefect, the qcsc-prefect packages, and the `qcsc-qrmi` command |
+| `~/venv/qcsc-node` | Compute nodes, inside Slurm jobs | The QRMI worker: QRMI with its `task_runner` command, and `qcsc-prefect-qiskit` |
 | `qrmi-runtime` | Prefect | The block that names your IBM Quantum&reg; instance and QPU |
 | `qrmi_config.json` | Login node and compute nodes | Your IBM Cloud&reg; API key, instances, and backends for QRMI |
 
@@ -105,8 +105,8 @@ git checkout v0.3.1
 Create the workflow environment with Python 3.12, and activate it:
 
 ```bash
-uv venv ~/venv/prefect -p 3.12
-source ~/venv/prefect/bin/activate
+uv venv ~/venv/qcsc-host -p 3.12
+source ~/venv/qcsc-host/bin/activate
 ```
 
 Install the qcsc-prefect packages. The `--no-deps` option keeps the exact version pins
@@ -126,7 +126,7 @@ Check that the commands are available:
 which prefect qcsc-qrmi
 ```
 
-Activate `~/venv/prefect` in every new shell on the login node.
+Activate `~/venv/qcsc-host` in every new shell on the login node.
 
 ## Step 6: Log in to Prefect
 
@@ -226,17 +226,17 @@ acquires the QPU in batch mode.
 ## Step 8: Create the compute-node environment
 
 The QRMI worker runs on a compute node, in its own environment. Create it from the same
-checkout. The `--python` option keeps `~/venv/prefect` active:
+checkout. The `--python` option keeps `~/venv/qcsc-host` active:
 
 ```bash
 cd "$QCSC_PREFECT"
-uv venv ~/venv/sqd-node -p 3.12
-uv pip install --python ~/venv/sqd-node/bin/python "qrmi[ibm]"
-uv pip install --python ~/venv/sqd-node/bin/python -e packages/qcsc-prefect-qiskit
+uv venv ~/venv/qcsc-node -p 3.12
+uv pip install --python ~/venv/qcsc-node/bin/python "qrmi[ibm]"
+uv pip install --python ~/venv/qcsc-node/bin/python -e packages/qcsc-prefect-qiskit
 ```
 
 The `qrmi[ibm]` package provides the `task_runner` command. The tutorial adds the SQD
-compilation hook to this environment, and uses `~/venv/sqd-node/bin/python` as the
+compilation hook to this environment, and uses `~/venv/qcsc-node/bin/python` as the
 `python_executable` of `sqd_blocks.toml`.
 
 ## Step 9: Verify the setup
@@ -299,8 +299,8 @@ Check the compute-node environment and the work directory on a compute node. The
 command prints nothing when the imports succeed:
 
 ```bash
-srun -N1 ~/venv/sqd-node/bin/python -c "import qrmi, qcsc_prefect.integrations.qiskit.qrmi.worker"
-srun -N1 ls ~/venv/sqd-node/bin/task_runner
+srun -N1 ~/venv/qcsc-node/bin/python -c "import qrmi, qcsc_prefect.integrations.qiskit.qrmi.worker"
+srun -N1 ls ~/venv/qcsc-node/bin/task_runner
 srun -N1 ls -ld "$QCSC_WORK_DIR"
 ```
 
