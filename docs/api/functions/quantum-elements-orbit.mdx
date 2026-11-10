@@ -46,7 +46,7 @@ job = orbit.run(
 result = job.result()
 ```
 
-`pubs` provides the circuits and primitive inputs to run. `primitive` selects the IBM Quantum primitive contract. `backend_name` selects the IBM Quantum backend, or can be omitted to let Orbit choose a least-busy backend. `function_size` selects the size the job runs at (`"S"`, `"M"` or `"L"`). `options` controls Orbit's DD insertion, Quantum Compute options, preview/simulator behavior, and metadata features. Full details for each input are below.
+`pubs` provides the circuits and primitive inputs to run. `primitive` selects the IBM Quantum primitive contract. `backend_name` selects the IBM Quantum backend, or can be omitted to let Orbit choose a least-busy backend. `function_size` selects the size the job runs at (`"S"`, `"M"`, or `"L"`). `options` controls Orbit's DD insertion, Quantum Compute options, preview/simulator behavior, and metadata features. Full details for each input are below.
 
 ### `pubs`
 
@@ -93,13 +93,13 @@ Name of the IBM Quantum backend to run on.
 
 <Attribute attributeTypeHint="str or None" attributeValue="None">
 
-Size the job runs at. Pass it to `orbit.run(...)` with the other inputs.
+The size the job runs at. Pass it to `orbit.run(...)` with the other inputs.
 - Required: No
 - Default value: `None` (the job runs at `"M"`)
-- Valid input types: `"S"`, `"M"`, `"L"` or `None`
+- Valid input types: `"S"`, `"M"`, `"L"`, or `None`
 
-- Each size has an upper limit on the active qubits and the two-qubit-gate depth of the largest PUB, after the PUB is mapped onto the backend: `"S"` allows at most 40 of each, `"M"` at most 100, and `"L"` has no limit. See [Function sizes](/docs/guides/quantum-elements-orbit#function-sizes) in the guide for the compute profile of each size and for a calculator to run before you submit.
-- Orbit checks the size against the backend the job runs on, before any transpilation or submission. If the size is too small, the job fails with error `4600`, and the message names the size to use. If it is larger than needed, the job runs and records a `4601` advisory event.
+- Each size has an upper limit on the active qubits and the two-qubit-gate depth of the largest PUB, after the PUB is mapped onto the backend: `"S"` allows at most 40 of each, `"M"` at most 100, and `"L"` has no limit. See [Function sizes](/docs/guides/quantum-elements-orbit#function-sizes) for the compute profile of each size and for a calculator to run before you submit jobs.
+- Orbit checks the size against the backend the job runs on before any transpilation or submission. If the size is too small, the job fails with error `4600`, and the message names the size to use. If it is larger than needed, the job runs and records a `4601` advisory event.
 - Example: `"L"`
 </Attribute>
 
