@@ -1,0 +1,293 @@
+---
+title: LTM AI-QEM API reference
+description: API reference for AI-QEM, an AI-based quantum error mitigation quantum function by LTM, including inputs, outputs, options, and metadata
+---
+
+{/* cspell:ignore untranspiled */}
+
+# LTM AI-QEM API reference
+
+AI-QEM is a quantum function that applies AI-driven error mitigation techniques to the IBM Quantum&reg; Estimator primitive to calculate quantum expectation values more accurately. AI-QEM accepts Estimator [primitive unified blocs (PUBs)](/docs/qiskit/primitive-input-output) as input and returns a standard [`PrimitiveResult`](/docs/api/qiskit/qiskit.primitives.PrimitiveResult). The result includes AI-QEM metadata both at the top level and in each individual PUB result.
+
+## Inputs
+
+See the following list for all input parameters that this API accepts.
+
+### `pubs`
+
+<Attribute>
+Type: [`EstimatorPubLike`](/docs/qiskit/primitive-input-output)
+
+An iterable of Estimator PUB-like objects. Each PUB can take one of the following forms:
+
+- `(circuit, observables)`
+- `(circuit, observables, parameter_values)`
+- `(circuit, observables, parameter_values, precision)`
+
+See [Overview of PUBs](/docs/qiskit/primitive-input-output#overview-of-pubs) for more information.
+
+- Required: Yes
+- Example: `[(circuit, [obs1, obs2, obs3])]`
+
+<Admonition type="note" title="PUB formats">
+  All PUBs in a single job must be either untranspiled or transpiled. A job that mixes the two is not supported. If your PUBs are transpiled, set [`transpiled`](#transpiled) to `True`.
+</Admonition>
+</Attribute>
+
+### `transpiled`
+
+<Attribute attributeTypeHint="bool" attributeValue="False">
+Indicates whether the PUBs in `pubs` are already transpiled for the backend that is specified in [`backend_name`](#backend_name).
+
+- Required: No
+- Default: `False`
+- Choices: `True`, `False`
+
+If `True`, AI-QEM assumes that every PUB in `pubs` is already transpiled for the specified backend. That is, each circuit uses only the backend's native gates and respects its qubit connectivity, and each observable is mapped to the layout of its circuit. Use this option to apply your own transpilation strategy, such as a custom optimization level, initial layout, or routing method.
+
+If `False`, AI-QEM transpiles the PUBs for you. It uses the default [`generate_preset_pass_manager`](/docs/api/qiskit/qiskit.transpiler.generate_preset_pass_manager), configured with [`transpilation_options`](#transpilation-options) if you provide them.
+
+<Admonition type="note" title="Transpilation requirements">
+  AI-QEM does not check whether your PUBs are already transpiled. It relies only on the value of `transpiled`. If you set `transpiled=True`, you must transpile every PUB in `pubs` for the backend that you pass in `backend_name`. PUBs transpiled for a different backend, and jobs that mix transpiled and untranspiled PUBs, are not supported and can cause errors or unexpected results.
+</Admonition>
+</Attribute>
+
+### `backend_name`
+
+<Attribute attributeTypeHint="str" attributeValue="ibm_fez">
+The IBM Quantum backend (quantum processor) that runs your circuits.
+
+- Required: No
+- Default: `ibm_fez`
+- Choices: `ibm_fez`, `ibm_boston`, `ibm_kingston`, `ibm_marrakesh`, `ibm_pittsburgh`
+
+<Admonition type="note" title="Supported processors">
+  AI-QEM currently supports error mitigation only on backends from the [Heron processor](/docs/ibm-quantum-compute/processor-types#heron) family. LTM plans to support additional backends in future releases.
+</Admonition>
+</Attribute>
+
+### `primitive`
+
+<Attribute attributeTypeHint="str" attributeValue="estimator">
+The IBM Quantum primitive used to run your circuits. AI-QEM currently supports only the IBM Quantum Estimator primitive, which computes expectation values of observables.
+
+- Required: No
+- Default: `estimator`
+</Attribute>
+
+### Options
+
+<Attribute attributeTypeHint="dict or None">
+Options for transpilation and execution, specified as a nested dictionary. See the [full list of options](#options-list) and their default values. `options` can be `None` or a dictionary. If you pass a dictionary, it can contain only the following top-level keys:
+
+- `transpilation_options`
+- `execution_options`
+
+The function raises an error if the dictionary contains any other key. It also validates values strictly and does not implicitly convert types.
+
+Both `transpilation_options` and `execution_options` default to an empty dictionary (`{}`), which applies the default configuration.
+
+- Required: No
+- Default: `None`
+- Example:
+
+ ```python
+ {
+    "transpilation_options": {
+        "seed_transpiler": 42,
+        "optimization_level": 3,
+    },
+    "execution_options": {
+        "default_shots": 4096,
+    }
+ }
+ ```
+</Attribute>
+
+<span id="options-list"></span>
+#### Options list
+
+<LeftColoredBar color="blue">
+
+  <span id="transpilation-options"></span>
+  `transpilation_options`
+  <Attribute attributeTypeHint="dict" attributeValue="{}">
+  Keyword arguments passed to [`generate_preset_pass_manager`](/docs/api/qiskit/qiskit.transpiler.generate_preset_pass_manager), such as `optimization_level`, `initial_layout`, and `seed_transpiler`. These options are used only if the input PUBs are not already transpiled.
+
+  The keys `backend` and `target` are reserved. The function sets them from the `backend_name` argument, so do not include them. Including either key raises an `InvalidInputError`.
+
+  - Required: No
+  - Default: `{}`
+  - Example: `{"seed_transpiler": 42, "optimization_level": 3}`
+  </Attribute>
+
+  `execution_options`
+  <Attribute attributeTypeHint="dict" attributeValue="{}">
+  Options passed to the IBM Quantum Estimator primitive, [`EstimatorV2`](/docs/api/qiskit-ibm-runtime/estimator-v2), such as `default_shots` and `resilience_level`. See the [execution options](/docs/api/qiskit-ibm-runtime/options-estimator-options) that the IBM Quantum Estimator supports.
+
+  - Required: No
+  - Default: `{}`
+  - Example: `{"default_shots": 4096}`
+  </Attribute>
+</LeftColoredBar>
+
+## Outputs
+
+<Attribute attributeTypeHint="PrimitiveResult">
+The function returns an IBM Quantum Estimator [`PrimitiveResult`](/docs/api/qiskit/qiskit.primitives.PrimitiveResult) that contains one [`PubResult`](/docs/api/qiskit/qiskit.primitives.PubResult) for each input PUB.
+
+<Admonition type="note" title="PUB splitting does not change the output shape">
+  When needed, the function splits an input PUB into several sub-PUBs by splitting the observables or parameter sets. Splitting adds **no QPU overhead**. The function merges the results before it returns them, so the output always matches your input:
+  - The number of `PubResult` objects equals the number of input PUBs.
+  - The data fields in each `PubResult` have the shape implied by the inputs of that PUB, as with IBM Quantum Estimator.
+  - The split is visible only in the metadata, which is described in the following sections.
+
+  ```python
+  result = job.result()
+
+  len(result) == len(pubs)  # True, even if PUBs were split internally
+  ```
+  </Admonition>
+</Attribute>
+
+### Top-level metadata
+
+The [`PrimitiveResult`](/docs/api/qiskit/qiskit.primitives.PrimitiveResult) includes metadata for the overall execution. In addition to the standard Qiskit fields, AI-QEM adds the following entries:
+
+<LeftColoredBar color="blue"> 
+  
+  `metadata["ltm_ai_qem"]`
+  <Attribute attributeTypeHint="dict[str, Any]">AI-QEM-specific metadata for the overall execution.</Attribute>
+  <LeftColoredBar color="purple">
+    `version`
+        <Attribute attributeTypeHint="str">
+        Version of the AI-QEM function that produced the result.
+        </Attribute>
+
+    `num_of_pubs`
+        <Attribute attributeTypeHint="int">
+        Number of PUBs that ran on the backend. Because of PUB splitting, this number can be larger than the number of input PUBs.
+        </Attribute>
+  </LeftColoredBar>
+</LeftColoredBar>
+
+<LeftColoredBar color="blue"> 
+
+  `metadata["resource_usage"]` 
+    <Attribute attributeTypeHint="dict[str, dict[str, float]]">
+      Resource usage metrics in seconds, grouped by execution phase.
+
+      - `RUNNING: OPTIMIZING_FOR_HARDWARE`: CPU time spent optimizing circuits for the target hardware.
+      - `RUNNING: WAITING_FOR_QPU`: Time spent waiting for QPU resources.
+      - `RUNNING: EXECUTING_QPU`: QPU execution metrics, including `QPU_TIME`.
+      - `RUNNING: POST_PROCESSING`: CPU time spent processing results after execution.
+    </Attribute>
+</LeftColoredBar>
+
+### `pub_results`
+
+A list of [`PubResult`](/docs/api/qiskit/qiskit.primitives.PubResult) objects, one for each input PUB, in the same order as the input.
+
+
+#### `PubResult`
+
+The result for a single input PUB.
+
+#### `data`
+
+<Attribute attributeTypeHint="DataBin"> 
+  A Qiskit [`DataBin`](/docs/api/qiskit/qiskit.primitives.DataBin) with the results for the PUB. Each field has the shape determined by the PUB's observables and parameter values.
+
+  - `evs`: AI-QEM mitigated expectation values.
+  - `stds`: Standard errors of the mitigated expectation values.
+  - `noisy_evs`: Raw expectation values from the hardware, before mitigation.
+  - `noisy_stds`: Standard errors of the raw expectation values. 
+</Attribute>
+
+#### `metadata`
+
+<Attribute attributeTypeHint="dict[str, Any]">Metadata for the PUB, including the standard Qiskit fields. AI-QEM adds the entry `metadata["ltm_ai_qem"]`.</Attribute> 
+
+<LeftColoredBar color="blue"> 
+
+  `metadata["ltm_ai_qem"]`
+    <Attribute attributeTypeHint="dict[str, Any]">
+      Mitigation details for this PUB.
+
+      The function always splits a PUB by parameter set, so each parameter set runs as its own sub-PUB. It also splits composite observables into their individual Pauli terms. For example, it splits `ZZ + XX` into `ZZ` and `XX`. The function mitigates each term separately, then combines the mitigated terms to compute the expectation value of the original observable.
+
+      The Pauli-level arrays (`pauli_terms`, `pauli_evs_mitigated`, and so on) combine the results from all sub-PUBs and terms. The function appends the execution metadata of each sub-PUB to `metadata_of_split_pubs`, in execution order.
+    </Attribute>
+
+    <LeftColoredBar color="purple">
+      `pauli_terms`
+        <Attribute attributeTypeHint="list[str]">
+        Individual Pauli terms used during execution. This list can contain duplicate terms.
+        </Attribute>
+
+      `pauli_evs_mitigated`
+        <Attribute attributeTypeHint="np.ndarray">
+          Mitigated expectation value for each Pauli term. The array is flattened and has the same length and order as `pauli_terms`.
+        </Attribute>
+
+      `pauli_evs_not_mitigated`
+        <Attribute attributeTypeHint="np.ndarray">
+          Unmitigated expectation value for each Pauli term, as returned by the hardware. The array has the same length and order as `pauli_terms`.
+        </Attribute>
+
+      `pauli_std_mitigated`
+        <Attribute attributeTypeHint="np.ndarray">
+          Standard errors corresponding to `pauli_evs_mitigated`.
+        </Attribute>
+
+      `pauli_std_not_mitigated`
+        <Attribute attributeTypeHint="np.ndarray">
+          Standard errors corresponding to `pauli_evs_not_mitigated`.
+        </Attribute>
+
+      `noisy_evs_over_range`
+        <Attribute attributeTypeHint="np.ndarray">
+          Raw expectation values from `pauli_evs_not_mitigated` that fall outside the valid range of -1 to 1. The function clips these values to the range. The array has the same length and order as `pauli_terms`.
+        </Attribute>
+
+      `mitigation_mask`
+        <Attribute attributeTypeHint="np.ndarray">
+          Mask that indicates which Pauli terms were mitigated. The array has the same length and order as `pauli_terms`.
+        </Attribute>
+
+      `mitigation_time`
+        <Attribute attributeTypeHint="float">
+          Total time spent on error mitigation, in seconds.
+        </Attribute>
+
+      `pubs_split`
+        <Attribute attributeTypeHint="int">
+          Number of sub-PUBs this PUB was split into.
+        </Attribute>
+
+      `metadata_of_split_pubs`
+        <Attribute attributeTypeHint="list[dict[str, Any]]">
+          Execution metadata for each sub-PUB, in execution order. Use it to trace results back to individual sub-PUBs.
+        </Attribute>
+
+      `circuit_metrics`
+        <Attribute attributeTypeHint="dict[str, Any]">
+          Summary metrics for the transpiled circuit that the job ran.
+
+          - `num_qubits` (`int`): Number of qubits in the circuit.
+          - `gate_count` (`int`): Total number of operations in the circuit.
+          - `depth` (`int`): Circuit depth.
+          - `two_qubit_gate_count` (`int`): Total number of two-qubit gates.
+          - `two_qubit_gate_depth` (`int`): Depth contributed by two-qubit gates.
+          - `operations` (`dict[str, int]`): Count of operations, keyed by instruction name. For example, `{"rz": 18, "sx": 15, "cz": 4, "measure": 3}`.
+      </Attribute>
+    </LeftColoredBar>
+  </LeftColoredBar>
+
+
+
+## Related resources
+
+- Visit the [LTM AI-QEM guide](/docs/functions/ltm-ai-qem) for this quantum function.
+- Follow the [Trotterized time evolution of the 2D tilted-field Ising model with LTM AI-QEM](/docs/tutorials/trotterized-time-evolution-ltm) tutorial for a step-by-step example.
+
