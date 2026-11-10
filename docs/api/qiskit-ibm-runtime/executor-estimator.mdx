@@ -18,7 +18,7 @@ python_api_name: qiskit_ibm_runtime.executor_estimator
 
 [`qiskit_ibm_runtime.executor_estimator.Estimator`](/docs/api/qiskit-ibm-runtime/executor-estimator-estimator#qiskit_ibm_runtime.executor_estimator.Estimator "qiskit_ibm_runtime.executor_estimator.Estimator") is an implementation of the Qiskit `EstimatorV2` interface built on top of the `Executor` primitive. It estimates expectation values of quantum observables by executing ISA circuits on an IBM Quantum backend.
 
-The key difference between the legacy server-side [`Estimator`](/docs/api/qiskit-ibm-runtime/estimator#qiskit_ibm_runtime.Estimator "qiskit_ibm_runtime.Estimator") and this new implementation is that **all pre- and post-processing runs on the client machine**. This includes circuit preparation (twirling, gate folding, dynamical decoupling, and noise injection) as well as result post-processing (TREX rescaling, ZNE extrapolation, and PEC quasi-probability weighting). Running these steps locally provides faster debugging feedback and greater user control.
+The key difference between the legacy server-side `Estimator` and this new implementation is that **all pre- and post-processing runs on the client machine**. This includes circuit preparation (twirling, gate folding, dynamical decoupling, and noise injection) as well as result post-processing (TREX rescaling, ZNE extrapolation, and PEC quasi-probability weighting). Running these steps locally provides faster debugging feedback and greater user control.
 
 When a user submits a job through [`run()`](/docs/api/qiskit-ibm-runtime/executor-estimator-estimator#qiskit_ibm_runtime.executor_estimator.Estimator.run "qiskit_ibm_runtime.executor_estimator.Estimator.run"), the underlying processing consists of:
 
@@ -46,7 +46,7 @@ from qiskit import QuantumCircuit
 from qiskit.quantum_info import SparsePauliOp
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 from qiskit_ibm_runtime import QiskitRuntimeService
-from qiskit_ibm_runtime.executor_estimator import Estimator
+from qiskit_ibm_runtime import Estimator
 
 # Select a backend.
 service = QiskitRuntimeService()
@@ -119,15 +119,15 @@ Each call to [`run()`](/docs/api/qiskit-ibm-runtime/executor-estimator-estimator
 (<single circuit>, <one or more observables>, <optional parameter values>, <optional precision>)
 ```
 
-See [Estimator inputs and outputs](/docs/ibm-quantum-compute/estimator-input-output) for more information on Estimator inputs and outputs.
+See [Estimator inputs and outputs](/docs/guides/estimator-input-output) for more information on Estimator inputs and outputs.
 
-Elements from observables and parameter values are combined by following NumPy broadcasting rules as described in [Primitive inputs and outputs](/docs/qiskit/primitive-input-output).
+Elements from observables and parameter values are combined by following NumPy broadcasting rules as described in [Primitive inputs and outputs](/docs/guides/primitive-input-output).
 
 ## Options
 
 When instantiating [`Estimator`](/docs/api/qiskit-ibm-runtime/executor-estimator-estimator#qiskit_ibm_runtime.executor_estimator.Estimator "qiskit_ibm_runtime.executor_estimator.Estimator"), you can pass in options by using [`EstimatorOptions`](/docs/api/qiskit-ibm-runtime/options-models-estimator-options#qiskit_ibm_runtime.options_models.EstimatorOptions "qiskit_ibm_runtime.options_models.EstimatorOptions") or a dictionary. Commonly used options, such as `resilience_level`, are at the first level. Other options are grouped into categories, such as `execution`. Specify the options in this format: `options.<category>.<option> = <value>`. For example: `options.dynamical_decoupling.enable = True`.
 
-See [Introduction to options](/docs/ibm-quantum-compute/runtime-options-overview) for an overview on specifying primitive options. See [Specify Estimator options](/docs/ibm-quantum-compute/estimator-options) and [Configure noise management with Estimator](/docs/ibm-quantum-compute/estimator-noise-management) for more information about Estimator options.
+See [Introduction to options](/docs/guides/runtime-options-overview) for an overview on specifying primitive options. See [Specify Estimator options](/docs/guides/estimator-options) and [Configure noise management with Estimator](/docs/guides/estimator-noise-management) for more information about Estimator options.
 
 ## Outputs
 
@@ -208,7 +208,7 @@ from qiskit_ibm_runtime.options import EstimatorOptions
 **After:**
 
 ```python
-from qiskit_ibm_runtime.executor_estimator import Estimator
+from qiskit_ibm_runtime import Estimator
 from qiskit_ibm_runtime.options_models import EstimatorOptions
 ```
 
@@ -231,7 +231,7 @@ job = estimator.run(pubs)
 **After:**
 
 ```python
-from qiskit_ibm_runtime.executor_estimator import Estimator
+from qiskit_ibm_runtime import Estimator
 from qiskit_ibm_runtime import NoiseLearnerV3
 
 pubs = [...]  # Your PUBs
@@ -277,7 +277,7 @@ job = estimator.run(pubs)
 **After:**
 
 ```python
-from qiskit_ibm_runtime.executor_estimator import Estimator
+from qiskit_ibm_runtime import Estimator
 from qiskit_ibm_runtime import Batch
 
 # Group the PUBs by precision, one group per job.
