@@ -7,7 +7,9 @@ description: Discover tools that help manage noise through the available error m
 
 # Overview of noise management techniques
 
-Multiple techniques are available to reduce the impact of noise on your quantum workloads. The open-source Qiskit addons provide error mitigation and suppression techniques that integrate directly into your development workflow, while IBM Quantum&reg; Compute Service applies advanced error mitigation strategies automatically when jobs are submitted for execution. This page indexes all available tools and features across both options to help you choose the right approach to manage noise.
+Multiple techniques are available to reduce the impact of noise on your quantum workloads. The open-source Qiskit addons provide error mitigation and suppression techniques that integrate directly into your development workflow, while IBM Quantum&reg; Compute Service applies advanced error mitigation strategies automatically when jobs are submitted for execution. This page indexes all available tools and features across both options to help you choose the right approach to manage noise. 
+
+You can also read through a set of explanations summarizing how several of these techniques work in the [Explanations section](#explanations) of this page.
 
 
 ## General noise management techniques
@@ -170,6 +172,7 @@ Use these capabilities to compose and support your workflows that leverage other
 
 
 
+<span id="explanations"></span>
 ## Explanations of noise management techniques
 
 {/* cspell:ignore extrapolators */}
@@ -181,7 +184,7 @@ The beta release of a new execution model is now available. The directed executi
 </Admonition>
 
 <span id="dd"></span>
-## Dynamical decoupling
+### Dynamical decoupling
 
 Quantum circuits are executed on IBM hardware as sequences of microwave pulses that need to be scheduled and run at precise time intervals.
 Unfortunately, unwanted interactions between qubits can lead to coherent errors on idling qubits. Dynamical decoupling works by inserting pulse sequences on idling qubits to approximately cancel out the effect of these errors. Each inserted pulse sequence amounts to an identity operation, but the physical presence of the pulses has the effect of suppressing errors.
