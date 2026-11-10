@@ -12,10 +12,10 @@ Hamiltonian simulation is a quantum computing technique used to model and charac
 
 By simulating molecular interactions and the behavior of electrons and atoms, Hamiltonian simulation can help researchers predict material properties, understand chemical reactions, and identify promising candidates for new technologies. Common approaches include Trotterization, which approximates continuous time evolution using sequences of quantum gates, and sample based quantum diagonalization, which estimates the energy spectrum for a given quantum system.
 
-A typical workflow starts by mapping a physical system, such as a set of interacting fermions or bosons, onto qubits and circuits. From there, you can reduce the resulting circuit's depth and gate count with compilation and error-mitigation techniques, run the circuit on quantum hardware, and reconstruct the system's properties, such as its ground-state energy, from the measured samples. The tools on this page cover each of these stages, and the application function listed here provides a single managed workflow for quantum chemistry.
+A typical workflow starts by mapping a physical system, such as a set of interacting fermions or bosons, onto qubits and circuits. From there, you can reduce the resulting circuit's depth and gate count with compilation and error-mitigation techniques, run the circuit on quantum hardware, and reconstruct the system's properties, such as its ground-state energy, from the measured samples. The tools on this page cover each of these stages, and the application functions listed here provides a single managed workflow for Hamiltonian simulation.
 
 ## Mapping tools
-These capabilities specialize in mapping domain problems into quantum operators and circuits for execution on a quantum computer. Use them to represent fermionic or bosonic systems with dedicated data structures, and to compile the resulting circuits so that they run with less depth and fewer entangling gates on quantum hardware.
+These capabilities specialize in mapping domain problems into quantum operators and circuits for execution on a quantum computer. Use them to represent fermionic, bosonic, or spin systems, and to compile the resulting circuits so that they run with less depth and fewer entangling gates on quantum hardware.
 <CardGroup>
 
     <Card
@@ -54,7 +54,7 @@ These capabilities specialize in mapping domain problems into quantum operators 
 
 
 ## Quantum subspace diagonalization tools
-These tools provide capabilities for building diagonalization workflows and optimizing them for use in HPC environments. Rather than relying solely on the quantum circuit to generate a final answer, these methods use the circuit to sample candidate configurations, then classically diagonalize the system's Hamiltonian in the reduced subspace spanned by those configurations, so you can recover an energy estimate even when hardware noise would otherwise corrupt a direct measurement.
+These tools provide capabilities for building workflows to estimate the eigenvalues of quantum Hamiltonians, like the ground state energy of a molecule, using approaches such as sample-based quantum diagonalization that can scale beyond exact classical diagonalization methods. These workflows use a quantum circuit to sample candidate configurations, then iteratively refine the configurations and diagonalize the system’s Hamiltonian in the reduced subspace spanned by those configurations.
 <CardGroup>
 
     <Card
@@ -82,7 +82,7 @@ These tools provide capabilities for building diagonalization workflows and opti
     />
 
     <Card
-      title="Fulqrum"
+      title="Qiskit Fulqrum"
       description="A set of tools for enabling the solution to general large-scale Hamiltonian subspace eigenproblems."
       href="https://qiskit-community.github.io/fulqrum/"
       analyticsName="Documentation page: M3"
@@ -92,8 +92,8 @@ These tools provide capabilities for building diagonalization workflows and opti
 </CardGroup>
 
 
-## Workflow validation tools
-These tools are used for validating workflows through classical simulation. They can simulate certain classes of circuits more efficiently than a general-purpose quantum circuit simulator. You can use them to check a workflow, such as an excitation-preserving ansatz or fermionic circuit, against a classical reference result before running it on quantum hardware.
+## Workflow verification tools
+These tools are used for verifying workflows through classical simulation. They can simulate certain classes of circuits more efficiently than a general-purpose quantum circuit simulator. You can use them to check a workflow, such as an excitation-preserving ansatz or fermionic circuit, against a classical reference result before running it on quantum hardware.
 <CardGroup>
 
     <Card

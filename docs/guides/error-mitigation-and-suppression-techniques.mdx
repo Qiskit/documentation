@@ -7,7 +7,7 @@ description: Discover tools that help manage noise through the available error m
 
 # Overview of noise management techniques
 
-Multiple techniques are available to reduce the impact of noise on your quantum workloads. The open-source Qiskit addons provide error mitigation and suppression techniques that integrate directly into your development workflow, while IBM Quantum&reg; Compute Service applies advanced error mitigation strategies automatically when jobs are submitted for execution. This page indexes all available tools and features across both options to help you choose the right approach to manage noise. 
+Multiple techniques are available to reduce the impact of noise on your quantum workloads. These tools and capabilities provide error mitigation and suppression techniques that integrate directly into your development workflow, while IBM Quantum&reg; Compute Service applies advanced error mitigation strategies automatically when jobs are submitted for execution. This page indexes all available tools and features across both options to help you choose the right approach to manage noise. 
 
 You can also read through a set of explanations summarizing how several of these techniques work in the [Explanations section](#explanations) of this page.
 
@@ -51,20 +51,33 @@ Use these capabilities to reduce circuit depth or suppress noise during executio
       linkText="Read explanation"
     />
 
-
-    <Card
-      title="AQC-Tensor Qiskit addon"
-      description="Compile the initial portion of a circuit into a nearly equivalent approximation of that circuit, but with fewer layers."
-      href="https://qiskit.github.io/qiskit-addon-aqc-tensor/"
-      analyticsName="Documentation page: Approximate quantum compilation"
-      linkText="Browse documentation"
-    />
 </CardGroup>
 
 ## Manage noise for expectation value estimation
-Use the following addons to manage noise when building quantum workloads that estimate expectation values of observables.
+Use the following tools and capabilities within the IBM Quantum Compute service to manage noise when building quantum workloads that estimate expectation values of observables.
 
 <CardGroup>
+    <Card
+      title="Probabilistic error cancellation (PEC)"
+      description="Returns an unbiased estimate of the expectation value, at the expense of greater overhead than other techniques such as ZNE. It extrapolates output of the ideal circuit by executing different noisy circuit instances. Sampling cost can be reduced by using the shaded lightcones package found in the noise modeling page."
+      href="#pec"
+      analyticsName="Documentation page: PEC"
+      linkText="Read explanation"
+    />
+    <Card
+      title="Zero Noise Extrapolation (ZNE) with gate folding"
+      description="Error mitigation technique that computes the expectation value at different noise levels, and then estimates the ideal result by extrapolating the noisy expectation value results to the zero-noise limit. Configured with either Qiskit Mitigation or IBM Quantum Compute service."
+      href="#zne"
+      analyticsName="Documentation page: ZNE"
+      linkText="Read explanation"
+    />
+    <Card
+      title="ZNE with Probabilistic error amplification (PEA)"
+      description="ZNE technique that involves running preliminary experiments to learn a twirled noise model of the circuit, then uses this model to perform a more accurate error amplification. Configured with either Qiskit Mitigation or IBM Quantum Compute service."
+      href="#pea"
+      analyticsName="Documentation page: PEA"
+      linkText="Read explanation"
+    />
     <Card
       title="Twirled readout error extinction (TREX)"
       description="Mitigate the effects of measurement errors by randomly substituting them with a twirled measurement sequence. Configured with either Qiskit Mitigation or IBM Quantum Compute service."
@@ -72,41 +85,6 @@ Use the following addons to manage noise when building quantum workloads that es
       analyticsName="Documentation page: TREX"
       linkText="Read explanation"
     />
-    <Card
-      title="Zero-noise extrapolation (ZNE)"
-      description="Error mitigation technique that computes the expectation value at different noise levels, and then estimates tje ideal result by extrapolating the noisy expectation value results to the zero-noise limit. Configured with either Qiskit Mitigation or IBM Quantum Compute service."
-      href="#zne"
-      analyticsName="Documentation page: ZNE"
-      linkText="Read explanation"
-    />
-    <Card
-      title="Probabilistic error amplification (PEA)"
-      description="ZNE technique that involves running preliminary experiments to learn a twirled noise model of the circuit, then uses this model to perform a more accurate error amplification. Configured with either Qiskit Mitigation or IBM Quantum Compute service."
-      href="#pea"
-      analyticsName="Documentation page: PEA"
-      linkText="Read explanation"
-    />
-    <Card
-      title="Probabilistic error cancellation (PEC)"
-      description="Returns an unbiased estimate of the expectation value, at the expense of greater overhead than other techniques such as ZNE. It extrapolates output of the ideal circuit by executing different noisy circuit instances."
-      href="#pec"
-      analyticsName="Documentation page: PEC"
-      linkText="Read explanation"
-    />
-   <Card
-     title="PEC with shaded lightcones"
-     description="A modified PEC technique that uses Pauli propagation to reduce the number of error terms accounted for in a noise model according to the specifics of the target observable."
-     href="/docs/addons/qiskit-addon-slc"
-     analyticsName="Documentation page: Shaded lightcones"
-     linkText="Browse documentation"
-   />
-   <Card
-     title="Operator backpropagation (OBP)"
-     description="Uses a method based on Clifford perturbation theory to reduce circuit depth by trimming operations from its end at the cost of more operator measurements."
-     href="/docs/addons/qiskit-addon-obp"
-     analyticsName="Documentation page: Operator backpropagation"
-     linkText="Browse documentation"
-   />
   <Card
       title="Propagated noise absorption (PNA)"
       description="Technique for mitigating errors in observable expectation values by 'absorbing' the inverses of learned noise channels into an observable using Pauli propagation."
@@ -114,6 +92,13 @@ Use the following addons to manage noise when building quantum workloads that es
       analyticsName="Documentation page: PNA"
       linkText="Read explanation"
     />
+   <Card
+     title="Operator backpropagation (OBP)"
+     description="Uses a method based on Clifford perturbation theory to reduce circuit depth by trimming operations from its end at the cost of more operator measurements."
+     href="/docs/addons/qiskit-addon-obp"
+     analyticsName="Documentation page: Operator backpropagation"
+     linkText="Browse documentation"
+   />
 
 </CardGroup>
 
@@ -123,7 +108,7 @@ These techniques are useful for managing noise on sampling results.
 <CardGroup>
 
     <Card
-      title="Postselection with bit-flip checks"
+      title="Postselection with non-Markovian error checks"
       description="Filter out non-Markovian noise in sampled bitstrings by incorporating bit-flip checks into a circuit."
       href="/docs/addons/qiskit-mitigation/guides/postselection-with-non-markovian-error-checks"
       analyticsName="Documentation page for post-selection"
@@ -131,7 +116,7 @@ These techniques are useful for managing noise on sampling results.
     />
 
     <Card
-      title="Paulice"
+      title="Qiskit Paulice"
       description="Boost the fidelity of sampled distributions using hardware-efficient Pauli checks based on spacetime codes."
       href="/docs/addons/qiskit-addon-paulice"
       analyticsName="Documentation page: Paulice"
@@ -149,7 +134,7 @@ These techniques are useful for managing noise on sampling results.
 </CardGroup>
 
 ## Supporting capabilities
-Use these capabilities to compose and support your workflows that leverage other addons.
+Use these capabilities to compose and support your workflows that leverage other Qiskit tools.
 <CardGroup>
 
     <Card
@@ -162,7 +147,7 @@ Use these capabilities to compose and support your workflows that leverage other
 
   <Card
       title="Addon utilities"
-      description="Build addons-powered workflows faster by using this collection of functions for creating Hamiltonians, generating Trotter time-evolution circuits, and applying the latest error mitigation capabilities."
+      description="Build workflows faster by using this collection of functions for creating Hamiltonians, generating Trotter time-evolution circuits, and applying the latest error mitigation capabilities."
       href="https://qiskit.github.io/qiskit-addon-utils/"
       analyticsName="Documentation page: addon utilities"
       linkText="Browse documentation"
@@ -234,7 +219,7 @@ benchmarking random circuits initialized in the zero state. The service can then
 readout noise. Estimating the readout-error transfer matrix requires executing additional calibration circuits, which introduces a small overhead.
 
 You can enable TREX the following ways:
-    - The [Qiskit Mitigation](/docs/addons/qiskit-mitigation) addon
+    - Using [Qiskit Mitigation](/docs/addons/qiskit-mitigation)
     - The [`measure_mitigation` option](/docs/api/qiskit-ibm-runtime/options-models-resilience-options#measure_mitigation) if using IBM Quantum Estimator
     - The [resilience level](/docs/ibm-quantum-compute/estimator-noise-management#resilience) if using IBM Quantum Estimator
 
@@ -259,7 +244,7 @@ default settings sample the expectation value at three noise factors,
 leading to a roughly 3x overhead.
 
 You can enable ZNE the following ways:
-    - The [Qiskit Mitigation](/docs/addons/qiskit-mitigation) addon
+    - Using [Qiskit Mitigation](/docs/addons/qiskit-mitigation)
     - The [`zne_mitigation` option](/docs/api/qiskit-ibm-runtime/options-models-resilience-options#zne_mitigation) if using IBM Quantum Estimator
     - The [resilience level](/docs/ibm-quantum-compute/estimator-noise-management#resilience) if using IBM Quantum Estimator
 
@@ -280,7 +265,7 @@ PEA consists of three stages:
 For utility-scale experiments, PEA is often the best choice.
 
 Because PEA is a ZNE noise amplification technique, you also need to enable ZNE. You can enable PEA and ZNE in the following ways:
-    - The [Qiskit Mitigation](/docs/addons/qiskit-mitigation) addon
+    - Using [Qiskit Mitigation](/docs/addons/qiskit-mitigation)
     - The [`zne_mitigation` option](/docs/api/qiskit-ibm-runtime/options-models-resilience-options#zne_mitigation) with [`pea`](/docs/api/qiskit-ibm-runtime/options-models-zne-options#amplifier) as the amplifier if using IBM Quantum Estimator
 
 <Admonition type="note" title="Noise learning required">
@@ -309,7 +294,7 @@ $$
 The sampling overhead is a multiplicative factor on the number of shots required to estimate an expectation value to a given precision, compared to the number of shots that would be needed from the ideal circuit. It scales quadratically with $\gamma$, which in turn scales exponentially with the depth of the circuit.
 
 You can enable PEC in the following ways:
-    - The [Qiskit Mitigation](/docs/addons/qiskit-mitigation) addon
+    - Using [Qiskit Mitigation](/docs/addons/qiskit-mitigation)
     - The [`pec_mitigation` option](/docs/api/qiskit-ibm-runtime/options-models-resilience-options#pec_mitigation) if using IBM Quantum Estimator
 
 <Admonition type="note" title="Noise learning required">
