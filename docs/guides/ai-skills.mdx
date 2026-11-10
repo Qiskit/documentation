@@ -8,6 +8,72 @@ description: Overview of AI skills for Qiskit quantum computing workflows.
 
 The [Qiskit AI skills repository](https://github.com/Qiskit/skills) has a set of skills that you can use with AI assistants, such as Bob, Claude, or ChatGPT. An AI skill is a reusable set of instructions that teaches the assistant how to complete a specific task.  Skills can help save time and ensure that repeatable tasks are done consistently and correctly.  
 
-The first available skill is `migrate-qiskit-ibm-runtime`, for migrating `qiskit-ibm-runtime` code.
 
 To use a Qiskit AI skill, follow the instructions for your AI assistant.  In general, you just need to give the skill to the assistant, then tell it where to apply the skill.
+
+## Installation
+
+These skills follow the [Agent Skills](https://agentskills.io/) standard and can
+be installed into compatible AI coding agents using the [skills CLI](https://github.com/vercel-labs/skills), through
+native agent plugin marketplaces, or by cloning the repository.
+
+### Quick start
+
+The easiest way to install is with the [skills CLI](https://github.com/vercel-labs/skills):
+
+```
+npx skills add Qiskit/skills
+```
+
+This will prompt you to pick which agent(s) to install for and whether to install globally or just for the current project.
+
+**Install a specific skill:**
+
+```
+npx skills add Qiskit/skills --skill skill-to-install
+```
+
+**Keep installed skills current:**
+
+```
+npx skills update
+```
+
+### Install as a plugin
+
+#### Claude Code
+
+Install using the [plugin marketplace](https://code.claude.com/docs/en/discover-plugins#add-from-github):
+
+```
+/plugin marketplace add Qiskit/skills
+/plugin install qiskit-ai-skills@qiskit
+```
+
+#### Codex
+
+```
+codex plugin marketplace add Qiskit/skills
+codex plugin add qiskit-ai-skills@qiskit
+```
+
+#### Cursor
+
+Install from the Cursor marketplace if available, or use the [Skills CLI](https://github.com/vercel-labs/skills) above with `--agent cursor`. See [Cursor plugins docs](https://cursor.com/docs/plugins) for more information.
+
+#### IBM Bob
+
+Bob has no plugin/marketplace step — it reads `SKILL.md` files directly from `.bob/skills/` in a cloned project. The repository symlinks the skills to `.bob/skills/<name>`  so cloning the repo is sufficient.
+
+You can also install with the [Skills CLI](https://github.com/vercel-labs/skills) above with `--agent bob`.
+
+### Clone / Copy
+
+If your agent does not support a native plugin or the skills CLI, clone this repo and copy the desired skill directory to the agent's supported skill directory:
+
+| Agent | Skill Directory | Docs |
+|-------|-----------------| ----- |
+| Claude Code | `~/.claude/skills/` | [docs](https://code.claude.com/docs/en/skills)
+| Codex | `~/.codex/skills/` | [docs](https://developers.openai.com/codex/skills)
+| Cursor | `~/.cursor/skills/` | [docs](https://cursor.com/docs/context/skills)
+| IBM Bob | `.bob/skills/` | [docs](https://bob.ibm.com/docs/ide/features/skills)
