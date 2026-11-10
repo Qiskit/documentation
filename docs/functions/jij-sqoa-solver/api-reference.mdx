@@ -47,6 +47,20 @@ Name of the IBM Quantum&reg; backend that runs the sampling jobs. When supplied,
 - Example: `"ibm_fez"`
 </Attribute>
 
+### `function_size`
+<Attribute attributeTypeHint="str" attributeValue="&quot;M&quot;">
+Size of the computing resources allocated to the function job: `"S"`, `"M"`, or `"L"`. Pass it as a keyword argument directly to `run()`, outside `options`. It is not part of the function input.
+
+The function calculates the size that the submitted problem requires from its number of variables and its density, the fraction of variable pairs that interact:
+    - `"S"` for at most 50 variables and a density of at most 0.1
+    - `"M"` for at most 100 variables and a density of at most 0.25. This is the default.
+    - `"L"` for all other problems.
+
+To calculate the size before submitting, use the calculator in [Function sizes](/docs/functions/jij-sqoa-solver#function-sizes). A size smaller than the calculated size is rejected with error code `4600` before a backend is selected. A larger size is accepted, and the job records a non-fatal event with error code `4601`. See [Error handling](#error-handling).
+- Required: No
+- Example: `"L"`
+</Attribute>
+
 <span id="options-list"></span>
 ### Options
 <Attribute attributeTypeHint="dict[str, Any]">
@@ -107,6 +121,7 @@ Additional tags assigned to every Quantum Compute job that the function submits.
 - `backend_name` can be omitted or `None`. `options` can be omitted or passed as an empty dictionary. Passing `None` for `options`, `shots`, `session`, or `postprocessing_level` is rejected.
 - The problem is validated and converted before the backend is resolved, so an invalid problem is reported even when the backend is unavailable.
 - The function does not impose an upper limit on `shots` beyond the limits of the service and the selected backend.
+- Pass `function_size` directly to `run()` as a keyword argument, not inside `options`.
 </Admonition>
 
 <span id="accepted-problem-formats"></span>
@@ -288,3 +303,12 @@ Resource usage of the run, keyed by execution phase. The five phases are always 
 - `solution`, `objective_value`, and `feasible` are conveniences derived from the same final solution as `ommx_solution`.
 - All numeric values in the result are finite JSON numbers.
 </Admonition>
+
+## Error handling
+
+The function reports the following errors that relate to `function_size`. For all error codes, see the [IBM Quantum error codes](/docs/errors).
+
+| Code | Cause |
+| :-- | :-- |
+| `4600` | The [`function_size`](#function_size) is too small for the problem. The job fails before a backend is selected, and the message names the size to use. |
+| `4601` | The [`function_size`](#function_size) is larger than the job needs. The job runs normally and records an advisory event that you can read with `job.events()`. |
