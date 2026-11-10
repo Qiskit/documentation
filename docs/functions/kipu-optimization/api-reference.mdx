@@ -3,6 +3,8 @@ title: Kipu Quantum Iskay Quantum Optimizer API reference
 description: API reference for Iskay Quantum Optimizer by Kipu Quantum
 ---
 
+{/* cspell:ignore Weidenfeller */}
+
 # Kipu Quantum Iskay Quantum Optimizer API reference
 
 
@@ -27,6 +29,13 @@ Specify whether the problem coefficients are in binary (QUBO/HUBO) or spin forma
 Name of the backend to make the query
 - Required: Yes
 - Example: `"ibm_fez"`
+</Attribute>
+
+### `function_size`
+<Attribute attributeTypeHint="str" attributeValue="&quot;M&quot;">
+Size for the job, which is `"S"`, `"M"`, or `"L"`. The required size depends on the number of variables in the problem and how densely they interact. To calculate the size before you submit a job, see [Function sizes](/docs/functions/kipu-optimization#function-sizes) in the guide. If the size is too small, the job fails with error `4600`. If the size is larger than the job needs, the job runs normally and records a `4601` advisory event.
+- Required: No
+- Example: `"L"`
 </Attribute>
 
 ### Options
@@ -93,7 +102,7 @@ Use IBM sessions for reduced queue times
 <Attribute attributeTypeHint="`int`" attributeValue="None">
 Set for reproducible quantum circuit compilation.
 
-**Seed optimization**: Note that `seed_transpiler` is set to `None` by default. This enables the transpiler's automatic optimization process. When `None`, the system will start a trial with multiple seeds and select the one that produces the best circuit depth, leveraging the full power of the `max_trials` parameter for each transpilation level.
+**Seed optimization**: By default, `seed_transpiler` is `None`, and [transpilation level](#transpilation_level) 2 searches over transpiler seeds to find the circuit with the best depth. If you set a seed, the function skips that search and the transpilation is reproducible.
 </Attribute>
 
 ##### `direct_qubit_mapping`
@@ -128,32 +137,27 @@ Solution refinement level (0-2).
 </Attribute>
 
 ##### `transpilation_level`
-<Attribute attributeTypeHint="`int`" attributeValue="0">
-Transpiler optimization trials (0-5).
+<Attribute attributeTypeHint="`int`" attributeValue="2">
+Transpilation method (1-3).
 
-**Transpilation Levels (0-5)**: Control the advanced transpiler optimization trials for quantum circuit compilation. This can lead to an increase in classical overhead, and for some cases it might not change the circuit depth. The default value `2` in general leads to the smallest circuit and is relatively fast.
-- **Level 0**: Optimization of the decomposed DCQO circuit (layout, routing, scheduling)
-- **Level 1**: Optimization of `PauliEvolutionGate` and then the decomposed DCQO circuit (max_trials=10)
-- **Level 2**: Optimization of `PauliEvolutionGate` and then the decomposed DCQO circuit (max_trials=15)
-- **Level 3**: Optimization of `PauliEvolutionGate` and then the decomposed DCQO circuit (max_trials=20)
-- **Level 4**: Optimization of `PauliEvolutionGate` and then the decomposed DCQO circuit (max_trials=25)
-- **Level 5**: Optimization of `PauliEvolutionGate` and then the decomposed DCQO circuit (max_trials=50)
+**Transpilation levels (1-3)**: The level selects the transpilation method.
+- **Level 1**: Standard Qiskit transpiler.
+- **Level 2** (default): Improved transpiler that searches over 15 transpiler seeds and keeps the best circuit. If you set [`seed_transpiler`](#seed_transpiler), the function skips the search.
+- **Level 3**: Line routing with the swap strategy for a linear coupling map that is described in Section 2.2.1 of [Weidenfeller et al.](https://arxiv.org/abs/2202.03459) Line routing follows a fixed swap schedule, so its circuit depth grows linearly with the number of variables. For densely connected problems, line routing typically produces shallower circuits than levels 1 and 2 and transpiles faster. Level 3 supports at most 127 variables on Heron r2 and r3 processors, 112 variables on Heron r1, and 120 variables on Nighthawk.
+
+Version 3.0.0 removed levels 0, 4, and 5. A job that requests one of them fails with error `1221`.
 </Attribute>
 
-##### `transpile_only`
+##### `transpilation_only`
 <Attribute attributeTypeHint="`bool`" attributeValue="False">
 Available for users who want to analyze circuit optimization without running the full quantum algorithm execution. Useful for circuit analysis, depth optimization studies, and understanding transpilation effects before committing to full execution.
 </Attribute>
 </Attribute>
 
-<Admonition type="tip" title="Transpilation level performance">
-Increasing the number of `max_trials` with higher values for [`transpilation_level`](#transpilation_level) will unavoidably increase the transpilation time, but it might not always change the final circuit - this depends heavily on the specific circuit structure and complexity. For some circuits/problems, however, the difference between 10 trials (level 1) and 50 trials (level 5) can be dramatic, so exploring these parameters might be the key to successfully finding a solution.
-</Admonition>
-
 ## Output
 
 <Attribute attributeTypeHint="`Dict[str, Any]`">
-Solution and metadata. Structure varies based on [`transpile_only`](#transpile_only) option.
+Solution and metadata. Structure varies based on the [`transpilation_only`](#transpilation_only) option.
 
 <span id="result-dict"></span>
 ### Result dictionary
@@ -172,7 +176,7 @@ The sorted mapped solution where keys are variable indices (as strings) sorted n
 Detailed information about the solution.
 - Mode: Standard
 - Example: `{'bitstring': '11100', 'cost': -13.8, 'seed_transpiler': 42, 'mapping': {0: 0, 1: 1, 2: 2, 3: 3, 4: 4}}`
-- **Standard execution**: When the optional parameter [`transpile_only=False`](#transpile_only), see the dictionary that follows.
+- **Standard execution**: When the optional parameter [`transpilation_only=False`](#transpilation_only), see the dictionary that follows.
 
 ##### `bitstring`
 <Attribute attributeTypeHint="`str`">
@@ -214,7 +218,7 @@ Circuit analysis and transpilation details.
 
 - Mode: Transpile-only
 - Example: `{'best_seed': 42, 'transpilation_time_seconds': 50.06, 'transpiled_circuit': {'depth': 576, 'gate_count': 4177, 'num_qubits': 156, 'width': 176, 'operations': {'sx': 1325, 'rx': 891, 'cz': 783, 'rz': 650, 'rzz': 466, 'x': 42, 'measure': 20}}}`
-- **Transpilation analysis**: When the optional parameter [`transpile_only=True`](#transpile_only), see the dictionary that follows:
+- **Transpilation analysis**: When the optional parameter [`transpilation_only=True`](#transpilation_only), see the dictionary that follows:
 
 ##### `best_seed`
 <Attribute attributeTypeHint="`int`">
@@ -251,3 +255,11 @@ Count of each gate type used.
 </Attribute>
 
 </Attribute>
+
+## Error handling
+
+<Admonition type="caution">
+- `4600`: The [`function_size`](#function_size) is too small for the problem. The job fails, and the error message names the size to use.
+- `4601`: The [`function_size`](#function_size) is larger than the problem needs. The job runs normally and records an advisory event that you can read with `job.events()`.
+- `1221`: An input is not valid, such as a [`transpilation_level`](#transpilation_level) value outside the range 1-3. The error message names the field and the accepted values.
+</Admonition>
