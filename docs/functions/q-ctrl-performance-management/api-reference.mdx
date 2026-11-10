@@ -43,6 +43,13 @@ The name of the backend
 - Example: `"ibm_fez"`
 </Attribute>
 
+### `function_size`
+<Attribute attributeTypeHint="str" attributeValue="&quot;M&quot;">
+Size the job runs at: `"S"`, `"M"`, or `"L"`. The required size depends on the number of active qubits and the two-qubit gate depth of each circuit after it is mapped and routed to the selected backend: up to 40 of each is `"S"`, up to 100 of each is `"M"`, and more than 100 of either is `"L"`. To calculate the size before you submit a job, see [Function sizes](/docs/functions/q-ctrl-performance-management#function-sizes). If the size is too small, the job fails with error `4600`. If the size is larger than the job needs, the job runs normally and records a `4601` advisory event.
+- Required: No
+- Example: `"L"`
+</Attribute>
+
 ### Options
 <Attribute attributeTypeHint="`dict`" attributeValue="See Options section for more details">
 Input options for this function are specified as a nested dictionary. See the full [list of options](#est-options) and their default values.
@@ -103,6 +110,14 @@ The name of the backend
 - Example: `"ibm_fez"`
 </Attribute>
 
+<span id="sam-function-size"></span>
+### `function_size`
+<Attribute attributeTypeHint="str" attributeValue="&quot;M&quot;">
+Size the job runs at: `"S"`, `"M"`, or `"L"`. The required size depends on the number of active qubits and the two-qubit gate depth of each circuit after it is mapped and routed to the selected backend: up to 40 of each is `"S"`, up to 100 of each is `"M"`, and more than 100 of either is `"L"`. To calculate the size before you submit a job, see [Function sizes](/docs/functions/q-ctrl-performance-management#function-sizes). If the size is too small, the job fails with error `4600`. If the size is larger than the job needs, the job runs normally and records a `4601` advisory event.
+- Required: No
+- Example: `"L"`
+</Attribute>
+
 ### Options
 <Attribute attributeTypeHint="`dict`" attributeValue="See the Options section for details">
 Input options for this function are specified as a nested dictionary. See the full [list of options](#sam-options) and their default values.
@@ -136,3 +151,12 @@ The [`PrimitiveResult`](/docs/api/qiskit/qiskit.primitives.PrimitiveResult) corr
 
 - Example: `PrimitiveResult([PubResult(data=DataBin(c=BitArray(<shape=(), num_shots=2048, num_bits=35>)), metadata={'shots': 2048})], metadata={`provider_job_ids`: 1234678})`
 </Attribute>
+
+## Error handling
+
+The function reports the following errors that relate to `function_size`. For all error codes, see the [IBM Quantum error codes](/docs/errors).
+
+| Code | Cause |
+| :-- | :-- |
+| `4600` | The [`function_size`](#function_size) is too small for the workload. The job fails, and the message names the size to use. |
+| `4601` | The [`function_size`](#function_size) is larger than the workload needs. The job runs normally and records an advisory event that you can read with `job.events()`. |
