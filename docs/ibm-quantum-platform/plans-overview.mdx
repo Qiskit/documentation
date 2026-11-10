@@ -45,7 +45,16 @@ To support these capabilities, IBM Quantum is introducing Resource Units (RUs), 
 
 For standard QPU workloads, 1 RU = 1 minute of QPU compute time. For Premium Plan customers, 1 RU is equivalent to 1 Value Unit (VU) for standard QPU workloads. This means there are no changes to current QPU pricing or existing contracts, although capacity and usage are now displayed in RUs.
 
-Different services might consume RUs at different rates depending on the resources used.
+Different services might consume RUs at different rates depending on the resources used. For example, RUs can account for classical compute consumption when using applicable functions or managed workflows.
+
+### How RUs are consumed
+RU consumption depends on the service being used. Each service has its own consumption model, as outlined below.
+
+QPU usage is determined by the amount of time a QPU is locked to execute your workload.  The consumption model differs depending on whether you're running in job, session, or batch mode.  See [Workload usage](/docs/ibm-quantum-compute/estimate-job-run-time#workload-usage) for details.
+
+Classical compute is metered per second in use, and each compute profile has a different charge rate per second. Classical compute is charged for Managed Workflows and Functions Catalog usage.
+
+Functions Catalog is charged once per-workload if a user leverages a consumption-based function in their instance (not labeled as Licensed).  Charge rates are set per Function by vendor for Small, Medium, and Large problems.
 
 <Admonition type="note" title="Dry-run jobs">
 [Dry-run jobs](/docs/ibm-quantum-compute/dry-run-jobs) do not consume RUs. A dry-run job reports the usage in RUs that the same job would incur on a real QPU, but that usage is not charged, does not consume your plan allocation, and does not count against any limits. Dry-run jobs are available on the Flex, Premium, and On-Prem plans.
