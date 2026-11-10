@@ -18,7 +18,7 @@ python_api_name: qiskit_ibm_runtime.executor_estimator
 
 [`qiskit_ibm_runtime.executor_estimator.Estimator`](/docs/api/qiskit-ibm-runtime/dev/executor-estimator-estimator#qiskit_ibm_runtime.executor_estimator.Estimator "qiskit_ibm_runtime.executor_estimator.Estimator") is an implementation of the Qiskit `EstimatorV2` interface built on top of the `Executor` primitive. It estimates expectation values of quantum observables by executing ISA circuits on an IBM Quantum backend.
 
-The key difference between the legacy server-side [`Estimator`](/docs/api/qiskit-ibm-runtime/dev/estimator#qiskit_ibm_runtime.Estimator "qiskit_ibm_runtime.Estimator") and this new implementation is that **all pre- and post-processing runs on the client machine**. This includes circuit preparation (twirling, gate folding, dynamical decoupling, and noise injection) as well as result post-processing (TREX rescaling, ZNE extrapolation, and PEC quasi-probability weighting). Running these steps locally provides faster debugging feedback and greater user control.
+The key difference between the legacy server-side `Estimator` and this new implementation is that **all pre- and post-processing runs on the client machine**. This includes circuit preparation (twirling, gate folding, dynamical decoupling, and noise injection) as well as result post-processing (TREX rescaling, ZNE extrapolation, and PEC quasi-probability weighting). Running these steps locally provides faster debugging feedback and greater user control.
 
 When a user submits a job through [`run()`](/docs/api/qiskit-ibm-runtime/dev/executor-estimator-estimator#qiskit_ibm_runtime.executor_estimator.Estimator.run "qiskit_ibm_runtime.executor_estimator.Estimator.run"), the underlying processing consists of:
 
@@ -46,7 +46,7 @@ from qiskit import QuantumCircuit
 from qiskit.quantum_info import SparsePauliOp
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 from qiskit_ibm_runtime import QiskitRuntimeService
-from qiskit_ibm_runtime.executor_estimator import Estimator
+from qiskit_ibm_runtime import Estimator
 
 # Select a backend.
 service = QiskitRuntimeService()
@@ -208,7 +208,7 @@ from qiskit_ibm_runtime.options import EstimatorOptions
 **After:**
 
 ```python
-from qiskit_ibm_runtime.executor_estimator import Estimator
+from qiskit_ibm_runtime import Estimator
 from qiskit_ibm_runtime.options_models import EstimatorOptions
 ```
 
@@ -231,7 +231,7 @@ job = estimator.run(pubs)
 **After:**
 
 ```python
-from qiskit_ibm_runtime.executor_estimator import Estimator
+from qiskit_ibm_runtime import Estimator
 from qiskit_ibm_runtime import NoiseLearnerV3
 
 pubs = [...]  # Your PUBs
@@ -277,7 +277,7 @@ job = estimator.run(pubs)
 **After:**
 
 ```python
-from qiskit_ibm_runtime.executor_estimator import Estimator
+from qiskit_ibm_runtime import Estimator
 from qiskit_ibm_runtime import Batch
 
 # Group the PUBs by precision, one group per job.
