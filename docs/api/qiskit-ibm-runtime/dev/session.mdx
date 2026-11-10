@@ -8,7 +8,7 @@ python_api_name: qiskit_ibm_runtime.Session
 
 # Session
 
-<Class id="qiskit_ibm_runtime.Session" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/session.py#L50-L446" signature="Session(backend, max_time=None, *, create_new=True)" modifiers="class">
+<Class id="qiskit_ibm_runtime.Session" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/session.py#L50-L455" signature="Session(backend, max_time=None, *, create_new=True)" modifiers="class">
   Bases: `object`
 
   Class for creating a IBM Quantum Compute (formerly Qiskit Runtime) session.
@@ -118,7 +118,7 @@ python_api_name: qiskit_ibm_runtime.Session
 
   ### details
 
-  <Function id="qiskit_ibm_runtime.Session.details" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/session.py#L280-L330" signature="details()">
+  <Function id="qiskit_ibm_runtime.Session.details" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/session.py#L286-L339" signature="details()">
     Return session details.
 
     **Returns**
@@ -140,6 +140,7 @@ python_api_name: qiskit_ibm_runtime.Session
     *   `mode`: Execution mode of the session.
     *   `usage_time`: The usage time, in seconds, of this Session or Batch. Usage is defined as the time a quantum system is committed to complete a job.
     *   `timestamps`: List of the state transitions of the session. Each entry is a dictionary with the `status` (open, active, inactive, or closed) and the `timestamp` of when the session transitioned into that status. The list is empty if the API response does not include timestamps.
+    *   `usage`: The usage for the session split into billable metrics if there are multiple.
 
     **Return type**
 
@@ -148,7 +149,7 @@ python_api_name: qiskit_ibm_runtime.Session
 
   ### from\_id
 
-  <Function id="qiskit_ibm_runtime.Session.from_id" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/session.py#L350-L433" signature="from_id(session_id, service, use_fractional_gates=False, calibration_id=None)" modifiers="classmethod">
+  <Function id="qiskit_ibm_runtime.Session.from_id" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/session.py#L359-L442" signature="from_id(session_id, service, use_fractional_gates=False, calibration_id=None)" modifiers="classmethod">
     Construct a Session object with a given `session_id`.
 
     For example:
@@ -205,12 +206,16 @@ python_api_name: qiskit_ibm_runtime.Session
 
   ### usage
 
-  <Function id="qiskit_ibm_runtime.Session.usage" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/session.py#L264-L278" signature="usage()">
-    Return session usage in seconds.
+  <Function id="qiskit_ibm_runtime.Session.usage" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/session.py#L264-L284" signature="usage(resource_units=False)">
+    Return session usage in resource units or seconds.
 
     Session usage is the time from when the first job starts until the session goes inactive, is closed, or when its last job completes, whichever happens last.
 
     Batch usage is the amount of time all jobs spend on the QPU.
+
+    **Parameters**
+
+    **resource\_units** (*bool*) – If `True`, return usage in resource units instead of seconds.
 
     **Return type**
 

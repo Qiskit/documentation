@@ -155,7 +155,7 @@ const QISKIT_GLOBS_TO_LOAD = [
   "docs/qiskit/qiskit-sdk-version-strategy.mdx",
   "docs/guides/qiskit-backendv1-to-v2.mdx",
   "docs/qiskit/install-qiskit.mdx",
-  "docs/api/qiskit-ibm-runtime/estimator-v2.mdx",
+  "docs/api/qiskit-ibm-runtime/server-side-estimator-estimator-v2.mdx",
   "docs/api/qiskit-ibm-runtime/runtime-service.mdx",
   // Qiskit sometimes links to the C API, so we load every
   // qiskit-c latest version page to avoid having errors in the future.

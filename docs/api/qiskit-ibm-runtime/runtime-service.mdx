@@ -28,8 +28,8 @@ Below is an example of using primitives within a session:
 
 ```python
 from qiskit_ibm_runtime import QiskitRuntimeService, Session
-from qiskit_ibm_runtime.executor_sampler import Sampler
-from qiskit_ibm_runtime.executor_estimator import Estimator
+from qiskit_ibm_runtime import Sampler
+from qiskit_ibm_runtime import Estimator
 from qiskit.circuit.library import real_amplitudes
 from qiskit.circuit import QuantumCircuit, QuantumRegister, ClassicalRegister
 from qiskit.quantum_info import SparsePauliOp
@@ -86,7 +86,7 @@ from qiskit.quantum_info import SparsePauliOp
 from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 
 from qiskit_ibm_runtime import Session
-from qiskit_ibm_runtime.executor_sampler import Sampler
+from qiskit_ibm_runtime import Sampler
 from qiskit_ibm_runtime.fake_provider import FakeManilaV2
 
 # Bell Circuit
@@ -126,7 +126,7 @@ IBM Quantum Compute is available on IBM Cloud, and you can specify the channel w
 
 ### IBM Quantum Compute Jobs
 
-When you use the `run()` method of the [`Sampler`](/docs/api/qiskit-ibm-runtime/sampler#qiskit_ibm_runtime.Sampler "qiskit_ibm_runtime.Sampler") or [`Estimator`](/docs/api/qiskit-ibm-runtime/estimator#qiskit_ibm_runtime.Estimator "qiskit_ibm_runtime.Estimator") to invoke the primitive, a [`RuntimeJobV2`](/docs/api/qiskit-ibm-runtime/runtime-job-v2#qiskit_ibm_runtime.RuntimeJobV2 "qiskit_ibm_runtime.RuntimeJobV2") instance is returned. This class has all the basic job methods, such as [`RuntimeJobV2.status()`](/docs/api/qiskit-ibm-runtime/runtime-job-v2#qiskit_ibm_runtime.RuntimeJobV2.status "qiskit_ibm_runtime.RuntimeJobV2.status"), [`RuntimeJobV2.result()`](/docs/api/qiskit-ibm-runtime/runtime-job-v2#qiskit_ibm_runtime.RuntimeJobV2.result "qiskit_ibm_runtime.RuntimeJobV2.result"), and [`RuntimeJobV2.cancel()`](/docs/api/qiskit-ibm-runtime/runtime-job-v2#qiskit_ibm_runtime.RuntimeJobV2.cancel "qiskit_ibm_runtime.RuntimeJobV2.cancel").
+When you use the `run()` method of the `Sampler` or `Estimator` to invoke the primitive, a [`RuntimeJobV2`](/docs/api/qiskit-ibm-runtime/runtime-job-v2#qiskit_ibm_runtime.RuntimeJobV2 "qiskit_ibm_runtime.RuntimeJobV2") instance is returned. This class has all the basic job methods, such as [`RuntimeJobV2.status()`](/docs/api/qiskit-ibm-runtime/runtime-job-v2#qiskit_ibm_runtime.RuntimeJobV2.status "qiskit_ibm_runtime.RuntimeJobV2.status"), [`RuntimeJobV2.result()`](/docs/api/qiskit-ibm-runtime/runtime-job-v2#qiskit_ibm_runtime.RuntimeJobV2.result "qiskit_ibm_runtime.RuntimeJobV2.result"), and [`RuntimeJobV2.cancel()`](/docs/api/qiskit-ibm-runtime/runtime-job-v2#qiskit_ibm_runtime.RuntimeJobV2.cancel "qiskit_ibm_runtime.RuntimeJobV2.cancel").
 
 <span id="logging-guide" />
 
@@ -156,11 +156,8 @@ logging.getLogger('qiskit_ibm_runtime').setLevel(logging.WARNING)
 |                                                                                                                                                                 |                                                                                                                                                                                                             |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [`QiskitRuntimeService`](/docs/api/qiskit-ibm-runtime/qiskit-runtime-service#qiskit_ibm_runtime.QiskitRuntimeService "qiskit_ibm_runtime.QiskitRuntimeService") | Class for interacting with the IBM Quantum Compute (formerly Qiskit Runtime) service.                                                                                                                       |
-| [`Estimator`](/docs/api/qiskit-ibm-runtime/estimator#qiskit_ibm_runtime.Estimator "qiskit_ibm_runtime.Estimator")                                               | alias of [`EstimatorV2`](/docs/api/qiskit-ibm-runtime/estimator-v2#qiskit_ibm_runtime.EstimatorV2 "qiskit_ibm_runtime.estimator.EstimatorV2")                                                               |
-| [`EstimatorV2`](/docs/api/qiskit-ibm-runtime/estimator-v2#qiskit_ibm_runtime.EstimatorV2 "qiskit_ibm_runtime.EstimatorV2")                                      | EstimatorV2 primitive for IBM Quantum Compute (formerly Qiskit Runtime).                                                                                                                                    |
-| [`Sampler`](/docs/api/qiskit-ibm-runtime/sampler#qiskit_ibm_runtime.Sampler "qiskit_ibm_runtime.Sampler")                                                       | alias of [`SamplerV2`](/docs/api/qiskit-ibm-runtime/sampler-v2#qiskit_ibm_runtime.SamplerV2 "qiskit_ibm_runtime.sampler.SamplerV2")                                                                         |
-| [`SamplerV2`](/docs/api/qiskit-ibm-runtime/sampler-v2#qiskit_ibm_runtime.SamplerV2 "qiskit_ibm_runtime.SamplerV2")                                              | SamplerV2 primitive for IBM Quantum Compute (formerly Qiskit Runtime).                                                                                                                                      |
 | [`Executor`](/docs/api/qiskit-ibm-runtime/executor#qiskit_ibm_runtime.Executor "qiskit_ibm_runtime.Executor")                                                   | Class for running [`QuantumProgram`](/docs/api/qiskit-ibm-runtime/quantum-program-quantum-program#qiskit_ibm_runtime.quantum_program.QuantumProgram "qiskit_ibm_runtime.quantum_program.QuantumProgram")\s. |
+| [`Calibrator`](/docs/api/qiskit-ibm-runtime/calibrator#qiskit_ibm_runtime.Calibrator "qiskit_ibm_runtime.Calibrator")                                           | Class for calibrating a backend.                                                                                                                                                                            |
 | [`Session`](/docs/api/qiskit-ibm-runtime/session#qiskit_ibm_runtime.Session "qiskit_ibm_runtime.Session")                                                       | Class for creating a IBM Quantum Compute (formerly Qiskit Runtime) session.                                                                                                                                 |
 | [`Batch`](/docs/api/qiskit-ibm-runtime/batch#qiskit_ibm_runtime.Batch "qiskit_ibm_runtime.Batch")                                                               | Class for running jobs in batch execution mode.                                                                                                                                                             |
 | [`IBMBackend`](/docs/api/qiskit-ibm-runtime/ibm-backend#qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.IBMBackend")                                          | Backend class interfacing with an IBM Quantum Compute (formerly Qiskit Runtime) backend.                                                                                                                    |
