@@ -1,22 +1,22 @@
 ---
-title: QiskitFunctionsCatalog
-description: API reference for qiskit_ibm_catalog.QiskitFunctionsCatalog, the client for loading and running Qiskit Functions
+title: FunctionsCatalog
+description: API reference for qiskit_ibm_catalog.FunctionsCatalog, the client for loading and running Quantum Functions
 in_page_toc_min_heading_level: 1
 python_api_type: class
-python_api_name: qiskit_ibm_catalog.QiskitFunctionsCatalog
+python_api_name: qiskit_ibm_catalog.FunctionsCatalog
 ---
 
-# QiskitFunctionsCatalog
+# FunctionsCatalog
 
-<Class id="qiskit_ibm_catalog.QiskitFunctionsCatalog" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-catalog/blob/v0.22.0/qiskit_ibm_catalog/catalog.py" signature="qiskit_ibm_catalog.QiskitFunctionsCatalog(token=None, channel=None, instance=None, name=None)" modifiers="class">
-  Client for loading and running Qiskit Functions from the [Functions Catalog](/docs/guides/functions). `FunctionsCatalog` is an alias.
+<Class id="qiskit_ibm_catalog.FunctionsCatalog" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-catalog/blob/v0.22.0/qiskit_ibm_catalog/catalog.py" signature="qiskit_ibm_catalog.FunctionsCatalog(token=None, channel=None, instance=None, name=None)" modifiers="class">
+  Client for loading and running Quantum Functions from the [Functions Catalog](/docs/guides/functions). `QiskitFunctionsCatalog` is an alias.
 
   Pass credentials to the constructor, or save them once with [`save_account()`](#save_account) and construct the client with no arguments. If `token` is set, `name` is ignored.
 
   ```python
-  from qiskit_ibm_catalog import QiskitFunctionsCatalog
+  from qiskit_ibm_catalog import FunctionsCatalog
 
-  catalog = QiskitFunctionsCatalog(token="<API_KEY>", instance="<CRN>")
+  catalog = FunctionsCatalog(token="<API_KEY>", instance="<CRN>")
   function = catalog.load("qedma/qesem")
   job = function.run(**inputs)
   result = job.result()
@@ -33,12 +33,12 @@ python_api_name: qiskit_ibm_catalog.QiskitFunctionsCatalog
 
   ### save\_account
 
-  <Function id="qiskit_ibm_catalog.QiskitFunctionsCatalog.save_account" signature="save_account(token=None, channel=None, instance=None, name=None, overwrite=False)" modifiers="static">
+  <Function id="qiskit_ibm_catalog.FunctionsCatalog.save_account" signature="save_account(token=None, channel=None, instance=None, name=None, overwrite=False)" modifiers="static">
     Saves the account to disk for future use.
 
     ```python
-    QiskitFunctionsCatalog.save_account(token="<API_KEY>", instance="<CRN>", overwrite=True)
-    catalog = QiskitFunctionsCatalog()
+    FunctionsCatalog.save_account(token="<API_KEY>", instance="<CRN>", overwrite=True)
+    catalog = FunctionsCatalog()
     ```
 
     **Parameters**
@@ -54,7 +54,7 @@ python_api_name: qiskit_ibm_catalog.QiskitFunctionsCatalog
 
   ### list
 
-  <Function id="qiskit_ibm_catalog.QiskitFunctionsCatalog.list" signature="list(*, limit=None, offset=None, **kwargs)">
+  <Function id="qiskit_ibm_catalog.FunctionsCatalog.list" signature="list(*, limit=None, offset=None, **kwargs)">
     Lists the functions available to you in the catalog.
 
     ```python
@@ -83,7 +83,7 @@ python_api_name: qiskit_ibm_catalog.QiskitFunctionsCatalog
 
   ### load
 
-  <Function id="qiskit_ibm_catalog.QiskitFunctionsCatalog.load" signature="load(title, provider=None)">
+  <Function id="qiskit_ibm_catalog.FunctionsCatalog.load" signature="load(title, provider=None)">
     Loads a function by title.
 
     ```python
@@ -111,8 +111,8 @@ python_api_name: qiskit_ibm_catalog.QiskitFunctionsCatalog
 
   ### jobs
 
-  <Function id="qiskit_ibm_catalog.QiskitFunctionsCatalog.jobs" signature="jobs(function=None, *, limit=10, offset=0, status=None, created_after=None, **kwargs)">
-    Lists your Qiskit Functions jobs.
+  <Function id="qiskit_ibm_catalog.FunctionsCatalog.jobs" signature="jobs(function=None, *, limit=10, offset=0, status=None, created_after=None, **kwargs)">
+    Lists your Quantum Functions jobs.
 
     ```python
     catalog.jobs(
@@ -145,7 +145,7 @@ python_api_name: qiskit_ibm_catalog.QiskitFunctionsCatalog
 
   ### job
 
-  <Function id="qiskit_ibm_catalog.QiskitFunctionsCatalog.job" signature="job(job_id)">
+  <Function id="qiskit_ibm_catalog.FunctionsCatalog.job" signature="job(job_id)">
     Returns a job by ID. Replaces the deprecated `get_job_by_id()`.
 
     ```python
@@ -170,7 +170,7 @@ python_api_name: qiskit_ibm_catalog.QiskitFunctionsCatalog
 
   ### events
 
-  <Function id="qiskit_ibm_catalog.QiskitFunctionsCatalog.events" signature="events(job_id, **kwargs)">
+  <Function id="qiskit_ibm_catalog.FunctionsCatalog.events" signature="events(job_id, **kwargs)">
     Returns the events of a job.
 
     ```python
@@ -199,7 +199,7 @@ python_api_name: qiskit_ibm_catalog.QiskitFunctionsCatalog
 
   ### runtime\_jobs
 
-  <Function id="qiskit_ibm_catalog.QiskitFunctionsCatalog.runtime_jobs" signature="runtime_jobs(job_id, runtime_session=None)">
+  <Function id="qiskit_ibm_catalog.FunctionsCatalog.runtime_jobs" signature="runtime_jobs(job_id, runtime_session=None)">
     Returns the Quantum Compute job IDs created by a function job.
 
     ```python
@@ -224,7 +224,7 @@ python_api_name: qiskit_ibm_catalog.QiskitFunctionsCatalog
 
   ### runtime\_sessions
 
-  <Function id="qiskit_ibm_catalog.QiskitFunctionsCatalog.runtime_sessions" signature="runtime_sessions(job_id)">
+  <Function id="qiskit_ibm_catalog.FunctionsCatalog.runtime_sessions" signature="runtime_sessions(job_id)">
     Returns the Quantum Compute session IDs created by a function job.
 
     ```python
@@ -248,7 +248,7 @@ python_api_name: qiskit_ibm_catalog.QiskitFunctionsCatalog
 
   ### files
 
-  <Function id="qiskit_ibm_catalog.QiskitFunctionsCatalog.files" signature="files(function)">
+  <Function id="qiskit_ibm_catalog.FunctionsCatalog.files" signature="files(function)">
     Lists the files in your folder for a function.
 
     ```python
@@ -272,7 +272,7 @@ python_api_name: qiskit_ibm_catalog.QiskitFunctionsCatalog
 
   ### file\_upload
 
-  <Function id="qiskit_ibm_catalog.QiskitFunctionsCatalog.file_upload" signature="file_upload(file, function)">
+  <Function id="qiskit_ibm_catalog.FunctionsCatalog.file_upload" signature="file_upload(file, function)">
     Uploads a local file to your folder for a function.
 
     ```python
@@ -288,7 +288,7 @@ python_api_name: qiskit_ibm_catalog.QiskitFunctionsCatalog
 
   ### file\_download
 
-  <Function id="qiskit_ibm_catalog.QiskitFunctionsCatalog.file_download" signature="file_download(file, function, target_name=None, download_location='./')">
+  <Function id="qiskit_ibm_catalog.FunctionsCatalog.file_download" signature="file_download(file, function, target_name=None, download_location='./')">
     Downloads a file from your folder for a function.
 
     ```python
@@ -305,7 +305,7 @@ python_api_name: qiskit_ibm_catalog.QiskitFunctionsCatalog
 
   ### file\_delete
 
-  <Function id="qiskit_ibm_catalog.QiskitFunctionsCatalog.file_delete" signature="file_delete(file, function)">
+  <Function id="qiskit_ibm_catalog.FunctionsCatalog.file_delete" signature="file_delete(file, function)">
     Deletes a file from your folder for a function.
 
     ```python
@@ -322,7 +322,7 @@ python_api_name: qiskit_ibm_catalog.QiskitFunctionsCatalog
 
   ### backends
 
-  <Function id="qiskit_ibm_catalog.QiskitFunctionsCatalog.backends" signature="backends(**kwargs)">
+  <Function id="qiskit_ibm_catalog.FunctionsCatalog.backends" signature="backends(**kwargs)">
     Returns the backends your instance can access.
 
     ```python
@@ -346,7 +346,7 @@ python_api_name: qiskit_ibm_catalog.QiskitFunctionsCatalog
 
   ### backend
 
-  <Function id="qiskit_ibm_catalog.QiskitFunctionsCatalog.backend" signature="backend(name, **kwargs)">
+  <Function id="qiskit_ibm_catalog.FunctionsCatalog.backend" signature="backend(name, **kwargs)">
     Returns a single backend by name.
 
     ```python
@@ -372,7 +372,7 @@ python_api_name: qiskit_ibm_catalog.QiskitFunctionsCatalog
 
   ### least\_busy
 
-  <Function id="qiskit_ibm_catalog.QiskitFunctionsCatalog.least_busy" signature="least_busy(**kwargs)">
+  <Function id="qiskit_ibm_catalog.FunctionsCatalog.least_busy" signature="least_busy(**kwargs)">
     Returns the backend with the fewest pending jobs.
 
     ```python
@@ -397,7 +397,7 @@ python_api_name: qiskit_ibm_catalog.QiskitFunctionsCatalog
 
   ### usage
 
-  <Function id="qiskit_ibm_catalog.QiskitFunctionsCatalog.usage" signature="usage()">
+  <Function id="qiskit_ibm_catalog.FunctionsCatalog.usage" signature="usage()">
     Returns Quantum Compute usage for the active instance in the current usage period. Fields that don't apply to your plan, such as limits, can be missing. `usage_remaining_seconds` is the limit, or the allocation if there's no limit, minus the time consumed. See the [instance usage endpoint](/docs/api/qiskit-runtime-rest/tags/instances#tags__instances__operations__get_usage) for every field.
 
     ```python

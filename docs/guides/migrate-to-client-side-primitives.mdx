@@ -279,12 +279,12 @@ If your code used `job.inputs['options']` to find options specified for the job,
 ## Test locally with a fake backend
 
 Before submitting to hardware, you can validate the migrated code against a `Fake*`
-backend to catch any syntax errors early. Note the following details about local testing mode:
+backend to catch any syntax errors early. Note the following details about local mode:
 
 - **It does not reproduce hardware results.** Local noisy simulation does not perfectly
   replicate real device noise, and therefore the outputs might differ. Running does validate
   that the option paths and value types are correct.
-- `NoiseLearnerV3` has **no local testing mode**: its `mode` accepts only a real `Backend`,
+- `NoiseLearnerV3` has **no local mode**: its `mode` accepts only a real `Backend`,
 `Session`, or `Batch`, so you cannot exercise the noise-learning step against a fake
 backend. Verify that part of your code against the
 [`NoiseLearnerV3` API reference](/docs/api/qiskit-ibm-runtime/noise-learner-v3-noise-learner-v3) instead. Confirm that the constructor,
@@ -295,7 +295,7 @@ used as documented.
 
 A fake backend uses a statevector (noisy) simulator, whose cost grows exponentially with
 qubit count and depth. Thus, a realistic workload circuit can hang or exhaust memory. Since
-local testing only needs to exercise the option paths (not reproduce physical results),
+local mode only needs to exercise the option paths (not reproduce physical results),
 reduce the circuit to a Clifford one first with
 [`ConvertISAToClifford`](/docs/api/qiskit-ibm-runtime/transpiler-passes-convert-isa-to-clifford),
 which rounds each `RZ`/`RZZ`/`RX` angle to the nearest multiple of π/2. Clifford circuits

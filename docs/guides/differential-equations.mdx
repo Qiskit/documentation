@@ -1,0 +1,29 @@
+---
+title: Partial differential equations
+description: Overview of of application research tools for solving differential equations.
+---
+
+# Partial differential equations
+
+This active area of research explores how quantum algorithms can help solve partial differential equations that describe physical systems and processes, such as fluid dynamics, heat transfer, electromagnetic fields, and quantum mechanical systems. Approaches include quantum algorithms for linear systems of equations, which can be applied to certain discretized differential equations, as well as quantum methods for differential equations that directly exploit quantum circuits or quantum state representations. These techniques can offer computational advantages for specific large-scale problems, particularly when the solution can be efficiently encoded in and extracted from a quantum state. However, their practical benefits depend on factors such as problem structure, data encoding, hardware requirements, and the cost of retrieving the solution.
+
+A common workflow encodes a trial solution as a parameterized quantum circuit, then classically optimizes the circuit parameters so that the resulting quantum state approximates the true solution of the differential equation across a set of sample points. This variational approach can accommodate boundary and initial conditions, and can be combined with multiple classical optimizers in sequence to improve convergence. The application function on this page automates this workflow for specific domains, so that you can supply physical parameters and boundary conditions directly, without implementing the underlying encoding and optimization loop yourself.
+
+<span id="application-functions"></span>
+## Application functions for partial differential equations
+
+<Admonition type="note" title="Notes">
+IBM Quantum Functions are a beta feature available only to IBM Quantum&reg; Premium Plan, Flex Plan, and On-Prem (through the IBM Quantum Platform API) Plan users. Refer to [Set up IBM Quantum Functions](https://quantum.cloud.ibm.com/functions) for instructions on getting access.
+</Admonition>
+
+<CardGroup>
+
+    <Card
+      title="QUICK-PDE by ColibriTD"
+      description="Solve domain-specific partial differential equations, such as computational fluid dynamics and materials deformation problems, using a variational quantum circuit."
+      href="/docs/functions/colibritd-pde"
+      analyticsName="Documentation page: QUICK-PDE by ColibriTD"
+      linkText="Browse documentation"
+    />
+
+</CardGroup>
