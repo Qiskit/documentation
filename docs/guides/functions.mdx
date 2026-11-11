@@ -31,7 +31,7 @@ Functions are provided by IBM&reg; and third-party partners. Each is performant 
 <span id="circuit"></span>
 ### Circuit functions
 
-| Name | Provider | Recommended use | Unique benefits | Per execution, in RUs |
+| Name | Provider | Recommended use | Unique benefits | Cost per execution (RUs) |
 |---|---|---|---|---|
 | Tensor-Network Error Mitigation<br/><br/>[Guide](/docs/functions/algorithmiq-tem)<br/>[API reference](/docs/functions/algorithmiq-tem/api-reference)<br/>[License](https://ibm.box.com/s/cbvfdhv3i0vnwv4sxkdpp3pcvip27atd)<br/>[EULA](https://github.com/Qiskit/documentation/blob/main/docs/functions/eula/algorithmiq-tem-eula.pdf)      | Algorithmiq  | Workloads that have low-weight observables and loop-free circuits. | Reduces measurement overhead and variance, outperforming standard error mitigation baselines such as Zero Noise Extrapolation (ZNE) and Probabilistic Error Cancellation (PEC) for relevant circuit classes. | N/A |
 | QESEM: Error Suppression and Error Mitigation<br/><br/>[Guide](/docs/functions/qedma-qesem)<br/>[API reference](/docs/functions/qedma-qesem/api-reference)    | Qedma        | Workloads that  include circuits with fractional or parameterized gates, high-weight observables,  and workflows that require unbiased expectation values and accurate runtime estimates. | Produces unbiased expectation values with lower variance and resource overhead, outperforming ZNE and PEC for relevant circuit classes. | N/A |
@@ -42,7 +42,7 @@ Functions are provided by IBM&reg; and third-party partners. Each is performant 
 <span id="application"></span>
 ### Application functions
 
-| Name | Provider | Recommended use | Unique benefits | Per execution, in RUs |
+| Name | Provider | Recommended use | Unique benefits | Cost per execution (RUs) |
 |---|---|---|---|---|
 | QUICK-PDE<br/><br/>[Guide](/docs/functions/colibritd-pde)<br/>[API reference](/docs/functions/colibritd-pde/api-reference)<br/>[License](https://ibm.box.com/s/eylihre0nf2lskzteyabd7y7v7cu5bb3)<br/>[EULA](https://github.com/Qiskit/documentation/blob/main/docs/functions/eula/colibritd-quick-pde-eula.pdf) | ColibriTD            | Use quantum computation for multi-physics PDEs.<br/><br/>Prepare simulation workflows for quantum hardware, while keeping full control over both quantum and physical modeling parameters.                     | Offers a robust hybrid VQA framework that delivers precise, scalable PDE solutions through advanced solution encoding and spectral methods, making it an ideal entry point for teams trying to build quantum-ready simulation capabilities. | S: 1<br/> M: 5<br/>L: 10 |
 | Quantum Portfolio Optimizer <br/><br/>[Guide](/docs/functions/global-data-quantum-optimizer)<br/>[API reference](/docs/functions/global-data-quantum-optimizer/api-reference)<br/>[License](https://ibm.box.com/s/t9tj2t8ey8hh1iep3jr88yzlqbqdvq78)<br/>[EULA](https://github.com/Qiskit/documentation/blob/main/docs/functions/eula/global-data-quantum-quantum-portfolio-optimizer-eula.pdf)  | Global Data Quantum  | Workloads for financial optimization, seeking optimal portfolio strategies over time while minimizing risk and maximizing returns, enabling trading strategy back-testing.                                   | Solves combinatorial optimization problems through a highly specialized adaptation of the VQE quantum algorithm for this financial use case, using optimized execution strategies and optimizers, along with noise-aware error mitigation techniques tailored to portfolio optimization. | N/A |
