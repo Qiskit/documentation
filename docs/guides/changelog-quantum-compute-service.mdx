@@ -14,6 +14,26 @@ Find the latest package release summaries and platform updates from IBM Quantum&
 <span id="platform-nov26"></span>
 ## November 2026
 
+- **Specially calibrated instructions for advanced experiments** &mdash; IBM Quantum Compute Service now offers a set of specially calibrated instructions for IBM QPUs. They support advanced workflows like those in recent quantum advantage demonstrations and quantum error correction. You can use them to build your own advanced research experiments. 
+
+    Specially calibrated instructions come in two forms, and you access them differently:
+
+        - **New instructions** that are calibrated alongside the standard instruction set, so you add them to your circuits like any other instruction:
+  
+            - `measure_2` and `reset_2` provide shorter measurement and reset for mid-circuit use.
+
+            - `measure_reset` and `measure_reset_2` measure and reset a qubit in a single operation.
+
+            - `xslow` is a bit-flip gate with an extended duration, used for postselection and error mitigation.
+
+        - **Alternative calibrations** replace parts of the default calibration with differently tuned parameters. Select one by passing a `calibration_id` when you retrieve the backend:
+  
+            - The `slow_gates*` calibrations tune the `cz` gate to be slower, which can improve results for large-scale observable estimation workflows with error mitigation.
+
+            - The experimental `qec_experimental` calibration enables the `for_loop` instruction that can be used to perform tens of thousands rounds of stabilizer measurements on quantum error correcting code. 
+
+    These specially calibrated instructions might not be available on all QPUs, so check which instructions the backend supports before using them. See [Specially calibrated instructions](https://quantum.cloud.ibm.com/docs/guides/custom-calibration) to get started.
+
 - **Introducing `ibm_chicago`** &mdash; Premium, Flex, and Pay-As-You-Go Plans now have access to [`ibm_chicago`](https://quantum.cloud.ibm.com/computers?system=ibm_chicago), expanding Nighthawk r2 capacity for your most demanding workloads. Like `ibm_phoenix`, it is a high-connectivity, square-lattice 120-programmable-qubit QPU that delivers up to 25x higher throughput and 25x lower initialization error than Heron, while matching its gate fidelity.
 
 - **Jobs with QPY versions older than 13 are no longer supported** &mdash; For security reasons, IBM Quantum Compute Service no longer supports circuits serialized with QPY versions older than 13. Jobs that include them are rejected, for example with [error 1502](/docs/errors#1502).
