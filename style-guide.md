@@ -50,6 +50,14 @@ IBM Quantum content follows IBM style guidelines, which include rules for ensuri
 - Remove "here," "now," and similar pointing words when the sentence is complete without them ("so nothing here is specific to a chain" becomes "so nothing is specific to a chain"). Keep the word when it is the grammatical subject ("Here is the result") or when a contrast needs it ("They agree here, but differ away from it").
 - Do not start a sentence with "And," "But," "So," or "Or." Join the sentence to the previous one, or use a transition such as "however," "therefore," or "also."
 
+## Product names
+
+- Qiskit Runtime, the service, is now IBM Quantum Compute Service. On first use in a file, write "IBM Quantum Compute Service" (or "IBM Quantum Compute"). For later uses, write "Quantum Compute". When "Service" is part of the name, capitalize it.
+  - Rename only the service. Do not change package or class names such as `qiskit-ibm-runtime` and `QiskitRuntimeService`, version strings, or URLs.
+- On first use in a file, write "IBM Quantum Functions". For later uses, you do not need the full name if the context is clear.
+- Do not capitalize "function" or "quantum function". The only exceptions are the names "IBM Quantum Functions" and "IBM Quantum Functions Catalog". For example, write "load the quantum function" and "the function job ID", not "load the Quantum Function" or "the Function job ID".
+- Replace `QiskitFunctionsCatalog` with `FunctionsCatalog`, in both code and prose. The only exception is content that explains the change to the shorter name.
+
 ## Translation and accessibility concerns
 
 - "and/or" is very hard to translate, so do not use
