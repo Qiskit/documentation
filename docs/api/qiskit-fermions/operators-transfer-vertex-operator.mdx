@@ -283,9 +283,11 @@ $$
 
   Finally, various methods exist to check certain properties of an operator:
 
-  |                                                                                                                                                           |                                             |
-  | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
-  | [`is_hermitian`](#qiskit_fermions.operators.TransferVertexOperator.is_hermitian "qiskit_fermions.operators.TransferVertexOperator.is_hermitian")(\[atol]) | Returns whether this operator is Hermitian. |
+  |                                                                                                                                                           |                                                                   |
+  | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+  | [`is_hermitian`](#qiskit_fermions.operators.TransferVertexOperator.is_hermitian "qiskit_fermions.operators.TransferVertexOperator.is_hermitian")(\[atol]) | Returns whether this operator is Hermitian.                       |
+  | [`get_support`](#qiskit_fermions.operators.TransferVertexOperator.get_support "qiskit_fermions.operators.TransferVertexOperator.get_support")()           | Returns the set of mode indices which this operator acts upon.    |
+  | [`min_num_modes`](#qiskit_fermions.operators.TransferVertexOperator.min_num_modes "qiskit_fermions.operators.TransferVertexOperator.min_num_modes")()     | Returns the smallest number of modes that can host this operator. |
 
   <span id="id2" />
 
@@ -300,7 +302,7 @@ $$
   <Attribute id="qiskit_fermions.operators.TransferVertexOperator.groups">
     An optional vector of group indices for each term.
 
-    For more information refer to the `grouping` module.
+    For more information refer to the [Group operator terms: use the operator structure](/docs/addons/qiskit-fermions/guides/grouping#grouping-explanation) guide.
   </Attribute>
 
   ## Methods
@@ -678,6 +680,32 @@ $$
     ```
   </Function>
 
+  ##### min\_num\_modes
+
+  <Function id="qiskit_fermions.operators.TransferVertexOperator.min_num_modes" signature="min_num_modes()">
+    Returns the smallest number of modes that can host this operator.
+
+    This is one more than the largest mode index which the operator acts upon, which is what determines, for example, the number of qubits a mapping requires. Note that this is not the number of distinct modes: see [`get_support()`](#qiskit_fermions.operators.TransferVertexOperator.get_support "qiskit_fermions.operators.TransferVertexOperator.get_support") for that.
+
+    ```pycon
+    >>> from qiskit_fermions.operators import TransferVertexOperator
+    >>> op = TransferVertexOperator.from_dict(
+    ...     {
+    ...         ((0, 1), (3, 4)): 1,
+    ...         ((7, 7),): 1,
+    ...     }
+    ... )
+    >>> op.min_num_modes()
+    8
+    >>> TransferVertexOperator.zero().min_num_modes()
+    0
+    ```
+
+    **Returns**
+
+    The smallest number of modes, or `0` if the operator acts on no mode.
+  </Function>
+
   ##### normal\_ordered
 
   <Function id="qiskit_fermions.operators.TransferVertexOperator.normal_ordered" signature="normal_ordered(reduce=True)">
@@ -690,7 +718,7 @@ $$
     </Admonition>
 
     <Admonition title="Note" type="note">
-      Fewer contractions are available here than for [`EdgeVertexOperator`](operators-edge-vertex-operator "qiskit_fermions.operators.EdgeVertexOperator"). Two edge operators sharing a single mode *fuse* into one, but the analogous transfer product does not: writing $T_{jk} = \frac{i}{2} \gamma_{2j} \gamma_{2k-1}$, cancelling the shared Majorana always leaves an (even, odd) pair drawn from two different modes, which is not a single generator. Only `V(j) V(j)`, `T(j,k) T(j,k)` and `T(j,k) T(k,j)` contract.
+      Fewer contractions are available here than for [`EdgeVertexOperator`](operators-edge-vertex-operator "qiskit_fermions.operators.EdgeVertexOperator"). Two edge operators sharing a single mode *fuse* into one, but the analogous transfer product does not: writing $T_{jk} = \frac{i}{2} \gamma_{2j} \gamma_{2k-1}$, canceling the shared Majorana always leaves an (even, odd) pair drawn from two different modes, which is not a single generator. Only `V(j) V(j)`, `T(j,k) T(j,k)` and `T(j,k) T(k,j)` contract.
     </Admonition>
 
     ```pycon
@@ -866,7 +894,7 @@ $$
     ```
   </Function>
 
-  **Protocol Methods**
+  ## Protocol Methods
 
   ##### \_anti\_commutator\_
 

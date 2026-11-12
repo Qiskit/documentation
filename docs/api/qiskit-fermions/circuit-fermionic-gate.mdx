@@ -8,12 +8,16 @@ python_api_name: qiskit_fermions.circuit.FermionicGate
 
 # FermionicGate
 
-<Class id="qiskit_fermions.circuit.FermionicGate" isDedicatedPage={true} signature="FermionicGate(name, num_modes, /, params=None, *, label=None)" modifiers="class">
-  Bases: [`Gate`](/docs/api/qiskit/qiskit.circuit.Gate)
+<Class id="qiskit_fermions.circuit.FermionicGate" isDedicatedPage={true} signature="FermionicGate(name, num_modes, /, params=None, *, label=None, synthesis=None, atomic=False)" modifiers="class">
+  Bases: [`FermionicInstruction`](circuit-fermionic-instruction "qiskit_fermions.circuit.fermionic_instruction.FermionicInstruction"), [`Gate`](/docs/api/qiskit/qiskit.circuit.Gate)
 
   The base class for all fermionic gates.
 
-  To ensure consistency only subclasses of this gate class can be added to instances of [`FermionicCircuit`](circuit-fermionic-circuit "qiskit_fermions.circuit.FermionicCircuit"). As such, this class (mostly) serves as a type (for the time being).
+  This is the unitary fermionic instruction: it adds the [`Gate`](/docs/api/qiskit/qiskit.circuit.Gate) interface on top of [`FermionicInstruction`](circuit-fermionic-instruction "qiskit_fermions.circuit.FermionicInstruction"), from which it inherits [`num_modes`](#qiskit_fermions.circuit.FermionicGate.num_modes "qiskit_fermions.circuit.FermionicGate.num_modes"). Almost every fermionic operation belongs here; subclass [`FermionicInstruction`](circuit-fermionic-instruction "qiskit_fermions.circuit.FermionicInstruction") directly only for one that cannot be a gate, such as a measurement. As such, this class (mostly) serves as a type (for the time being).
+
+  **Breaking a gate down in fermionic space**
+
+  Every fermionic gate has a [`synthesis`](#qiskit_fermions.circuit.FermionicGate.synthesis "qiskit_fermions.circuit.FermionicGate.synthesis") and an [`atomic`](#qiskit_fermions.circuit.FermionicGate.atomic "qiskit_fermions.circuit.FermionicGate.atomic") flag, which the fermion-to-fermion synthesis framework relies on (see [`synthesis`](/docs/api/qiskit-fermions/circuit-library-synthesis#module-qiskit_fermions.circuit.library.synthesis "qiskit_fermions.circuit.library.synthesis")). The [`synthesis`](#qiskit_fermions.circuit.FermionicGate.synthesis "qiskit_fermions.circuit.FermionicGate.synthesis") is the method that rewrites the gate into a circuit of smaller fermionic gates, and it is `None` for a gate that does not break down. A gate that is [`atomic`](#qiskit_fermions.circuit.FermionicGate.atomic "qiskit_fermions.circuit.FermionicGate.atomic") is never broken down, however it is asked to. Both are chosen when the gate is built and are read-only afterwards.
 
   <Admonition title="Caution" type="note">
     Since this is a subclass of [`Gate`](/docs/api/qiskit/qiskit.circuit.Gate) the documentation of its methods may refer to qubits. Those references should be interpreted as referring to fermions in the context of instances of this subclass.
@@ -23,21 +27,47 @@ python_api_name: qiskit_fermions.circuit.FermionicGate
 
   **Parameters**
 
-  *   **name** ([*str*](https://docs.python.org/3/builtins/stdtypes.html#str)) – The name of the gate.
-  *   **num\_qubits** – The number of qubits the gate acts on.
-  *   **params** ([*list*](https://docs.python.org/3/builtins/stdtypes.html#list) *| None*) – A list of parameters.
-  *   **label** ([*str*](https://docs.python.org/3/builtins/stdtypes.html#str) *| None*) – An optional label for the gate.
+  *   **name** ([*str*](https://docs.python.org/3/builtins/stdtypes.html#str)) – instruction name
+  *   **num\_qubits** ([*int*](https://docs.python.org/3/builtins/functions.html#int)) – instruction’s qubit width
+  *   **num\_clbits** ([*int*](https://docs.python.org/3/builtins/functions.html#int)) – instruction’s clbit width
+  *   **params** ([*list*](https://docs.python.org/3/builtins/stdtypes.html#list)*\[*[*int*](https://docs.python.org/3/builtins/functions.html#int)*|*[*float*](https://docs.python.org/3/builtins/functions.html#float)*|*[*complex*](https://docs.python.org/3/builtins/functions.html#complex)*|*[*str*](https://docs.python.org/3/builtins/stdtypes.html#str)*|ndarray|*[*list*](https://docs.python.org/3/builtins/stdtypes.html#list)*|ParameterExpression]*) – list of parameters
+  *   **label** ([*str*](https://docs.python.org/3/builtins/stdtypes.html#str) *or None*) – An optional label for identifying the instruction.
   *   **num\_modes** ([*int*](https://docs.python.org/3/builtins/functions.html#int))
+  *   **synthesis** ([*F2FSynthesisPlugin*](circuit-library-synthesis-f-2-f-synthesis-plugin "qiskit_fermions.circuit.library.synthesis.F2FSynthesisPlugin") *| None*)
+  *   **atomic** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool))
+
+  **Raises**
+
+  *   **CircuitError** – when the register is not in the correct format.
+  *   [**TypeError**](https://docs.python.org/3/builtins/exceptions.html#TypeError) – when the optional label is provided, but it is not a string.
 
   ## Attributes
 
-  ### num\_modes
+  ### atomic
 
-  <Attribute id="qiskit_fermions.circuit.FermionicGate.num_modes">
-    The number of fermionic modes that this gate acts upon.
+  <Attribute id="qiskit_fermions.circuit.FermionicGate.atomic">
+    Whether this gate is a factor that must not be broken down any further.
+
+    A synthesis marks the factors it emits as atomic, because they are the result of the split it chose to perform: breaking them down again would discard that choice. A gate that is atomic for the stronger reason that there is nothing left to split is marked the same way.
+
+    An atomic gate has no definition at all, so [`decompose()`](circuit-fermionic-circuit#decompose "qiskit_fermions.circuit.FermionicCircuit.decompose") leaves it in place rather than expanding it, and the [`F2FSynthesis`](transpiler-passes-f-2-f-synthesis "qiskit_fermions.transpiler.passes.F2FSynthesis") pass leaves it alone. It still maps and synthesizes normally at the fermion-to-qubit level, which is where a factor is turned into actual operations.
+
+    This is read-only, for the same reason as [`synthesis`](#qiskit_fermions.circuit.FermionicGate.synthesis "qiskit_fermions.circuit.FermionicGate.synthesis").
   </Attribute>
 
-  **Inherited Attributes**
+  ### synthesis
+
+  <Attribute id="qiskit_fermions.circuit.FermionicGate.synthesis">
+    The fermion-to-fermion synthesis method with which this gate is broken down, if any.
+
+    This is the customizable part of breaking a gate down: any object implementing the [`F2FSynthesisPlugin`](circuit-library-synthesis-f-2-f-synthesis-plugin "qiskit_fermions.circuit.library.synthesis.F2FSynthesisPlugin") protocol can be given, and the [`F2FSynthesis`](transpiler-passes-f-2-f-synthesis "qiskit_fermions.transpiler.passes.F2FSynthesis") transpiler pass selects one per gate type for a whole circuit. `None` marks a gate that does not break down in fermionic space.
+
+    What the circuit that the method produces is equivalent to is specified by the gate, and documented there. Where the gate’s decomposition is that circuit, [`decompose()`](circuit-fermionic-circuit#decompose "qiskit_fermions.circuit.FermionicCircuit.decompose") yields it; a gate may deviate from this and document so.
+
+    This is read-only: the circuit that [`decompose()`](circuit-fermionic-circuit#decompose "qiskit_fermions.circuit.FermionicCircuit.decompose") yields is built once and then cached, so a synthesis method assigned after the fact could not take effect. Pass it to the constructor instead, or use [`with_synthesis()`](#qiskit_fermions.circuit.FermionicGate.with_synthesis "qiskit_fermions.circuit.FermionicGate.with_synthesis").
+  </Attribute>
+
+  ## Inherited Attributes
 
   ### base\_class
 
@@ -98,6 +128,12 @@ python_api_name: qiskit_fermions.circuit.FermionicGate
     Return the number of clbits.
   </Attribute>
 
+  ### num\_modes
+
+  <Attribute id="qiskit_fermions.circuit.FermionicGate.num_modes">
+    The number of fermionic modes that this instruction acts upon.
+  </Attribute>
+
   ### num\_qubits
 
   <Attribute id="qiskit_fermions.circuit.FermionicGate.num_qubits">
@@ -110,7 +146,29 @@ python_api_name: qiskit_fermions.circuit.FermionicGate
     The parameters of this `Instruction`. Ideally these will be gate angles.
   </Attribute>
 
-  **Protocol Methods**
+  ## Methods
+
+  ### with\_synthesis
+
+  <Function id="qiskit_fermions.circuit.FermionicGate.with_synthesis" signature="with_synthesis(synthesis)">
+    Returns a copy of this gate that is broken down with another synthesis method.
+
+    The gate itself is left as it is, because a gate instance can be shared between circuits.
+
+    **Parameters**
+
+    **synthesis** ([*F2FSynthesisPlugin*](circuit-library-synthesis-f-2-f-synthesis-plugin "qiskit_fermions.circuit.library.synthesis.F2FSynthesisPlugin") *| None*) – the fermion-to-fermion synthesis method of the copy.
+
+    **Returns**
+
+    A shallow copy of this gate whose [`synthesis`](#qiskit_fermions.circuit.FermionicGate.synthesis "qiskit_fermions.circuit.FermionicGate.synthesis") is `synthesis`.
+
+    **Return type**
+
+    Self
+  </Function>
+
+  ## Protocol Methods
 
   ### \_apply\_unitary\_
 
@@ -135,7 +193,7 @@ python_api_name: qiskit_fermions.circuit.FermionicGate
     np.ndarray
   </Function>
 
-  **Inherited Methods**
+  ## Inherited Methods
 
   ### add\_decomposition
 

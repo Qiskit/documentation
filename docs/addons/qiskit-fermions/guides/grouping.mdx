@@ -49,53 +49,55 @@ The simplest way to define an operator grouping is by setting the target operato
 
 This is a simple two-by-three lattice of Majorana modes connected by directed edges. Each edge represents a term in the operator acting on the two connected modes. The goal is to group these terms according to their edge labels (shown on the graph). Terms connected by edges with the same label are placed in the same group. The following code shows how that can be done:
 
-\[x] PYTHON
+<Tabs group="code">
+  <TabItem value="python" label="PYTHON">
+    ```python
+    >>> from qiskit_fermions.operators import MajoranaOperator
+    >>>
+    >>> # Construct operator directly using sparse arrays
+    >>> # 7 terms, each with coefficient 1.0, modes from edge endpoints
+    >>> op = MajoranaOperator(
+    ...     coeffs=[1.0] * 7,
+    ...     modes=[node for edge in edges for node in edge],
+    ...     boundaries=[0, 2, 4, 6, 8, 10, 12, 14],
+    ... )
+    >>>
+    >>> # Assign group indices to terms (groups is part of the sparse data structure)
+    >>> op.groups = groups
+    >>>
+    >>> # Partition operator by groups
+    >>> grouped_ops = op.split_out_groups()
+    >>>
+    >>> # Inspect each group
+    >>> for i, g in enumerate(grouped_ops):
+    ...     print(f"Group {i}: {list(sorted(g.iter_terms()))}")
+    Group 0: [([0, 1], (1+0j)), ([1, 2], (1+0j))]
+    Group 1: [([3, 0], (1+0j)), ([5, 2], (1+0j))]
+    Group 2: [([1, 4], (1+0j))]
+    Group 3: [([4, 3], (1+0j)), ([5, 4], (1+0j))]
+    ```
+  </TabItem>
 
-```python
->>> from qiskit_fermions.operators import MajoranaOperator
->>>
->>> # Construct operator directly using sparse arrays
->>> # 7 terms, each with coefficient 1.0, modes from edge endpoints
->>> op = MajoranaOperator(
-...     coeffs=[1.0] * 7,
-...     modes=[node for edge in edges for node in edge],
-...     boundaries=[0, 2, 4, 6, 8, 10, 12, 14],
-... )
->>>
->>> # Assign group indices to terms (groups is part of the sparse data structure)
->>> op.groups = groups
->>>
->>> # Partition operator by groups
->>> grouped_ops = op.split_out_groups()
->>>
->>> # Inspect each group
->>> for i, g in enumerate(grouped_ops):
-...     print(f"Group {i}: {list(sorted(g.iter_terms()))}")
-Group 0: [([0, 1], (1+0j)), ([1, 2], (1+0j))]
-Group 1: [([3, 0], (1+0j)), ([5, 2], (1+0j))]
-Group 2: [([1, 4], (1+0j))]
-Group 3: [([4, 3], (1+0j)), ([5, 4], (1+0j))]
-```
+  <TabItem value="c" label="C">
+    ```c
+    #include <qiskit_fermions.h>
 
-\[ ] C
+    uint64_t num_terms = 7;
+    uint64_t num_modes = 14;
+    uint32_t modes[14] = {0, 1, 1, 2, 3, 0, 1, 4, 5, 2, 5, 4, 4, 3};
+    QkComplex64 coeffs[7] = {{1.0, 0.0}, {1.0, 0.0}, {1.0, 0.0}, {1.0, 0.0},
+                             {1.0, 0.0}, {1.0, 0.0}, {1.0, 0.0}};
+    uint32_t boundaries[8] = {0, 2, 4, 6, 8, 10, 12, 14};
+    QfMajoranaOperator *op = qf_maj_op_new(num_terms, num_modes, coeffs, modes, boundaries);
 
-```c
-#include <qiskit_fermions.h>
+    uint32_t groups[7] = {0, 0, 1, 2, 1, 3, 3};
+    qf_maj_op_set_groups(op, groups, num_terms);
 
-uint64_t num_terms = 7;
-uint64_t num_modes = 14;
-uint32_t modes[14] = {0, 1, 1, 2, 3, 0, 1, 4, 5, 2, 5, 4, 4, 3};
-QkComplex64 coeffs[7] = {{1.0, 0.0}, {1.0, 0.0}, {1.0, 0.0}, {1.0, 0.0},
-                         {1.0, 0.0}, {1.0, 0.0}, {1.0, 0.0}};
-uint32_t boundaries[8] = {0, 2, 4, 6, 8, 10, 12, 14};
-QfMajoranaOperator *op = qf_maj_op_new(num_terms, num_modes, coeffs, modes, boundaries);
-
-uint32_t groups[7] = {0, 0, 1, 2, 1, 3, 3};
-qf_maj_op_set_groups(op, groups, num_terms);
-
-QfMajoranaOperator *group_ops[4];
-qf_maj_op_split_out_groups(op, NULL, 0, group_ops);
-```
+    QfMajoranaOperator *group_ops[4];
+    qf_maj_op_split_out_groups(op, NULL, 0, group_ops);
+    ```
+  </TabItem>
+</Tabs>
 
 ## Analyze a grouping
 
@@ -103,56 +105,58 @@ Groups prescribe no meaning of their own: the groups array records which terms b
 
 The most common convention is that each group is separately Hermitian. That is what makes fermionic randomized product formulas possible at all: a lone $a^\dagger_p a_q$ with $p \neq q$ is not Hermitian, so its time evolution is not unitary and it cannot be sampled on its own. Pairing it with $a^\dagger_q a_p$ yields a group that can be.
 
-\[x] PYTHON
+<Tabs group="code">
+  <TabItem value="python" label="PYTHON">
+    ```python
+    >>> from qiskit_fermions.operators import FermionOperator
+    >>> from qiskit_fermions.operators.terms.grouping import (
+    ...     group_coeff_means,
+    ...     groups_are_hermitian,
+    ...     groups_have_uniform_coeffs,
+    ... )
+    >>>
+    >>> # a conjugate pair, plus one unpaired term. The operator is built from the sparse
+    >>> # arrays rather than from a dictionary, because only the former fixes the term order
+    >>> # that the group indices below are paired with.
+    >>> pair_and_single = FermionOperator(
+    ...     [1.0, 1.0, 1.0],
+    ...     [True, False, True, False, True, False],
+    ...     [0, 1, 1, 0, 2, 3],
+    ...     [0, 2, 4, 6],
+    ... )
+    >>> pair_and_single.groups = [0, 0, 1]
+    >>>
+    >>> groups_are_hermitian(pair_and_single)  # group 1 is unpaired
+    [True, False]
+    >>> group_coeff_means(pair_and_single)
+    [1.0, 1.0]
+    ```
+  </TabItem>
 
-```python
->>> from qiskit_fermions.operators import FermionOperator
->>> from qiskit_fermions.operators.terms.grouping import (
-...     group_coeff_means,
-...     groups_are_hermitian,
-...     groups_have_uniform_coeffs,
-... )
->>>
->>> # a conjugate pair, plus one unpaired term. The operator is built from the sparse
->>> # arrays rather than from a dictionary, because only the former fixes the term order
->>> # that the group indices below are paired with.
->>> pair_and_single = FermionOperator(
-...     [1.0, 1.0, 1.0],
-...     [True, False, True, False, True, False],
-...     [0, 1, 1, 0, 2, 3],
-...     [0, 2, 4, 6],
-... )
->>> pair_and_single.groups = [0, 0, 1]
->>>
->>> groups_are_hermitian(pair_and_single)  # group 1 is unpaired
-[True, False]
->>> group_coeff_means(pair_and_single)
-[1.0, 1.0]
-```
+  <TabItem value="c" label="C">
+    ```c
+    #include <qiskit_fermions.h>
 
-\[ ] C
+    uint64_t num_terms = 3;
+    uint64_t num_actions = 6;
+    bool actions[6] = {true, false, true, false, true, false};
+    uint32_t modes[6] = {0, 1, 1, 0, 2, 3};
+    QkComplex64 coeffs[3] = {{1.0, 0.0}, {1.0, 0.0}, {1.0, 0.0}};
+    uint32_t boundaries[4] = {0, 2, 4, 6};
+    QfFermionOperator *op =
+        qf_ferm_op_new(num_terms, num_actions, coeffs, actions, modes, boundaries);
 
-```c
-#include <qiskit_fermions.h>
+    uint32_t groups[3] = {0, 0, 1};
+    qf_ferm_op_set_groups(op, groups, num_terms);
 
-uint64_t num_terms = 3;
-uint64_t num_actions = 6;
-bool actions[6] = {true, false, true, false, true, false};
-uint32_t modes[6] = {0, 1, 1, 0, 2, 3};
-QkComplex64 coeffs[3] = {{1.0, 0.0}, {1.0, 0.0}, {1.0, 0.0}};
-uint32_t boundaries[4] = {0, 2, 4, 6};
-QfFermionOperator *op =
-    qf_ferm_op_new(num_terms, num_actions, coeffs, actions, modes, boundaries);
+    bool hermitian[2];
+    qf_ferm_op_groups_are_hermitian(op, 1e-8, hermitian);
 
-uint32_t groups[3] = {0, 0, 1};
-qf_ferm_op_set_groups(op, groups, num_terms);
-
-bool hermitian[2];
-qf_ferm_op_groups_are_hermitian(op, 1e-8, hermitian);
-
-double means[2];
-qf_ferm_op_group_coeff_means(op, means);
-```
+    double means[2];
+    qf_ferm_op_group_coeff_means(op, means);
+    ```
+  </TabItem>
+</Tabs>
 
 ### One group index per term is enforced
 

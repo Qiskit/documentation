@@ -8,7 +8,7 @@ python_api_name: qiskit_fermions.circuit.library.OrbitalRotation
 
 # OrbitalRotation
 
-<Class id="qiskit_fermions.circuit.library.OrbitalRotation" isDedicatedPage={true} signature="OrbitalRotation(rotation_unitary)" modifiers="class">
+<Class id="qiskit_fermions.circuit.library.OrbitalRotation" isDedicatedPage={true} signature="OrbitalRotation(rotation_unitary, *, synthesis=None)" modifiers="class">
   Bases: [`FermionicGate`](circuit-fermionic-gate "qiskit_fermions.circuit.fermionic_gate.FermionicGate")
 
   Implements an orbital rotation.
@@ -27,11 +27,24 @@ $$
 
   The number of fermionic modes the gate acts on is the dimension $n$ of `rotation_unitary`.
 
+  <Admonition title="Note" type="note">
+    Breaking this gate down in fermionic space (into a circuit of smaller gates) is **optional**, and it is what the [`synthesis`](circuit-fermionic-gate#synthesis "qiskit_fermions.circuit.FermionicGate.synthesis") attribute governs. The gate can equally be handed straight to the fermion-to-qubit stage. When it is decomposed (by [`decompose()`](circuit-fermionic-circuit#decompose "qiskit_fermions.circuit.FermionicCircuit.decompose"), for instance) [`synthesis`](circuit-fermionic-gate#synthesis "qiskit_fermions.circuit.FermionicGate.synthesis") decides how, and the circuit it produces implements the same unitary as the gate: it is the definition of the gate. It defaults to [`FermionicGivensDecomposition`](circuit-library-synthesis-fermionic-givens-decomposition "qiskit_fermions.circuit.library.synthesis.FermionicGivensDecomposition"). See [`synthesis`](/docs/api/qiskit-fermions/circuit-library-synthesis#module-qiskit_fermions.circuit.library.synthesis "qiskit_fermions.circuit.library.synthesis").
+  </Admonition>
+
+  <Admonition title="Note" type="note">
+    No fermion-to-qubit plugin maps this gate directly. Break it down in fermionic space first, with the [`F2FSynthesis`](transpiler-passes-f-2-f-synthesis "qiskit_fermions.transpiler.passes.F2FSynthesis") transpiler pass, so that the fermion-to-qubit stage only sees the [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") gates it produces.
+  </Admonition>
+
+  <Admonition title="Note" type="note">
+    The state-vector simulation path does not go through [`synthesis`](circuit-fermionic-gate#synthesis "qiskit_fermions.circuit.FermionicGate.synthesis"): it applies the whole `rotation_unitary` at once, so the gate’s definition is never read there.
+  </Admonition>
+
   Initializing an instance of this gate can be done with the arguments listed below.
 
   **Parameters**
 
-  **rotation\_unitary** (*np.ndarray*) – the $n \times n$ unitary matrix $U$ defining the orbital rotation via $a^\dagger_i \mapsto \sum_j U_{ji} a^\dagger_j$. It must be square and unitary; this is the caller’s responsibility and is not verified.
+  *   **rotation\_unitary** (*np.ndarray*) – the $n \times n$ unitary matrix $U$ defining the orbital rotation via $a^\dagger_i \mapsto \sum_j U_{ji} a^\dagger_j$. It must be square and unitary; this is the caller’s responsibility and is not verified.
+  *   **synthesis** ([*F2FSynthesisPlugin*](circuit-library-synthesis-f-2-f-synthesis-plugin "qiskit_fermions.circuit.library.synthesis.F2FSynthesisPlugin") *| None*) – the fermion-to-fermion synthesis method with which to decompose this gate, when it gets decomposed at all. If `None` (the default), a [`FermionicGivensDecomposition`](circuit-library-synthesis-fermionic-givens-decomposition "qiskit_fermions.circuit.library.synthesis.FermionicGivensDecomposition") instance is used.
 
   ## Attributes
 
@@ -69,7 +82,25 @@ $$
     [*OrbitalRotation*](#qiskit_fermions.circuit.library.OrbitalRotation "qiskit_fermions.circuit.library.orbital_rotation.OrbitalRotation")
   </Function>
 
-  **Protocol Methods**
+  ### inverse
+
+  <Function id="qiskit_fermions.circuit.library.OrbitalRotation.inverse" signature="inverse(annotated=False)">
+    Returns the inverse of this gate, whose unitary is $U^\dagger$.
+
+    **Parameters**
+
+    **annotated** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) – ignored. The inverse of this gate is another [`OrbitalRotation`](#qiskit_fermions.circuit.library.OrbitalRotation "qiskit_fermions.circuit.library.OrbitalRotation"), so it never needs to be an [`AnnotatedOperation`](/docs/api/qiskit/qiskit.circuit.AnnotatedOperation).
+
+    **Returns**
+
+    An [`OrbitalRotation`](#qiskit_fermions.circuit.library.OrbitalRotation "qiskit_fermions.circuit.library.OrbitalRotation") gate with the adjoint unitary and the same synthesis.
+
+    **Return type**
+
+    [*OrbitalRotation*](#qiskit_fermions.circuit.library.OrbitalRotation "qiskit_fermions.circuit.library.orbital_rotation.OrbitalRotation")
+  </Function>
+
+  ## Protocol Methods
 
   ### \_apply\_unitary\_placed\_
 

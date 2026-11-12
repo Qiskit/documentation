@@ -10,23 +10,243 @@ in_page_toc_max_heading_level: 2
 
 # Qiskit Fermions release notes
 
-<span id="release-notes-0-2-0" />
+<span id="release-notes-0-4-1" />
 
 <span id="id2" />
+
+## 0.4.1
+
+<span id="release-notes-0-4-1-other-notes" />
+
+### Other Notes
+
+*   The optional downstream dependency `ffsim>=0.0.86` now fully supports Windows and we have adjusted our documentation and guidance accordingly.
+
+<span id="release-notes-0-4-0" />
+
+<span id="id3" />
+
+## 0.4.0
+
+<span id="release-notes-0-4-0-prelude" />
+
+### Prelude
+
+This release moves the synthesis of fermionic gates into fermionic space. The new [`F2FSynthesis`](/docs/api/qiskit-fermions/transpiler-passes-f-2-f-synthesis#qiskit_fermions.transpiler.passes.F2FSynthesis "qiskit_fermions.transpiler.passes.F2FSynthesis") pass is the fermion-to-fermion counterpart of [`F2QSynthesis`](/docs/api/qiskit-fermions/transpiler-passes-f-2-q-synthesis#qiskit_fermions.transpiler.passes.F2QSynthesis "qiskit_fermions.transpiler.passes.F2QSynthesis"): it breaks a gate down into smaller fermionic gates with the plugin that you name for it, before any encoding is chosen. The product formulas, the qDRIFT protocol and the Givens decompositions of an [`OrbitalRotation`](/docs/api/qiskit-fermions/circuit-library-orbital-rotation#qiskit_fermions.circuit.library.OrbitalRotation "qiskit_fermions.circuit.library.OrbitalRotation") and a [`PrepareSlaterDeterminant`](/docs/api/qiskit-fermions/circuit-library-prepare-slater-determinant#qiskit_fermions.circuit.library.PrepareSlaterDeterminant "qiskit_fermions.circuit.library.PrepareSlaterDeterminant") are all available as such plugins, so these gates are no longer tied to the Jordan-Wigner mapping.
+
+The Jordan-Wigner preset pass manager builds on this and now produces shorter, and in the case of hops exact, circuits. A new [`MergeEvolutions`](/docs/api/qiskit-fermions/transpiler-passes-merge-evolutions#qiskit_fermions.transpiler.passes.MergeEvolutions "qiskit_fermions.transpiler.passes.MergeEvolutions") pass further reduces the number of gates by fusing consecutive evolutions.
+
+Several existing passes and plugins are deprecated in favor of [`F2FSynthesis`](/docs/api/qiskit-fermions/transpiler-passes-f-2-f-synthesis#qiskit_fermions.transpiler.passes.F2FSynthesis "qiskit_fermions.transpiler.passes.F2FSynthesis"); please see the deprecation notes below for how to migrate. This release also includes bug fixes (see below) and adds support for Qiskit 2.6.
+
+<span id="release-notes-0-4-0-python-api-features" />
+
+### Python API Features
+
+*   Added `HopEvolutionSynthesis`, a plugin for Qiskit’s [`HighLevelSynthesis`](/docs/api/qiskit/qiskit.transpiler.passes.HighLevelSynthesis) that synthesizes the [`PauliEvolutionGate`](/docs/api/qiskit/qiskit.circuit.library.PauliEvolutionGate) of a hop between two qubits (the image of a fermionic hop between adjacent modes under the Jordan-Wigner mapping) as a single [`XXPlusYYGate`](/docs/api/qiskit/qiskit.circuit.library.XXPlusYYGate). The gate is the exact evolution, native to common basis-gate sets, and cheaper in two-qubit gates than the generic synthesis. Any other gate is left to the next synthesis method.
+
+*   Added the [`F2FSynthesis`](/docs/api/qiskit-fermions/transpiler-passes-f-2-f-synthesis#qiskit_fermions.transpiler.passes.F2FSynthesis "qiskit_fermions.transpiler.passes.F2FSynthesis") transpiler pass, the fermion-to-fermion counterpart of [`F2QSynthesis`](/docs/api/qiskit-fermions/transpiler-passes-f-2-q-synthesis#qiskit_fermions.transpiler.passes.F2QSynthesis "qiskit_fermions.transpiler.passes.F2QSynthesis"). It breaks gates down into circuits of smaller fermionic gates, with the plugin that its `config` names for each type of gate:
+
+    ```python
+    pm.optimization = FermionicPassManager(
+        [F2FSynthesis({"Evolution": ("SuzukiTrotter", (), {"order": 2, "reps": 4})})]
+    )
+    ```
+
+    The plugins follow the same scheme as those of the fermion-to-qubit stage. They implement the [`F2FSynthesisPlugin`](/docs/api/qiskit-fermions/circuit-library-synthesis-f-2-f-synthesis-plugin#qiskit_fermions.circuit.library.synthesis.F2FSynthesisPlugin "qiskit_fermions.circuit.library.synthesis.F2FSynthesisPlugin") protocol, are managed by the [`F2FSynthesisPluginManager`](/docs/api/qiskit-fermions/circuit-library-synthesis-f-2-f-synthesis-plugin-manager#qiskit_fermions.circuit.library.synthesis.F2FSynthesisPluginManager "qiskit_fermions.circuit.library.synthesis.F2FSynthesisPluginManager"), and are registered under the `qiskit_fermions.circuit.synthesis` entry-point group as `<gate>.<method>`. The builtin ones are `Evolution.LieTrotter` and `Evolution.SuzukiTrotter`. A plugin instance can be given to the pass directly instead, in which case no entry point is needed.
+
+*   Added a `min_num_modes()` method to [`FermionOperator`](/docs/api/qiskit-fermions/operators-fermion-operator#qiskit_fermions.operators.FermionOperator "qiskit_fermions.operators.FermionOperator"), [`MajoranaOperator`](/docs/api/qiskit-fermions/operators-majorana-operator#qiskit_fermions.operators.MajoranaOperator "qiskit_fermions.operators.MajoranaOperator"), [`EdgeVertexOperator`](/docs/api/qiskit-fermions/operators-edge-vertex-operator#qiskit_fermions.operators.EdgeVertexOperator "qiskit_fermions.operators.EdgeVertexOperator") and [`TransferVertexOperator`](/docs/api/qiskit-fermions/operators-transfer-vertex-operator#qiskit_fermions.operators.TransferVertexOperator "qiskit_fermions.operators.TransferVertexOperator"), returning the smallest number of modes that can host the operator (`0` if it acts on none). For a Majorana operator this counts fermionic modes.
+
+*   Added the [`MergeEvolutions`](/docs/api/qiskit-fermions/transpiler-passes-merge-evolutions#qiskit_fermions.transpiler.passes.MergeEvolutions "qiskit_fermions.transpiler.passes.MergeEvolutions") transpiler pass. It fuses consecutive [`Evolution`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution "qiskit_fermions.circuit.library.Evolution") gates of equivalent operators on the same modes into a single gate with the summed evolution time, which is exact. This removes the repeated factor where, for example, two repetitions of a product formula meet.
+
+*   [`FermionicSuzukiTrotter`](/docs/api/qiskit-fermions/circuit-library-synthesis-fermionic-suzuki-trotter#qiskit_fermions.circuit.library.synthesis.FermionicSuzukiTrotter "qiskit_fermions.circuit.library.synthesis.FermionicSuzukiTrotter") gained a `merge_adjacent` argument, which is enabled by default. It fuses neighboring gates of the same factor, as found at the seams between repetitions and between the sub-sweeps of the higher orders. The product formula is unchanged, but the synthesized circuit has fewer gates. Pass `merge_adjacent=False` to obtain the previous gate sequence.
+
+*   An [`OrbitalRotation`](/docs/api/qiskit-fermions/circuit-library-orbital-rotation#qiskit_fermions.circuit.library.OrbitalRotation "qiskit_fermions.circuit.library.OrbitalRotation") is now decomposed in fermionic space, before any encoding is chosen. The new [`FermionicGivensDecomposition`](/docs/api/qiskit-fermions/circuit-library-synthesis-fermionic-givens-decomposition#qiskit_fermions.circuit.library.synthesis.FermionicGivensDecomposition "qiskit_fermions.circuit.library.synthesis.FermionicGivensDecomposition"), registered as `OrbitalRotation.Givens`, factorizes the rotation into atomic [`Evolution`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution "qiskit_fermions.circuit.library.Evolution") gates on one or two modes each.
+
+*   [`generate_preset_jw_pass_manager()`](/docs/api/qiskit-fermions/transpiler-presets-generate-preset-jw-pass-manager#qiskit_fermions.transpiler.presets.generate_preset_jw_pass_manager "qiskit_fermions.transpiler.presets.generate_preset_jw_pass_manager") runs [`F2FSynthesis`](/docs/api/qiskit-fermions/transpiler-passes-f-2-f-synthesis#qiskit_fermions.transpiler.passes.F2FSynthesis "qiskit_fermions.transpiler.passes.F2FSynthesis") with `{"OrbitalRotation": "Givens"}` last in its `optimization` stage, after the passes that consume orbital rotations as such.
+
+*   The qDRIFT protocol is now a fermion-to-fermion synthesis method on an equal footing with the product formulas. [`FermionicQDrift`](/docs/api/qiskit-fermions/circuit-library-synthesis-fermionic-q-drift#qiskit_fermions.circuit.library.synthesis.FermionicQDrift "qiskit_fermions.circuit.library.synthesis.FermionicQDrift") is registered as `Evolution.QDrift`, so it is selected like any other method:
+
+    ```python
+    F2FSynthesis({"Evolution": ("QDrift", (num_terms,), {"rng": 42})})
+    ```
+
+    It takes the `num_terms`, `weights` and `rng` arguments that [`QDriftTrotterization`](/docs/api/qiskit-fermions/transpiler-passes-q-drift-trotterization#qiskit_fermions.transpiler.passes.QDriftTrotterization "qiskit_fermions.transpiler.passes.QDriftTrotterization") took.
+
+*   [`QDriftTrotterization`](/docs/api/qiskit-fermions/transpiler-passes-q-drift-trotterization#qiskit_fermions.transpiler.passes.QDriftTrotterization "qiskit_fermions.transpiler.passes.QDriftTrotterization") now draws an [`Evolution`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution "qiskit_fermions.circuit.library.Evolution") gate with the [`FermionicQDrift`](/docs/api/qiskit-fermions/circuit-library-synthesis-fermionic-q-drift#qiskit_fermions.circuit.library.synthesis.FermionicQDrift "qiskit_fermions.circuit.library.synthesis.FermionicQDrift") that the gate carries as its `synthesis`, which lets every gate of a circuit hold the `weights` of its own operator. The method passed to the pass is now optional and applies to the gates that carry none; a gate with neither is left in place, with a `UserWarning`. A `synthesis` that is not a `FermionicQDrift` is ignored by the pass.
+
+*   A [`PrepareSlaterDeterminant`](/docs/api/qiskit-fermions/circuit-library-prepare-slater-determinant#qiskit_fermions.circuit.library.PrepareSlaterDeterminant "qiskit_fermions.circuit.library.PrepareSlaterDeterminant") is now decomposed in fermionic space, before any encoding is chosen. The new [`FermionicSlaterGivensDecomposition`](/docs/api/qiskit-fermions/circuit-library-synthesis-fermionic-slater-givens-decomposition#qiskit_fermions.circuit.library.synthesis.FermionicSlaterGivensDecomposition "qiskit_fermions.circuit.library.synthesis.FermionicSlaterGivensDecomposition"), registered as `PrepareSlaterDeterminant.Givens`, turns the gate into an [`InitializeModes`](/docs/api/qiskit-fermions/circuit-library-initialize-modes#qiskit_fermions.circuit.library.InitializeModes "qiskit_fermions.circuit.library.InitializeModes") of the reference followed by atomic [`Evolution`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution "qiskit_fermions.circuit.library.Evolution") gates.
+
+<span id="release-notes-0-4-0-c-api-features" />
+
+### C API Features
+
+*   Added [`qf_ferm_op_min_num_modes()`](/docs/api/qiskit-fermions-c/qf-ferm-op#qf_ferm_op_min_num_modes "qf_ferm_op_min_num_modes"), [`qf_maj_op_min_num_modes()`](/docs/api/qiskit-fermions-c/qf-maj-op#qf_maj_op_min_num_modes "qf_maj_op_min_num_modes"), [`qf_edge_op_min_num_modes()`](/docs/api/qiskit-fermions-c/qf-edge-op#qf_edge_op_min_num_modes "qf_edge_op_min_num_modes") and [`qf_transfer_op_min_num_modes()`](/docs/api/qiskit-fermions-c/qf-transfer-op#qf_transfer_op_min_num_modes "qf_transfer_op_min_num_modes"), which return the smallest number of modes that can host an operator (`0` if it acts on none). For a Majorana operator this counts fermionic modes.
+
+<span id="release-notes-0-4-0-python-api-upgrade-notes" />
+
+### Python API Upgrade Notes
+
+*   [`generate_preset_jw_pass_manager()`](/docs/api/qiskit-fermions/transpiler-presets-generate-preset-jw-pass-manager#qiskit_fermions.transpiler.presets.generate_preset_jw_pass_manager "qiskit_fermions.transpiler.presets.generate_preset_jw_pass_manager") now registers the `HopEvolutionSynthesis` ahead of the methods that its `hls_config` lists for `PauliEvolution`, or ahead of the default method if none is given. This is unconditional, in the same way that the preset has always lowered an orbital rotation to [`XXPlusYYGate`](/docs/api/qiskit/qiskit.circuit.library.XXPlusYYGate)s: a method that the given configuration lists (including `"default"`) only applies to what is not a hop. The given configuration is extended and not modified. For a hop with a complex amplitude, the [`XXPlusYYGate`](/docs/api/qiskit/qiskit.circuit.library.XXPlusYYGate) replaces a product-formula approximation, so the circuit is both shorter and exact where it was previously only accurate up to the Trotter error. To opt out, assemble a pipeline from the individual stages instead of using the preset.
+
+*   The `FermionicEvolutionSynthesis` base class was removed. A synthesis method for an [`Evolution`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution "qiskit_fermions.circuit.library.Evolution") is any object with a `synthesize(gate)` method that returns a [`FermionicCircuit`](/docs/api/qiskit-fermions/circuit-fermionic-circuit#qiskit_fermions.circuit.FermionicCircuit "qiskit_fermions.circuit.FermionicCircuit"); it no longer needs to derive from a class. The type of the `synthesis` argument is now [`F2FSynthesisPlugin`](/docs/api/qiskit-fermions/circuit-library-synthesis-f-2-f-synthesis-plugin#qiskit_fermions.circuit.library.synthesis.F2FSynthesisPlugin "qiskit_fermions.circuit.library.synthesis.F2FSynthesisPlugin").
+
+*   [`FermionicSuzukiTrotter`](/docs/api/qiskit-fermions/circuit-library-synthesis-fermionic-suzuki-trotter#qiskit_fermions.circuit.library.synthesis.FermionicSuzukiTrotter "qiskit_fermions.circuit.library.synthesis.FermionicSuzukiTrotter") now fuses neighboring gates of the same factor by default, so for `reps > 1` or `order >= 4` it emits fewer, longer-evolving gates than before. The result is mathematically identical. Pass `merge_adjacent=False` to keep the previous gate sequence.
+
+*   A custom `weights` array of the qDRIFT sampling is no longer rejected up front for a circuit with more than one [`Evolution`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution "qiskit_fermions.circuit.library.Evolution") gate, since the method that holds it is stateless and sees one gate at a time. Its length is still checked against every gate it is given, so a mismatch raises a `ValueError` as before.
+
+<span id="release-notes-0-4-0-python-api-deprecation-notes" />
+
+### Python API Deprecation Notes
+
+*   The `FermionicTrotterization` transpiler pass is deprecated in favor of [`F2FSynthesis`](/docs/api/qiskit-fermions/transpiler-passes-f-2-f-synthesis#qiskit_fermions.transpiler.passes.F2FSynthesis "qiskit_fermions.transpiler.passes.F2FSynthesis"), which acts on any gate that can be broken down and not only on an [`Evolution`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution "qiskit_fermions.circuit.library.Evolution"). Where `FermionicTrotterization(method, apply=..., filter=...)` was used, write `F2FSynthesis({"Evolution": method}, apply=..., filter=...)`, or name a registered method such as `{"Evolution": "LieTrotter"}`.
+
+*   The `OrbitalRotation.GivensDecomposition` and `PrepareSlaterDeterminant.GivensDecompositionSlater` fermion-to-qubit synthesis plugins (the classes `GivensDecompositionOrbitalRotationSynthesis` and `GivensDecompositionSlaterDeterminantSynthesis`) are deprecated. They still work by running the fermionic decomposition of [`F2FSynthesis`](/docs/api/qiskit-fermions/transpiler-passes-f-2-f-synthesis#qiskit_fermions.transpiler.passes.F2FSynthesis "qiskit_fermions.transpiler.passes.F2FSynthesis") directly and mapping the result under Jordan-Wigner, emitting the same gates as before. Instead, configure [`F2FSynthesis`](/docs/api/qiskit-fermions/transpiler-passes-f-2-f-synthesis#qiskit_fermions.transpiler.passes.F2FSynthesis "qiskit_fermions.transpiler.passes.F2FSynthesis") with `{"OrbitalRotation": "Givens"}` or `{"PrepareSlaterDeterminant": "Givens"}` in the `optimization` stage, after which any encoding that can map an [`Evolution`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution "qiskit_fermions.circuit.library.Evolution") handles the gate. A pipeline assembled by hand also needs the `HopEvolutionSynthesis` in its `qubit` stage to obtain [`XXPlusYYGate`](/docs/api/qiskit/qiskit.circuit.library.XXPlusYYGate)s, as the Jordan-Wigner preset has. The `minimize_2q_gate_count` argument of the Slater plugin, the peeling of disjoint unit-orbitals, was removed: it has no effect any more and warns.
+
+*   The former signature of [`QDriftTrotterization`](/docs/api/qiskit-fermions/transpiler-passes-q-drift-trotterization#qiskit_fermions.transpiler.passes.QDriftTrotterization "qiskit_fermions.transpiler.passes.QDriftTrotterization"), `QDriftTrotterization(num_terms, *, filter_trivial=False, weights=None, rng=None)`, is deprecated. Passing an `int` first returns a pass that samples by itself. Instead, write `F2FSynthesis({"Evolution": FermionicQDrift(num_terms, weights=..., rng=...)})` where `filter_trivial` was `False`, and `QDriftTrotterization(FermionicQDrift(num_terms, weights=..., rng=...))` where it was `True`.
+
+<span id="release-notes-0-4-0-bug-fixes" />
+
+### Bug Fixes
+
+*   [`F2QSynthesis`](/docs/api/qiskit-fermions/transpiler-passes-f-2-q-synthesis#qiskit_fermions.transpiler.passes.F2QSynthesis "qiskit_fermions.transpiler.passes.F2QSynthesis"), [`RelabelModes`](/docs/api/qiskit-fermions/transpiler-passes-relabel-modes#qiskit_fermions.transpiler.passes.RelabelModes "qiskit_fermions.transpiler.passes.RelabelModes") and [`QDriftTrotterization`](/docs/api/qiskit-fermions/transpiler-passes-q-drift-trotterization#qiskit_fermions.transpiler.passes.QDriftTrotterization "qiskit_fermions.transpiler.passes.QDriftTrotterization") now visit a circuit’s instructions in circuit order rather than in the order in which the DAG stores them. The two differ after a pass has replaced a node by a sub-circuit, for example when [`FermionicTrotterization`](/docs/api/qiskit-fermions/transpiler-passes-fermionic-trotterization#qiskit_fermions.transpiler.passes.FermionicTrotterization "qiskit_fermions.transpiler.passes.FermionicTrotterization") expands several [`Evolution`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution "qiskit_fermions.circuit.library.Evolution") gates. These passes rebuild their output node by node, so the factors of two successive replacements could be interleaved, producing a well-formed circuit that implements a different unitary.
+
+*   [`FermionicSuzukiTrotter`](/docs/api/qiskit-fermions/circuit-library-synthesis-fermionic-suzuki-trotter#qiskit_fermions.circuit.library.synthesis.FermionicSuzukiTrotter "qiskit_fermions.circuit.library.synthesis.FermionicSuzukiTrotter") now raises a `ValueError` on construction when `order` is `< 1`. Previously these values were accepted and synthesis then failed with a `RecursionError`, unless the evolved operator had a single factor.
+
+<span id="release-notes-0-4-0-other-notes" />
+
+<span id="id4" />
+
+### Other Notes
+
+*   `qiskit~=2.6.0` is now supported in addition to `qiskit~=2.5.0`. The Qiskit requirement is now `qiskit>=2.5.0,<2.7`.
+
+<span id="release-notes-0-3-0" />
+
+<span id="id5" />
+
+## 0.3.0
+
+<span id="release-notes-0-3-0-prelude" />
+
+<span id="id6" />
+
+### Prelude
+
+This release adds a framework for ternary-tree fermion-to-qubit encodings. A ternary tree is described once and compiled into an encoding that all four operator mappers accept, which makes every mapping expressible as such a tree available, including the Jordan-Wigner, parity, Bravyi-Kitaev and Jiang-Kalev-Mruczkiewicz-Neven (JKMN) encodings. The framework is available from both the Python and the C API, and with it this package moves beyond Jordan-Wigner as the only mapper it ships.
+
+The [`FermionicCircuit`](/docs/api/qiskit-fermions/circuit-fermionic-circuit#qiskit_fermions.circuit.FermionicCircuit "qiskit_fermions.circuit.FermionicCircuit") also became considerably more complete. It can now be composed with other circuits, repeated, separated by barriers and measured, all at the fermionic level. A measurement names the mode it reads, so the sampled bitstrings stay indexed by the original mode even after the transpiler relabels modes or routes qubits, and the new `FermionicMeasure` synthesis plugin is part of the preset Jordan-Wigner pass manager.
+
+<span id="release-notes-0-3-0-python-api-features" />
+
+<span id="id7" />
+
+### Python API Features
+
+*   Added [`FermionicCircuit.barrier()`](/docs/api/qiskit-fermions/circuit-fermionic-circuit#qiskit_fermions.circuit.FermionicCircuit.barrier "qiskit_fermions.circuit.FermionicCircuit.barrier"), which re-exposes [`barrier()`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit#barrier) on the fermionic layer:
+
+    ```python
+    circuit.barrier()                                        # every mode
+    circuit.barrier(circuit.register[1], circuit.register[2])
+    ```
+
+    The optimization passes do not fuse gates across a barrier, so this is how you keep [`MergeOrbitalRotations`](/docs/api/qiskit-fermions/transpiler-passes-merge-orbital-rotations#qiskit_fermions.transpiler.passes.MergeOrbitalRotations "qiskit_fermions.transpiler.passes.MergeOrbitalRotations") from merging consecutive [`OrbitalRotation`](/docs/api/qiskit-fermions/circuit-library-orbital-rotation#qiskit_fermions.circuit.library.OrbitalRotation "qiskit_fermions.circuit.library.OrbitalRotation") gates, or [`MergeSlaterDeterminantPreparation`](/docs/api/qiskit-fermions/transpiler-passes-merge-slater-determinant-preparation#qiskit_fermions.transpiler.passes.MergeSlaterDeterminantPreparation "qiskit_fermions.transpiler.passes.MergeSlaterDeterminantPreparation") from folding an [`InitializeModes`](/docs/api/qiskit-fermions/circuit-library-initialize-modes#qiskit_fermions.circuit.library.InitializeModes "qiskit_fermions.circuit.library.InitializeModes") into the [`OrbitalRotation`](/docs/api/qiskit-fermions/circuit-library-orbital-rotation#qiskit_fermions.circuit.library.OrbitalRotation "qiskit_fermions.circuit.library.OrbitalRotation") that follows it.
+
+    The fermion-to-qubit synthesis stage maps a barrier onto every qubit of each register it touched, so it constrains the subsequent qubit-level transpilation too. Because a [`F2QLayout`](/docs/api/qiskit-fermions/transpiler-f-2-q-layout#qiskit_fermions.transpiler.F2QLayout "qiskit_fermions.transpiler.F2QLayout") relates whole registers, whose two sides can even differ in size, a barrier is deliberately not narrowed to the qubits encoding the modes it was placed on.
+
+*   Added [`FermionicCircuit.compose()`](/docs/api/qiskit-fermions/circuit-fermionic-circuit#qiskit_fermions.circuit.FermionicCircuit.compose "qiskit_fermions.circuit.FermionicCircuit.compose"), which composes another [`FermionicCircuit`](/docs/api/qiskit-fermions/circuit-fermionic-circuit#qiskit_fermions.circuit.FermionicCircuit "qiskit_fermions.circuit.FermionicCircuit") onto an existing one:
+
+    ```python
+    circuit.compose(other, inplace=True)
+    ```
+
+    The operand’s instructions are inlined rather than wrapped into a single gate. An optional `fargs` argument places a narrower circuit onto a subset of this circuit’s modes, mirroring [`append()`](/docs/api/qiskit-fermions/circuit-fermionic-circuit#qiskit_fermions.circuit.FermionicCircuit.append "qiskit_fermions.circuit.FermionicCircuit.append"), while `front` composes before rather than after the existing instructions and `inplace` modifies the circuit instead of returning a new one.
+
+*   Added measurement support to [`FermionicCircuit`](/docs/api/qiskit-fermions/circuit-fermionic-circuit#qiskit_fermions.circuit.FermionicCircuit "qiskit_fermions.circuit.FermionicCircuit"). Use [`measure_all()`](/docs/api/qiskit-fermions/circuit-fermionic-circuit#qiskit_fermions.circuit.FermionicCircuit.measure_all "qiskit_fermions.circuit.FermionicCircuit.measure_all") to read every mode into a classical bit of its own (mode `i` into bit `i`), or [`measure()`](/docs/api/qiskit-fermions/circuit-fermionic-circuit#qiskit_fermions.circuit.FermionicCircuit.measure "qiskit_fermions.circuit.FermionicCircuit.measure") together with the new [`add_register()`](/docs/api/qiskit-fermions/circuit-fermionic-circuit#qiskit_fermions.circuit.FermionicCircuit.add_register "qiskit_fermions.circuit.FermionicCircuit.add_register") to read out only some of them:
+
+    ```python
+    circuit.measure_all()                       # adds a "meas" register
+    measured = circuit.measure_all(inplace=False)  # or leave the original alone
+
+    creg = ClassicalRegister(2, "c")            # or choose the bits yourself
+    circuit.add_register(creg)
+    circuit.measure([0, 2], creg)
+    ```
+
+    Measure the [`FermionicCircuit`](/docs/api/qiskit-fermions/circuit-fermionic-circuit#qiskit_fermions.circuit.FermionicCircuit "qiskit_fermions.circuit.FermionicCircuit") rather than the transpiled [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit): a fermionic measurement names the mode it reads, so every stage that moves modes around ([`RelabelModes`](/docs/api/qiskit-fermions/transpiler-passes-relabel-modes#qiskit_fermions.transpiler.passes.RelabelModes "qiskit_fermions.transpiler.passes.RelabelModes"), and the qubit stage’s layout and routing) carries the measurement with it, and the sampled bitstrings stay indexed by the original mode. Measuring after transpilation instead requires undoing [`final_index_layout()`](/docs/api/qiskit/qiskit.transpiler.TranspileLayout#final_index_layout), and the `permutation` metadata if [`RelabelModes`](/docs/api/qiskit-fermions/transpiler-passes-relabel-modes#qiskit_fermions.transpiler.passes.RelabelModes "qiskit_fermions.transpiler.passes.RelabelModes") ran, by hand.
+
+    <Admonition title="Note" type="note">
+      Unlike [`measure_all()`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit#measure_all), no barrier is inserted before the measurements. Call [`barrier()`](/docs/api/qiskit-fermions/circuit-fermionic-circuit#qiskit_fermions.circuit.FermionicCircuit.barrier "qiskit_fermions.circuit.FermionicCircuit.barrier") first if you want one.
+    </Admonition>
+
+    A measured circuit can no longer be applied to a state vector, since a measurement is not unitary, so keep an unmeasured circuit (or use `inplace=False`) if you also want to simulate it.
+
+*   Added [`FermionicMeasure`](/docs/api/qiskit-fermions/circuit-library-fermionic-measure#qiskit_fermions.circuit.library.FermionicMeasure "qiskit_fermions.circuit.library.FermionicMeasure"), the instruction [`FermionicCircuit.measure()`](/docs/api/qiskit-fermions/circuit-fermionic-circuit#qiskit_fermions.circuit.FermionicCircuit.measure "qiskit_fermions.circuit.FermionicCircuit.measure") appends, and [`TrivialOccupationFermionicMeasureSynthesis`](/docs/api/qiskit-fermions/transpiler-passes-synthesis-trivial-occupation-fermionic-measure-synthesis#qiskit_fermions.transpiler.passes.synthesis.TrivialOccupationFermionicMeasureSynthesis "qiskit_fermions.transpiler.passes.synthesis.TrivialOccupationFermionicMeasureSynthesis"), which lowers it to a qubit measurement. The plugin is registered under the `FermionicMeasure.TrivialOccupation` entry point and is part of [`generate_preset_jw_pass_manager()`](/docs/api/qiskit-fermions/transpiler-presets-generate-preset-jw-pass-manager#qiskit_fermions.transpiler.presets.generate_preset_jw_pass_manager "qiskit_fermions.transpiler.presets.generate_preset_jw_pass_manager"). Like [`TrivialOccupationInitializeModesSynthesis`](/docs/api/qiskit-fermions/transpiler-passes-synthesis-trivial-occupation-initialize-modes-synthesis#qiskit_fermions.transpiler.passes.synthesis.TrivialOccupationInitializeModesSynthesis "qiskit_fermions.transpiler.passes.synthesis.TrivialOccupationInitializeModesSynthesis"), it assumes an occupation-basis encoding with a 1-to-1 mapping of modes to qubits; another encoding needs its own plugin registered under `FermionicMeasure`.
+
+*   Added [`FermionicCircuit.repeat()`](/docs/api/qiskit-fermions/circuit-fermionic-circuit#qiskit_fermions.circuit.FermionicCircuit.repeat "qiskit_fermions.circuit.FermionicCircuit.repeat"), which returns a new circuit holding a given number of repetitions of an existing one:
+
+    ```python
+    trotterized = trotter_step.repeat(reps)
+    ```
+
+    The repetitions are flattened rather than wrapped into a single gate, so [`count_ops()`](/docs/api/qiskit-fermions/circuit-fermionic-circuit#qiskit_fermions.circuit.FermionicCircuit.count_ops "qiskit_fermions.circuit.FermionicCircuit.count_ops") scales with the number of repetitions and [`decompose()`](/docs/api/qiskit-fermions/circuit-fermionic-circuit#qiskit_fermions.circuit.FermionicCircuit.decompose "qiskit_fermions.circuit.FermionicCircuit.decompose") decomposes the repeated body rather than peeling off one repetition. This is what lets the optimization stage act across the repetition boundary: a symmetric Trotter step that ends and begins with half-duration orbital rotations leaves two rotations per step once repeated, which [`MergeOrbitalRotations`](/docs/api/qiskit-fermions/transpiler-passes-merge-orbital-rotations#qiskit_fermions.transpiler.passes.MergeOrbitalRotations "qiskit_fermions.transpiler.passes.MergeOrbitalRotations") then fuses into one per step plus one. Writing the step naively and repeating it therefore gives the same circuit as fusing those boundaries by hand.
+
+    Pass `insert_barriers=True` to place a [`barrier()`](/docs/api/qiskit-fermions/circuit-fermionic-circuit#qiskit_fermions.circuit.FermionicCircuit.barrier "qiskit_fermions.circuit.FermionicCircuit.barrier") between consecutive repetitions, which keeps that fusion from happening. No barrier is placed after the final repetition.
+
+*   Added ternary-tree fermion-to-qubit encodings. A [`TernaryTree`](/docs/api/qiskit-fermions/mappers-ternary-tree#qiskit_fermions.mappers.TernaryTree "qiskit_fermions.mappers.TernaryTree") describes the encoding and is compiled once into a [`TernaryTreeEncoding`](/docs/api/qiskit-fermions/mappers-ternary-tree-encoding#qiskit_fermions.mappers.TernaryTreeEncoding "qiskit_fermions.mappers.TernaryTreeEncoding"), which the mappers [`fermion_ternary_tree()`](/docs/api/qiskit-fermions/mappers-library-fermion-ternary-tree#qiskit_fermions.mappers.library.fermion_ternary_tree "qiskit_fermions.mappers.library.fermion_ternary_tree"), [`majorana_ternary_tree()`](/docs/api/qiskit-fermions/mappers-library-majorana-ternary-tree#qiskit_fermions.mappers.library.majorana_ternary_tree "qiskit_fermions.mappers.library.majorana_ternary_tree"), [`edge_vertex_ternary_tree()`](/docs/api/qiskit-fermions/mappers-library-edge-vertex-ternary-tree#qiskit_fermions.mappers.library.edge_vertex_ternary_tree "qiskit_fermions.mappers.library.edge_vertex_ternary_tree") and [`transfer_vertex_ternary_tree()`](/docs/api/qiskit-fermions/mappers-library-transfer-vertex-ternary-tree#qiskit_fermions.mappers.library.transfer_vertex_ternary_tree "qiskit_fermions.mappers.library.transfer_vertex_ternary_tree") map through. In the Python API, [`ternary_tree()`](/docs/api/qiskit-fermions/mappers-library-ternary-tree#qiskit_fermions.mappers.library.ternary_tree "qiskit_fermions.mappers.library.ternary_tree") dispatches to whichever of the four matches the operator it is given, mirroring [`jordan_wigner()`](/docs/api/qiskit-fermions/mappers-library-jordan-wigner#qiskit_fermions.mappers.library.jordan_wigner "qiskit_fermions.mappers.library.jordan_wigner").
+
+    This simplifies the use of every mapping that can be expressed as a ternary tree, including but not limited to the Jordan-Wigner, parity, Bravyi-Kitaev and Jiang-Kalev-Mruczkiewicz-Neven (JKMN) encodings.
+
+<span id="release-notes-0-3-0-c-api-features" />
+
+<span id="id8" />
+
+### C API Features
+
+*   Added the ternary-tree framework to the C API. Trees are built with [`qf_ternary_tree_new()`](/docs/api/qiskit-fermions-c/qf-ternary-tree#qf_ternary_tree_new "qf_ternary_tree_new") (from a parent-and-label specification, the general interface), [`qf_ternary_tree_chain()`](/docs/api/qiskit-fermions-c/qf-ternary-tree#qf_ternary_tree_chain "qf_ternary_tree_chain") or [`qf_ternary_tree_breadth_first()`](/docs/api/qiskit-fermions-c/qf-ternary-tree#qf_ternary_tree_breadth_first "qf_ternary_tree_breadth_first"), inspected with [`qf_ternary_tree_num_nodes()`](/docs/api/qiskit-fermions-c/qf-ternary-tree#qf_ternary_tree_num_nodes "qf_ternary_tree_num_nodes"), [`qf_ternary_tree_num_legs()`](/docs/api/qiskit-fermions-c/qf-ternary-tree#qf_ternary_tree_num_legs "qf_ternary_tree_num_legs") and [`qf_ternary_tree_max_weight()`](/docs/api/qiskit-fermions-c/qf-ternary-tree#qf_ternary_tree_max_weight "qf_ternary_tree_max_weight"), and freed with [`qf_ternary_tree_free()`](/docs/api/qiskit-fermions-c/qf-ternary-tree#qf_ternary_tree_free "qf_ternary_tree_free"). A tree is compiled into a `QfTernaryTreeEncoding` with [`qf_ternary_tree_encoding_new()`](/docs/api/qiskit-fermions-c/qf-ternary-tree#qf_ternary_tree_encoding_new "qf_ternary_tree_encoding_new"), inspected with [`qf_ternary_tree_encoding_num_modes()`](/docs/api/qiskit-fermions-c/qf-ternary-tree#qf_ternary_tree_encoding_num_modes "qf_ternary_tree_encoding_num_modes") and [`qf_ternary_tree_encoding_max_weight()`](/docs/api/qiskit-fermions-c/qf-ternary-tree#qf_ternary_tree_encoding_max_weight "qf_ternary_tree_encoding_max_weight"), and then passed to [`qf_ferm_op_ternary_tree()`](/docs/api/qiskit-fermions-c/qf-mappers-library#qf_ferm_op_ternary_tree "qf_ferm_op_ternary_tree"), [`qf_maj_op_ternary_tree()`](/docs/api/qiskit-fermions-c/qf-mappers-library#qf_maj_op_ternary_tree "qf_maj_op_ternary_tree"), [`qf_edge_op_ternary_tree()`](/docs/api/qiskit-fermions-c/qf-mappers-library#qf_edge_op_ternary_tree "qf_edge_op_ternary_tree"), [`qf_transfer_op_ternary_tree()`](/docs/api/qiskit-fermions-c/qf-mappers-library#qf_transfer_op_ternary_tree "qf_transfer_op_ternary_tree") or [`qf_ternary_tree_encoding_total_parity()`](/docs/api/qiskit-fermions-c/qf-ternary-tree#qf_ternary_tree_encoding_total_parity "qf_ternary_tree_encoding_total_parity").
+
+    Like the Jordan-Wigner mappers, the four operator mappers and [`qf_ternary_tree_encoding_total_parity()`](/docs/api/qiskit-fermions-c/qf-ternary-tree#qf_ternary_tree_encoding_total_parity "qf_ternary_tree_encoding_total_parity") write the resulting [QkObs](/docs/api/qiskit-c/qk-obs) through an out-parameter and return a `QfExitCode`. This is `QfExitCode_ValueError` when the operator acts on a mode the encoding does not cover, or when the requested qubit count is below the encoding’s mode count, whichever modes the operator acts on. A specification that does not describe a single connected tree is rejected earlier, by [`qf_ternary_tree_new()`](/docs/api/qiskit-fermions-c/qf-ternary-tree#qf_ternary_tree_new "qf_ternary_tree_new"), which then writes no tree, so check its exit code before compiling the result.
+
+<span id="release-notes-0-3-0-python-api-upgrade-notes" />
+
+<span id="id9" />
+
+### Python API Upgrade Notes
+
+*   We dropped support for Python 3.10 which has reached end-of-life.
+
+<span id="release-notes-0-3-0-bug-fixes" />
+
+<span id="id10" />
+
+### Bug Fixes
+
+*   [`qf_ferm_op_jordan_wigner()`](/docs/api/qiskit-fermions-c/qf-mappers-library#qf_ferm_op_jordan_wigner "qf_ferm_op_jordan_wigner"), [`qf_maj_op_jordan_wigner()`](/docs/api/qiskit-fermions-c/qf-mappers-library#qf_maj_op_jordan_wigner "qf_maj_op_jordan_wigner"), [`qf_edge_op_jordan_wigner()`](/docs/api/qiskit-fermions-c/qf-mappers-library#qf_edge_op_jordan_wigner "qf_edge_op_jordan_wigner") and [`qf_transfer_op_jordan_wigner()`](/docs/api/qiskit-fermions-c/qf-mappers-library#qf_transfer_op_jordan_wigner "qf_transfer_op_jordan_wigner") now return `QfExitCode_NullPointerError` when the operator or the output pointer is `NULL`, instead of aborting the process.
+
+<span id="release-notes-0-2-0" />
+
+<span id="id11" />
 
 ## 0.2.0
 
 <span id="release-notes-0-2-0-prelude" />
 
+<span id="id12" />
+
 ### Prelude
 
-This release grows the control this package gives over circuit synthesis. An `Evolution` gate now takes an explicit `synthesis` method, a new `synthesis` module supplies fermionic product formulas of first and higher order, and the `FermionicTrotterization` pass selects and applies one across every evolution in a circuit at once. Alongside it, the Jordan-Wigner mapper gained direct implementations for all four operator representations, and new adapters let a mapper’s output be simplified or emitted group by group. The C API caught up considerably. The edge-vertex and transfer-vertex representations, their mappers and their algebra are now reachable from C, as are the operator support, sector conservation, in-place and scaled arithmetic, and group ordering. Both APIs also gained access to the electronic integrals parsed by an FCIDump, which previously could only be reached by converting the whole data structure into an operator. Additionally, this release draws a sharper boundary around what this package is for: fermionic operators, the mappers that convert them, and the mapper-agnostic circuit and its transpilation. Simulation is [ffsim](https://github.com/qiskit-community/ffsim)’s concern, so the native FCI kernel and the linear-algebra utilities that duplicated it have been removed in favor of delegating to ffsim, and the `UCC` and `UCJ` gates now wrap ffsim’s operators instead of reimplementing their parameterizations. Simulation consequently requires the `ffsim` extra and, through ffsim’s dependency on PySCF, is unavailable on Windows; building operators, mapping them and transpiling the resulting circuits remain supported everywhere. Since this is still a pre-1.0 release, all of this was done by removal rather than deprecation: the upgrade notes below pair every removed API with its replacement, and are worth reading in full before upgrading.
+This release grows the control this package gives over circuit synthesis. An `Evolution` gate now takes an explicit `synthesis` method, a new `synthesis` module supplies fermionic product formulas of first and higher order, and the `FermionicTrotterization` pass selects and applies one across every evolution in a circuit at once. Alongside it, the Jordan-Wigner mapper gained direct implementations for all four operator representations, and new adapters let a mapper’s output be simplified or emitted group by group.
+
+The C API caught up considerably. The edge-vertex and transfer-vertex representations, their mappers and their algebra are now reachable from C, as are the operator support, sector conservation, in-place and scaled arithmetic, and group ordering. Both APIs also gained access to the electronic integrals parsed by an FCIDump, which previously could only be reached by converting the whole data structure into an operator.
+
+Additionally, this release draws a sharper boundary around what this package is for: fermionic operators, the mappers that convert them, and the mapper-agnostic circuit and its transpilation. Simulation is [ffsim](https://github.com/qiskit-community/ffsim)’s concern, so the native FCI kernel and the linear-algebra utilities that duplicated it have been removed in favor of delegating to ffsim, and the `UCC` and `UCJ` gates now wrap ffsim’s operators instead of reimplementing their parameterizations. Simulation consequently requires the `ffsim` extra and, through ffsim’s dependency on PySCF, is unavailable on Windows; building operators, mapping them and transpiling the resulting circuits remain supported everywhere. Since this is still a pre-1.0 release, all of this was done by removal rather than deprecation: the upgrade notes below pair every removed API with its replacement, and are worth reading in full before upgrading.
 
 <span id="release-notes-0-2-0-python-api-features" />
 
+<span id="id13" />
+
 ### Python API Features
 
-*   How an [`Evolution`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution "qiskit_fermions.circuit.library.Evolution") gate gets decomposed in fermionic space is now configurable through its new keyword-only `synthesis` argument, mirroring the `synthesis` argument of Qiskit’s [`PauliEvolutionGate`](/docs/api/qiskit/qiskit.circuit.library.PauliEvolutionGate). The available methods live in the new [`qiskit_fermions.circuit.library.synthesis`](/docs/api/qiskit-fermions/circuit-library-synthesis#module-qiskit_fermions.circuit.library.synthesis "qiskit_fermions.circuit.library.synthesis") module, which provides the [`FermionicEvolutionSynthesis`](/docs/api/qiskit-fermions/circuit-library-synthesis-fermionic-evolution-synthesis#qiskit_fermions.circuit.library.synthesis.FermionicEvolutionSynthesis "qiskit_fermions.circuit.library.synthesis.FermionicEvolutionSynthesis") interface and its first-order [`FermionicLieTrotter`](/docs/api/qiskit-fermions/circuit-library-synthesis-fermionic-lie-trotter#qiskit_fermions.circuit.library.synthesis.FermionicLieTrotter "qiskit_fermions.circuit.library.synthesis.FermionicLieTrotter") implementation.
+*   How an [`Evolution`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution "qiskit_fermions.circuit.library.Evolution") gate gets decomposed in fermionic space is now configurable through its new keyword-only `synthesis` argument, mirroring the `synthesis` argument of Qiskit’s [`PauliEvolutionGate`](/docs/api/qiskit/qiskit.circuit.library.PauliEvolutionGate). The available methods live in the new [`qiskit_fermions.circuit.library.synthesis`](/docs/api/qiskit-fermions/circuit-library-synthesis#module-qiskit_fermions.circuit.library.synthesis "qiskit_fermions.circuit.library.synthesis") module, which provides the `FermionicEvolutionSynthesis` interface and its first-order [`FermionicLieTrotter`](/docs/api/qiskit-fermions/circuit-library-synthesis-fermionic-lie-trotter#qiskit_fermions.circuit.library.synthesis.FermionicLieTrotter "qiskit_fermions.circuit.library.synthesis.FermionicLieTrotter") implementation.
 
     This fermion-to-fermion step is optional: an [`Evolution`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution "qiskit_fermions.circuit.library.Evolution") gate can be handed straight to the fermion-to-qubit stage regardless of how many terms its operator holds. Decomposing it beforehand is a choice, taken to obtain cheaper factors or to expose structure (such as mutually commuting [`groups`](/docs/api/qiskit-fermions/operators-operator-trait#qiskit_fermions.operators.OperatorTrait.groups "qiskit_fermions.operators.OperatorTrait.groups")) that the later stage can exploit. Because both sides of the rewrite stay in fermionic space, that structure survives it, which is what these methods can exploit and Qiskit’s [`EvolutionSynthesis`](/docs/api/qiskit/qiskit.synthesis.EvolutionSynthesis) cannot.
 
@@ -80,7 +300,7 @@ This release grows the control this package gives over circuit synthesis. An `Ev
 
     Choosing a synthesis method per gate means threading it through everything that constructs an [`Evolution`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution "qiskit_fermions.circuit.library.Evolution") – including [`UCC`](/docs/api/qiskit-fermions/circuit-library-ucc#qiskit_fermions.circuit.library.UCC "qiskit_fermions.circuit.library.UCC") and [`UCJ`](/docs/api/qiskit-fermions/circuit-library-ucj#qiskit_fermions.circuit.library.UCJ "qiskit_fermions.circuit.library.UCJ"), which build their own internally. This pass makes the choice once for a whole pipeline instead. An optional `filter` predicate restricts it to a subset of the gates, which is worth using when a circuit mixes evolutions that benefit from a higher order with ones that do not, such as the all-commuting diagonal-Coulomb operators of a [`UCJ`](/docs/api/qiskit-fermions/circuit-library-ucj#qiskit_fermions.circuit.library.UCJ "qiskit_fermions.circuit.library.UCJ").
 
-    The pass expands each selected gate into the factors its method emits, so no separate expansion step is needed. Pass `apply=False` to only select the method and leave the expansion to something else, such as Qiskit’s [`Decompose`](/docs/api/qiskit/qiskit.transpiler.passes.Decompose); note that a gate which is never expanded reaches the fermion-to-qubit stage whole, where it is mapped without [`Evolution.synthesis`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution.synthesis "qiskit_fermions.circuit.library.Evolution.synthesis") ever being read.
+    The pass expands each selected gate into the factors its method emits, so no separate expansion step is needed. Pass `apply=False` to only select the method and leave the expansion to something else, such as Qiskit’s [`Decompose`](/docs/api/qiskit/qiskit.transpiler.passes.Decompose); note that a gate which is never expanded reaches the fermion-to-qubit stage whole, where it is mapped without `Evolution.synthesis` ever being read.
 
 *   The `qiskit_fermions.operators.terms.grouping` module now covers the *analysis* of an existing grouping alongside the assignment of group indices. Group indices carry no intrinsic meaning, so none of the new functions reports whether a grouping is “correct”; each answers one narrow question about a grouping, so that an assumption a downstream consumer makes can be checked up front rather than being paid for on every call:
 
@@ -127,6 +347,8 @@ This release grows the control this package gives over circuit synthesis. An `Ev
 *   [`FermionOperator`](/docs/api/qiskit-fermions/operators-fermion-operator#qiskit_fermions.operators.FermionOperator "qiskit_fermions.operators.FermionOperator") now implements [`ffsim.SupportsTrace`](https://qiskit-community.github.io/ffsim/api/stubs/ffsim.SupportsTrace.html#ffsim.SupportsTrace "(in ffsim)") through a new [`_trace_()`](/docs/api/qiskit-fermions/operators-fermion-operator#qiskit_fermions.operators.FermionOperator._trace_ "qiskit_fermions.operators.FermionOperator._trace_") method, so [`ffsim.trace()`](https://qiskit-community.github.io/ffsim/api/stubs/ffsim.trace.html#ffsim.trace "(in ffsim)") can compute the trace of an operator on a fixed `(norb, nelec)` sector. This is what preconditions [`scipy.sparse.linalg.expm_multiply()`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.linalg.expm_multiply.html#scipy.sparse.linalg.expm_multiply "(in SciPy v1.18.0)") along the evolution path.
 
 <span id="release-notes-0-2-0-c-api-features" />
+
+<span id="id14" />
 
 ### C API Features
 
@@ -198,6 +420,8 @@ This release grows the control this package gives over circuit synthesis. An `Ev
 
 <span id="release-notes-0-2-0-python-api-upgrade-notes" />
 
+<span id="id15" />
+
 ### Python API Upgrade Notes
 
 *   The `qiskit_fermions.linalg.apply_unitary` and `qiskit_fermions.linalg.linear_operator` functions have been removed. They were thin wrappers around the `_apply_unitary_` and `_linear_operator_` protocol methods, duplicating [`ffsim.apply_unitary()`](https://qiskit-community.github.io/ffsim/api/stubs/ffsim.apply_unitary.html#ffsim.apply_unitary "(in ffsim)") and [`ffsim.linear_operator()`](https://qiskit-community.github.io/ffsim/api/stubs/ffsim.linear_operator.html#ffsim.linear_operator "(in ffsim)"). Call ffsim’s functions instead, or, when ffsim is not installed, the protocol method on the object directly:
@@ -226,7 +450,7 @@ This release grows the control this package gives over circuit synthesis. An `Ev
 
     The protocol *methods* (`_apply_unitary_` and `_linear_operator_`) are unchanged, so the objects of this package that implemented them still do; only the local restatement of the interface is gone. [`SupportsApplyUnitaryPlaced`](/docs/api/qiskit-fermions/protocols-supports-apply-unitary-placed#qiskit_fermions.protocols.SupportsApplyUnitaryPlaced "qiskit_fermions.protocols.SupportsApplyUnitaryPlaced") stays, since it extends [`ffsim.SupportsApplyUnitary`](https://qiskit-community.github.io/ffsim/api/stubs/ffsim.SupportsApplyUnitary.html#ffsim.SupportsApplyUnitary "(in ffsim)") with a mode placement and has no ffsim counterpart.
 
-*   [`from_file()`](/docs/api/qiskit-fermions/operators-library-fci-dump#qiskit_fermions.operators.library.FCIDump.from_file "qiskit_fermions.operators.library.FCIDump.from_file") now raises a catchable Python exception when it cannot parse a file, instead of propagating a Rust panic. A path that cannot be opened or read raises [`OSError`](https://docs.python.org/3/builtins/exceptions.html#OSError), while a file that does not honour the FCIDump format (a missing header namelist, a missing `NORB` or `NELEC` field, or a malformed `MS2` field) raises [`ValueError`](https://docs.python.org/3/builtins/exceptions.html#ValueError). An FCIDump carrying an MO energy value, which is still unsupported, also raises [`ValueError`](https://docs.python.org/3/builtins/exceptions.html#ValueError).
+*   [`from_file()`](/docs/api/qiskit-fermions/operators-library-fci-dump#qiskit_fermions.operators.library.FCIDump.from_file "qiskit_fermions.operators.library.FCIDump.from_file") now raises a catchable Python exception when it cannot parse a file, instead of propagating a Rust panic. A path that cannot be opened or read raises [`OSError`](https://docs.python.org/3/builtins/exceptions.html#OSError), while a file that does not honor the FCIDump format (a missing header namelist, a missing `NORB` or `NELEC` field, or a malformed `MS2` field) raises [`ValueError`](https://docs.python.org/3/builtins/exceptions.html#ValueError). An FCIDump carrying an MO energy value, which is still unsupported, also raises [`ValueError`](https://docs.python.org/3/builtins/exceptions.html#ValueError).
 
 *   The `group_weights` method has been removed from every operator class and from the [`OperatorTrait`](/docs/api/qiskit-fermions/operators-operator-trait#qiskit_fermions.operators.OperatorTrait "qiskit_fermions.operators.OperatorTrait") protocol. It is replaced by [`group_coeff_means()`](/docs/api/qiskit-fermions/operators-terms-group-coeff-means#qiskit_fermions.operators.terms.group_coeff_means "qiskit_fermions.operators.terms.group_coeff_means"), a free function in the `qiskit_fermions.operators.terms.grouping` module, whose behavior is unchanged:
 
@@ -309,7 +533,7 @@ This release grows the control this package gives over circuit synthesis. An `Ev
     QfExitCode exit = qf_fcidump_from_file("molecule.fcidump", &fcidump);
     ```
 
-    It returns [`QfExitCode_ValueError`](/docs/api/qiskit-fermions-c/qf-exit-code#QfExitCode_ValueError "QfExitCode_ValueError") when a file does not honour the FCIDump format (a missing header namelist, a missing `NORB` or `NELEC` field, a malformed `MS2` field, or an MO energy value, which is still unsupported), leaving the out-parameter untouched. This replaces the previous signature, which returned the pointer directly and had no way to report a failure (an unparsable file unwound a Rust panic across the FFI boundary, which is undefined behaviour).
+    It returns [`QfExitCode_ValueError`](/docs/api/qiskit-fermions-c/qf-exit-code#QfExitCode_ValueError "QfExitCode_ValueError") when a file does not honor the FCIDump format (a missing header namelist, a missing `NORB` or `NELEC` field, a malformed `MS2` field, or an MO energy value, which is still unsupported), leaving the out-parameter untouched. This replaces the previous signature, which returned the pointer directly and had no way to report a failure (an unparsable file unwound a Rust panic across the FFI boundary, which is undefined behavior).
 
 *   `qf_ferm_op_group_weights` and its per-type counterparts have been renamed to [`qf_ferm_op_group_coeff_means()`](/docs/api/qiskit-fermions-c/qf-operators-terms-grouping#qf_ferm_op_group_coeff_means "qf_ferm_op_group_coeff_means") and friends. Their behavior is unchanged.
 
@@ -325,6 +549,8 @@ This release grows the control this package gives over circuit synthesis. An `Ev
 
 <span id="release-notes-0-2-0-bug-fixes" />
 
+<span id="id16" />
+
 ### Bug Fixes
 
 *   Fixed the excessive memory consumption of [`fermion_jordan_wigner()`](/docs/api/qiskit-fermions/mappers-library-fermion-jordan-wigner#qiskit_fermions.mappers.library.fermion_jordan_wigner "qiskit_fermions.mappers.library.fermion_jordan_wigner") and of [`qf_ferm_op_jordan_wigner()`](/docs/api/qiskit-fermions-c/qf-mappers-library#qf_ferm_op_jordan_wigner "qf_ferm_op_jordan_wigner") (and therefore of [`jordan_wigner()`](/docs/api/qiskit-fermions/mappers-library-jordan-wigner#qiskit_fermions.mappers.library.jordan_wigner "qiskit_fermions.mappers.library.jordan_wigner") when applied to a [`FermionOperator`](/docs/api/qiskit-fermions/operators-fermion-operator#qiskit_fermions.operators.FermionOperator "qiskit_fermions.operators.FermionOperator")). The mapper accumulated the mapped terms using an addition that concatenates rather than merges duplicate Pauli terms, so the intermediate observable grew with the number of Pauli terms *emitted* instead of the number of *distinct* ones. Mapping a large Hamiltonian could therefore exhaust the available memory even though the simplified result was orders of magnitude smaller. The accumulators are now canonicalized once they have grown by a factor over their previously merged size, which bounds the memory they hold in terms of the operator they actually represent.
@@ -333,21 +559,21 @@ This release grows the control this package gives over circuit synthesis. An `Ev
 
     The mapped operator is unchanged: canonicalization only merges duplicate terms, so the result represents exactly the same observable as before. It is, however, no longer guaranteed to be fully simplified, and the number of terms it holds may vary with the thread count. Call [`simplify()`](/docs/api/qiskit/qiskit.quantum_info.SparseObservable#simplify) (`qk_obs_canonicalize` in C) if you need every duplicate combined.
 
-*   Fixed [`QDriftTrotterization`](/docs/api/qiskit-fermions/transpiler-passes-q-drift-trotterization#qiskit_fermions.transpiler.passes.QDriftTrotterization "qiskit_fermions.transpiler.passes.QDriftTrotterization") discarding the [`Evolution.synthesis`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution.synthesis "qiskit_fermions.circuit.library.Evolution.synthesis") method of the gates it Trotterizes, and emitting sampled gates that could be decomposed into non-unitary factors. The sampled gates now carry over the synthesis method of the gate they replace and are marked [`Evolution.atomic`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution.atomic "qiskit_fermions.circuit.library.Evolution.atomic").
+*   Fixed [`QDriftTrotterization`](/docs/api/qiskit-fermions/transpiler-passes-q-drift-trotterization#qiskit_fermions.transpiler.passes.QDriftTrotterization "qiskit_fermions.transpiler.passes.QDriftTrotterization") discarding the `Evolution.synthesis` method of the gates it Trotterizes, and emitting sampled gates that could be decomposed into non-unitary factors. The sampled gates now carry over the synthesis method of the gate they replace and are marked `Evolution.atomic`.
 
-*   Fixed [`RelabelModes`](/docs/api/qiskit-fermions/transpiler-passes-relabel-modes#qiskit_fermions.transpiler.passes.RelabelModes "qiskit_fermions.transpiler.passes.RelabelModes") finding a permutation for the wrong Hamiltonian when a circuit’s [`Evolution`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution "qiskit_fermions.circuit.library.Evolution") gates had already been decomposed. A [`FermionicEvolutionSynthesis`](/docs/api/qiskit-fermions/circuit-library-synthesis-fermionic-evolution-synthesis#qiskit_fermions.circuit.library.synthesis.FermionicEvolutionSynthesis "qiskit_fermions.circuit.library.synthesis.FermionicEvolutionSynthesis") narrows every factor it emits onto that factor’s support, so the factor’s operator carries mode indices local to the gate, while its position in the register is given by the node’s qubit arguments. The automatic optimization read the operator alone, which gathered those local indices: every narrowed two-mode factor became the excitation `(0, 1)` regardless of which modes it actually coupled, and a long-range coupling dropped out of the model entirely.
+*   Fixed [`RelabelModes`](/docs/api/qiskit-fermions/transpiler-passes-relabel-modes#qiskit_fermions.transpiler.passes.RelabelModes "qiskit_fermions.transpiler.passes.RelabelModes") finding a permutation for the wrong Hamiltonian when a circuit’s [`Evolution`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution "qiskit_fermions.circuit.library.Evolution") gates had already been decomposed. A `FermionicEvolutionSynthesis` narrows every factor it emits onto that factor’s support, so the factor’s operator carries mode indices local to the gate, while its position in the register is given by the node’s qubit arguments. The automatic optimization read the operator alone, which gathered those local indices: every narrowed two-mode factor became the excitation `(0, 1)` regardless of which modes it actually coupled, and a long-range coupling dropped out of the model entirely.
 
     The permutation this returned was valid but optimized for a Hamiltonian that was not the circuit’s, and nothing raised, since local indices are themselves valid mode indices. Circuits whose evolutions reached the pass whole were unaffected. If you relied on the permutation of a decomposed circuit, re-run the pass: it may now return a different (and better) one.
 
 *   Fixed a decomposition of the [`Evolution`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution "qiskit_fermions.circuit.library.Evolution") gate that never terminated. The evolution of a single operator term used to decompose into an identical single-term [`Evolution`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution "qiskit_fermions.circuit.library.Evolution"), so repeated expansion made no progress. Most visibly this made `inverse()` raise a `RecursionError`, since it recurses through the gate’s definition.
 
-    A factor emitted by a [`FermionicEvolutionSynthesis`](/docs/api/qiskit-fermions/circuit-library-synthesis-fermionic-evolution-synthesis#qiskit_fermions.circuit.library.synthesis.FermionicEvolutionSynthesis "qiskit_fermions.circuit.library.synthesis.FermionicEvolutionSynthesis") is now marked [`Evolution.atomic`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution.atomic "qiskit_fermions.circuit.library.Evolution.atomic") and is left in place by [`decompose()`](/docs/api/qiskit-fermions/circuit-fermionic-circuit#qiskit_fermions.circuit.FermionicCircuit.decompose "qiskit_fermions.circuit.FermionicCircuit.decompose") instead of being expanded again. Decomposing an [`Evolution`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution "qiskit_fermions.circuit.library.Evolution") repeatedly therefore reaches a fixed point.
+    A factor emitted by a `FermionicEvolutionSynthesis` is now marked `Evolution.atomic` and is left in place by [`decompose()`](/docs/api/qiskit-fermions/circuit-fermionic-circuit#qiskit_fermions.circuit.FermionicCircuit.decompose "qiskit_fermions.circuit.FermionicCircuit.decompose") instead of being expanded again. Decomposing an [`Evolution`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution "qiskit_fermions.circuit.library.Evolution") repeatedly therefore reaches a fixed point.
 
 *   Fixed [`decompose()`](/docs/api/qiskit-fermions/circuit-fermionic-circuit#qiskit_fermions.circuit.FermionicCircuit.decompose "qiskit_fermions.circuit.FermionicCircuit.decompose") producing non-unitary factors when applied more than twice to an operator carrying groups. Each group was split further, term by term, but an individual term is generally not Hermitian even when the group containing it is – the conjugate pairs of a [`UCC`](/docs/api/qiskit-fermions/circuit-library-ucc#qiskit_fermions.circuit.library.UCC "qiskit_fermions.circuit.library.UCC") cluster generator being the motivating example. The exponential of such a factor is not unitary.
 
     The fermion-to-qubit stage rejected those factors with a `ValueError` about complex coefficients, but state-vector simulation applied them without complaint and returned a non-normalized state. Since a group is now atomic, the split that produced them no longer happens.
 
-*   `Evolution.inverse()` is now implemented directly, returning an [`Evolution`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution "qiskit_fermions.circuit.library.Evolution") that evolves the same operator for the negated time and preserves the gate’s [`synthesis`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution.synthesis "qiskit_fermions.circuit.library.Evolution.synthesis") method. Previously the inherited implementation recursed through the gate’s definition and returned a plain [`Gate`](/docs/api/qiskit/qiskit.circuit.Gate), discarding both the operator and the synthesis method.
+*   `Evolution.inverse()` is now implemented directly, returning an [`Evolution`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution "qiskit_fermions.circuit.library.Evolution") that evolves the same operator for the negated time and preserves the gate’s `synthesis` method. Previously the inherited implementation recursed through the gate’s definition and returned a plain [`Gate`](/docs/api/qiskit/qiskit.circuit.Gate), discarding both the operator and the synthesis method.
 
 <span id="release-notes-0-2-0-performance-improvements" />
 
@@ -359,15 +585,17 @@ This release grows the control this package gives over circuit synthesis. An `Ev
 
 <span id="release-notes-0-1-0" />
 
-<span id="id3" />
+<span id="id17" />
 
 ## 0.1.0
 
 <span id="release-notes-0-1-0-prelude" />
 
-<span id="id4" />
+<span id="id18" />
 
 ### Prelude
 
-This is the first release of Qiskit Fermions, an extension of Qiskit with tools for fermionic systems. It provides operator data structures, a framework and library for converting those operators to qubit form (mappers), and a framework and library for synthesizing the corresponding quantum circuits. Following Qiskit’s design philosophy, the core of this package is written in Rust and exposed through first-party bindings for both Python and C.
+This is the first release of Qiskit Fermions, an extension of Qiskit with tools for fermionic systems. It provides operator data structures, a framework and library for converting those operators to qubit form (mappers), and a framework and library for synthesizing the corresponding quantum circuits.
+
+Following Qiskit’s design philosophy, the core of this package is written in Rust and exposed through first-party bindings for both Python and C.
 

@@ -1,0 +1,430 @@
+---
+title: FunctionsCatalog
+description: API reference for qiskit_ibm_catalog.FunctionsCatalog, the client for loading and running Quantum Functions
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_ibm_catalog.FunctionsCatalog
+---
+
+# FunctionsCatalog
+
+<Class id="qiskit_ibm_catalog.FunctionsCatalog" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-catalog/blob/v0.22.0/qiskit_ibm_catalog/catalog.py" signature="qiskit_ibm_catalog.FunctionsCatalog(token=None, channel=None, instance=None, name=None)" modifiers="class">
+  Client for loading and running Quantum Functions from the [Functions Catalog](/docs/guides/functions). `QiskitFunctionsCatalog` is an alias.
+
+  Pass credentials to the constructor, or save them once with [`save_account()`](#save_account) and construct the client with no arguments. If `token` is set, `name` is ignored.
+
+  ```python
+  from qiskit_ibm_catalog import FunctionsCatalog
+
+  catalog = FunctionsCatalog(token="<API_KEY>", instance="<CRN>")
+  function = catalog.load("qedma/qesem")
+  job = function.run(**inputs)
+  result = job.result()
+  ```
+
+  **Parameters**
+
+  *   **token** (*str | None*) – IBM Cloud API key.
+  *   **channel** (*str | None*) – Authentication method.
+  *   **instance** (*str | None*) – Cloud resource name (CRN) of your IBM Quantum Platform instance.
+  *   **name** (*str | None*) – Name of a saved account to load from the local account config file.
+
+  ## Account
+
+  ### save\_account
+
+  <Function id="qiskit_ibm_catalog.FunctionsCatalog.save_account" signature="save_account(token=None, channel=None, instance=None, name=None, overwrite=False)" modifiers="static">
+    Saves the account to disk for future use.
+
+    ```python
+    FunctionsCatalog.save_account(token="<API_KEY>", instance="<CRN>", overwrite=True)
+    catalog = FunctionsCatalog()
+    ```
+
+    **Parameters**
+
+    *   **token** (*str | None*) – IBM Cloud API key.
+    *   **channel** (*str | None*) – Authentication method.
+    *   **instance** (*str | None*) – Instance CRN.
+    *   **name** (*str | None*) – Name to save the account under.
+    *   **overwrite** (*bool*) – Overwrite an existing saved account.
+  </Function>
+
+  ## Find functions
+
+  ### list
+
+  <Function id="qiskit_ibm_catalog.FunctionsCatalog.list" signature="list(*, limit=None, offset=None, **kwargs)">
+    Lists the functions available to you in the catalog.
+
+    ```python
+    for function in catalog.list():
+        print(function.title)
+    ```
+
+    Output:
+
+    ```text
+    qunova/hivqe-chemistry
+    qedma/qesem
+    multiverse/singularity
+    ...
+    ```
+
+    **Parameters**
+
+    *   **limit** (*int | None*) – Maximum number of functions to return.
+    *   **offset** (*int | None*) – Number of functions to skip.
+
+    **Return type**
+
+    list\[[`RunnableQiskitFunction`](function)]
+  </Function>
+
+  ### load
+
+  <Function id="qiskit_ibm_catalog.FunctionsCatalog.load" signature="load(title, provider=None)">
+    Loads a function by title.
+
+    ```python
+    qesem_function = catalog.load("qedma/qesem")
+    print(qesem_function)
+    ```
+
+    Output:
+
+    ```text
+    QiskitFunction(qedma/qesem)
+    ```
+
+    **Parameters**
+
+    *   **title** (*str*) – Function title, in `provider/function-name` form. For example, `"qedma/qesem"`.
+    *   **provider** (*str | None*) – Provider name, if not included in `title`.
+
+    **Return type**
+
+    [`RunnableQiskitFunction`](function) | `None`
+  </Function>
+
+  ## Jobs
+
+  ### jobs
+
+  <Function id="qiskit_ibm_catalog.FunctionsCatalog.jobs" signature="jobs(function=None, *, limit=10, offset=0, status=None, created_after=None, **kwargs)">
+    Lists your Quantum Functions jobs.
+
+    ```python
+    catalog.jobs(
+        function=qesem_function,
+        status="ERROR",
+        created_after="2026-01-01T00:00:00Z",
+        limit=5,
+    )
+    ```
+
+    Output:
+
+    ```text
+    [<Job | e6b1ffa1-cd26-437d-bd53-b265dd4ba952>,
+     <Job | 11308f2a-8d7a-40a0-a970-7fdeca2b171b>]
+    ```
+
+    **Parameters**
+
+    *   **function** ([*RunnableQiskitFunction*](function) *| None*) – Only return jobs created by this function.
+    *   **limit** (*int*) – Maximum number of jobs to return.
+    *   **offset** (*int*) – Number of jobs to skip.
+    *   **status** (*str | None*) – One of `QUEUED`, `RUNNING`, `DONE`, `ERROR`, or `CANCELED`.
+    *   **created\_after** (*str | None*) – ISO 8601 timestamp, such as `"2026-01-01T00:00:00Z"`.
+
+    **Return type**
+
+    list\[[`Job`](functions-job)]
+  </Function>
+
+  ### job
+
+  <Function id="qiskit_ibm_catalog.FunctionsCatalog.job" signature="job(job_id)">
+    Returns a job by ID. Replaces the deprecated `get_job_by_id()`.
+
+    ```python
+    job = catalog.job("f6c29f49-4d5f-4fff-aca6-2e9a115b9763")
+    print(job)
+    ```
+
+    Output:
+
+    ```text
+    <Job | f6c29f49-4d5f-4fff-aca6-2e9a115b9763>
+    ```
+
+    **Parameters**
+
+    *   **job\_id** (*str*) – Job ID.
+
+    **Return type**
+
+    [`Job`](functions-job) | `None`
+  </Function>
+
+  ### events
+
+  <Function id="qiskit_ibm_catalog.FunctionsCatalog.events" signature="events(job_id, **kwargs)">
+    Returns the events of a job.
+
+    ```python
+    for event in catalog.events(job.job_id):
+        print(event.created, event.event_type, event.data.get("status"))
+    ```
+
+    Output:
+
+    ```text
+    2026-11-02T14:43:07.134377Z STATUS_CHANGE QUEUED
+    2026-11-02T14:43:24.474199Z STATUS_CHANGE PENDING
+    2026-11-02T14:46:07.309519Z STATUS_CHANGE RUNNING
+    2026-11-02T14:46:21.115038Z STATUS_CHANGE SUCCEEDED
+    ```
+
+    **Parameters**
+
+    *   **job\_id** (*str*) – Job ID.
+    *   **\*\*kwargs** – Query parameters for filtering.
+
+    **Return type**
+
+    `list[JobEvent]`
+  </Function>
+
+  ### runtime\_jobs
+
+  <Function id="qiskit_ibm_catalog.FunctionsCatalog.runtime_jobs" signature="runtime_jobs(job_id, runtime_session=None)">
+    Returns the Quantum Compute job IDs created by a function job.
+
+    ```python
+    print(catalog.runtime_jobs(job.job_id))
+    ```
+
+    Output:
+
+    ```text
+    ['dbl6lst8ft8s738secf0']
+    ```
+
+    **Parameters**
+
+    *   **job\_id** (*str*) – Function job ID.
+    *   **runtime\_session** (*str | None*) – Only return jobs in this Quantum Compute session.
+
+    **Return type**
+
+    `list[str]`
+  </Function>
+
+  ### runtime\_sessions
+
+  <Function id="qiskit_ibm_catalog.FunctionsCatalog.runtime_sessions" signature="runtime_sessions(job_id)">
+    Returns the Quantum Compute session IDs created by a function job.
+
+    ```python
+    print(catalog.runtime_sessions(job.job_id))
+    ```
+
+    Output:
+
+    ```text
+    ['cw2q70c79ws0008z6g4g']
+    ```
+
+    **Return type**
+
+    `list[str]`
+  </Function>
+
+  ## Files
+
+  Some functions read input files from, or write output files to, your folder for that function.
+
+  ### files
+
+  <Function id="qiskit_ibm_catalog.FunctionsCatalog.files" signature="files(function)">
+    Lists the files in your folder for a function.
+
+    ```python
+    print(catalog.files(singularity))
+    ```
+
+    Output:
+
+    ```text
+    ['X_test.npy.tar', 'X_train.npy.tar', 'y_test.npy.tar', 'y_train.npy.tar']
+    ```
+
+    **Parameters**
+
+    *   **function** ([*RunnableQiskitFunction*](function)) – The function.
+
+    **Return type**
+
+    `list[str]`
+  </Function>
+
+  ### file\_upload
+
+  <Function id="qiskit_ibm_catalog.FunctionsCatalog.file_upload" signature="file_upload(file, function)">
+    Uploads a local file to your folder for a function.
+
+    ```python
+    singularity = catalog.load("multiverse/singularity")
+    catalog.file_upload("X_train.npy.tar", singularity)
+    ```
+
+    **Parameters**
+
+    *   **file** (*str*) – Path of the local file.
+    *   **function** ([*RunnableQiskitFunction*](function)) – The function.
+  </Function>
+
+  ### file\_download
+
+  <Function id="qiskit_ibm_catalog.FunctionsCatalog.file_download" signature="file_download(file, function, target_name=None, download_location='./')">
+    Downloads a file from your folder for a function.
+
+    ```python
+    catalog.file_download("my_classifier.pkl.tar", singularity, download_location="outputs")
+    ```
+
+    **Parameters**
+
+    *   **file** (*str*) – File name.
+    *   **function** ([*RunnableQiskitFunction*](function)) – The function.
+    *   **target\_name** (*str | None*) – Local file name. Defaults to the remote name.
+    *   **download\_location** (*str*) – Local directory to save the file in.
+  </Function>
+
+  ### file\_delete
+
+  <Function id="qiskit_ibm_catalog.FunctionsCatalog.file_delete" signature="file_delete(file, function)">
+    Deletes a file from your folder for a function.
+
+    ```python
+    catalog.file_delete("X_train.npy.tar", singularity)
+    ```
+
+    **Parameters**
+
+    *   **file** (*str*) – File name.
+    *   **function** ([*RunnableQiskitFunction*](function)) – The function.
+  </Function>
+
+  ## Backends and usage
+
+  ### backends
+
+  <Function id="qiskit_ibm_catalog.FunctionsCatalog.backends" signature="backends(**kwargs)">
+    Returns the backends your instance can access.
+
+    ```python
+    print([backend.name for backend in catalog.backends(simulator=False)])
+    ```
+
+    Output:
+
+    ```text
+    ['ibm_boston', 'ibm_fez', 'ibm_kingston', 'ibm_marrakesh', 'ibm_pittsburgh']
+    ```
+
+    **Parameters**
+
+    *   **\*\*kwargs** – Filters forwarded to the backend query, such as `name`, `min_num_qubits`, `filters`, and `refresh_cache`.
+
+    **Return type**
+
+    `list[Backend]`
+  </Function>
+
+  ### backend
+
+  <Function id="qiskit_ibm_catalog.FunctionsCatalog.backend" signature="backend(name, **kwargs)">
+    Returns a single backend by name.
+
+    ```python
+    backend = catalog.backend("ibm_fez")
+    print(backend.name, backend.num_qubits)
+    ```
+
+    Output:
+
+    ```text
+    ibm_fez 156
+    ```
+
+    **Parameters**
+
+    *   **name** (*str*) – Backend name.
+    *   **\*\*kwargs** – Options forwarded to the backend query.
+
+    **Return type**
+
+    `Backend`
+  </Function>
+
+  ### least\_busy
+
+  <Function id="qiskit_ibm_catalog.FunctionsCatalog.least_busy" signature="least_busy(**kwargs)">
+    Returns the backend with the fewest pending jobs.
+
+    ```python
+    backend = catalog.least_busy(operational=True, simulator=False)
+    print(backend.name)
+    ```
+
+    Output:
+
+    ```text
+    ibm_kingston
+    ```
+
+    **Parameters**
+
+    *   **\*\*kwargs** – Filters forwarded to the backend query, such as `min_num_qubits` and `filters`.
+
+    **Return type**
+
+    `Backend`
+  </Function>
+
+  ### usage
+
+  <Function id="qiskit_ibm_catalog.FunctionsCatalog.usage" signature="usage()">
+    Returns Quantum Compute usage for the active instance in the current usage period. Fields that don't apply to your plan, such as limits, can be missing. `usage_remaining_seconds` is the limit, or the allocation if there's no limit, minus the time consumed. See the [instance usage endpoint](/docs/api/qiskit-runtime-rest/tags/instances#tags__instances__operations__get_usage) for every field.
+
+    ```python
+    from pprint import pprint
+
+    pprint(catalog.usage(), sort_dicts=False)
+    ```
+
+    Output:
+
+    ```text
+    {'instance_id': 'crn:v1:bluemix:public:quantum-computing:us-east:a/...',
+     'plan_id': 'flex-plan-id-1',
+     'usage_period': {'start_time': '2026-10-10T00:00:00.000Z',
+                      'end_time': '2026-11-07T00:00:00.000Z'},
+     'usage_consumed_seconds': 12,
+     'usage_consumed_ru': 0.2,
+     'usage_limit_seconds': 60,
+     'usage_limit_ru': 1,
+     'usage_allocation_seconds': 120,
+     'usage_allocation_ru': 2,
+     'usage_limit_reached': False,
+     'usage_remaining_seconds': 48}
+    ```
+
+    **Return type**
+
+    `dict`
+  </Function>
+</Class>

@@ -117,6 +117,7 @@ function qiskitModuleToSection(module: string): string | undefined {
     hasPrefix(module, [
       "qiskit.converters",
       "qiskit.dagcircuit",
+      "qiskit.mir",
       "qiskit.passmanager",
       "qiskit.synthesis",
       "qiskit.synthesis",
@@ -266,6 +267,12 @@ export const QISKIT_RUNTIME_GROUPING: TocGrouping = {
       untranslatable: true,
     },
     {
+      moduleId: "qiskit_ibm_runtime.executor_noise_learner",
+      title: "qiskit_ibm_runtime.executor_noise_learner",
+      kind: "module",
+      untranslatable: true,
+    },
+    {
       moduleId: "qiskit_ibm_runtime.executor_sampler",
       title: "qiskit_ibm_runtime.executor_sampler",
       kind: "module",
@@ -316,6 +323,18 @@ export const QISKIT_RUNTIME_GROUPING: TocGrouping = {
     {
       moduleId: "qiskit_ibm_runtime.results",
       title: "qiskit_ibm_runtime.results",
+      kind: "module",
+      untranslatable: true,
+    },
+    {
+      moduleId: "qiskit_ibm_runtime.server_side.estimator",
+      title: "qiskit_ibm_runtime.server_side.estimator",
+      kind: "module",
+      untranslatable: true,
+    },
+    {
+      moduleId: "qiskit_ibm_runtime.server_side.sampler",
+      title: "qiskit_ibm_runtime.server_side.sampler",
       kind: "module",
       untranslatable: true,
     },

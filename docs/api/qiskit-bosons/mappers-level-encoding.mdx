@@ -1,0 +1,183 @@
+---
+title: LevelEncoding (latest version)
+description: API reference for qiskit_bosons.mappers.LevelEncoding in the latest version of qiskit-bosons
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_bosons.mappers.LevelEncoding
+---
+
+# LevelEncoding
+
+<Class id="qiskit_bosons.mappers.LevelEncoding" isDedicatedPage={true} signature="LevelEncoding" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
+
+  The layout of the levels of a single system on qubits.
+
+  A level encoding decides which computational basis state of a block of qubits represents each of the $d$ levels of one system. It is independent of what the levels are, so mappers in different bases (for example [`occupation_encoding()`](mappers-library-occupation-encoding "qiskit_bosons.mappers.library.occupation_encoding"), whose levels are boson occupation numbers) share the same choice.
+
+  | Encoding                                                                                                                              | Qubits per system        | Level $n$ is stored as                                                       |
+  | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------ | ---------------------------------------------------------------------------- |
+  | [`UNARY_PROJECTED`](#qiskit_bosons.mappers.LevelEncoding.UNARY_PROJECTED "qiskit_bosons.mappers.LevelEncoding.UNARY_PROJECTED")       | $d$                      | the one-hot pattern with qubit $n$ set, with a projector on every idle qubit |
+  | [`UNARY_UNPROJECTED`](#qiskit_bosons.mappers.LevelEncoding.UNARY_UNPROJECTED "qiskit_bosons.mappers.LevelEncoding.UNARY_UNPROJECTED") | $d$                      | the same one-hot pattern, without the projectors                             |
+  | [`STANDARD_BINARY`](#qiskit_bosons.mappers.LevelEncoding.STANDARD_BINARY "qiskit_bosons.mappers.LevelEncoding.STANDARD_BINARY")       | $\lceil \log_2 d \rceil$ | the binary digits of $n$                                                     |
+  | [`GRAY`](#qiskit_bosons.mappers.LevelEncoding.GRAY "qiskit_bosons.mappers.LevelEncoding.GRAY")                                        | $\lceil \log_2 d \rceil$ | the Gray code $n \oplus (n \gg 1)$                                           |
+
+  There is no universally best choice, so all of them are offered on an equal footing.   <span id="id1" />[\[1\]](#id2) The two unary encodings share their bit patterns and give ladder terms with only two non-diagonal factors, at a cost of $d$ qubits. They differ in the operator built from those patterns. [`UNARY_UNPROJECTED`](#qiskit_bosons.mappers.LevelEncoding.UNARY_UNPROJECTED "qiskit_bosons.mappers.LevelEncoding.UNARY_UNPROJECTED") leaves the idle qubits alone, which is the weight-2 form whose gate count grows only linearly in $d$. [`UNARY_PROJECTED`](#qiskit_bosons.mappers.LevelEncoding.UNARY_PROJECTED "qiskit_bosons.mappers.LevelEncoding.UNARY_PROJECTED") also puts a projector $\lvert 0 \rangle\langle 0 \rvert$ on each idle qubit, so its terms touch all $d$ qubits and are costlier to synthesize. The two are equal on the one-hot subspace, and the unprojected operator is undefined outside it, so the choice is a modeling decision and not a pure optimization. The two compact encodings need only $\lceil \log_2 d \rceil$ qubits but produce terms with more non-diagonal factors, and their projectors cannot be dropped, because there the zero bits are part of the level number.
+
+  Sawaya et al. find that the compact codes are frequently better in both qubit and gate count – at $d = 4$ the unary encoding needs roughly three times more two-qubit gates, whereas by $d = 10$ it needs about half. They further find the Gray code preferable for tridiagonal (hopping) terms and standard binary for diagonal (number-operator) terms.
+
+  Note that [`STANDARD_BINARY`](#qiskit_bosons.mappers.LevelEncoding.STANDARD_BINARY "qiskit_bosons.mappers.LevelEncoding.STANDARD_BINARY") and [`GRAY`](#qiskit_bosons.mappers.LevelEncoding.GRAY "qiskit_bosons.mappers.LevelEncoding.GRAY") emit the same number of terms; the Gray code’s advantage lies entirely in the weight distribution, since consecutive levels differ in exactly one bit.
+
+  Every function that takes a level encoding also accepts its string name, which is what `str()` returns: `"unary_projected"`, `"unary_unprojected"`, `"standard_binary"` or `"gray"`. [`from_name()`](#qiskit_bosons.mappers.LevelEncoding.from_name "qiskit_bosons.mappers.LevelEncoding.from_name") is the inverse, and rejects any other name, including the former `"unary"`:
+
+  ```pycon
+  >>> from qiskit_bosons.mappers import LevelEncoding
+  >>> str(LevelEncoding.STANDARD_BINARY)
+  'standard_binary'
+  >>> LevelEncoding.from_name("gray")
+  LevelEncoding.GRAY
+  >>> LevelEncoding.from_name(str(LevelEncoding.UNARY_UNPROJECTED)) == LevelEncoding.UNARY_UNPROJECTED
+  True
+  >>> LevelEncoding.from_name("unary")
+  Traceback (most recent call last):
+  ...
+  ValueError: unknown encoding "unary"; expected one of 'unary_projected', 'unary_unprojected', 'standard_binary', 'gray'
+  ```
+
+  <span id="id2" />
+
+  \[[1](#id1)]
+
+  N. P. D. Sawaya et al., Resource-efficient digital quantum simulation of d-level systems for photonic, vibrational, and spin-s Hamiltonians, npj Quantum Information 6, 49 (2020), [arXiv:1909.12847](https://arxiv.org/abs/1909.12847).
+
+  ## Attributes
+
+  ### GRAY
+
+  <Attribute id="qiskit_bosons.mappers.LevelEncoding.GRAY">
+    Default value: `LevelEncoding.GRAY`
+
+    The binary-reflected Gray code of the level.
+
+    It costs the same $\lceil \log_2 d \rceil$ qubits as [`STANDARD_BINARY`](#qiskit_bosons.mappers.LevelEncoding.STANDARD_BINARY "qiskit_bosons.mappers.LevelEncoding.STANDARD_BINARY"), and the same zero qubits for a single level, but consecutive levels differ in exactly one bit.
+
+    ```pycon
+    >>> from qiskit_bosons.mappers import LevelEncoding
+    >>> [LevelEncoding.GRAY.num_qubits(d) for d in (1, 2, 3, 4, 5, 9)]
+    [0, 1, 2, 2, 3, 4]
+    >>> [format(LevelEncoding.GRAY.level_to_bits(n), "03b") for n in range(5)]
+    ['000', '001', '011', '010', '110']
+    ```
+
+    Each code in the list above differs from its neighbor in a single digit, which keeps the operators that connect adjacent levels low-weight.
+  </Attribute>
+
+  ### STANDARD\_BINARY
+
+  <Attribute id="qiskit_bosons.mappers.LevelEncoding.STANDARD_BINARY">
+    Default value: `LevelEncoding.STANDARD_BINARY`
+
+    The binary digits of the level.
+
+    A system with $d$ levels costs $\lceil \log_2 d \rceil$ qubits. A system with a single level costs none, because its only level needs no qubit to be told apart from any other. When $d$ is not a power of two, the surplus basis states are never populated.
+
+    ```pycon
+    >>> from qiskit_bosons.mappers import LevelEncoding
+    >>> [LevelEncoding.STANDARD_BINARY.num_qubits(d) for d in (1, 2, 3, 4, 5, 9)]
+    [0, 1, 2, 2, 3, 4]
+    >>> [format(LevelEncoding.STANDARD_BINARY.level_to_bits(n), "03b") for n in range(5)]
+    ['000', '001', '010', '011', '100']
+    ```
+
+    Adjacent levels can differ in many bits (`011` and `100` above differ in all three), which is what makes the operators that connect them higher-weight than under [`GRAY`](#qiskit_bosons.mappers.LevelEncoding.GRAY "qiskit_bosons.mappers.LevelEncoding.GRAY").
+  </Attribute>
+
+  ### UNARY\_PROJECTED
+
+  <Attribute id="qiskit_bosons.mappers.LevelEncoding.UNARY_PROJECTED">
+    Default value: `LevelEncoding.UNARY_PROJECTED`
+
+    One qubit per level; level $n$ sets qubit $n$. Every idle qubit carries a projector.
+
+    A system with $d$ levels costs $d$ qubits, and only $d$ of the $2^d$ basis states of those qubits are ever populated. An operator that moves the level up or down by one has two non-diagonal factors, and this variant also puts a projector $\lvert 0 \rangle\langle 0 \rvert$ on each of the other qubits of the system. Its terms therefore touch all $d$ qubits, vanish outside the one-hot subspace, and are costlier to synthesize than those of [`UNARY_UNPROJECTED`](#qiskit_bosons.mappers.LevelEncoding.UNARY_UNPROJECTED "qiskit_bosons.mappers.LevelEncoding.UNARY_UNPROJECTED"), by a margin that grows quickly with $d$.
+
+    ```pycon
+    >>> from qiskit_bosons.mappers import LevelEncoding
+    >>> [LevelEncoding.UNARY_PROJECTED.num_qubits(d) for d in (1, 2, 3, 4, 5, 9)]
+    [1, 2, 3, 4, 5, 9]
+    >>> [format(LevelEncoding.UNARY_PROJECTED.level_to_bits(n), "05b") for n in range(5)]
+    ['00001', '00010', '00100', '01000', '10000']
+    ```
+
+    The bitmask of a level has qubit $q$ in bit $q$, so qubit 0 is the rightmost digit.
+  </Attribute>
+
+  ### UNARY\_UNPROJECTED
+
+  <Attribute id="qiskit_bosons.mappers.LevelEncoding.UNARY_UNPROJECTED">
+    Default value: `LevelEncoding.UNARY_UNPROJECTED`
+
+    One qubit per level, as for [`UNARY_PROJECTED`](#qiskit_bosons.mappers.LevelEncoding.UNARY_PROJECTED "qiskit_bosons.mappers.LevelEncoding.UNARY_PROJECTED"), but without the projectors on the idle qubits.
+
+    The bit patterns, the qubit count and the matrix elements are those of [`UNARY_PROJECTED`](#qiskit_bosons.mappers.LevelEncoding.UNARY_PROJECTED "qiskit_bosons.mappers.LevelEncoding.UNARY_PROJECTED"). Only the projectors are left out, so an operator that moves the level up or down by one keeps the weight-2 form with two non-diagonal factors and acts as the identity on every other qubit, however large $d$ is. Its gate count then grows only linearly in $d$.
+
+    ```pycon
+    >>> from qiskit_bosons.mappers import LevelEncoding
+    >>> [LevelEncoding.UNARY_UNPROJECTED.num_qubits(d) for d in (1, 2, 3, 4, 5, 9)]
+    [1, 2, 3, 4, 5, 9]
+    >>> [format(LevelEncoding.UNARY_UNPROJECTED.level_to_bits(n), "05b") for n in range(5)]
+    ['00001', '00010', '00100', '01000', '10000']
+    ```
+
+    The two unary variants are equal on the one-hot subspace. This one is **undefined outside it**, since nothing suppresses the evolution of an unphysical state, so choosing it is a modeling decision and not a pure optimization. It is only meaningful for the unary code.
+  </Attribute>
+
+  ## Methods
+
+  ### from\_name
+
+  <Function id="qiskit_bosons.mappers.LevelEncoding.from_name" signature="from_name(name)" modifiers="static">
+    Returns the encoding with the given string name.
+
+    **Parameters**
+
+    **name** – one of `"unary_projected"`, `"unary_unprojected"`, `"standard_binary"` or `"gray"`.
+
+    **Raises**
+
+    [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – if `name` is not a recognized name.
+  </Function>
+
+  ### level\_to\_bits
+
+  <Function id="qiskit_bosons.mappers.LevelEncoding.level_to_bits" signature="level_to_bits(level)">
+    Returns the qubit basis state representing level `level`.
+
+    **Parameters**
+
+    **level** – the level, counted from zero.
+
+    **Returns**
+
+    A bitmask whose bit $q$ is the value of qubit $q$ of the system.
+
+    **Raises**
+
+    [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – for a unary encoding if `level` is 128 or more, since the unary encodings hold at most 128 levels.
+  </Function>
+
+  ### num\_qubits
+
+  <Function id="qiskit_bosons.mappers.LevelEncoding.num_qubits" signature="num_qubits(num_levels)">
+    Returns the number of qubits needed to represent a system with `num_levels` levels.
+
+    **Parameters**
+
+    **num\_levels** – the number of levels $d$ of the system.
+
+    **Returns**
+
+    $d$ for the two unary encodings and $\lceil \log_2 d \rceil$ for the two compact encodings. The compact encodings can address more levels than $d$ whenever it is not a power of two; those surplus levels are never populated by the operators built from the encoding.
+  </Function>
+</Class>
+

@@ -19,11 +19,13 @@ python_api_name: qiskit_fermions.transpiler.passes.synthesis.F2QSynthesisPluginM
   [project.entry-points."qiskit_fermions.transpiler.synthesis"]
   "Evolution.MapperFn" = "qiskit_fermions.transpiler.passes.synthesis:MapperFnEvolutionSynthesis"
   "InitializeModes.TrivialOccupation" = "qiskit_fermions.transpiler.passes.synthesis:TrivialOccupationInitializeModesSynthesis"
+  "FermionicMeasure.TrivialOccupation" = "qiskit_fermions.transpiler.passes.synthesis:TrivialOccupationFermionicMeasureSynthesis"
+  # DEPRECATED all of the following entry-points are deprecated and subject to removal in a future release
   "OrbitalRotation.GivensDecomposition" = "qiskit_fermions.transpiler.passes.synthesis:GivensDecompositionOrbitalRotationSynthesis"
   "PrepareSlaterDeterminant.GivensDecompositionSlater" = "qiskit_fermions.transpiler.passes.synthesis:GivensDecompositionSlaterDeterminantSynthesis"
   ```
 
-  An overview of all builtin plugins is given in [this table](/docs/api/qiskit-fermions/transpiler-passes-plugins#builtin-synthesis-plugins).
+  An overview of all builtin plugins is given [here](/docs/api/qiskit-fermions/transpiler-passes-synthesis#builtin-f2q-synthesis-plugins).
 
   ## Attributes
 
@@ -52,6 +54,10 @@ python_api_name: qiskit_fermions.transpiler.passes.synthesis.F2QSynthesisPluginM
     **Returns**
 
     The [`F2QSynthesisPlugin`](transpiler-passes-synthesis-f-2-q-synthesis-plugin "qiskit_fermions.transpiler.passes.synthesis.F2QSynthesisPlugin") class.
+
+    **Raises**
+
+    [**KeyError**](https://docs.python.org/3/builtins/exceptions.html#KeyError) – if no plugin is registered under that name.
 
     **Return type**
 

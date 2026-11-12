@@ -46,7 +46,7 @@ A core principle to the design of `qiskit-fermions` was the decoupling of its fe
 
 That last point is the reason to bring an ffsim operator here. ffsim’s own Qiskit gates are specific to the Jordan-Wigner transformation, so lowering an ansatz through a different encoding (a local encoding trading qubits for shallower circuits, for instance) is what this package adds. Conversely, this package does not reimplement the ansatz math, so [`UCJ`](/docs/api/qiskit-fermions/circuit-library-ucj#qiskit_fermions.circuit.library.UCJ "qiskit_fermions.circuit.library.UCJ") and [`UCC`](/docs/api/qiskit-fermions/circuit-library-ucc#qiskit_fermions.circuit.library.UCC "qiskit_fermions.circuit.library.UCC") take an ffsim operator directly as their input.
 
-On the simulation side, ffsim is the backend. This package’s gates and operators implement the protocol methods ffsim’s simulation functions consume (`_apply_unitary_`, `_linear_operator_` and `_trace_`; see [`qiskit_fermions.protocols`](/docs/api/qiskit-fermions/protocols#module-qiskit_fermions.protocols "qiskit_fermions.protocols")), so ffsim’s tools work on them natively, with no conversion step. Because ffsim depends on PySCF, which does not support Windows, simulating on Windows means going through the [Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/) for now. Building operators, mapping them and transpiling the resulting circuits need none of this and work everywhere.
+On the simulation side, ffsim is the backend. This package’s gates and operators implement the protocol methods ffsim’s simulation functions consume (`_apply_unitary_`, `_linear_operator_` and `_trace_`; see [`qiskit_fermions.protocols`](/docs/api/qiskit-fermions/protocols#module-qiskit_fermions.protocols "qiskit_fermions.protocols")), so ffsim’s tools work on them natively, with no conversion step. Building operators, mapping them and transpiling the resulting circuits do not need ffsim at all.
 
 For the full picture, read the [ffsim relationship guide](/docs/addons/qiskit-fermions/guides/ffsim#ffsim-relationship-explanation).
 
@@ -76,7 +76,7 @@ If you use this package in your research, use the [CITATION.bib](https://github.
 
 ## Deprecation policy
 
-This package follows [semantic versioning](https://semver.org/). Breaking changes are made only occasionally, to improve the user experience. When possible, old interfaces are kept and marked as deprecated for as long as they can co-exist with the new ones. Each substantial improvement, breaking change, or deprecation is documented in the [release notes](/docs/api/qiskit-fermions/release-notes).
+This package follows [semantic versioning](https://semver.org/). Breaking changes are made only occasionally, to improve the user experience. When possible, old interfaces are kept and marked as deprecated for as long as they can co-exist with the new ones. Each substantial improvement, breaking change, or deprecation is documented in the [Release Notes](/docs/api/qiskit-fermions/release-notes#release-notes).
 
 ## References
 

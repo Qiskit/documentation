@@ -18,32 +18,26 @@ Noise model specification for evaluating spacetime Pauli checks.
 
 ### NoiseModel
 
-<Class id="qiskit_paulice.noise_models.NoiseModel" github="https://github.com/Qiskit/qiskit-paulice/tree/main/qiskit_paulice/noise_models.py#L59-L292" signature="NoiseModel(gate_noise=None, readout_noise=None, idling_noise=None)" modifiers="class">
-  Bases: [`object`](https://docs.python.org/3/library/functions.html#object)
+<Class id="qiskit_paulice.noise_models.NoiseModel" github="https://github.com/Qiskit/qiskit-paulice/tree/main/qiskit_paulice/noise_models.py#L121-L359" signature="NoiseModel(gate_noise=None, readout_noise=None, idling_noise=None)" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
 
   Noise model used to find optimal circuit locations for spacetime Pauli checks.
 
-  **Parameters**
-
-  *   **gate\_noise** (*GateNoise | None*)
-  *   **readout\_noise** ([*float*](https://docs.python.org/3/library/functions.html#float) *| None*)
-  *   **idling\_noise** ([*float*](https://docs.python.org/3/library/functions.html#float) *| None*)
-
   #### from\_backend
 
-  <Function id="qiskit_paulice.noise_models.NoiseModel.from_backend" github="https://github.com/Qiskit/qiskit-paulice/tree/main/qiskit_paulice/noise_models.py#L78-L198" signature="from_backend(backend, layout, uniform_gate_noise=False, pauli_bases=None)" modifiers="classmethod">
+  <Function id="qiskit_paulice.noise_models.NoiseModel.from_backend" github="https://github.com/Qiskit/qiskit-paulice/tree/main/qiskit_paulice/noise_models.py#L143-L265" signature="from_backend(backend, layout, uniform_gate_noise=False, pauli_bases=None)" modifiers="classmethod">
     Instantiate a [`NoiseModel`](#qiskit_paulice.noise_models.NoiseModel "qiskit_paulice.noise_models.NoiseModel") from backend calibration data.
 
-    Edge keys in the resulting `GateWiseNoise` dict use **virtual** qubit indices (positions in `layout`). If the input circuit has a layout that maps virtual to physical consistently with `layout`, the keys also serve as physical indices.
+    Edge keys in the resulting [`GateWiseNoise`](#qiskit_paulice.noise_models.GateWiseNoise "qiskit_paulice.noise_models.GateWiseNoise") dict use **virtual** qubit indices (positions in `layout`). If the input circuit has a layout that maps virtual to physical consistently with `layout`, the keys also serve as physical indices.
 
     `idling_noise` is always `None` from this method; if `backend` lacks readout calibration, `readout_noise` will also be `None`.
 
     **Parameters**
 
     *   **backend** ([*BackendV2*](/docs/api/qiskit/qiskit.providers.BackendV2)) – A backend containing two-qubit gate error probabilities for each coupling map edge as well as readout error information for each qubit in the layout.
-    *   **layout** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*int*](https://docs.python.org/3/library/functions.html#int)*]*) – Physical qubit indices on the backend to include in the noise model. The order defines the virtual qubit indexing (virtual qubit 0 maps to `layout[0]`, etc.).
-    *   **uniform\_gate\_noise** ([*bool*](https://docs.python.org/3/library/functions.html#bool)) – If `True`, the `gate_noise` field in the output [`NoiseModel`](#qiskit_paulice.noise_models.NoiseModel "qiskit_paulice.noise_models.NoiseModel") will be a `UniformGateNoise` and the error probability is assumed to be distributed uniformly among the `15` non-identity Pauli bases to form a uniform depolarizing channel which will affect all entangling gates equally. If `False`, `gate_noise` will be a `GateWiseNoise` instance where each edge is associated with a custom noise channel based on backend calibration data.
-    *   **pauli\_bases** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str)*] | None*) – For `GateWiseNoise` models, `pauli_bases` are the bases over which the error probability reported from the backend will be distributed. Each basis is a 2-character Pauli string paired left-to-right with the edge tuple, so `"XZ"` on edge `(a, b)` places `X` on `a` and `Z` on `b`. The default behavior is to use the full 2Q Pauli basis excluding `"II"`. For `UniformNoise`, the full basis is assumed, and this argument is ignored.
+    *   **layout** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*int*](https://docs.python.org/3/builtins/functions.html#int)*]*) – Physical qubit indices on the backend to include in the noise model. The order defines the virtual qubit indexing (virtual qubit 0 maps to `layout[0]`, etc.).
+    *   **uniform\_gate\_noise** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) – If `True`, `gate_noise` is a [`UniformGateNoise`](#qiskit_paulice.noise_models.UniformGateNoise "qiskit_paulice.noise_models.UniformGateNoise"): the mean reported error over all edges. If `False`, it is a [`GateWiseNoise`](#qiskit_paulice.noise_models.GateWiseNoise "qiskit_paulice.noise_models.GateWiseNoise") with a channel per edge built from that edge’s reported error.
+    *   **pauli\_bases** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*str*](https://docs.python.org/3/builtins/stdtypes.html#str)*] | None*) – For [`GateWiseNoise`](#qiskit_paulice.noise_models.GateWiseNoise "qiskit_paulice.noise_models.GateWiseNoise") models, the generators of each edge’s channel: 2-character Pauli strings paired left-to-right with the edge tuple, so `"XZ"` on edge `(a, b)` places `X` on `a` and `Z` on `b`. They share one rate, chosen so the channel has the edge’s total error probability. The default is the full 2Q Pauli basis excluding `"II"`, the depolarizing channel of [`UniformGateNoise`](#qiskit_paulice.noise_models.UniformGateNoise "qiskit_paulice.noise_models.UniformGateNoise"). Ignored when `uniform_gate_noise` is `True`.
 
     **Returns**
 
@@ -51,7 +45,7 @@ Noise model specification for evaluating spacetime Pauli checks.
 
     **Raises**
 
-    [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – Backend is missing calibration data or layout contains invalid qubit indices.
+    [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – Backend is missing calibration data, layout contains invalid qubit indices, a Pauli basis is malformed or `"II"`, or `pauli_bases` cannot produce an edge’s error.
 
     **Return type**
 
@@ -60,15 +54,15 @@ Noise model specification for evaluating spacetime Pauli checks.
 
   #### from\_pauli\_lindblad\_maps
 
-  <Function id="qiskit_paulice.noise_models.NoiseModel.from_pauli_lindblad_maps" github="https://github.com/Qiskit/qiskit-paulice/tree/main/qiskit_paulice/noise_models.py#L200-L292" signature="from_pauli_lindblad_maps(layer_noise, readout_noise=None)" modifiers="classmethod">
+  <Function id="qiskit_paulice.noise_models.NoiseModel.from_pauli_lindblad_maps" github="https://github.com/Qiskit/qiskit-paulice/tree/main/qiskit_paulice/noise_models.py#L267-L359" signature="from_pauli_lindblad_maps(layer_noise, readout_noise=None)" modifiers="classmethod">
     Create a NoiseModel from Pauli-Lindblad maps.
 
     This method constructs a [`NoiseModel`](#qiskit_paulice.noise_models.NoiseModel "qiskit_paulice.noise_models.NoiseModel") from `PauliLindbladMap` instances that represent noise channels affecting gates and, optionally, measurements. Gate noise is specified with the `layer_noise` argument. Each `PauliLindbladMap` instance is assumed to act on a unique layer of entangling gates. Readout noise is specified by a single `PauliLindbladMap` containing single-qubit Pauli-X generators and their associated rates.
 
     **Parameters**
 
-    *   **layer\_noise** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*PauliLindbladMap*](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap)*]*) – A sequence of `PauliLindbladMap` objects, where each map represents the noise channel for one unique entangling layer in the circuit.
-    *   **readout\_noise** ([*PauliLindbladMap*](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap) *| None*) – Optional `PauliLindbladMap` containing Pauli X generators on each qubit for readout errors.
+    *   **layer\_noise** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*PauliLindbladMap*](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap)*]*) – A sequence of [`PauliLindbladMap`](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap) objects, where each map represents the noise channel for one unique entangling layer in the circuit.
+    *   **readout\_noise** ([*PauliLindbladMap*](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap) *| None*) – Optional [`PauliLindbladMap`](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap) containing Pauli X generators on each qubit for readout errors.
 
     **Returns**
 
@@ -76,8 +70,8 @@ Noise model specification for evaluating spacetime Pauli checks.
 
     **Raises**
 
-    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – Weight of error generator greater than `2`.
-    *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError) – Readout error generator is not Pauli-X.
+    *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – Weight of error generator greater than `2`.
+    *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – Readout error generator is not Pauli-X.
 
     **Return type**
 
@@ -87,31 +81,33 @@ Noise model specification for evaluating spacetime Pauli checks.
   #### gate\_noise
 
   <Attribute id="qiskit_paulice.noise_models.NoiseModel.gate_noise">
-    Type: `GateNoise` | [`None`](https://docs.python.org/3/library/constants.html#None)
+    Type: `GateNoise` | [`None`](https://docs.python.org/3/builtins/constants.html#None)
 
     Default value: `None`
 
     Errors that occur during 2-qubit gate operations. Can be:
 
-    *   `UniformNoise`: Same error probability for all gates. The error probability is equally distributed to each Pauli basis represented in the channel.
-    *   `LayeredNoise`: Pauli-Lindblad noise channel per unique entangling layer
-    *   `GateWiseNoise`: Pauli-Lindblad noise channel per unique entangling edge
+    *   [`UniformGateNoise`](#qiskit_paulice.noise_models.UniformGateNoise "qiskit_paulice.noise_models.UniformGateNoise"): The same depolarizing channel after every gate, with every non-identity Pauli equally likely.
+    *   [`LayeredGateNoise`](#qiskit_paulice.noise_models.LayeredGateNoise "qiskit_paulice.noise_models.LayeredGateNoise"): Pauli-Lindblad noise channel per unique entangling layer
+    *   [`GateWiseNoise`](#qiskit_paulice.noise_models.GateWiseNoise "qiskit_paulice.noise_models.GateWiseNoise"): Pauli-Lindblad noise channel per unique entangling edge
   </Attribute>
 
   #### idling\_noise
 
   <Attribute id="qiskit_paulice.noise_models.NoiseModel.idling_noise">
-    Type: [`float`](https://docs.python.org/3/library/functions.html#float) | [`None`](https://docs.python.org/3/library/constants.html#None)
+    Type: [`float`](https://docs.python.org/3/builtins/functions.html#float) | [`None`](https://docs.python.org/3/builtins/constants.html#None)
 
     Default value: `None`
 
     Qubit decay rate during idle time. Total error probability is given as `1 - exp(-t / idling_noise)`.
+
+    Not currently supported: both [`add_pauli_checks()`](qiskit-paulice-checks#add_pauli_checks "qiskit_paulice.checks.add_pauli_checks") and [`estimate_fault_rates()`](qiskit-paulice-checked-circuit#estimate_fault_rates "qiskit_paulice.checked_circuit.CheckedCircuit.estimate_fault_rates") raise if this is set.
   </Attribute>
 
   #### readout\_noise
 
   <Attribute id="qiskit_paulice.noise_models.NoiseModel.readout_noise">
-    Type: [`float`](https://docs.python.org/3/library/functions.html#float) | [`None`](https://docs.python.org/3/library/constants.html#None)
+    Type: [`float`](https://docs.python.org/3/builtins/functions.html#float) | [`None`](https://docs.python.org/3/builtins/constants.html#None)
 
     Default value: `None`
 
@@ -124,9 +120,9 @@ Noise model specification for evaluating spacetime Pauli checks.
 <Attribute id="qiskit_paulice.noise_models.UniformGateNoise">
   Default value: `<class 'float'>`
 
-  A depolarizing probability applied uniformly to all 2-qubit gates.
+  An average gate infidelity `p` for every 2-qubit gate.
 
-  This probability will be equally distributed among the `15` non-identity Paulis in the 2-qubit Pauli basis to form the depolarizing channel. This noise channel will be applied **after** each entangling gate.
+  A depolarizing channel is applied after each 2-qubit gate: each of the `15` non-identity 2-qubit Paulis occurs with probability `d / 15`, where `d = 5 p / 4` is the total error probability.
 </Attribute>
 
 ### LayeredGateNoise
@@ -140,7 +136,7 @@ Noise model specification for evaluating spacetime Pauli checks.
 
   Keys are tuples of qubit index pairs (edges) defining a layer. Values are lists of `(pauli, rate)` tuples where `pauli` is a Pauli or Pauli string defined over all qubits and `rate` is the associated error rate.
 
-  alias of [`dict`](https://docs.python.org/3/library/stdtypes.html#dict)\[[`tuple`](https://docs.python.org/3/library/stdtypes.html#tuple)\[[`tuple`](https://docs.python.org/3/library/stdtypes.html#tuple)\[[`int`](https://docs.python.org/3/library/functions.html#int), [`int`](https://docs.python.org/3/library/functions.html#int)], …], [`list`](https://docs.python.org/3/library/stdtypes.html#list)\[[`tuple`](https://docs.python.org/3/library/stdtypes.html#tuple)\[[`Pauli`](/docs/api/qiskit/qiskit.quantum_info.Pauli) | [`str`](https://docs.python.org/3/library/stdtypes.html#str), [`float`](https://docs.python.org/3/library/functions.html#float)]]]
+  alias of [`dict`](https://docs.python.org/3/builtins/stdtypes.html#dict)\[[`tuple`](https://docs.python.org/3/builtins/stdtypes.html#tuple)\[[`tuple`](https://docs.python.org/3/builtins/stdtypes.html#tuple)\[[`int`](https://docs.python.org/3/builtins/functions.html#int), [`int`](https://docs.python.org/3/builtins/functions.html#int)], …], [`list`](https://docs.python.org/3/builtins/stdtypes.html#list)\[[`tuple`](https://docs.python.org/3/builtins/stdtypes.html#tuple)\[[`Pauli`](/docs/api/qiskit/qiskit.quantum_info.Pauli) | [`str`](https://docs.python.org/3/builtins/stdtypes.html#str), [`float`](https://docs.python.org/3/builtins/functions.html#float)]]]
 </Attribute>
 
 ### GateWiseNoise
@@ -150,7 +146,7 @@ Noise model specification for evaluating spacetime Pauli checks.
 
   Keys are tuples of qubit index pairs representing edges. Values are lists of (pauli, rate) tuples where `pauli` is a 2-character Pauli string and `rate` is the associated error rate. The string is paired left-to-right with the edge tuple — matching [`PauliLindbladMap`](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap)’s sparse form `(pauli_str, indices)`: for edge `(a, b)`, `"XZ"` places `X` on `a` and `Z` on `b`.
 
-  alias of [`dict`](https://docs.python.org/3/library/stdtypes.html#dict)\[[`tuple`](https://docs.python.org/3/library/stdtypes.html#tuple)\[[`int`](https://docs.python.org/3/library/functions.html#int), [`int`](https://docs.python.org/3/library/functions.html#int)], [`list`](https://docs.python.org/3/library/stdtypes.html#list)\[[`tuple`](https://docs.python.org/3/library/stdtypes.html#tuple)\[[`str`](https://docs.python.org/3/library/stdtypes.html#str), [`float`](https://docs.python.org/3/library/functions.html#float)]]]
+  alias of [`dict`](https://docs.python.org/3/builtins/stdtypes.html#dict)\[[`tuple`](https://docs.python.org/3/builtins/stdtypes.html#tuple)\[[`int`](https://docs.python.org/3/builtins/functions.html#int), [`int`](https://docs.python.org/3/builtins/functions.html#int)], [`list`](https://docs.python.org/3/builtins/stdtypes.html#list)\[[`tuple`](https://docs.python.org/3/builtins/stdtypes.html#tuple)\[[`str`](https://docs.python.org/3/builtins/stdtypes.html#str), [`float`](https://docs.python.org/3/builtins/functions.html#float)]]]
 </Attribute>
 
 ### GateNoise

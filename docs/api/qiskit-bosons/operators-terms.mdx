@@ -1,0 +1,54 @@
+---
+title: terms (latest version)
+description: API reference for qiskit_bosons.operators.terms in the latest version of qiskit-bosons
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit_bosons.operators.terms
+---
+
+<span id="module-qiskit_bosons.operators.terms" />
+
+# Operator Terms
+
+This module collects routines that operate on the individual terms of an operator, partitioning them based on their structure. The submodules below group related functionality.
+
+## Grouping
+
+Terms may be tagged with group indices via [`groups`](/docs/api/qiskit-bosons/operators-boson-operator#qiskit_bosons.operators.BosonOperator.groups "qiskit_bosons.operators.BosonOperator.groups"), which an [`Evolution`](/docs/api/qiskit-bosons/circuit-library-evolution#qiskit_bosons.circuit.library.Evolution "qiskit_bosons.circuit.library.Evolution") gate then honors by decomposing into one sub-evolution per group. Grouping terms *before* the boson-to-qubit mapping is what lets a grouping chosen from the problem’s structure survive into the circuit.
+
+No automatic grouping strategy ships yet; assign the indices directly. What this module does provide is the *analysis* of an existing grouping: [`group_coeff_means()`](/docs/api/qiskit-bosons/operators-terms-group-coeff-means#qiskit_bosons.operators.terms.group_coeff_means "qiskit_bosons.operators.terms.group_coeff_means") reduces it to one sampling weight per group, [`groups_are_hermitian()`](/docs/api/qiskit-bosons/operators-terms-groups-are-hermitian#qiskit_bosons.operators.terms.groups_are_hermitian "qiskit_bosons.operators.terms.groups_are_hermitian") reports whether each group is separately Hermitian (which a randomized product formula, and Qiskit’s `PauliEvolutionGate`, require), and [`groups_have_uniform_coeffs()`](/docs/api/qiskit-bosons/operators-terms-groups-have-uniform-coeffs#qiskit_bosons.operators.terms.groups_have_uniform_coeffs "qiskit_bosons.operators.terms.groups_have_uniform_coeffs") whether its coefficients are numerically equal.
+
+|                                                                                                                                                                                                                                              |                                                                                          |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| [`group_coeff_means`](/docs/api/qiskit-bosons/operators-terms-group-coeff-means#qiskit_bosons.operators.terms.group_coeff_means "qiskit_bosons.operators.terms.group_coeff_means")(op)                                                       | Returns the mean absolute coefficient magnitude of each group.                           |
+| [`groups_are_hermitian`](/docs/api/qiskit-bosons/operators-terms-groups-are-hermitian#qiskit_bosons.operators.terms.groups_are_hermitian "qiskit_bosons.operators.terms.groups_are_hermitian")(op, \*\[, atol])                              | Returns, for each group, whether the operator formed by that group's terms is Hermitian. |
+| [`groups_have_uniform_coeffs`](/docs/api/qiskit-bosons/operators-terms-groups-have-uniform-coeffs#qiskit_bosons.operators.terms.groups_have_uniform_coeffs "qiskit_bosons.operators.terms.groups_have_uniform_coeffs")(op, \*\[, atol, abs]) | Returns, for each group, whether all of its coefficients are numerically equal.          |
+
+## Filtering
+
+This module provides convenience functions for removing terms from an operator that do not contribute meaningfully to a downstream computation.
+
+### Members
+
+|                                                                                                                                                                                                        |                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------- |
+| [`filter_diagonal_terms`](/docs/api/qiskit-bosons/operators-terms-filter-diagonal-terms#qiskit_bosons.operators.terms.filter_diagonal_terms "qiskit_bosons.operators.terms.filter_diagonal_terms")(op) | Filters out the terms of an operator that are diagonal in the occupation-number basis. |
+
+## Ordering
+
+This module provides functions to reorder the terms of an operator. While the resulting operators are mathematically identical, the term order can have significant implications on algorithm behavior at runtime, due to the term iteration order.
+
+<span id="id1" />
+
+### Members
+
+|                                                                                                                                                                                     |                                                                                |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| [`canonical_order`](/docs/api/qiskit-bosons/operators-terms-canonical-order#qiskit_bosons.operators.terms.canonical_order "qiskit_bosons.operators.terms.canonical_order")(op)      | Returns a copy of an operator with its terms sorted into a canonical order.    |
+| [`group_order`](/docs/api/qiskit-bosons/operators-terms-group-order#qiskit_bosons.operators.terms.group_order "qiskit_bosons.operators.terms.group_order")(op)                      | Returns a copy of an operator with its terms ordered by group index.           |
+| [`order_terms`](/docs/api/qiskit-bosons/operators-terms-order-terms#qiskit_bosons.operators.terms.order_terms "qiskit_bosons.operators.terms.order_terms")(op, key, \*\[, reverse]) | Returns a copy of an operator with its terms reordered by a user-provided key. |
+
+### Group-ordered operators
+
+[`group_order()`](/docs/api/qiskit-bosons/operators-terms-group-order#qiskit_bosons.operators.terms.group_order "qiskit_bosons.operators.terms.group_order") makes each group one contiguous run of terms. That layout is what lets [`split_out_groups()`](/docs/api/qiskit-bosons/operators-operator-trait#qiskit_bosons.operators.OperatorTrait.split_out_groups "qiskit_bosons.operators.OperatorTrait.split_out_groups") binary-search the requested groups instead of scanning every term, so ordering once up front pays off before repeatedly transpiling with [`BosonicQDrift`](/docs/api/qiskit-bosons/circuit-library-synthesis-bosonic-q-drift#qiskit_bosons.circuit.library.synthesis.BosonicQDrift "qiskit_bosons.circuit.library.synthesis.BosonicQDrift"), which looks up its sampled groups on every call.
+

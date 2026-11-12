@@ -23,9 +23,9 @@ This black-box experience is convenient: you don't have to worry about implement
 details. But it also makes the primitives hard to debug, customize, or learn from,
 because you can't see what happens during processing.
 
-The newly introduced [directed execution model](/docs/guides/directed-execution-model#directed-execution-model-beta) takes the opposite approach and
+The newly introduced [directed execution model](/docs/ibm-quantum-compute/directed-execution-model#directed-execution-model-beta) takes the opposite approach and
 provides a **white-box** experience. All design intents are captured on the client side,
-and a single server-side primitive [**Executor**](/docs/guides/directed-execution-model#executor-primitive) processes those inputs exactly as
+and a single server-side primitive [**Executor**](/docs/ibm-quantum-compute/directed-execution-model#executor-primitive) processes those inputs exactly as
 directed — it makes no implicit decisions on your behalf.
 
 Starting in `qiskit-ibm-runtime` v0.50.0, Sampler and Estimator are re-implemented
@@ -83,6 +83,7 @@ from qiskit_ibm_runtime.options_models import SamplerOptions, EstimatorOptions
 | If `twirling` is enabled and `shots` (in the PUBs or in `run()`), `shots_per_randomization`, and `num_randomizations` are **all** specified, then `num_randomizations * shots_per_randomization` takes precedence over `shots`. | Omit `num_randomizations` and `shots_per_randomization` if you want the `shots` value to be used. |
 | Some input validation has moved to the server side and now raises `RuntimeError` instead of `IBMInputValueError`. | Update the exception types your code catches. |
 | Mixed shot values in a single job are no longer supported. | Submit a separate job for each shot value. See [Job splitting](#job-splitting) for considerations. |
+| Execution spans (`result.metadata["execution"]["execution_spans"]`) are replaced by the chunk timing of the underlying Executor job, in `result.metadata["executor"].chunk_timing`. `ExecutionSpan.mask()` has no equivalent. | Read the timing from `result.metadata["executor"].chunk_timing` and visualize it with `draw_chunk_timings` instead of `draw_execution_spans`. See [Execution spans](#execution-spans). |
 
 ## Incompatible changes in the new Estimator
 
@@ -118,7 +119,7 @@ logger.setLevel(logging.INFO)
 
 The new Estimator no longer performs *implicit* noise learning when the PEA or PEC error
 mitigation method is selected. You must learn the noise models explicitly and pass them
-in. Use the new [`NoiseLearnerV3`](/docs/guides/noise-learning#noiselearnerv3) to control how circuits
+in. Use the new [`NoiseLearnerV3`](/docs/ibm-quantum-compute/noise-learning#noiselearnerv3) to control how circuits
 are stratified into layers. It takes a list of boxed circuit instructions (for example,
 the unique layers) as input.
 
@@ -229,6 +230,42 @@ with Batch(backend=backend) as batch:
     results = [job.result() for job in jobs]
 ```
 
+## Execution spans
+
+The server-side Sampler returned execution timing information as an `ExecutionSpans` object in `result.metadata["execution"]["execution_spans"]`. The client-side Sampler and Estimator instead return the timing of the underlying Executor job, under the `"executor"` key of the result metadata.
+
+The Executor job runs its work on the QPU in _chunks_. `result.metadata["executor"].chunk_timing` is a list that contains one [`ChunkSpan`](/docs/api/qiskit-ibm-runtime/results-chunk-span) per chunk, with the following differences from the legacy execution spans:
+
+- **The timestamps are exact.** `start` and `stop` are the actual times that the chunk started and stopped executing on the QPU, rather than upper and lower bounds.
+- **Work is described per item, not per shot.** Instead of a `mask()` method that returns a boolean mask over shots, each `ChunkSpan` has a list of `parts`. Each part gives the index of an Executor program item (`idx_item`) and the number of configurations from that item (`size`) that ran in the chunk. For Sampler, `idx_item` is the PUB index. For Estimator, it does not necessarily match a PUB index, because Estimator can add program items, such as measurement-error calibration circuits for TREX.
+- **Use a different visualization function.** Replace `draw_execution_spans` with [`draw_chunk_timings`](/docs/api/qiskit-ibm-runtime/visualization-draw-chunk-timings), which accepts the `chunk_timing` list directly.
+
+For example:
+
+**Server-side Sampler:**
+```python
+from qiskit_ibm_runtime.visualization import draw_execution_spans
+
+spans = job.result().metadata["execution"]["execution_spans"]
+print("Total duration (s):", spans.duration)
+
+fig = draw_execution_spans(spans)
+```
+
+**Client-side Sampler or Estimator:**
+```python
+from qiskit_ibm_runtime.visualization import draw_chunk_timings
+
+chunk_timing = job.result().metadata["executor"].chunk_timing
+
+for span in chunk_timing:
+    print(span.start, span.stop, [(p.idx_item, p.size) for p in span.parts])
+
+fig = draw_chunk_timings(chunk_timing)
+```
+
+For more details, including why gaps can appear between chunks in the plot, see [View execution spans](/docs/ibm-quantum-compute/executor-input-output#execution-spans) in the Executor inputs and outputs guide.
+
 ## Job inputs structure
 
 The new implementation maps Sampler or Estimator inputs to Executor inputs, so `job.inputs` returns a dictionary that contains Executor inputs. This dictionary has the following keys:
@@ -242,12 +279,12 @@ If your code used `job.inputs['options']` to find options specified for the job,
 ## Test locally with a fake backend
 
 Before submitting to hardware, you can validate the migrated code against a `Fake*`
-backend to catch any syntax errors early. Note the following details about local testing mode:
+backend to catch any syntax errors early. Note the following details about local mode:
 
 - **It does not reproduce hardware results.** Local noisy simulation does not perfectly
   replicate real device noise, and therefore the outputs might differ. Running does validate
   that the option paths and value types are correct.
-- `NoiseLearnerV3` has **no local testing mode**: its `mode` accepts only a real `Backend`,
+- `NoiseLearnerV3` has **no local mode**: its `mode` accepts only a real `Backend`,
 `Session`, or `Batch`, so you cannot exercise the noise-learning step against a fake
 backend. Verify that part of your code against the
 [`NoiseLearnerV3` API reference](/docs/api/qiskit-ibm-runtime/noise-learner-v3-noise-learner-v3) instead. Confirm that the constructor,
@@ -258,7 +295,7 @@ used as documented.
 
 A fake backend uses a statevector (noisy) simulator, whose cost grows exponentially with
 qubit count and depth. Thus, a realistic workload circuit can hang or exhaust memory. Since
-local testing only needs to exercise the option paths (not reproduce physical results),
+local mode only needs to exercise the option paths (not reproduce physical results),
 reduce the circuit to a Clifford one first with
 [`ConvertISAToClifford`](/docs/api/qiskit-ibm-runtime/transpiler-passes-convert-isa-to-clifford),
 which rounds each `RZ`/`RZZ`/`RX` angle to the nearest multiple of π/2. Clifford circuits
@@ -288,12 +325,12 @@ when constructing the local PUB:
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
-- [Directed execution model](/docs/guides/directed-execution-model)
-- [Estimator inputs and outputs](/docs/guides/estimator-input-output)
-- [Specify Estimator options](/docs/guides/estimator-options)
-- [Sampler inputs and outputs](/docs/guides/sampler-input-output)
-- [Specify Sampler options](/docs/guides/sampler-options)
-- [Noise learning helper (NoiseLearnerV3)](/docs/guides/noise-learning#noiselearnerv3)
+- [Directed execution model](/docs/ibm-quantum-compute/directed-execution-model)
+- [Estimator inputs and outputs](/docs/ibm-quantum-compute/estimator-input-output)
+- [Specify Estimator options](/docs/ibm-quantum-compute/estimator-options)
+- [Sampler inputs and outputs](/docs/ibm-quantum-compute/sampler-input-output)
+- [Specify Sampler options](/docs/ibm-quantum-compute/sampler-options)
+- [Noise learning helper (NoiseLearnerV3)](/docs/ibm-quantum-compute/noise-learning#noiselearnerv3)
 - [NoiseLearnerV3 API reference](/docs/api/qiskit-ibm-runtime/noise-learner-v3-noise-learner-v3)
 - [`ConvertISAToClifford` transpiler pass](/docs/api/qiskit-ibm-runtime/transpiler-passes-convert-isa-to-clifford)
 - [Error mitigation and suppression techniques](/docs/guides/error-mitigation-and-suppression-techniques)

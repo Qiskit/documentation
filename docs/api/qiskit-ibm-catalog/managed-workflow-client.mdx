@@ -1,0 +1,593 @@
+---
+title: ManagedWorkflowClient
+description: API reference for qiskit_ibm_catalog.ManagedWorkflowClient, the client for uploading and running managed workflows
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_ibm_catalog.ManagedWorkflowClient
+---
+
+# ManagedWorkflowClient
+
+<Class id="qiskit_ibm_catalog.ManagedWorkflowClient" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-catalog/blob/v0.22.0/qiskit_ibm_catalog/serverless.py" signature="qiskit_ibm_catalog.ManagedWorkflowClient(token=None, channel=None, instance=None, name=None, *, host=None)" modifiers="class">
+  Client for uploading and running your own [managed workflows](/docs/managed-workflows). `QiskitServerless` is an alias.
+
+  This client runs in your own Python session. For the functions your workflow calls while it runs, such as `get_arguments()` and `save_result()`, see [Inside a workflow](inside-a-workflow).
+
+  ```python
+  from qiskit_ibm_catalog import ManagedWorkflow, ManagedWorkflowClient
+
+  client = ManagedWorkflowClient(token="<API_KEY>", instance="<CRN>")
+  workflow = client.upload(
+      ManagedWorkflow(title="my-workflow", entrypoint="main.py", working_dir="./src")
+  )
+  job = workflow.run(**inputs)
+  result = job.result()
+  ```
+
+  **Parameters**
+
+  *   **token** (*str | None*) – IBM Cloud API key. If set, `name` is ignored.
+  *   **channel** (*str | None*) – Authentication method.
+  *   **instance** (*str | None*) – Cloud resource name (CRN) of your IBM Quantum Platform instance.
+  *   **name** (*str | None*) – Name of a saved account to load from the local account config file.
+  *   **host** (*str | None*) – Gateway URL. Defaults to the IBM Quantum Platform gateway.
+
+  ## Account
+
+  ### save\_account
+
+  <Function id="qiskit_ibm_catalog.ManagedWorkflowClient.save_account" signature="save_account(token=None, channel=None, instance=None, name=None, overwrite=False)" modifiers="static">
+    Saves the account to disk for future use.
+
+    ```python
+    ManagedWorkflowClient.save_account(token="<API_KEY>", instance="<CRN>", overwrite=True)
+    client = ManagedWorkflowClient()
+    ```
+
+    **Parameters**
+
+    *   **token** (*str | None*) – IBM Cloud API key.
+    *   **channel** (*str | None*) – Authentication method.
+    *   **instance** (*str | None*) – Instance CRN.
+    *   **name** (*str | None*) – Name to save the account under.
+    *   **overwrite** (*bool*) – Overwrite an existing saved account.
+  </Function>
+
+  ## Upload and find workflows
+
+  ### upload
+
+  <Function id="qiskit_ibm_catalog.ManagedWorkflowClient.upload" signature="upload(function)">
+    Uploads a workflow.
+
+    ```python
+    my_workflow = client.upload(
+        ManagedWorkflow(
+            title="my-workflow",
+            entrypoint="main.py",
+            working_dir="./source_files",
+        )
+    )
+    print(my_workflow)
+    ```
+
+    Output:
+
+    ```text
+    QiskitFunction(my-workflow)
+    ```
+
+    **Parameters**
+
+    *   **function** ([*ManagedWorkflow*](managed-workflow)) – The workflow definition.
+
+    **Return type**
+
+    [`RunnableQiskitFunction`](managed-workflow#uploaded-workflow)
+  </Function>
+
+  ### list
+
+  <Function id="qiskit_ibm_catalog.ManagedWorkflowClient.list" signature="list(*, limit=None, offset=None, **kwargs)">
+    Lists the workflows you uploaded.
+
+    ```python
+    print(client.list())
+    ```
+
+    Output:
+
+    ```text
+    [QiskitFunction(my-workflow), QiskitFunction(template_hamiltonian_simulation)]
+    ```
+
+    **Return type**
+
+    list\[[`RunnableQiskitFunction`](managed-workflow#uploaded-workflow)]
+  </Function>
+
+  ### load
+
+  <Function id="qiskit_ibm_catalog.ManagedWorkflowClient.load" signature="load(title, provider=None)">
+    Loads one of your workflows by title.
+
+    ```python
+    my_workflow = client.load("my-workflow")
+    print(my_workflow)
+    ```
+
+    Output:
+
+    ```text
+    QiskitFunction(my-workflow)
+    ```
+
+    **Return type**
+
+    [`RunnableQiskitFunction`](managed-workflow#uploaded-workflow) | `None`
+  </Function>
+
+  ## Compute
+
+  Choose the resources your workflow runs on. See [Choose a compute profile](/docs/managed-workflows/managed-workflow-compute-profiles).
+
+  ### compute\_profiles
+
+  <Function id="qiskit_ibm_catalog.ManagedWorkflowClient.compute_profiles" signature="compute_profiles()">
+    Lists the compute profiles you can use in a workflow's `sizes_map`. Prints as a table.
+
+    ```python
+    print(client.compute_profiles())
+    ```
+
+    Output:
+
+    ```text
+    8x32            (8 vCPU / 32 GB)
+    16x128          (16 vCPU / 128 GB)
+    48x768          (48 vCPU / 768 GB)
+    128x1500        (128 vCPU / 1500 GB)
+    24x120x1l40s    (24 vCPU / 120 GB / 1l40s)
+    20x320x2a100    (20 vCPU / 320 GB / 2a100)
+    ```
+
+    **Return type**
+
+    `ComputeProfileList`
+  </Function>
+
+  ### compute\_profile
+
+  <Function id="qiskit_ibm_catalog.ManagedWorkflowClient.compute_profile" signature="compute_profile(compute_profile_id=None, *, cpu=None, memory=None, gpu=None)">
+    Returns one registered compute profile, by ID or by exact resources. See [Choose a compute profile](/docs/managed-workflows/managed-workflow-compute-profiles).
+
+    ```python
+    print(client.compute_profile(cpu=24, memory=120, gpu="1l40s"))
+    ```
+
+    Output:
+
+    ```text
+    ComputeProfile('24x120x1l40s', 24 vCPU / 120 GB / 1l40s)
+    ```
+
+    **Parameters**
+
+    *   **compute\_profile\_id** (*str | None*) – Profile ID. Don't combine with the resource arguments.
+    *   **cpu** (*int | str | None*) – Number of CPUs. Required when looking up by resources.
+    *   **memory** (*int | str | None*) – Memory in GB. Required when looking up by resources.
+    *   **gpu** (*str | None*) – GPU specifier. Omit for CPU-only profiles.
+
+    **Return type**
+
+    `ComputeProfile`
+  </Function>
+
+  ## Dependencies
+
+  Check what the runtime image includes, and bring the rest as wheels. See [Declare dependencies](/docs/managed-workflows/managed-workflow-dependencies).
+
+  ### dependencies\_versions
+
+  <Function id="qiskit_ibm_catalog.ManagedWorkflowClient.dependencies_versions" signature="dependencies_versions()">
+    Lists the packages and versions already installed in the runtime image, so you know what you don't need to bring.
+
+    ```python
+    installed = client.dependencies_versions()
+    print([d for d in installed if d.startswith(("qiskit-aer", "qiskit-addon-sqd"))])
+    ```
+
+    Output:
+
+    ```text
+    ['qiskit-aer==0.17.2', 'qiskit-addon-sqd==0.13.1']
+    ```
+
+    **Return type**
+
+    `list[str]` – Requirement strings, such as `"numpy==2.1.0"`.
+  </Function>
+
+  ### dependency\_report
+
+  <Function id="qiskit_ibm_catalog.ManagedWorkflowClient.dependency_report" signature="dependency_report(requirements)">
+    Compares your requirements with the runtime image. For each requirement, reports whether it's already installed, needs a wheel, or conflicts with an installed version. Nothing is uploaded. Prints as a table.
+
+    ```python
+    print(client.dependency_report(["pendulum==3.1.0", "qiskit-aer", "qiskit-addon-sqd==0.10.0"]))
+    ```
+
+    Output:
+
+    ```text
+    requirement               status  note
+    pendulum==3.1.0           bring   not in image — upload a wheel
+    qiskit-aer                baked   already in image (qiskit-aer==0.17.2)
+    qiskit-addon-sqd==0.10.0  clash   image ships qiskit-addon-sqd==0.13.1
+    ```
+
+    **Parameters**
+
+    *   **requirements** (*list\[str]*) – Requirement strings, such as `["numpy>=2", "my_package"]`.
+  </Function>
+
+  ### add\_wheels
+
+  <Function id="qiskit_ibm_catalog.ManagedWorkflowClient.add_wheels" signature="add_wheels(function, patterns)">
+    Uploads locally built wheels to a workflow. Install them from your entrypoint with [`install_uploaded_wheels()`](inside-a-workflow#install_uploaded_wheels). To update a wheel, remove it with [`remove_wheels()`](#remove_wheels) and add the new build. See [Declare dependencies](/docs/managed-workflows/managed-workflow-dependencies).
+
+    ```python
+    print(client.add_wheels(my_workflow, ["wheels/*.whl"]))
+    ```
+
+    Output:
+
+    ```text
+    ['mypkg-1.0-py3-none-any.whl']
+    ```
+
+    **Parameters**
+
+    *   **function** ([*RunnableQiskitFunction*](managed-workflow#uploaded-workflow)) – The workflow.
+    *   **patterns** (*list\[str]*) – Local paths or globs. Every match must be a `.whl` file. For example, `["dist/my_package-1.0-*.whl"]`.
+
+    **Return type**
+
+    `list[str]` – The uploaded wheel file names.
+  </Function>
+
+  ### list\_wheels
+
+  <Function id="qiskit_ibm_catalog.ManagedWorkflowClient.list_wheels" signature="list_wheels(function)">
+    Lists the wheels uploaded to a workflow with [`add_wheels()`](#add_wheels).
+
+    ```python
+    print(client.list_wheels(my_workflow))
+    ```
+
+    Output:
+
+    ```text
+    ['mypkg-1.0-py3-none-any.whl']
+    ```
+
+    **Return type**
+
+    `list[str]`
+  </Function>
+
+  ### remove\_wheels
+
+  <Function id="qiskit_ibm_catalog.ManagedWorkflowClient.remove_wheels" signature="remove_wheels(function, names)">
+    Removes uploaded wheels from a workflow.
+
+    ```python
+    client.remove_wheels(my_workflow, ["mypkg-1.0-py3-none-any.whl"])
+    client.add_wheels(my_workflow, ["wheels/mypkg-1.1-*.whl"])
+    print(client.list_wheels(my_workflow))
+    ```
+
+    Output:
+
+    ```text
+    ['mypkg-1.1-py3-none-any.whl']
+    ```
+
+    **Parameters**
+
+    *   **function** ([*RunnableQiskitFunction*](managed-workflow#uploaded-workflow)) – The workflow.
+    *   **names** (*list\[str]*) – Wheel file names, as returned by [`list_wheels()`](#list_wheels).
+  </Function>
+
+  ## Files
+
+  Read and write files that persist across runs of a workflow. See [Manage files across runs](/docs/managed-workflows/manage-files-across-managed-workflows).
+
+  ### files
+
+  <Function id="qiskit_ibm_catalog.ManagedWorkflowClient.files" signature="files(function)">
+    Lists the files in a workflow's folder.
+
+    ```python
+    print(client.files(my_workflow))
+    ```
+
+    Output:
+
+    ```text
+    ['hamiltonian.npz', 'results.npz']
+    ```
+
+    **Return type**
+
+    `list[str]`
+  </Function>
+
+  ### file\_upload
+
+  <Function id="qiskit_ibm_catalog.ManagedWorkflowClient.file_upload" signature="file_upload(file, function)">
+    Uploads a local file to a workflow's folder.
+
+    ```python
+    client.file_upload("hamiltonian.npz", my_workflow)
+    print(client.files(my_workflow))
+    ```
+
+    Output:
+
+    ```text
+    ['hamiltonian.npz']
+    ```
+
+  </Function>
+
+  ### file\_download
+
+  <Function id="qiskit_ibm_catalog.ManagedWorkflowClient.file_download" signature="file_download(file, function, target_name=None, download_location='./')">
+    Downloads a file from a workflow's folder.
+
+    ```python
+    for name in client.files(my_workflow):
+        client.file_download(name, my_workflow, download_location="outputs")
+    ```
+
+    **Parameters**
+
+    *   **file** (*str*) – File name.
+    *   **function** ([*RunnableQiskitFunction*](managed-workflow#uploaded-workflow)) – The workflow.
+    *   **target\_name** (*str | None*) – Local file name. Defaults to the remote name.
+    *   **download\_location** (*str*) – Local directory to save the file in.
+  </Function>
+
+  ### file\_delete
+
+  <Function id="qiskit_ibm_catalog.ManagedWorkflowClient.file_delete" signature="file_delete(file, function)">
+    Deletes a file from a workflow's folder. See [Manage files across runs](/docs/managed-workflows/manage-files-across-managed-workflows).
+
+    ```python
+    client.file_delete("hamiltonian.npz", my_workflow)
+    print(client.files(my_workflow))
+    ```
+
+    Output:
+
+    ```text
+    ['results.npz']
+    ```
+
+  </Function>
+
+  ## Jobs
+
+  ### jobs
+
+  <Function id="qiskit_ibm_catalog.ManagedWorkflowClient.jobs" signature="jobs(function=None, *, limit=10, offset=0, status=None, created_after=None, **kwargs)">
+    Lists your workflow jobs.
+
+    ```python
+    client.jobs(function=my_workflow, status="ERROR", limit=5)
+    ```
+
+    Output:
+
+    ```text
+    [<Job | e6b1ffa1-cd26-437d-bd53-b265dd4ba952>,
+     <Job | 11308f2a-8d7a-40a0-a970-7fdeca2b171b>,
+     <Job | af597785-3470-469a-9051-607e0185892e>]
+    ```
+
+    **Parameters**
+
+    *   **function** ([*RunnableQiskitFunction*](managed-workflow#uploaded-workflow) *| None*) – Only return jobs created by this workflow.
+    *   **limit** (*int*) – Maximum number of jobs to return.
+    *   **offset** (*int*) – Number of jobs to skip.
+    *   **status** (*str | None*) – One of `QUEUED`, `RUNNING`, `DONE`, `ERROR`, or `CANCELED`.
+    *   **created\_after** (*str | None*) – ISO 8601 timestamp, such as `"2026-01-01T00:00:00Z"`.
+
+    **Return type**
+
+    list\[[`Job`](managed-workflow-job)]
+  </Function>
+
+  ### job
+
+  <Function id="qiskit_ibm_catalog.ManagedWorkflowClient.job" signature="job(job_id)">
+    Returns a job by ID. Replaces the deprecated `get_job_by_id()`.
+
+    ```python
+    job = client.job("e6b1ffa1-cd26-437d-bd53-b265dd4ba952")
+    print(job.status())
+    ```
+
+    Output:
+
+    ```text
+    DONE
+    ```
+
+    **Return type**
+
+    [`Job`](managed-workflow-job) | `None`
+  </Function>
+
+  ### events
+
+  <Function id="qiskit_ibm_catalog.ManagedWorkflowClient.events" signature="events(job_id, **kwargs)">
+    Returns the events of a job.
+
+    ```python
+    for event in client.events(job.job_id):
+        print(event.created, event.event_type, event.data.get("status"))
+    ```
+
+    Output:
+
+    ```text
+    2026-11-02T14:43:07.134377Z STATUS_CHANGE QUEUED
+    2026-11-02T14:43:24.474199Z STATUS_CHANGE PENDING
+    2026-11-02T14:46:07.309519Z STATUS_CHANGE RUNNING
+    2026-11-02T14:46:21.115038Z STATUS_CHANGE SUCCEEDED
+    ```
+
+    **Return type**
+
+    `list[JobEvent]`
+  </Function>
+
+  ### runtime\_jobs
+
+  <Function id="qiskit_ibm_catalog.ManagedWorkflowClient.runtime_jobs" signature="runtime_jobs(job_id, runtime_session=None)">
+    Returns the Quantum Compute job IDs created by a workflow job, optionally filtered by session.
+
+    ```python
+    print(client.runtime_jobs(job.job_id))
+    ```
+
+    Output:
+
+    ```text
+    ['dbl6lst8ft8s738secf0']
+    ```
+
+    **Return type**
+
+    `list[str]`
+  </Function>
+
+  ### runtime\_sessions
+
+  <Function id="qiskit_ibm_catalog.ManagedWorkflowClient.runtime_sessions" signature="runtime_sessions(job_id)">
+    Returns the Quantum Compute session IDs created by a workflow job.
+
+    ```python
+    print(client.runtime_sessions(job.job_id))
+    ```
+
+    Output:
+
+    ```text
+    ['cw2q70c79ws0008z6g4g']
+    ```
+
+    **Return type**
+
+    `list[str]`
+  </Function>
+
+  ## Backends and usage
+
+  ### backends
+
+  <Function id="qiskit_ibm_catalog.ManagedWorkflowClient.backends" signature="backends(**kwargs)">
+    Returns the backends your instance can access. Keyword arguments such as `name`, `min_num_qubits`, `filters`, and `refresh_cache` are forwarded to the backend query.
+
+    ```python
+    print([backend.name for backend in client.backends(simulator=False)])
+    ```
+
+    Output:
+
+    ```text
+    ['ibm_boston', 'ibm_fez', 'ibm_kingston', 'ibm_marrakesh', 'ibm_pittsburgh']
+    ```
+
+    **Return type**
+
+    `list[Backend]`
+  </Function>
+
+  ### backend
+
+  <Function id="qiskit_ibm_catalog.ManagedWorkflowClient.backend" signature="backend(name, **kwargs)">
+    Returns a single backend by name.
+
+    ```python
+    backend = client.backend("ibm_fez")
+    print(backend.name, backend.num_qubits)
+    ```
+
+    Output:
+
+    ```text
+    ibm_fez 156
+    ```
+
+    **Return type**
+
+    `Backend`
+  </Function>
+
+  ### least\_busy
+
+  <Function id="qiskit_ibm_catalog.ManagedWorkflowClient.least_busy" signature="least_busy(**kwargs)">
+    Returns the backend with the fewest pending jobs.
+
+    ```python
+    backend = client.least_busy(operational=True, simulator=False)
+    print(backend.name)
+    ```
+
+    Output:
+
+    ```text
+    ibm_kingston
+    ```
+
+    **Return type**
+
+    `Backend`
+  </Function>
+
+  ### usage
+
+  <Function id="qiskit_ibm_catalog.ManagedWorkflowClient.usage" signature="usage()">
+    Returns Quantum Compute usage for the active instance in the current usage period. Fields that don't apply to your plan, such as limits, can be missing. `usage_remaining_seconds` is the limit, or the allocation if there's no limit, minus the time consumed. See the [instance usage endpoint](/docs/api/qiskit-runtime-rest/tags/instances#tags__instances__operations__get_usage) for every field.
+
+    ```python
+    from pprint import pprint
+
+    pprint(client.usage(), sort_dicts=False)
+    ```
+
+    Output:
+
+    ```text
+    {'instance_id': 'crn:v1:bluemix:public:quantum-computing:us-east:a/...',
+     'plan_id': 'flex-plan-id-1',
+     'usage_period': {'start_time': '2026-10-10T00:00:00.000Z',
+                      'end_time': '2026-11-07T00:00:00.000Z'},
+     'usage_consumed_seconds': 12,
+     'usage_consumed_ru': 0.2,
+     'usage_limit_seconds': 60,
+     'usage_limit_ru': 1,
+     'usage_allocation_seconds': 120,
+     'usage_allocation_ru': 2,
+     'usage_limit_reached': False,
+     'usage_remaining_seconds': 48}
+    ```
+
+    **Return type**
+
+    `dict`
+  </Function>
+</Class>
