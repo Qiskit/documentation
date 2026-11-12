@@ -50,7 +50,6 @@ const IGNORE_TITLE_MISMATCHES: string[] = [
   "docs/guides/qiskit-backendv1-to-v2.mdx", // ok
   "docs/ibm-quantum-compute/execution-modes.mdx", // ok
   "docs/guides/faq.mdx", // ok
-  "docs/guides/algorithmiq-tem.ipynb", // ok
   "docs/guides/classical-feedforward-and-control-flow.ipynb", // ok
   "docs/guides/colibritd-pde.ipynb", // ok
   "docs/guides/defaults-and-configuration-options.ipynb", // ok

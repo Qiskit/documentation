@@ -4,6 +4,8 @@ description: API reference for the Algorithmiq Tensor-network error mitigation q
 ---
 # Algorithmiq Tensor-network error mitigation API reference
 
+{/* cspell:ignore informationally */}
+
 ## Inputs
 
 <Admonition type="caution">
@@ -25,16 +27,23 @@ An iterable of PUB-like (primitive unified bloc) objects, such as tuples `(circu
 
 ### `backend_name`
 <Attribute attributeTypeHint="str" attributeValue="Least busy backend">
-Name of the backend to make the query
+Name of the backend to make the query. If not provided, the least-busy backend will be used.
 - Required: No
 - Example: `"ibm_fez"`
+</Attribute>
+
+### `function_size`
+<Attribute attributeTypeHint="str" attributeValue="M">
+The size the job runs at, `"S"`, `"M"` or `"L"`, which selects its compute profile. Pass it as a keyword argument to `run()`, outside `options`. It must be at least the size of the largest circuit in `pubs`, or the job fails with error `4600`. See [Function sizes](/docs/functions/algorithmiq-tem/get-started#function-sizes) to calculate it, and to choose a larger size for the post-processing.
+- Required: No
+- Example: `"S"`
 </Attribute>
 
 ### Options
 <Attribute attributeTypeHint="dict">
 Input options for this function are specified as a nested dictionary. See the full [list of options](#options-list) and their default values.
 - Required: No
-- Example: `{"max_bond_dimension": 100}`
+- Example: `{"tem_max_bond_dimension": 100}`
 
 A dictionary containing the advanced options for the TEM. The dictionary may contain the keys in the following list. If any of the options are not provided, the default value listed in the list will be used. The default values are good for typical use of TEM.
 
@@ -42,28 +51,28 @@ A dictionary containing the advanced options for the TEM. The dictionary may con
 #### Options list
 
 ##### `tem_max_bond_dimension`
-<Attribute attributeTypeHint="int" attributeValue="500">
-The maximum bond dimension to be used for the tensor networks.
+<Attribute attributeTypeHint="int" attributeValue="128">
+The maximum bond dimension for the tensor networks.
 </Attribute>
 
 ##### `tem_compression_cutoff`
-<Attribute attributeTypeHint="float" attributeValue="1e-16">
+<Attribute attributeTypeHint="float" attributeValue="1e-10">
 The cutoff value to be used for the tensor networks.
 </Attribute>
 
-#####  `compute_shadows_bias_from_observable`
+##### `compute_shadows_bias_from_observable`
 <Attribute attributeTypeHint="bool" attributeValue="False">
-A boolean flag indicating whether the bias for the classical shadows measurement protocol should be tailored to the PUB observable or not. If False, the classical shadows protocol (equal probability of measuring Z, X, Y) will be used.
+Whether the bias for the classical shadows measurement protocol should be tailored to the PUB observable. If False, the classical shadows protocol (equal probability of measuring Z, X, Y) will be used.
 </Attribute>
 
 ##### `shadows_bias`
 <Attribute attributeTypeHint="np.ndarray" attributeValue="np.array([1 / 3, 1 / 3, 1 / 3])">
-The bias to be used for the randomized classical shadows measurement protocol, a 1d or 2d array of size 3 or shape (`num_qubits`, 3) respectively. Order is ZXY.
+The bias to be used for the randomized classical shadows measurement protocol, a 1D or 2D array of size 3 or shape (`num_qubits`, 3) respectively. Order is ZXY.
 </Attribute>
 
 ##### `max_execution_time`
 <Attribute attributeTypeHint="int or None" attributeValue="None">
-The maximum execution time on the QPU in seconds. If the runtime exceeds this value, the job will be canceled. If `None`, a default limit set by IBM Quantum Compute Service will apply.
+The maximum execution time on the QPU in seconds. If the runtime exceeds this value, the job will be canceled. If `None`, the default limit set by IBM Quantum Compute Service will apply.
 </Attribute>
 
 ##### `num_randomizations`
@@ -72,13 +81,13 @@ The number of randomizations to be used for noise learning and gate twirling.
 </Attribute>
 
 ##### `max_layers_to_learn`
-<Attribute attributeTypeHint="int" attributeValue="True">
+<Attribute attributeTypeHint="int" attributeValue="4">
 The maximum number of unique layers to learn.
 </Attribute>
 
 ##### `mitigate_readout_error`
 <Attribute attributeTypeHint="bool" attributeValue="True">
-A boolean flag indicating whether to perform readout error mitigation or not.
+Whether to perform readout error mitigation.
 </Attribute>
 
 ##### `num_readout_calibration_shots`
@@ -87,13 +96,18 @@ The number of shots to be used for readout error mitigation.
 </Attribute>
 
 ##### `default_precision`
-<Attribute attributeTypeHint="float" attributeValue="0.02">
-The default precision to be used for the PUBs for which the precision is not specified.
+<Attribute attributeTypeHint="float" attributeValue="0.05">
+The default precision to be used for any PUBs for which the precision is not specified.
+</Attribute>
+
+##### `default_shots`
+<Attribute attributeTypeHint="int or None" attributeValue="None">
+The number of shots to use per PUB. If provided, this overrides the specified precision. Otherwise, the number of shots is estimated to provide the precision requested.
 </Attribute>
 
 ##### `seed`
 <Attribute attributeTypeHint="int or None" attributeValue="None">
-Set the seed of the random number generator for reproducibility. If `None`, don't set the seed.
+Set the seed for the random number generator for reproducibility.
 </Attribute>
 
 ##### `shots_per_randomization`
@@ -108,12 +122,12 @@ The circuit depths (measured in number of pairs) to use in learning experiments.
 
 ##### `layer_noise_model`
 <Attribute attributeTypeHint="NoiseLearnerResult, Sequence[LayerError], or None" attributeValue="None">
-The precomputed noise learner result from a previously executed run. 
+The precomputed noise learner result from a previously executed run.
 </Attribute>
 
-##### `private` 
-<Attribute attributeTypeHint="bool" attributeValue="False">
-Whether the QPU jobs should be private. Setting it to True will prevent subsequent downloads of the experiment data and is recommended for confidential jobs. 
+##### `private`
+<Attribute attributeTypeHint="bool" attributeValue="True">
+Whether the QPU jobs should be private. Setting it to True will prevent subsequent downloads of the experiment data and is recommended for confidential jobs.
 </Attribute>
 
 ##### `tem_enforce_linear_circuit`
@@ -121,11 +135,36 @@ Whether the QPU jobs should be private. Setting it to True will prevent subseque
 Whether to enforce the circuit to be in linear topology.
 </Attribute>
 
+##### `job_id`
+<Attribute attributeTypeHint="str or None" attributeValue="None">
+The job ID of a previous TEM run to rerun from its saved data. No new QPU jobs are submitted. See [Rerun](#rerun).
+</Attribute>
+
+##### `rerun_observable`
+<Attribute attributeTypeHint="list[ObservablesArrayLike] or None" attributeValue="None">
+Only used with `job_id`. One set of observables per PUB of the previous run, defined on the original (non-ISA) circuit, to estimate instead of the observables of the previous run.
+</Attribute>
+
+##### `noise_learner_job_id`
+<Attribute attributeTypeHint="str or None" attributeValue="None">
+The job ID of a previous TEM run whose learned noise model is reused; the noise learning is skipped. The circuit must run on the same backend and physical qubits. Cannot be set together with `job_id`. See [Reuse a noise model](#reuse-a-noise-model).
+</Attribute>
+
+##### `dry_run`
+<Attribute attributeTypeHint="bool" attributeValue="False">
+Estimate the resources of the run instead of executing it. The PUBs are validated and transpiled as in a normal run, no QPU job is submitted, and the estimate is returned in the result metadata. See [Resource estimation](#resource-estimation). Cannot be set on a rerun.
+</Attribute>
+
+##### `resource_estimate_with_run`
+<Attribute attributeTypeHint="bool" attributeValue="False">
+Run as usual, and also estimate the resources of the run, to compare the estimate with the measured usage. The estimate is returned in the result metadata as on a dry run. See [Resource estimation](#resource-estimation). Cannot be set on a rerun.
+</Attribute>
+
 </Attribute>
 
 ### Precision
 
-The precision of the results can be requested in three ways. The precision can be passed in the PUB, and it will apply to that PUB only. Otherwise, a [`default_precision`](#default_precision) can be passed in the options as specified above. Finally, for advanced use, the specific number of shots per PUB can be passed in the options with `default_shots`, and it will override any other precision option.
+The precision of the results can be requested in three ways. The precision can be passed in the PUB, and it will apply to that PUB only. Otherwise, a [`default_precision`](#default_precision) can be passed in the options as specified above. Finally, for advanced use, the specific number of shots per PUB can be passed in the options with [`default_shots`](#default_shots), and it will override any other precision option.
 
 If a [`default_precision`](#default_precision) or a per-PUB value is passed, the number of shots is estimated in order to achieve the desired precision. This is done based on the chosen QPU parameters and error rates as follows:
 
@@ -136,13 +175,65 @@ If a [`default_precision`](#default_precision) or a per-PUB value is passed, the
 
 This approach ensures that the number of shots is sufficient to achieve the desired precision, taking into account both the circuit structure and the backend's noise characteristics.
 
+### Rerun
+
+A key advantage of the TEM quantum function is that noise mitigation happens entirely in classical post-processing. Every TEM run saves its inputs, the learned noise model, and the measurement outcomes in your function storage. Because the measurements are informationally complete (IC), you can revisit past experiments to try different mitigation settings, such as a larger bond dimension, or to compute entirely new observables that weren't requested in the original run.
+
+To rerun a past experiment, pass its job ID as `job_id`. Only the classical post-processing is repeated on the saved data: no jobs are submitted to the QPU, so a rerun uses no QPU time.
+
+- The circuits, backend, and options of the previous run are reused. The PUBs passed to `run` are ignored.
+- Any option passed with the rerun overrides the saved one. Only post-processing options have an effect, such as `tem_max_bond_dimension`, `tem_compression_cutoff`, and `mitigate_readout_error`. Options that change what runs on the QPU, such as shots, precision, noise learning, and measurement bias, have no effect.
+- To estimate observables that were not requested in the previous run, pass them in `rerun_observable`. The measurements are informationally complete, so any observable on the same circuit can be estimated from the same data.
+- `layer_noise_model` cannot be set on a rerun.
+
+```python
+rerun_job = tem.run(
+    pubs=pubs,  # ignored, the PUBs of the previous run are used
+    options={"job_id": job.job_id, "tem_max_bond_dimension": 256},
+)
+```
+
+### Reuse a noise model
+
+Passing the job ID of a previous run as `noise_learner_job_id` loads the noise model learned by that run and skips the noise learning, which saves its QPU time. The readout calibration and the sampling run as usual, so options such as shots and precision apply.
+
+- The noise model belongs to the physical qubits it was learned on. Run the circuit on the same backend and qubits as the previous run, for example by passing the same ISA circuit to both runs. Layers that do not match the learned ones are not mitigated.
+- The noise learning options, such as `num_randomizations` and `layer_pair_depths`, have no effect.
+- `noise_learner_job_id` cannot be set together with `job_id`.
+
+<Admonition type="caution">
+  The noise of a device drifts over time, and calibrations change it. A noise model learned long before the current run no longer describes the device and mitigates poorly. Reuse a noise model only shortly after it was learned. TEM logs a warning whenever this option is set.
+</Admonition>
+
+```python
+job_more_shots = tem.run(
+    pubs=isa_pubs,  # the same ISA circuit as the previous run
+    backend_name=backend_name,
+    options={"noise_learner_job_id": job.job_id, "default_shots": 25_000},
+)
+```
+
+### Resource estimation
+
+Set `dry_run` to estimate the resources a run needs before submitting it. TEM validates and transpiles the PUBs as in a normal run, then estimates the QPU time of the noise learning, readout calibration and sampling, the classical time of the post-processing, and its peak memory. No QPU job is submitted. The estimate takes up to about a minute per PUB.
+
+- `evs` and `stds` of a dry run are NaN, and the result metadata holds only the estimate; see [Outputs](#outputs).
+- The classical estimate covers the post-processing.
+- To compare the estimate with the measured usage of a run, set `resource_estimate_with_run` instead of `dry_run`: the run executes as usual, and its result carries the same estimate next to the results.
+
+```python
+estimate = tem.run(
+    pubs=pubs, backend_name=backend_name, options={"dry_run": True}
+).result()
+print(estimate.metadata["estimated_resource_usage_job"])
+```
 
 ## Outputs
 
-A Qiskit [`PrimitiveResults`](/docs/api/qiskit/qiskit.primitives.PrimitiveResult) containing the TEM-mitigated result. The result for each PUB is returned as a [`PubResult`](/docs/api/qiskit/qiskit.primitives.PubResult) containing the following fields:
+A Qiskit [`PrimitiveResult`](/docs/api/qiskit/qiskit.primitives.PrimitiveResult) containing the TEM-mitigated result. The result for each PUB is returned as a [`PubResult`](/docs/api/qiskit/qiskit.primitives.PubResult) containing the following fields:
 
 ### data
-<Attribute attributeTypeHint="Databin">
+<Attribute attributeTypeHint="DataBin">
 A Qiskit [`DataBin`](/docs/api/qiskit/qiskit.primitives.DataBin) containing the TEM mitigated observable and its standard error. The DataBin has the following fields:
 - `evs`: The TEM-mitigated observable value.
 - `stds`: The standard error of the TEM-mitigated observable.
@@ -151,11 +242,51 @@ A Qiskit [`DataBin`](/docs/api/qiskit/qiskit.primitives.DataBin) containing the 
 ### metadata
 <Attribute attributeTypeHint="dict">
 A dictionary containing additional results. The dictionary contains the following keys:
-- `"evs_non_mitigated"`: The observable value without error mitigation.
-- `"stds_non_mitigated"`: The standard error of the result without error mitigation.
-- `"evs_mitigated_no_readout_mitigation"`: The observable value with error mitigation but without readout error mitigation.
-- `"stds_mitigated_no_readout_mitigation"`: The standard error of the result with error mitigation but without readout error mitigation.
-- `"evs_non_mitigated_with_readout_mitigation"`: The observable value without error mitigation but with readout error mitigation.
-- `"stds_non_mitigated_with_readout_mitigation"`: The standard error of the result without error mitigation but with readout error mitigation.
-- `"resource_usage"`: A dictionary containing the time resources used by the TEM.
+- `"evs_wo_tem_wo_qdt"`: The observable value without error mitigation.
+- `"stds_wo_tem_wo_qdt"`: The standard error of the result without error mitigation.
+- `"evs_w_tem_wo_qdt"`: The observable value with error mitigation but without readout error mitigation.
+- `"stds_w_tem_wo_qdt"`: The standard error of the result with error mitigation but without readout error mitigation.
+- `"evs_wo_tem_w_qdt"`: The observable value without error mitigation but with readout error mitigation.
+- `"stds_wo_tem_w_qdt"`: The standard error of the result without error mitigation but with readout error mitigation.
+- `"diagnostic"`: Experimental values, whose names and content may change: `"_evs_identity"`, `"_stds_identity"` (the identity observable estimated on the TEM network and its standard error; `evs / _evs_identity` is the identity-normalized estimate), the same with the `_wo_qdt` suffix (without readout error mitigation), and `"_tno_identity_norm"` (the TEM network contracted with the identity on every leg; 1 for the exact network).
+- `"estimated_resource_usage_pub"`: Only with `dry_run` or `resource_estimate_with_run`. The resource estimate of the PUB: its QPU time in seconds by stage (`"noise_learning_qpu_time_s"`, `"qdt_qpu_time_s"`, `"povm_qpu_time_s"`, `"job_overhead_qpu_time_s"`) and in total (`"qpu_time_s"`), its classical time in seconds (`"mpo_build_cpu_time_s"`, `"obs_estimation_cpu_time_s"`, `"cpu_time_s"`), and its peak memory (`"peak_memory_bytes"`).
+
+On a dry run, `"estimated_resource_usage_pub"` is the only key of the metadata.
 </Attribute>
+
+The `metadata` of the `PrimitiveResult` itself contains `"resource_usage"`: a dictionary with the time resources used by TEM, keyed by execution step (`"RUNNING: OPTIMIZING_FOR_HARDWARE"`, `"RUNNING: WAITING_FOR_QPU"`, `"RUNNING: POST_PROCESSING"` with their `"CPU_TIME"`, and `"RUNNING: EXECUTING_QPU"` with its `"QPU_TIME"`, in seconds). With `dry_run` or `resource_estimate_with_run`, it also contains:
+
+- `"estimated_resource_usage_job"`: the estimate of the whole run: `"total_qpu_time_s"`, `"total_cpu_time_s"` and `"peak_memory_bytes"`, and the `"function_size"` and `"compute_profile"` the job ran with.
+- `"estimated_ru_usage_job"`
+- `"circuit_size_tag"`: the size of the largest circuit, `"S"`, `"M"` or `"L"`, as computed by the size calculator: the smallest `function_size` the run accepts.
+- `"classical_compute_size_tag"`: `"S"`, `"M"` or `"L"`, the size the estimated peak memory needs; see [Choose a size for TEM](/docs/functions/algorithmiq-tem/get-started#choose-a-size-for-tem).
+
+## Fetching error messages
+
+If your workload status is ERROR, use `job.result()` to fetch the error message as follows:
+
+```python
+print(job.result())
+```
+
+```text
+PrimitiveResult([PubResult(data=DataBin(evs=np.ndarray(<shape=(1,), dtype=float64>), stds=np.ndarray(<shape=(1,), dtype=float64>)), metadata={'evs_wo_tem_wo_qdt': array([-0.07311669]), 'stds_wo_tem_wo_qdt': array([0.0594467]), 'evs_w_tem_wo_qdt': array([-0.07466167]), 'stds_w_tem_wo_qdt': array([0.06036151]), 'evs_wo_tem_w_qdt': array([-0.06065745]), 'stds_wo_tem_w_qdt': array([0.06115729])})], metadata={'resource_usage': {'RUNNING: OPTIMIZING_FOR_HARDWARE': {'CPU_TIME': 0.961152}, 'RUNNING: WAITING_FOR_QPU': {'CPU_TIME': 11.239450999999999}, 'RUNNING: POST_PROCESSING': {'CPU_TIME': 10.271211}, 'RUNNING: EXECUTING_QPU': {'QPU_TIME': 169.0}}})
+```
+
+## Get support
+
+Reach out to [qiskit_ibm@algorithmiq.fi](mailto:qiskit_ibm@algorithmiq.fi)
+
+Be sure to include the following information:
+- Quantum Function Job ID (`qiskit-ibm-catalog`), `job.job_id`
+- A detailed description of the issue
+- Any relevant error messages or codes
+- Steps to reproduce the issue
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+
+- [Request access to Algorithmiq Tensor-network error mitigation](https://quantum.ibm.com/functions?id=4b1b9d76-c18b-4788-b70b-15125111fbe6)
+
+</Admonition>
