@@ -65,7 +65,7 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
   **Parameters**
 
-  *   **channel** – String that identifies the service platform. This is set to `ibm_quantum_platform` by default, but can additionally take `local` and `ibm_cloud` as values. `ibm_cloud` is a legacy option and points to the same path as `ibm_quantum_platform`, the recommended value is ibm\_quantum\_platform\`. If `local` is selected, the local testing mode will be used, and primitive queries will run on a local simulator. For more details, check the [IBM Quantum Compute local testing mode](/docs/ibm-quantum-compute/local-testing-mode) documentation. For non-local modes, the channel is used to resolve the default API URL value. `ibm_cloud` was the identifier for the legacy IBM Cloud platform, and its URL will be redirected to the new `ibm_quantum_platform` address.
+  *   **channel** – String that identifies the service platform. This is set to `ibm_quantum_platform` by default, but can additionally take `local` and `ibm_cloud` as values. `ibm_cloud` is a legacy option and points to the same path as `ibm_quantum_platform`, the recommended value is ibm\_quantum\_platform\`. If `local` is selected, the local testing mode will be used, and primitive queries will run on a local simulator. For more details, check the [IBM Quantum Compute local testing mode](/docs/guides/local-testing-mode) documentation. For non-local modes, the channel is used to resolve the default API URL value. `ibm_cloud` was the identifier for the legacy IBM Cloud platform, and its URL will be redirected to the new `ibm_quantum_platform` address.
   *   **token** – IBM Cloud API key. Providing an API key is required for IQP authentication. If not provided explicitly, the default saved account will be queried for this API key.
   *   **url** – Base API URL. Defaults to `https://cloud.ibm.com` for non-local channels accessing the IBM Quantum Platform (e.g., `ibm_quantum_platform`, `ibm_cloud`). This URL is processed by a `url_resolver` to route requests to the correct service entrypoint. If you provide a custom `url`, you must also supply a matching `url_resolver`. The default resolver rewrites the base URL to `https://quantum.cloud.ibm.com/api/v[x]`.
   *   **filename** – Full path of the file where the account is created. Default: \_DEFAULT\_ACCOUNT\_CONFIG\_JSON\_FILE.
@@ -164,7 +164,7 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
     *   **name** (*str*) – Name of the backend.
     *   **instance** (*str | None*) – Specify the IBM Cloud account CRN.
-    *   **use\_fractional\_gates** (*bool | None*) – Set True to allow for the backends to include fractional gates. See [When not to use fractional gates](/docs/ibm-quantum-compute/fractional-gates#when-not-to-use-fractional-gates) for limitations.
+    *   **use\_fractional\_gates** (*bool | None*) – Set True to allow for the backends to include fractional gates. See [When not to use fractional gates](/docs/guides/fractional-gates#when-not-to-use-fractional-gates) for limitations.
     *   **calibration\_id** (*str | None*) – The calibration id used for instantiating the backend.
 
     **Returns**
@@ -382,7 +382,7 @@ python_api_name: qiskit_ibm_runtime.QiskitRuntimeService
 
     *   **use\_fractional\_gates** (*bool | None*) –
 
-        When `True`, only backends that include fractional gates are considered, and fractional gates are included in the returned backend. See [When not to use fractional gates](/docs/ibm-quantum-compute/fractional-gates#when-not-to-use-fractional-gates) for limitations.
+        When `True`, only backends that include fractional gates are considered, and fractional gates are included in the returned backend. See [When not to use fractional gates](/docs/guides/fractional-gates#when-not-to-use-fractional-gates) for limitations.
 
     *   **kwargs** (*Any*) – Additional arguments passed to the backend query.
 
