@@ -53,7 +53,7 @@ transpiled_circuit.draw("mpl", scale=0.8)
 
 As can be seen in the figure, the pass manager creates boxes of two types: those that contain a single layer of two-qubit gates, and those that contain a single layer of measurements. This separation reflects standard practices in noise learning and mitigation protocols, which usually target layers of homogeneous operations. The two-qubit gates and measurements are placed in the leftmost box that can accommodate them, and every single-qubit gates is placed in the same box as the two-qubit gate or measurement they preceed.
 
-The following code shows an example where `enable_gates` is set to `False`. As can be seen, the two-qubit gates are not grouped into boxes, nor are the single-qubit gates that preceed them.
+The following code shows an example where `enable_gates` is set to `False`. As can be seen, the two-qubit gates are not grouped into boxes, nor are the single-qubit gates that precede them.
 
 ```python
 boxing_pass_manager = generate_boxing_pass_manager(
@@ -68,7 +68,7 @@ transpiled_circuit.draw("mpl", scale=0.8)
 
 ## Choose how to annotate the boxes
 
-All the two-qubit gates and measurement boxes in the returned circuit own left-dressed annotations. In particular, all the boxes that contain two-qubit gates are annotated with a `Twirl`. For measurement boxes, users can choose between `Twirl`, `BasisTranform` (with `mode` set to `"measure"`), or both. The following code generates a circuit where all the boxes are twirled, and the measurement boxes are additionally annotated with `BasisTranform`.
+All the two-qubit gates and measurement boxes in the returned circuit own left-dressed annotations. In particular, all the boxes that contain two-qubit gates are annotated with a `Twirl`. For measurement boxes, users can choose between `Twirl`, `BasisTransform` (with `mode` set to `"measure"`), or both. The following code generates a circuit where all the boxes are twirled, and the measurement boxes are additionally annotated with `BasisTransform`.
 
 ```python
 boxing_pass_manager = generate_boxing_pass_manager(

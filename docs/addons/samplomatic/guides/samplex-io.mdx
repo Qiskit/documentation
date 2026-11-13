@@ -48,7 +48,7 @@ with circuit.box([Twirl(), InjectNoise(ref="ref2", modifier_ref="mod_ref2")]):
     circuit.cz(0, 1)
     circuit.cz(1, 2)
 
-# the fourth box is the same as the second, but with a different modifer ref
+# the fourth box is the same as the second, but with a different modifier ref
 with circuit.box([Twirl(), InjectNoise(ref="ref1", modifier_ref="mod_ref3")]):
     circuit.h(1)
     circuit.cz(1, 2)
@@ -291,7 +291,7 @@ Currently, there are two interface value types:
 *   Pauli Lindblad maps: These must be of type [`qiskit.quantum_info.PauliLindbladMap`](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap) and must act on the prescribed number of qubits. The number of terms in the map is a free dimension.
 
 ```python
-# up to precision loss, these are equivalent via automatic type coersion of array inputs
+# up to precision loss, these are equivalent via automatic type coercion of array inputs
 samplex.inputs()["parameter_values"] = [1, 2, 8, 9]
 samplex.inputs()["parameter_values"] = np.array([1, 2, 8, 9], dtype=np.float16)
 ```
@@ -374,7 +374,7 @@ basis_change
 Note that the qubit ordering convention is *not* the order defined by either of the following:
 
 *   `box_instruction.qubits`, where `box_instruction` is a [`qiskit.circuit.CircuitInstruction`](/docs/api/qiskit/qiskit.circuit.CircuitInstruction) whose operation is a [`qiskit.circuit.BoxOp`](/docs/api/qiskit/qiskit.circuit.BoxOp), because the order of this list of qubits might depend on the order in which instructions were added to the box context, which would be a confusing convention. For example, `with box(): circuit.x([0, 1])` and `with box(): circuit.x([1, 0])` would result in different orderings.
-*   `box_instruction.operation.body.qubits` because these qubits might not even appear in the outer circuit. Qubits inside the actual body of `BoxOp` instructions (or any other control flow operation like `IfElseOp`) are only promised to have a consisent meaning within that scope. This would be an ill-defined convention, and hard to use in general.
+*   `box_instruction.operation.body.qubits` because these qubits might not even appear in the outer circuit. Qubits inside the actual body of `BoxOp` instructions (or any other control flow operation like `IfElseOp`) are only promised to have a consistent meaning within that scope. This would be an ill-defined convention, and hard to use in general.
 
 ## Local testing with the template circuit
 
@@ -398,7 +398,7 @@ bound_template.draw("mpl", fold=1000)
 
 ![../\_images/1d82c46209f8648a2df572cfef8ca256f47952566d34386761ab942aa6e50afd.png](/docs/images/addons/samplomatic/1d82c46209f8648a2df572cfef8ca256f47952566d34386761ab942aa6e50afd.avif)
 
-This lets you verify that the samplex is outputing samples that are expected. For example, the following code casts the bound circuit to a [`qiskit.quantum_info.Operator`](/docs/api/qiskit/qiskit.quantum_info.Operator) object and composes with the bitflip Paulis to visually inspect that all three randomizations are logically equivalent to the base circuit.
+This lets you verify that the samplex is outputting samples that are expected. For example, the following code casts the bound circuit to a [`qiskit.quantum_info.Operator`](/docs/api/qiskit/qiskit.quantum_info.Operator) object and composes with the bitflip Paulis to visually inspect that all three randomizations are logically equivalent to the base circuit.
 
 ```python
 from samplomatic.utils import unbox
@@ -409,7 +409,7 @@ unboxed = unbox(circuit).assign_parameters(inputs["parameter_values"])
 unboxed.remove_final_measurements()
 unboxed_unitary = Operator(unboxed)
 
-# Plot magnitudes of the unitary matrix represenation of the circuit
+# Plot magnitudes of the unitary matrix representation of the circuit
 plt.subplot(1, 4, 1)
 plt.imshow(np.abs(unboxed_unitary))
 plt.title("Base Circuit")
@@ -427,7 +427,7 @@ for idx in range(3):
     flips = beta_flips ^ alpha_flips
     bound_unitary = Operator(bound_template) & flips
 
-    # Plot magnitudes of the unitary matrix represenation of the circuit
+    # Plot magnitudes of the unitary matrix representation of the circuit
     plt.subplot(1, 4, idx + 2)
     plt.imshow(np.abs(bound_unitary))
     plt.title(f"Randomization {idx}")
