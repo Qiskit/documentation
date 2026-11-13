@@ -222,6 +222,7 @@ async function determineFilePaths(
       "release_notes.html",
       "release-notes/**",
       "release_notes/**",
+      "guides/index.{html,ipynb}",
       ...SPHINX_INTERNALS,
       ...pkgIgnores,
     ],
