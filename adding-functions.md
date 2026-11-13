@@ -65,7 +65,7 @@ Readers reach a Function subsite only through cards and links on other pages, so
 - [ ] `npm run check:toc`
 - [ ] `npm run check:qiskit-bot`
 - [ ] `npm run check:stale-images`
-- [ ] Optional: `npm run check:fmt` and the full `./check` before handoff
+- [ ] The full `./check` before handoff (runs all of the preceding checks plus formatting and notebook linting)
 
 ## 5. Commit
 
