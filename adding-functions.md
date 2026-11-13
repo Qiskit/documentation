@@ -58,14 +58,7 @@ Readers reach a Function subsite only through cards and links on other pages, so
 ## 4. Checks
 
 - [ ] `./fix` (normalizes notebooks and extracts output images)
-- [ ] `npm run check:spelling` (add real terms to the dictionary or to a page's `cspell:ignore`)
-- [ ] `npm run check:markdown`
-- [ ] `npm run check:internal-links`
-- [ ] `npm run check:orphan-pages`
-- [ ] `npm run check:toc`
-- [ ] `npm run check:qiskit-bot`
-- [ ] `npm run check:stale-images`
-- [ ] The full `./check` before handoff (runs all of the preceding checks plus formatting and notebook linting)
+- [ ] `./check`, and fix anything it reports
 
 ## 5. Commit
 
