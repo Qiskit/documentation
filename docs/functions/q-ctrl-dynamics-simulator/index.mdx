@@ -1,0 +1,123 @@
+---
+title: Dynamics Simulator by Q-CTRL Fire Opal
+description: Simulate many-body quantum dynamics on IBM Quantum hardware and estimate observable time traces with automated error suppression.
+---
+
+{/* cspell:ignore RMSE */}
+
+# Dynamics Simulator by Q-CTRL Fire Opal
+
+*See the [API reference](/docs/functions/q-ctrl-dynamics-simulator/api-reference)*
+
+<Admonition type="note">
+   IBM Quantum&reg; Functions are a beta feature available only to IBM Quantum Premium Plan, Flex Plan, and On-Prem (through the IBM Quantum Platform API) Plan users. Beta features are subject to change.
+</Admonition>
+
+## Overview
+
+The Q-CTRL **Dynamics Simulator** is an application quantum function for simulating the time evolution of supported quantum many-body models on IBM Quantum hardware. Instead of constructing quantum circuits yourself, you specify the physical model, the initial state, the time-evolution parameters, and the observables to measure.
+
+The function constructs and executes the required dynamic circuits and applies Fire Opal's hardware-aware optimization and error suppression workflow. The result is a time trace of expectation values for the observables you requested. Because the function applies error suppression automatically, you can run circuits at record depths and still see meaningful signals. The Dynamics Simulator delivers solution accuracy that matches the existing state-of-the-art classical tools and gives a demonstrable advantage in speed.
+
+Real-world testing achieved agreement within 1% root mean square error (RMSE) when compared against the highest-resolution classical tensor-network simulations. [Independent tests](https://arxiv.org/abs/2606.04771) from the research community have validated that the quantum computer remains accurate even beyond Q-CTRL's initial demonstrations.
+
+![Two plots of classical tensor-network simulations at bond dimensions χ from 64 to 4096. The left plot shows the RMSE against time t, which stays near 0.01 until it rises sharply, later for larger bond dimensions. The right plot shows the simulation time in minutes against time t on a logarithmic scale, which increases with bond dimension.](/docs/images/guides/q-ctrl-dynamics-simulator/tensor-network-comparison.svg "Agreement between quantum and classical simulations as the “resolution” of the classical simulation increases. As the resolution increases, both the agreement with the quantum computer and the classical-simulation runtime increase. Quantum computer runtimes are faster by up to 3000 times.")
+
+## Benchmarks
+
+The number of sites determines how many qubits are needed, while the number of Trotter steps controls the depth of the time-evolution circuits. Each lattice site uses two qubits to represent the spin-up and spin-down occupations.
+
+This workflow has been demonstrated for chains of 60 sites (120 qubits) with 30 Trotter steps, and for chains of 31 sites (62 qubits) with 90 Trotter steps. The table below shows the circuit resources and QPU execution times from the [reported experiments](https://arxiv.org/abs/2605.04025), performed on IBM&reg; Heron r3 (`ibm_boston`) device with 20,000 shots per circuit.
+
+| System size | Trotter steps | Two-qubit depth | Two-qubit gate count | QPU time | QPU time with REM + DR |
+| :--- | ---: | ---: | ---: | ---: | ---: |
+| 10 sites (20 qubits) | 30 | 152 | 1,457 | 2m 46s | 4m 25s |
+| 10 sites (20 qubits) | 60 | 302 | 2,897 | 5m 36s | 8m 42s |
+| 10 sites (20 qubits) | 90 | 452 | 4,337 | 8m 46s | 13m 26s |
+| 31 sites (62 qubits) | 30 | 152 | 4,649 | 2m 46s | 4m 25s |
+| 31 sites (62 qubits) | 60 | 302 | 9,239 | 5m 36s | 8m 42s |
+| 31 sites (62 qubits) | 90 | 452 | 13,829 | 8m 46s | 13m 26s |
+| 60 sites (120 qubits) | 30 | 152 | 9,057 | 2m 46s | 4m 25s |
+
+For a fixed number of Trotter steps, the reported circuit depth and QPU time remain the same across the tested system sizes, while the two-qubit gate count increases. Increasing the number of steps produces deeper circuits and requires more QPU time.
+
+Here, QPU time is the cumulative hardware execution time for the main simulation circuits. The last column also includes the QPU time for noise characterization used in readout error mitigation (REM) and decay recovery (DR).
+
+## Description
+
+Quantum dynamics describes how a quantum system changes over time. Studying this evolution helps you understand how particles move, how correlations develop, and how a system responds to a change in its state or Hamiltonian.
+
+The Fermi-Hubbard model describes fermions moving between lattice sites and interacting when they occupy the same site. The competition between hopping and interactions makes it a useful model for studying strongly correlated electrons. Its time evolution can reveal how spin and charge propagate, and how an initially ordered system relaxes.
+
+### Model
+
+The Dynamics Simulator supports a one-dimensional Fermi-Hubbard chain with open boundaries. For a chain of $L$ sites, the Hamiltonian is defined as follows:
+
+$$
+H =
+-\sum_{i=0}^{L-2}\sum_{\sigma\in\{\uparrow,\downarrow\}}
+t_{h,i}
+\left(
+c^\dagger_{i\sigma}c_{i+1,\sigma}
++
+c^\dagger_{i+1,\sigma}c_{i\sigma}
+\right)
++\sum_{i=0}^{L-1}U_i n_{i\uparrow}n_{i\downarrow}
+-\sum_{i=0}^{L-1}\sum_{\sigma\in\{\uparrow,\downarrow\}}
+\mu_i n_{i\sigma}.
+$$
+
+Here, $c^\dagger_{i\sigma}$ and $c_{i\sigma}$ create and annihilate a fermion with spin $\sigma$ at site $i$. The number operator $n_{i\sigma}=c^\dagger_{i\sigma}c_{i\sigma}$ measures the occupation of that spin orbital.
+
+The model inputs specify the following coefficients:
+
+* `hopping_amplitude`: $t_{h,i}$, which controls hopping between neighboring sites $i$ and $i+1$.
+* `on_site_interaction`: $U_i$, the interaction between spin-up and spin-down fermions occupying the same site.
+* `chemical_potential`: $\mu_i$, the local chemical potential, which enters the Hamiltonian with a minus sign.
+
+Supply a scalar to use the same coefficient throughout the chain, or a list to specify coefficients for individual bonds or sites.
+
+In units where $\hbar=1$, the initial state evolves as follows:
+
+$$
+|\psi(t)\rangle=e^{-iHt}|\psi(0)\rangle.
+$$
+
+The function estimates the expectation values of the observables you specify at successive simulation times.
+
+### Workflow
+
+The function's workflow consists of the following steps:
+
+1. **Algorithmic synthesis:** The function uses the Hamiltonian and simulation time settings to construct an optimized Trotter-Suzuki sequence, which reduces circuit depth while accounting for simulation accuracy.
+2. **Hardware-aware mapping:** The function maps and routes the circuits by using the qubit connectivity and error characteristics of the selected IBM Quantum backend.
+3. **Physical-layer error suppression:** Fire Opal incorporates dynamical decoupling and pulse-level corrections to suppress noise from the environment and crosstalk during hardware execution.
+
+The function manages these stages automatically and returns the expectation values of the requested observables over time.
+
+You define the physical problem and simulation settings through the function inputs. The current interface supports Trotter time evolution, where `time_step` sets the duration of each step and `step_count` sets the number of steps.
+
+To access results from previous runs, see [how to retrieve previous quantum function jobs](/docs/ibm-quantum-platform/functions-get-started#list-previously-run-functions-jobs).
+
+For additional details, see the [Fire Opal dynamics simulator overview](https://docs.q-ctrl.com/fire-opal/execute/run-algorithms/fire-opal-dynamics-simulator) and the [`simulate_dynamics` API reference](https://docs.q-ctrl.com/references/fire-opal/fireopal/fireopal.simulate_dynamics).
+
+## Get support
+
+For questions about the Dynamics Simulator or Fire Opal behavior, see the [Q-CTRL documentation](https://docs.q-ctrl.com/) or [contact Q-CTRL](https://form.typeform.com/to/iuujEAEI).
+
+For quantum function authentication, job management, or IBM Quantum Platform access, see the [quantum functions documentation](https://quantum.cloud.ibm.com/functions).
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+
+- Run your first workload with the [get started guide](/docs/functions/q-ctrl-dynamics-simulator/get-started).
+- Review the [`simulate_dynamics` API reference](https://docs.q-ctrl.com/references/fire-opal/fireopal/fireopal.simulate_dynamics) for the underlying model, simulation, observable, output, and validation definitions.
+- Try the [Spin and charge dynamics in the Fermi-Hubbard model](/docs/tutorials/fermi-hubbard-spin-charge-dynamics) tutorial.
+- Read the [Fire Opal dynamics simulator overview](https://docs.q-ctrl.com/fire-opal/execute/run-algorithms/fire-opal-dynamics-simulator) for more detail about Trotterization, hardware-aware mapping, and Fire Opal error suppression.
+- Modify the model parameters, initial state, time step, step count, and observables to study a different one-dimensional Fermi-Hubbard dynamics problem.
+- Review the [functions overview](/docs/guides/functions).
+- Learn about [managed workflows](/docs/managed-workflows).
+- Learn how to choose [problem sizes and compute profiles](/docs/managed-workflows/managed-workflow-compute-profiles).
+
+</Admonition>
