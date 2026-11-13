@@ -91,7 +91,7 @@ Every run of the workflow uses this profile, so you do not need to pass a size w
 ```python
 job = my_workflow.run(circuits=circuits)  # Runs on 16x128
 ```
-
+<span id="match-sizes" />
 ## Best practice: match sizes to problem sizes
 
 A workflow solves specific problems, and it might require different compute profiles as the problems increase in scale and complexity. With a `sizes_map` for each workflow, you can do the following:
@@ -176,3 +176,9 @@ print(get_compute_profile())  # '128x1500'
 | The upload fails with `'default_size' is required when 'sizes' is provided.` | The first upload sets `sizes_map` without `default_size`. |
 | `run()` fails with `Unknown function size '...' for this function. Available sizes: ...` | The workflow does not define the size that you passed to `function_size`. |
 | `run()` fails with `This function has no size.` | A re-upload replaced the sizes and removed the default. Upload again with `default_size`, or pass `function_size`. |
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+    - [Functions overview](/docs/guides/functions), includes available functions and cost per execution, when applicable
+</Admonition>
