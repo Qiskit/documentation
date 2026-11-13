@@ -10,9 +10,13 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
+import os from "os";
+import path from "path";
+import { mkdir, mkdtemp, readdir, writeFile } from "fs/promises";
+
 import { expect, test } from "@playwright/test";
 
-import { pathExists } from "./fs.js";
+import { pathExists, rmFolderContentsExcept } from "./fs.js";
 
 test("pathExists()", async () => {
   const readme = await pathExists(`README.md`);
@@ -23,4 +27,18 @@ test("pathExists()", async () => {
 
   const fake = await pathExists(`fake-file`);
   expect(fake).toBe(false);
+});
+
+test("rmFolderContentsExcept()", async () => {
+  const dir = await mkdtemp(path.join(os.tmpdir(), "rm-folder-test-"));
+  await writeFile(path.join(dir, "page.mdx"), "");
+  await mkdir(path.join(dir, "generated"));
+  await writeFile(path.join(dir, "generated", "stale.mdx"), "");
+  await mkdir(path.join(dir, "0.2"));
+  await writeFile(path.join(dir, "0.2", "kept.mdx"), "");
+
+  await rmFolderContentsExcept(dir, (name) => name === "0.2");
+
+  expect(await readdir(dir)).toEqual(["0.2"]);
+  expect(await readdir(path.join(dir, "0.2"))).toEqual(["kept.mdx"]);
 });
