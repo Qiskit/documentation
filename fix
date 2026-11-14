@@ -11,12 +11,26 @@
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
 
-from scripts.tool_runner.qiskit_docs_contributor_tools import configure_logging, run_cmd, check_packages
+import shutil
+from pathlib import Path
+
+from scripts.tool_runner.qiskit_docs_contributor_tools import (
+    configure_logging,
+    run_cmd,
+    check_packages,
+    install_node_dependencies,
+)
+
+# On Windows, npm is a wrapper for npm.cmd, so get the correct command
+npm_cmd = shutil.which("npm")
 
 
 def main() -> None:
     check_packages()
-    run_cmd("notebook formatters", ["tox", "-e", "fix"], progress=None)
+    if not Path("./node_modules").exists():
+        install_node_dependencies()
+    run_cmd("formatting", [npm_cmd, "run", "fmt"], progress="1/2")
+    run_cmd("notebook formatters", ["tox", "-e", "fix"], progress="2/2")
 
 
 if __name__ == "__main__":

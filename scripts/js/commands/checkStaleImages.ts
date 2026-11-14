@@ -10,13 +10,17 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { $ } from "zx";
+import { readFile } from "fs/promises";
+
 import { globby } from "globby";
 
-import { zxMain, isInstalled } from "../lib/zx.js";
+import { zxMain } from "../lib/zx.js";
+import {
+  PUBLIC_FOLDER_PREFIX,
+  findUnusedImages,
+  stripImagePaths,
+} from "../lib/staleImages.js";
 
-// When writers link to this folder, they leave off this prefix.
-const PUBLIC_FOLDER_PREFIX = "public/";
 const IMAGES_GLOBS = [
   `${PUBLIC_FOLDER_PREFIX}*/images/**`,
   // We don't check API images because the API pipeline will already ensure there are no
@@ -24,61 +28,36 @@ const IMAGES_GLOBS = [
   `!${PUBLIC_FOLDER_PREFIX}docs/images/api/**`,
 ];
 
+// The files that can reference images. API docs are excluded for the same
+// reason as in IMAGES_GLOBS.
+const CONTENT_GLOBS = ["docs/**", "learning/**", "!docs/api/**"];
+
 // Files that are used in closed source, so should not be removed.
 // Format: full file path, e.g. "public/docs/images/guides/paulibasis.png"
 const ALLOW_LIST = new Set<string>([]);
 
 zxMain(async () => {
-  const paths = await getStrippedImagePaths();
-  if (paths.size === 0) {
+  const imagePaths = stripImagePaths(await globby(IMAGES_GLOBS));
+  if (imagePaths.size === 0) {
     throw new Error("Did not detect any images: Please check this script.");
   }
-  let allGood = true;
-  let numFilesChecked = 0;
-  for (const fp of paths) {
-    numFilesChecked++;
-    const isUnused = await isImageUnused(fp);
-    if (isUnused) {
-      console.error(`❌ image is unused: ${PUBLIC_FOLDER_PREFIX}${fp}`);
-      allGood = false;
-    }
 
-    // This script can be slow, so log progress every 20 files.
-    if (numFilesChecked % 20 == 0) {
-      console.log(`⏳ Checked ${numFilesChecked} / ${paths.size} images`);
-    }
+  const contentPaths = await globby(CONTENT_GLOBS, { gitignore: true });
+  const contents = await Promise.all(
+    contentPaths.map((fp) => readFile(fp, "utf-8")),
+  );
+
+  const unused = findUnusedImages(imagePaths, contents, ALLOW_LIST);
+  if (unused.length === 0) {
+    console.log(`✅ all ${imagePaths.size} images used`);
+    return;
   }
 
-  if (allGood) {
-    console.log("✅ all images used");
-  } else {
-    console.error(
-      "\n\n❌ Some images are unused. They should usually be deleted to reduce our repository size.",
-    );
-    process.exit(1);
+  for (const fp of unused) {
+    console.error(`❌ image is unused: ${PUBLIC_FOLDER_PREFIX}${fp}`);
   }
+  console.error(
+    "\n\n❌ Some images are unused. They should usually be deleted to reduce our repository size.",
+  );
+  process.exit(1);
 });
-
-async function getStrippedImagePaths(): Promise<Set<string>> {
-  const fullPaths = await globby(IMAGES_GLOBS);
-  return new Set(
-    fullPaths.map((fp) =>
-      fp
-        .split(PUBLIC_FOLDER_PREFIX)[1]
-        // Dark mode variants aren't explicitly loaded in images in Markdown.
-        // As long as the path with `@dark` removed is found, it's a valid file.
-        .replace(/@dark/g, ""),
-    ),
-  );
-}
-
-async function isImageUnused(strippedFp: string): Promise<boolean> {
-  const args = (await isInstalled("rg"))
-    ? ["rg", "-l", strippedFp, "docs", "learning", "-g", "!docs/api"]
-    : ["git", "grep", "-l", strippedFp, "docs", "learning", ":!docs/api"];
-  const proc = await $`${args}`.quiet().catch((result) => result);
-  return (
-    proc.stdout === "" &&
-    !ALLOW_LIST.has(`${PUBLIC_FOLDER_PREFIX}${strippedFp}`)
-  );
-}
