@@ -13,7 +13,7 @@
 import { globby } from "globby";
 
 import { readJsonFile } from "../lib/fs.js";
-import { collectNewPills, NewPillEntry } from "../lib/newPills.js";
+import { collectNewPills, type NewPillEntry } from "../lib/newPills.js";
 
 const TODAY = new Date();
 

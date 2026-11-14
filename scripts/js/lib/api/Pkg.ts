@@ -14,7 +14,7 @@ import { join } from "path/posix";
 
 import { determineReleaseNotesSeparetePagesVersions } from "./releaseNotes.js";
 import {
-  TocGrouping,
+  type TocGrouping,
   QISKIT_TOC_GROUPING,
   QISKIT_ADDON_MPF_GROUPING,
   QISKIT_RUNTIME_GROUPING,

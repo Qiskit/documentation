@@ -10,13 +10,18 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { CheerioAPI, Cheerio, Element, load as cheerioLoad } from "cheerio";
+import { type CheerioAPI, type Cheerio, load as cheerioLoad } from "cheerio";
+import type { Element } from "domhandler";
 import { unified } from "unified";
 import rehypeParse from "rehype-parse";
 import rehypeRemark from "rehype-remark";
 import remarkStringify from "remark-stringify";
 
-import { ApiTypeName, ApiObjectName, API_OBJECTS } from "./Metadata.js";
+import {
+  type ApiTypeName,
+  type ApiObjectName,
+  API_OBJECTS,
+} from "./Metadata.js";
 import {
   getLastPartFromFullIdentifier,
   removeSuffix,

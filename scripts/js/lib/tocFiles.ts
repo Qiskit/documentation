@@ -12,7 +12,7 @@
 
 import { globby } from "globby";
 
-import { TocEntry } from "./api/generateToc.js";
+import type { TocEntry } from "./api/generateToc.js";
 import { readJsonFile } from "./fs.js";
 import { InternalLink, File } from "./links/InternalLink.js";
 

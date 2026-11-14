@@ -13,7 +13,7 @@
 import { isEmpty, orderBy } from "lodash-es";
 
 import { getLastPartFromFullIdentifier } from "../stringUtils.js";
-import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
+import type { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
 import { Pkg } from "./Pkg.js";
 import type { TocGrouping } from "./TocGrouping.js";
 import { DOCS_BASE_PATH } from "./paths.js";

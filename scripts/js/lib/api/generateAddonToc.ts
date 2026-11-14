@@ -35,7 +35,7 @@ import { join, parse } from "path/posix";
 import { load } from "cheerio";
 
 import { Pkg } from "./Pkg.js";
-import { TocEntry } from "./generateToc.js";
+import type { TocEntry } from "./generateToc.js";
 import {
   C_API_BASE_PATH,
   DOCS_BASE_PATH,

@@ -16,17 +16,23 @@ import rehypeRemark from "rehype-remark";
 import remarkStringify from "remark-stringify";
 import remarkGfm from "remark-gfm";
 import { last, first, without, initial, tail } from "lodash-es";
-import { defaultHandlers, Handle, toMdast, all, H } from "hast-util-to-mdast";
+import {
+  defaultHandlers,
+  type Handle,
+  toMdast,
+  all,
+  type H,
+} from "hast-util-to-mdast";
 import { toText } from "hast-util-to-text";
 import remarkMath from "remark-math";
 import remarkMdx from "remark-mdx";
-import { MdxJsxFlowElement } from "mdast-util-mdx-jsx";
+import type { MdxJsxFlowElement } from "mdast-util-mdx-jsx";
 import { visit } from "unist-util-visit";
-import { Emphasis, Root, Content, Link } from "mdast";
+import type { Emphasis, Root, Content, Link } from "mdast";
 
 import { processHtml } from "./processHtml.js";
-import { HtmlToMdResult } from "./HtmlToMdResult.js";
-import { Metadata, ApiTypeName } from "./Metadata.js";
+import type { HtmlToMdResult } from "./HtmlToMdResult.js";
+import type { Metadata, ApiTypeName } from "./Metadata.js";
 import { removePrefix, removeSuffix, capitalize } from "../stringUtils.js";
 import { remarkStringifyOptions } from "./commonParserConfig.js";
 

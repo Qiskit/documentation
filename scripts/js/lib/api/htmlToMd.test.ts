@@ -11,7 +11,7 @@
 // that they have been altered from the originals.
 
 import { test, expect } from "@playwright/test";
-import { Link } from "mdast";
+import type { Link } from "mdast";
 
 import { removeVersionLinkTitle, sphinxHtmlToMarkdown } from "./htmlToMd.js";
 

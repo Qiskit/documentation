@@ -12,7 +12,7 @@
 
 import path from "node:path";
 import { initial, keyBy, keys, last } from "lodash-es";
-import { Root } from "mdast";
+import type { Root } from "mdast";
 import { visit } from "unist-util-visit";
 import isAbsoluteUrl from "is-absolute-url";
 import { unified } from "unified";
@@ -28,7 +28,7 @@ import {
   removePrefix,
   removeSuffix,
 } from "../stringUtils.js";
-import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
+import type { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
 import { remarkStringifyOptions } from "./commonParserConfig.js";
 import { ObjectsInv } from "./objectsInv.js";
 import { Pkg } from "./Pkg.js";
