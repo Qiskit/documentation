@@ -13,7 +13,7 @@
 import { globby } from "globby";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
-import { firefox, Page } from "playwright";
+import { chromium, Page } from "playwright";
 import fs from "fs/promises";
 
 import { readMarkdown } from "../lib/markdownReader.js";
@@ -94,7 +94,7 @@ const readArgs = (): Arguments => {
 };
 
 const main = async (): Promise<void> => {
-  const browser = await firefox.launch();
+  const browser = await chromium.launch();
   const page = await browser.newPage({
     // The height is not important in this check
     viewport: { width: MIN_WIDTH, height: 800 },
