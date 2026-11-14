@@ -1,4 +1,4 @@
-import { QISKIT_REMOVED_PAGES } from "../js/lib/links/QiskitRemovedPages";
+import { QISKIT_REMOVED_PAGES } from "../js/lib/links/QiskitRemovedPages.js";
 
 export const externalRedirects = {
   "https://github.com/Qiskit-Extensions/circuit-knitting-toolbox/issues/445":

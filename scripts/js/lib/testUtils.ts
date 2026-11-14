@@ -11,7 +11,7 @@
 // that they have been altered from the originals.
 
 import { expect } from "@playwright/test";
-import { CheerioAPI, Cheerio, load as cheerioLoad } from "cheerio";
+import { type CheerioAPI, type Cheerio, load as cheerioLoad } from "cheerio";
 
 export class CheerioDoc {
   readonly $: CheerioAPI;

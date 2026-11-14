@@ -13,7 +13,7 @@
 import { globby } from "globby";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
-import { firefox, Page } from "playwright";
+import { firefox, type Page } from "playwright";
 import fs from "fs/promises";
 
 import { readMarkdown } from "../lib/markdownReader.js";

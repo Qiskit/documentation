@@ -19,7 +19,7 @@ import { readApiFullVersion } from "../../lib/apiVersions.js";
 import {
   generateVersion,
   determineMinorVersion,
-  Arguments,
+  type Arguments,
 } from "./updateApiDocs.js";
 
 // Found with `gh api repos/qiskit/${repo}/actions/workflows`

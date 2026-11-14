@@ -50,16 +50,9 @@ const IGNORE_TITLE_MISMATCHES: string[] = [
   "docs/guides/qiskit-backendv1-to-v2.mdx", // ok
   "docs/ibm-quantum-compute/execution-modes.mdx", // ok
   "docs/guides/faq.mdx", // ok
-  "docs/guides/classical-feedforward-and-control-flow.ipynb", // ok
-  "docs/guides/colibritd-pde.ipynb", // ok
-  "docs/guides/defaults-and-configuration-options.ipynb", // ok
-  "docs/guides/function-template-chemistry-workflow.ipynb", // ok
-  "docs/guides/function-template-hamiltonian-simulation.ipynb", // ok
   "docs/functions/global-data-quantum-optimizer/index.ipynb", // ok
   "docs/functions/multiverse-computing-singularity/index.ipynb", // ok
   "docs/functions/q-ctrl-optimization-solver/index.ipynb", // ok
-  "docs/guides/q-ctrl-performance-management.ipynb", // ok
-  "docs/guides/qedma-qesem.ipynb", // ok
   "docs/guides/changelog-qiskit.mdx",
   "docs/guides/changelog-quantum-compute.mdx",
   "docs/ibm-quantum-platform/index.mdx",

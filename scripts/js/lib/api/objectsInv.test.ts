@@ -13,7 +13,7 @@
 import { expect, test } from "@playwright/test";
 import { unlink, stat } from "fs/promises";
 
-import { ObjectsInv, ObjectsInvEntry } from "./objectsInv.js";
+import { ObjectsInv, type ObjectsInvEntry } from "./objectsInv.js";
 
 const TEST_FOLDER = "scripts/js/lib/api/testdata/";
 const TEMP_FOLDER = "scripts/js/lib/api/testdata/temp/";

@@ -23,7 +23,7 @@ import isAbsoluteUrl from "is-absolute-url";
 import { mkdirp } from "mkdirp";
 import { visit, EXIT } from "unist-util-visit";
 
-import { Image } from "./HtmlToMdResult.js";
+import type { Image } from "./HtmlToMdResult.js";
 import { ObjectsInv } from "./objectsInv.js";
 import { Pkg } from "./Pkg.js";
 import { kebabCaseAndShortenPage } from "./normalizeResultUrls.js";
@@ -32,7 +32,7 @@ import { rewriteApiDocsLink } from "./pipelineStages.js";
 import { C_API_BASE_PATH, DOCS_BASE_PATH } from "./paths.js";
 import { transformSpecialCaseUrl } from "./specialCaseResults.js";
 import { parseMarkdown, extractHeadingText } from "../markdownUtils.js";
-import { NotebookCell, NotebookWithUrl } from "./Notebooks.js";
+import type { NotebookCell, NotebookWithUrl } from "./Notebooks.js";
 
 export async function readNotebooks(
   artifactPath: string,
