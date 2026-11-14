@@ -18,24 +18,38 @@ from pathlib import Path
 import nbformat
 import sys
 
+# We only use the version-info cell in guides notebooks for now.
+NOTEBOOK_FOLDERS = [
+    "docs/functions",
+    "docs/guides",
+    "docs/ibm-quantum-compute",
+    "docs/ibm-quantum-platform",
+    "docs/managed-workflows",
+    "docs/qiskit",
+]
+
 if __name__ == "__main__":
-    # We only use the version-info cell in guides notebooks for now.
-    guides_path = Path("./docs/guides")
-    for notebook in guides_path.glob("*.ipynb"):
+    notebooks = sorted(
+        notebook
+        for folder in NOTEBOOK_FOLDERS
+        for notebook in Path(folder).rglob("*.ipynb")
+    )
+    all_good = True
+    for notebook in notebooks:
         nb = nbformat.read(notebook, as_version=4)
         version_info_cells = [
             cell for cell in nb.cells if "version-info" in cell.metadata.get("tags", [])
         ]
         if len(version_info_cells) == 1:
             cell = version_info_cells.pop()
-            if cell.cell_type != "markdown":
-                print(
-                    "\n\n❌ Version info cells must be markdown cells. "
-                    f"Found a {cell.cell_type} cell with tag 'version-info' in "
-                    f"{notebook}.\n\n"
-                )
-            continue
-        if len(version_info_cells) == 0:
+            if cell.cell_type == "markdown":
+                continue
+            print(
+                "\n\n❌ Version info cells must be markdown cells. "
+                f"Found a {cell.cell_type} cell with tag 'version-info' in "
+                f"{notebook}.\n\n"
+            )
+        elif len(version_info_cells) == 0:
             print(
                 f"\n\n❌ No version info cell found in {notebook}. (This allows users to "
                 "see what versions of requirements were used when developing the notebook.)\n\n"
@@ -47,4 +61,7 @@ if __name__ == "__main__":
                 f"\n\n❌ Found more than one cell with tag `version-info` in {notebook}. "
                 "To fix, remove all but one.\n\n"
             )
+        all_good = False
+
+    if not all_good:
         sys.exit(1)
