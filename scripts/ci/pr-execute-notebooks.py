@@ -15,6 +15,10 @@ Run the notebook tester on changed notebooks and display a helpful message if
 can't test due to being on a fork.
 """
 
+import os
+import subprocess
+from pathlib import Path
+
 FORK_ERROR_MESSAGE = """\
 We can't run this test on pull requests from forks.
 
@@ -27,11 +31,6 @@ When this PR is approved, a maintainer will merge it to a new branch in
 Qiskit/documentation, then make a PR from that branch into main so it can pass
 CI.
 """
-
-import os
-import sys
-import subprocess
-from pathlib import Path
 
 CONTENT_DIRECTORIES = ["docs", "learning"]
 
