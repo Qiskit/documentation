@@ -27,17 +27,44 @@ logger = logging.getLogger(__name__)
 # On Windows, npm is a wrapper for npm.cmd, so get the correct command
 npm_cmd = shutil.which("npm")
 
-# Note that these are ordered from fastest to slowest.
+# These match the `lint` job in .github/workflows/main.yml, using the same
+# step names, order, and arguments, so that passing `./check` locally means the
+# same checks pass in CI. When you change one, change the other.
+# The exceptions are check which need the Docker preview running
+
 CHECKS = {
-    "spelling": [npm_cmd, "run", "check:spelling"],
-    "internal links": [npm_cmd, "run", "check:internal-links"],
-    "notebook linters": ["tox", "-e", "lint"],
-    "all notebooks are tested": ["python3", "scripts/ci/check-all-notebooks-are-tested.py"],
-    "Qiskit bot": [npm_cmd, "run", "check:qiskit-bot"],
-    "tutorials index page": ["python3", "scripts/ci/check-tutorials-index.py"],
-    "markdown": [npm_cmd, "run", "check:markdown"],
-    "orphan pages": [npm_cmd, "run", "check:orphan-pages"],
-    "table of contents": [npm_cmd, "run", "check:toc"],
+    "Check internal links": [
+        npm_cmd,
+        "run",
+        "check:internal-links",
+        "--",
+        "--current-apis",
+        "--dev-apis",
+        "--historical-apis",
+        "--qiskit-legacy-release-notes",
+    ],
+    "Check stale images": [npm_cmd, "run", "check:stale-images"],
+    "Check markdown": [npm_cmd, "run", "check:markdown", "--", "--apis"],
+    "Spellcheck": [npm_cmd, "run", "check:spelling"],
+    "Check Qiskit bot config": [npm_cmd, "run", "check:qiskit-bot"],
+    "Formatting": [npm_cmd, "run", "check:fmt"],
+    "Check for orphan pages": [npm_cmd, "run", "check:orphan-pages", "--", "--apis"],
+    "Check _toc.json entries resolve to real pages": [
+        npm_cmd,
+        "run",
+        "check:toc",
+        "--",
+        "--apis",
+    ],
+    "Check Qiskit and Qiskit C API versions": [npm_cmd, "run", "check:qiskit-versions"],
+    "Check tutorials index": ["python3", "scripts/ci/check-tutorials-index.py"],
+    "Infrastructure tests": [npm_cmd, "test"],
+    "Typecheck": [npm_cmd, "run", "typecheck"],
+    "Check all notebooks are listed in the config file": [
+        "python3",
+        "scripts/ci/check-all-notebooks-are-tested.py",
+    ],
+    "Lint notebooks": ["tox", "-e", "lint"],
 }
 
 
