@@ -3,6 +3,8 @@ title: "Quantum Elements Orbit API reference"
 description: "API reference for Quantum Elements Orbit, including inputs, outputs, configuration options, and result metadata"
 ---
 
+{/* cspell:ignore unpadded */}
+
 # Quantum Elements Orbit API reference
 
 Quantum Elements Orbit is a quantum function that prepares quantum circuits for a selected IBM Quantum&reg; backend, inserts dynamical decoupling (DD) into scheduled idle windows, and runs the resulting workload through an IBM Quantum primitive. Workloads can run as one Quantum Compute job or be partitioned across child jobs in a server-side `qiskit-ibm-runtime` batch. Orbit accepts Sampler and Estimator PUBs and returns a standard [`PrimitiveResult`](/docs/api/qiskit/qiskit.primitives.PrimitiveResult) with Orbit-specific metadata attached to the top-level result and to each [Primitive Unified Bloc (PUB)](/docs/qiskit/primitive-input-output) result.

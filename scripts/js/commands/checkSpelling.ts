@@ -89,14 +89,13 @@ async function checkMdxAndToc(
   checkApis: boolean,
 ): Promise<void> {
   const cspellCmd = ["npx", "cspell", "--no-progress", "--config", configPath];
+  const run = $({ stdio: "inherit" });
+  // Globs are quoted so cspell expands them, not the shell.
+  // Bash's `**` is not recursive, so it would silently skip deeply nested files.
   try {
-    await $`${cspellCmd} {docs,learning}/**/*.mdx {docs,learning}/**/_toc.json !docs/api/**/*.mdx !docs/api/**/_toc.json`.pipe(
-      process.stdout,
-    );
+    await run`${cspellCmd} '{docs,learning}/**/*.mdx' '{docs,learning}/**/_toc.json' --exclude 'docs/api/**'`;
     if (checkApis) {
-      await $`${cspellCmd} docs/api/**/*.mdx docs/api/**/_toc.json`.pipe(
-        process.stdout,
-      );
+      await run`${cspellCmd} 'docs/api/**/*.mdx' 'docs/api/**/_toc.json'`;
     }
   } catch (p) {
     explainHowToFix("mdxAndToc");
