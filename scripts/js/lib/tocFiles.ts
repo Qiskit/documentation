@@ -77,8 +77,7 @@ export async function loadTocTargetFiles(): Promise<File[]> {
  * `existingFiles`. Returns an error message listing the broken URLs, or
  * `undefined` if they all resolve.
  *
- * Shared by `check:toc` (standalone) and `check:internal-links` so both report
- * identical results; see `loadTocTargetFiles` for building `existingFiles`.
+ * Used by `check:toc`; see `loadTocTargetFiles` for building `existingFiles`.
  */
 export async function checkTocFile(
   tocFile: string,
