@@ -62,7 +62,7 @@ function detectOutdatedNewPills(newPills: NewPillEntry[]): {
     }
     const oldDate = new Date(pill.date);
     const daysDiff = (TODAY.getTime() - oldDate.getTime()) / msPerDay;
-    if (daysDiff > 14) {
+    if (daysDiff > 21) {
       outdatedPills.push(pill);
     }
   }
