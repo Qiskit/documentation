@@ -15,7 +15,6 @@ import path from "path";
 import { globby } from "globby";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
-import { flatten } from "lodash-es";
 
 import { readJsonFile } from "../lib/fs.js";
 import { findTocFiles, parseTocUrls } from "../lib/tocFiles.js";
@@ -45,8 +44,18 @@ async function main() {
   const args = readArgs();
   const tocFiles = await findTocFiles(args.apis);
 
-  const orphanGroups = await Promise.all(tocFiles.map(findOrphans));
-  const orphans = flatten(orphanGroups);
+  const [listedUrls, pages] = await Promise.all([
+    readAllTocUrls(),
+    globby(
+      tocFiles.map((tocFile) => `${path.dirname(tocFile)}/**/*.{mdx,ipynb}`),
+      { ignore: ["**/assets/**"] },
+    ),
+  ]);
+
+  const orphans = pages
+    .map((page) => "/" + page.replace(/\.(mdx|ipynb)$/, ""))
+    .filter((url) => !listedUrls.has(url) && !ALLOWED_ORPHAN_URLS.has(url))
+    .sort();
 
   if (orphans.length > 0) {
     console.error(
@@ -58,30 +67,18 @@ async function main() {
   console.log("\nNo orphan pages found ✅\n");
 }
 
-async function findOrphans(tocFile: string): Promise<string[]> {
-  console.log("Checking toc in:", tocFile);
-  const [tocUrls, existentUrls] = await Promise.all([
-    readTocUrls(tocFile),
-    findExistentUrls(path.dirname(tocFile)),
-  ]);
-  return existentUrls.filter(
-    (file) => !tocUrls.has(file) && !ALLOWED_ORPHAN_URLS.has(file),
-  );
-}
-
-async function readTocUrls(filePath: string): Promise<Set<string>> {
-  const json = await readJsonFile(filePath);
-  const rootEntries = json.children;
-  const urls = parseTocUrls(rootEntries);
-  urls.push(`${urls[0]}/index`);
-  return new Set(urls);
-}
-
-async function findExistentUrls(directory: string): Promise<string[]> {
-  const fileList = await globby([`${directory}/*.{mdx,ipynb}`]);
-  return fileList.map(
-    (fileName) => "/" + fileName.replace(".mdx", "").replace(".ipynb", ""),
-  );
+async function readAllTocUrls(): Promise<Set<string>> {
+  const tocFiles = await globby("{docs,learning}/**/_toc.json");
+  const urls = new Set<string>();
+  for (const tocFile of tocFiles) {
+    const json = await readJsonFile(tocFile);
+    for (const url of parseTocUrls(json.children)) {
+      // A URL like `/docs/foo` can be served by `foo.mdx` or `foo/index.mdx`.
+      urls.add(url);
+      urls.add(`${url}/index`);
+    }
+  }
+  return urls;
 }
 
 main().then(() => process.exit());
