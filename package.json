@@ -9,13 +9,7 @@
   "engines": {
     "node": ">=24"
   },
-  "files": [
-    "dist",
-    "scripts/config/cspell",
-    "scripts/config/internal-links.json"
-  ],
   "scripts": {
-    "prepare": "tsc -p tsconfig.build.json",
     "fmt": "prettier --write .",
     "test": "playwright test",
     "typecheck": "tsc",
@@ -38,8 +32,7 @@
     "gen-api": "tsx scripts/js/commands/api/updateApiDocs.ts",
     "gen-addon": "tsx scripts/js/commands/api/updateAddonDocs.ts",
     "postgen-addon": "./fix",
-    "generate-historical-redirects": "tsx scripts/js/commands/api/generateHistoricalRedirects.ts",
-    "save-internal-links": "tsx scripts/js/commands/saveInternalLinks.ts"
+    "generate-historical-redirects": "tsx scripts/js/commands/api/generateHistoricalRedirects.ts"
   },
   "dependencies": {
     "@qiskit/mdx-link-extract": "^1.2.0",
