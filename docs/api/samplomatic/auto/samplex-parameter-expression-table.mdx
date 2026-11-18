@@ -1,0 +1,98 @@
+---
+title: ParameterExpressionTable (latest version)
+description: API reference for samplomatic.samplex.ParameterExpressionTable in the latest version of samplomatic
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: samplomatic.samplex.ParameterExpressionTable
+---
+
+# ParameterExpressionTable
+
+<Class id="samplomatic.samplex.ParameterExpressionTable" isDedicatedPage={true} github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplex/parameter_expression_table.py#L31-L150" signature="samplomatic.samplex.ParameterExpressionTable" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
+
+  Evaluates a list of parameter expressions given a list of parameter values.
+
+  An instance of this class owns an ordered list of $M$ `ParameterExpression`s that together implicitly specify an ordered list of distinct $N$ `Parameter`s. Because parameter expressions can involve multiple parameters, because distinct parameter expressions can reference the same parameters, and because parameter expressions that are completely bound contain no parameters, there is in general no relationship between $N$ and $M$. However, $N=M$ in the common special case that all parameter expressions are just, in fact, unique parameters.
+
+  The [`evaluate()`](#samplomatic.samplex.ParameterExpressionTable.evaluate "samplomatic.samplex.ParameterExpressionTable.evaluate") method accepts $N$ parameter values, and returns numeric values for each of the $M$ parameter expressions.
+
+  This class can be used as a shim for tools that want to accept parameter values but use expressions of them without the tedious responsibilities usually attached.
+
+  **Attributes Summary**
+
+  |                                                                                                                                                   |                                                                                                                                                                                                     |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | [`num_expressions`](#samplomatic.samplex.ParameterExpressionTable.num_expressions "samplomatic.samplex.ParameterExpressionTable.num_expressions") | The number of parameter expressions to evaluate; the return size of [`evaluate()`](#samplomatic.samplex.ParameterExpressionTable.evaluate "samplomatic.samplex.ParameterExpressionTable.evaluate"). |
+  | [`num_parameters`](#samplomatic.samplex.ParameterExpressionTable.num_parameters "samplomatic.samplex.ParameterExpressionTable.num_parameters")    | The number of unique input parameters across all expressions.                                                                                                                                       |
+  | [`parameters`](#samplomatic.samplex.ParameterExpressionTable.parameters "samplomatic.samplex.ParameterExpressionTable.parameters")                | The unique parameters across all expressions in sorted order.                                                                                                                                       |
+
+  **Methods Summary**
+
+  |                                                                                                                                                             |                                                    |
+  | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
+  | [`append`](#samplomatic.samplex.ParameterExpressionTable.append "samplomatic.samplex.ParameterExpressionTable.append")(expression)                          | Add a parameter expression to the table.           |
+  | [`evaluate`](#samplomatic.samplex.ParameterExpressionTable.evaluate "samplomatic.samplex.ParameterExpressionTable.evaluate")(parameter\_values\[, indices]) | Return numeric values for the table's expressions. |
+
+  **Attributes Documentation**
+
+  ### num\_expressions
+
+  <Attribute id="samplomatic.samplex.ParameterExpressionTable.num_expressions">
+    The number of parameter expressions to evaluate; the return size of [`evaluate()`](#samplomatic.samplex.ParameterExpressionTable.evaluate "samplomatic.samplex.ParameterExpressionTable.evaluate").
+  </Attribute>
+
+  ### num\_parameters
+
+  <Attribute id="samplomatic.samplex.ParameterExpressionTable.num_parameters">
+    The number of unique input parameters across all expressions.
+  </Attribute>
+
+  ### parameters
+
+  <Attribute id="samplomatic.samplex.ParameterExpressionTable.parameters">
+    The unique parameters across all expressions in sorted order.
+
+    The same sorting order as qiskit is used, where `ParameterVector` elements are arranged numerically, but otherwise alphabetically by name.
+  </Attribute>
+
+  **Methods Documentation**
+
+  ### append
+
+  <Function id="samplomatic.samplex.ParameterExpressionTable.append" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplex/parameter_expression_table.py#L54-L78" signature="append(expression: ParameterExpression) → int">
+    Add a parameter expression to the table.
+
+    **Parameters**
+
+    **expression** – The parameter expression to append.
+
+    **Returns**
+
+    The index of the appended expression.
+
+    **Raises**
+
+    [**ParameterError**](exceptions-parameter-error "samplomatic.exceptions.ParameterError") – If the expression contains a parameter that is not already in this table but whose name conflicts with an existing parameter. Keep in mind that `Parameter`s use instance equality.
+  </Function>
+
+  ### evaluate
+
+  <Function id="samplomatic.samplex.ParameterExpressionTable.evaluate" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplex/parameter_expression_table.py#L103-L143" signature="evaluate(parameter_values: Sequence[float] | dict[Parameter, float], indices: Sequence[int] | None = None) → ndarray">
+    Return numeric values for the table’s expressions.
+
+    **Parameters**
+
+    *   **parameter\_values** – The parameter values, either as a map from parameters to their values, or just the values in parameter-sorted order (see [`parameters`](#samplomatic.samplex.ParameterExpressionTable.parameters "samplomatic.samplex.ParameterExpressionTable.parameters")).
+    *   **indices** – An optional sequence of expression indices to evaluate. When `None`, all expressions are evaluated in order. When provided, only the expressions at the given indices are evaluated, in the given order, so `len(returned_array) == len(indices)`.
+
+    **Returns**
+
+    An array of evaluated expressions.
+
+    **Raises**
+
+    [**ParameterError**](exceptions-parameter-error "samplomatic.exceptions.ParameterError") – If the correct number of parameters is not supplied, or if some expression requires a value for a parameter that was not provided.
+  </Function>
+</Class>
+

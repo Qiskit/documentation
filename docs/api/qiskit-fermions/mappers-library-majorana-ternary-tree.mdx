@@ -1,0 +1,47 @@
+---
+title: majorana_ternary_tree (latest version)
+description: API reference for qiskit_fermions.mappers.library.majorana_ternary_tree in the latest version of qiskit-fermions
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit_fermions.mappers.library.majorana_ternary_tree
+---
+
+<span id="majorana-ternary-tree" />
+
+# majorana\_ternary\_tree
+
+<Function id="qiskit_fermions.mappers.library.majorana_ternary_tree" isDedicatedPage={true} signature="majorana_ternary_tree(op, encoding, num_qubits)">
+  Map a [`MajoranaOperator`](operators-majorana-operator "qiskit_fermions.operators.MajoranaOperator") to a [`SparseObservable`](/docs/api/qiskit/qiskit.quantum_info.SparseObservable) under a ternary-tree encoding.
+
+  Each Majorana operator’s image is a single Pauli string, whatever the tree, so a term that is a product of several of them composes those strings rather than inflating into a sum.
+
+  **Parameters**
+
+  *   **op** – the Majorana operator to map.
+  *   **encoding** – the compiled encoding to map through.
+  *   **num\_qubits** – the number of qubits for the resulting qubit operator. Must be at least the encoding’s mode count; a larger value pads with the identity.
+
+  **Returns**
+
+  The mapped qubit operator, subject to the same simplification and grouping caveats as [`fermion_ternary_tree()`](mappers-library-fermion-ternary-tree "qiskit_fermions.mappers.library.fermion_ternary_tree").
+
+  **Raises**
+
+  *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – if `op` acts on a mode the encoding does not cover, or `num_qubits` is smaller than the encoding’s mode count. Note that Majorana index $m$ acts on mode $\lfloor m/2 \rfloor$.
+  *   [**OverflowError**](https://docs.python.org/3/builtins/exceptions.html#OverflowError) – if `num_qubits` is negative or does not fit in 32 bits.
+
+  ## Usage
+
+  ```pycon
+  >>> from qiskit_fermions.mappers import TernaryTree, TernaryTreeEncoding
+  >>> from qiskit_fermions.mappers.library import majorana_ternary_tree
+  >>> from qiskit_fermions.operators import MajoranaOperator
+  >>> mop = MajoranaOperator.from_dict({(0, 1): 1.0})
+  >>> enc = TernaryTreeEncoding(TernaryTree.breadth_first(2, 3))
+  >>> majorana_ternary_tree(mop, enc, 2).simplify()
+  <SparseObservable with 1 term on 2 qubits: (0+1j)(Z_1 Z_0)>
+  ```
+
+  Note that the product of two Majorana strings carries a phase that depends on how their paths overlap, and so on the tree.
+</Function>
+

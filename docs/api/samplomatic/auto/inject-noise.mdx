@@ -1,0 +1,43 @@
+---
+title: InjectNoise (latest version)
+description: API reference for samplomatic.InjectNoise in the latest version of samplomatic
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: samplomatic.InjectNoise
+---
+
+<span id="samplomatic-injectnoise" />
+
+# samplomatic.InjectNoise
+
+<Class id="samplomatic.InjectNoise" isDedicatedPage={true} github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/annotations/inject_noise.py#L33-L77" signature="samplomatic.InjectNoise(ref: str, modifier_ref: str = '', site: InjectionSite | Literal['before', 'after'] = 'after')" modifiers="class">
+  Directive to inject noise into a `box` instruction.
+
+  The resulting [`Samplex`](samplex-samplex "samplomatic.samplex.Samplex") built from a circuit with a box with this annotation requires a [`qiskit.quantum_info.PauliLindbladMap`](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap) with `ref` to at sample time. The qubits of the map are indexed in physical qubit order, in other words, the order of the qubits in the outer-most circuit, restricted to those used by the box.
+
+  **Parameters**
+
+  *   **ref** – A unique identifier of the Pauli Lindblad map from which to inject noise.
+  *   **modifier\_ref** – A unique identifier for modifiers to apply to the Pauli Lindblad map before injection.
+  *   **site** – Whether to inject the noise before or after the hard content of the box.
+
+  ### \_\_init\_\_
+
+  <Function id="samplomatic.InjectNoise.__init__" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/annotations/inject_noise.py#L52-L60" signature="__init__(ref: str, modifier_ref: str = '', site: InjectionSite | Literal['before', 'after'] = 'after')" />
+
+  ## Methods
+
+  |                                                                                                                 |   |
+  | --------------------------------------------------------------------------------------------------------------- | - |
+  | [`__init__`](#samplomatic.InjectNoise.__init__ "samplomatic.InjectNoise.__init__")(ref\[, modifier\_ref, site]) |   |
+
+  ## Attributes
+
+  |                |   |
+  | -------------- | - |
+  | `ref`          |   |
+  | `modifier_ref` |   |
+  | `site`         |   |
+  | `namespace`    |   |
+</Class>
+

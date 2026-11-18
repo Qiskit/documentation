@@ -1,0 +1,48 @@
+---
+title: F2FSynthesisPlugin (latest version)
+description: API reference for qiskit_fermions.circuit.library.synthesis.F2FSynthesisPlugin in the latest version of qiskit-fermions
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_fermions.circuit.library.synthesis.F2FSynthesisPlugin
+---
+
+# F2FSynthesisPlugin
+
+<Class id="qiskit_fermions.circuit.library.synthesis.F2FSynthesisPlugin" isDedicatedPage={true} signature="F2FSynthesisPlugin(*args, **kwargs)" modifiers="class">
+  Bases: [`Protocol`](https://docs.python.org/3/library/typing.html#typing.Protocol)
+
+  The protocol for plugins to the [`F2FSynthesis`](transpiler-passes-f-2-f-synthesis "qiskit_fermions.transpiler.passes.F2FSynthesis") transpiler pass.
+
+  A plugin rewrites a gate into a [`FermionicCircuit`](circuit-fermionic-circuit "qiskit_fermions.circuit.FermionicCircuit") of *smaller* [`FermionicGate`](circuit-fermionic-gate "qiskit_fermions.circuit.FermionicGate") instances. Both sides of that rewrite live in fermionic space, so no encoding is involved: how the smaller gates are then mapped to qubits is left to the fermion-to-qubit stage (see [`F2QSynthesis`](transpiler-passes-f-2-q-synthesis "qiskit_fermions.transpiler.passes.F2QSynthesis")). It is the counterpart of [`F2QSynthesisPlugin`](transpiler-passes-synthesis-f-2-q-synthesis-plugin "qiskit_fermions.transpiler.passes.synthesis.F2QSynthesisPlugin") one step earlier.
+
+  The gates a plugin emits should be marked [`atomic`](circuit-fermionic-gate#atomic "qiskit_fermions.circuit.FermionicGate.atomic"), and an [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") among them should carry an operator with a single group, so that the fermion-to-qubit stage maps every one of them whole.
+
+  <Admonition title="Important" type="danger">
+    What the circuit has to be equivalent to is specified by the *gate* a plugin is registered for, not by this protocol, and it may differ between gates: a circuit that implements the same unitary is the common case, but a gate may settle for less (for example, the same state when prepared from the vacuum). Consult the documentation of the gate whose method you implement, and document any such caveat there.
+  </Admonition>
+
+  <Admonition title="Important" type="danger">
+    This fermion-to-fermion step is **optional**. A gate can be handed to the fermion-to-qubit stage whole, where a plugin of that stage registered for it can map it directly.
+  </Admonition>
+
+  ## Methods
+
+  ### synthesize
+
+  <Function id="qiskit_fermions.circuit.library.synthesis.F2FSynthesisPlugin.synthesize" signature="synthesize(gate)">
+    Synthesizes the provided gate.
+
+    **Parameters**
+
+    **gate** ([*FermionicGate*](circuit-fermionic-gate "qiskit_fermions.circuit.FermionicGate")) – the gate to synthesize, which is of the one type that this plugin is registered for (the first part of its entry-point name).
+
+    **Returns**
+
+    A [`FermionicCircuit`](circuit-fermionic-circuit "qiskit_fermions.circuit.FermionicCircuit") on `gate.num_modes` modes implementing the gate, in the sense that the documentation of the gate defines.
+
+    **Return type**
+
+    [FermionicCircuit](circuit-fermionic-circuit "qiskit_fermions.circuit.FermionicCircuit")
+  </Function>
+</Class>
+

@@ -36,6 +36,10 @@ def is_hidden(path: Path) -> bool:
     """Filter out .ipynb-checkpoint files"""
     return any(part.startswith(".") for part in path.parts)
 
+def is_asset(path: Path) -> bool:
+    """Filter out notebooks that back an MDX tutorial, such as assets/sqdrift/sqdrift.ipynb"""
+    return (TUTORIALS_ROOT / "assets") in path.parents
+
 def get_notebook_title(path: Path) -> str:
     data = json.loads(path.read_text(encoding="utf-8"))
     info_message = "Check the MDX guide (https://github.com/Qiskit/documentation/blob/main/mdx-guide.md#page-metadata) for more information."
@@ -52,6 +56,9 @@ def get_notebook_title(path: Path) -> str:
         raise Exception(f"{path}: Make sure your notebook has a 'title' in the metadata! {info_message}")
 
     title_text = title_line.split("title:", 1)[1].strip()
+    # YAML titles that contain a colon must be quoted; the quotes are not part of the title.
+    if len(title_text) >= 2 and title_text[0] == title_text[-1] and title_text[0] in "\"'":
+        title_text = title_text[1:-1]
     if not title_text:
         raise Exception(f"{path}: Make sure your notebook's 'title' is not empty! {info_message}")
 
@@ -65,7 +72,7 @@ def get_expected_links() -> Iterator[Link]:
             link_text=get_notebook_title(path)
         )
         for path in notebook_paths
-        if not is_hidden(path)
+        if not is_hidden(path) and not is_asset(path)
     )
 
 def extract_markdown_links(md: str) -> list[Link]:

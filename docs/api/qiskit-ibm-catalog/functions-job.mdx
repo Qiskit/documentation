@@ -1,0 +1,278 @@
+---
+title: Job (Functions Catalog)
+description: API reference for the Job class, the handle for a Quantum Function job
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_serverless.Job
+---
+
+{/* cspell:ignore maxwait */}
+
+# Job
+
+<Class id="qiskit_serverless.Job" isDedicatedPage={true} signature="qiskit_serverless.Job(job_id, job_service, raw_data=None)" modifiers="class">
+  Handle for a Quantum Function job. Returned by [`run()`](function#run), [`FunctionsCatalog.job()`](qiskit-functions-catalog#job), and [`FunctionsCatalog.jobs()`](qiskit-functions-catalog#jobs).
+
+  ```python
+  job = function.run(**inputs)
+  job.wait_for_final_state(timeout=600, verbose=True)
+  result = job.result()
+  ```
+
+  ## Status
+
+  ### status
+
+  <Function id="qiskit_serverless.Job.status" signature="status()">
+    Returns the job status: `QUEUED`, `INITIALIZING`, `RUNNING`, `CANCELING`, `DONE`, `ERROR`, or `CANCELED`. While the function reports a stage, `RUNNING` becomes one of `RUNNING: MAPPING`, `RUNNING: OPTIMIZING_FOR_HARDWARE`, `RUNNING: WAITING_FOR_QPU`, `RUNNING: EXECUTING_QPU`, or `RUNNING: POST_PROCESSING`.
+
+    ```python
+    print(job.status())
+    ```
+
+    Output:
+
+    ```text
+    QUEUED
+    ```
+
+    **Return type**
+
+    `str`
+  </Function>
+
+  ### wait\_for\_final\_state
+
+  <Function id="qiskit_serverless.Job.wait_for_final_state" signature="wait_for_final_state(timeout=None, poll_interval=None, verbose=False)">
+    Waits until the job is `DONE`, `ERROR`, or `CANCELED` and returns that status. By default it checks after 1, 2, 4, 8, 16, and 32 seconds, then every 60 seconds. Short network errors are retried.
+
+    ```python
+    status = job.wait_for_final_state(timeout=600, verbose=True)
+    print(status)
+    ```
+
+    Output:
+
+    ```text
+    Waiting for job e6b1ffa1-cd26-437d-bd53-b265dd4ba952
+    0:00:00  QUEUED
+    0:00:17  INITIALIZING
+    0:03:00  RUNNING
+    0:03:14  DONE
+    DONE
+    ```
+
+    **Parameters**
+
+    *   **timeout** (*float | None*) – Seconds to wait. `None` waits until the job ends.
+    *   **poll\_interval** (*float | None*) – Fixed seconds between checks, at least 1. Replaces the default backoff.
+    *   **verbose** (*bool*) – Print one line per status change.
+
+    **Return type**
+
+    `str`
+
+    **Raises**
+
+    *   `TimeoutError` – If the job doesn't finish within `timeout`. The job keeps running.
+    *   `QiskitServerlessException` – On other errors, or if retried errors continue for 5 minutes.
+  </Function>
+
+  ### in\_terminal\_state
+
+  <Function id="qiskit_serverless.Job.in_terminal_state" signature="in_terminal_state()">
+    Returns whether the job has finished.
+
+    ```python
+    print(job.in_terminal_state())
+    ```
+
+    Output:
+
+    ```text
+    True
+    ```
+
+    **Return type**
+
+    `bool`
+  </Function>
+
+  ### events
+
+  <Function id="qiskit_serverless.Job.events" signature="events(**kwargs)">
+    Returns the job's events.
+
+    ```python
+    for event in job.events():
+        print(event.created, event.event_type, event.data.get("status"))
+    ```
+
+    Output:
+
+    ```text
+    2026-11-02T14:43:07.134377Z STATUS_CHANGE QUEUED
+    2026-11-02T14:43:24.474199Z STATUS_CHANGE PENDING
+    2026-11-02T14:46:07.309519Z STATUS_CHANGE RUNNING
+    2026-11-02T14:46:21.115038Z STATUS_CHANGE SUCCEEDED
+    ```
+
+    **Return type**
+
+    `list[JobEvent]`
+  </Function>
+
+  ## Results and logs
+
+  ### result
+
+  <Function id="qiskit_serverless.Job.result" signature="result(wait=True, cadence=30, verbose=False, maxwait=0)">
+    Returns the job's result. See the function's API reference for its output format.
+
+    ```python
+    result = job.result()
+    print(result)
+    ```
+
+    Output:
+
+    ```text
+    PrimitiveResult([PubResult(data=DataBin(evs=np.ndarray(<shape=(), dtype=float64>), stds=np.ndarray(<shape=(), dtype=float64>), ensemble_standard_error=np.ndarray(<shape=(), dtype=float64>)), metadata={'shots': 4096, 'target_precision': 0.015625, ...})], metadata={...})
+    ```
+
+    **Parameters**
+
+    *   **wait** (*bool*) – Wait for the job to finish.
+    *   **cadence** (*int*) – Seconds between status checks while waiting.
+    *   **verbose** (*bool*) – Log a line at each check.
+    *   **maxwait** (*int*) – Maximum number of checks. `0` waits until the job finishes.
+
+    **Raises**
+
+    `QiskitServerlessException` – If the job ended in `ERROR`.
+  </Function>
+
+  ### logs
+
+  <Function id="qiskit_serverless.Job.logs" signature="logs()">
+    Returns the job's logs.
+
+    ```python
+    print(job.logs())
+    ```
+
+    **Return type**
+
+    `str`
+  </Function>
+
+  ### filtered\_logs
+
+  <Function id="qiskit_serverless.Job.filtered_logs" signature="filtered_logs(include=None, exclude=None)">
+    Returns the job's logs, filtered by line.
+
+    ```python
+    print(job.filtered_logs(include="iteration"))
+    ```
+
+    **Parameters**
+
+    *   **include** (*str | None*) – Regular expression. Keep only matching lines.
+    *   **exclude** (*str | None*) – Regular expression. Drop matching lines.
+
+    **Return type**
+
+    `str`
+  </Function>
+
+  ### error\_message
+
+  <Function id="qiskit_serverless.Job.error_message" signature="error_message()">
+    Returns the error message if the job failed.
+
+    ```python
+    print(job.error_message())
+    ```
+
+    Output:
+
+    ```text
+    qiskit.exceptions.QiskitError: 'Workflow execution failed -- https://docs.quantum.ibm.com/errors#9999'
+    ```
+
+    **Return type**
+
+    `str`
+  </Function>
+
+  ## Control
+
+  ### cancel
+
+  <Function id="qiskit_serverless.Job.cancel" signature="cancel(service=None)">
+    Cancels the job. Replaces the deprecated `stop()`.
+
+    ```python
+    job.cancel()
+    print(job.wait_for_final_state())
+    ```
+
+    Output:
+
+    ```text
+    CANCELED
+    ```
+
+    **Parameters**
+
+    *   **service** (*QiskitRuntimeService | None*) – Quantum Compute service to cancel the job's Quantum Compute jobs with.
+  </Function>
+
+  ## Quantum Compute jobs
+
+  The Quantum Compute jobs and sessions that this job submitted.
+
+  ### runtime\_jobs
+
+  <Function id="qiskit_serverless.Job.runtime_jobs" signature="runtime_jobs(runtime_session=None)">
+    Returns the IDs of the Quantum Compute jobs this job created, optionally filtered by session.
+
+    ```python
+    print(job.runtime_jobs())
+
+    sessions = job.runtime_sessions()
+    print(job.runtime_jobs(runtime_session=sessions[0]))
+    ```
+
+    Output:
+
+    ```text
+    ['dbl6lst8ft8s738secf0']
+    ['dbl6lst8ft8s738secf0']
+    ```
+
+    **Return type**
+
+    `list[str]`
+  </Function>
+
+  ### runtime\_sessions
+
+  <Function id="qiskit_serverless.Job.runtime_sessions" signature="runtime_sessions()">
+    Returns the IDs of the Quantum Compute sessions this job created.
+
+    ```python
+    print(job.runtime_sessions())
+    ```
+
+    Output:
+
+    ```text
+    ['cw2q70c79ws0008z6g4g']
+    ```
+
+    **Return type**
+
+    `list[str]`
+  </Function>
+</Class>

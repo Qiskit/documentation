@@ -1,0 +1,51 @@
+---
+title: GroupGatesIntoBoxes (latest version)
+description: API reference for samplomatic.transpiler.passes.GroupGatesIntoBoxes in the latest version of samplomatic
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: samplomatic.transpiler.passes.GroupGatesIntoBoxes
+---
+
+# GroupGatesIntoBoxes
+
+<Class id="samplomatic.transpiler.passes.GroupGatesIntoBoxes" isDedicatedPage={true} github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/transpiler/passes/group_gates_into_boxes.py#L47-L146" signature="samplomatic.transpiler.passes.GroupGatesIntoBoxes(*args, **kwargs)" modifiers="class">
+  Bases: [`TransformationPass`](/docs/api/qiskit/qiskit.transpiler.TransformationPass)
+
+  Collect the two-qubit gates in a circuit inside left-dressed boxes.
+
+  This pass collects all 2-qubit gates in the input circuit into left-dressed boxes. To assign the gates to these boxes, it uses a greedy collection strategy. By default (`strategy="asap"`) it places each gate in the earliest possible box. When `strategy="alap"` it places each gate in the latest possible box.
+
+  <Admonition title="Note" type="note">
+    Barriers and boxes that are present in the input circuit act as delimiters. This means that when the pass encounters one of these delimiters acting on a subset of qubits, it immediately terminates the collection for those qubits and flushes the collected gates into a left-dressed box. The delimiters themselves remain present in the output circuit, but are placed outside of any boxes.
+  </Admonition>
+
+  <Admonition title="Note" type="note">
+    Measurements and resets also act as delimiters.
+  </Admonition>
+
+  <Admonition title="Note" type="note">
+    The circuits returned by this pass may not be buildable. To make them buildable, one can either use [`AddTerminalRightDressedBoxes`](transpiler-passes-add-terminal-right-dressed-boxes "samplomatic.transpiler.passes.AddTerminalRightDressedBoxes") to add right-dressed “collector” boxes.
+  </Admonition>
+
+  **Methods Summary**
+
+  |                                                                                                                              |                                                              |
+  | ---------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+  | [`run`](#samplomatic.transpiler.passes.GroupGatesIntoBoxes.run "samplomatic.transpiler.passes.GroupGatesIntoBoxes.run")(dag) | Collect the operations in the dag inside left-dressed boxes. |
+
+  **Methods Documentation**
+
+  ### run
+
+  <Function id="samplomatic.transpiler.passes.GroupGatesIntoBoxes.run" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/transpiler/passes/group_gates_into_boxes.py#L80-L93" signature="run(dag: DAGCircuit) → DAGCircuit">
+    Collect the operations in the dag inside left-dressed boxes.
+
+    **The collection strategy undertakes the following steps:**
+
+    *   Loop through the DAG’s op nodes in topological order (ASAP) or reverse topological order (ALAP).
+    *   Group together two-qubit gate nodes that need to be placed in the same box.
+    *   Whenever a node can be placed in more than one group, place it in the earliest possible group (ASAP) or the latest possible group (ALAP).
+    *   When looping is complete, replace each group with a box.
+  </Function>
+</Class>
+

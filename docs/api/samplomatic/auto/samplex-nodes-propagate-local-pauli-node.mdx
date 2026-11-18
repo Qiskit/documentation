@@ -1,0 +1,80 @@
+---
+title: PropagateLocalPauliNode (latest version)
+description: API reference for samplomatic.samplex.nodes.PropagateLocalPauliNode in the latest version of samplomatic
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: samplomatic.samplex.nodes.PropagateLocalPauliNode
+---
+
+# PropagateLocalPauliNode
+
+<Class id="samplomatic.samplex.nodes.PropagateLocalPauliNode" isDedicatedPage={true} github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplex/nodes/propagate_local_pauli_node.py#L37-L121" signature="samplomatic.samplex.nodes.PropagateLocalPauliNode(op_name: str, register_name: str, subsystem_idxs: Sequence[Sequence[int]], *, lookup_table: ndarray | None = None)" modifiers="class">
+  Bases: [`EvaluationNode`](samplex-nodes-evaluation-node "samplomatic.samplex.nodes.evaluation_node.EvaluationNode")
+
+  A node that propagates a Pauli register past a gate.
+
+  Only Paulis from the commutant of the gate generators (those that commute with the gate for any angle) are allowed through. Non-commutant Paulis trigger a runtime error.
+
+  **Parameters**
+
+  *   **register\_name** – The name of the Pauli register to propagate.
+  *   **subsystem\_idxs** – The subsystems in the register specified as a 2D array where the left-most axes is over subsystems and the right-most axes is over indices in the subsystem.
+  *   **op\_name** – The name of the gate operation.
+
+  **Attributes Summary**
+
+  |                                                                                                                                                                                  |                                              |
+  | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
+  | [`outgoing_register_type`](#samplomatic.samplex.nodes.PropagateLocalPauliNode.outgoing_register_type "samplomatic.samplex.nodes.PropagateLocalPauliNode.outgoing_register_type") | The virtual gate type of outgoing registers. |
+
+  **Methods Summary**
+
+  |                                                                                                                                                         |                                                                                  |
+  | ------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+  | [`evaluate`](#samplomatic.samplex.nodes.PropagateLocalPauliNode.evaluate "samplomatic.samplex.nodes.PropagateLocalPauliNode.evaluate")(registers, \*\_) | Evaluate this node.                                                              |
+  | [`get_style`](#samplomatic.samplex.nodes.PropagateLocalPauliNode.get_style "samplomatic.samplex.nodes.PropagateLocalPauliNode.get_style")()             | Return the style of this node when plotted.                                      |
+  | [`reads_from`](#samplomatic.samplex.nodes.PropagateLocalPauliNode.reads_from "samplomatic.samplex.nodes.PropagateLocalPauliNode.reads_from")()          | Return a manifest of which virtual register values this node needs to read from. |
+  | [`writes_to`](#samplomatic.samplex.nodes.PropagateLocalPauliNode.writes_to "samplomatic.samplex.nodes.PropagateLocalPauliNode.writes_to")()             | Return a manifest of which virtual register values this node needs to write to.  |
+
+  **Attributes Documentation**
+
+  ### outgoing\_register\_type
+
+  <Attribute id="samplomatic.samplex.nodes.PropagateLocalPauliNode.outgoing_register_type" />
+
+  **Methods Documentation**
+
+  ### evaluate
+
+  <Function id="samplomatic.samplex.nodes.PropagateLocalPauliNode.evaluate" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplex/nodes/propagate_local_pauli_node.py#L76-L88" signature="evaluate(registers, *_)">
+    Evaluate this node.
+
+    **Parameters**
+
+    *   **registers** – At least those registers needed by this node to read from or write to.
+    *   **parameter\_values** – Parameter values to use during evaluation.
+
+    **Raises**
+
+    [**SamplexRuntimeError**](exceptions-samplex-runtime-error "samplomatic.exceptions.SamplexRuntimeError") – If the number of parameter values received does not equal the number required by this node.
+  </Function>
+
+  ### get\_style
+
+  <Function id="samplomatic.samplex.nodes.PropagateLocalPauliNode.get_style" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplex/nodes/propagate_local_pauli_node.py#L114-L121" signature="get_style()">
+    Return the style of this node when plotted.
+  </Function>
+
+  ### reads\_from
+
+  <Function id="samplomatic.samplex.nodes.PropagateLocalPauliNode.reads_from" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplex/nodes/propagate_local_pauli_node.py#L90-L96" signature="reads_from()">
+    Return a manifest of which virtual register values this node needs to read from.
+  </Function>
+
+  ### writes\_to
+
+  <Function id="samplomatic.samplex.nodes.PropagateLocalPauliNode.writes_to" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/samplex/nodes/propagate_local_pauli_node.py#L98-L104" signature="writes_to()">
+    Return a manifest of which virtual register values this node needs to write to.
+  </Function>
+</Class>
+

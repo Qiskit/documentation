@@ -1,0 +1,184 @@
+---
+title: RelabelModes (latest version)
+description: API reference for qiskit_bosons.transpiler.passes.RelabelModes in the latest version of qiskit-bosons
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_bosons.transpiler.passes.RelabelModes
+---
+
+# RelabelModes
+
+<Class id="qiskit_bosons.transpiler.passes.RelabelModes" isDedicatedPage={true} signature="RelabelModes(permutation)" modifiers="class">
+  Bases: [`GenericPass`](/docs/api/qiskit/qiskit.passmanager.GenericPass)\[[`DAGCircuit`](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit), [`DAGCircuit`](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit)]
+
+  A transpilation pass to relabel the bosonic modes.
+
+  This pass reorders the bosonic modes of a circuit. The reordering is described by a `permutation` list, read as a mapping from *original* to *new* mode index: original mode `i` is placed at new index `permutation[i]` in the relabeled circuit. For example, `permutation = [0, 2, 4, 1, 3, 5]` places original mode `1` at new index `2`, original mode `2` at new index `4`, and so on. Being a permutation, each index must appear exactly once.
+
+  **Post-processing**
+
+  The relabeling reorders the bosonic modes, which in turn influences the boson-to-qubit mapping chosen by a later synthesis stage (and thus the achievable circuit depth). Because the mode order changes, any bitstring sampled from the final circuit is expressed in the *new* mode order and must be mapped back to the *original* order before it can be interpreted. The relabeling that was actually applied is recorded in a `permutation` field of the returned [`BosonicDAGCircuit`](circuit-bosonic-dag-circuit "qiskit_bosons.circuit.BosonicDAGCircuit")’s [`metadata`](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit#metadata).
+
+  <Admonition title="Important" type="danger">
+    Prefer reading the relabeling from the circuit metadata rather than from [`permutation`](#qiskit_bosons.transpiler.passes.RelabelModes.permutation "qiskit_bosons.transpiler.passes.RelabelModes.permutation"), since the metadata is guaranteed to reflect what the pass actually did.
+  </Admonition>
+
+  <Admonition title="Warning" type="caution">
+    This pass cannot be combined with a [`LevelSpec`](mappers-level-spec "qiskit_bosons.mappers.LevelSpec") that gives the modes **different** cutoffs. The cutoffs are attached to the modes by their position in the register, so reordering the modes would silently attach a cutoff to the wrong mode. [`OccupationB2QLayout`](transpiler-passes-occupation-b-2-q-layout "qiskit_bosons.transpiler.passes.OccupationB2QLayout") raises a [`ValueError`](https://docs.python.org/3/builtins/exceptions.html#ValueError) for a relabeled circuit in that case. A spec with a single shared cutoff is unaffected.
+  </Admonition>
+
+  Conceptually, undoing the relabeling assigns to each original mode `m` the value that was measured for new mode `permutation[m]`. In practice this is complicated by the fact that [`BosonicRegister`](circuit-bosonic-register "qiskit_bosons.circuit.BosonicRegister") modes and Qiskit’s classical bits run in opposite (little-endian) order, so the mode-space gather turns into an index negation (`~idx`) followed by a final reversal (`[::-1]`) on the counts bitstrings.
+
+  The example below relabels a six-mode system to an interleaved mode order, a common trick to reduce the implementation depth, and then undoes the relabeling on the sampled counts. It is synthesized with `max_occupation=1` under the `"standard_binary"` encoding, which places exactly one qubit per mode; this keeps the counts bitstrings in one-to-one correspondence with the modes, so the post-processing below is a pure mode permutation. Under a truncation or encoding that spends several qubits per mode, the gather has to be applied per mode block instead of per bit:
+
+  ```pycon
+  >>> from qiskit.passmanager import MultiStagePassManager
+  >>> from qiskit.providers.basic_provider import BasicSimulator
+  >>> from qiskit_bosons.circuit import BosonicCircuit
+  >>> from qiskit_bosons.circuit.library import InitializeModes
+  >>> from qiskit_bosons.mappers import LevelSpec
+  >>> from qiskit_bosons.transpiler import BosonicCircuitToDAG, QuantumDAGToCircuit
+  >>> from qiskit_bosons.transpiler.passes import (
+  ...     B2QSynthesis, B2QSynthesisPluginManager, OccupationB2QLayout, RelabelModes,
+  ... )
+  >>>
+  >>> # modes 0, 1 and 3 each hold a single boson
+  >>> circ = BosonicCircuit(6)
+  >>> circ.append(InitializeModes([1, 1, 0, 1, 0, 0]), circ.modes)
+  >>>
+  >>> synth_plugins = B2QSynthesisPluginManager()
+  >>> synth = B2QSynthesis()
+  >>> synth.methods["InitializeModes"] = synth_plugins.method(
+  ...     "InitializeModes", "Occupation"
+  ... )(LevelSpec(1, "standard_binary"))
+  >>>
+  >>> # map the original mode order onto the interleaved one
+  >>> relabel = RelabelModes(permutation=[0, 2, 4, 1, 3, 5])
+  >>>
+  >>> pm = MultiStagePassManager(
+  ...     init=BosonicCircuitToDAG(),
+  ...     optimization=relabel,
+  ...     layout=OccupationB2QLayout(LevelSpec(1, "standard_binary")),
+  ...     synthesis=synth,
+  ...     output=QuantumDAGToCircuit(),
+  ... )
+  >>>
+  >>> qcirc = pm.run(circ)
+  >>> qcirc.measure_all()
+  >>>
+  >>> bit_permutation = qcirc.metadata.get("permutation")
+  >>> print(bit_permutation)
+  [0, 2, 4, 1, 3, 5]
+  >>>
+  >>> res = BasicSimulator().run(qcirc, shots=1).result()
+  >>> counts = res.get_counts()
+  >>> print(counts)  # measured in the interleaved ordering
+  {'000111': 1}
+  >>>
+  >>> # undo the relabeling to recover the counts in the original mode ordering
+  >>> post_processed = {
+  ...     "".join(bitstring[~idx] for idx in bit_permutation)[::-1]: count
+  ...     for bitstring, count in counts.items()
+  ... }
+  >>> print(post_processed)  # recovered in the original mode ordering
+  {'001011': 1}
+  ```
+
+  The recovered bitstring matches the occupation the circuit was initialized with, read in the little-endian order of the classical register.
+
+  Initializing this transpiler pass can be done with the arguments listed below.
+
+  **Parameters**
+
+  **permutation** ([*list*](https://docs.python.org/3/builtins/stdtypes.html#list)*\[*[*int*](https://docs.python.org/3/builtins/functions.html#int)*]*) – the index permutation used to relabel the bosonic mode indices. See [`permutation`](#qiskit_bosons.transpiler.passes.RelabelModes.permutation "qiskit_bosons.transpiler.passes.RelabelModes.permutation") for details.
+
+  ## Attributes
+
+  ### permutation
+
+  <Attribute id="qiskit_bosons.transpiler.passes.RelabelModes.permutation">
+    The index permutation used to relabel the bosonic mode indices.
+
+    A `list[int]` mapping original mode index `i` to new mode index `permutation[i]` (see the class docstring for details). Its length has to match the number of bosonic modes of the circuit being transpiled, and each index has to appear exactly once.
+
+    <Admonition title="Note" type="note">
+      The permutation is always explicit, chosen for whatever locality the target hardware or encoding rewards. An occupation encoding emits no parity strings, so the span of a term does not drive its Pauli weight.
+    </Admonition>
+  </Attribute>
+
+  ## Methods
+
+  ### run
+
+  <Function id="qiskit_bosons.transpiler.passes.RelabelModes.run" signature="run(dag)">
+    Runs this transpilation pass.
+
+    **Parameters**
+
+    **dag** ([*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit)) – the input circuit with boson-based instructions. Only [`DAGOpNode`](/docs/api/qiskit/qiskit.dagcircuit.DAGOpNode) with [`BosonicGate`](circuit-bosonic-gate "qiskit_bosons.circuit.BosonicGate") instances as their [`op`](/docs/api/qiskit/qiskit.dagcircuit.DAGOpNode#op) are supported, plus `Barrier`, which is relabeled along with the modes it spans.
+
+    **Returns**
+
+    The output circuit which is still acting on a bosonic register.
+
+    **Raises**
+
+    [**NotImplementedError**](https://docs.python.org/3/builtins/exceptions.html#NotImplementedError) – when the provided input circuit has more than a single register.
+
+    **Return type**
+
+    [*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit)
+  </Function>
+
+  ## Inherited Methods
+
+  ### execute
+
+  <Function id="qiskit_bosons.transpiler.passes.RelabelModes.execute" signature="execute(passmanager_ir, state, callback=None)">
+    Execute optimization task for input Qiskit IR.
+
+    **Parameters**
+
+    *   **passmanager\_ir** (*IR*) – Qiskit IR to optimize.
+    *   **state** ([*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)) – State associated with workflow execution by the pass manager itself.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[*[*Task*](/docs/api/qiskit/qiskit.passmanager.Task)*, IR\_OUT,* [*PropertySet*](/docs/api/qiskit/qiskit.passmanager.PropertySet)*,* [*float*](https://docs.python.org/3/builtins/functions.html#float)*,* [*int*](https://docs.python.org/3/builtins/functions.html#int)*], None] | None*) – A callback function which is called per execution of optimization task.
+
+    **Returns**
+
+    Optimized Qiskit IR and state of the workflow.
+
+    **Return type**
+
+    [tuple](https://docs.python.org/3/builtins/stdtypes.html#tuple)\[*IR\_OUT*, [*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)]
+  </Function>
+
+  ### name
+
+  <Function id="qiskit_bosons.transpiler.passes.RelabelModes.name" signature="name()">
+    Name of the pass.
+
+    **Return type**
+
+    [str](https://docs.python.org/3/builtins/stdtypes.html#str)
+  </Function>
+
+  ### update\_status
+
+  <Function id="qiskit_bosons.transpiler.passes.RelabelModes.update_status" signature="update_status(state, run_state)">
+    Update workflow status.
+
+    **Parameters**
+
+    *   **state** ([*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)) – Pass manager state to update.
+    *   **run\_state** (*RunState*) – Completion status of current task.
+
+    **Returns**
+
+    Updated pass manager state.
+
+    **Return type**
+
+    [*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)
+  </Function>
+</Class>
+

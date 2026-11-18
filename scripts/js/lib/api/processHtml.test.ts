@@ -456,7 +456,13 @@ test("convertRubricsToHeaders()", () => {
     <p class="rubric">Simple examples</p>
     <p class="rubric" id="example-code">Example code</p>
     <p class="rubric">Attributes</p>
-    <p class="rubric">Methods</p>`);
+    <p class="rubric">Methods</p>
+    <p class="rubric">Methods Defined Here</p>
+    <p class="rubric">Inherited Attributes</p>
+    <p class="rubric">Protocol Methods</p>
+    <p class="rubric">Inherited Methods</p>
+    <p class="rubric">Inherited Protocol Methods</p>
+    <p class="rubric">Class Methods</p>`);
   convertRubricsToHeaders(doc.$, doc.$main);
   doc.expectHtml(`<strong>Example</strong>
     <strong>Examples</strong>
@@ -465,7 +471,13 @@ test("convertRubricsToHeaders()", () => {
     <strong>Simple examples</strong>
     <span id="example-code" class="target"></span><strong>Example code</strong>
     <h2>Attributes</h2>
-    <h2>Methods</h2>`);
+    <h2>Methods</h2>
+    <h2>Methods Defined Here</h2>
+    <h2>Inherited Attributes</h2>
+    <h2>Protocol Methods</h2>
+    <h2>Inherited Methods</h2>
+    <h2>Inherited Protocol Methods</h2>
+    <strong>Class Methods</strong>`);
 });
 
 test("handleFootnotes()", () => {
@@ -480,6 +492,40 @@ test("handleFootnotes()", () => {
     <aside class="footnote-list brackets">
     <span id="f1" class="target"></span><aside class="footnote brackets" id="f1" role="doc-footnote">
     <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">1</a><span class="fn-bracket">]</span></span></aside></aside>`);
+});
+
+test("handleFootnotes() preserves ids of named citations", () => {
+  // Docutils renders named citations (`.. [Label]`) with `citation`/`citation-reference`
+  // classes rather than the `footnote` classes, but both carry link-target ids.
+  const doc = CheerioDoc.load(`
+    <p>See <a class="citation-reference" href="#jw-maj" id="id6" role="doc-biblioref">[JW-maj]</a>.</p>
+    <div class="citation" id="jw-maj" role="doc-biblioentry">
+    <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id6">JW-maj</a><span class="fn-bracket">]</span></span>
+    <p>Jordan and Wigner.</p></div>`);
+  handleFootnotes(doc.$, doc.$main);
+  doc.expectHtml(`
+    <p>See <span id="id6" class="target"></span><a class="citation-reference" href="#jw-maj" id="id6" role="doc-biblioref">[JW-maj]</a>.</p>
+    <span id="jw-maj" class="target"></span><div class="citation" id="jw-maj" role="doc-biblioentry">
+    <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id6">JW-maj</a><span class="fn-bracket">]</span></span>
+    <p>Jordan and Wigner.</p></div>`);
+});
+
+test("handleFootnotes() preserves citation reference ids rendered as plain internal anchors", () => {
+  // Some docutils versions render a named citation's reference as a plain
+  // `<a class="reference internal" href="#jw-ferm" id="id3">` rather than
+  // `.citation-reference`. The definition's back-link targets that `id` (`#id3`),
+  // so the reference anchor's id must be preserved too.
+  const doc = CheerioDoc.load(`
+    <p>See <a class="reference internal" href="#jw-ferm" id="id3">[JW-ferm]</a>.</p>
+    <div class="citation" id="jw-ferm" role="doc-biblioentry">
+    <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">JW-ferm</a><span class="fn-bracket">]</span></span>
+    <p>Jordan and Wigner.</p></div>`);
+  handleFootnotes(doc.$, doc.$main);
+  doc.expectHtml(`
+    <p>See <span id="id3" class="target"></span><a class="reference internal" href="#jw-ferm" id="id3">[JW-ferm]</a>.</p>
+    <span id="jw-ferm" class="target"></span><div class="citation" id="jw-ferm" role="doc-biblioentry">
+    <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">JW-ferm</a><span class="fn-bracket">]</span></span>
+    <p>Jordan and Wigner.</p></div>`);
 });
 
 test.describe("maybeSetPythonModuleMetadata()", () => {
@@ -549,10 +595,10 @@ test.describe("processMembersAndSetMeta()", () => {
     await processMembersAndSetMeta(doc.$, doc.$main, meta, {
       isCApi: false,
       isRoot: false,
-      isIbmQuantumSchemasPage: false,
+      fileName: "",
     });
     doc.expectHtml(`      <h1>Circuit Converters</h1>
-<h3 data-header-type="method-header">circuit_to_dag</h3><div><function id="qiskit.converters.circuit_to_dag" attributetypehint="undefined" attributetypehinthref="undefined" attributevalue="undefined" isdedicatedpage="undefined" github="../_modules/qiskit/converters/circuit_to_dag.html#circuit_to_dag" signature="qiskit.converters.circuit_to_dag(circuit, copy_operations=True, *, qubit_order=None, clbit_order=None)¶" modifiers="" extrasignatures="[]">
+<h3 data-header-type="method-header">circuit_to_dag</h3><div><function id="qiskit.converters.circuit_to_dag" isdedicatedpage="undefined" github="../_modules/qiskit/converters/circuit_to_dag.html#circuit_to_dag" signature="qiskit.converters.circuit_to_dag(circuit, copy_operations=True, *, qubit_order=None, clbit_order=None)¶" modifiers="" extrasignatures="[]">
   
 <div><p>Build a <a class="reference internal" href="../stubs/qiskit.dagcircuit.DAGCircuit.html#qiskit.dagcircuit.DAGCircuit" title="qiskit.dagcircuit.DAGCircuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">DAGCircuit</span></code></a> object from a <a class="reference internal" href="../stubs/qiskit.circuit.QuantumCircuit.html#qiskit.circuit.QuantumCircuit" title="qiskit.circuit.QuantumCircuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">QuantumCircuit</span></code></a>.</p>
 <dl class="field-list simple">
@@ -601,10 +647,10 @@ backends may not have this attribute.</p>
     await processMembersAndSetMeta(doc.$, doc.$main, meta, {
       isCApi: false,
       isRoot: false,
-      isIbmQuantumSchemasPage: false,
+      fileName: "",
     });
     doc.expectHtml(`<h1>least_busy</h1>
-<div><function id="qiskit_ibm_provider.least_busy" attributetypehint="undefined" attributetypehinthref="undefined" attributevalue="undefined" isdedicatedpage="true" github="../_modules/qiskit_ibm_provider.html#least_busy" signature="least_busy(backends)¶" modifiers="" extrasignatures="[]">
+<div><function id="qiskit_ibm_provider.least_busy" isdedicatedpage="true" github="../_modules/qiskit_ibm_provider.html#least_busy" signature="least_busy(backends)¶" modifiers="" extrasignatures="[]">
   
 <div><p>Return the least busy backend from a list.</p>
 <p>Return the least busy available backend for those that
@@ -665,12 +711,12 @@ particular error, which subclasses both <a class="reference internal" href="#qis
     await processMembersAndSetMeta(doc.$, doc.$main, meta, {
       isCApi: false,
       isRoot: false,
-      isIbmQuantumSchemasPage: false,
+      fileName: "",
     });
     doc.expectHtml(`<span class="target" id="module-qiskit.exceptions"><span id="qiskit-exceptions"></span></span><section id="top-level-exceptions-qiskit-exceptions">
 <h1>Top-level exceptions (<a class="reference internal" href="#module-qiskit.exceptions" title="qiskit.exceptions"><code class="xref py py-mod docutils literal notranslate"><span class="pre">qiskit.exceptions</span></code></a>)<a class="headerlink" href="#top-level-exceptions-qiskit-exceptions" title="Permalink to this heading">¶</a></h1>
 <p>All Qiskit-related errors raised by Qiskit are subclasses of the base:</p>
-<h3 data-header-type="class-header">QiskitError</h3><div><class id="qiskit.exceptions.QiskitError" attributetypehint="undefined" attributetypehinthref="undefined" attributevalue="undefined" isdedicatedpage="undefined" github="../_modules/qiskit/exceptions.html#QiskitError" signature="qiskit.exceptions.QiskitError(*message)¶" modifiers="exception" extrasignatures="[]">
+<h3 data-header-type="class-header">QiskitError</h3><div><class id="qiskit.exceptions.QiskitError" isdedicatedpage="undefined" github="../_modules/qiskit/exceptions.html#QiskitError" signature="qiskit.exceptions.QiskitError(*message)¶" modifiers="exception" extrasignatures="[]">
   
 <div><p>Base class for errors raised by Qiskit.</p>
 <p>Set the error message.</p>
@@ -715,10 +761,10 @@ marked as builtins since they are not actually present in any include file this 
     await processMembersAndSetMeta(doc.$, doc.$main, meta, {
       isCApi: false,
       isRoot: false,
-      isIbmQuantumSchemasPage: false,
+      fileName: "",
     });
     doc.expectHtml(`
-<h3 data-header-type="attribute-header">qiskit.qasm2.LEGACY_CUSTOM_INSTRUCTIONS¶</h3><div><attribute id="qiskit.qasm2.LEGACY_CUSTOM_INSTRUCTIONS" attributetypehint="" attributetypehinthref="undefined" attributevalue="" isdedicatedpage="undefined" github="undefined" signature="" modifiers="" extrasignatures="[]">
+<h3 data-header-type="attribute-header">qiskit.qasm2.LEGACY_CUSTOM_INSTRUCTIONS¶</h3><div><attribute id="qiskit.qasm2.LEGACY_CUSTOM_INSTRUCTIONS" isdedicatedpage="undefined" github="undefined" signature="" modifiers="" extrasignatures="[]">
   
 <div><p>A tuple containing the extra <cite>custom_instructions</cite> that Qiskit’s legacy built-in converters used
 if <code class="docutils literal notranslate"><span class="pre">qelib1.inc</span></code> is included, and there is any definition of a <code class="docutils literal notranslate"><span class="pre">delay</span></code> instruction.  The gates
@@ -759,9 +805,9 @@ marked as builtins since they are not actually present in any include file this 
     await processMembersAndSetMeta(doc.$, doc.$main, meta, {
       isCApi: true,
       isRoot: false,
-      isIbmQuantumSchemasPage: false,
+      fileName: "",
     });
-    doc.expectHtml(`<h3 data-header-type=\"method-header\">qk_obs_identity</h3><div><function id=\"qk_obs_identity\" attributetypehint=\"undefined\" attributetypehinthref=\"undefined\" attributevalue=\"undefined\" isdedicatedpage=\"undefined\" github=\"undefined\" signature=\"QkSparseObservable *qk_obs_identity(uint32_t num_qubits)¶\" modifiers=\"\" extrasignatures=\"[]\">
+    doc.expectHtml(`<h3 data-header-type=\"method-header\">qk_obs_identity</h3><div><function id=\"qk_obs_identity\" isdedicatedpage=\"undefined\" github=\"undefined\" signature=\"QkSparseObservable *qk_obs_identity(uint32_t num_qubits)¶\" modifiers=\"\" extrasignatures=\"[]\">
   
 <div><p>Construct the identity observable.</p>
 <section id=\"group__QkSparseObservable_1autotoc_md4\">
@@ -783,6 +829,22 @@ marked as builtins since they are not actually present in any include file this 
     expect(meta).toEqual({
       apiType: "function",
       apiName: "qk_obs_identity",
+    });
+  });
+
+  test("pydoc page without module-* anchor becomes syntheticModule", async () => {
+    const html = `<h1>Transpiler Pass Plugins</h1><p>Some content.</p>`;
+    const meta: Metadata = {};
+    const doc = CheerioDoc.load(html);
+    await processMembersAndSetMeta(doc.$, doc.$main, meta, {
+      isCApi: false,
+      isRoot: false,
+      fileName: "pydoc/qiskit_fermions.transpiler.passes.plugins.html",
+    });
+    expect(meta).toEqual({
+      apiType: "syntheticModule",
+      apiName: "Transpiler Pass Plugins",
+      untranslatable: true,
     });
   });
 });

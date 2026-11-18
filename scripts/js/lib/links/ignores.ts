@@ -192,6 +192,13 @@ const ALWAYS_IGNORED_URLS__EXPECTED = [
   "https://finance.yahoo.com/quote/META",
   "https://finance.yahoo.com/quote/TMBMKDE-10Y",
   "https://finance.yahoo.com/quote/XS2239553048",
+  "https://ibm.box.com/s/7d36ty2r5ecmnnu1bvk4kxx5grbz2mwz",
+  "https://ibm.box.com/s/cbvfdhv3i0vnwv4sxkdpp3pcvip27atd",
+  "https://ibm.box.com/s/eylihre0nf2lskzteyabd7y7v7cu5bb3",
+  "https://ibm.box.com/s/h7ocmsqgwjuj493b46m1nrkqkazh4g4j",
+  "https://ibm.box.com/s/ly9cs0lxy6nxqrirt5rt1xisnmvydj9z",
+  "https://ibm.box.com/s/oe621o30gxvpo8v0tivp31075w9wc6t8",
+  "https://ibm.box.com/s/t9tj2t8ey8hh1iep3jr88yzlqbqdvq78",
   "https://ibm.ent.box.com/s/bipgoms7gr6b6vhkoc1uw6oi4wsanfoq",
   "https://ibm.ent.box.com/s/blnffu0pd7yzxarq3zc3w0jv90365ny2",
   "https://ibm.ent.box.com/s/fh3xele1e7k0nrgd1imivvq52hy3wz9c",
@@ -200,6 +207,9 @@ const ALWAYS_IGNORED_URLS__EXPECTED = [
   "https://support.google.com/accounts/answer/27441?hl",
   "https://www.ibm.com/thought-leadership/institute-business-value/report/quantumfinancial",
   "https://www.epo.org/en/news-events/press-centre/press-release/2025/1361562",
+
+  // The following page is published from an internal repo, so it isn't in this repo.
+  "/docs/api/addons",
 ];
 
 // These external URLs cause actual 404s and should probably be fixed.
@@ -212,6 +222,7 @@ const ALWAYS_IGNORED_URLS__SHOULD_FIX: string[] = [
   // These links should work when redirects are in place.
   "/docs/guides/configure-error-mitigation",
   "/docs/guides/configure-error-suppression",
+  "/docs/guides/v2-primitives",
 
   // This link will work because it is being merged at the same time as the notifications page is deployed.
   "/notifications",
@@ -578,6 +589,22 @@ function _qiskitCRegexes(): FilesToIgnores {
   };
 }
 
+function _fermionsCRegexes(): FilesToIgnores {
+  // Sphinx emits lowercase anchors for C enumerator values (e.g. qfexitcode_alignmenterror),
+  // but our generated pages use the original CamelCase IDs (e.g. QfExitCode_AlignmentError).
+  return {
+    "public/docs/api/qiskit-fermions-c/objects.inv": [
+      "/docs/api/qiskit-fermions-c/qf-exit-code#qfexitcode_alignmenterror",
+      "/docs/api/qiskit-fermions-c/qf-exit-code#qfexitcode_cinputerror",
+      "/docs/api/qiskit-fermions-c/qf-exit-code#qfexitcode_duplicateindexerror",
+      "/docs/api/qiskit-fermions-c/qf-exit-code#qfexitcode_indexerror",
+      "/docs/api/qiskit-fermions-c/qf-exit-code#qfexitcode_nullpointererror",
+      "/docs/api/qiskit-fermions-c/qf-exit-code#qfexitcode_success",
+      "/docs/api/qiskit-fermions-c/qf-exit-code#qfexitcode_valueerror",
+    ],
+  };
+}
+
 function _addonContentLinksToFix(): FilesToIgnores {
   // These links point to old addon-repo tutorial slugs that no longer exist.
   // The addon source docs need to be updated to use the new paths.
@@ -586,6 +613,7 @@ function _addonContentLinksToFix(): FilesToIgnores {
 
 const FILES_TO_IGNORES__SHOULD_FIX: FilesToIgnores = mergeFilesToIgnores(
   _qiskitCRegexes(),
+  _fermionsCRegexes(),
   _addonContentLinksToFix(),
 );
 

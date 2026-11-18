@@ -57,6 +57,11 @@ export class Pkg {
   readonly kebabCaseAndShortenUrls: boolean;
   readonly artifactPackageName: string;
   readonly hasRootNamespaceFile: boolean;
+  /**
+   * Whether this addon has a dedicated docs page at /docs/addons/{name}.
+   * C API packages share the docs page of their Python sibling.
+   */
+  readonly hasAddonDocs: boolean;
   /** Slugs of docs/tutorials/ notebooks to surface under this addon's tutorials route. */
 
   static ADDON_NAMES = [
@@ -68,6 +73,14 @@ export class Pkg {
     "qiskit-addon-utils",
     "qiskit-addon-paulice",
     "qiskit-addon-pna",
+    "qiskit-fermions",
+    "qiskit-fermions-c",
+    "pauli-prop",
+    "qiskit-addon-slc",
+    "qiskit-noise-learning",
+    "samplomatic",
+    "qiskit-mitigation",
+    "qiskit-bosons",
   ];
 
   static VALID_NAMES = [
@@ -91,6 +104,7 @@ export class Pkg {
     kebabCaseAndShortenUrls: boolean;
     artifactPackageName?: string;
     hasRootNamespaceFile?: boolean;
+    hasAddonDocs?: boolean;
   }) {
     this.name = kwargs.name;
     this.title = kwargs.title;
@@ -105,6 +119,7 @@ export class Pkg {
     this.kebabCaseAndShortenUrls = kwargs.kebabCaseAndShortenUrls;
     this.artifactPackageName = kwargs.artifactPackageName ?? this.name;
     this.hasRootNamespaceFile = kwargs.hasRootNamespaceFile ?? false;
+    this.hasAddonDocs = kwargs.hasAddonDocs ?? false;
   }
 
   static async fromArgs(
@@ -144,7 +159,7 @@ export class Pkg {
     if (name === "qiskit-ibm-runtime") {
       return new Pkg({
         ...args,
-        title: "Qiskit Runtime client",
+        title: "IBM Quantum Compute client",
         githubSlug: "qiskit/qiskit-ibm-runtime",
         kebabCaseAndShortenUrls: true,
         language: "Python",
@@ -178,6 +193,17 @@ export class Pkg {
         githubSlug: "Qiskit/qiskit-addon-obp",
         kebabCaseAndShortenUrls: true,
         language: "Python",
+        hasAddonDocs: true,
+      });
+    }
+    if (name === "qiskit-mitigation") {
+      return new Pkg({
+        ...args,
+        title: "Qiskit mitigation",
+        githubSlug: "Qiskit/qiskit-mitigation",
+        kebabCaseAndShortenUrls: true,
+        language: "Python",
+        hasAddonDocs: true,
       });
     }
     if (name === "qiskit-addon-mpf") {
@@ -197,6 +223,7 @@ export class Pkg {
         githubSlug: "Qiskit/qiskit-addon-sqd",
         kebabCaseAndShortenUrls: true,
         language: "Python",
+        hasAddonDocs: true,
       });
     }
     if (name === "qiskit-addon-cutting") {
@@ -215,6 +242,32 @@ export class Pkg {
         githubSlug: "Qiskit/qiskit-addon-paulice",
         kebabCaseAndShortenUrls: true,
         language: "Python",
+        hasAddonDocs: true,
+      });
+    }
+    if (name === "qiskit-fermions") {
+      return new Pkg({
+        ...args,
+        title: "Qiskit Fermions",
+        githubSlug: "Qiskit/qiskit-fermions",
+        kebabCaseAndShortenUrls: true,
+        language: "Python",
+        hasAddonDocs: true,
+      });
+    }
+    if (name === "qiskit-fermions-c") {
+      return new Pkg({
+        ...args,
+        title: "Qiskit Fermions",
+        githubSlug: "Qiskit/qiskit-fermions",
+        kebabCaseAndShortenUrls: true,
+        language: "C",
+        releaseNotesConfig: new ReleaseNotesConfig({
+          enabled: true,
+          linkToPackage: "qiskit-fermions",
+        }),
+        artifactPackageName: "qiskit-fermions",
+        hasAddonDocs: true,
       });
     }
     if (name === "qiskit-addon-pna") {
@@ -224,6 +277,27 @@ export class Pkg {
         githubSlug: "Qiskit/qiskit-addon-pna",
         kebabCaseAndShortenUrls: true,
         language: "Python",
+        hasAddonDocs: true,
+      });
+    }
+    if (name === "pauli-prop") {
+      return new Pkg({
+        ...args,
+        title: "Pauli propagation",
+        githubSlug: "Qiskit/pauli-prop",
+        kebabCaseAndShortenUrls: true,
+        language: "Python",
+        hasAddonDocs: true,
+      });
+    }
+    if (name === "qiskit-addon-slc") {
+      return new Pkg({
+        ...args,
+        title: "Shaded lightcones",
+        githubSlug: "Qiskit/qiskit-addon-slc",
+        kebabCaseAndShortenUrls: true,
+        language: "Python",
+        hasAddonDocs: true,
       });
     }
     if (name === "qiskit-addon-utils") {
@@ -231,6 +305,33 @@ export class Pkg {
         ...args,
         title: "Qiskit addon utilities",
         githubSlug: "Qiskit/qiskit-addon-utils",
+        kebabCaseAndShortenUrls: true,
+        language: "Python",
+      });
+    }
+    if (name === "qiskit-bosons") {
+      return new Pkg({
+        ...args,
+        title: "Qiskit bosons",
+        githubSlug: "Qiskit/qiskit-bosons",
+        kebabCaseAndShortenUrls: true,
+        language: "Python",
+      });
+    }
+    if (name === "samplomatic") {
+      return new Pkg({
+        ...args,
+        title: "Samplomatic",
+        githubSlug: "Qiskit/samplomatic",
+        kebabCaseAndShortenUrls: true,
+        language: "Python",
+      });
+    }
+    if (name === "qiskit-noise-learning") {
+      return new Pkg({
+        ...args,
+        title: "Qiskit noise learning",
+        githubSlug: "Qiskit/qiskit-noise-learning",
         kebabCaseAndShortenUrls: true,
         language: "Python",
       });
@@ -264,6 +365,8 @@ export class Pkg {
     releaseNotesConfig?: ReleaseNotesConfig;
     tocGrouping?: TocGrouping;
     kebabCaseAndShortenUrls?: boolean;
+    artifactPackageName?: string;
+    hasAddonDocs?: boolean;
   }): Pkg {
     return new Pkg({
       name: kwargs.name ?? "my-quantum-project",
@@ -276,6 +379,8 @@ export class Pkg {
       releaseNotesConfig: kwargs.releaseNotesConfig,
       tocGrouping: kwargs.tocGrouping,
       kebabCaseAndShortenUrls: kwargs.kebabCaseAndShortenUrls ?? false,
+      artifactPackageName: kwargs.artifactPackageName,
+      hasAddonDocs: kwargs.hasAddonDocs,
     });
   }
 
@@ -311,6 +416,11 @@ export class Pkg {
 
   isCApi(): boolean {
     return this.language === "C";
+  }
+
+  /** The Python package that a C API package documents, or the package itself. */
+  pythonSiblingName(): string {
+    return this.isCApi() ? this.artifactPackageName : this.name;
   }
 
   isAddon(): boolean {

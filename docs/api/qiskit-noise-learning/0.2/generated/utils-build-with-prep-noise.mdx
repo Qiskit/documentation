@@ -1,0 +1,32 @@
+---
+title: build_with_prep_noise (v0.2)
+description: API reference for qiskit_noise_learning.utils.build_with_prep_noise in qiskit-noise-learning v0.2
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit_noise_learning.utils.build_with_prep_noise
+---
+
+<span id="qiskit-noise-learning-utils-build-with-prep-noise" />
+
+# qiskit\_noise\_learning.utils.build\_with\_prep\_noise
+
+<Function id="qiskit_noise_learning.utils.build_with_prep_noise" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.2/qiskit_noise_learning/utils/build_with_prep_noise.py" signature="qiskit_noise_learning.utils.build_with_prep_noise(circuit: QuantumCircuit, prep_noise_ref: str = 'prep', prep_modifier_ref: str = '') → tuple[QuantumCircuit, Samplex]">
+  Build a template circuit with injectable preparation noise.
+
+  This function uses the normal samplex build path except adds an additional node for injectable preparation noise at the beginning of the circuit.
+
+  **Parameters**
+
+  *   **circuit** – The annotated circuit to build.
+  *   **noise\_ref** – The name of the reference to the noise map.
+  *   **modifier\_ref** – The name used for the argument to modify the rates of the noise map.
+
+  **Returns**
+
+  The template circuit and the samplex.
+
+  **Raises**
+
+  [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If the circuit does not begin with a left-dressed twirl annotated box.
+</Function>
+

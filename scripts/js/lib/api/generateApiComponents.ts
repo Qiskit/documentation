@@ -10,7 +10,7 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { CheerioAPI, Cheerio, Element } from "cheerio";
+import { CheerioAPI, Cheerio, Element, load as cheerioLoad } from "cheerio";
 import { unified } from "unified";
 import rehypeParse from "rehype-parse";
 import rehypeRemark from "rehype-remark";
@@ -25,9 +25,8 @@ import {
 
 export type ComponentProps = {
   id?: string;
-  attributeTypeHint?: string;
-  attributeTypeHintHref?: string;
-  attributeValue?: string;
+  rawTypeHtml?: string;
+  rawDefaultHtml?: string;
   githubSourceLink?: string;
   rawSignature?: string;
   modifiers?: string;
@@ -43,7 +42,7 @@ export async function createMdxComponent(
   priorApiType: ApiTypeName | undefined,
   apiType: ApiObjectName,
   id: string,
-  options: { isCApi: boolean; normalizeUrl?: (url: string) => string },
+  options: { isCApi: boolean },
 ): Promise<string> {
   const tagName = API_OBJECTS[apiType].tagName;
 
@@ -76,7 +75,15 @@ export async function createMdxComponent(
   addExtraSignatures(componentProps, extraProps);
 
   const minHeadingLevel = componentProps.isDedicatedPage ? 2 : headerLevel + 1;
-  const $componentBody = $(`<div>${bodyElements.join("\n")}</div>`);
+  const typePrefix = componentProps.rawTypeHtml
+    ? `<p>Type: ${componentProps.rawTypeHtml}</p>`
+    : "";
+  const defaultPrefix = componentProps.rawDefaultHtml
+    ? `<p>Default value: ${componentProps.rawDefaultHtml}</p>`
+    : "";
+  const $componentBody = $(
+    `<div>${typePrefix}${defaultPrefix}${bodyElements.join("\n")}</div>`,
+  );
   setMinimumHeadingLevel($, $componentBody, minHeadingLevel);
 
   return [
@@ -98,7 +105,7 @@ function prepareProps(
   apiType: ApiObjectName,
   id: string,
   headerLevel: number,
-  options: { isCApi: boolean; normalizeUrl?: (url: string) => string },
+  options: { isCApi: boolean },
 ): ComponentProps {
   const prepClassOrException = () =>
     prepareClassOrExceptionProps(
@@ -130,7 +137,6 @@ function prepareProps(
       githubSourceLink,
       id,
       headerLevel,
-      options.normalizeUrl,
     );
 
   const preparePropsPerApiType: Record<ApiObjectName, () => ComponentProps> = {
@@ -252,7 +258,6 @@ function prepareAttributeOrPropertyProps(
   githubSourceLink: string | undefined,
   id: string,
   headerLevel: number,
-  normalizeUrl?: (url: string) => string,
 ): ComponentProps {
   // Properties/attributes have multiple `span.property` values to set:
   //
@@ -295,30 +300,37 @@ function prepareAttributeOrPropertyProps(
   }
 
   // The attributes have the following shape: name [: type] [= value]
-  // We skip the first character to leave off the `:` and the `=` in
-  // both type hint and default value
   const name = text.slice(0, Math.min(colonIndex, equalIndex)).trim();
-  const attributeTypeHint = text
-    .slice(Math.min(colonIndex + 1, equalIndex), equalIndex)
-    .trim();
-  const attributeValue = text.slice(equalIndex + 1, text.length).trim();
 
-  // If the type hint element contains a link, capture its href so the
-  // rendered component can make the type hint clickable.
-  const rawHref =
-    $child.find("em.property a, span.property a").first().attr("href") ??
-    undefined;
-  const hrefPath = rawHref?.split("#")[0];
-  const attributeTypeHintHref =
-    hrefPath && normalizeUrl && !hrefPath.startsWith("http")
-      ? normalizeUrl(hrefPath)
-      : hrefPath;
+  let rawTypeHtml: string | undefined;
+  let rawDefaultHtml: string | undefined;
 
-  const props = {
+  $child.find("em.property, span.property").each((_, el) => {
+    const $clone = $(el).clone();
+    const $firstP = $clone.find("span.p").first();
+    const delimiter = $firstP.text().trim();
+
+    if (delimiter === ":" && !rawTypeHtml) {
+      // Sphinx 8: em.property may start with the attribute name before the colon
+      $clone
+        .find("span.pre")
+        .filter((_, el) => $(el).text().trim() === name)
+        .first()
+        .remove();
+      $firstP.remove();
+      const inner = $clone.html()?.trim();
+      if (inner) rawTypeHtml = inlineCodeifyTypeHtml(inner);
+    } else if (delimiter === "=" && !rawDefaultHtml) {
+      $firstP.remove();
+      const inner = $clone.html()?.trim();
+      if (inner) rawDefaultHtml = `<code>${inner}</code>`;
+    }
+  });
+
+  const props: ComponentProps = {
     id,
-    attributeTypeHint,
-    attributeTypeHintHref,
-    attributeValue,
+    rawTypeHtml,
+    rawDefaultHtml,
     githubSourceLink,
     modifiers: filteredModifiers,
   };
@@ -332,7 +344,6 @@ function prepareAttributeOrPropertyProps(
     };
   }
 
-  // Else, the attribute is embedded on the class
   const htag = `h${headerLevel}`;
   $(
     `<${htag} data-header-type="attribute-header">${name}</${htag}>`,
@@ -393,14 +404,6 @@ export async function createOpeningTag(
   tagName: string,
   props: ComponentProps,
 ): Promise<string> {
-  const attributeTypeHint = props.attributeTypeHint?.replaceAll(
-    "'",
-    APOSTROPHE_HEX_CODE,
-  );
-  const attributeValue = props.attributeValue?.replaceAll(
-    "'",
-    APOSTROPHE_HEX_CODE,
-  );
   const signature = await htmlSignatureToMd(props.rawSignature!);
   const extraSignatures: string[] = [];
   for (const sig of props.extraRawSignatures ?? []) {
@@ -409,9 +412,6 @@ export async function createOpeningTag(
 
   return `<${tagName}
     id='${props.id}'
-    attributeTypeHint='${attributeTypeHint}'
-    attributeTypeHintHref='${props.attributeTypeHintHref}'
-    attributeValue='${attributeValue}'
     isDedicatedPage='${props.isDedicatedPage}'
     github='${props.githubSourceLink}'
     signature='${signature}'
@@ -589,4 +589,16 @@ export function setMinimumHeadingLevel(
       .find(oldTag)
       .replaceWith((_, el) => `<${newTag}>${$(el).html()}</${newTag}>`);
   }
+}
+
+function inlineCodeifyTypeHtml(html: string): string {
+  const $f = cheerioLoad(`<div>${html}</div>`, { xmlMode: false });
+  $f("span.pre").each((_, el) => {
+    const $el = $f(el);
+    $el.replaceWith(`<code>${$el.text()}</code>`);
+  });
+  $f("span.p, span.w").each((_, el) => {
+    $f(el).replaceWith($f(el).text());
+  });
+  return $f("div").html() ?? html;
 }

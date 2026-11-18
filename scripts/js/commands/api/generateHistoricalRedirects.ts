@@ -19,6 +19,11 @@ import { removeSuffix } from "../../lib/stringUtils.js";
 
 const OUTPUT_FILE = "./scripts/config/historical-pages-to-latest.json";
 
+// Matches directory names used for version folders (e.g. "0.46", "1.0", "dev").
+// Excludes Sphinx-generated subdirectories that sit alongside version folders,
+// which come from each package's automodapi_toctreedirnm setting.
+const VERSION_DIR_PATTERN = /^(\d+(\.\d+)*|dev)$/;
+
 export async function generateHistoricalRedirects(): Promise<void> {
   console.log(`Generating ${OUTPUT_FILE}`);
   const redirectData: HistoricalRedirectData = {};
@@ -62,6 +67,7 @@ async function getRedirectsForPackage(
   for (const entry of await readdir(packagePath, { withFileTypes: true })) {
     if (entry.isDirectory()) {
       if (entry.name.endsWith("release-notes")) continue;
+      if (!VERSION_DIR_PATTERN.test(entry.name)) continue;
       versionPaths.push(entry.name);
     } else {
       latestPages.push(entry.name);

@@ -1,0 +1,499 @@
+---
+title: Pass-manager infrastructure (dev version)
+description: API reference for Pass-manager infrastructure in the dev version of qiskit-c
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: Pass-manager infrastructure
+---
+
+<span id="capi-pass-manager" />
+
+# Pass-manager infrastructure
+
+Qiskit contains generic infrastructure for defining pass managers, passes and IRs dynamically. Qiskit itself contains certain types that are used as compilation IRs in different situations, but extensions are free to define their own as well.
+
+### QkIrBuiltin
+
+<Class id="QkIrBuiltin" signature="enum QkIrBuiltin">
+  Enumeration of the different built-in C API types that are usable directly as IRs.
+
+  These are the valid inputs to `qk_ir_handle_builtin`.
+
+  *Values:*
+
+  #### enumerator QkIrBuiltin\_Circuit
+
+  <Attribute id="QkIrBuiltin_Circuit">
+    The `QkCircuit` object.
+  </Attribute>
+
+  #### enumerator QkIrBuiltin\_Dag
+
+  <Attribute id="QkIrBuiltin_Dag">
+    The `QkDag` object.
+  </Attribute>
+</Class>
+
+### QkIrSlot
+
+<Class id="QkIrSlot" signature="enum QkIrSlot">
+  The available methods that can be implemented by a custom IR.
+
+  These are the valid values for `QkVtableEntry::slot` and the associated function-pointer types required for the `table` argument of `qk_ir_handle_new`.
+
+  <span id="group__pass-manager_1autotoc_md556" />
+
+  #### Safety
+
+  <span id="group__pass-manager_1autotoc_md556" />
+
+  All functions, including the destructor, must be callable from any thread.
+
+  *Values:*
+
+  #### enumerator QkIrSlot\_Delete
+
+  <Attribute id="QkIrSlot_Delete">
+    A destructor for the `data` of an IR. *Optional*.
+
+    This method is not called if the data pointer is `NULL`.
+
+    Signature:
+
+    ```c
+    void delete(void *data);
+    ```
+  </Attribute>
+</Class>
+
+### QkPassSlot
+
+<Class id="QkPassSlot" signature="enum QkPassSlot">
+  The available methods that can be implemented by a custom pass.
+
+  These are the valid values for `QkVtableEntry::slot` and the associated function-pointer types required for the `table` argument of `qk_pass_new`.
+
+  <span id="group__pass-manager_1autotoc_md557" />
+
+  #### Safety
+
+  <span id="group__pass-manager_1autotoc_md557" />
+
+  All functions, including the destructor, must be callable from any thread.
+
+  *Values:*
+
+  #### enumerator QkPassSlot\_RunOwned
+
+  <Attribute id="QkPassSlot_RunOwned">
+    Run the pass on an owned IR of the correct type. *Required*.
+
+    Signature:
+
+    ```c
+    void *run(void *this, void *ir, QkPassContext *context, QkCompilationError **error);
+    ```
+
+    <span id="group__pass-manager_1autotoc_md565" />
+
+    ##### Implementation
+
+    <span id="group__pass-manager_1autotoc_md565" />
+
+    This implements the pass behavior. `this` will be equal to a value passed to `qk_pass_new` with this vtable. `ir` will point to owned data of the type specified by the vtable’s `ir_in` field. It is the responsibility of the implementer to ensure `ir` is freed, if necessary.
+
+    The function must return owned data of the type specified by `ir_out`, or `NULL` if an error as occurred.
+
+    If the function wants to indicate an error state, it must write a valid owned `QkCompilationError *` object into the `error` pointer, ensure the `ir` pointer is freed, and return `NULL`.
+  </Attribute>
+
+  #### enumerator QkPassSlot\_Delete
+
+  <Attribute id="QkPassSlot_Delete">
+    A destructor for the `this` argument of a pass, at the time that the pass is destructed. *Optional*.
+
+    This will not be called if the data pointer is `NULL`.
+
+    Signature:
+
+    ```c
+    void delete(void *this);
+    ```
+  </Attribute>
+</Class>
+
+### QkPass
+
+<Class id="QkPass" signature="typedef struct QkPass QkPass">
+  A pass with custom behavior defined through the C API.
+
+  This is a complete instance of a pass whose general behavior was previously defined using `qk_pass_vtable_new`. You construct instances of this struct by calling `qk_pass_new`.
+
+  These passes can be added to instances of `QkPassManager` using `qk_passmanager_push_pass`.
+
+  <span id="group__pass-manager_1autotoc_md558" />
+
+  #### Safety
+
+  <span id="group__pass-manager_1autotoc_md558" />
+
+  The `this` data pointer must be safe to send and share between threads. All methods in the `QkPassVtable` must be safely callable from any thread.
+</Class>
+
+### QkCompilationError
+
+<Class id="QkCompilationError" signature="typedef struct QkCompilationError QkCompilationError">
+  A detailed error raised during compilation.
+
+  Compilation pipelines, including custom compiler passes, may want to provide detailed error information back to the caller. These errors are not typically intended for programmatic handling, but are intended to be read and acted on by an end user.
+</Class>
+
+### QkIrHandle
+
+<Class id="QkIrHandle" signature="typedef struct QkIrHandle QkIrHandle">
+  A handle object representing an “IR type”.
+
+  These objects represent only the IR behavior; they must be combined with a data pointer of the correct type to produce a complete IR object. The type handle alone is needed to define passes and pass managers.
+
+  Most functions that accept one of these borrow the argument. Once you no longer need the handle any more, you should call `qk_ir_handle_free` to release your reference to the type object.
+</Class>
+
+### QkPassVtable
+
+<Class id="QkPassVtable" signature="typedef struct QkPassVtable QkPassVtable">
+  A “type object” representing the behavior of a custom pass.
+
+  These objects represent only the behavior; they must be combined with a data pointer of the correct type to produce a complete pass.
+
+  These are constructed using `qk_pass_vtable_new`, and are given to `qk_pass_new`.
+
+  See `QkPassSlot` for an enumeration of the possible behavior and its semantics.
+</Class>
+
+### qk\_compilation\_error\_new
+
+<Function id="qk_compilation_error_new" signature="QkCompilationError *qk_compilation_error_new(const char *msg)">
+  Create a new compilation error with a fixed message.
+
+  <span id="group__pass-manager_1autotoc_md332" />
+
+  #### Safety
+
+  <span id="group__pass-manager_1autotoc_md332" />
+
+  `msg` must point to nul-terminated bytes.
+
+  **Parameters**
+
+  *   **msg** – A borrowed pointer to a nul-terminated string.
+
+  **Returns**
+
+  An owned compiler error.
+</Function>
+
+### qk\_compilation\_error\_str
+
+<Function id="qk_compilation_error_str" signature="char *qk_compilation_error_str(const QkCompilationError *error)">
+  Get a simple owned string representation of the error.
+
+  The exact format of this representation is not stable, but is generally intended for display to a user. Error messages may include arbitrary strings that are controlled by custom passes defined outside of Qiskit.
+
+  The return value must be freed with `qk_str_free`.
+
+  <span id="group__pass-manager_1autotoc_md333" />
+
+  #### Safety
+
+  <span id="group__pass-manager_1autotoc_md333" />
+
+  Behavior is undefined if `error` does not point to a valid `QkCompilationError`.
+
+  **Parameters**
+
+  *   **error** – The error to get the message for.
+
+  **Returns**
+
+  An owned UTF-8 string representation of the error.
+</Function>
+
+### qk\_compilation\_error\_free
+
+<Function id="qk_compilation_error_free" signature="void qk_compilation_error_free(QkCompilationError *error)">
+  Free the given owned pointer.
+
+  Does nothing if `error` is null.
+
+  <span id="group__pass-manager_1autotoc_md334" />
+
+  #### Safety
+
+  <span id="group__pass-manager_1autotoc_md334" />
+
+  Behavior is undefined is `error` is neither null nor points to a valid owned `CompilationError`.
+
+  **Parameters**
+
+  *   **error** – The owned pointer to free.
+</Function>
+
+### qk\_ir\_handle\_new
+
+<Function id="qk_ir_handle_new" signature="QkIrHandle *qk_ir_handle_new(const char *name, const QkVtableEntry *table)">
+  Define the behavior of a new “IR” type.
+
+  This function is called to define the behavioral component of a new IR type.
+
+  If you want the handle for a built-in Qiskit type, see `qk_ir_handle_builtin`.
+
+  <span id="group__pass-manager_1autotoc_md335" />
+
+  #### Safety
+
+  <span id="group__pass-manager_1autotoc_md335" />
+
+  Behavior is undefined if any of the following are violated:
+
+  *   `name` is a nul-terminated string.
+  *   `table` is a null pointer, or aligned and points to a list of valid slot entries terminated by an entry with `.slot = -1` with no duplicate `slot` values.
+
+  **Parameters**
+
+  *   **name** – A human-readable name for the IR type.
+  *   **table** – A table of the defined methods for the IR, terminated by an entry using `-1` as its slot id. This may be `NULL` if there are no entries in the table. See `QkIrSlot` for the allowed values and function-pointer signatures.
+
+  **Returns**
+
+  An owned handle to the IR type object.
+</Function>
+
+### qk\_ir\_handle\_builtin
+
+<Function id="qk_ir_handle_builtin" signature="QkIrHandle *qk_ir_handle_builtin(uint32_t ty)">
+  Get the IR “type object” for a built-in Qiskit type.
+
+  **Parameters**
+
+  *   **ty** – An identifier for the desired type. See `QkIrBuiltin` for the allowed values.
+
+  **Returns**
+
+  An owned handle to the IR type object, or `NULL` if given an invalid value.
+</Function>
+
+### qk\_ir\_handle\_free
+
+<Function id="qk_ir_handle_free" signature="void qk_ir_handle_free(QkIrHandle *handle)">
+  Free an owned IR handle.
+
+  This can be called on your own owned handle objects once you are done with the handle. Calling free on your own handle does not invalidate any extant `QkIr` objects; they own their own handles.
+
+  Does nothing if the pointer is null.
+
+  <span id="group__pass-manager_1autotoc_md336" />
+
+  #### Safety
+
+  <span id="group__pass-manager_1autotoc_md336" />
+
+  Behavior is undefined if `handle` is not null and does not point to a valid owned `QkIrHandle` object.
+
+  **Parameters**
+
+  *   **handle** – The pointer to free.
+</Function>
+
+### qk\_pass\_vtable\_new
+
+<Function id="qk_pass_vtable_new" signature="QkPassVtable *qk_pass_vtable_new(const char *name, const QkIrHandle *ir_in, const QkIrHandle *ir_out, const QkVtableEntry *table)">
+  Create a new “type object” for a custom pass.
+
+  Once you have the output of this function, you create instances of the pass by combining it with a data pointer using `qk_pass_new`.
+
+  <span id="group__pass-manager_1autotoc_md337" />
+
+  #### Safety
+
+  <span id="group__pass-manager_1autotoc_md337" />
+
+  Behavior is undefined if any of the following are violated:
+
+  *   `name` is a nul-terminated string.
+  *   `ir_in` points to a valid `QkIrHandle` object.
+  *   `ir_out` points to a valid `QkIrHandle` object.
+  *   `table` points to contiguous, valid instances of `VtableEntry` that are all consistent entries as defined by `QkPassSlot`, with no duplicate `slot` entries and terminated by `.slot = -1`.
+  *   `table` contains slot items for all required slots.
+
+  **Parameters**
+
+  *   **name** – A borrowed nul-terminated human-readable name for the pass. Used for debugging.
+  *   **ir\_in** – A borrowed handle to the IR “type object” representing the expected input type for the pass.
+  *   **ir\_out** – A borrowed handle to the IR “type object” representing the expected output type for the pass.
+  *   **table** – A borrowed table of `QkVtableEntry` objects terminated by an entry with `.slot = -1`. See `QkPassSlot` for the allowed slot values and associated function-pointer types. Unknown values of `slot` are ignored.
+
+  **Returns**
+
+  An owned type object that can lent to `qk_pass_new` to create instances of the pass.
+</Function>
+
+### qk\_pass\_vtable\_free
+
+<Function id="qk_pass_vtable_free" signature="void qk_pass_vtable_free(QkPassVtable *vtable)">
+  Free a single reference to a `PassVtable`.
+
+  You can call this once you have finished constructing instances of passes that need this vtable; each constructed pass owns its own reference to the table.
+
+  Does nothing if `vtable` is `NULL`.
+
+  <span id="group__pass-manager_1autotoc_md338" />
+
+  #### Safety
+
+  <span id="group__pass-manager_1autotoc_md338" />
+
+  Behavior is undefined if `vtable` is not null or a valid owned reference to a `PassVtable`.
+
+  **Parameters**
+
+  *   **vtable** – The owned reference to release.
+</Function>
+
+### qk\_pass\_new
+
+<Function id="qk_pass_new" signature="QkPass *qk_pass_new(void *data, const QkPassVtable *vtable)">
+  Create a new instance of a pass whose behavior was previously defined.
+
+  The result pass object is typically then given to `qk_passmanager_push_pass`, or a related method.
+
+  <span id="group__pass-manager_1autotoc_md339" />
+
+  #### Safety
+
+  <span id="group__pass-manager_1autotoc_md339" />
+
+  Behavior is undefined if any of the following are violated:
+
+  *   `this` points to data of the correct type for the methods in `vtable`.
+  *   `vtable` points to a valid instance of `QkPassVtable`.
+
+  **Parameters**
+
+  *   **data** – The owned data pointer for this `vtable`.
+  *   **vtable** – A borrowed “type object” created by `qk_pass_vtable_new`.
+
+  **Returns**
+
+  An owned pass object.
+</Function>
+
+### qk\_pass\_free
+
+<Function id="qk_pass_free" signature="void qk_pass_free(QkPass *pass)">
+  Free a custom pass instance.
+
+  You typically do not need to call this, because the pass-manager building functions steal ownership of `QkPass` arguments.
+
+  <span id="group__pass-manager_1autotoc_md340" />
+
+  #### Safety
+
+  <span id="group__pass-manager_1autotoc_md340" />
+
+  Behavior is undefined if `pass` is not either null or a valid owned pointer to a `QkPass`.
+
+  **Parameters**
+
+  *   **pass** – An owned pointer to the pass to free.
+</Function>
+
+### qk\_passmanager\_new
+
+<Function id="qk_passmanager_new" signature="QkPassManager *qk_passmanager_new(void)">
+  Create an empty pass manager.
+
+  This object must be freed by the user.
+
+  **Returns**
+
+  An owned, empty pass manager.
+</Function>
+
+### qk\_passmanager\_free
+
+<Function id="qk_passmanager_free" signature="void qk_passmanager_free(QkPassManager *pm)">
+  Free the pass manager.
+
+  <span id="group__pass-manager_1autotoc_md341" />
+
+  #### Safety
+
+  <span id="group__pass-manager_1autotoc_md341" />
+
+  Behavior is undefined if `pm` is not either null or a valid pointer to a `QkPassManager`.
+
+  **Parameters**
+
+  *   **pm** – An owned pointer to the pass manager.
+</Function>
+
+### qk\_passmanager\_push\_pass
+
+<Function id="qk_passmanager_push_pass" signature="QkExitCode qk_passmanager_push_pass(QkPassManager *pm, QkPass *pass)">
+  Push a pass onto the pass manager.
+
+  <span id="group__pass-manager_1autotoc_md342" />
+
+  #### Safety
+
+  <span id="group__pass-manager_1autotoc_md342" />
+
+  Behavior is undefined if any of the following are violated:
+
+  *   `pm` points to a valid `QkPassManager`
+  *   `pass` points to an owned `QkPass` instance.
+
+  **Parameters**
+
+  *   **pm** – A borrowed pointer to the pass manager.
+  *   **pass** – An owned pass to push. This steals ownership of the given pass.
+
+  **Returns**
+
+  `QkExitCode_Success` if the type was added successfully, or `QkExitCode_IncompatibleTypes` if the pass could not be added because its expected IR types do not match the pipeline’s expectation.
+</Function>
+
+### qk\_passmanager\_run\_simple
+
+<Function id="qk_passmanager_run_simple" signature="void *qk_passmanager_run_simple(QkPassManager *pm, void *ir, const QkIrHandle *ir_in_handle, const QkIrHandle *ir_out_handle, QkCompilationError **error)">
+  Run the pass manager.
+
+  `ir_in_handle` and `ir_out_handle` must match the type expectations of the pipeline. This function will return `NULL` and (optionally) set the error state if this is violated.
+
+  <span id="group__pass-manager_1autotoc_md343" />
+
+  #### Safety
+
+  <span id="group__pass-manager_1autotoc_md343" />
+
+  Behavior is undefined if any of the following are violated:
+
+  *   `pm` is a valid pointer to a `QkPassManager`.
+  *   `ir` is an owning data pointer of the type indicated by `ir_in_handle`.
+  *   `ir_in_handle` points to a valid `IrHandle`.
+  *   `ir_out_handle` points to a valid `IrHandle`.
+  *   `error` is either null, or points to a storage location valid for a single write of one `QkCompilationError *`.
+
+  **Parameters**
+
+  *   **pm** – A borrowed pointer to the pass manager to run.
+  *   **ir** – An owned data pointer of the type expected by `ir_in_handle`. This function steals ownership of the pointer, and will arrange for it to be destructed, even if an error occurs.
+  *   **ir\_in\_handle** – A borrowed type object corresponding to the input type of the pass manager, and the type of `ir`.
+  *   **ir\_out\_handle** – A borrowed type object corresponding to the output type of the pass manager.
+  *   **error** – **\[out]** If not `NULL`, then a location to write out a `QkCompilationError *` result.
+
+  **Returns**
+
+  If no fatal error occurred, then an owned data pointer of the type corresponding to `ir_out_handle`. `NULL` if a fatal error occurred.
+</Function>
+

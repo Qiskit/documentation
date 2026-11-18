@@ -78,6 +78,102 @@ The Qiskit circuit library contains functions and higher-level building blocks f
   </Attribute>
 </Class>
 
+### QkNLocalSettings
+
+<Class id="QkNLocalSettings" signature="struct QkNLocalSettings">
+  Settings for generating a n-local variational circuit.
+
+  This contains the entanglement strategy (`entanglement_strategy`), the repetitions of the rotation and entanglement layers (`reps`), the parameter prefix for gates that have parameters (`parameter_prefix`), whether it’s wanted to add barriers after each layer (`insert_barriers`) and if it’s wanted to skip the last layer (`skip_final_rotation_layer`)
+
+  It’s the responsibility of the user that the data is coherent, see also the below section on safety.
+
+  <span id="structQkNLocalSettings_1autotoc_md562" />
+
+  #### Safety
+
+  <span id="structQkNLocalSettings_1autotoc_md562" />
+
+  `parameter_prefix` must be a pointer to memory that contains a valid nul terminator at the end of the string. It also must be valid for reads of bytes up to and including the nul terminator.
+
+  #### QkEntanglementStrategy entanglement\_strategy
+
+  <Attribute id="entanglement_strategy">
+    The entanglement strategy to be used in the generated circuit. See `QkEntanglementStrategy` for more details.
+  </Attribute>
+
+  #### size\_t reps
+
+  <Attribute id="reps">
+    Specifies how often the rotation blocks and entanglement blocks are repeated.
+  </Attribute>
+
+  #### const char \*parameter\_prefix
+
+  <Attribute id="parameter_prefix">
+    The prefix used for the default parameters generated.
+  </Attribute>
+
+  #### bool insert\_barriers
+
+  <Attribute id="insert_barriers">
+    If `true`, barriers are inserted in between each layer. If `false`, no barriers are inserted.
+  </Attribute>
+
+  #### bool skip\_final\_rotation\_layer
+
+  <Attribute id="skip_final_rotation_layer">
+    Whether a final rotation layer is added to the circuit.
+  </Attribute>
+</Class>
+
+### QkEntanglementStrategy
+
+<Class id="QkEntanglementStrategy" signature="enum QkEntanglementStrategy">
+  Enum representing all the possible strategies for n\_local entanglement blocks.
+
+  *Values:*
+
+  #### enumerator QkEntanglementStrategy\_Full
+
+  <Attribute id="QkEntanglementStrategy_Full">
+    Entanglement where each qubit is entangled with all the others.
+  </Attribute>
+
+  #### enumerator QkEntanglementStrategy\_Linear
+
+  <Attribute id="QkEntanglementStrategy_Linear">
+    Entanglement where qubit $i$ is entangled with qubit $i + 1$ for all $i \in \{0, 1, ... , n - 2\}$ where $n$ is the total number of qubits.
+  </Attribute>
+
+  #### enumerator QkEntanglementStrategy\_ReverseLinear
+
+  <Attribute id="QkEntanglementStrategy_ReverseLinear">
+    Entanglement where qubit $i$ is entangled with qubit $i + 1$ for all $i \in \{n-2, n-3, ... , 1, 0\}$ where $n$ is the total number of qubits.
+  </Attribute>
+
+  #### enumerator QkEntanglementStrategy\_Circular
+
+  <Attribute id="QkEntanglementStrategy_Circular">
+    Entanglement that behaves the same as linear entanglement but with an additional entanglement of the first and last qubit before the linear part.
+  </Attribute>
+
+  #### enumerator QkEntanglementStrategy\_Pairwise
+
+  <Attribute id="QkEntanglementStrategy_Pairwise">
+    Entanglement where one layer contains a qubit $i$ entangled with qubit $i + 1$, for all even values of $i$, and then a second layer where a qubit $i$ is entangled with qubit $i + 1$, for all odd values of $i$.
+  </Attribute>
+
+  #### enumerator QkEntanglementStrategy\_Sca
+
+  <Attribute id="QkEntanglementStrategy_Sca">
+    Entanglement shifted-circular-alternating. It’s a generalized and modified version of the proposed circuit 14 in [Sim et al.](https://arxiv.org/abs/1905.10876)
+
+    It consists of circular entanglement where the “long” entanglement connecting the first with the last qubit is shifted by one each block.
+
+    Furthermore the role of control and target qubits are swapped every block (therefore alternating).
+  </Attribute>
+</Class>
+
 ## Functions
 
 ### qk\_circuit\_library\_iqp
@@ -87,11 +183,11 @@ The Qiskit circuit library contains functions and higher-level building blocks f
 
   The `interactions` matrix is interpreted as an `n × n` row-major array of 64-bit integers, where `n = num_qubits`. The diagonal entries set T-like phase powers, and the upper triangle encodes two-qubit CPhase interactions.
 
-  <span id="group__QkCircuitLibrary_1autotoc_md101" />
+  <span id="group__QkCircuitLibrary_1autotoc_md108" />
 
   #### Safety
 
-  <span id="group__QkCircuitLibrary_1autotoc_md101" />
+  <span id="group__QkCircuitLibrary_1autotoc_md108" />
 
   If `num_qubits > 0`, `interactions` **must** be a valid, non-null pointer to at least `num_qubits * num_qubits` contiguous `int64_t` values in row-major order. The memory pointed to by `interactions` must be properly aligned, readable for the duration of this call, and not mutably aliased. Passing an invalid pointer or a buffer that is too small results in undefined behaviour.
 
@@ -123,6 +219,94 @@ The Qiskit circuit library contains functions and higher-level building blocks f
   A newly allocated `QkCircuit*` (caller must free with `qk_circuit_free`).
 </Function>
 
+### qk\_circuit\_library\_n\_local
+
+<Function id="qk_circuit_library_n_local" signature="QkCircuit *qk_circuit_library_n_local(uint32_t num_qubits, const QkGate *rotation_blocks, size_t rotation_blocks_size, const QkGate *entanglement_blocks, size_t entanglement_blocks_size, const QkNLocalSettings *settings)">
+  Construct an n-local variational circuit.
+
+  The structure of the n-local circuit are alternating rotation and entanglement layers. In both layers, parameterized circuit-blocks act on the circuit in a defined way. In the rotation layer, the blocks are applied stacked on top of each other, while in the entanglement layer according to the `entanglement` strategy. The circuit blocks can have arbitrary sizes (smaller equal to the number of qubits in the circuit). Each layer is repeated `reps` times, and by default a final rotation layer is appended.
+
+  For instance, a rotation block on 2 qubits and an entanglement block on 4 qubits using `QkEntanglementStrategy_Linear` entanglement yields the following circuit.
+
+  ```c
+  ┌──────┐ ░ ┌──────┐                      ░ ┌──────┐
+  ┤0     ├─░─┤0     ├──────────────── ... ─░─┤0     ├
+  │  Rot │ ░ │      │┌──────┐              ░ │  Rot │
+  ┤1     ├─░─┤1     ├┤0     ├──────── ... ─░─┤1     ├
+  ├──────┤ ░ │  Ent ││      │┌──────┐      ░ ├──────┤
+  ┤0     ├─░─┤2     ├┤1     ├┤0     ├ ... ─░─┤0     ├
+  │  Rot │ ░ │      ││  Ent ││      │      ░ │  Rot │
+  ┤1     ├─░─┤3     ├┤2     ├┤1     ├ ... ─░─┤1     ├
+  ├──────┤ ░ └──────┘│      ││  Ent │      ░ ├──────┤
+  ┤0     ├─░─────────┤3     ├┤2     ├ ... ─░─┤0     ├
+  │  Rot │ ░         └──────┘│      │      ░ │  Rot │
+  ┤1     ├─░─────────────────┤3     ├ ... ─░─┤1     ├
+  └──────┘ ░                 └──────┘      ░ └──────┘
+
+  |                                 |
+  +---------------------------------+
+         repeated reps times
+  ```
+
+  Entanglement:
+
+  The entanglement describes the connections of the gates in the entanglement layer. For a two-qubit gate for example, the entanglement contains pairs of qubits on which the gate should acts, e.g. `[[ctrl0, target0], [ctrl1, target1], ...]`. To know more about the available entanglement strategies see `QkEntanglementStrategy`.
+
+  <span id="group__QkCircuitLibrary_1autotoc_md109" />
+
+  #### Example
+
+  ```c
+  size_t num_qubits = 2;
+  QkGate rotation_blocks[1] = {QkGate_H};
+  QkGate entanglement_blocks[1] = {QkGate_CRX};
+
+  QkNLocalSettings settings = qk_circuit_library_n_local_settings_default();
+  settings.reps = 2;
+  // For this example we use QkEntanglementStrategy_Linear since
+  // the default is QkEntanglementStrategy_Full
+  settings.entanglement_strategy = QkEntanglementStrategy_Linear;
+
+  QkCircuit *qc = qk_circuit_library_n_local(num_qubits, rotation_blocks, 1,
+                                             entanglement_blocks, 1, &settings);
+
+  qk_circuit_free(qc);
+  ```
+
+  <span id="group__QkCircuitLibrary_1autotoc_md110" />
+
+  #### Safety
+
+  <span id="group__QkCircuitLibrary_1autotoc_md110" />
+
+  *   Behavior is undefined if `rotation_blocks` is not a valid, non-null pointer to a sequence of `rotation_blocks_size` consecutive elements of `StandardGate`.
+  *   Behavior is undefined if `entanglement_blocks` is not a valid, non-null pointer to a sequence of `entanglement_blocks_size` consecutive elements of `StandardGate`.
+  *   Behavior is undefined if `settings` is not a valid, non-null pointer.
+
+  **Parameters**
+
+  *   **num\_qubits** – The number of qubits of the circuit.
+  *   **rotation\_blocks** – The blocks used in the rotation layers.
+  *   **rotation\_blocks\_size** – Length of the array of rotation blocks provided.
+  *   **entanglement\_blocks** – The blocks used in the entanglement layers.
+  *   **entanglement\_blocks\_size** – Length of the list of entanglement blocks provided.
+  *   **settings** – A `QkNLocalSettings` pointer that is the settings to be applied to the generated circuit. If `NULL`, the default settings are used, see `QkNLocalSettings` for more details.
+
+  **Returns**
+
+  A pointer to the generated circuit.
+</Function>
+
+### qk\_circuit\_library\_n\_local\_settings\_default
+
+<Function id="qk_circuit_library_n_local_settings_default" signature="QkNLocalSettings qk_circuit_library_n_local_settings_default(void)">
+  Generate default options for `qk_circuit_library_n_local`.
+
+  **Returns**
+
+  A `QkNLocalSettings` object with default settings.
+</Function>
+
 ### qk\_pauli\_product\_rotation\_clear
 
 <Function id="qk_pauli_product_rotation_clear" signature="void qk_pauli_product_rotation_clear(QkPauliProductRotation *inst)">
@@ -130,7 +314,7 @@ The Qiskit circuit library contains functions and higher-level building blocks f
 
   This frees the memory of the `z` and `x` arrays and frees the `angle`. This function should only be called for `QkPauliProductRotation` objects whose data has been populated by Rust.
 
-  <span id="group__QkCircuitLibrary_1autotoc_md102" />
+  <span id="group__QkCircuitLibrary_1autotoc_md111" />
 
   #### Example
 
@@ -158,11 +342,11 @@ The Qiskit circuit library contains functions and higher-level building blocks f
   qk_param_free(angle);
   ```
 
-  <span id="group__QkCircuitLibrary_1autotoc_md103" />
+  <span id="group__QkCircuitLibrary_1autotoc_md112" />
 
   #### Safety
 
-  <span id="group__QkCircuitLibrary_1autotoc_md103" />
+  <span id="group__QkCircuitLibrary_1autotoc_md112" />
 
   Behavior is undefined if `inst` is not a valid, non-null pointer to a `QkPauliProductRotation`, or if the internal data of `QkPauliProductRotation` is incoherent.
 
@@ -178,7 +362,7 @@ The Qiskit circuit library contains functions and higher-level building blocks f
 
   This frees the memory of the `z` and `x` arrays. This function should only be called for `QkPauliProductMeasurement` objects whose data has been populated by Rust.
 
-  <span id="group__QkCircuitLibrary_1autotoc_md104" />
+  <span id="group__QkCircuitLibrary_1autotoc_md113" />
 
   #### Example
 
@@ -205,11 +389,11 @@ The Qiskit circuit library contains functions and higher-level building blocks f
   // since this data is allocated by C, we do not call `qk_pauli_product_measurement_clear(&inst)`
   ```
 
-  <span id="group__QkCircuitLibrary_1autotoc_md105" />
+  <span id="group__QkCircuitLibrary_1autotoc_md114" />
 
   #### Safety
 
-  <span id="group__QkCircuitLibrary_1autotoc_md105" />
+  <span id="group__QkCircuitLibrary_1autotoc_md114" />
 
   Behavior is undefined if `inst` is not a valid, non-null pointer to a `QkPauliProductMeasurement`, or if the internal data of `QkPauliProductMeasurement` is incoherent.
 
@@ -229,7 +413,7 @@ The Qiskit circuit library contains functions and higher-level building blocks f
 
   \[1] A. Cross et al. Validating quantum computers using randomized model circuits, Phys. Rev. A 100, 032328 (2019). [arXiv:1811.12926](https://arxiv.org/abs/1811.12926)
 
-  <span id="group__QkCircuitLibrary_1autotoc_md106" />
+  <span id="group__QkCircuitLibrary_1autotoc_md115" />
 
   #### Example
 
@@ -255,7 +439,7 @@ The Qiskit circuit library contains functions and higher-level building blocks f
 
   The Suzuki-Trotter formulas improve the error of the Lie-Trotter approximation. In this implementation, the operators are provided as sum terms of a Pauli operator. Higher order decompositions are based on recursions, see Ref. \[1] for more details.
 
-  <span id="group__QkCircuitLibrary_1autotoc_md107" />
+  <span id="group__QkCircuitLibrary_1autotoc_md116" />
 
   #### Example
 
@@ -276,19 +460,19 @@ The Qiskit circuit library contains functions and higher-level building blocks f
   qk_circuit_free(qc);
   ```
 
-  <span id="group__QkCircuitLibrary_1autotoc_md108" />
+  <span id="group__QkCircuitLibrary_1autotoc_md117" />
 
   #### Safety
 
-  <span id="group__QkCircuitLibrary_1autotoc_md108" />
+  <span id="group__QkCircuitLibrary_1autotoc_md117" />
 
   Behavior is undefined `op` is not a valid, non-null pointer to a `QkObs`.
 
-  <span id="group__QkCircuitLibrary_1autotoc_md109" />
+  <span id="group__QkCircuitLibrary_1autotoc_md118" />
 
   #### References
 
-  <span id="group__QkCircuitLibrary_1autotoc_md109" />
+  <span id="group__QkCircuitLibrary_1autotoc_md118" />
 
   \[1]: D. Berry, G. Ahokas, R. Cleve and B. Sanders, “Efficient quantum algorithms for simulating sparse Hamiltonians” (2006). [arXiv:quant-ph/0508139](https://arxiv.org/abs/quant-ph/0508139)
 

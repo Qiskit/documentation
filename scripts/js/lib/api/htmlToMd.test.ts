@@ -42,6 +42,43 @@ async function toMd(
 // Transform tabs
 // ------------------------------------------------------------------
 
+test("handle sphinx-design tab-set", async () => {
+  expect(
+    await toMd(`<div role='main'>
+      <div class="sd-tab-set docutils">
+        <input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+        <label class="sd-tab-label" data-sync-group="code" data-sync-id="python" for="sd-tab-item-0">
+        PYTHON</label>
+        <div class="sd-tab-content docutils">
+          <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>x = 1
+</pre><button class="copybtn"><svg><title>Copy to clipboard</title></svg></button></div></div>
+        </div>
+        <input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+        <label class="sd-tab-label" data-sync-group="code" data-sync-id="c" for="sd-tab-item-1">
+        C</label>
+        <div class="sd-tab-content docutils">
+          <div class="highlight-c notranslate"><div class="highlight"><pre><span></span>int x = 1;
+</pre></div></div>
+        </div>
+      </div>
+    </div>
+`),
+  ).toEqual(`<Tabs group="code">
+  <TabItem value="python" label="PYTHON">
+    \`\`\`python
+    x = 1
+    \`\`\`
+  </TabItem>
+
+  <TabItem value="c" label="C">
+    \`\`\`c
+    int x = 1;
+    \`\`\`
+  </TabItem>
+</Tabs>
+`);
+});
+
 test("handle tabs", async () => {
   expect(
     await toMd(`<div role='main'>
@@ -525,6 +562,29 @@ test("escape pipe characters in math inside table cells", async () => {
 `);
 });
 
+test("escape norm bars and keep line breaks in math inside table cells", async () => {
+  expect(
+    await toMd(`
+<div role='main'>
+<table>
+<thead>
+<tr><th><p>Norm</p></th><th><p>Line break</p></th></tr>
+</thead>
+<tbody>
+<tr class="row-even">
+<td><p><span class="math notranslate nohighlight">\\(\\|\\vec{v}\\|_2\\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\\(a \\\\|b|\\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+    `),
+  ).toEqual(`| Norm                    | Line break          |
+| ----------------------- | ------------------- |
+| $\\Vert \\vec{v}\\Vert _2$ | $a \\\\\\vert b\\vert $ |
+`);
+});
+
 test("transform block math", async () => {
   expect(
     await toMd(`
@@ -761,7 +821,9 @@ test("convert class property headings", async () => {
     isReleaseNotes: false,
     markdown: `# circuits
 
-<Attribute id="qiskit_ibm_runtime.Estimator.circuits" attributeTypeHint="tuple[qiskit.circuit.quantumcircuit.QuantumCircuit, ...]" isDedicatedPage={true}>
+<Attribute id="qiskit_ibm_runtime.Estimator.circuits" isDedicatedPage={true}>
+  Type: \`tuple\`\\[\`qiskit.circuit.quantumcircuit.QuantumCircuit\`, ...]
+
   Quantum circuits that represents quantum states.
 </Attribute>\n`,
     meta: {
@@ -810,7 +872,9 @@ test("convert abstract class property headings", async () => {
     isReleaseNotes: false,
     markdown: `# circuits
 
-<Attribute id="qiskit_ibm_runtime.Estimator.circuits" attributeTypeHint="tuple[qiskit.circuit.quantumcircuit.QuantumCircuit, ...]" isDedicatedPage={true} modifiers="abstract property">
+<Attribute id="qiskit_ibm_runtime.Estimator.circuits" isDedicatedPage={true} modifiers="abstract property">
+  Type: \`tuple\`\\[\`qiskit.circuit.quantumcircuit.QuantumCircuit\`, ...]
+
   Quantum circuits that represents quantum states.
 </Attribute>\n`,
     meta: {
@@ -866,12 +930,34 @@ test("convert class attributes headings", async () => {
     isReleaseNotes: false,
     markdown: `# callback
 
-<Attribute id="qiskit_ibm_runtime.options.EnvironmentOptions.callback" attributeTypeHint="Optional[Callable]" attributeValue="None" isDedicatedPage={true} />\n`,
+<Attribute id="qiskit_ibm_runtime.options.EnvironmentOptions.callback" isDedicatedPage={true}>
+  Type: \`Optional\`\\[\`Callable\`]
+
+  Default value: \`None\`
+</Attribute>\n`,
     meta: {
       apiName: "qiskit_ibm_runtime.options.EnvironmentOptions.callback",
       apiType: "attribute",
     },
   });
+});
+
+test("attribute with < and & in default value produces valid MDX", async () => {
+  // StagedPassManager.invalid_stage_regex has &lt; / &gt; / &amp; in the value.
+  // The default value is emitted as a plain "Default value: ..." paragraph; special
+  // chars are escaped by remark-stringify (e.g. < → \<).
+  const result = await toMd(
+    `<div role='main'>
+<h1>invalid_stage_regex<a class='headerlink' href='#invalid-stage-regex' title='Permalink to this heading'>¶</a></h1>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qiskit.transpiler.StagedPassManager.invalid_stage_regex">
+<span class="sig-name descname"><span class="pre">invalid_stage_regex</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">re.compile('\\s|\\+|\\-|\\*|\\/|\\\\|\\%|\\&lt;|\\&gt;|\\&#64;|\\!|\\~|\\^|\\&amp;|\\:|\\[|\\]|\\{|\\}|\\(|\\)')</span></span><a class="headerlink" href="#qiskit.transpiler.StagedPassManager.invalid_stage_regex" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+</div>
+`,
+  );
+  expect(result).toContain("Default value:");
+  expect(result).toContain("re.compile(");
 });
 
 test("convert functions headings", async () => {
@@ -1150,7 +1236,7 @@ test("generate correct heading level", async () => {
 
 ### attribute1
 
-<Attribute id="qiskit.test.attribute1" attributeTypeHint="None" attributeValue="None">
+<Attribute id="qiskit.test.attribute1">
   Attribute 1
 </Attribute>
 

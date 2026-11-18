@@ -1,0 +1,341 @@
+---
+title: "Synthesize an Evolution gate in bosonic space"
+description: "Synthesize an Evolution gate in bosonic space for the latest version of Qiskit bosons"
+---
+
+<span id="bosonic-synthesis-explanation" />
+
+# Synthesize an Evolution gate in bosonic space
+
+The time evolution $e^{-itH}$ of a Hamiltonian that is a sum of non-commuting pieces cannot be implemented exactly gate by gate. A **product formula** approximates it by a sequence of short evolutions under the individual pieces, and the approximation error is called the Trotter error.
+
+You can apply a product formula in two places, and they are not interchangeable:
+
+1.  **In bosonic space**, before any truncation or encoding has been chosen. The formula sees the *groups* of the operator (see [Group operator terms: use the operator structure](grouping#grouping-explanation)) and can interleave them.
+2.  **In qubit space**, inside Qiskit’s [`PauliEvolutionGate`](/docs/api/qiskit/qiskit.circuit.library.PauliEvolutionGate), after the operator has been mapped. The formula sees one Pauli operator per group and can only subdivide the terms *within* it.
+
+Only the first can reduce the error between groups that do not commute, which is usually the dominant one. This guide shows how to use it.
+
+<Admonition title="Important" type="danger">
+  Both steps are optional. An [`Evolution`](/docs/api/qiskit-bosons/circuit-library-evolution#qiskit_bosons.circuit.library.Evolution "qiskit_bosons.circuit.library.Evolution") gate that is never decomposed in bosonic space reaches the boson-to-qubit stage whole and is mapped and synthesized there. That incurs *no* error at the bosonic level, only whatever the qubit-level formula introduces.
+</Admonition>
+
+## Set up
+
+A two-site Bose-Hubbard chain, the smallest example in which the groups do not commute (see [Simulate Bose-Hubbard dynamics with a choice of encoding](bose-hubbard#bose-hubbard-getting-started) for the full model). It is grouped into one Hermitian group for the bond and one diagonal group for the on-site interaction:
+
+```python
+>>> import numpy as np
+>>> from qiskit.quantum_info import SparsePauliOp, Statevector
+>>> from qiskit.transpiler import PassManager
+>>> from scipy.sparse import csc_matrix
+>>> from scipy.sparse.linalg import expm_multiply
+>>> from qiskit_bosons.circuit import BosonicCircuit
+>>> from qiskit_bosons.circuit.library import Evolution, InitializeModes
+>>> from qiskit_bosons.mappers import LevelSpec
+>>> from qiskit_bosons.mappers.library import occupation_encoding
+>>> from qiskit_bosons.operators import BosonOperator, ann, cre
+>>> from qiskit_bosons.transpiler.presets import generate_preset_occupation_pass_manager
+>>>
+>>> num_sites, max_occupation, total_time = 2, 2, 0.8
+>>> bonds = [(0, 1)]
+>>> terms = {}
+>>> for left, right in bonds:
+...     terms[(cre(left), ann(right))] = -1.0
+...     terms[(cre(right), ann(left))] = -1.0
+>>> for site in range(num_sites):
+...     terms[(cre(site), cre(site), ann(site), ann(site))] = 1.0
+>>> hamiltonian = BosonOperator.from_dict(terms)
+>>> hamiltonian.groups = [
+...     len(bonds)
+...     if len({mode for _, mode in term}) == 1
+...     else bonds.index(tuple(sorted({mode for _, mode in term})))
+...     for term, _ in hamiltonian.iter_terms()
+... ]
+>>> hamiltonian.num_groups()
+2
+```
+
+To measure an error you need a reference. The exact evolution of the Hamiltonian *as mapped at the same truncation* is the right one, because the truncation is a separate approximation:
+
+```python
+>>> spec = LevelSpec(max_occupation, "unary_projected")
+>>> mapped = occupation_encoding(hamiltonian, spec).simplify()
+>>> matrix = csc_matrix(SparsePauliOp.from_sparse_observable(mapped).to_matrix(sparse=True))
+>>> pm = generate_preset_occupation_pass_manager(spec)
+>>> pm.qubit = PassManager()  # keep each group as one exact PauliEvolutionGate
+>>>
+>>> def build(**evolution_kwargs):
+...     circuit = BosonicCircuit(num_sites)
+...     circuit.append(InitializeModes([1, 1]), circuit.modes)
+...     circuit.append(
+...         Evolution(num_sites, hamiltonian, time=total_time, **evolution_kwargs), circuit.modes
+...     )
+...     return circuit
+>>>
+>>> # Under the unary encodings, occupation ``n`` of mode ``m`` sets qubit ``m * d + n``, with
+>>> # ``d = max_occupation + 1`` levels per mode. That places |1, 1> on the basis state below.
+>>> levels = max_occupation + 1
+>>> index = sum(1 << (mode * levels + n) for mode, n in enumerate([1, 1]))
+>>> initial = Statevector.from_int(index, 2**(num_sites * levels)).data
+>>> exact = expm_multiply(-1j * total_time * matrix, initial)
+```
+
+```python
+>>> def error(circuit):
+...     """Distance to the exact evolution, of the circuit's product of group exponentials."""
+...     lowered = pm.run(circuit)
+...     state = Statevector.from_int(0, 2**lowered.num_qubits).evolve(lowered).data
+...     return float(np.max(np.abs(state - exact)))
+```
+
+<Admonition title="Note" type="note">
+  `error` deliberately simulates the lowered circuit *without* decomposing its [`PauliEvolutionGate`](/docs/api/qiskit/qiskit.circuit.library.PauliEvolutionGate) instances. [`Statevector`](/docs/api/qiskit/qiskit.quantum_info.Statevector) applies each as the exact exponential of its group, so the only thing left is the product of group exponentials that the bosonic synthesis chose.
+</Admonition>
+
+## The default
+
+With no `synthesis` argument an [`Evolution`](/docs/api/qiskit-bosons/circuit-library-evolution#qiskit_bosons.circuit.library.Evolution "qiskit_bosons.circuit.library.Evolution") gate decomposes with [`BosonicLieTrotter`](/docs/api/qiskit-bosons/circuit-library-synthesis-bosonic-lie-trotter#qiskit_bosons.circuit.library.synthesis.BosonicLieTrotter "qiskit_bosons.circuit.library.synthesis.BosonicLieTrotter"), the first-order formula: one factor per group, each for the whole time.
+
+```python
+>>> dict(build().decompose().count_ops())
+{'Evolution': 2, 'InitializeModes': 1}
+```
+
+Without decomposing, the whole gate is handed to the qubit stage and there is no bosonic Trotter error at all:
+
+```python
+>>> error(build()) < 1e-6
+True
+```
+
+Decomposed, a genuine error appears, because the two groups do not commute:
+
+```python
+>>> error(build().decompose()) > 0.1
+True
+```
+
+## Reduce the error
+
+Pass a different synthesis method to the gate. A higher **order** composes the factors symmetrically so that the leading error terms cancel; more **repetitions** divide the time into shorter steps.
+
+```python
+>>> from qiskit_bosons.circuit.library.synthesis import BosonicLieTrotter, BosonicSuzukiTrotter
+>>>
+>>> for label, synthesis in [
+...     ("Lie-Trotter", BosonicLieTrotter()),
+...     ("Suzuki, order 2", BosonicSuzukiTrotter(order=2)),
+...     ("Suzuki, order 4", BosonicSuzukiTrotter(order=4)),
+...     ("Suzuki, order 4*", BosonicSuzukiTrotter(order=4, merge_adjacent=False)),
+... ]:
+...     circuit = build(synthesis=synthesis).decompose()
+...     print(f"{label:16s} {circuit.count_ops()['Evolution']:3d} factors")
+Lie-Trotter        2 factors
+Suzuki, order 2    3 factors
+Suzuki, order 4   11 factors
+Suzuki, order 4*  15 factors
+```
+
+Each increase of the order by two composes five sweeps of the one below (the $5^{(k-2)/2}$ growth of Suzuki’s recursion, applied to the $2n - 1$ factors of order 2), which is the count in the last line, marked with a star. The sweeps meet on the same factor, so the neighboring gates evolve under one operator and are fused into a single gate with the summed time. That saves one gate per seam and is exact. Pass `merge_adjacent=False` to keep the textbook sequence. Either way, a higher order buys a smaller error:
+
+```python
+>>> lie = error(build(synthesis=BosonicLieTrotter()).decompose())
+>>> second = error(build(synthesis=BosonicSuzukiTrotter(order=2)).decompose())
+>>> fourth = error(build(synthesis=BosonicSuzukiTrotter(order=4)).decompose())
+>>> lie > second > fourth
+True
+```
+
+Repetitions trade depth for accuracy at a different rate. The first-order error falls linearly in the step size, the second-order one quadratically:
+
+```python
+>>> lie_errors = [error(build(synthesis=BosonicLieTrotter(reps=r)).decompose()) for r in (1, 2, 4, 8)]
+>>> bool(all(a > b for a, b in zip(lie_errors, lie_errors[1:])))
+True
+>>> bool(lie_errors[0] / lie_errors[-1] > 6)  # about 8, i.e. linear in 1 / reps
+True
+>>> suzuki_errors = [
+...     error(build(synthesis=BosonicSuzukiTrotter(order=2, reps=r)).decompose()) for r in (1, 2, 4)
+... ]
+>>> bool(suzuki_errors[0] / suzuki_errors[-1] > 10)  # about 16, i.e. quadratic in 1 / reps
+True
+```
+
+Which is the better trade depends on the operator. Note that an operator with a single group is exact at any order, because a lone factor commutes with itself, and the formula then collapses to one gate rather than re-splitting it.
+
+## Measure the cost
+
+A smaller error costs more factors, and each factor costs entangling gates once the qubit stage has synthesized it. How many depends on the encoding, so count them through the preset pipeline, with the basis fixed and no qubit-level optimization (`optimization_level=0`), to see the price of each method:
+
+```python
+>>> basis = ["rz", "sx", "x", "cx"]
+>>>
+>>> def cx_count(circuit, encoding):
+...     spec = LevelSpec(max_occupation, encoding)
+...     lowered = generate_preset_occupation_pass_manager(
+...         spec, optimization_level=0, basis_gates=basis
+...     ).run(circuit)
+...     return lowered.count_ops().get("cx", 0)
+>>>
+>>> methods = [
+...     ("Lie-Trotter", BosonicLieTrotter()),
+...     ("Suzuki, order 2", BosonicSuzukiTrotter(order=2)),
+...     ("Suzuki, order 4", BosonicSuzukiTrotter(order=4)),
+... ]
+>>> encodings = ("gray", "unary_unprojected")
+>>> counts = {
+...     encoding: [
+...         cx_count(build(synthesis=method).decompose(), encoding) for _, method in methods
+...     ]
+...     for encoding in encodings
+... }
+>>> # the order buys accuracy at a price that grows with it
+>>> bool(counts["gray"][0] < counts["gray"][1] < counts["gray"][2])
+True
+```
+
+The exact counts depend on how Qiskit synthesizes the evolution gates, which changes between releases, so the plot shows them rather than a table:
+
+![Grouped bar chart of the CX count for Lie-Trotter and Suzuki of order 2 and 4, for the Gray and the unary encoding. The counts grow with the order, and the unary bars are higher.](/docs/images/addons/qiskit-bosons/bosonic_synthesis-10.avif)
+
+Each group of bars is a method: Lie-Trotter, Suzuki of order 2, and Suzuki of order 4. The order buys accuracy at a price that grows by the factor of the recursion, and the unary encoding pays more than the Gray code for every method because each of its factors maps to more entangling gates. Choose the method for the accuracy that you need and the encoding for the hardware, and keep the two choices apart: the bosonic circuit above never changes.
+
+## Apply one method to a whole circuit
+
+To set `synthesis` on each gate, you must thread the choice through everything that builds one. The [`B2BSynthesis`](/docs/api/qiskit-bosons/transpiler-passes-b-2-b-synthesis#qiskit_bosons.transpiler.passes.B2BSynthesis "qiskit_bosons.transpiler.passes.B2BSynthesis") pass makes the choice once for a pipeline instead. Its `config` names the method for each type of gate, and it both selects the method and expands the gates:
+
+```python
+>>> from qiskit_bosons.transpiler import BosonicPassManager
+>>> from qiskit_bosons.transpiler.passes import B2BSynthesis
+>>>
+>>> trotterize = BosonicPassManager([B2BSynthesis({"Evolution": BosonicSuzukiTrotter(order=2)})])
+>>> dict(trotterize.run(build()).count_ops())
+{'Evolution': 3, 'InitializeModes': 1}
+```
+
+A method can also be named, with the arguments for its `__init__`, instead of being built: `B2BSynthesis({"Evolution": ("SuzukiTrotter", (), {"order": 2})})`. The available names are those of the [`B2BSynthesisPluginManager`](/docs/api/qiskit-bosons/circuit-library-synthesis-b-2-b-synthesis-plugin-manager#qiskit_bosons.circuit.library.synthesis.B2BSynthesisPluginManager "qiskit_bosons.circuit.library.synthesis.B2BSynthesisPluginManager"), and a method that is registered nowhere can be handed over as an instance, as above.
+
+With `apply=False` the pass only selects the method and leaves the expansion to the point where it is wanted, for example to inspect the circuit first. An atomic gate is never touched, not even tagged:
+
+```python
+>>> selected = BosonicPassManager(
+...     [B2BSynthesis({"Evolution": ("SuzukiTrotter", (), {"order": 2})}, apply=False)]
+... ).run(build())
+>>> selected.count_ops()["Evolution"]  # selected, not yet expanded
+1
+>>> selected.decompose().count_ops()["Evolution"]  # expanded on demand
+3
+```
+
+An unexpanded gate reaches the boson-to-qubit stage whole, where it is mapped without its `synthesis` being consulted, so every method then produces identical output.
+
+An optional `filter` restricts it to the gates that benefit. Evolutions whose groups all commute, such as a Hamiltonian made only of number operators, are synthesized exactly at any order, so a higher order would only add depth there.
+
+### Restrict the pass to the gates that benefit
+
+A purely diagonal operator makes the point concrete, because number operators commute with each other. Its groups are exact at first order, and the second order spends entangling gates for nothing:
+
+```python
+>>> # one group per term, each Hermitian; the order is fixed because order two evolves the first
+>>> # group twice, so which group comes first changes the cost
+>>> diagonal = BosonOperator.from_terms_with_groups(
+...     [([cre(0), ann(0), cre(1), ann(1)], 1.0, 0), ([cre(0), ann(0)], 0.5, 1)]
+... )
+>>>
+>>> def diagonal_cost(synthesis):
+...     circuit = BosonicCircuit(num_sites)
+...     circuit.append(Evolution(num_sites, diagonal, time=total_time, synthesis=synthesis), circuit.modes)
+...     return cx_count(circuit.decompose(), "gray")
+>>>
+>>> bool(diagonal_cost(BosonicSuzukiTrotter(order=2)) > diagonal_cost(BosonicLieTrotter()))
+True
+```
+
+Both circuits are exact, so the second spends more entangling gates for no gain. (The symmetric order-two formula applies the first group twice at half the time each, and thus the cost depends on which group comes first.) The `filter` takes a predicate over the [`DAGOpNode`](/docs/api/qiskit/qiskit.dagcircuit.DAGOpNode) and leaves the rejected gates untouched, so one pass can raise the order on the gates that benefit and keep the rest at first order. The predicate below accepts a gate only when its operator moves bosons between modes, which is when the groups fail to commute:
+
+```python
+>>> def is_diagonal(operator):
+...     """Whether every term only counts bosons, rather than moving them between modes."""
+...     return all(
+...         sorted(mode for created, mode in actions if created)
+...         == sorted(mode for created, mode in actions if not created)
+...         for actions, _ in operator.iter_terms()
+...     )
+>>>
+>>> def mixed_circuit():
+...     circuit = BosonicCircuit(num_sites)
+...     circuit.append(Evolution(num_sites, hamiltonian, time=total_time), circuit.modes)
+...     circuit.append(Evolution(num_sites, diagonal, time=total_time), circuit.modes)
+...     return circuit
+>>>
+>>> order_2 = BosonicSuzukiTrotter(order=2)
+>>> everywhere = cx_count(
+...     BosonicPassManager([B2BSynthesis({"Evolution": order_2})]).run(mixed_circuit()), "gray"
+... )
+>>> restricted = cx_count(
+...     BosonicPassManager(
+...         [
+...             B2BSynthesis(
+...                 {"Evolution": order_2},
+...                 filter=lambda node: not is_diagonal(node.op.operator),
+...             )
+...         ]
+...     ).run(mixed_circuit()),
+...     "gray",
+... )
+>>> bool(everywhere > restricted)  # the filter saves entangling gates
+True
+```
+
+If you run the pass again, nothing changes: the factors it emits are *atomic*.
+
+## Atomic factors
+
+An [`Evolution`](/docs/api/qiskit-bosons/circuit-library-evolution#qiskit_bosons.circuit.library.Evolution "qiskit_bosons.circuit.library.Evolution") marked `atomic` has no definition, so [`decompose()`](/docs/api/qiskit-bosons/circuit-bosonic-circuit#qiskit_bosons.circuit.BosonicCircuit.decompose "qiskit_bosons.circuit.BosonicCircuit.decompose") leaves it in place however often it is applied. A synthesis marks the factors it emits this way, and so does [`BosonicQDrift`](/docs/api/qiskit-bosons/circuit-library-synthesis-bosonic-q-drift#qiskit_bosons.circuit.library.synthesis.BosonicQDrift "qiskit_bosons.circuit.library.synthesis.BosonicQDrift") for the terms it samples.
+
+This is more than tidiness. Splitting a Hermitian group further, term by term, yields factors that are individually **not** Hermitian, and the exponential of a non-Hermitian operator is not unitary:
+
+```python
+>>> circuit = build()
+>>> once = circuit.decompose()
+>>> dict(circuit.decompose(reps=5).count_ops()) == dict(once.count_ops())
+True
+```
+
+<Admonition title="Caution" type="note">
+  Each factor must be Hermitian on its own. A Hermitian operator split into groups can produce non-Hermitian ones, such as a hopping term separated from its adjoint. Check with [`groups_are_hermitian()`](/docs/api/qiskit-bosons/operators-terms-groups-are-hermitian#qiskit_bosons.operators.terms.groups_are_hermitian "qiskit_bosons.operators.terms.groups_are_hermitian"). An operator *without* groups is split term by term, and the qubit stage then rejects the factors with `Operator contains complex coefficients`. The symmetrization of an even order partially cancels the error of a non-Hermitian factor, so a wrongly grouped operator can look better at order 2 than at order 1 while still being wrong.
+</Admonition>
+
+## Repeat a short step
+
+For a circuit-level alternative, build one short Trotter step and repeat it. [`repeat()`](/docs/api/qiskit-bosons/circuit-bosonic-circuit#qiskit_bosons.circuit.BosonicCircuit.repeat "qiskit_bosons.circuit.BosonicCircuit.repeat") flattens the repetitions into one circuit and leaves the boundaries adjacent, so passes can act across them:
+
+```python
+>>> step = BosonicCircuit(num_sites)
+>>> step.append(Evolution(num_sites, hamiltonian, time=total_time / 4), step.modes)
+>>> dict(step.repeat(4).count_ops())
+{'Evolution': 4}
+```
+
+Pass `insert_barriers=True` to keep the repetitions apart. A barrier is mapped onto every qubit of the registers it touches, because an encoding needs several qubits per mode and a mode has no per-qubit image of its own:
+
+```python
+>>> [inst.operation.name for inst in step.repeat(3, insert_barriers=True)._inner.data]
+['Evolution', 'barrier', 'Evolution', 'barrier', 'Evolution']
+```
+
+<Admonition title="Note" type="note">
+  `repeat` is unrelated to the `reps` of a synthesis method. A synthesis subdivides a *single* evolution into more, shorter factors. Repeating a circuit that holds one evolution merely multiplies its total time.
+</Admonition>
+
+## Combine with a qubit-level formula
+
+The two levels compose, and where both approximate, the accuracy of the result is governed by the weaker of the two. Raising the bosonic order while the qubit-side formula stays first-order buys little. See `MapperFnEvolutionSynthesis` for the qubit-side formula. It keeps the Pauli term order that the mapper chose, and so `group_wise()` can emit the terms of each group adjacent to one another, and `simplify()` can pin a canonical order instead.
+
+## Next steps
+
+*   [Transpile bosonic circuits](transpilation#transpilation-explanation) explains the stages that follow the bosonic synthesis, and where [`B2BSynthesis`](/docs/api/qiskit-bosons/transpiler-passes-b-2-b-synthesis#qiskit_bosons.transpiler.passes.B2BSynthesis "qiskit_bosons.transpiler.passes.B2BSynthesis") sits among them.
+*   [Group operator terms: use the operator structure](grouping#grouping-explanation) explains how to assign and check the groups that a product formula interleaves.
+*   [Simulate Bose-Hubbard dynamics with a choice of encoding](bose-hubbard#bose-hubbard-getting-started) applies the repetition scheme to a complete example.
+

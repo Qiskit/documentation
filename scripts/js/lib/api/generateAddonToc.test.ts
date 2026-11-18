@@ -266,6 +266,130 @@ test("API reference caption: external links pass through unchanged", async () =>
   });
 });
 
+test("API reference caption: internal pydoc entry with children maps to a flat /docs/api link", async () => {
+  const { artifactDir } = await makeTestDirs(
+    [{ href: "#", title: "Home" }],
+    [
+      {
+        caption: "API reference",
+        items: [
+          {
+            href: "pydoc/index.html",
+            title: "Python API reference",
+            children: [
+              { href: "pydoc/my_addon.foo.html", title: "my_addon.foo" },
+              { href: "pydoc/my_addon.bar.html", title: "my_addon.bar" },
+            ],
+          },
+        ],
+      },
+    ],
+  );
+
+  const pkg = await makePkg();
+  const toc = await generateAddonToc(pkg, artifactDir);
+  const apiSection = toc.children.find((c) => c.title === "API reference");
+
+  expect(apiSection?.children).toEqual([
+    { title: "Python API reference", url: "/docs/api/my-addon" },
+  ]);
+});
+
+test("API reference caption: stubs, apidocs, and apidoc entries map to /docs/api/{pkg}", async () => {
+  const { artifactDir } = await makeTestDirs(
+    [{ href: "#", title: "Home" }],
+    [
+      {
+        caption: "API reference",
+        items: [
+          { href: "stubs/index.html", title: "Stubs" },
+          { href: "apidocs/index.html", title: "Apidocs" },
+          { href: "apidoc/my_addon.html", title: "Apidoc" },
+        ],
+      },
+    ],
+  );
+
+  const pkg = await makePkg();
+  const toc = await generateAddonToc(pkg, artifactDir);
+  const apiSection = toc.children.find((c) => c.title === "API reference");
+
+  expect(apiSection?.children).toEqual([
+    { title: "Stubs", url: "/docs/api/my-addon" },
+    { title: "Apidocs", url: "/docs/api/my-addon" },
+    { title: "Apidoc", url: "/docs/api/my-addon" },
+  ]);
+});
+
+test("API reference caption: internal cdoc entry maps to /docs/api/{pkg}-c", async () => {
+  const { artifactDir } = await makeTestDirs(
+    [{ href: "#", title: "Home" }],
+    [
+      {
+        caption: "API reference",
+        items: [
+          { href: "pydoc/index.html", title: "Python API reference" },
+          {
+            href: "cdoc/index.html",
+            title: "C API reference",
+            children: [{ href: "cdoc/qf-foo.html", title: "QfFoo" }],
+          },
+        ],
+      },
+    ],
+  );
+
+  const pkg = await makePkg("qiskit-fermions");
+  const toc = await generateAddonToc(pkg, artifactDir);
+  const apiSection = toc.children.find((c) => c.title === "API reference");
+
+  expect(apiSection?.children).toEqual([
+    { title: "Python API reference", url: "/docs/api/qiskit-fermions" },
+    { title: "C API reference", url: "/docs/api/qiskit-fermions-c" },
+  ]);
+});
+
+test("API reference caption: cdoc entry without a {pkg}-c package throws", async () => {
+  const { artifactDir } = await makeTestDirs(
+    [{ href: "#", title: "Home" }],
+    [
+      {
+        caption: "API reference",
+        items: [{ href: "cdoc/index.html", title: "C API reference" }],
+      },
+    ],
+  );
+
+  const pkg = await makePkg();
+  await expect(generateAddonToc(pkg, artifactDir)).rejects.toThrow(
+    /no my-addon-c package/,
+  );
+});
+
+test("release-notes entry is matched by href even when renamed", async () => {
+  const { artifactDir } = await makeTestDirs(
+    [{ href: "#", title: "Home" }],
+    [
+      {
+        caption: "API reference",
+        items: [
+          { href: "release-notes.html", title: "Changelog" },
+          { href: "release_notes.html", title: "What's new" },
+        ],
+      },
+    ],
+  );
+
+  const pkg = await makePkg();
+  const toc = await generateAddonToc(pkg, artifactDir);
+  const apiSection = toc.children.find((c) => c.title === "API reference");
+
+  expect(apiSection?.children).toEqual([
+    { title: "Changelog", url: "/docs/api/my-addon/release-notes" },
+    { title: "What's new", url: "/docs/api/my-addon/release-notes" },
+  ]);
+});
+
 test("sidebar order is preserved exactly", async () => {
   const { artifactDir } = await makeTestDirs([
     { href: "#", title: "Home" },
@@ -330,6 +454,28 @@ test("subdirectory section has correct child URLs", async () => {
   expect(guides?.children?.[0].url).toBe(
     "/docs/addons/my-addon/how_tos/my-guide",
   );
+});
+
+test("has-children with flat (non-subdirectory) children produces correct URLs", async () => {
+  const { artifactDir } = await makeTestDirs([
+    { href: "#", title: "Home" },
+    {
+      href: "install.html",
+      title: "Installation",
+      children: [
+        { href: "install-c.html", title: "C" },
+        { href: "install-py.html", title: "Python" },
+      ],
+    },
+  ]);
+
+  const pkg = await makePkg();
+  const toc = await generateAddonToc(pkg, artifactDir);
+  const main = toc.children[0];
+
+  const install = main.children?.find((c) => c.title === "Installation");
+  expect(install?.children?.[0].url).toBe("/docs/addons/my-addon/install-c");
+  expect(install?.children?.[1].url).toBe("/docs/addons/my-addon/install-py");
 });
 
 test("external link in main section is passed through unchanged", async () => {

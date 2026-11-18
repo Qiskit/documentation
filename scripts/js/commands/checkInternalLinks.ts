@@ -20,28 +20,7 @@ import { readApiMinorVersion } from "../lib/apiVersions.js";
 import { File } from "../lib/links/InternalLink.js";
 import { FileBatch } from "../lib/links/FileBatch.js";
 import { QISKIT_REMOVED_PAGES } from "../lib/links/QiskitRemovedPages.js";
-
-// While these files don't exist in this repository, the link
-// checker should assume that they exist in production.
-const SYNTHETIC_FILES: string[] = [
-  "learning/index.mdx",
-  "docs/index.mdx",
-  "docs/admin/analytics.mdx",
-  "docs/errors.mdx",
-  "docs/api/qiskit-ibm-runtime/index.mdx",
-  "docs/api/qiskit-ibm-runtime/tags/jobs.mdx",
-  "docs/api/qiskit-transpiler-service-rest/index.mdx",
-  "docs/api/qiskit-ibm-runtime/tags/usage.mdx",
-  "docs/api/qiskit-ibm-runtime/tags/sessions.mdx",
-  "docs/api/qiskit-runtime-rest/tags/instances.mdx",
-  "docs/api/qiskit-runtime-rest/tags/backends.mdx",
-  "docs/api/qiskit-runtime-rest/index.mdx",
-  "announcements/product-updates/2024-02-14-qiskit-runtime-primitives-update.mdx",
-  "announcements/product-updates.mdx",
-  "announcements/index.mdx",
-  "announcements/product-updates/2025-03-03-new-version-dynamic-circuits.mdx",
-  "announcements/product-updates/2025-09-25-new-dynamic-circuits.mdx",
-];
+import { SYNTHETIC_FILES } from "../lib/tocFiles.js";
 
 interface Arguments {
   [x: string]: unknown;
@@ -114,8 +93,10 @@ const QISKIT_REMOVED_PAGES_TO_LOAD = [
 const RUNTIME_GLOBS_TO_LOAD = [
   "docs/api/qiskit/*.mdx",
   "docs/api/qiskit-ibm-runtime/options.mdx",
+  "docs/api/qiskit-ibm-runtime/runtime-service.mdx",
   "docs/guides/*.{mdx,ipynb}",
-  "docs/guides/*.{mdx,ipynb}",
+  "docs/qiskit/*.{mdx,ipynb}",
+  "docs/ibm-quantum-compute/*.{mdx,ipynb}",
   ...QISKIT_REMOVED_PAGES_TO_LOAD,
 ];
 const TRANSPILER_GLOBS_TO_LOAD = ["docs/api/qiskit/*.mdx"];
@@ -125,23 +106,28 @@ const QISKIT_GLOBS_TO_LOAD = [
   "docs/api/qiskit/release-notes/0.46.mdx",
   "docs/api/qiskit/release-notes/index.mdx",
   "docs/guides/qiskit-1.0-features.mdx",
-  "docs/guides/construct-circuits.ipynb",
-  "docs/guides/bit-ordering.ipynb",
-  "docs/guides/primitives.ipynb",
-  "docs/guides/configure-qiskit-local.mdx",
-  "docs/guides/transpiler-stages.ipynb",
+  "docs/qiskit/construct-circuits.ipynb",
+  "docs/qiskit/bit-ordering.ipynb",
+  "docs/qiskit/primitives.ipynb",
+  "docs/qiskit/configure-qiskit-local.mdx",
+  "docs/qiskit/transpiler-stages.ipynb",
   "docs/api/qiskit/providers.mdx",
-  "docs/guides/qiskit-sdk-version-strategy.mdx",
+  "docs/qiskit/qiskit-sdk-version-strategy.mdx",
   "docs/guides/qiskit-backendv1-to-v2.mdx",
-  "docs/guides/install-qiskit.mdx",
-  "docs/api/qiskit-ibm-runtime/estimator-v2.mdx",
+  "docs/qiskit/install-qiskit.mdx",
+  "docs/api/qiskit-ibm-runtime/server-side-estimator-estimator-v2.mdx",
   "docs/api/qiskit-ibm-runtime/runtime-service.mdx",
   // Qiskit sometimes links to the C API, so we load every
   // qiskit-c latest version page to avoid having errors in the future.
   "docs/api/qiskit-c/*",
 ];
 // This is reused amongst all the addons to make this config less verbose.
-const ADDON_GLOBS_TO_LOAD = ["docs/api/qiskit/*.mdx"];
+// It includes the addon guide pages (docs/addons/**) since historical addon
+// API docs may link to them,
+const ADDON_GLOBS_TO_LOAD = [
+  "docs/api/qiskit/*.mdx",
+  "docs/addons/**/*.{mdx,ipynb}",
+];
 
 async function determineFileBatches(args: Arguments): Promise<FileBatch[]> {
   const currentBatch = await determineCurrentDocsFileBatch(args);

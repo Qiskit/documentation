@@ -1,0 +1,222 @@
+---
+title: "Write logs and handle errors"
+description: "Write logs from a managed workflow, report errors that your local notebook can read, and save partial work when a job is canceled."
+---
+
+{/* cspell:ignore levelname */}
+
+# Write logs and handle errors
+
+{/* <Admonition type="caution" title="Placeholder content">
+- **Errors from custom workflows.** A managed workflow stores a structured error for a custom workflow only when the workflow calls `send_error()`. If custom workflows get the same top-level handler as Catalog Functions, remove the handler from [Best practice: report errors with send_error()](#best-practice-report-errors-with-send_error).
+- **Time after cancel.** Confirm how long a job can run after `SIGTERM` before the managed workflow stops it.
+</Admonition> */}
+
+Set up your workflow code to write logs, report errors to your local notebook, and save partial work when a job is canceled. To read these outputs from your local notebook, see [Run a managed workflow](/docs/managed-workflows/run-managed-workflow).
+
+| In the workflow | In your local notebook |
+| - | - |
+| Write with a logger from the `logging` module, or call `print()`. | `job.logs()` returns the lines. |
+| Raise an exception, or exit with a nonzero code. | `job.status()` returns `ERROR`, and `job.logs()` shows the traceback. |
+| Call `send_error()`. | `job.error_message()` and `job.events(type="ERROR")` return the code, message, and details. |
+| Call `save_result()` in a `SIGTERM` handler. | `job.result()` returns the partial result of a canceled job. |
+
+## Write logs
+
+Anything that the workflow writes to standard output or standard error goes to the job's logs. Read the logs with `job.logs()` while the job runs or after it ends.
+
+### Set up a logger
+
+Use the `logging` module from the Python standard library. `logging.basicConfig()` writes to standard error, which reaches the logs without delay. The format in the following example adds a timestamp to each line:
+
+<CodeTitle title="source_files/my_workflow.py" />
+```python
+import logging
+
+logging.basicConfig(
+    level=logging.WARNING,
+    format="%(asctime)s %(levelname)s %(name)s: %(message)s",
+)
+logger = logging.getLogger("my_workflow")
+logger.setLevel(logging.INFO)
+
+logger.info("Transpiled %d circuits: depth %d -> %d", len(circuits), 1250, 730)
+```
+
+```text
+2026-11-01 21:57:35,195 INFO my_workflow: Transpiled 12 circuits: depth 1250 -> 730
+```
+
+`level=logging.WARNING` hides `INFO` messages from other packages, and `logger.setLevel(logging.INFO)` keeps `INFO` messages for your own logger. `qiskit_ibm_runtime` sets its own level with the `QISKIT_IBM_RUNTIME_LOG_LEVEL` environment variable.
+
+`print()` also reaches the logs, but standard output is buffered, so printed lines might not appear until the job ends. If you use `print()`, pass `flush=True`.
+
+{/* REVIEW: get_logger() from qiskit_serverless adds a [PUBLIC] prefix that Functions uses to split provider and user logs for Catalog Functions; custom workflow logs strip it. Tested with 0.37.0: its lines have no timestamp, and logger.exception() and exc_info=True drop the traceback (PrefixFormatter builds new records with exc_info=None). Confirm whether to recommend the standard logging module for custom workflows, or to fix get_logger(). */}
+
+### Set the log level for each run
+
+To debug one run without changing the code, pass the log level as an argument:
+
+<CodeTitle title="run_workflow_remotely.ipynb" />
+```python
+job = my_workflow.run(circuits=circuits, log_level="DEBUG")
+```
+
+To enable this, set the level of your logger from the argument:
+
+<CodeTitle title="source_files/my_workflow.py" />
+```python
+from qiskit_serverless import get_arguments
+
+arguments = get_arguments()
+logger.setLevel(arguments.get("log_level", "INFO"))
+```
+
+If the workflow has an [argument schema](/docs/managed-workflows/managed-workflow-inputs-and-outputs#best-practice-validate-arguments-with-a-schema), declare `log_level` in it, for example as `{"enum": ["DEBUG", "INFO", "WARNING"]}`.
+
+### Best practice: decide what to log
+
+Log enough to reconstruct a run from its logs:
+
+- **At the start, log what the run received.** Log the backend name, the number of circuits, and the other settings that change between runs.
+- **Log the start and end of each stage.** Use fixed messages that you can search for.
+- **Log iterations at a fixed interval.** For example, log a line such as `iteration 10/200, energy=-1.1000` every 10 iterations, instead of every iteration.
+- **Log exceptions with `logger.exception()` inside an `except` block.** The line includes the full traceback, even if the workflow recovers from the error.
+- **Turn off progress bars.** The logs store each refresh of a progress bar, such as one from `tqdm`, as a separate line. Pass `disable=True` to `tqdm`, or log at an interval instead.
+- **Keep the logs small.** Do not log large data, such as every shot. A managed workflow keeps only the newest 50 MB of logs for each job.
+- **Use the words "error" and "exception" only in messages about failures.** If a failed job did not [report its error](#best-practice-report-errors-with-send_error), the exception that `job.result()` raises contains only the log lines that include these words.
+
+## Best practice: report errors with send_error()
+
+When the workflow raises an exception, the job ends with the `ERROR` status, and the traceback goes to the logs. A managed workflow does not store the error, even for a `ServerlessError`. `job.error_message()` returns `{}`, and the exception that `job.result()` raises contains only the log lines that include `error` or `exception`. Checks of argument types and ranges belong in an [argument schema](/docs/managed-workflows/managed-workflow-inputs-and-outputs#best-practice-validate-arguments-with-a-schema), which rejects a bad run before the job starts.
+
+Report every error that stops the workflow with `send_error()`, so that your local notebook gets a short error with a code and details:
+
+<CodeTitle title="run_workflow_remotely.ipynb" />
+```python
+print(job.error_message())
+```
+
+```text
+
+| Message: The circuit has more qubits than the backend.
+| Code: 4500
+| Exception: InputError
+| Details:
+|   - circuit_qubits: 10
+|   - backend_qubits: 5
+```
+
+`job.result()` raises a `QiskitServerlessException` with the same text.
+
+To enable this, raise `ServerlessError` where the error happens, and wrap the code of your entrypoint in a `try` block that sends any error with `send_error()`. A workflow adds this handler to Catalog Functions, but not to managed workflows:
+
+<CodeTitle title="source_files/my_workflow.py" />
+```python
+from qiskit_serverless import ServerlessError, send_error
+
+
+class InputError(ServerlessError):
+    """The arguments are valid, but the workflow cannot use them."""
+
+
+def main():
+    ...
+    if num_qubits > backend.num_qubits:
+        raise InputError(
+            code="4500",
+            message="The circuit has more qubits than the backend.",
+            details={"circuit_qubits": num_qubits, "backend_qubits": backend.num_qubits},
+        )
+    ...
+
+
+try:
+    main()
+except Exception as error:
+    send_error(
+        code=getattr(error, "code", "1"),
+        message=getattr(error, "message", repr(error)),
+        exception=type(error).__name__,
+        args=getattr(error, "details", None),
+    )
+    raise
+```
+
+- **Raise the error again.** The final `raise` keeps the traceback in the logs and ends the job with the `ERROR` status.
+- **Subclass `ServerlessError` to name a group of errors.** The handler sends the name of the class, such as `InputError`, as the `exception` field.
+- **Other exceptions also reach the handler.** They get the code `1`, and their `repr()` becomes the message, such as `ValueError('bad shots')`.
+
+{/* REVIEW: custom (user) workflows run their entrypoint directly through fleet_custom_job_wrapper.py (fleets_runner.py _upload_custom_image_entrypoint). Only provider jobs get the main.tmpl handler, which calls send_error() for an uncaught exception. Should custom jobs get the same handler? Tested with qiskit-serverless 0.37.0: a raised ServerlessError creates no ERROR event, and error_message() returns {}. */}
+
+### Report a problem and continue
+
+`send_error()` does not stop the workflow or change its status, so you can also report problems that the workflow recovers from, such as each circuit that it skips:
+
+<CodeTitle title="source_files/my_workflow.py" />
+```python
+valid_circuits = []
+for index, circuit in enumerate(circuits):
+    if circuit.num_qubits > backend.num_qubits:
+        send_error(
+            code="4501",
+            message="Skipped a circuit that is wider than the backend.",
+            exception="InputError",
+            args={"circuit_index": index},
+        )
+        continue
+    valid_circuits.append(circuit)
+```
+
+`job.events(type="ERROR")` returns every error that the workflow reported, including the errors of a job that ended with the `DONE` status. See [Find the cause of an error](/docs/managed-workflows/run-managed-workflow#find-the-cause-of-an-error).
+
+- **Pass numbers and strings in `args`.** `error_message()` shows only the first item of a list.
+- **Check the return value.** If a workflow cannot store the error, for example because the code runs outside a job, `send_error()` writes the error to the logs and returns `False`.
+
+{/* REVIEW: confirm which error codes user workflows should use. Catalog Function codes come from the IBM Quantum error code registry, which might not apply to user workflows. */}
+
+## Clean up when a job is canceled
+
+When you cancel a job, the workflow sends `SIGTERM` to your entrypoint, uploads the final logs, and shuts down the environment. Without a handler, Python stops immediately, and `finally` blocks do not run. The workflow also tries to cancel the QPU jobs and sessions that the workflow started with `get_runtime_service()`. See [Cancel linked QPU jobs](/docs/managed-workflows/manage-quantum-classical-workflows#cancel-linked-qpu-jobs).
+
+To keep partial work, register a handler for `SIGTERM`. Your local notebook then gets the partial result from a canceled job:
+
+<CodeTitle title="run_workflow_remotely.ipynb" />
+```python
+job.cancel()
+print(job.result())  # {'status': 'canceled', 'partial_results': [...]}
+```
+
+To enable this, add the handler at the start of your entrypoint:
+
+<CodeTitle title="source_files/my_workflow.py" />
+```python
+import signal
+import sys
+
+from qiskit_serverless import save_result
+
+partial_results = []
+
+
+def handle_sigterm(signum, frame):
+    save_result({"status": "canceled", "partial_results": partial_results})
+    sys.exit(0)
+
+
+signal.signal(signal.SIGTERM, handle_sigterm)
+```
+
+`sys.exit()` in the handler raises `SystemExit` in the code that is running, so `finally` blocks run before the script ends. The job still ends with the `CANCELED` status.
+
+Keep the handler short, because the workflow shuts down the environment soon after `SIGTERM`. For long runs, also save checkpoints, so that a later run can resume after a job fails or reaches the 24-hour limit. See [Best practice: checkpoint long jobs](/docs/managed-workflows/manage-files-across-managed-workflows#best-practice-checkpoint-long-jobs).
+
+{/* REVIEW: confirm the time between SIGTERM and shutdown. The cancel is a Code Engine hard stop (fleets/handler.py cancel_job, cancel_processing_tasks=True), and the repo sets no grace period. Tested with qiskit-serverless 0.37.0, the real fleet_custom_job_wrapper.py, and docker stop: the handler runs, save_result() writes the result, and result() on a CANCELED job returns it (the result endpoint does not check the status). Confirm on Fleets that a result written in the handler reaches storage before the hard stop. */}
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+- [Run a managed workflow](/docs/managed-workflows/run-managed-workflow) to start a job and read its status, logs, and result.
+- [Manage files across runs](/docs/managed-workflows/manage-files-across-managed-workflows) to save checkpoints that a later run can resume from.
+- [Choose a compute profile](/docs/managed-workflows/managed-workflow-compute-profiles) to run your workflow with more CPU, memory, or GPU resources.
+</Admonition>

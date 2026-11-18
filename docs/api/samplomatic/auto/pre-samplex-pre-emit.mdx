@@ -1,0 +1,92 @@
+---
+title: PreEmit (latest version)
+description: API reference for samplomatic.pre_samplex.PreEmit in the latest version of samplomatic
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: samplomatic.pre_samplex.PreEmit
+---
+
+# PreEmit
+
+<Class id="samplomatic.pre_samplex.PreEmit" isDedicatedPage={true} github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/pre_samplex/graph_data.py#L186-L214" signature="samplomatic.pre_samplex.PreEmit(subsystems: Partition[int], direction: Direction, register_type: GroupMode, *, trace_info: TraceInfo | None = None, twirl_gate: str | None = None)" modifiers="class">
+  Bases: [`PreNode`](pre-samplex-pre-node "samplomatic.pre_samplex.graph_data.PreNode")
+
+  The emission node type used during samplex building.
+
+  **Attributes Summary**
+
+  |                                                                                                                   |                                                                     |
+  | ----------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+  | [`direction`](#samplomatic.pre_samplex.PreEmit.direction "samplomatic.pre_samplex.PreEmit.direction")             | The direction of virtual gates that can interact with this node.    |
+  | [`register_type`](#samplomatic.pre_samplex.PreEmit.register_type "samplomatic.pre_samplex.PreEmit.register_type") | The type and distribution of virtual gates to emit.                 |
+  | [`subsystems`](#samplomatic.pre_samplex.PreEmit.subsystems "samplomatic.pre_samplex.PreEmit.subsystems")          | The subsystems that virtual gates act on.                           |
+  | [`trace_info`](#samplomatic.pre_samplex.PreEmit.trace_info "samplomatic.pre_samplex.PreEmit.trace_info")          | Debug trace information, populated when building with `debug=True`. |
+  | [`twirl_gate`](#samplomatic.pre_samplex.PreEmit.twirl_gate "samplomatic.pre_samplex.PreEmit.twirl_gate")          | The gate name used for gate-dependent sampling, or `None`.          |
+
+  **Methods Summary**
+
+  |                                                                                                         |                                                                                                                                       |
+  | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+  | [`get_style`](#samplomatic.pre_samplex.PreEmit.get_style "samplomatic.pre_samplex.PreEmit.get_style")() | Summarizes the style of this node when plotted via [`plot_graph()`](visualization-plot-graph "samplomatic.visualization.plot_graph"). |
+
+  **Attributes Documentation**
+
+  ### direction
+
+  <Attribute id="samplomatic.pre_samplex.PreEmit.direction">
+    Type: [`Direction`](constants-direction "samplomatic.constants.Direction")
+
+    Default value: `<dataclasses._MISSING_TYPE object>`
+
+    The direction of virtual gates that can interact with this node.
+  </Attribute>
+
+  ### register\_type
+
+  <Attribute id="samplomatic.pre_samplex.PreEmit.register_type">
+    Type: [`GroupMode`](annotations-group-mode "samplomatic.annotations.group_mode.GroupMode")
+
+    Default value: `<dataclasses._MISSING_TYPE object>`
+
+    The type and distribution of virtual gates to emit.
+  </Attribute>
+
+  ### subsystems
+
+  <Attribute id="samplomatic.pre_samplex.PreEmit.subsystems">
+    Type: [`Partition`](partition-partition "samplomatic.partition.Partition")\[[`int`](https://docs.python.org/3/builtins/functions.html#int)]
+
+    Default value: `<dataclasses._MISSING_TYPE object>`
+
+    The subsystems that virtual gates act on.
+  </Attribute>
+
+  ### trace\_info
+
+  <Attribute id="samplomatic.pre_samplex.PreEmit.trace_info">
+    Type: `TraceInfo` | [`None`](https://docs.python.org/3/builtins/constants.html#None)
+
+    Default value: `None`
+
+    Debug trace information, populated when building with `debug=True`.
+  </Attribute>
+
+  ### twirl\_gate
+
+  <Attribute id="samplomatic.pre_samplex.PreEmit.twirl_gate">
+    Type: [`str`](https://docs.python.org/3/builtins/stdtypes.html#str) | [`None`](https://docs.python.org/3/builtins/constants.html#None)
+
+    Default value: `None`
+
+    The gate name used for gate-dependent sampling, or `None`.
+  </Attribute>
+
+  **Methods Documentation**
+
+  ### get\_style
+
+  <Function id="samplomatic.pre_samplex.PreEmit.get_style" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/pre_samplex/graph_data.py#L196-L206" signature="get_style()">
+    Summarizes the style of this node when plotted via [`plot_graph()`](visualization-plot-graph "samplomatic.visualization.plot_graph").
+  </Function>
+</Class>
+

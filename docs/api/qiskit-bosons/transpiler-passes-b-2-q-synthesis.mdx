@@ -1,0 +1,160 @@
+---
+title: B2QSynthesis (latest version)
+description: API reference for qiskit_bosons.transpiler.passes.B2QSynthesis in the latest version of qiskit-bosons
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_bosons.transpiler.passes.B2QSynthesis
+---
+
+# B2QSynthesis
+
+<Class id="qiskit_bosons.transpiler.passes.B2QSynthesis" isDedicatedPage={true} signature="B2QSynthesis(config=None)" modifiers="class">
+  Bases: [`GenericPass`](/docs/api/qiskit/qiskit.passmanager.GenericPass)\[[`DAGCircuit`](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit), [`DAGCircuit`](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit)]
+
+  A transpilation pass to map boson-based circuit instructions to qubit-based ones.
+
+  This transpilation pass works similarly to Qiskit’s [`HighLevelSynthesis`](/docs/api/qiskit/qiskit.transpiler.passes.HighLevelSynthesis) pass; given an input [`BosonicDAGCircuit`](circuit-bosonic-dag-circuit "qiskit_bosons.circuit.BosonicDAGCircuit"), it iterates the contained instructions and delegates the translation to qubit-based instructions to matching [`methods`](#qiskit_bosons.transpiler.passes.B2QSynthesis.methods "qiskit_bosons.transpiler.passes.B2QSynthesis.methods"). The insertion of the qubit-based circuit instructions into the output [`DAGCircuit`](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit) is also left to the plugin method. This pass will merely have prepared the [`QuantumRegister`](/docs/api/qiskit/circuit#qiskit.circuit.QuantumRegister) according to the global transpilation [`B2QLayout`](transpiler-b-2-q-layout "qiskit_bosons.transpiler.B2QLayout") setting.
+
+  **Usage**
+
+  There are two ways to configure the plugins used by this transpiler pass. The examples below show the equivalent configuration to the [`generate_preset_occupation_pass_manager()`](transpiler-presets-generate-preset-occupation-pass-manager "qiskit_bosons.transpiler.presets.generate_preset_occupation_pass_manager").
+
+  1.  Providing a `config` during initialization:
+
+      ```pycon
+      >>> from qiskit_bosons.mappers import LevelSpec
+      >>> from qiskit_bosons.mappers.library import occupation_encoding
+      >>> from qiskit_bosons.transpiler import passes
+      >>>
+      >>> # The encoding and the truncation are bound here, at transpile time -- the bosonic
+      >>> # circuit upstream of this pass is independent of both.
+      >>> spec = LevelSpec(2, "unary_projected")
+      >>> def mapper_fn(operator, num_qubits):
+      ...     return occupation_encoding(operator, spec, num_qubits)
+      >>> config = {
+      ...     "Evolution": ("MapperFn", (mapper_fn,)),
+      ...     "InitializeModes": ("Occupation", (spec,)),
+      ... }
+      >>> synth = passes.B2QSynthesis(config)
+      ```
+
+  2.  Manually populating the [`methods`](#qiskit_bosons.transpiler.passes.B2QSynthesis.methods "qiskit_bosons.transpiler.passes.B2QSynthesis.methods") attribute:
+
+      ```pycon
+      >>> from qiskit_bosons.transpiler import passes
+      >>>
+      >>> synth = passes.B2QSynthesis()
+      >>> synth.methods["Evolution"] = passes.MapperFnEvolutionSynthesis(mapper_fn)
+      >>> synth.methods["InitializeModes"] = (
+      ...     passes.OccupationInitializeModesSynthesis(spec)
+      ... )
+      ```
+
+      Through this manual approach it is also possible to inject custom [`B2QSynthesisPlugin`](transpiler-passes-synthesis-b-2-q-synthesis-plugin "qiskit_bosons.transpiler.passes.synthesis.B2QSynthesisPlugin") implementations without requiring them to be registered through an [entry-point](https://setuptools.pypa.io/en/latest/userguide/entry_point.html).
+
+  Initializing this transpiler pass can be done with the arguments listed below.
+
+  **Parameters**
+
+  **config** ([*B2QSynthesisConfig*](transpiler-passes-synthesis-b-2-q-synthesis-b-2-q-synthesis-config "qiskit_bosons.transpiler.passes.synthesis.b2q_synthesis.B2QSynthesisConfig") *| None*) – an optional dictionary to pre-populate the [`methods`](#qiskit_bosons.transpiler.passes.B2QSynthesis.methods "qiskit_bosons.transpiler.passes.B2QSynthesis.methods") with plugins provided by the [`B2QSynthesisPluginManager`](transpiler-passes-synthesis-b-2-q-synthesis-plugin-manager "qiskit_bosons.transpiler.passes.synthesis.B2QSynthesisPluginManager"), or with plugin instances. See `B2QSynthesisConfig`.
+
+  **Raises**
+
+  *   [**KeyError**](https://docs.python.org/3/builtins/exceptions.html#KeyError) – if `config` names an instruction or a method for which no plugin is installed.
+  *   [**TypeError**](https://docs.python.org/3/builtins/exceptions.html#TypeError) – if `config` gives a value that is none of the forms of `B2QSynthesisConfig`.
+
+  ## Attributes
+
+  ### methods
+
+  <Attribute id="qiskit_bosons.transpiler.passes.B2QSynthesis.methods">
+    Type: [`dict`](https://docs.python.org/3/builtins/stdtypes.html#dict)\[[`str`](https://docs.python.org/3/builtins/stdtypes.html#str), [`B2QSynthesisPlugin`](transpiler-passes-synthesis-b-2-q-synthesis-plugin "qiskit_bosons.transpiler.passes.synthesis.B2QSynthesisPlugin")]
+
+    A dictionary of boson-to-qubit circuit instruction transpilation methods.
+
+    For this transpilation pass to have any effect, this dictionary must be populated with instances of the [`B2QSynthesisPlugin`](transpiler-passes-synthesis-b-2-q-synthesis-plugin "qiskit_bosons.transpiler.passes.synthesis.B2QSynthesisPlugin") protocol. The keys of this dictionary correspond to the `__name__` of a circuit instruction.
+
+    All available transpilation plugins are managed by the [`B2QSynthesisPluginManager`](transpiler-passes-synthesis-b-2-q-synthesis-plugin-manager "qiskit_bosons.transpiler.passes.synthesis.B2QSynthesisPluginManager").
+
+    <Admonition title="Note" type="note">
+      This dictionary is **empty** by default! You can pre-populate it with plugins provided by the [`B2QSynthesisPluginManager`](transpiler-passes-synthesis-b-2-q-synthesis-plugin-manager "qiskit_bosons.transpiler.passes.synthesis.B2QSynthesisPluginManager") by providing a `config` argument during initialization of this transpiler pass instance.
+    </Admonition>
+  </Attribute>
+
+  ## Methods
+
+  ### run
+
+  <Function id="qiskit_bosons.transpiler.passes.B2QSynthesis.run" signature="run(dag)">
+    Runs this transpilation pass.
+
+    **Parameters**
+
+    **dag** ([*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit)) – the input circuit with boson-based instructions. Only [`DAGOpNode`](/docs/api/qiskit/qiskit.dagcircuit.DAGOpNode) with [`BosonicGate`](circuit-bosonic-gate "qiskit_bosons.circuit.BosonicGate") instances as their [`op`](/docs/api/qiskit/qiskit.dagcircuit.DAGOpNode#op) are supported, plus `Barrier`, which is mapped onto every qubit of each register it touched.
+
+    **Returns**
+
+    The output circuit with qubit-based instructions.
+
+    **Raises**
+
+    *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – when a [`DAGOpNode`](/docs/api/qiskit/qiskit.dagcircuit.DAGOpNode) is encountered whose [`op`](/docs/api/qiskit/qiskit.dagcircuit.DAGOpNode#op) is neither of type [`BosonicGate`](circuit-bosonic-gate "qiskit_bosons.circuit.BosonicGate") nor a `Barrier`.
+    *   [**TypeError**](https://docs.python.org/3/builtins/exceptions.html#TypeError) – when a [`BosonicGate`](circuit-bosonic-gate "qiskit_bosons.circuit.BosonicGate") type is encountered for which no translation plugin is present in [`methods`](#qiskit_bosons.transpiler.passes.B2QSynthesis.methods "qiskit_bosons.transpiler.passes.B2QSynthesis.methods").
+
+    **Return type**
+
+    [*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit)
+  </Function>
+
+  ## Inherited Methods
+
+  ### execute
+
+  <Function id="qiskit_bosons.transpiler.passes.B2QSynthesis.execute" signature="execute(passmanager_ir, state, callback=None)">
+    Execute optimization task for input Qiskit IR.
+
+    **Parameters**
+
+    *   **passmanager\_ir** (*IR*) – Qiskit IR to optimize.
+    *   **state** ([*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)) – State associated with workflow execution by the pass manager itself.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[*[*Task*](/docs/api/qiskit/qiskit.passmanager.Task)*, IR\_OUT,* [*PropertySet*](/docs/api/qiskit/qiskit.passmanager.PropertySet)*,* [*float*](https://docs.python.org/3/builtins/functions.html#float)*,* [*int*](https://docs.python.org/3/builtins/functions.html#int)*], None] | None*) – A callback function which is called per execution of optimization task.
+
+    **Returns**
+
+    Optimized Qiskit IR and state of the workflow.
+
+    **Return type**
+
+    [tuple](https://docs.python.org/3/builtins/stdtypes.html#tuple)\[*IR\_OUT*, [*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)]
+  </Function>
+
+  ### name
+
+  <Function id="qiskit_bosons.transpiler.passes.B2QSynthesis.name" signature="name()">
+    Name of the pass.
+
+    **Return type**
+
+    [str](https://docs.python.org/3/builtins/stdtypes.html#str)
+  </Function>
+
+  ### update\_status
+
+  <Function id="qiskit_bosons.transpiler.passes.B2QSynthesis.update_status" signature="update_status(state, run_state)">
+    Update workflow status.
+
+    **Parameters**
+
+    *   **state** ([*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)) – Pass manager state to update.
+    *   **run\_state** (*RunState*) – Completion status of current task.
+
+    **Returns**
+
+    Updated pass manager state.
+
+    **Return type**
+
+    [*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)
+  </Function>
+</Class>
+

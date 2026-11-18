@@ -1,0 +1,41 @@
+---
+title: process_learning_result (latest version)
+description: API reference for qiskit_noise_learning.protocols.process_learning_result in the latest version of qiskit-noise-learning
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit_noise_learning.protocols.process_learning_result
+---
+
+<span id="qiskit-noise-learning-protocols-process-learning-result" />
+
+# qiskit\_noise\_learning.protocols.process\_learning\_result
+
+<Function id="qiskit_noise_learning.protocols.process_learning_result" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/protocols/process_learning_result.py" signature="qiskit_noise_learning.protocols.process_learning_result(result: QuantumProgramResult, raw_data_stage: AnalysisStage | None = None) → Fit">
+  Analyze the result of a program built by [`prepare_learning_program()`](protocols-prepare-learning-program "qiskit_noise_learning.protocols.prepare_learning_program").
+
+  Applies the standard “vanilla” learning program analysis using curve fitting and [`LegacySolve`](analysis-legacy-solve "qiskit_noise_learning.analysis.LegacySolve") fit the model.
+
+  Example:
+
+  ```python
+  fit = process_learning_result(job.result())
+  noise_maps = split_pauli_lindblad_model(fit.model).model.to_pauli_lindblad_maps(
+      fit.model_data
+  )
+  ```
+
+  **Parameters**
+
+  *   **result** – The result of a program built by [`prepare_learning_program()`](protocols-prepare-learning-program "qiskit_noise_learning.protocols.prepare_learning_program").
+  *   **raw\_data\_stage** – An optional analysis stage to run on the raw data ahead of the standard analysis, typically to post-select on registers that a pass manager added during preparation. It must consume and produce [`RawData`](data-raw-data "qiskit_noise_learning.data.RawData").
+
+  **Returns**
+
+  The fit, holding the data at every analysis level.
+
+  **Raises**
+
+  *   [**TypeError**](https://docs.python.org/3/builtins/exceptions.html#TypeError) – If *raw\_data\_stage* is not an analysis stage.
+  *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If *raw\_data\_stage* does not consume and produce [`RawData`](data-raw-data "qiskit_noise_learning.data.RawData"), if *result* holds no program items, if the result’s passthrough data was written in an incompatible format version, or if the result violates the solver’s assumptions.
+</Function>
+

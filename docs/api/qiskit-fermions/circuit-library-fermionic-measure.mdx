@@ -1,0 +1,34 @@
+---
+title: FermionicMeasure (latest version)
+description: API reference for qiskit_fermions.circuit.library.FermionicMeasure in the latest version of qiskit-fermions
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_fermions.circuit.library.FermionicMeasure
+---
+
+# FermionicMeasure
+
+<Class id="qiskit_fermions.circuit.library.FermionicMeasure" isDedicatedPage={true} signature="FermionicMeasure(*args, _force_mutable=False, **kwargs)" modifiers="class">
+  Bases: [`FermionicInstruction`](circuit-fermionic-instruction "qiskit_fermions.circuit.fermionic_instruction.FermionicInstruction"), [`Measure`](/docs/api/qiskit/circuit#qiskit.circuit.Measure)
+
+  A measurement of a single fermionic mode, writing its outcome into one classical bit.
+
+  This is the fermionic counterpart of [`Measure`](/docs/api/qiskit/circuit#qiskit.circuit.Measure), and the one instruction on a [`FermionicCircuit`](circuit-fermionic-circuit "qiskit_fermions.circuit.FermionicCircuit") that is not a [`FermionicGate`](circuit-fermionic-gate "qiskit_fermions.circuit.FermionicGate"): a measurement is not unitary, and [`Gate`](/docs/api/qiskit/qiskit.circuit.Gate) admits no classical bits. Place it with [`FermionicCircuit.measure()`](circuit-fermionic-circuit#measure "qiskit_fermions.circuit.FermionicCircuit.measure") or [`FermionicCircuit.measure_all()`](circuit-fermionic-circuit#measure_all "qiskit_fermions.circuit.FermionicCircuit.measure_all") rather than constructing it directly.
+
+  It subclasses [`Measure`](/docs/api/qiskit/circuit#qiskit.circuit.Measure) so that the circuit drawers, which dispatch on `isinstance(op, Measure)`, render it with the usual measurement symbol rather than as a generic boxed instruction.
+
+  <Admonition title="Important" type="danger">
+    What the measured bit *means* is decided by the fermion-to-qubit encoding, not by this instruction. Under an occupation-basis encoding such as Jordan-Wigner, mode $i$ is carried by a single qubit and the bit is that mode’s occupation, which is the reading [`TrivialOccupationFermionicMeasureSynthesis`](transpiler-passes-synthesis-trivial-occupation-fermionic-measure-synthesis "qiskit_fermions.transpiler.passes.synthesis.TrivialOccupationFermionicMeasureSynthesis") implements. A [`F2QLayout`](transpiler-f-2-q-layout "qiskit_fermions.transpiler.F2QLayout") relates whole registers whose two sides may differ in size, so in general a mode has no single qubit to measure; an encoding for which that is the case needs its own synthesis plugin, and this instruction carries no encoding assumption of its own.
+  </Admonition>
+
+  <Admonition title="See also" type="note">
+    [`TrivialOccupationFermionicMeasureSynthesis`](transpiler-passes-synthesis-trivial-occupation-fermionic-measure-synthesis "qiskit_fermions.transpiler.passes.synthesis.TrivialOccupationFermionicMeasureSynthesis") for the occupation-basis lowering, and [`FermionicCircuit.measure_all()`](circuit-fermionic-circuit#measure_all "qiskit_fermions.circuit.FermionicCircuit.measure_all") for the convenient way to read out an entire circuit.
+  </Admonition>
+
+  Initializing this instruction can be done with the arguments listed below.
+
+  **Parameters**
+
+  **label** – the string label of this instruction.
+</Class>
+

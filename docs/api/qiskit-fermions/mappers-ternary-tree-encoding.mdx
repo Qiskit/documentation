@@ -1,0 +1,139 @@
+---
+title: TernaryTreeEncoding (latest version)
+description: API reference for qiskit_fermions.mappers.TernaryTreeEncoding in the latest version of qiskit-fermions
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_fermions.mappers.TernaryTreeEncoding
+---
+
+# TernaryTreeEncoding
+
+<Class id="qiskit_fermions.mappers.TernaryTreeEncoding" isDedicatedPage={true} signature="TernaryTreeEncoding(tree, mode_map=None)" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
+
+  A ternary tree compiled into the Pauli images of its Majorana operators.
+
+  Pairing the tree’s legs into Majorana operators and building their Pauli strings is done once, here, rather than per mapped operator. Pass one of these to the ternary-tree mappers.
+
+  The pairing follows Algorithm 1 of the Bonsai paper   <span id="id1" />[\[1\]](#id2): from each node, descend its `X` link and then `Z` links until reaching a leg, which carries $\gamma$ of that node’s mode; the `Y` link likewise gives $\gamma'$. This is what makes $|0\cdots0\rangle$ the fermionic vacuum, so it is not an adjustable convention.
+
+  <span id="id2" />
+
+  \[[1](#id1)]
+
+  A. Miller, Z. Zimborás, S. Knecht, S. Maniscalco and G. García-Pérez, Bonsai algorithm: grow your own fermion-to-qubit mappings, PRX Quantum 4, 030314 (2023), [arXiv:2212.09731](https://arxiv.org/abs/2212.09731).
+
+  ## Usage
+
+  ```pycon
+  >>> from qiskit_fermions.mappers import TernaryTree, TernaryTreeEncoding
+  >>> enc = TernaryTreeEncoding(TernaryTree.breadth_first(4, 3))
+  >>> enc.num_modes, enc.max_weight
+  (4, 2)
+  ```
+
+  Two encodings compare equal when they assign the same Pauli string to every Majorana operator, which is what lets a set or dictionary deduplicate them. Leaving out the mode map is the same as giving the identity, whereas any other one changes which Majorana operator each string belongs to:
+
+  ```pycon
+  >>> tree = TernaryTree.chain(3, "Z")
+  >>> TernaryTreeEncoding(tree) == TernaryTreeEncoding(tree, [0, 1, 2])
+  True
+  >>> TernaryTreeEncoding(tree) == TernaryTreeEncoding(tree, [2, 1, 0])
+  False
+  ```
+
+  The encoding is built once and reused across every operator mapped through it, so the pairing and string construction are not repeated per call. The qubit count of a mapped operator is given to the mapper rather than fixed here, so one encoding serves registers of any width from [`num_modes`](#qiskit_fermions.mappers.TernaryTreeEncoding.num_modes "qiskit_fermions.mappers.TernaryTreeEncoding.num_modes") upwards.
+
+  An encoding cannot be pickled. It is a derived artifact: compiling discards the tree and the mode map it was built from, so supporting pickle would mean retaining them purely to serialize them. Pickle the [`TernaryTree`](mappers-ternary-tree "qiskit_fermions.mappers.TernaryTree") (and the mode map) and compile again instead.
+
+  ## Attributes
+
+  ### max\_weight
+
+  <Attribute id="qiskit_fermions.mappers.TernaryTreeEncoding.max_weight">
+    The largest Pauli weight of any single Majorana operator.
+
+    Always equal to the [`TernaryTree.max_weight`](mappers-ternary-tree#max_weight "qiskit_fermions.mappers.TernaryTree.max_weight") of the tree it was compiled from: the leg left unpaired is never deeper than the deepest paired one.
+  </Attribute>
+
+  ### num\_modes
+
+  <Attribute id="qiskit_fermions.mappers.TernaryTreeEncoding.num_modes">
+    The number of fermionic modes this encoding covers.
+  </Attribute>
+
+  ## Methods
+
+  ### majorana\_image
+
+  <Function id="qiskit_fermions.mappers.TernaryTreeEncoding.majorana_image" signature="majorana_image(majorana)">
+    Return the Pauli image of Majorana operator `majorana`, as `(qubit, label)` pairs.
+
+    The index is `2 * mode + is_prime`, matching [`gamma()`](operators-gamma "qiskit_fermions.operators.gamma"). The string is ordered by ascending qubit.
+
+    ```pycon
+    >>> from qiskit_fermions.mappers import TernaryTree, TernaryTreeEncoding
+    >>> enc = TernaryTreeEncoding(TernaryTree.chain(3, "Z"))
+    >>> enc.majorana_image(4)
+    [(0, 'Z'), (1, 'Z'), (2, 'X')]
+    ```
+
+    The coefficient is always exactly $1$: a leg’s string is a product of Paulis on distinct qubits, so it is Hermitian and squares to the identity with no phase to correct.
+
+    **Parameters**
+
+    **majorana** – the Majorana index, `2 * mode + is_prime`.
+
+    **Raises**
+
+    *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – if `majorana` is not below `2 * num_modes`.
+    *   [**OverflowError**](https://docs.python.org/3/builtins/exceptions.html#OverflowError) – if `majorana` is negative or does not fit in 32 bits.
+  </Function>
+
+  ### total\_parity
+
+  <Function id="qiskit_fermions.mappers.TernaryTreeEncoding.total_parity" signature="total_parity(num_qubits)">
+    Build the total fermionic parity observable of this encoding.
+
+    A tree’s $2N+1$ legs pair into $2N$ Majorana operators, leaving exactly one over, and that leftover is the total parity $\prod_j (1 - 2 n_j)$.
+
+    <Admonition title="Note" type="note">
+      This is an observable to measure, not a constraint to impose. Both of its eigenvalues are physical, so do not project a state onto the $+1$ sector: a ternary-tree encoding spends one qubit per mode and is a unitary isomorphism onto the *whole* $2^N$-dimensional space, with both parity sectors represented at multiplicity $2^{N-1}$ and no unphysical subspace to project away.
+    </Admonition>
+
+    The string is *not* in general the all-$Z$ string. It is the leg reached by the all-$Z$ *path*, which carries the identity on every node not on that path. On the Jordan-Wigner chain it is the full $Z$ string:
+
+    ```pycon
+    >>> from qiskit_fermions.mappers import TernaryTree, TernaryTreeEncoding
+    >>> TernaryTreeEncoding(TernaryTree.chain(4, "Z")).total_parity(4)
+    <SparseObservable with 1 term on 4 qubits: (1+0j)(Z_3 Z_2 Z_1 Z_0)>
+    ```
+
+    On the balanced tree at four modes it is not:
+
+    ```pycon
+    >>> TernaryTreeEncoding(TernaryTree.breadth_first(4, 3)).total_parity(4)
+    <SparseObservable with 1 term on 4 qubits: (1+0j)(Z_3 Z_0)>
+    ```
+
+    Only the support depends on the tree: the coefficient is $+1$ on every tree and under every mode map.
+
+    **Parameters**
+
+    **num\_qubits** – the number of qubits for the resulting observable. Must be at least the encoding’s mode count; a larger value pads with the identity.
+
+    **Returns**
+
+    a single $Z$ string with coefficient $+1$.
+
+    **Return type**
+
+    The total-parity observable
+
+    **Raises**
+
+    *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – if `num_qubits` is below the encoding’s mode count.
+    *   [**OverflowError**](https://docs.python.org/3/builtins/exceptions.html#OverflowError) – if `num_qubits` is negative or does not fit in 32 bits.
+  </Function>
+</Class>
+

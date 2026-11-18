@@ -23,6 +23,7 @@ import { deleteOutputDirs, prepareSphinxFolder } from "./updateDocsShared.js";
 
 type Args = {
   package?: string;
+  version?: string;
   all: boolean;
   skipDownload: boolean;
   sphinxArtifactFolder?: string;
@@ -36,6 +37,12 @@ const readArgs = (): Args => {
       type: "string",
       choices: Pkg.ADDON_NAMES,
       description: "Which addon package to update",
+    })
+    .option("version", {
+      alias: "v",
+      type: "string",
+      description:
+        "The full version of --package to download, e.g. 0.2.0. If omitted, the latest already-downloaded version is used.",
     })
     .option("all", {
       type: "boolean",
@@ -55,6 +62,9 @@ const readArgs = (): Args => {
     .check((argv) => {
       if (!argv.all && !argv.package) {
         throw new Error("Either --package or --all is required");
+      }
+      if (argv.all && argv.version) {
+        throw new Error("--version cannot be combined with --all");
       }
       return true;
     })
@@ -90,7 +100,7 @@ async function generateVersion(pkg: Pkg, args: Args): Promise<void> {
 }
 
 async function generatePackage(pkgName: string, args: Args): Promise<void> {
-  const version = await resolveVersion(pkgName);
+  const version = args.version ?? (await resolveVersion(pkgName));
   const minorVersion = parseMinorVersion(version);
   if (minorVersion === null) {
     throw new Error(`Could not parse version ${version} for ${pkgName}`);

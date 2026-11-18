@@ -1,0 +1,55 @@
+---
+title: prepare_learning_program (latest version)
+description: API reference for qiskit_noise_learning.protocols.prepare_learning_program in the latest version of qiskit-noise-learning
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit_noise_learning.protocols.prepare_learning_program
+---
+
+<span id="qiskit-noise-learning-protocols-prepare-learning-program" />
+
+# qiskit\_noise\_learning.protocols.prepare\_learning\_program
+
+<Function id="qiskit_noise_learning.protocols.prepare_learning_program" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-noise-learning/tree/stable/0.1/qiskit_noise_learning/protocols/prepare_learning_program.py" signature="qiskit_noise_learning.protocols.prepare_learning_program(backend: BackendV2, instructions: Sequence[CircuitInstruction], num_randomizations: int = 32, shots_per_randomization: int = 128, fragment_depths: Sequence[int] = (0, 1, 2, 4, 16, 32), creg_prefix: str = 'meas', local_clifford_ref_prefix: str = 'c', pass_manager: PassManager | None = None) → QuantumProgram">
+  Build the quantum program of a standard noise learning experiment.
+
+  The experiment is setup to learn a 2-local Pauli-Lindblad model for each layer defined in `instructions` via the “vanilla” learning protocol, with paths generated via [`EvenDepthVanillaPaths`](experiment-builder-even-depth-vanilla-paths "qiskit_noise_learning.experiment_builder.EvenDepthVanillaPaths") and instruction sequences generated via [`VanillaInstructionSequences`](experiment-builder-vanilla-instruction-sequences "qiskit_noise_learning.experiment_builder.VanillaInstructionSequences"), as well as a SPAM noise model with perfect preparation and a 1-local measurement noise model.
+
+  Each instruction becomes one gate of the model. A box carrying a noise injection annotation takes that annotation’s reference as its gate name, and any other box is named automatically. The learned model comes back keyed by those names, so annotate the boxes to be identified in the result.
+
+  If an all-measurement box is supplied in `instructions` (i.e. one that measures every qubit appearing in all supplied instructions), that will be treated as the measurement layer. If no such layer is supplied, a default one will be built with name `"M"`.
+
+  Example:
+
+  ```python
+  circuit = QuantumCircuit(backend.num_qubits)
+  with circuit.box([Twirl(), InjectNoise("layer")]):
+      circuit.cz(17, 27)
+
+  program = prepare_learning_program(backend, [circuit[0]])
+  ```
+
+  <Admonition title="Note" type="note">
+    The arguments `creg_prefix`, `local_clifford_ref_prefix`, and `pass_manager` are all directly passed to [`ExecutorCircuitGenerator`](circuit-generator-executor-circuit-generator "qiskit_noise_learning.circuit_generator.ExecutorCircuitGenerator").
+  </Admonition>
+
+  **Parameters**
+
+  *   **backend** – The backend supplying the compilation target: the gate set, coupling map and qubit count that generated circuits are built against.
+  *   **instructions** – The instructions to learn the noise of. Each instruction should contain a [`BoxOp`](/docs/api/qiskit/qiskit.circuit.BoxOp) operation, and must be self-inverse, with the exception of a box that measures all relevant qubits.
+  *   **num\_randomizations** – The number of randomizations to use per learning circuit.
+  *   **shots\_per\_randomization** – The number of shots to use per randomization.
+  *   **fragment\_depths** – The fragment depths to use, that is, the number of repetitions of each path’s repeatable fragment.
+  *   **creg\_prefix** – The prefix assigned to all creg names used in learning experiment measurements. Defaults to `"meas"`.
+  *   **local\_clifford\_ref\_prefix** – The prefix assigned to all local Clifford parameter references in template circuits. Defaults to `"c"`.
+  *   **pass\_manager** – An optional pass manager to apply to every template circuit generated.
+
+  **Returns**
+
+  The program to submit, whose result [`process_learning_result()`](protocols-process-learning-result "qiskit_noise_learning.protocols.process_learning_result") consumes.
+
+  **Raises**
+
+  [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If *instructions* is empty, if any instruction does not contain a `BoxOp`, if *num\_randomizations* or *shots\_per\_randomization* is less than one, if any entry of *fragment\_depths* is negative, if more than one instruction measures, if a measuring instruction also contains other operations or does not measure every qubit that *instructions* act on, if `backend.target` does not support an operation of one of the boxes, or if a classical register added by *pass\_manager* is not measured into exactly once.
+</Function>
+

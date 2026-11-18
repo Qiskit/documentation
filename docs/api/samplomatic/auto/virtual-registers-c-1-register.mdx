@@ -1,0 +1,138 @@
+---
+title: C1Register (latest version)
+description: API reference for samplomatic.virtual_registers.C1Register in the latest version of samplomatic
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: samplomatic.virtual_registers.C1Register
+---
+
+# C1Register
+
+<Class id="samplomatic.virtual_registers.C1Register" isDedicatedPage={true} github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/virtual_registers/c1_register.py#L38-L87" signature="samplomatic.virtual_registers.C1Register(virtual_gates: ndarray)" modifiers="class">
+  Bases: `FiniteGroupRegister`
+
+  Virtual register of C1 gates.
+
+  Here, we use an integer representation constructed from flattening the six cosets of the Pauli subgroup and the subgroup itself. Concretely, a value $c$ corresponds to the unitary $G^i H^j P(k)$ where $k = c % 4, j = c // 4 % 2, i = c // 8 % 3$ and $G = HS$.
+
+  **Attributes Summary**
+
+  |                                                                                                                                                 |                                                                                                                                                   |
+  | ----------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | [`CONVERTABLE_TYPES`](#samplomatic.virtual_registers.C1Register.CONVERTABLE_TYPES "samplomatic.virtual_registers.C1Register.CONVERTABLE_TYPES") | Valid arguments for [`convert_to()`](#samplomatic.virtual_registers.C1Register.convert_to "samplomatic.virtual_registers.C1Register.convert_to"). |
+  | [`GATE_SHAPE`](#samplomatic.virtual_registers.C1Register.GATE_SHAPE "samplomatic.virtual_registers.C1Register.GATE_SHAPE")                      | The array shape of any single virtual gate.                                                                                                       |
+  | [`SUBSYSTEM_SIZE`](#samplomatic.virtual_registers.C1Register.SUBSYSTEM_SIZE "samplomatic.virtual_registers.C1Register.SUBSYSTEM_SIZE")          | The number of qubits each virtual gate acts on.                                                                                                   |
+  | [`TYPE`](#samplomatic.virtual_registers.C1Register.TYPE "samplomatic.virtual_registers.C1Register.TYPE")                                        | The group name in 1-1 correspondence with this virtual gate type.                                                                                 |
+  | [`inverse_table`](#samplomatic.virtual_registers.C1Register.inverse_table "samplomatic.virtual_registers.C1Register.inverse_table")             | The lookup table for the inverse.                                                                                                                 |
+  | [`lookup_table`](#samplomatic.virtual_registers.C1Register.lookup_table "samplomatic.virtual_registers.C1Register.lookup_table")                | The lookup table for the group operation.                                                                                                         |
+
+  **Methods Summary**
+
+  |                                                                                                                                                     |                                                             |
+  | --------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+  | [`convert_to`](#samplomatic.virtual_registers.C1Register.convert_to "samplomatic.virtual_registers.C1Register.convert_to")(register\_type)          | Convert this register type to some other type, if possible. |
+  | [`from_tableau`](#samplomatic.virtual_registers.C1Register.from_tableau "samplomatic.virtual_registers.C1Register.from_tableau")(tableaus)          | Return a new register from an array of tableaus.            |
+  | [`identity`](#samplomatic.virtual_registers.C1Register.identity "samplomatic.virtual_registers.C1Register.identity")(num\_subsystems, num\_samples) | Instantiate a new register of identity virtual gates.       |
+  | [`to_tableau`](#samplomatic.virtual_registers.C1Register.to_tableau "samplomatic.virtual_registers.C1Register.to_tableau")()                        | Return an array of tableaus with the same shape as this.    |
+
+  **Attributes Documentation**
+
+  ### CONVERTABLE\_TYPES
+
+  <Attribute id="samplomatic.virtual_registers.C1Register.CONVERTABLE_TYPES">
+    Type: [`frozenset`](https://docs.python.org/3/builtins/stdtypes.html#frozenset)\[[`VirtualType`](virtual-registers-virtual-type "samplomatic.virtual_registers.virtual_type.VirtualType")]
+
+    Default value: `frozenset({VirtualType.C1, VirtualType.U2})`
+
+    Valid arguments for [`convert_to()`](#samplomatic.virtual_registers.C1Register.convert_to "samplomatic.virtual_registers.C1Register.convert_to").
+  </Attribute>
+
+  ### GATE\_SHAPE
+
+  <Attribute id="samplomatic.virtual_registers.C1Register.GATE_SHAPE">
+    Type: [`tuple`](https://docs.python.org/3/builtins/stdtypes.html#tuple)\[[`int`](https://docs.python.org/3/builtins/functions.html#int), ...]
+
+    Default value: `()`
+
+    The array shape of any single virtual gate.
+  </Attribute>
+
+  ### SUBSYSTEM\_SIZE
+
+  <Attribute id="samplomatic.virtual_registers.C1Register.SUBSYSTEM_SIZE">
+    Type: [`int`](https://docs.python.org/3/builtins/functions.html#int)
+
+    Default value: `1`
+
+    The number of qubits each virtual gate acts on.
+  </Attribute>
+
+  ### TYPE
+
+  <Attribute id="samplomatic.virtual_registers.C1Register.TYPE">
+    Type: [`VirtualType`](virtual-registers-virtual-type "samplomatic.virtual_registers.virtual_type.VirtualType")
+
+    Default value: `'c1'`
+
+    The group name in 1-1 correspondence with this virtual gate type.
+  </Attribute>
+
+  ### inverse\_table
+
+  <Attribute id="samplomatic.virtual_registers.C1Register.inverse_table" />
+
+  ### lookup\_table
+
+  <Attribute id="samplomatic.virtual_registers.C1Register.lookup_table" />
+
+  **Methods Documentation**
+
+  ### convert\_to
+
+  <Function id="samplomatic.virtual_registers.C1Register.convert_to" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/virtual_registers/c1_register.py#L60-L63" signature="convert_to(register_type)">
+    Convert this register type to some other type, if possible.
+
+    **Parameters**
+
+    **register\_type** – The type of register to convert to.
+
+    **Returns**
+
+    A new register of the specified output type, or this instance if its type is `register_type`.
+
+    **Raises**
+
+    [**VirtualGateError**](exceptions-virtual-gate-error "samplomatic.exceptions.VirtualGateError") – If this type cannot be converted to the specified type.
+  </Function>
+
+  ### from\_tableau
+
+  <Function id="samplomatic.virtual_registers.C1Register.from_tableau" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/virtual_registers/c1_register.py#L69-L79" signature="from_tableau(tableaus: _Buffer | _SupportsArray[dtype[Any]] | _NestedSequence[_SupportsArray[dtype[Any]]] | complex | bytes | str | _NestedSequence[complex | bytes | str]) → C1Register" modifiers="classmethod">
+    Return a new register from an array of tableaus.
+
+    **Parameters**
+
+    **tableaus** – The tableaus corresponding the registers.
+
+    **Returns**
+
+    A virtual register in the enumerated representation.
+  </Function>
+
+  ### identity
+
+  <Function id="samplomatic.virtual_registers.C1Register.identity" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/virtual_registers/c1_register.py#L65-L67" signature="identity(num_subsystems, num_samples)" modifiers="classmethod">
+    Instantiate a new register of identity virtual gates.
+  </Function>
+
+  ### to\_tableau
+
+  <Function id="samplomatic.virtual_registers.C1Register.to_tableau" github="https://github.com/Qiskit/samplomatic/tree/main/samplomatic/virtual_registers/c1_register.py#L81-L87" signature="to_tableau() → ndarray">
+    Return an array of tableaus with the same shape as this.
+
+    **Returns**
+
+    An array of tableaus.
+  </Function>
+</Class>
+
