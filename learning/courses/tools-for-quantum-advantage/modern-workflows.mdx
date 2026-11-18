@@ -48,7 +48,7 @@ For some applications or new approaches, users must determine how to map their p
 
 #### Optimization mapper
 
-[Optimization mapper](https://qiskit.github.io/qiskit-addon-opt-mapper/) helps express classical optimization problems in forms that are suitable for quantum algorithms. Key functionality includes:
+[Optimization mapper](https://qiskit.github.io/qiskit-opt-mapper/) helps express classical optimization problems in forms that are suitable for quantum algorithms. Key functionality includes:
 
 * Construct objective functions and constraints
 * Convert problems into QUBO formulations
@@ -64,13 +64,13 @@ The previous two addons focus on the initial mapping of a problem structure to a
 
 #### Multi-product formulas (MPF)
 
-[Multi-product formulas](https://qiskit.github.io/qiskit-addon-mpf/) improve the accuracy of quantum time-evolution simulations by combining multiple approximations. Specifically, you create circuits with varying numbers of Trotter steps, so that you can use a weighted combination of the circuit results. For a given target accuracy, MPF can often use shallower circuits than standard Trotter methods. The cost is that you must run multiple circuits and combine their results classically.
+[Multi-product formulas](https://qiskit.github.io/qiskit-mpf/) improve the accuracy of quantum time-evolution simulations by combining multiple approximations. Specifically, you create circuits with varying numbers of Trotter steps, so that you can use a weighted combination of the circuit results. For a given target accuracy, MPF can often use shallower circuits than standard Trotter methods. The cost is that you must run multiple circuits and combine their results classically.
 
 ![An image showing Trotter circuits with different numbers of steps.](/learning/images/courses/tools-for-quantum-advantage/modern-workflows/mpf.avif)
 
 #### AQC-Tensor
 
-[AQC-Tensor](https://qiskit.github.io/qiskit-addon-aqc-tensor/) performs approximate quantum compilation using tensor-network methods. A common use case is to replace a portion of a deep circuit with a shallower variational approximation. The resulting circuit can achieve similar accuracy with significantly less depth.
+[AQC-Tensor](https://qiskit.github.io/qiskit-aqc-tensor/) performs approximate quantum compilation using tensor-network methods. A common use case is to replace a portion of a deep circuit with a shallower variational approximation. The resulting circuit can achieve similar accuracy with significantly less depth.
 
 ![An image showing the first few layers of a quantum circuit being compressed using AQC.](/learning/images/courses/tools-for-quantum-advantage/modern-workflows/aqc.avif)
 
@@ -168,7 +168,7 @@ When the modified observable is measured on noisy hardware, the resulting expect
 
 #### Circuit cutting
 
-[Circuit cutting](https://qiskit.github.io/qiskit-addon-cutting/) partitions a large circuit into smaller subcircuits that can run independently. You then make enough measurements to recombine the results. Circuit cutting does the following:
+[Circuit cutting](https://qiskit.github.io/qiskit-cutting/) partitions a large circuit into smaller subcircuits that can run independently. You then make enough measurements to recombine the results. Circuit cutting does the following:
 
 * Reduces hardware requirements
 * Allows computations larger than available qubit counts (wider circuits)
