@@ -19,6 +19,12 @@ This guide uses these terms:
 - **Instance**: a service instance. It owns workloads and has usage limits.
 - **Plan**: the service plan of an account. It sets the usage limits for all instances in the account.
 
+<Admonition type="note">
+  This guide uses version 0.57.2 of the [OpenAPI spec](https://quantum.cloud.ibm.com/api/openapi.json).
+
+  The `IBM-API-Version` header value must be `2026-04-15` or a later supported API version.
+</Admonition>
+
 ## Summary
 
 | Endpoint | Stop reading | Read instead |
@@ -49,7 +55,7 @@ The `usage` object also has these fields:
 
 Example:
 
-```text
+```json
 "usage": {
   "qpu_charge_time_seconds": 15,  // old field: stop reading
   "value": 0.250005,              // new field: read this
