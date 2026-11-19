@@ -123,6 +123,51 @@ const FORBIDS_OUR_USER_AGENT = [
   "https://www.science.org/doi/full/10.1126/science.abq0225",
   "https://www.science.org/doi/full/10.1126/science.abq0225#supplementary-materials",
   "https://dl.acm.org/doi/abs/10.5555/3179330.3179331",
+  "https://apps.microsoft.com/detail/9nblggh4nns1",
+  "https://doi.org/10.1021/acs.accounts.1c00514",
+  "https://doi.org/10.1103/1pnv-t9px",
+  "https://doi.org/10.1103/69wc-gzl6",
+  "https://doi.org/10.1103/dmn4-snfx",
+  "https://doi.org/10.1103/PRXQuantum.4.010326",
+  "https://doi.org/10.1103/PRXQuantum.6.010310",
+  "https://doi.org/10.1126/sciadv.adu9991",
+  "https://doi.org/10.3390/e28040367",
+  "https://journals.aps.org/pra/abstract/10.1103/PhysRevA.106.042602",
+  "https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.123.070503",
+  "https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.127.110504",
+  "https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.133.020602",
+  "https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.133.150602",
+  "https://link.aps.org/doi/10.1103/1pnv-t9px",
+  "https://link.aps.org/doi/10.1103/PRXQuantum.6.010310",
+  "https://pubs.rsc.org/en/content/articlehtml/2023/sc/d3sc02516k",
+  "https://pubs.rsc.org/en/content/articlelanding/2023/sc/d3sc02516k",
+  "https://quantumcomputing.stackexchange.com/questions/12721/how-to-calculate-destabilizer-group-of-toric-and-other-codes",
+  "https://quantumcomputing.stackexchange.com/questions/tagged/ibm-q-experience",
+  "https://quantumcomputing.stackexchange.com/questions/tagged/qiskit",
+  "https://stackoverflow.com/questions/1049722/what-is-twos-complement",
+  "https://www.ainvest.com/news/ibm-quantum-computing-leap-system-implications-ai-enterprise-tech-2507/",
+
+  // These IBM docs links return 403/404 to our user agent but load fine in a browser.
+  "https://www.ibm.com/docs/about?topic=accessibility-statement-documentation",
+  "https://www.ibm.com/docs/db2-event-store/2.0.0?topic=data-projects",
+  "https://www.ibm.com/docs/de/icos/22.1.2?topic=docplex-python-modeling-api",
+  "https://www.ibm.com/docs/icos/22.1.1?topic=cplex-lp-file-format-algebraic-representation",
+  "https://cloud.ibm.com/docs/account?topic=account-accounts",
+  "https://cloud.ibm.com/docs/account?topic=account-cbr-monitor",
+  "https://cloud.ibm.com/docs/account?topic=account-context-restrictions-tutorial",
+  "https://cloud.ibm.com/docs/account?topic=account-context-restrictions-whatis",
+  "https://cloud.ibm.com/docs/account?topic=account-custom-roles",
+  "https://cloud.ibm.com/docs/account?topic=account-groups&interface=api",
+  "https://cloud.ibm.com/docs/account?topic=account-groups&interface=cli",
+  "https://cloud.ibm.com/docs/account?topic=account-groups&interface=terraform",
+  "https://cloud.ibm.com/docs/account?topic=account-groups&interface=ui",
+  "https://cloud.ibm.com/docs/account?topic=account-iam-service-roles-actions",
+  "https://cloud.ibm.com/docs/account?topic=account-iam-user-setting",
+  "https://cloud.ibm.com/docs/account?topic=account-ibm-idp-integration",
+  "https://cloud.ibm.com/docs/account?topic=account-iamoverview",
+  "https://cloud.ibm.com/docs/account?topic=account-iamusermanpol",
+  "https://cloud.ibm.com/docs/account?topic=account-userapikey&interface=ui",
+  "https://cloud.ibm.com/docs/account?topic=account-what-is-enterprise",
 ];
 
 // These links work when last tested in a browser
@@ -148,6 +193,8 @@ const FETCH_RETURNS_405 = [
   "https://github.com/Qiskit/qiskit-terra/issues/15664", // redirects
   "https://github.com/Qiskit/qiskit-terra/issues/15665", // redirects
   "https://github.com/Qiskit/qiskit-terra/issues/15666", // redirects
+  "https://qisk.it/join-slack",
+  "http://qisk.it/join-slack",
 ];
 
 // Fetching these links throws an error, but they work in-browser. Not sure why.
@@ -170,6 +217,9 @@ const FETCH_FAILS = [
   "https://medium.com/qiskit/what-can-a-quantum-computer-actually-do-4daed0691f6b",
   // The following link is only accessible through IBM VPN
   "https://w3.ibm.com/w3publisher/w3-privacy-notice",
+  "https://docs.scipy.org/doc/scipy/reference/optimize.minimize-cobyla.html",
+  "https://docs.scipy.org/doc/scipy/reference/optimize.minimize-neldermead.html",
+  "https://docs.scipy.org/doc/scipy/reference/optimize.minimize-slsqp.html",
 ];
 
 // These external URLs were all working the last time we checked, i.e. the link checker was giving false positives.
@@ -207,6 +257,13 @@ const ALWAYS_IGNORED_URLS__EXPECTED = [
   "https://support.google.com/accounts/answer/27441?hl",
   "https://www.ibm.com/thought-leadership/institute-business-value/report/quantumfinancial",
   "https://www.epo.org/en/news-events/press-centre/press-release/2025/1361562",
+
+  // These sites rate-limit (429) or error (500) our link checker, but the links work in a browser.
+  "https://cloud.ibm.com/docs/billing-usage?topic=billing-usage-spending",
+  "https://docs.q-ctrl.com/",
+  "https://docs.q-ctrl.com/fire-opal/execute/run-algorithms/fire-opal-dynamics-simulator",
+  "https://docs.q-ctrl.com/references/fire-opal/fireopal/fireopal.simulate_dynamics",
+  "https://git.zib.de/qopt/qoblib-quantum-optimization-benchmarking-library",
 
   // The following page is published from an internal repo, so it isn't in this repo.
   "/docs/api/addons",
@@ -578,6 +635,7 @@ function _qiskitCRegexes(): FilesToIgnores {
       "/docs/api/qiskit-c/version#qiskit_version_minor",
       "/docs/api/qiskit-c/version#qiskit_version_patch",
     ],
+    "docs/api/qiskit-c/config.mdx": ["#c.QISKIT_PYTHON_EXTENSION"],
     "docs/api/qiskit-c/qk-transpiler.mdx": [
       "#structqktranspileoptions",
       "#c.qk_transpile",
@@ -585,7 +643,9 @@ function _qiskitCRegexes(): FilesToIgnores {
     "docs/api/qiskit-c/qk-dag.mdx": ["#structqkdagneighbors"],
     "docs/api/qiskit-c/qk-transpiler-passes.mdx": [
       "#c.qk_transpiler_pass_standalone_vf2_layout_average",
+      "#c.qk_transpiler_pass_standalone_optimize_1q_sequences",
     ],
+    "docs/api/qiskit-c/version.mdx": ["#c.qk_api_version"],
   };
 }
 
