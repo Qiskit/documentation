@@ -34,7 +34,7 @@ There are several ways to set or change a limit on how much is spent:
 
    ```cli
       ibmcloud resource service-instance-update <instance_CRN>
-      -p '{"instance_limit_seconds":"<seconds>"}'
+      -p '{"instance_limit_ru":"<RUs>"}'
    ```
 
 ## View the cost limit
@@ -54,7 +54,7 @@ There are several ways to view the current cost limit:
 
    ```cli
    ibmcloud resource service-instance-update <instance_CRN> -p
-   '{"instance_limit_seconds":null}'
+   '{"instance_limit_ru":null}'
    ```
 
 ## Remove a cost limit
@@ -73,7 +73,7 @@ You can remove the cost limit in several ways:
 
    ```cli
    ibmcloud resource service-instance-update <instance_CRN> -p
-   '{"instance_limit_seconds":null}'
+   '{"instance_limit_ru":null}'
    ```
 <Admonition type="note">
 Only administrators and owners can edit the instance.  See the [Create access policies and access groups](/docs/ibm-quantum-platform/access-groups) guide for information about assigning access.
