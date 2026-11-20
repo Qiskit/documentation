@@ -53,8 +53,13 @@ There are several ways to view the current cost limit:
 * **IBM Cloud CLI**: For instructions to use the CLI, refer to [Getting started with the IBM Cloud CLI](https://cloud.ibm.com/docs/cli?topic=cli-getting-started).
 
    ```cli
-   ibmcloud resource service-instance-update <instance_CRN> -p
-   '{"instance_limit_ru":null}'
+   ibmcloud resource service-instance <instance_CRN> --output json
+   ```
+
+   The limit is in the `extensions.instance_limit_ru` field of the output, in resource units (RUs). If you have `jq` installed, you can print only the limit:
+
+   ```cli
+   ibmcloud resource service-instance <instance_CRN> --output json | jq '.[0].extensions.instance_limit_ru'
    ```
 
 ## Remove a cost limit
