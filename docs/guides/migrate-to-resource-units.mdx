@@ -12,12 +12,12 @@ Today, the API returns two sets of fields: the old time fields and the new RU fi
 
 This guide uses these terms:
 
-- **Workload**: a job, a session, a batch, or a function run.
-- **QPU workload**: a job, a session, or a batch. A QPU workload runs only on a QPU.
-- **Function workload**: a function run. A function workload can use classical compute and an execution license, and it can also use a QPU.
-- **Session**: a group of jobs that run together on one QPU.
-- **Instance**: a service instance. It owns workloads and has usage limits.
-- **Plan**: the service plan of an account. It sets the usage limits for all instances in the account.
+- **Workload**: A job, a session, a batch, or a function run.
+- **QPU workload**: A job, a session, or a batch. A QPU workload runs only on a QPU.
+- **Function workload**: A function run. A function workload can use classical compute and an execution license, and it can also use a QPU.
+- **Session**: A group of jobs that run together on one QPU.
+- **Instance**: A service instance. It owns workloads and has usage limits.
+- **Plan**: The service plan of an account. It sets the usage limits for all instances in the account.
 
 <Admonition type="note">
   This guide uses version 0.57.2 of the [OpenAPI spec](https://quantum.cloud.ibm.com/api/openapi.json).
@@ -34,7 +34,7 @@ This guide uses these terms:
 | `POST /v1/sessions`, `GET /v1/sessions/{id}` | `elapsed_time` | `usage.value` |
 | `GET /v1/instances/usage` | `usage_consumed_seconds`, `usage_limit_seconds`, `usage_allocation_seconds` | `usage_consumed_ru`, `usage_limit_ru`, `usage_allocation_ru` |
 | `GET /v1/accounts/{id}` | `plans[].usage_limit_seconds`, `plans[].usage_allocation_seconds`, `plans[].unallocated_usage_seconds` | `plans[].usage_limit_ru`, `plans[].usage_allocation_ru`, `plans[].unallocated_usage_ru` |
-| Resource Controller API: create, update, and read service instances | `instance_limit_seconds`, `usage_allocation_seconds` | `instance_limit_ru`, `usage_allocation_ru` |
+| Resource Controller API: Create, update, and read service instances | `instance_limit_seconds`, `usage_allocation_seconds` | `instance_limit_ru`, `usage_allocation_ru` |
 | `GET /v1/analytics/usage`, `GET /v1/analytics/usage_grouped`, `GET /v1/analytics/usage_grouped_by_date` | Each usage field in milliseconds | The matching field with the `_ru` suffix |
 
 The sections that follow give the details for each endpoint.
@@ -49,9 +49,9 @@ Endpoints: `GET /v1/jobs` and `GET /v1/jobs/{id}/metrics`.
 
 The `usage` object also has these fields:
 
-- `usage.unit`: the unit of `usage.value`. The value is always `"resource_units"`.
-- `usage.status`: the billing status. The value is `"pending"` or `"complete"`. If the status is `"pending"`, the platform can still change the value. Do not use a pending value as the final usage.
-- `usage.details[]`: the usage for each billing metric. The `value` of each entry is in RUs.
+- `usage.unit`: The unit of `usage.value`. The value is always `"resource_units"`.
+- `usage.status`: The billing status. The value is `"pending"` or `"complete"`. If the status is `"pending"`, the platform can still change the value. Do not use a pending value as the final usage.
+- `usage.details[]`: The usage for each billing metric. The `value` of each entry is in RUs.
 
 Example:
 
@@ -146,8 +146,8 @@ When you create or update an instance, send these parameters in the request:
 
 The parameters have these meanings:
 
-- **Instance limit**: the maximum usage for the instance. If you do not send a limit on the Open Plan, the default is the RU equivalent of 10 minutes.
-- **Usage allocation**: the share of usage for the instance. The fair-share scheduler uses this value to set the priority of the instance in the queue. The allocation does not apply to Pay-As-You-Go instances.
+- **Instance limit**The maximum usage for the instance. If you do not send a limit on the Open Plan, the default is the RU equivalent of 10 minutes.
+- **Usage allocation**: The share of usage for the instance. The fair-share scheduler uses this value to set the priority of the instance in the queue. The allocation does not apply to Pay-As-You-Go instances.
 
 When you read an instance, the `extensions` object in the response contains the old fields and the new fields. Disregard `instance_limit_seconds` and `usage_allocation_seconds`. Read `instance_limit_ru` and `usage_allocation_ru`.
 
@@ -199,8 +199,8 @@ The fields `queue_time`, `avg_queue_time`, and `max_queue_time` do not change. T
 
 These fields contain time values, but they do not measure usage. IBM Quantum does not plan to replace them:
 
-- `wait_time_seconds` on backends: the estimated wait in the queue.
-- `circuits_execution_time_ns` in `GET /v1/jobs/{id}/metrics`: the time that the job ran on the QPU.
+- `wait_time_seconds` on backends: The estimated wait in the queue.
+- `circuits_execution_time_ns` in `GET /v1/jobs/{id}/metrics`: The time that the job ran on the QPU.
 - `interactive_ttl`, `max_ttl`, and `active_ttl` on sessions.
 - `queue_time`, `avg_queue_time`, and `max_queue_time` in analytics.
 - `rep_times` and `circuit_duration` in backend configuration.
