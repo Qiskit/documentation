@@ -17,11 +17,11 @@ import remarkMdx from "remark-mdx";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import remarkStringify from "remark-stringify";
-import { Content, Root } from "mdast";
-import { MdxJsxFlowElement, MdxJsxAttribute } from "mdast-util-mdx-jsx";
+import type { Content, Root } from "mdast";
+import type { MdxJsxFlowElement, MdxJsxAttribute } from "mdast-util-mdx-jsx";
 import { visit } from "unist-util-visit";
 
-import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
+import type { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
 import { remarkStringifyOptions } from "./commonParserConfig.js";
 
 export async function mergeClassMembers(

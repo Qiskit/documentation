@@ -11,7 +11,7 @@
 // that they have been altered from the originals.
 
 import { load } from "cheerio";
-import { Root } from "mdast";
+import type { Root } from "mdast";
 import { visit } from "unist-util-visit";
 import { last, split } from "lodash-es";
 

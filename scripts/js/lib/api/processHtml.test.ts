@@ -31,7 +31,7 @@ import {
   handleFootnotes,
   expandTableRowspan,
 } from "./processHtml.js";
-import { Metadata } from "./Metadata.js";
+import type { Metadata } from "./Metadata.js";
 import { CheerioDoc } from "../testUtils.js";
 
 test.describe("loadImages()", () => {

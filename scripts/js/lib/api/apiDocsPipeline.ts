@@ -15,7 +15,7 @@ import { writeFile } from "fs/promises";
 import { mkdirp } from "mkdirp";
 import { globby } from "globby";
 
-import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
+import type { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
 import { ObjectsInv } from "./objectsInv.js";
 import { Pkg } from "./Pkg.js";
 import { generateToc } from "./generateToc.js";

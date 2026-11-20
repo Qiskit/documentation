@@ -28,7 +28,7 @@ import { globby } from "globby";
 import isAbsoluteUrl from "is-absolute-url";
 import { mkdirp } from "mkdirp";
 
-import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
+import type { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
 import { ObjectsInv } from "./objectsInv.js";
 import { Pkg } from "./Pkg.js";
 import {

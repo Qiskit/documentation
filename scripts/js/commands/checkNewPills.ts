@@ -13,7 +13,7 @@
 import { globby } from "globby";
 
 import { readJsonFile } from "../lib/fs.js";
-import { collectNewPills, NewPillEntry } from "../lib/newPills.js";
+import { collectNewPills, type NewPillEntry } from "../lib/newPills.js";
 
 const TODAY = new Date();
 
@@ -62,7 +62,7 @@ function detectOutdatedNewPills(newPills: NewPillEntry[]): {
     }
     const oldDate = new Date(pill.date);
     const daysDiff = (TODAY.getTime() - oldDate.getTime()) / msPerDay;
-    if (daysDiff > 14) {
+    if (daysDiff > 21) {
       outdatedPills.push(pill);
     }
   }

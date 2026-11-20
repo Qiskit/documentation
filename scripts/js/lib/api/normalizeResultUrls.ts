@@ -12,7 +12,7 @@
 
 import { kebabCase, initial, last } from "lodash-es";
 
-import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
+import type { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
 import { C_API_BASE_PATH } from "./paths.js";
 import { removePart } from "../stringUtils.js";
 

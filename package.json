@@ -4,14 +4,12 @@
   "description": "The documentation content home for https://docs.quantum.ibm.com.",
   "author": "Qiskit Development Team",
   "license": "Apache-2.0",
+  "private": true,
   "type": "module",
-  "files": [
-    "dist",
-    "scripts/config/cspell",
-    "scripts/config/internal-links.json"
-  ],
+  "engines": {
+    "node": ">=24"
+  },
   "scripts": {
-    "prepare": "tsc",
     "fmt": "prettier --write .",
     "test": "playwright test",
     "typecheck": "tsc",
@@ -34,8 +32,7 @@
     "gen-api": "tsx scripts/js/commands/api/updateApiDocs.ts",
     "gen-addon": "tsx scripts/js/commands/api/updateAddonDocs.ts",
     "postgen-addon": "./fix",
-    "generate-historical-redirects": "tsx scripts/js/commands/api/generateHistoricalRedirects.ts",
-    "save-internal-links": "tsx scripts/js/commands/saveInternalLinks.ts"
+    "generate-historical-redirects": "tsx scripts/js/commands/api/generateHistoricalRedirects.ts"
   },
   "dependencies": {
     "@qiskit/mdx-link-extract": "^1.2.0",
@@ -51,12 +48,10 @@
     "jest-diff": "^30.3.0",
     "js-yaml": "^4.3.2",
     "lodash-es": "^4.18.1",
-    "mdast": "^3.0.0",
     "mkdirp": "^3.0.1",
     "p-map": "^6.0.0",
     "rehype-parse": "^8.0.0",
     "rehype-remark": "^9.1.2",
-    "remark-frontmatter": "^5.0.0",
     "remark-gfm": "^3.0.1",
     "remark-math": "^5.1.1",
     "remark-mdx": "^2.3.0",
@@ -74,11 +69,13 @@
     "@types/fast-levenshtein": "^0.0.4",
     "@types/js-yaml": "^4.0.9",
     "@types/lodash-es": "^4.14.198",
-    "@types/node": "^20.6.2",
+    "@types/mdast": "^3.0.15",
+    "@types/node": "^24.19.2",
     "@types/semver": "^7.7.1",
     "@types/yargs": "^17.0.28",
+    "domhandler": "^5.0.3",
     "prettier": "3.5.3",
     "tsx": "^4.22.4",
-    "typescript": "^5.2.2"
+    "typescript": "^5.9.3"
   }
 }

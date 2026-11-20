@@ -21,7 +21,7 @@ import {
   resolveParentRelativeLinks,
   runAddonDocsPipeline,
 } from "./addonDocsPipeline.js";
-import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
+import type { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
 import { Pkg, ReleaseNotesConfig } from "./Pkg.js";
 
 // Snapshot test for the addon non-API docs pipeline. If output changes

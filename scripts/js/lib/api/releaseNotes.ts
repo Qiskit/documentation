@@ -22,7 +22,7 @@ import type { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
 import { C_API_BASE_PATH, DOCS_BASE_PATH } from "./paths.js";
 import { kebabCaseAndShortenPage } from "./normalizeResultUrls.js";
 import { removePrefix } from "../stringUtils.js";
-import { generateReleaseNotesEntry, TocEntry } from "./generateToc.js";
+import { generateReleaseNotesEntry, type TocEntry } from "./generateToc.js";
 
 // ---------------------------------------------------------------------------
 // Generic release notes handling

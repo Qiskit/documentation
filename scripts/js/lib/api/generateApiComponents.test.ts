@@ -13,7 +13,7 @@
 import { expect, test } from "@playwright/test";
 
 import {
-  ComponentProps,
+  type ComponentProps,
   prepareGitHubLink,
   htmlSignatureToMd,
   addExtraSignatures,

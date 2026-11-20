@@ -17,7 +17,7 @@ import pMap from "p-map";
 import { $ } from "zx";
 import { mkdirp } from "mkdirp";
 
-import { Image } from "./HtmlToMdResult.js";
+import type { Image } from "./HtmlToMdResult.js";
 import { Pkg } from "./Pkg.js";
 import { pathExists } from "../fs.js";
 
