@@ -1,6 +1,6 @@
 ---
 title: Migrate to resource units (RUs) in the IBM Quantum Compute API
-description: Learn which time-based usage fields in the IBM Quantum Compute API to stop reading, and which resource unit (RU) fields replace them.
+description: Learn which time-based usage fields in the IBM Quantum Compute API to disregard, and which resource unit (RU) fields replace them.
 
 ---
 
@@ -27,7 +27,7 @@ This guide uses these terms:
 
 ## Summary
 
-| Endpoint | Stop reading | Read instead |
+| Endpoint | Disregard | Read instead |
 | --- | --- | --- |
 | `GET /v1/jobs`, `GET /v1/jobs/{id}/metrics` | `usage.qpu_charge_time_seconds` | `usage.value` |
 | `GET /v1/workloads` | `workloads[].usage.qpu_charge_time_seconds` | `workloads[].usage.value` |
@@ -43,7 +43,7 @@ The sections that follow give the details for each endpoint.
 
 Endpoints: `GET /v1/jobs` and `GET /v1/jobs/{id}/metrics`.
 
-| Stop reading | Read instead |
+| Disregard | Read instead |
 | --- | --- |
 | `usage.qpu_charge_time_seconds` | `usage.value` |
 
@@ -57,7 +57,7 @@ Example:
 
 ```json
 "usage": {
-  "qpu_charge_time_seconds": 15,  // old field: stop reading
+  "qpu_charge_time_seconds": 15,  // old field: disregard
   "value": 0.250005,              // new field: read this
   "unit": "resource_units",
   "status": "complete",
@@ -75,7 +75,7 @@ Endpoint: `GET /v1/workloads`.
 
 Each item in `workloads[]` has a `usage` object. This object has the same fields as the `usage` object of a job.
 
-| Stop reading | Read instead |
+| Disregard | Read instead |
 | --- | --- |
 | `workloads[].usage.qpu_charge_time_seconds` | `workloads[].usage.value` |
 
@@ -101,7 +101,7 @@ If you show or add usage values, use `usage.value` and `usage.details[].value`. 
 
 Endpoints: `POST /v1/sessions` and `GET /v1/sessions/{id}`.
 
-| Stop reading | Read instead |
+| Disregard | Read instead |
 | --- | --- |
 | `elapsed_time` (seconds) | `usage.value` |
 
@@ -113,7 +113,7 @@ The fields `interactive_ttl`, `max_ttl`, and `active_ttl` do not change. They ar
 
 Endpoint: `GET /v1/instances/usage`.
 
-| Stop reading | Read instead |
+| Disregard | Read instead |
 | --- | --- |
 | `usage_consumed_seconds` | `usage_consumed_ru` |
 | `usage_limit_seconds` | `usage_limit_ru` |
@@ -127,7 +127,7 @@ Endpoint: `GET /v1/accounts/{id}`.
 
 Each item in `plans[]` has these changes:
 
-| Stop reading | Read instead |
+| Disregard | Read instead |
 | --- | --- |
 | `plans[].usage_limit_seconds` | `plans[].usage_limit_ru` |
 | `plans[].usage_allocation_seconds` | `plans[].usage_allocation_ru` |
@@ -139,7 +139,7 @@ The IBM Cloud&reg; Resource Controller API is a separate API. You use it to crea
 
 When you create or update an instance, send these parameters in the request:
 
-| Stop sending | Send instead | Type of the new parameter |
+| Don't send | Send instead | Type of the new parameter |
 | --- | --- | --- |
 | `instance_limit_seconds` | `instance_limit_ru` | Number or `null` |
 | `usage_allocation_seconds` | `usage_allocation_ru` | Number or `null` |
@@ -149,7 +149,7 @@ The parameters have these meanings:
 - **Instance limit**: the maximum usage for the instance. If you do not send a limit on the Open Plan, the default is the RU equivalent of 10 minutes.
 - **Usage allocation**: the share of usage for the instance. The fair-share scheduler uses this value to set the priority of the instance in the queue. The allocation does not apply to Pay-As-You-Go instances.
 
-When you read an instance, the `extensions` object in the response contains the old fields and the new fields. Stop reading `instance_limit_seconds` and `usage_allocation_seconds`. Read `instance_limit_ru` and `usage_allocation_ru`.
+When you read an instance, the `extensions` object in the response contains the old fields and the new fields. Disregard `instance_limit_seconds` and `usage_allocation_seconds`. Read `instance_limit_ru` and `usage_allocation_ru`.
 
 For more information, see the [IBM Quantum Compute Service REST API documentation](/docs/api/qiskit-runtime-rest).
 
@@ -161,7 +161,7 @@ The three endpoints have the same usage fields. The two grouped endpoints return
 
 The old analytics usage fields are in milliseconds, not seconds.
 
-| Stop reading (milliseconds) | Read instead (RUs) |
+| Disregard (milliseconds) | Read instead (RUs) |
 | --- | --- |
 | `usage` | `usage_ru` |
 | `sessions_usage` | `sessions_usage_ru` |
