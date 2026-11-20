@@ -16,7 +16,10 @@ on:
 jobs:
   execute:
     name: Execute notebooks with test-eagle
-    runs-on: ubuntu-latest
+    # TODO: Pinned to 24.04: on Ubuntu 26.04, graphviz's `neato -T png` exits with
+    # status 1 and breaks notebooks that plot coupling maps. Switch back to
+    # `ubuntu-latest` once that is fixed (see also main.yml).
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
 
