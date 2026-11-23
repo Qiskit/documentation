@@ -12,7 +12,11 @@
 
 import { expect, test } from "@playwright/test";
 
-import { transformSpecialCaseUrl } from "./specialCaseResults.js";
+import { Metadata } from "./Metadata.js";
+import {
+  specialCaseResults,
+  transformSpecialCaseUrl,
+} from "./specialCaseResults.js";
 
 test("transformSpecialCaseUrl()", () => {
   const urls = ["release_notes", "release_notes#release-notes-0-2-1-bug-fixes"];
@@ -21,4 +25,20 @@ test("transformSpecialCaseUrl()", () => {
     "release-notes",
     "release-notes#release-notes-0-2-1-bug-fixes",
   ]);
+});
+
+test("specialCaseResults() adds hardcodedFrontmatter for transpiler_builtin_plugins", () => {
+  const results = [
+    {
+      markdown: "# Header",
+      meta: {} as Metadata,
+      images: [],
+      isReleaseNotes: false,
+      url: "/docs/api/qiskit/0.46/transpiler_builtin_plugins",
+    },
+  ];
+  specialCaseResults(results);
+  expect(results[0].meta.hardcodedFrontmatter).toBe(
+    "title: Built-in Transpiler Synthesis Plugins\ndescription: API reference for built-in transpiler synthesis plugins",
+  );
 });
