@@ -1,0 +1,48 @@
+---
+title: Quantum machine learning
+description: Overview of application research tools for machine learning.
+---
+
+# Quantum machine learning
+
+Quantum machine learning (QML) is an emerging field that combines quantum computing and machine learning to explore new ways of analyzing data, 
+recognizing patterns, and solving complex computational problems. It applies concepts from quantum mechanics to develop quantum algorithms and machine
+learning models that can run on quantum computers or integrate quantum and classical computing.
+
+Research in QML includes quantum neural networks, quantum kernel methods, and hybrid quantum-classical algorithms, which use classical computers to 
+optimize models while quantum processors perform specific computations. Although QML might offer advantages for certain tasks, practical benefits over 
+classical machine learning remain an active area of research.
+
+A common workflow trains a model mostly on classical hardware, and then uses a quantum processor for a targeted subroutine, such as optimizing the diversity of an ensemble of learners or evaluating a quantum kernel, where quantum effects might provide an advantage over a purely classical approach. With this hybrid structure, you can apply quantum resources to the part of the problem where they can have the most effect, while keeping most of a machine learning pipeline, such as data preprocessing and large-scale training, on classical infrastructure. The application functions on this page follow this pattern: one for classification tasks, and one for feature extraction.
+
+<span id="application-functions"></span>
+## Application functions for quantum machine learning
+
+The following quantum functions apply this hybrid approach to machine learning tasks, and use quantum hardware at different points of a pipeline:
+
+- **Singularity Machine Learning - Classification** solves binary classification problems. You provide your own training data, and the function classically trains an ensemble of learners, then uses a quantum algorithm to optimize that ensemble for diversity and generalization, before returning predictions on new data.
+- **Rimay Quantum Feature Extraction** adds a preprocessing step to an existing machine learning pipeline. You provide classical tabular data, and the function returns quantum-transformed features generated on quantum hardware. You can use these features on their own, or combine them with your original features, to train a classical model of your choice.
+
+<Admonition type="note" title="Notes">
+IBM Quantum&reg; Functions are a beta feature available only to IBM Quantum Premium Plan, Flex Plan, and On-Prem (through the IBM Quantum Platform API) Plan users. Refer to [Set up IBM Quantum Functions](https://quantum.cloud.ibm.com/functions) for instructions on getting access.
+</Admonition>
+
+<CardGroup>
+
+    <Card
+      title="Singularity Machine Learning by Multiverse Computing"
+      description="A hybrid quantum-classical classification solution that combines classical ensemble methods with quantum algorithms such as QAOA to optimize model diversity and generalization for classification tasks."
+      href="/docs/functions/multiverse-computing-singularity"
+      analyticsName="Documentation page: Singularity Machine Learning by Multiverse Computing"
+      linkText="Browse documentation"
+    />
+
+    <Card
+      title="Rimay Quantum Feature Extraction by Kipu Quantum"
+      description="Augment classical machine learning pipelines with features generated on quantum hardware. The function takes classical tabular data and returns a set of quantum-transformed features."
+      href="/docs/functions/kipu-rimay"
+      analyticsName="Documentation page: Rimay Quantum Feature Extraction by Kipu Quantum"
+      linkText="Browse documentation"
+    />
+
+</CardGroup>

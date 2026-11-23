@@ -229,7 +229,39 @@ export function resolveRelativeNotebookLink(
     return undefined;
   }
   const page = removeExtension(resolved);
+  const pageUrl = resolveArtifactPageUrl(
+    page,
+    anchor,
+    pkg,
+    ingestedPages,
+    nbsphinxAnchorToIqp,
+  );
+  if (pageUrl === undefined) {
+    console.warn(
+      `Leaving link ${url} in ${notebookPath} unchanged: ${page} is not published as part of ${pkg.name}.`,
+    );
+    return undefined;
+  }
+  return pageUrl;
+}
 
+/**
+ * Map an addon page, given by its artifact-relative path without extension
+ * (e.g. `install` or `guides/quickstart`), to its IQP URL. Shared by notebooks
+ * and HTML pages so both resolve relative links the same way.
+ *
+ * `formatAnchor` converts the anchor of a link to another addon page, since
+ * nbsphinx and Sphinx anchors map to IQP heading slugs differently.
+ *
+ * Returns undefined if the page isn't published.
+ */
+export function resolveArtifactPageUrl(
+  page: string,
+  anchor: string | undefined,
+  pkg: Pkg,
+  ingestedPages: Set<string>,
+  formatAnchor: (anchor: string) => string,
+): string | undefined {
   // Links into the API reference or release notes get the same mapping as
   // links in HTML pages: rewriteApiDocsLinks, then normalizeUrl (which also
   // handles the C API's `cdoc/` folder).
@@ -245,12 +277,7 @@ export function resolveRelativeNotebookLink(
     });
   }
 
-  if (!ingestedPages.has(page)) {
-    console.warn(
-      `Leaving link ${url} in ${notebookPath} unchanged: ${page} is not published as part of ${pkg.name}.`,
-    );
-    return undefined;
-  }
+  if (!ingestedPages.has(page)) return undefined;
 
   // Normalize the same way as when the page is written (normalizeNotebookUrl
   // for notebooks; normalizeResultUrls and specialCaseResults do the same for
@@ -259,7 +286,7 @@ export function resolveRelativeNotebookLink(
     `${pkg.outputDir(`${DOCS_BASE_PATH}/addons`)}/${page}`,
     pkg,
   ).replace(/\/index$/, "");
-  return anchor ? `${pageUrl}#${nbsphinxAnchorToIqp(anchor)}` : pageUrl;
+  return anchor ? `${pageUrl}#${formatAnchor(anchor)}` : pageUrl;
 }
 
 /**

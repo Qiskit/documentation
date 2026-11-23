@@ -8,7 +8,7 @@ python_api_name: qiskit_ibm_runtime.Calibrator
 
 # Calibrator
 
-<Class id="qiskit_ibm_runtime.Calibrator" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/calibrator/calibrator.py#L37-L155" signature="Calibrator(mode=None, options=None)" modifiers="class">
+<Class id="qiskit_ibm_runtime.Calibrator" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/calibrator/calibrator.py#L37-L158" signature="Calibrator(mode=None, options=None)" modifiers="class">
   Bases: `object`
 
   Class for calibrating a backend.
@@ -26,9 +26,13 @@ python_api_name: qiskit_ibm_runtime.Calibrator
       calibrator.run()
   ```
 
+  <Admonition title="Note" type="note">
+    This feature is experimental and subject to change without notice.
+  </Admonition>
+
   **Parameters**
 
-  *   **mode** (*BackendV2 |* [*Session*](session "qiskit_ibm_runtime.Session")  *|*[*Batch*](batch "qiskit_ibm_runtime.Batch") *| str | None*) –
+  *   **mode** (*BackendV2 |* [*Session*](session "qiskit_ibm_runtime.Session")  *|*[*Batch*](batch "qiskit_ibm_runtime.Batch") *| None*) –
 
       The execution mode used to make the primitive query. It can be:
 
@@ -36,7 +40,7 @@ python_api_name: qiskit_ibm_runtime.Calibrator
       *   A [`Session`](session "qiskit_ibm_runtime.Session") if you are using session execution mode.
       *   A [`Batch`](batch "qiskit_ibm_runtime.Batch") if you are using batch execution mode.
 
-      Refer to the [IBM Quantum Compute documentation](/docs/guides/execution-modes) for more information about the `Execution modes`.
+      Refer to the [IBM Quantum Compute documentation](/docs/ibm-quantum-compute/execution-modes) for more information about the `Execution modes`.
 
   *   **options** ([*CalibratorOptions*](options-models-calibrator-options "qiskit_ibm_runtime.options_models.calibrator.CalibratorOptions")) – Calibrator options, see [`CalibratorOptions`](options-models-calibrator-options "qiskit_ibm_runtime.options_models.CalibratorOptions") for detailed description.
 
@@ -64,7 +68,7 @@ python_api_name: qiskit_ibm_runtime.Calibrator
 
   ### backend
 
-  <Function id="qiskit_ibm_runtime.Calibrator.backend" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/calibrator/calibrator.py#L104-L106" signature="backend()">
+  <Function id="qiskit_ibm_runtime.Calibrator.backend" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/calibrator/calibrator.py#L107-L109" signature="backend()">
     Return the backend to calibrate.
 
     **Return type**
@@ -74,7 +78,7 @@ python_api_name: qiskit_ibm_runtime.Calibrator
 
   ### run
 
-  <Function id="qiskit_ibm_runtime.Calibrator.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/calibrator/calibrator.py#L117-L155" signature="run()">
+  <Function id="qiskit_ibm_runtime.Calibrator.run" github="https://github.com/Qiskit/qiskit-ibm-runtime/tree/main/qiskit_ibm_runtime/calibrator/calibrator.py#L120-L158" signature="run()">
     Calibrate the backend.
 
     **Returns**

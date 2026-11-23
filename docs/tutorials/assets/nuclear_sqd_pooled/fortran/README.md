@@ -42,7 +42,7 @@ The second command reads `bitstrings_stepNN.txt` files without submitting hardwa
 
 ## Run on hardware
 
-Build with Runtime support as described in the build instructions. These commands assume you have already [saved your IBM Quantum Platform credentials locally](https://quantum.cloud.ibm.com/docs/en/guides/save-credentials). The pinned Runtime client reads `~/.qiskit/qiskit-ibm.json`; use an account named `default`, `default-ibm-quantum-platform`, or `default-ibm-cloud`. Do not put API keys in tutorial files.
+Build with Runtime support as described in the build instructions. These commands assume you have already [saved your IBM Quantum Platform credentials locally](https://quantum.cloud.ibm.com/docs/guides/save-credentials). The pinned Runtime client reads `~/.qiskit/qiskit-ibm.json`; use an account named `default`, `default-ibm-quantum-platform`, or `default-ibm-cloud`. Do not put API keys in tutorial files.
 
 From the build directory, run:
 

@@ -562,6 +562,29 @@ test("escape pipe characters in math inside table cells", async () => {
 `);
 });
 
+test("escape norm bars and keep line breaks in math inside table cells", async () => {
+  expect(
+    await toMd(`
+<div role='main'>
+<table>
+<thead>
+<tr><th><p>Norm</p></th><th><p>Line break</p></th></tr>
+</thead>
+<tbody>
+<tr class="row-even">
+<td><p><span class="math notranslate nohighlight">\\(\\|\\vec{v}\\|_2\\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\\(a \\\\|b|\\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+    `),
+  ).toEqual(`| Norm                    | Line break          |
+| ----------------------- | ------------------- |
+| $\\Vert \\vec{v}\\Vert _2$ | $a \\\\\\vert b\\vert $ |
+`);
+});
+
 test("transform block math", async () => {
   expect(
     await toMd(`

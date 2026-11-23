@@ -361,7 +361,12 @@ function remarkEscapeMathPipesInTables() {
   return (root: Root) => {
     visit(root, "tableCell", (cell: any) => {
       visit(cell, "inlineMath", (mathNode: any) => {
-        mathNode.value = mathNode.value.replaceAll("|", "\\vert ");
+        // `\\` is matched first so `\\|` (line break, then a bar) isn't read as `\|`
+        mathNode.value = mathNode.value.replace(
+          /\\\\|\\\||\|/g,
+          (match: string) =>
+            match === "\\\\" ? match : match === "|" ? "\\vert " : "\\Vert ",
+        );
       });
     });
   };

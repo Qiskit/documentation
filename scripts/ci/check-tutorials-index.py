@@ -56,6 +56,9 @@ def get_notebook_title(path: Path) -> str:
         raise Exception(f"{path}: Make sure your notebook has a 'title' in the metadata! {info_message}")
 
     title_text = title_line.split("title:", 1)[1].strip()
+    # YAML titles that contain a colon must be quoted; the quotes are not part of the title.
+    if len(title_text) >= 2 and title_text[0] == title_text[-1] and title_text[0] in "\"'":
+        title_text = title_text[1:-1]
     if not title_text:
         raise Exception(f"{path}: Make sure your notebook's 'title' is not empty! {info_message}")
 

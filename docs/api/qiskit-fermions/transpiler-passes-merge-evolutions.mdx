@@ -1,0 +1,131 @@
+---
+title: MergeEvolutions (latest version)
+description: API reference for qiskit_fermions.transpiler.passes.MergeEvolutions in the latest version of qiskit-fermions
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_fermions.transpiler.passes.MergeEvolutions
+---
+
+# MergeEvolutions
+
+<Class id="qiskit_fermions.transpiler.passes.MergeEvolutions" isDedicatedPage={true} signature="MergeEvolutions(atol=1e-12)" modifiers="class">
+  Bases: [`GenericPass`](/docs/api/qiskit/qiskit.passmanager.GenericPass)\[[`DAGCircuit`](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit), [`DAGCircuit`](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit)]
+
+  A transpilation pass merging consecutive [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") gates of the same operator.
+
+  Two evolutions under the same operator $H$ satisfy
+
+$$
+e^{-i t_2 H} e^{-i t_1 H} = e^{-i (t_1 + t_2) H},
+$$
+
+  because $H$ commutes with itself. This pass finds neighboring [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") gates of equivalent operators and replaces them by one gate whose evolution time is the sum of theirs. The rewrite is exact, so it changes neither the simulated state nor the Trotter error of the circuit; it only removes a gate, and with it the synthesized operations that gate would have produced.
+
+  Such neighbors arise wherever two sequences of factors meet on the same factor. Examples are the seams between the repetitions of [`FermionicCircuit.repeat()`](circuit-fermionic-circuit#repeat "qiskit_fermions.circuit.FermionicCircuit.repeat"), between consecutive [`UCC`](circuit-library-ucc "qiskit_fermions.circuit.library.UCC") or [`UCJ`](circuit-library-ucj "qiskit_fermions.circuit.library.UCJ") layers, or between consecutive samples of [`QDriftTrotterization`](transpiler-passes-q-drift-trotterization "qiskit_fermions.transpiler.passes.QDriftTrotterization"). [`FermionicSuzukiTrotter`](circuit-library-synthesis-fermionic-suzuki-trotter "qiskit_fermions.circuit.library.synthesis.FermionicSuzukiTrotter") already fuses the seams within its own output (see [`FermionicSuzukiTrotter.merge_adjacent`](circuit-library-synthesis-fermionic-suzuki-trotter#merge_adjacent "qiskit_fermions.circuit.library.synthesis.FermionicSuzukiTrotter.merge_adjacent")); this pass is the general mechanism which also acts across gate boundaries.
+
+  Two gates merge only when all of the following hold:
+
+  *   they act on the identical wires, in the identical order, with nothing else in between;
+  *   their operators are of the same type and equivalent up to [`atol`](#qiskit_fermions.transpiler.passes.MergeEvolutions.atol "qiskit_fermions.transpiler.passes.MergeEvolutions.atol");
+  *   they are either both `Evolution.atomic` or both not, and in the latter case they are decomposed by the same kind of `Evolution.synthesis` with identical settings.
+
+  The merged gate keeps the operator, and thus the [`groups`](operators-operator-trait#groups "qiskit_fermions.operators.OperatorTrait.groups"), of the first gate of the run.
+
+  <Admonition title="Caution" type="note">
+    This is an early development prototype. Beware of changes to its interface without warning during the pre-release development of this package.
+  </Admonition>
+
+  <Admonition title="See also" type="note">
+    [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution"), [`MergeOrbitalRotations`](transpiler-passes-merge-orbital-rotations "qiskit_fermions.transpiler.passes.MergeOrbitalRotations").
+  </Admonition>
+
+  Initializing this transpiler pass can be done with the arguments listed below.
+
+  **Parameters**
+
+  **atol** ([*float*](https://docs.python.org/3/builtins/functions.html#float)) – the absolute tolerance up to which the operators of two gates are considered equivalent.
+
+  ## Attributes
+
+  ### atol
+
+  <Attribute id="qiskit_fermions.transpiler.passes.MergeEvolutions.atol">
+    The absolute tolerance up to which two operators are considered equivalent.
+  </Attribute>
+
+  ## Methods
+
+  ### run
+
+  <Function id="qiskit_fermions.transpiler.passes.MergeEvolutions.run" signature="run(dag)">
+    Runs this transpilation pass.
+
+    Collects every maximal run of consecutive [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") gates on the same wires, splits it into stretches of mergeable gates and replaces each stretch of length two or more with a single [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") carrying the summed time. Everything else is left untouched. The input DAG is modified in place.
+
+    A `Barrier` interrupts a run, so the gates on either side of one are not merged. Place a barrier between two gates to keep them apart.
+
+    **Parameters**
+
+    **dag** ([*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit)) – the input circuit with fermion-based instructions. Only [`DAGOpNode`](/docs/api/qiskit/qiskit.dagcircuit.DAGOpNode) with [`FermionicGate`](circuit-fermionic-gate "qiskit_fermions.circuit.FermionicGate") instances as their [`op`](/docs/api/qiskit/qiskit.dagcircuit.DAGOpNode#op) are supported, plus `Barrier` and [`FermionicMeasure`](circuit-library-fermionic-measure "qiskit_fermions.circuit.library.FermionicMeasure"), which are carried through untouched (a measurement keeps the classical bit it writes into).
+
+    **Returns**
+
+    The output circuit which is still acting on a fermionic register.
+
+    **Return type**
+
+    [*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit)
+  </Function>
+
+  ## Inherited Methods
+
+  ### execute
+
+  <Function id="qiskit_fermions.transpiler.passes.MergeEvolutions.execute" signature="execute(passmanager_ir, state, callback=None)">
+    Execute optimization task for input Qiskit IR.
+
+    **Parameters**
+
+    *   **passmanager\_ir** (*IR*) – Qiskit IR to optimize.
+    *   **state** ([*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)) – State associated with workflow execution by the pass manager itself.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[*[*Task*](/docs/api/qiskit/qiskit.passmanager.Task)*, IR\_OUT,* [*PropertySet*](/docs/api/qiskit/qiskit.passmanager.PropertySet)*,* [*float*](https://docs.python.org/3/builtins/functions.html#float)*,* [*int*](https://docs.python.org/3/builtins/functions.html#int)*], None] | None*) – A callback function which is called per execution of optimization task.
+
+    **Returns**
+
+    Optimized Qiskit IR and state of the workflow.
+
+    **Return type**
+
+    [tuple](https://docs.python.org/3/builtins/stdtypes.html#tuple)\[*IR\_OUT*, [*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)]
+  </Function>
+
+  ### name
+
+  <Function id="qiskit_fermions.transpiler.passes.MergeEvolutions.name" signature="name()">
+    Name of the pass.
+
+    **Return type**
+
+    [str](https://docs.python.org/3/builtins/stdtypes.html#str)
+  </Function>
+
+  ### update\_status
+
+  <Function id="qiskit_fermions.transpiler.passes.MergeEvolutions.update_status" signature="update_status(state, run_state)">
+    Update workflow status.
+
+    **Parameters**
+
+    *   **state** ([*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)) – Pass manager state to update.
+    *   **run\_state** (*RunState*) – Completion status of current task.
+
+    **Returns**
+
+    Updated pass manager state.
+
+    **Return type**
+
+    [*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)
+  </Function>
+</Class>
+

@@ -1,0 +1,117 @@
+---
+title: OccupationB2QLayout (latest version)
+description: API reference for qiskit_bosons.transpiler.passes.OccupationB2QLayout in the latest version of qiskit-bosons
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_bosons.transpiler.passes.OccupationB2QLayout
+---
+
+# OccupationB2QLayout
+
+<Class id="qiskit_bosons.transpiler.passes.OccupationB2QLayout" isDedicatedPage={true} signature="OccupationB2QLayout(spec)" modifiers="class">
+  Bases: [`GenericPass`](/docs/api/qiskit/qiskit.passmanager.GenericPass)\[[`DAGCircuit`](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit), [`DAGCircuit`](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit)]
+
+  Maps bosonic modes to the qubits a [`LevelSpec`](mappers-level-spec "qiskit_bosons.mappers.LevelSpec") assigns them.
+
+  Each bosonic mode is truncated to the levels its cutoff in [`spec`](#qiskit_bosons.transpiler.passes.OccupationB2QLayout.spec "qiskit_bosons.transpiler.passes.OccupationB2QLayout.spec") keeps and spans [`LevelEncoding.num_qubits()`](mappers-level-encoding#num_qubits "qiskit_bosons.mappers.LevelEncoding.num_qubits") of that many levels consecutive qubits, so the register of $M$ modes is mapped to a qubit register of [`LevelSpec.total_width`](mappers-level-spec#total_width "qiskit_bosons.mappers.LevelSpec.total_width") qubits and mode $m$ starts at qubit [`LevelSpec.offsets`](mappers-level-spec#offsets "qiskit_bosons.mappers.LevelSpec.offsets") `[m]`.
+
+  A boson-to-qubit encoding generally needs more than one qubit per mode ($d$ of them for the unary encodings), so the qubit register is wider than the mode register. Unlike [`CustomB2QLayout`](transpiler-passes-custom-b-2-q-layout "qiskit_bosons.transpiler.passes.CustomB2QLayout") this derives the registers from the circuit being transpiled rather than requiring them up front, which is what lets one pass manager serve circuits of different widths, as long as [`spec`](#qiskit_bosons.transpiler.passes.OccupationB2QLayout.spec "qiskit_bosons.transpiler.passes.OccupationB2QLayout.spec") leaves the number of modes open.
+
+  <Admonition title="Note" type="note">
+    The truncation and the encoding are given by the [`spec`](#qiskit_bosons.transpiler.passes.OccupationB2QLayout.spec "qiskit_bosons.transpiler.passes.OccupationB2QLayout.spec") of this **pass**, not by the circuit. That is the point: the bosonic circuit upstream of the transpiler is independent of both, so the same circuit can be lowered at several truncation levels – or under several encodings – by swapping this pass alone.
+  </Admonition>
+
+  <Admonition title="Warning" type="caution">
+    A spec whose modes have **different** cutoffs fixes the qubit offset of each mode by its position in the register, so reordering the modes afterwards would silently attach the wrong cutoff to a mode. This pass therefore refuses a circuit to which [`RelabelModes`](transpiler-passes-relabel-modes "qiskit_bosons.transpiler.passes.RelabelModes") has already been applied (it leaves a `"permutation"` entry in the circuit’s metadata) and raises a [`ValueError`](https://docs.python.org/3/builtins/exceptions.html#ValueError). A spec with one shared cutoff is unaffected. Note that [`CustomB2QLayout`](transpiler-passes-custom-b-2-q-layout "qiskit_bosons.transpiler.passes.CustomB2QLayout") does not perform this check: the user is responsible for the consistency of a layout they provide themselves.
+  </Admonition>
+
+  Initializing this transpiler pass can be done with the arguments listed below.
+
+  **Parameters**
+
+  **spec** ([*LevelSpec*](mappers-level-spec "qiskit_bosons.mappers.LevelSpec")) – the [`LevelSpec`](mappers-level-spec "qiskit_bosons.mappers.LevelSpec") with the cutoff of every mode and the encoding that lays the occupation levels out on qubits. A spec with one cutoff per mode only supports circuits with exactly that many modes.
+
+  ## Attributes
+
+  ### spec
+
+  <Attribute id="qiskit_bosons.transpiler.passes.OccupationB2QLayout.spec">
+    The [`LevelSpec`](mappers-level-spec "qiskit_bosons.mappers.LevelSpec") this layout is derived from.
+  </Attribute>
+
+  ## Methods
+
+  ### run
+
+  <Function id="qiskit_bosons.transpiler.passes.OccupationB2QLayout.run" signature="run(dag)">
+    Runs this analysis pass.
+
+    **Parameters**
+
+    **dag** ([*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit)) – the DAG circuit representation of a [`BosonicCircuit`](circuit-bosonic-circuit "qiskit_bosons.circuit.BosonicCircuit").
+
+    **Returns**
+
+    The unchanged input. But the `property_set` of this transpilation pipeline will be updated.
+
+    **Raises**
+
+    [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – if a register has a different number of modes than [`spec`](#qiskit_bosons.transpiler.passes.OccupationB2QLayout.spec "qiskit_bosons.transpiler.passes.OccupationB2QLayout.spec") covers, or if [`spec`](#qiskit_bosons.transpiler.passes.OccupationB2QLayout.spec "qiskit_bosons.transpiler.passes.OccupationB2QLayout.spec") gives the modes different cutoffs and [`RelabelModes`](transpiler-passes-relabel-modes "qiskit_bosons.transpiler.passes.RelabelModes") has been applied to the circuit.
+
+    **Return type**
+
+    [*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit)
+  </Function>
+
+  ## Inherited Methods
+
+  ### execute
+
+  <Function id="qiskit_bosons.transpiler.passes.OccupationB2QLayout.execute" signature="execute(passmanager_ir, state, callback=None)">
+    Execute optimization task for input Qiskit IR.
+
+    **Parameters**
+
+    *   **passmanager\_ir** (*IR*) – Qiskit IR to optimize.
+    *   **state** ([*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)) – State associated with workflow execution by the pass manager itself.
+    *   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[*[*Task*](/docs/api/qiskit/qiskit.passmanager.Task)*, IR\_OUT,* [*PropertySet*](/docs/api/qiskit/qiskit.passmanager.PropertySet)*,* [*float*](https://docs.python.org/3/builtins/functions.html#float)*,* [*int*](https://docs.python.org/3/builtins/functions.html#int)*], None] | None*) – A callback function which is called per execution of optimization task.
+
+    **Returns**
+
+    Optimized Qiskit IR and state of the workflow.
+
+    **Return type**
+
+    [tuple](https://docs.python.org/3/builtins/stdtypes.html#tuple)\[*IR\_OUT*, [*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)]
+  </Function>
+
+  ### name
+
+  <Function id="qiskit_bosons.transpiler.passes.OccupationB2QLayout.name" signature="name()">
+    Name of the pass.
+
+    **Return type**
+
+    [str](https://docs.python.org/3/builtins/stdtypes.html#str)
+  </Function>
+
+  ### update\_status
+
+  <Function id="qiskit_bosons.transpiler.passes.OccupationB2QLayout.update_status" signature="update_status(state, run_state)">
+    Update workflow status.
+
+    **Parameters**
+
+    *   **state** ([*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)) – Pass manager state to update.
+    *   **run\_state** (*RunState*) – Completion status of current task.
+
+    **Returns**
+
+    Updated pass manager state.
+
+    **Return type**
+
+    [*PassManagerState*](/docs/api/qiskit/qiskit.passmanager.PassManagerState)
+  </Function>
+</Class>
+

@@ -18,7 +18,7 @@ A class for specifying a circuit containing coherent spacetime Pauli checks.
 
 ### CheckedCircuit
 
-<Class id="qiskit_paulice.checked_circuit.CheckedCircuit" github="https://github.com/Qiskit/qiskit-paulice/tree/main/qiskit_paulice/checked_circuit.py#L106-L633" signature="CheckedCircuit(circuit, target_qubits=(), check_qubits=(), check_support=(), cost=None, cost_metric=None)" modifiers="class">
+<Class id="qiskit_paulice.checked_circuit.CheckedCircuit" github="https://github.com/Qiskit/qiskit-paulice/tree/main/qiskit_paulice/checked_circuit.py#L106-L628" signature="CheckedCircuit(circuit, target_qubits=(), check_qubits=(), check_support=(), cost=None, cost_metric=None)" modifiers="class">
   Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
 
   A quantum circuit and information about spacetime Pauli checks it contains.
@@ -91,7 +91,7 @@ A class for specifying a circuit containing coherent spacetime Pauli checks.
 
   #### box
 
-  <Function id="qiskit_paulice.checked_circuit.CheckedCircuit.box" github="https://github.com/Qiskit/qiskit-paulice/tree/main/qiskit_paulice/checked_circuit.py#L476-L509" signature="box(payload_layers=None, **kwargs)">
+  <Function id="qiskit_paulice.checked_circuit.CheckedCircuit.box" github="https://github.com/Qiskit/qiskit-paulice/tree/main/qiskit_paulice/checked_circuit.py#L471-L504" signature="box(payload_layers=None, **kwargs)">
     Box [`circuit`](#qiskit_paulice.checked_circuit.CheckedCircuit.circuit "qiskit_paulice.checked_circuit.CheckedCircuit.circuit") while maintaining concurrent scheduling of payload layers.
 
     This method stratifies the entangling layers of the checked circuit into boxes such that the number of unique entangling layers is minimized. This is done by scheduling the entangling gates from the Pauli checks into boxes of their own, resulting in one unique layer per Pauli check in addition to the `payload_layers`.
@@ -119,7 +119,7 @@ A class for specifying a circuit containing coherent spacetime Pauli checks.
 
   #### dope
 
-  <Function id="qiskit_paulice.checked_circuit.CheckedCircuit.dope" github="https://github.com/Qiskit/qiskit-paulice/tree/main/qiskit_paulice/checked_circuit.py#L391-L474" signature="dope(num_sites=None, *, wires='all', angle=0.7853981633974483, seed=None, box=False, payload_layers=None, box_options=None)">
+  <Function id="qiskit_paulice.checked_circuit.CheckedCircuit.dope" github="https://github.com/Qiskit/qiskit-paulice/tree/main/qiskit_paulice/checked_circuit.py#L386-L469" signature="dope(num_sites=None, *, wires='all', angle=0.7853981633974483, seed=None, box=False, payload_layers=None, box_options=None)">
     Dope `self.circuit` with [`RZGate`](/docs/api/qiskit/qiskit.circuit.library.RZGate) rotations that commute with check stabilizers.
 
     **Parameters**
@@ -189,7 +189,7 @@ A class for specifying a circuit containing coherent spacetime Pauli checks.
 
   #### estimate\_fault\_rates
 
-  <Function id="qiskit_paulice.checked_circuit.CheckedCircuit.estimate_fault_rates" github="https://github.com/Qiskit/qiskit-paulice/tree/main/qiskit_paulice/checked_circuit.py#L299-L389" signature="estimate_fault_rates(noise_model, shots=100000, seed=None)">
+  <Function id="qiskit_paulice.checked_circuit.CheckedCircuit.estimate_fault_rates" github="https://github.com/Qiskit/qiskit-paulice/tree/main/qiskit_paulice/checked_circuit.py#L294-L384" signature="estimate_fault_rates(noise_model, shots=100000, seed=None)">
     Estimate acceptance, harmless-fault, logical-error, and check trigger rates.
 
     One noisy Monte Carlo sampling under `noise_model` yields all rates. A shot is *accepted* if all check syndromes are $0$. An error is *harmless* if it is non-identity yet backpropagates to a diagonal Pauli on the input, acting as a global phase on $|0^n\rangle$. A **logical error** is a sample corrupted by a logical error that evaded the checks. The *check trigger rate* is the probability that a given check flags a non-zero syndrome. All fault rates are with respect to all shots taken.
@@ -215,7 +215,7 @@ A class for specifying a circuit containing coherent spacetime Pauli checks.
 
   #### get\_postselection\_method
 
-  <Function id="qiskit_paulice.checked_circuit.CheckedCircuit.get_postselection_method" github="https://github.com/Qiskit/qiskit-paulice/tree/main/qiskit_paulice/checked_circuit.py#L260-L297" signature="get_postselection_method()">
+  <Function id="qiskit_paulice.checked_circuit.CheckedCircuit.get_postselection_method" github="https://github.com/Qiskit/qiskit-paulice/tree/main/qiskit_paulice/checked_circuit.py#L255-L292" signature="get_postselection_method()">
     Return a function that maps a single shot’s outcome to a syndrome vector.
 
     No errors were detected iff every entry of the returned vector is zero. The returned function accepts either bitstrings or bit arrays.

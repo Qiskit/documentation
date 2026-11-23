@@ -17,7 +17,11 @@ import { mkdtemp, readFile, mkdir, copyFile } from "fs/promises";
 import { globby } from "globby";
 import { expect, test } from "@playwright/test";
 
-import { runAddonDocsPipeline } from "./addonDocsPipeline.js";
+import {
+  resolveParentRelativeLinks,
+  runAddonDocsPipeline,
+} from "./addonDocsPipeline.js";
+import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
 import { Pkg, ReleaseNotesConfig } from "./Pkg.js";
 
 // Snapshot test for the addon non-API docs pipeline. If output changes
@@ -108,4 +112,77 @@ test("qiskit-addon-smoke addon docs pipeline", async ({}, testInfo) => {
     const fileName = path.parse(file).name;
     expect(contents).toMatchSnapshot(fileName);
   }
+});
+
+test.describe("resolveParentRelativeLinks", () => {
+  const pkg = new Pkg({
+    name: "my-addon",
+    title: "My Addon",
+    version: "1.2.0",
+    versionWithoutPatch: "1.2",
+    type: "latest",
+    language: "Python",
+    releaseNotesConfig: new ReleaseNotesConfig({ enabled: false }),
+    kebabCaseAndShortenUrls: true,
+  });
+  const ingestedFiles = [
+    "index.html",
+    "install.html",
+    "guides/index.html",
+    "guides/fermi_hubbard.ipynb",
+    "how_tos/foo.html",
+  ];
+
+  function resolve(markdown: string, url = "/my-addon/guides/my_guide") {
+    const results = [{ markdown, url }] as HtmlToMdResultWithUrl[];
+    resolveParentRelativeLinks(results, pkg, ingestedFiles);
+    return results[0].markdown;
+  }
+
+  test("../ link to a page in a parent folder", () => {
+    expect(resolve("[a](../install)")).toBe(
+      "[a](/docs/addons/my-addon/install)",
+    );
+  });
+
+  test("../ link into a sibling folder is kebab-cased", () => {
+    expect(resolve("[a](../how_tos/foo)")).toBe(
+      "[a](/docs/addons/my-addon/how_tos/foo)",
+    );
+    expect(
+      resolve("[a](../guides/fermi_hubbard)", "/my-addon/how_tos/foo"),
+    ).toBe("[a](/docs/addons/my-addon/guides/fermi-hubbard)");
+  });
+
+  test("index pages map to their directory", () => {
+    expect(resolve("[a](../index)")).toBe("[a](/docs/addons/my-addon)");
+  });
+
+  test("anchors follow the same casing rules as other links", () => {
+    expect(resolve("[a](../install#Some-Heading)")).toBe(
+      "[a](/docs/addons/my-addon/install#some-heading)",
+    );
+    expect(resolve("[a](../install#my_addon.Foo)")).toBe(
+      "[a](/docs/addons/my-addon/install#my_addon.Foo)",
+    );
+  });
+
+  test("links into the API reference keep their existing mapping", () => {
+    expect(resolve("[a](../apidocs/my_addon.Foo)")).toBe(
+      "[a](/docs/api/my-addon/foo)",
+    );
+  });
+
+  test("leaves other links unchanged", () => {
+    for (const link of [
+      "[a](sibling)",
+      "[a](#local)",
+      "[a](https://example.com/../x)",
+      "[a](/docs/api/qiskit)",
+      "[a](../not_published)",
+      "[a](../../outside)",
+    ]) {
+      expect(resolve(link)).toBe(link);
+    }
+  });
 });

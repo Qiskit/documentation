@@ -8,7 +8,7 @@ python_api_name: qiskit_mitigation.postselection.passes.AddSpectatorPreCircuitNo
 
 # AddSpectatorPreCircuitNonMarkovianErrorChecks
 
-<Class id="qiskit_mitigation.postselection.passes.AddSpectatorPreCircuitNonMarkovianErrorChecks" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-mitigation/tree/stable/0.1/qiskit_mitigation/postselection/passes/add_spectator_pre_circuit_checks.py#L36-L313" signature="AddSpectatorPreCircuitNonMarkovianErrorChecks(*args, **kwargs)" modifiers="class">
+<Class id="qiskit_mitigation.postselection.passes.AddSpectatorPreCircuitNonMarkovianErrorChecks" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-mitigation/tree/main/qiskit_mitigation/postselection/passes/add_spectator_pre_circuit_checks.py#L36-L309" signature="AddSpectatorPreCircuitNonMarkovianErrorChecks(*args, **kwargs)" modifiers="class">
   Bases: [`TransformationPass`](/docs/api/qiskit/qiskit.transpiler.TransformationPass)
 
   Add non-Markovian error checks at the beginning of the circuit on qubits adjacent to active qubits.
@@ -16,10 +16,6 @@ python_api_name: qiskit_mitigation.postselection.passes.AddSpectatorPreCircuitNo
   Each spectator qubit receives a pre-circuit non-Markovian error check: A narrowband X-pulse that flips the qubit’s state ($|x\rangle\mapsto|x\oplus1\rangle$), then a regular X-pulse followed by a measurement. If the QPU fails to flip the qubit from $|0\rangle\mapsto|1\rangle\mapsto|0\rangle$, that sample may be considered unreliable and discarded. Postselecting only samples that pass all checks can improve the fidelity of distributions sampled from the QPU. Optionally via `include_unmeasured`, active qubits that are not terminated by a measurement are also treated as spectators.
 
   The added measurements write to a new classical register with one bit per spectator qubit, named `spectator_creg_name` (default `"spec_pre"`).
-
-  <Admonition title="Note" type="note">
-    These passes are only supported on Heron QPUs where [fractional gates](http://quantum.cloud.ibm.com/docs/guides/fractional-gates) are supported.
-  </Admonition>
 
   Initialize the pass.
 
@@ -85,7 +81,7 @@ python_api_name: qiskit_mitigation.postselection.passes.AddSpectatorPreCircuitNo
 
   ### run
 
-  <Function id="qiskit_mitigation.postselection.passes.AddSpectatorPreCircuitNonMarkovianErrorChecks.run" github="https://github.com/Qiskit/qiskit-mitigation/tree/stable/0.1/qiskit_mitigation/postselection/passes/add_spectator_pre_circuit_checks.py#L107-L239" signature="run(dag)">
+  <Function id="qiskit_mitigation.postselection.passes.AddSpectatorPreCircuitNonMarkovianErrorChecks.run" github="https://github.com/Qiskit/qiskit-mitigation/tree/main/qiskit_mitigation/postselection/passes/add_spectator_pre_circuit_checks.py#L103-L235" signature="run(dag)">
     Run a pass on the DAGCircuit. This is implemented by the pass developer.
 
     **Parameters**

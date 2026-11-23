@@ -57,7 +57,17 @@ $$
     The number of times the product formula is repeated.
   </Attribute>
 
-  **Inherited Methods**
+  ### merge\_adjacent
+
+  <Attribute id="qiskit_fermions.circuit.library.synthesis.FermionicLieTrotter.merge_adjacent">
+    Whether neighboring gates of the same factor are fused into one.
+
+    The palindromic structure makes the last factor of one repetition (and of each sub-sweep of a higher order) the first of the next. Their exponentials combine exactly, as $e^{-i a H} e^{-i b H} = e^{-i (a + b) H}$, so fusing them shortens the circuit without changing the product formula. Disable this to obtain the textbook gate sequence.
+
+    This only sees the seams created by a single synthesis. Merging across gate boundaries is the job of [`MergeEvolutions`](transpiler-passes-merge-evolutions "qiskit_fermions.transpiler.passes.MergeEvolutions").
+  </Attribute>
+
+  ## Inherited Methods
 
   ### synthesize
 

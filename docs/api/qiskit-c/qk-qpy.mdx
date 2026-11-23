@@ -145,6 +145,8 @@ The buffer variants allocate the serialized data. Pass the returned pointer and 
 
   This function will return an error if any aspect of the circuits in the QPY payload require the Python interpreter to create the `QkCircuit` object. If you are using this function in a Python extension module you should use the Python function [`qpy.dump()`](/docs/api/qiskit/qpy#qiskit.qpy.dump "qiskit.qpy.dump") instead to avoid this limitation.
 
+  Certain aspects of QPY payload deserialization are recursive, and this function will return an Error if anything requires excessive depth to evaluate. The recusion limit is hard coded to a depth of 100 (30 on Windows).
+
   <span id="group__QkQpy_1autotoc_md346" />
 
   #### Safety
@@ -227,6 +229,8 @@ The buffer variants allocate the serialized data. Pass the returned pointer and 
   Load all circuits from a QPY buffer.
 
   This function will return an error if any aspect of the circuits in the QPY payload require the Python interpreter to create the `QkCircuit` object. If you are using this function in a Python extension module you should use the Python function [`qpy.dump()`](/docs/api/qiskit/qpy#qiskit.qpy.dump "qiskit.qpy.dump") instead to avoid this limitation.
+
+  Certain aspects of QPY payload deserialization are recursive, and this function will return an Error if anything requires excessive depth to evaluate. The recusion limit is hard coded to a depth of 100 (30 on Windows).
 
   <span id="group__QkQpy_1autotoc_md349" />
 

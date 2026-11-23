@@ -136,10 +136,11 @@ The following functions provide operator manipulation logic:
 
 The following functions exist to check certain properties of an operator.
 
-|                                                                                               |                                               |
-| --------------------------------------------------------------------------------------------- | --------------------------------------------- |
-| [`qf_transfer_op_is_hermitian()`](#qf_transfer_op_is_hermitian "qf_transfer_op_is_hermitian") | Returns whether an operator is Hermitian.     |
-| [`qf_transfer_op_len()`](#qf_transfer_op_len "qf_transfer_op_len")                            | Returns the number of terms in this operator. |
+|                                                                                                  |                                                       |
+| ------------------------------------------------------------------------------------------------ | ----------------------------------------------------- |
+| [`qf_transfer_op_is_hermitian()`](#qf_transfer_op_is_hermitian "qf_transfer_op_is_hermitian")    | Returns whether an operator is Hermitian.             |
+| [`qf_transfer_op_len()`](#qf_transfer_op_len "qf_transfer_op_len")                               | Returns the number of terms in this operator.         |
+| [`qf_transfer_op_min_num_modes()`](#qf_transfer_op_min_num_modes "qf_transfer_op_min_num_modes") | Returns the minimum number of modes of this operator. |
 
 ### Mapping
 
@@ -464,6 +465,39 @@ The following functions map this operator into another representation:
   *   **support\_out** – A pointer to the integer array into which to write the support. It must be sized to at least :c:func:`qf_transfer_op_num_support` elements.
 </Function>
 
+### qf\_transfer\_op\_min\_num\_modes
+
+<Function id="qf_transfer_op_min_num_modes" signature="uint32_t qf_transfer_op_min_num_modes(const QfTransferVertexOperator *op)">
+  Gets the smallest number of modes that can host an operator.
+
+  This is what determines, for example, the number of qubits a mapping requires. Note that it is not the number of distinct modes, which [`qf_transfer_op_num_support()`](#qf_transfer_op_num_support "qf_transfer_op_num_support") returns.
+
+  <span id="id10" />
+
+  #### Example
+
+  ```c
+   1uint32_t left_indices[3] = {2, 0, 2};
+   2uint32_t right_indices[3] = {2, 1, 2};
+   3QkComplex64 coeffs[2] = {{1.0, 0.0}, {1.0, 0.0}};
+   4uint32_t boundaries[3] = {0, 2, 3};
+   5QfTransferVertexOperator *op =
+   6    qf_transfer_op_new(2, 3, coeffs, left_indices, right_indices, boundaries);
+   7
+   8uint32_t min_num_modes = qf_transfer_op_min_num_modes(op);
+   9
+  10assert(min_num_modes == 3);
+  ```
+
+  **Parameters**
+
+  *   **op** – A pointer to the transfer-vertex operator whose minimum number of modes to get.
+
+  **Returns**
+
+  One more than the largest mode index acted upon by the operator, or 0 if it acts on no mode.
+</Function>
+
 ### qf\_transfer\_op\_zero
 
 <Function id="qf_transfer_op_zero" signature="QfTransferVertexOperator *qf_transfer_op_zero(void)">
@@ -471,7 +505,7 @@ The following functions map this operator into another representation:
 
   Adding the operator that is constructed by this method to another one has no effect.
 
-  <span id="id10" />
+  <span id="id11" />
 
   #### Example
 
@@ -495,7 +529,7 @@ The following functions map this operator into another representation:
 
   Composing the operator that is constructed by this method with another one has no effect.
 
-  <span id="id11" />
+  <span id="id12" />
 
   #### Example
 
@@ -521,7 +555,7 @@ The following functions map this operator into another representation:
     The explanation on [Group operator terms: use the operator structure](/docs/addons/qiskit-fermions/guides/grouping#grouping-explanation).
   </Admonition>
 
-  <span id="id12" />
+  <span id="id13" />
 
   #### Example
 
@@ -549,7 +583,7 @@ The following functions map this operator into another representation:
     The explanation on [Group operator terms: use the operator structure](/docs/addons/qiskit-fermions/guides/grouping#grouping-explanation).
   </Admonition>
 
-  <span id="id13" />
+  <span id="id14" />
 
   #### Example
 
@@ -581,7 +615,7 @@ The following functions map this operator into another representation:
     The explanation on [Group operator terms: use the operator structure](/docs/addons/qiskit-fermions/guides/grouping#grouping-explanation).
   </Admonition>
 
-  <span id="id14" />
+  <span id="id15" />
 
   #### Example
 
@@ -615,7 +649,7 @@ The following functions map this operator into another representation:
     The explanation on [Group operator terms: use the operator structure](/docs/addons/qiskit-fermions/guides/grouping#grouping-explanation).
   </Admonition>
 
-  <span id="id15" />
+  <span id="id16" />
 
   #### Example
 
@@ -650,7 +684,7 @@ The following functions map this operator into another representation:
     The explanation on [Group operator terms: use the operator structure](/docs/addons/qiskit-fermions/guides/grouping#grouping-explanation).
   </Admonition>
 
-  <span id="id16" />
+  <span id="id17" />
 
   #### Example
 
@@ -676,7 +710,7 @@ The following functions map this operator into another representation:
     The explanation on [Group operator terms: use the operator structure](/docs/addons/qiskit-fermions/guides/grouping#grouping-explanation).
   </Admonition>
 
-  <span id="id17" />
+  <span id="id18" />
 
   #### Example
 
@@ -715,7 +749,7 @@ The following functions map this operator into another representation:
     This function resets the operator’s `groups` attribute to `NULL`.
   </Admonition>
 
-  <span id="id18" />
+  <span id="id19" />
 
   #### Example
 
@@ -744,7 +778,7 @@ The following functions map this operator into another representation:
 <Function id="qf_transfer_op_add" signature="QfTransferVertexOperator *qf_transfer_op_add(const QfTransferVertexOperator *left, const QfTransferVertexOperator *right)">
   Adds two operators together.
 
-  <span id="id19" />
+  <span id="id20" />
 
   #### Example
 
@@ -774,7 +808,7 @@ The following functions map this operator into another representation:
 
   This fuses the scaling into the addition, which avoids building a fully scaled copy of `right` just to append it. Passing a factor of `-1` therefore subtracts, which is why no separate subtraction function is provided.
 
-  <span id="id20" />
+  <span id="id21" />
 
   #### Example
 
@@ -782,7 +816,7 @@ The following functions map this operator into another representation:
   1QfTransferVertexOperator *one = qf_transfer_op_one();
   2QfTransferVertexOperator *other = qf_transfer_op_one();
   3
-  4// Subtracting via a factor of -1 leaves the two terms cancelling each other out.
+  4// Subtracting via a factor of -1 leaves the two terms canceling each other out.
   5QkComplex64 factor = {-1.0, 0.0};
   6QfTransferVertexOperator *result = qf_transfer_op_scaled_add(one, other, &factor);
   7
@@ -816,7 +850,7 @@ The following functions map this operator into another representation:
     This function resets the operator’s `groups` attribute to `NULL`.
   </Admonition>
 
-  <span id="id21" />
+  <span id="id22" />
 
   #### Example
 
@@ -846,7 +880,7 @@ The following functions map this operator into another representation:
     This function resets the operator’s `groups` attribute to `NULL`.
   </Admonition>
 
-  <span id="id22" />
+  <span id="id23" />
 
   #### Example
 
@@ -876,7 +910,7 @@ The following functions map this operator into another representation:
 
   The in-place counterpart of [`qf_transfer_op_mul()`](#qf_transfer_op_mul "qf_transfer_op_mul"), which saves copying the operator into a freshly allocated result.
 
-  <span id="id23" />
+  <span id="id24" />
 
   #### Example
 
@@ -902,7 +936,7 @@ The following functions map this operator into another representation:
 <Function id="qf_transfer_op_mul" signature="QfTransferVertexOperator *qf_transfer_op_mul(const QfTransferVertexOperator *op, const QkComplex64 *scalar)">
   Multiplies an operator by a scalar.
 
-  <span id="id24" />
+  <span id="id25" />
 
   #### Example
 
@@ -932,7 +966,7 @@ The following functions map this operator into another representation:
 <Function id="qf_transfer_op_compose" signature="QfTransferVertexOperator *qf_transfer_op_compose(const QfTransferVertexOperator *left, const QfTransferVertexOperator *right)">
   Composes two operators with each other.
 
-  <span id="id25" />
+  <span id="id26" />
 
   #### Example
 
@@ -969,7 +1003,7 @@ The following functions map this operator into another representation:
   *   the generators in each term reverse their order
   *   the coefficients are complex conjugated
 
-  <span id="id26" />
+  <span id="id27" />
 
   #### Example
 
@@ -1009,7 +1043,7 @@ The following functions map this operator into another representation:
     This functions truncates coefficients greedily! If the acted upon operator might contain separate coefficients for duplicate terms consider calling [`qf_transfer_op_simplify()`](#qf_transfer_op_simplify "qf_transfer_op_simplify") instead!
   </Admonition>
 
-  <span id="id27" />
+  <span id="id28" />
 
   #### Example
 
@@ -1040,7 +1074,7 @@ The following functions map this operator into another representation:
 
   When an operator has been arithmetically manipulated or constructed in a way that does not guarantee unique terms, this method should be called before applying any method that filters numerically small coefficients to avoid loss of information.
 
-  <span id="id28" />
+  <span id="id29" />
 
   #### Example
 
@@ -1077,7 +1111,7 @@ The following functions map this operator into another representation:
 
   The `reduce` flag contracts adjacent generators. There are exactly two rules: $V_j V_j = 1$ and $T_{jk} T_{jk} = 1/4$ (two identical adjacent factors contract to a scalar), and $T_{jk} T_{kj} = -\frac{1}{4} V_j V_k$ (two anti-parallel transfer operators become a pair of vertex operators).
 
-  <span id="id29" />
+  <span id="id30" />
 
   #### Example
 
@@ -1123,7 +1157,7 @@ The following functions map this operator into another representation:
 <Function id="qf_transfer_op_is_hermitian" signature="bool qf_transfer_op_is_hermitian(const QfTransferVertexOperator *op, double atol)">
   Checks whether an operator is Hermitian.
 
-  <span id="id30" />
+  <span id="id31" />
 
   #### Example
 
@@ -1160,7 +1194,7 @@ The following functions map this operator into another representation:
 
   Equality in this context means an exact match of the internal data arrays.
 
-  <span id="id31" />
+  <span id="id32" />
 
   #### Example
 
@@ -1189,7 +1223,7 @@ The following functions map this operator into another representation:
 
   Equivalence in this context means approximate equality up to the specified absolute tolerance. To be more precise, this method returns `True`, when all the absolute values of the coefficients in the difference `other - self` are below the specified threshold `atol`.
 
-  <span id="id32" />
+  <span id="id33" />
 
   #### Example
 
@@ -1220,7 +1254,7 @@ The following functions map this operator into another representation:
 <Function id="qf_transfer_op_len" signature="size_t qf_transfer_op_len(const QfTransferVertexOperator *op)">
   Returns the length (or number of terms) of the provided operator.
 
-  <span id="id33" />
+  <span id="id34" />
 
   #### Example
 
@@ -1248,7 +1282,7 @@ The following functions map this operator into another representation:
 <Function id="qf_transfer_op_relabel_modes" signature="QfExitCode qf_transfer_op_relabel_modes(QfTransferVertexOperator *op, uint64_t num_modes, const uint32_t *permutation)">
   Relabels the modes of the provided operator.
 
-  <span id="id34" />
+  <span id="id35" />
 
   #### Example
 
@@ -1267,7 +1301,7 @@ The following functions map this operator into another representation:
   ```
 
   <Admonition title="Note" type="note">
-    Both index arrays are relabelled. Unlike most operations, this preserves the operator’s `groups` attribute, since relabelling permutes mode indices without reordering, splitting or merging terms.
+    Both index arrays are relabeled. Unlike most operations, this preserves the operator’s `groups` attribute, since relabeling permutes mode indices without reordering, splitting or merging terms.
   </Admonition>
 
   **Parameters**

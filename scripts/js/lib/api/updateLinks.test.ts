@@ -421,6 +421,21 @@ test.describe("relativizeLink()", () => {
     }),
   );
 
+  [
+    [
+      "https://qiskit.github.io/qiskit-addon-sqd/guides/trim_sqd.html",
+      "/docs/addons/qiskit-addon-sqd/guides/trim-sqd",
+    ],
+    [
+      "https://qiskit.github.io/qiskit-addon-sqd/guides/integrate_fulqrum.html#install",
+      "/docs/addons/qiskit-addon-sqd/guides/integrate-fulqrum#install",
+    ],
+  ].forEach(([input, expected]) =>
+    test(`relativize qiskit.github.io addon links - ${input}`, () => {
+      expect(relativizeLink({ url: input })).toEqual({ url: expected });
+    }),
+  );
+
   test("update link text when the same as the URL", () => {
     const url = "https://qiskit.org/documentation/apidoc/algorithms.html";
     expect(relativizeLink({ url, text: url })?.text).toEqual("algorithms");

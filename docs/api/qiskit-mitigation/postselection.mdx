@@ -18,7 +18,7 @@ Functions and classes for post-selection via circuit non-Markovian error checks.
 
 ### PostSelectionSummary
 
-<Class id="qiskit_mitigation.postselection.PostSelectionSummary" github="https://github.com/Qiskit/qiskit-mitigation/tree/stable/0.1/qiskit_mitigation/postselection/post_selection_summary.py#L32-L196" signature="PostSelectionSummary(primary_cregs, measure_map, edges, *, measure_map_ps=None, measure_map_pre=None, post_check_suffix='_ps', pre_check_suffix='_pre', spectator_cregs=None)" modifiers="class">
+<Class id="qiskit_mitigation.postselection.PostSelectionSummary" github="https://github.com/Qiskit/qiskit-mitigation/tree/main/qiskit_mitigation/postselection/post_selection_summary.py#L32-L196" signature="PostSelectionSummary(primary_cregs, measure_map, edges, *, measure_map_ps=None, measure_map_pre=None, post_check_suffix='_ps', pre_check_suffix='_pre', spectator_cregs=None)" modifiers="class">
   Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
 
   A helper class to store the properties of a quantum circuit required to postselect based on non-Markovian error checks.
@@ -46,7 +46,7 @@ Functions and classes for post-selection via circuit non-Markovian error checks.
 
   #### from\_circuit
 
-  <Function id="qiskit_mitigation.postselection.PostSelectionSummary.from_circuit" github="https://github.com/Qiskit/qiskit-mitigation/tree/stable/0.1/qiskit_mitigation/postselection/post_selection_summary.py#L116-L183" signature="from_circuit(circuit, coupling_map, *, post_check_suffix='_ps', pre_check_suffix='_pre', spectator_cregs=None)" modifiers="classmethod">
+  <Function id="qiskit_mitigation.postselection.PostSelectionSummary.from_circuit" github="https://github.com/Qiskit/qiskit-mitigation/tree/main/qiskit_mitigation/postselection/post_selection_summary.py#L116-L183" signature="from_circuit(circuit, coupling_map, *, post_check_suffix='_ps', pre_check_suffix='_pre', spectator_cregs=None)" modifiers="classmethod">
     Initialize from quantum circuits.
 
     **Parameters**
@@ -123,7 +123,7 @@ Functions and classes for post-selection via circuit non-Markovian error checks.
 
 ### PostSelector
 
-<Class id="qiskit_mitigation.postselection.PostSelector" github="https://github.com/Qiskit/qiskit-mitigation/tree/stable/0.1/qiskit_mitigation/postselection/post_selector.py#L40-L148" signature="PostSelector(summary)" modifiers="class">
+<Class id="qiskit_mitigation.postselection.PostSelector" github="https://github.com/Qiskit/qiskit-mitigation/tree/main/qiskit_mitigation/postselection/post_selector.py#L40-L148" signature="PostSelector(summary)" modifiers="class">
   Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
 
   A class to process the results of non-Markovian error checks.
@@ -136,14 +136,14 @@ Functions and classes for post-selection via circuit non-Markovian error checks.
 
   #### compute\_mask
 
-  <Function id="qiskit_mitigation.postselection.PostSelector.compute_mask" github="https://github.com/Qiskit/qiskit-mitigation/tree/stable/0.1/qiskit_mitigation/postselection/post_selector.py#L92-L148" signature="compute_mask(result, strategy=PostSelectionStrategy.NODE, *, mode='post')">
+  <Function id="qiskit_mitigation.postselection.PostSelector.compute_mask" github="https://github.com/Qiskit/qiskit-mitigation/tree/main/qiskit_mitigation/postselection/post_selector.py#L92-L148" signature="compute_mask(result, strategy=PostSelectionStrategy.NODE, *, mode='post')">
     Compute boolean masks indicating what shots should be kept or discarded.
 
     By construction, the returned mask has the same shape as the arrays in the result, but with one fewer dimension (the last axis of every array, over clbits, is not present in the mask).
 
     **Parameters**
 
-    *   **result** ([*dict*](https://docs.python.org/3/builtins/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/builtins/stdtypes.html#str)*,* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)*\[*[*tuple*](https://docs.python.org/3/builtins/stdtypes.html#tuple)*\[*[*int*](https://docs.python.org/3/builtins/functions.html#int)*, ...],* [*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype)*\[*[*bool*](https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.bool)*]]]*) – The result to post-process. Must be a dictionary mapping register names to boolean arrays.
+    *   **result** ([*dict*](https://docs.python.org/3/builtins/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/builtins/stdtypes.html#str)*,* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)*\[*[*tuple*](https://docs.python.org/3/builtins/stdtypes.html#tuple)*\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any)*, ...],* [*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype)*\[*[*bool*](https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.bool)*]]]*) – The result to post-process. Must be a dictionary mapping register names to boolean arrays.
     *   **strategy** ([*Literal*](https://docs.python.org/3/library/typing.html#typing.Literal)*\['node', 'edge'] | \~qiskit\_mitigation.postselection.post\_selector.PostSelectionStrategy*) – The postselection strategy (“node” or “edge”).
     *   **mode** ([*Literal*](https://docs.python.org/3/library/typing.html#typing.Literal)*\['post', 'pre', 'both']*) – Which type of postselection to apply: - “post”: Apply post-circuit checks only - “pre”: Apply pre-circuit checks only - “both”: Apply both pre and post-check
 
@@ -157,12 +157,12 @@ Functions and classes for post-selection via circuit non-Markovian error checks.
 
     **Return type**
 
-    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)\[[tuple](https://docs.python.org/3/builtins/stdtypes.html#tuple)\[[int](https://docs.python.org/3/builtins/functions.html#int), …], [*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype)\[[*bool*](https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.bool)]]
+    [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)\[[tuple](https://docs.python.org/3/builtins/stdtypes.html#tuple)\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any), …], [*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype)\[[*bool*](https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.bool)]]
   </Function>
 
   #### from\_circuit
 
-  <Function id="qiskit_mitigation.postselection.PostSelector.from_circuit" github="https://github.com/Qiskit/qiskit-mitigation/tree/stable/0.1/qiskit_mitigation/postselection/post_selector.py#L56-L90" signature="from_circuit(circuit, coupling_map, *, post_check_suffix='_ps', pre_check_suffix='_pre', spectator_cregs=None)" modifiers="classmethod">
+  <Function id="qiskit_mitigation.postselection.PostSelector.from_circuit" github="https://github.com/Qiskit/qiskit-mitigation/tree/main/qiskit_mitigation/postselection/post_selector.py#L56-L90" signature="from_circuit(circuit, coupling_map, *, post_check_suffix='_ps', pre_check_suffix='_pre', spectator_cregs=None)" modifiers="classmethod">
     Initialize from a quantum circuit.
 
     **Parameters**
@@ -189,7 +189,7 @@ Functions and classes for post-selection via circuit non-Markovian error checks.
 
 ### PostSelectionStrategy
 
-<Class id="qiskit_mitigation.postselection.PostSelectionStrategy" github="https://github.com/Qiskit/qiskit-mitigation/tree/stable/0.1/qiskit_mitigation/postselection/post_selector.py#L30-L37" signature="PostSelectionStrategy(value)" modifiers="class">
+<Class id="qiskit_mitigation.postselection.PostSelectionStrategy" github="https://github.com/Qiskit/qiskit-mitigation/tree/main/qiskit_mitigation/postselection/post_selector.py#L30-L37" signature="PostSelectionStrategy(value)" modifiers="class">
   Bases: [`str`](https://docs.python.org/3/builtins/stdtypes.html#str), [`Enum`](https://docs.python.org/3/library/enum.html#enum.Enum)
 
   The supported postselection strategies.
@@ -511,11 +511,11 @@ Functions and classes for post-selection via circuit non-Markovian error checks.
     >
     > The separator used to split the string.
     >
-    > When set to None (the default value), will split on any whitespace character (including \n \r \t \f and spaces) and will discard empty strings from the result.
+    > When set to None (the default value), will split on any whitespace character (including n r t f and spaces) and will discard empty strings from the result.
     >
     > **maxsplit**
     >
-    > Maximum number of splits (starting from the left). -1 (the default value) means no limit.
+    > Maximum number of splits. -1 (the default value) means no limit.
 
     Splitting starts at the end of the string and works to the front.
   </Function>
@@ -537,11 +537,13 @@ Functions and classes for post-selection via circuit non-Markovian error checks.
     >
     > The separator used to split the string.
     >
-    > When set to None (the default value), will split on any whitespace character (including \n \r \t \f and spaces) and will discard empty strings from the result.
+    > When set to None (the default value), will split on any whitespace character (including n r t f and spaces) and will discard empty strings from the result.
     >
     > **maxsplit**
     >
-    > Maximum number of splits (starting from the left). -1 (the default value) means no limit.
+    > Maximum number of splits. -1 (the default value) means no limit.
+
+    Splitting starts at the front of the string and works to the end.
 
     Note, str.split() is mainly useful for data that has been intentionally delimited. With natural text that includes punctuation, consider using the regular expression module.
   </Function>
@@ -611,7 +613,7 @@ Functions and classes for post-selection via circuit non-Markovian error checks.
 
 ### XSlowGate
 
-<Class id="qiskit_mitigation.postselection.XSlowGate" github="https://github.com/Qiskit/qiskit-mitigation/tree/stable/0.1/qiskit_mitigation/postselection/xslow_gate.py#L19-L28" signature="XSlowGate(label='xslow', xslow_gate_name='xslow')" modifiers="class">
+<Class id="qiskit_mitigation.postselection.XSlowGate" github="https://github.com/Qiskit/qiskit-mitigation/tree/main/qiskit_mitigation/postselection/xslow_gate.py#L19-L28" signature="XSlowGate(label='xslow', xslow_gate_name='xslow')" modifiers="class">
   Bases: [`Gate`](/docs/api/qiskit/qiskit.circuit.Gate)
 
   The x-slow gate.
@@ -814,18 +816,24 @@ Functions and classes for post-selection via circuit non-Markovian error checks.
   #### name
 
   <Attribute id="qiskit_mitigation.postselection.XSlowGate.name">
+    Type: [`str`](https://docs.python.org/3/builtins/stdtypes.html#str)
+
     Return the name.
   </Attribute>
 
   #### num\_clbits
 
   <Attribute id="qiskit_mitigation.postselection.XSlowGate.num_clbits">
+    Type: [`int`](https://docs.python.org/3/builtins/functions.html#int)
+
     Return the number of clbits.
   </Attribute>
 
   #### num\_qubits
 
   <Attribute id="qiskit_mitigation.postselection.XSlowGate.num_qubits">
+    Type: [`int`](https://docs.python.org/3/builtins/functions.html#int)
+
     Return the number of qubits.
   </Attribute>
 

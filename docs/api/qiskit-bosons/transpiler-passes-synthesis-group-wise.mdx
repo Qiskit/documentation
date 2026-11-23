@@ -1,0 +1,48 @@
+---
+title: group_wise (latest version)
+description: API reference for qiskit_bosons.transpiler.passes.synthesis.group_wise in the latest version of qiskit-bosons
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit_bosons.transpiler.passes.synthesis.group_wise
+---
+
+<span id="group-wise" />
+
+# group\_wise
+
+<Function id="qiskit_bosons.transpiler.passes.synthesis.group_wise" isDedicatedPage={true} signature="group_wise(mapper_fn)">
+  Wraps a mapper function so that it maps an operator one group at a time.
+
+  Rather than mapping the operator in one go, the wrapped function maps each of its [`groups`](operators-operator-trait#groups "qiskit_bosons.operators.OperatorTrait.groups") separately and sums the results (see [Group operator terms: use the operator structure](/docs/addons/qiskit-bosons/guides/grouping#grouping-explanation)). The sum is the same operator either way, but its Pauli terms come out grouped: the terms of one group are adjacent instead of interleaved with everybody else’s.
+
+  That matters because a product formula synthesizes the terms in the order it receives them. Where the terms of a group act on disjoint qubits, having them adjacent lets them be scheduled in parallel, which can reduce the two-qubit depth substantially at an unchanged gate count.
+
+  Use it to wrap any `MapperFunction`:
+
+  ```python
+  MapperFnEvolutionSynthesis(group_wise(mapper_fn))
+  ```
+
+  An operator without groups is mapped in one go, exactly as `mapper_fn` would on its own.
+
+  <Admonition title="Note" type="note">
+    Composing this with [`simplify()`](transpiler-passes-synthesis-simplify "qiskit_bosons.transpiler.passes.synthesis.simplify") defeats the purpose, since simplifying re-sorts the terms into a canonical order and so discards the grouping this produces.
+  </Admonition>
+
+  <Admonition title="Caution" type="note">
+    Every group must be Hermitian on its own. The occupation encodings write a ladder operator as `(X - iY)/2`, so the Pauli terms of a hopping term carry imaginary coefficients that cancel only against the adjoint term, and a group is exactly the unit that contains both. A group that splits such a pair maps to an operator with imaginary coefficients, which [`PauliEvolutionGate`](/docs/api/qiskit/qiskit.circuit.library.PauliEvolutionGate) rejects. Check this with `groups_are_hermitian()`.
+  </Admonition>
+
+  **Parameters**
+
+  **mapper\_fn** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[*[*OperatorTrait*](operators-operator-trait "qiskit_bosons.operators.operator_trait.OperatorTrait")*,* [*int*](https://docs.python.org/3/builtins/functions.html#int)*],* [*SparseObservable*](/docs/api/qiskit/qiskit.quantum_info.SparseObservable)*]*) – the mapper function to wrap.
+
+  **Returns**
+
+  A mapper function that maps `mapper_fn` over the operator’s groups and sums the results.
+
+  **Return type**
+
+  [*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)\[\[[*OperatorTrait*](operators-operator-trait "qiskit_bosons.operators.operator_trait.OperatorTrait"), [int](https://docs.python.org/3/builtins/functions.html#int)], [*SparseObservable*](/docs/api/qiskit/qiskit.quantum_info.SparseObservable)]
+</Function>
+

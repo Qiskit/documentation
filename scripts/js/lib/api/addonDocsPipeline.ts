@@ -22,10 +22,13 @@
 //     wins so we preserve code outputs rather than the rendered HTML version.
 
 import { writeFile } from "fs/promises";
+import { posix } from "path";
 
 import { globby } from "globby";
+import isAbsoluteUrl from "is-absolute-url";
 import { mkdirp } from "mkdirp";
 
+import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
 import { ObjectsInv } from "./objectsInv.js";
 import { Pkg } from "./Pkg.js";
 import {
@@ -38,10 +41,13 @@ import {
   collectNotebookImages,
   processNotebooks,
   readNotebooks,
+  resolveArtifactPageUrl,
   writeNotebooks,
 } from "./notebookStages.js";
 import { DOCS_BASE_PATH } from "./paths.js";
 import { generateAddonToc } from "./generateAddonToc.js";
+import { normalizeSphinxAnchor } from "./updateLinks.js";
+import { removePrefix } from "../stringUtils.js";
 
 // Sphinx build artifacts that are never content.
 const SPHINX_INTERNALS = [
@@ -88,6 +94,7 @@ export async function runAddonDocsPipeline(
     pkg.outputDir(`${DOCS_BASE_PATH}/images/addons`),
     true,
   );
+  resolveParentRelativeLinks(initialResults, pkg, files);
 
   const results = await postProcess(
     pkg,
@@ -136,6 +143,54 @@ export async function runAddonDocsPipeline(
     `${outputPath}/_toc.json`,
     JSON.stringify(toc, null, 2) + "\n",
   );
+}
+
+/**
+ * Resolve `../` links in addon HTML pages against the page's location in the
+ * artifact, e.g. `../install` from `guides/foo` becomes
+ * `/docs/addons/{pkg}/install`. Addon pages keep their folders on IQP, so the
+ * `..` can't simply be dropped like normalizeUrl does for flattened API pages.
+ *
+ * Must run before postProcess, while each result's url still mirrors its
+ * artifact path.
+ */
+export function resolveParentRelativeLinks(
+  results: HtmlToMdResultWithUrl[],
+  pkg: Pkg,
+  ingestedFiles: string[],
+): void {
+  const ingestedPages = new Set(
+    ingestedFiles.map((f) => {
+      const { dir, name } = posix.parse(f);
+      return posix.join(dir, name);
+    }),
+  );
+  for (const result of results) {
+    const sourcePage = removePrefix(result.url, `/${pkg.name}/`);
+    result.markdown = result.markdown.replace(
+      /\]\(([^)\s]+)\)/g,
+      (match, url: string) => {
+        if (isAbsoluteUrl(url) || !url.split("/").includes("..")) return match;
+        const [target, anchor] = url.split("#");
+        const page = posix.join(posix.dirname(sourcePage), target);
+        if (page.startsWith("../")) return match;
+        const resolved = resolveArtifactPageUrl(
+          page,
+          anchor,
+          pkg,
+          ingestedPages,
+          normalizeSphinxAnchor,
+        );
+        if (resolved === undefined) {
+          console.warn(
+            `Leaving link ${url} in ${sourcePage} unchanged: ${page} is not published as part of ${pkg.name}.`,
+          );
+          return match;
+        }
+        return `](${resolved})`;
+      },
+    );
+  }
 }
 
 async function determineFilePaths(

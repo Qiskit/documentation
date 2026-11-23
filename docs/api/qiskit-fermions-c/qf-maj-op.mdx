@@ -115,11 +115,12 @@ The following functions provide operator manipulation logic:
 
 The following functions exist to check certain properties of an operator.
 
-|                                                                                |                                                         |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------- |
-| [`qf_maj_op_is_hermitian()`](#qf_maj_op_is_hermitian "qf_maj_op_is_hermitian") | Returns whether an operator is Hermitian.               |
-| [`qf_maj_op_max_rank()`](#qf_maj_op_max_rank "qf_maj_op_max_rank")             | Returns the maximum rank of the terms in this operator. |
-| [`qf_maj_op_is_even()`](#qf_maj_op_is_even "qf_maj_op_is_even")                | Returns whether an operator is even.                    |
+|                                                                                   |                                                         |
+| --------------------------------------------------------------------------------- | ------------------------------------------------------- |
+| [`qf_maj_op_is_hermitian()`](#qf_maj_op_is_hermitian "qf_maj_op_is_hermitian")    | Returns whether an operator is Hermitian.               |
+| [`qf_maj_op_max_rank()`](#qf_maj_op_max_rank "qf_maj_op_max_rank")                | Returns the maximum rank of the terms in this operator. |
+| [`qf_maj_op_min_num_modes()`](#qf_maj_op_min_num_modes "qf_maj_op_min_num_modes") | Returns the minimum number of modes of this operator.   |
+| [`qf_maj_op_is_even()`](#qf_maj_op_is_even "qf_maj_op_is_even")                   | Returns whether an operator is even.                    |
 
 ***
 
@@ -373,6 +374,37 @@ The following functions exist to check certain properties of an operator.
   *   **support\_out** – A pointer to the integer array into which to write the support. It must be sized to at least :c:func:`qf_maj_op_num_support` elements.
 </Function>
 
+### qf\_maj\_op\_min\_num\_modes
+
+<Function id="qf_maj_op_min_num_modes" signature="uint32_t qf_maj_op_min_num_modes(const QfMajoranaOperator *op)">
+  Gets the smallest number of fermionic modes that can host an operator.
+
+  Majorana index `m` belongs to fermionic mode `m / 2`, so this is `max_index / 2 + 1` and counts fermionic modes (which is what determines, for example, the number of qubits a mapping requires), not Majorana indices.
+
+  <span id="id9" />
+
+  #### Example
+
+  ```c
+  1uint32_t modes[3] = {2, 0, 2};
+  2QkComplex64 coeffs[2] = {{1.0, 0.0}, {1.0, 0.0}};
+  3uint32_t boundaries[3] = {0, 2, 3};
+  4QfMajoranaOperator *op = qf_maj_op_new(2, 3, coeffs, modes, boundaries);
+  5
+  6uint32_t min_num_modes = qf_maj_op_min_num_modes(op);
+  7
+  8assert(min_num_modes == 2);
+  ```
+
+  **Parameters**
+
+  *   **op** – A pointer to the Majorana operator whose minimum number of modes to get.
+
+  **Returns**
+
+  One more than the largest fermionic mode acted upon by the operator, or 0 if it acts on no mode.
+</Function>
+
 ### qf\_maj\_op\_zero
 
 <Function id="qf_maj_op_zero" signature="QfMajoranaOperator *qf_maj_op_zero(void)">
@@ -380,7 +412,7 @@ The following functions exist to check certain properties of an operator.
 
   Adding the operator that is constructed by this method to another one has no effect.
 
-  <span id="id9" />
+  <span id="id10" />
 
   #### Example
 
@@ -404,7 +436,7 @@ The following functions exist to check certain properties of an operator.
 
   Composing the operator that is constructed by this method with another one has no effect.
 
-  <span id="id10" />
+  <span id="id11" />
 
   #### Example
 
@@ -430,7 +462,7 @@ The following functions exist to check certain properties of an operator.
     The explanation on [Group operator terms: use the operator structure](/docs/addons/qiskit-fermions/guides/grouping#grouping-explanation).
   </Admonition>
 
-  <span id="id11" />
+  <span id="id12" />
 
   #### Example
 
@@ -458,7 +490,7 @@ The following functions exist to check certain properties of an operator.
     The explanation on [Group operator terms: use the operator structure](/docs/addons/qiskit-fermions/guides/grouping#grouping-explanation).
   </Admonition>
 
-  <span id="id12" />
+  <span id="id13" />
 
   #### Example
 
@@ -490,7 +522,7 @@ The following functions exist to check certain properties of an operator.
     The explanation on [Group operator terms: use the operator structure](/docs/addons/qiskit-fermions/guides/grouping#grouping-explanation).
   </Admonition>
 
-  <span id="id13" />
+  <span id="id14" />
 
   #### Example
 
@@ -520,7 +552,7 @@ The following functions exist to check certain properties of an operator.
     The explanation on [Group operator terms: use the operator structure](/docs/addons/qiskit-fermions/guides/grouping#grouping-explanation).
   </Admonition>
 
-  <span id="id14" />
+  <span id="id15" />
 
   #### Example
 
@@ -555,7 +587,7 @@ The following functions exist to check certain properties of an operator.
     The explanation on [Group operator terms: use the operator structure](/docs/addons/qiskit-fermions/guides/grouping#grouping-explanation).
   </Admonition>
 
-  <span id="id15" />
+  <span id="id16" />
 
   #### Example
 
@@ -581,7 +613,7 @@ The following functions exist to check certain properties of an operator.
     The explanation on [Group operator terms: use the operator structure](/docs/addons/qiskit-fermions/guides/grouping#grouping-explanation).
   </Admonition>
 
-  <span id="id16" />
+  <span id="id17" />
 
   #### Example
 
@@ -625,7 +657,7 @@ The following functions exist to check certain properties of an operator.
     This function resets the operator’s `groups` attribute to `NULL`.
   </Admonition>
 
-  <span id="id17" />
+  <span id="id18" />
 
   #### Example
 
@@ -654,7 +686,7 @@ The following functions exist to check certain properties of an operator.
 <Function id="qf_maj_op_add" signature="QfMajoranaOperator *qf_maj_op_add(const QfMajoranaOperator *left, const QfMajoranaOperator *right)">
   Adds two operators together.
 
-  <span id="id18" />
+  <span id="id19" />
 
   #### Example
 
@@ -684,7 +716,7 @@ The following functions exist to check certain properties of an operator.
 
   This fuses the scaling into the addition, which avoids building a fully scaled copy of `right` just to append it. Passing a factor of `-1` therefore subtracts, which is why no separate subtraction function is provided.
 
-  <span id="id19" />
+  <span id="id20" />
 
   #### Example
 
@@ -692,7 +724,7 @@ The following functions exist to check certain properties of an operator.
   1QfMajoranaOperator *one = qf_maj_op_one();
   2QfMajoranaOperator *other = qf_maj_op_one();
   3
-  4// Subtracting via a factor of -1 leaves the two terms cancelling each other out.
+  4// Subtracting via a factor of -1 leaves the two terms canceling each other out.
   5QkComplex64 factor = {-1.0, 0.0};
   6QfMajoranaOperator *result = qf_maj_op_scaled_add(one, other, &factor);
   7
@@ -726,7 +758,7 @@ The following functions exist to check certain properties of an operator.
     This function resets the operator’s `groups` attribute to `NULL`.
   </Admonition>
 
-  <span id="id20" />
+  <span id="id21" />
 
   #### Example
 
@@ -756,7 +788,7 @@ The following functions exist to check certain properties of an operator.
     This function resets the operator’s `groups` attribute to `NULL`.
   </Admonition>
 
-  <span id="id21" />
+  <span id="id22" />
 
   #### Example
 
@@ -786,7 +818,7 @@ The following functions exist to check certain properties of an operator.
 
   The in-place counterpart of [`qf_maj_op_mul()`](#qf_maj_op_mul "qf_maj_op_mul"), which saves copying the operator into a freshly allocated result.
 
-  <span id="id22" />
+  <span id="id23" />
 
   #### Example
 
@@ -812,7 +844,7 @@ The following functions exist to check certain properties of an operator.
 <Function id="qf_maj_op_mul" signature="QfMajoranaOperator *qf_maj_op_mul(const QfMajoranaOperator *op, const QkComplex64 *scalar)">
   Multiplies an operator by a scalar.
 
-  <span id="id23" />
+  <span id="id24" />
 
   #### Example
 
@@ -843,7 +875,7 @@ The following functions exist to check certain properties of an operator.
 <Function id="qf_maj_op_compose" signature="QfMajoranaOperator *qf_maj_op_compose(const QfMajoranaOperator *left, const QfMajoranaOperator *right)">
   Composes two operators with each other.
 
-  <span id="id24" />
+  <span id="id25" />
 
   #### Example
 
@@ -880,7 +912,7 @@ The following functions exist to check certain properties of an operator.
   *   the actions in each term reverse their order
   *   the coefficients are complex conjugated
 
-  <span id="id25" />
+  <span id="id26" />
 
   #### Example
 
@@ -917,7 +949,7 @@ The following functions exist to check certain properties of an operator.
     This functions truncates coefficients greedily! If the acted upon operator might contain separate coefficients for duplicate terms consider calling [`qf_maj_op_simplify()`](#qf_maj_op_simplify "qf_maj_op_simplify") instead!
   </Admonition>
 
-  <span id="id26" />
+  <span id="id27" />
 
   #### Example
 
@@ -992,7 +1024,7 @@ The following functions exist to check certain properties of an operator.
 
   The normal order of an operator term is defined such that all actions are ordered lexicographically. Whether they ascend or descend depends on the value of the `ascending` parameter.
 
-  <span id="id27" />
+  <span id="id28" />
 
   #### Example
 
@@ -1028,7 +1060,7 @@ The following functions exist to check certain properties of an operator.
 <Function id="qf_maj_op_is_hermitian" signature="bool qf_maj_op_is_hermitian(const QfMajoranaOperator *op, double atol)">
   Checks whether an operator is Hermitian.
 
-  <span id="id28" />
+  <span id="id29" />
 
   #### Example
 
@@ -1064,7 +1096,7 @@ The following functions exist to check certain properties of an operator.
 <Function id="qf_maj_op_max_rank" signature="uint32_t qf_maj_op_max_rank(const QfMajoranaOperator *op)">
   Checks the maximum rank of an operator.
 
-  <span id="id29" />
+  <span id="id30" />
 
   #### Example
 
@@ -1095,7 +1127,7 @@ The following functions exist to check certain properties of an operator.
 <Function id="qf_maj_op_is_even" signature="bool qf_maj_op_is_even(const QfMajoranaOperator *op)">
   Checks whether an operator is even.
 
-  <span id="id30" />
+  <span id="id31" />
 
   #### Example
 
@@ -1131,7 +1163,7 @@ The following functions exist to check certain properties of an operator.
 <Function id="qf_maj_op_equal" signature="bool qf_maj_op_equal(const QfMajoranaOperator *left, const QfMajoranaOperator *right)">
   Compare two operators for equality.
 
-  <span id="id31" />
+  <span id="id32" />
 
   #### Example
 
@@ -1160,7 +1192,7 @@ The following functions exist to check certain properties of an operator.
 
   Equivalence in this context means approximate equality up to the specified absolute tolerance. To be more precise, this method returns `True`, when all the absolute values of the coefficients in the difference `other - self` are below the specified threshold `atol`.
 
-  <span id="id32" />
+  <span id="id33" />
 
   #### Example
 
@@ -1192,7 +1224,7 @@ The following functions exist to check certain properties of an operator.
 <Function id="qf_maj_op_len" signature="size_t qf_maj_op_len(const QfMajoranaOperator *op)">
   Returns the length (or number of terms) of the provided operator.
 
-  <span id="id33" />
+  <span id="id34" />
 
   #### Example
 
@@ -1219,7 +1251,7 @@ The following functions exist to check certain properties of an operator.
 <Function id="qf_maj_op_relabel_modes" signature="QfExitCode qf_maj_op_relabel_modes(QfMajoranaOperator *op, uint64_t num_modes, const uint32_t *permutation)">
   Relabels the modes of the provided operator.
 
-  <span id="id34" />
+  <span id="id35" />
 
   #### Example
 

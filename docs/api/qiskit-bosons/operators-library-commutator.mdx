@@ -1,0 +1,54 @@
+---
+title: commutator (latest version)
+description: API reference for qiskit_bosons.operators.library.commutator in the latest version of qiskit-bosons
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit_bosons.operators.library.commutator
+---
+
+# commutator
+
+<Function id="qiskit_bosons.operators.library.commutator" isDedicatedPage={true} signature="commutator(op_a, op_b)">
+  Computes the commutator of two operators.
+
+  The commutator is defined as:
+
+$$
+[A, B] = AB - BA
+$$
+
+  Operators which support this method must implement the [`SupportsCommutators`](protocols-supports-commutators "qiskit_bosons.protocols.SupportsCommutators") protocol.
+
+  <Admonition title="Note" type="note">
+    Both inputs must be of the same operator type. This will also determine the output type.
+  </Admonition>
+
+  ```pycon
+  >>> from qiskit_bosons.operators import BosonOperator, ann, cre
+  >>> from qiskit_bosons.operators.library import commutator
+  >>> b = BosonOperator.from_dict({(ann(0),): 1.0})
+  >>> b_dag = BosonOperator.from_dict({(cre(0),): 1.0})
+  >>> commutator(b, b_dag).equiv(BosonOperator.one())
+  True
+  >>> n = BosonOperator.from_dict({(cre(0), ann(0)): 1.0})
+  >>> commutator(n, b_dag).equiv(b_dag)
+  True
+  >>> b1_dag = BosonOperator.from_dict({(cre(1),): 1.0})
+  >>> commutator(b_dag, b1_dag).equiv(BosonOperator.zero())
+  True
+  ```
+
+  **Parameters**
+
+  *   **op\_a** (*T*) – the operator $A$ above.
+  *   **op\_b** (*T*) – the operator $B$ above.
+
+  **Returns**
+
+  The commutator $[A, B]$.
+
+  **Return type**
+
+  *T*
+</Function>
+

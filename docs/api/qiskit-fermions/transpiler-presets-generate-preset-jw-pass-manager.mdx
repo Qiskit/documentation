@@ -15,7 +15,7 @@ python_api_name: qiskit_fermions.transpiler.presets.generate_preset_jw_pass_mana
 
   **Parameters**
 
-  **kwargs** – any additional keyword arguments are forwarded to [`generate_preset_pass_manager()`](/docs/api/qiskit/qiskit.transpiler.generate_preset_pass_manager) whose output is used for the `qubit` stage.
+  **kwargs** – any additional keyword arguments are forwarded to [`generate_preset_pass_manager()`](/docs/api/qiskit/qiskit.transpiler.generate_preset_pass_manager) whose output is used for the `qubit` stage. The `hls_config` is extended, not replaced, so that a [`PauliEvolutionGate`](/docs/api/qiskit/qiskit.circuit.library.PauliEvolutionGate) of a hop between two qubits is **always** synthesized by the [`HopEvolutionSynthesis`](transpiler-passes-synthesis-hop-evolution-synthesis "qiskit_fermions.transpiler.passes.synthesis.HopEvolutionSynthesis"), ahead of whatever methods the given configuration lists for it (`"default"` included, which then only applies to what is not a hop). The given configuration is not modified. A pipeline that should not do this has to be assembled from its stages rather than taken from this preset.
 
   **Returns**
 

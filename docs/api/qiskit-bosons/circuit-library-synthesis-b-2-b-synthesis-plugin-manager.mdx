@@ -1,0 +1,93 @@
+---
+title: B2BSynthesisPluginManager (latest version)
+description: API reference for qiskit_bosons.circuit.library.synthesis.B2BSynthesisPluginManager in the latest version of qiskit-bosons
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_bosons.circuit.library.synthesis.B2BSynthesisPluginManager
+---
+
+# B2BSynthesisPluginManager
+
+<Class id="qiskit_bosons.circuit.library.synthesis.B2BSynthesisPluginManager" isDedicatedPage={true} signature="B2BSynthesisPluginManager" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
+
+  A simple manager of the installed boson-to-boson synthesis plugins.
+
+  All plugins that are registered under the `qiskit_bosons.circuit.synthesis` [entry-point](https://setuptools.pypa.io/en/latest/userguide/entry_point.html) will be available to this class and get exposed by the [`plugins`](#qiskit_bosons.circuit.library.synthesis.B2BSynthesisPluginManager.plugins "qiskit_bosons.circuit.library.synthesis.B2BSynthesisPluginManager.plugins") attribute. The name of an entry point is the name of the gate class followed by the name of the method, separated by a dot, for example `ModeRotation.Clements`. Below is the table from the `pyproject.toml` of this package itself:
+
+  ```toml
+  [project.entry-points."qiskit_bosons.circuit.synthesis"]
+  "Evolution.LieTrotter" = "qiskit_bosons.circuit.library.synthesis:BosonicLieTrotter"
+  "Evolution.SuzukiTrotter" = "qiskit_bosons.circuit.library.synthesis:BosonicSuzukiTrotter"
+  "Evolution.QDrift" = "qiskit_bosons.circuit.library.synthesis:BosonicQDrift"
+  "ModeRotation.Clements" = "qiskit_bosons.circuit.library.synthesis:BosonicClementsDecomposition"
+  ```
+
+  An overview of all builtin plugins is given [here](/docs/api/qiskit-bosons/circuit-library-synthesis#builtin-b2b-synthesis-plugins).
+
+  ## Attributes
+
+  ### plugins
+
+  <Attribute id="qiskit_bosons.circuit.library.synthesis.B2BSynthesisPluginManager.plugins">
+    Type: [`dict`](https://docs.python.org/3/builtins/stdtypes.html#dict)\[[`str`](https://docs.python.org/3/builtins/stdtypes.html#str), [`list`](https://docs.python.org/3/builtins/stdtypes.html#list)\[[`str`](https://docs.python.org/3/builtins/stdtypes.html#str)]]
+
+    A dictionary mapping gate names to their synthesis methods.
+
+    The keys of this dictionary are names of [`BosonicGate`](circuit-bosonic-gate "qiskit_bosons.circuit.BosonicGate") classes. The values are the list of installed [`B2BSynthesisPlugin`](circuit-library-synthesis-b-2-b-synthesis-plugin "qiskit_bosons.circuit.library.synthesis.B2BSynthesisPlugin") methods that may be used to synthesize the instances of that particular gate.
+  </Attribute>
+
+  ## Methods
+
+  ### method
+
+  <Function id="qiskit_bosons.circuit.library.synthesis.B2BSynthesisPluginManager.method" signature="method(op_name, method_name)">
+    Returns the requested [`B2BSynthesisPlugin`](circuit-library-synthesis-b-2-b-synthesis-plugin "qiskit_bosons.circuit.library.synthesis.B2BSynthesisPlugin") type.
+
+    **Parameters**
+
+    *   **op\_name** ([*str*](https://docs.python.org/3/builtins/stdtypes.html#str)) – the name of the gate whose plugin to return.
+    *   **method\_name** ([*str*](https://docs.python.org/3/builtins/stdtypes.html#str)) – the name of the synthesis plugin.
+
+    **Returns**
+
+    The [`B2BSynthesisPlugin`](circuit-library-synthesis-b-2-b-synthesis-plugin "qiskit_bosons.circuit.library.synthesis.B2BSynthesisPlugin") class.
+
+    **Raises**
+
+    [**KeyError**](https://docs.python.org/3/builtins/exceptions.html#KeyError) – if no plugin is registered under that name.
+
+    **Return type**
+
+    [type](https://docs.python.org/3/builtins/functions.html#type)\[[*B2BSynthesisPlugin*](circuit-library-synthesis-b-2-b-synthesis-plugin "qiskit_bosons.circuit.library.synthesis.plugin.B2BSynthesisPlugin")]
+  </Function>
+
+  ### method\_names
+
+  <Function id="qiskit_bosons.circuit.library.synthesis.B2BSynthesisPluginManager.method_names" signature="method_names(op_name)">
+    Returns the names of all installed plugin methods for a given gate.
+
+    **Parameters**
+
+    **op\_name** ([*str*](https://docs.python.org/3/builtins/stdtypes.html#str)) – the name of the gate whose synthesis methods to return.
+
+    **Returns**
+
+    The list of installed plugin method names.
+
+    **Return type**
+
+    [list](https://docs.python.org/3/builtins/stdtypes.html#list)\[[str](https://docs.python.org/3/builtins/stdtypes.html#str)]
+  </Function>
+
+  ### op\_names
+
+  <Function id="qiskit_bosons.circuit.library.synthesis.B2BSynthesisPluginManager.op_names" signature="op_names()">
+    Returns the names of all gates for which any plugin is installed.
+
+    **Return type**
+
+    [list](https://docs.python.org/3/builtins/stdtypes.html#list)\[[str](https://docs.python.org/3/builtins/stdtypes.html#str)]
+  </Function>
+</Class>
+

@@ -1,0 +1,181 @@
+---
+title: LevelSpec (latest version)
+description: API reference for qiskit_bosons.mappers.LevelSpec in the latest version of qiskit-bosons
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_bosons.mappers.LevelSpec
+---
+
+# LevelSpec
+
+<Class id="qiskit_bosons.mappers.LevelSpec" isDedicatedPage={true} signature="LevelSpec(max_occupation, encoding)" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
+
+  The truncation of a register of bosonic modes and the encoding that lays it out on qubits.
+
+  A spec says how many levels each mode keeps and how those levels are placed on qubits, which in turn fixes how many qubits each mode occupies and where its qubits start. Everything that has to agree about that (the mapper, the transpiler layout, the state preparation) is given the same spec, so it cannot disagree.
+
+  The cutoff of a mode is its `max_occupation`, the largest boson number it can hold, so the mode keeps $d = \texttt{max\_occupation} + 1$ levels. There is deliberately **no default**: truncation is a physical modeling decision, and the cutoff of every mode must bound the occupation reachable in that mode, not merely the occupation of the initial state.
+
+  The encoding has no default either. No [`LevelEncoding`](mappers-level-encoding "qiskit_bosons.mappers.LevelEncoding") is best in general, and the choice decides how many qubits every mode occupies, so it is made explicitly.
+
+  A single integer applies to every mode and leaves the number of modes open, to be fixed by whatever the spec is applied to. A sequence gives one cutoff per mode and so also fixes the number of modes; a sequence is never broadcast, so one whose length differs from the number of modes it is used with is an error, including a sequence of length one.
+
+  ```pycon
+  >>> from qiskit_bosons.mappers import LevelSpec
+  >>> spec = LevelSpec([4, 2, 2], "gray")
+  >>> spec.widths
+  [3, 2, 2]
+  >>> spec.offsets
+  [0, 3, 5]
+  >>> spec.total_width
+  7
+  >>> LevelSpec(2, "unary_projected").is_uniform
+  True
+  ```
+
+  <Admonition title="Note" type="note">
+    Under a compact encoding ([`LevelEncoding.STANDARD_BINARY`](mappers-level-encoding#standard_binary "qiskit_bosons.mappers.LevelEncoding.STANDARD_BINARY") or [`LevelEncoding.GRAY`](mappers-level-encoding#gray "qiskit_bosons.mappers.LevelEncoding.GRAY")) a mode with a single level (`max_occupation = 0`) occupies **zero** qubits, because its only level needs no qubit to be told apart from any other. Such a mode is allowed and does not move the qubits of the modes after it, but a spec in which every mode would occupy zero qubits is rejected.
+  </Admonition>
+
+  <Admonition title="Note" type="note">
+    The unary encodings hold at most 128 levels per mode, that is `max_occupation` up to 127, because they identify a level by one bit of a 128-bit mask. A larger cutoff under [`LevelEncoding.UNARY_PROJECTED`](mappers-level-encoding#unary_projected "qiskit_bosons.mappers.LevelEncoding.UNARY_PROJECTED") or [`LevelEncoding.UNARY_UNPROJECTED`](mappers-level-encoding#unary_unprojected "qiskit_bosons.mappers.LevelEncoding.UNARY_UNPROJECTED") raises a [`ValueError`](https://docs.python.org/3/builtins/exceptions.html#ValueError), which asks for a compact encoding instead. This is a fixed limit of the implementation and cannot be changed at runtime. The compact encodings are not affected by it.
+  </Admonition>
+
+  **Parameters**
+
+  *   **max\_occupation** – the cutoff of every mode, either one integer shared by all modes or one per mode.
+  *   **encoding** – the level encoding, either a [`LevelEncoding`](mappers-level-encoding "qiskit_bosons.mappers.LevelEncoding") or its string name.
+
+  **Raises**
+
+  *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – if no mode would occupy a qubit, if a cutoff is too large (for a unary encoding, if it exceeds 127), or if `encoding` is a string that is not a recognized name.
+  *   [**TypeError**](https://docs.python.org/3/builtins/exceptions.html#TypeError) – if `max_occupation` is neither an integer nor a sequence of integers, or if `encoding` is neither a [`LevelEncoding`](mappers-level-encoding "qiskit_bosons.mappers.LevelEncoding") nor a string.
+
+  ## Attributes
+
+  ### encoding
+
+  <Attribute id="qiskit_bosons.mappers.LevelSpec.encoding">
+    The [`LevelEncoding`](mappers-level-encoding "qiskit_bosons.mappers.LevelEncoding") of this spec.
+  </Attribute>
+
+  ### is\_uniform
+
+  <Attribute id="qiskit_bosons.mappers.LevelSpec.is_uniform">
+    Whether every mode shares one cutoff.
+
+    A spec built from a single integer leaves the number of modes open, so its [`widths`](#qiskit_bosons.mappers.LevelSpec.widths "qiskit_bosons.mappers.LevelSpec.widths"), [`offsets`](#qiskit_bosons.mappers.LevelSpec.offsets "qiskit_bosons.mappers.LevelSpec.offsets") and [`total_width`](#qiskit_bosons.mappers.LevelSpec.total_width "qiskit_bosons.mappers.LevelSpec.total_width") are only defined once [`resolve()`](#qiskit_bosons.mappers.LevelSpec.resolve "qiskit_bosons.mappers.LevelSpec.resolve") has fixed it.
+  </Attribute>
+
+  ### max\_occupation
+
+  <Attribute id="qiskit_bosons.mappers.LevelSpec.max_occupation">
+    The shared cutoff of every mode if this spec was built from a single integer, and the per-mode list of cutoffs otherwise.
+  </Attribute>
+
+  ### num\_modes
+
+  <Attribute id="qiskit_bosons.mappers.LevelSpec.num_modes">
+    The number of modes this spec covers, or `None` for a spec built from a single integer, which leaves the number of modes open.
+  </Attribute>
+
+  ### offsets
+
+  <Attribute id="qiskit_bosons.mappers.LevelSpec.offsets">
+    The index of the first qubit of each mode.
+
+    This is the running sum of [`widths`](#qiskit_bosons.mappers.LevelSpec.widths "qiskit_bosons.mappers.LevelSpec.widths"), so a mode that occupies no qubit does not move the next one. It is only defined for a spec that covers a definite number of modes.
+
+    **Raises**
+
+    [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – if the spec was built from a single integer. Use [`resolve()`](#qiskit_bosons.mappers.LevelSpec.resolve "qiskit_bosons.mappers.LevelSpec.resolve") first.
+  </Attribute>
+
+  ### total\_width
+
+  <Attribute id="qiskit_bosons.mappers.LevelSpec.total_width">
+    The number of qubits all modes together occupy.
+
+    **Raises**
+
+    [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – if the spec was built from a single integer. Use [`resolve()`](#qiskit_bosons.mappers.LevelSpec.resolve "qiskit_bosons.mappers.LevelSpec.resolve") first.
+  </Attribute>
+
+  ### widths
+
+  <Attribute id="qiskit_bosons.mappers.LevelSpec.widths">
+    The number of qubits each mode occupies.
+
+    This is [`LevelEncoding.num_qubits()`](mappers-level-encoding#num_qubits "qiskit_bosons.mappers.LevelEncoding.num_qubits") of each mode’s level count. It is only defined for a spec that covers a definite number of modes.
+
+    **Raises**
+
+    [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – if the spec was built from a single integer, so that its number of modes is open. Use [`resolve()`](#qiskit_bosons.mappers.LevelSpec.resolve "qiskit_bosons.mappers.LevelSpec.resolve") to fix it first.
+  </Attribute>
+
+  ## Methods
+
+  ### resolve
+
+  <Function id="qiskit_bosons.mappers.LevelSpec.resolve" signature="resolve(num_modes)">
+    Returns this spec applied to exactly `num_modes` modes.
+
+    A spec built from a single integer is expanded to `num_modes` modes. A spec with one cutoff per mode must already cover exactly that many.
+
+    ```pycon
+    >>> from qiskit_bosons.mappers import LevelSpec
+    >>> LevelSpec(2, "unary_projected").resolve(3).widths
+    [3, 3, 3]
+    ```
+
+    **Parameters**
+
+    **num\_modes** – the number of modes.
+
+    **Returns**
+
+    A spec with one cutoff per mode.
+
+    **Raises**
+
+    [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – if the spec covers a different number of modes.
+  </Function>
+
+  ### truncation
+
+  <Function id="qiskit_bosons.mappers.LevelSpec.truncation" signature="truncation(operator)">
+    Returns by how much each mode’s cutoff falls short of an operator’s occupation bounds.
+
+    For every mode this is the amount by which the cutoff is below the bound that [`BosonOperator.mode_occupations()`](operators-boson-operator#mode_occupations "qiskit_bosons.operators.BosonOperator.mode_occupations") reports for `operator`, or zero if it is not. So an all-zero result means that no bound is violated, and a non-zero sum means that something is truncated.
+
+    That bound is how far one application of a term can raise a mode, and it takes no account of the occupation the mode starts in. A mode that starts with $n$ bosons can reach $n$ plus the bound, so the cutoff of a mode needs to be at least that. For example, a beamsplitter generator raises each of its two modes by one, so this method reports no shortfall at a cutoff of one, although the beamsplitter acting on $\lvert 1, 1 \rangle$ populates $\lvert 2, 0 \rangle$ and needs a cutoff of two.
+
+    ```pycon
+    >>> from qiskit_bosons.mappers import LevelSpec
+    >>> from qiskit_bosons.operators import BosonOperator, ann, cre
+    >>> op = BosonOperator.from_dict({(cre(0), cre(0)): 1.0, (cre(1), ann(1)): 1.0})
+    >>> LevelSpec([1, 3], "unary_projected").truncation(op)
+    [1, 0]
+    >>> sum(LevelSpec([2, 2], "unary_projected").truncation(op)) == 0
+    True
+    ```
+
+    <Admonition title="Warning" type="caution">
+      This measures the lower-bound heuristic of [`BosonOperator.mode_occupations()`](operators-boson-operator#mode_occupations "qiskit_bosons.operators.BosonOperator.mode_occupations") and nothing else. It does not say whether the mapping is accurate: the bound is not a sufficient cutoff, so an all-zero result is no guarantee. Conversely a model can report a shortfall although its mapping is exact. For example a hard-core model at `max_occupation = 1` contains the term $b^\dagger b^\dagger b b$, which reports a bound of 2 but is exactly zero on the two retained levels.
+    </Admonition>
+
+    **Parameters**
+
+    **operator** – the operator to check.
+
+    **Returns**
+
+    A list with one shortfall per mode. For a spec with one cutoff per mode, it covers every mode of the spec. For a spec built from a single integer, it covers the modes up to the largest one the operator acts on.
+
+    **Raises**
+
+    [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – if the operator acts on more modes than the spec covers.
+  </Function>
+</Class>
+

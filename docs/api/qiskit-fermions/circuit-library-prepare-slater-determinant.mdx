@@ -8,20 +8,31 @@ python_api_name: qiskit_fermions.circuit.library.PrepareSlaterDeterminant
 
 # PrepareSlaterDeterminant
 
-<Class id="qiskit_fermions.circuit.library.PrepareSlaterDeterminant" isDedicatedPage={true} signature="PrepareSlaterDeterminant(occupation, rotation_unitary)" modifiers="class">
+<Class id="qiskit_fermions.circuit.library.PrepareSlaterDeterminant" isDedicatedPage={true} signature="PrepareSlaterDeterminant(occupation, rotation_unitary, *, synthesis=None)" modifiers="class">
   Bases: [`FermionicGate`](circuit-fermionic-gate "qiskit_fermions.circuit.fermionic_gate.FermionicGate")
 
   Prepares a Slater determinant from an occupation and an orbital rotation.
 
-  This gate is the composition of an [`InitializeModes`](circuit-library-initialize-modes "qiskit_fermions.circuit.library.InitializeModes") reference occupation followed by an [`OrbitalRotation`](circuit-library-orbital-rotation "qiskit_fermions.circuit.library.OrbitalRotation"): it declares that the modes it acts on start in the determinant defined by `occupation` and are then rotated by `rotation_unitary`. Because the initial occupation is known, transpiling this gate can use the rectangular [`givens_decomposition_slater()`](linalg-givens-decomposition-slater "qiskit_fermions.linalg.givens_decomposition_slater") for a reduced-gate-count synthesis (see [`GivensDecompositionSlaterDeterminantSynthesis`](transpiler-passes-synthesis-givens-decomposition-slater-determinant-synthesis "qiskit_fermions.transpiler.passes.synthesis.GivensDecompositionSlaterDeterminantSynthesis")) rather than the full square decomposition an [`OrbitalRotation`](circuit-library-orbital-rotation "qiskit_fermions.circuit.library.OrbitalRotation") alone would require.
+  This gate is the composition of an [`InitializeModes`](circuit-library-initialize-modes "qiskit_fermions.circuit.library.InitializeModes") reference occupation followed by an [`OrbitalRotation`](circuit-library-orbital-rotation "qiskit_fermions.circuit.library.OrbitalRotation"): it declares that the modes it acts on start in the determinant defined by `occupation` and are then rotated by `rotation_unitary`. Because the initial occupation is known, decomposing this gate can use the rectangular [`givens_decomposition_slater()`](linalg-givens-decomposition-slater "qiskit_fermions.linalg.givens_decomposition_slater") for a reduced-gate-count synthesis (see [`FermionicSlaterGivensDecomposition`](circuit-library-synthesis-fermionic-slater-givens-decomposition "qiskit_fermions.circuit.library.synthesis.FermionicSlaterGivensDecomposition")) rather than the full square decomposition an [`OrbitalRotation`](circuit-library-orbital-rotation "qiskit_fermions.circuit.library.OrbitalRotation") alone would require.
 
   Following the [`OrbitalRotation`](circuit-library-orbital-rotation "qiskit_fermions.circuit.library.OrbitalRotation") convention $a^\dagger_i \mapsto \sum_j U_{ji} a^\dagger_j$, rotating the occupied modes maps them onto the corresponding columns of `rotation_unitary`; those columns span the occupied space of the prepared Slater determinant.
 
   **Simulation semantics**
 
-  Under simulation this gate is **validate-then-rotate**, not a state producer: given an incoming state vector it validates that the vector is confined to the subspace `occupation` defines (via [`InitializeModes`](circuit-library-initialize-modes "qiskit_fermions.circuit.library.InitializeModes")) and then applies `rotation_unitary` (via [`OrbitalRotation`](circuit-library-orbital-rotation "qiskit_fermions.circuit.library.OrbitalRotation")). It therefore requires a real reference state vector, prepared externally (e.g. via [`ffsim.slater_determinant()`](https://qiskit-community.github.io/ffsim/api/stubs/ffsim.slater_determinant.html#ffsim.slater_determinant "(in ffsim)")). The *producer* behavior – emitting the gates that set the reference occupation – lives in the synthesis plugin, not the simulation path.
+  Under simulation this gate is **validate-then-rotate**, not a state producer: given an incoming state vector it validates that the vector is confined to the subspace `occupation` defines (via [`InitializeModes`](circuit-library-initialize-modes "qiskit_fermions.circuit.library.InitializeModes")) and then applies `rotation_unitary` (via [`OrbitalRotation`](circuit-library-orbital-rotation "qiskit_fermions.circuit.library.OrbitalRotation")). It therefore requires a real reference state vector, prepared externally (e.g. via [`ffsim.slater_determinant()`](https://qiskit-community.github.io/ffsim/api/stubs/ffsim.slater_determinant.html#ffsim.slater_determinant "(in ffsim)")). The *producer* behavior (emitting the gates that set the reference occupation) lives in the [`synthesis`](/docs/api/qiskit-fermions/circuit-library-synthesis#module-qiskit_fermions.circuit.library.synthesis "qiskit_fermions.circuit.library.synthesis"), not the simulation path.
 
   Applying (rather than dropping) the rotation is what guarantees that merging an [`InitializeModes`](circuit-library-initialize-modes "qiskit_fermions.circuit.library.InitializeModes") and an [`OrbitalRotation`](circuit-library-orbital-rotation "qiskit_fermions.circuit.library.OrbitalRotation") into this single gate leaves the simulated final state unchanged.
+
+  **Decomposition semantics**
+
+  Breaking this gate down in fermionic space is **optional**, and it is what the [`synthesis`](/docs/api/qiskit-fermions/circuit-library-synthesis#module-qiskit_fermions.circuit.library.synthesis "qiskit_fermions.circuit.library.synthesis") attribute governs. It defaults to [`FermionicSlaterGivensDecomposition`](circuit-library-synthesis-fermionic-slater-givens-decomposition "qiskit_fermions.circuit.library.synthesis.FermionicSlaterGivensDecomposition"). The two ways of breaking the gate down differ, and deliberately so:
+
+  *   the definition of the gate (what [`decompose()`](circuit-fermionic-circuit#decompose "qiskit_fermions.circuit.FermionicCircuit.decompose") expands it into) is the [`InitializeModes`](circuit-library-initialize-modes "qiskit_fermions.circuit.library.InitializeModes") of `occupation` followed by an [`OrbitalRotation`](circuit-library-orbital-rotation "qiskit_fermions.circuit.library.OrbitalRotation"). It is equivalent to the gate as an operator;
+  *   [`synthesis`](/docs/api/qiskit-fermions/circuit-library-synthesis#module-qiskit_fermions.circuit.library.synthesis "qiskit_fermions.circuit.library.synthesis") produces a circuit that prepares the same Slater determinant from the vacuum, up to a global phase. It is cheaper because it exploits the known reference, and equivalent to the gate as a state preparation only.
+
+  <Admonition title="Note" type="note">
+    No fermion-to-qubit plugin maps this gate directly. Break it down in fermionic space first, with the [`F2FSynthesis`](transpiler-passes-f-2-f-synthesis "qiskit_fermions.transpiler.passes.F2FSynthesis") transpiler pass, so that the fermion-to-qubit stage only sees the gates it produces.
+  </Admonition>
 
   <Admonition title="Caution" type="note">
     This is an early development prototype. Beware of changes to its interface without warning during the pre-release development of this package.
@@ -37,6 +48,7 @@ python_api_name: qiskit_fermions.circuit.library.PrepareSlaterDeterminant
 
   *   **occupation** (*Sequence\[*[*bool*](https://docs.python.org/3/builtins/functions.html#bool)*]*) – a sequence of booleans indicating the reference occupation for each mode this gate acts on.
   *   **rotation\_unitary** (*np.ndarray*) – the $n \times n$ unitary matrix $U$ defining the orbital rotation via $a^\dagger_i \mapsto \sum_j U_{ji} a^\dagger_j$, where $n$ is the number of modes (`len(occupation)`). It must be square and unitary; this is the caller’s responsibility and is not verified.
+  *   **synthesis** ([*F2FSynthesisPlugin*](circuit-library-synthesis-f-2-f-synthesis-plugin "qiskit_fermions.circuit.library.synthesis.F2FSynthesisPlugin") *| None*) – the fermion-to-fermion synthesis method with which to decompose this gate into a state preparation, when it gets decomposed at all. If `None` (the default), a [`FermionicSlaterGivensDecomposition`](circuit-library-synthesis-fermionic-slater-givens-decomposition "qiskit_fermions.circuit.library.synthesis.FermionicSlaterGivensDecomposition") instance is used. This does not affect the definition of the gate, see the class documentation.
 
   **Raises**
 
@@ -56,7 +68,7 @@ python_api_name: qiskit_fermions.circuit.library.PrepareSlaterDeterminant
     The unitary matrix representing the orbital rotation coefficients.
   </Attribute>
 
-  **Protocol Methods**
+  ## Protocol Methods
 
   ### \_apply\_unitary\_placed\_
 

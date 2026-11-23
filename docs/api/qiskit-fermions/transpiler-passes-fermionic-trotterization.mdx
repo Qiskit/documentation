@@ -9,87 +9,51 @@ python_api_name: qiskit_fermions.transpiler.passes.FermionicTrotterization
 # FermionicTrotterization
 
 <Class id="qiskit_fermions.transpiler.passes.FermionicTrotterization" isDedicatedPage={true} signature="FermionicTrotterization(synthesis, *, apply=True, filter=None)" modifiers="class">
-  Bases: [`GenericPass`](/docs/api/qiskit/qiskit.passmanager.GenericPass)\[[`DAGCircuit`](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit), [`DAGCircuit`](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit)]
+  Bases: [`F2FSynthesis`](transpiler-passes-f-2-f-synthesis "qiskit_fermions.transpiler.passes.optimization.f2f_synthesis.F2FSynthesis")
 
-  A transpilation pass Trotterizing [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") gates in fermionic space.
+  **DEPRECATED** The former pass to Trotterize [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") gates.
 
-  An [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") gate carries the synthesis method with which it gets decomposed in fermionic space (see [`Evolution.synthesis`](circuit-library-evolution#synthesis "qiskit_fermions.circuit.library.Evolution.synthesis")). Setting it per gate means threading the choice through everything that constructs one – including [`UCC`](circuit-library-ucc "qiskit_fermions.circuit.library.UCC") and [`UCJ`](circuit-library-ucj "qiskit_fermions.circuit.library.UCJ"), which build their own internally. This pass applies one method to every [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") in a circuit instead, so the choice can be made once for a whole transpilation pipeline:
-
-  ```python
-  pm.optimization = FermionicPassManager(
-      [FermionicTrotterization(FermionicSuzukiTrotter(order=2, reps=4))]
-  )
-  ```
-
-  Each selected gate is replaced by the factors its method emits, so the pass both chooses the formula and carries it out. Nodes that are not [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") gates are left untouched, as are those rejected by an optional [`filter`](#qiskit_fermions.transpiler.passes.FermionicTrotterization.filter "qiskit_fermions.transpiler.passes.FermionicTrotterization.filter").
-
-  <Admonition title="Note" type="note">
-    Running the pass again is harmless: the factors a synthesis method emits are [`Evolution.atomic`](circuit-library-evolution#atomic "qiskit_fermions.circuit.library.Evolution.atomic"), and an atomic gate is a terminal factor which this pass leaves in place rather than splitting further. The same exemption makes the pass a fixed point over the output of [`QDriftTrotterization`](transpiler-passes-q-drift-trotterization "qiskit_fermions.transpiler.passes.QDriftTrotterization"), whose sampled gates are atomic because the random draw *is* the Trotterization it performs.
-  </Admonition>
-
-  <Admonition title="Note" type="note">
-    Set [`apply`](#qiskit_fermions.transpiler.passes.FermionicTrotterization.apply "qiskit_fermions.transpiler.passes.FermionicTrotterization.apply") to `False` to only *select* the method and leave the expansion to something else, such as Qiskit’s [`Decompose`](/docs/api/qiskit/qiskit.transpiler.passes.Decompose) or a [`decompose()`](circuit-fermionic-circuit#decompose "qiskit_fermions.circuit.FermionicCircuit.decompose") call. Be aware that a gate which is never expanded reaches the fermion-to-qubit stage whole, where it is mapped without [`Evolution.synthesis`](circuit-library-evolution#synthesis "qiskit_fermions.circuit.library.Evolution.synthesis") ever being read – and every synthesis method then produces identical output.
-  </Admonition>
-
-  <Admonition title="Caution" type="note">
-    Not every synthesis method suits every operator. An [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") whose operator groups all mutually commute (the diagonal-Coulomb operators of a [`UCJ`](circuit-library-ucj "qiskit_fermions.circuit.library.UCJ"), for example) is synthesized exactly at any order, so a higher order only adds depth. Use [`filter`](#qiskit_fermions.transpiler.passes.FermionicTrotterization.filter "qiskit_fermions.transpiler.passes.FermionicTrotterization.filter") to restrict the pass to the gates that benefit.
-
-    Expanding an operator that carries no [`groups`](operators-operator-trait#groups "qiskit_fermions.operators.OperatorTrait.groups") splits it term by term, and a lone $a^\dagger_i a_j$ is not Hermitian, so its exponential is not unitary. Nothing complains until the mapped operator reaches [`PauliEvolutionGate`](/docs/api/qiskit/qiskit.circuit.library.PauliEvolutionGate), which raises `ValueError: Operator contains complex coefficients, which are not supported`. Assigning conjugate-paired groups is what makes each factor Hermitian.
-  </Admonition>
+  This is [`F2FSynthesis`](transpiler-passes-f-2-f-synthesis "qiskit_fermions.transpiler.passes.F2FSynthesis") restricted to the [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") gate: the `synthesis` argument is the method for that gate.
 
   Initializing this transpiler pass can be done with the arguments listed below.
 
+  <Admonition title="Deprecated since version 0.4.0" type="danger">
+    The class `qiskit_fermions.transpiler.passes.optimization._deprecated_trotterization.FermionicTrotterization` is deprecated as of qiskit-fermions 0.4.0. It will be removed no earlier than 3 months after the release date. Use F2FSynthesis(\{“Evolution”: synthesis}) instead.
+  </Admonition>
+
   **Parameters**
 
-  *   **synthesis** ([*FermionicEvolutionSynthesis*](circuit-library-synthesis-fermionic-evolution-synthesis "qiskit_fermions.circuit.library.synthesis.FermionicEvolutionSynthesis")) – the fermion-to-fermion synthesis method to apply to the [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") gates of the circuit.
-  *   **apply** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) – whether to expand each selected gate into the factors `synthesis` produces. When `False`, the gate is only tagged with `synthesis` and something else has to expand it later. See [`apply`](#qiskit_fermions.transpiler.passes.FermionicTrotterization.apply "qiskit_fermions.transpiler.passes.FermionicTrotterization.apply").
-  *   **filter** (*Callable\[\[DAGOpNode],* [*bool*](https://docs.python.org/3/builtins/functions.html#bool)*] | None*) – an optional predicate deciding which [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") nodes to apply `synthesis` to. It is called with the [`DAGOpNode`](/docs/api/qiskit/qiskit.dagcircuit.DAGOpNode) and the node is left untouched unless it returns `True`. If `None` (the default), every [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") node is selected.
+  *   **synthesis** ([*F2FSynthesisPlugin*](circuit-library-synthesis-f-2-f-synthesis-plugin "qiskit_fermions.circuit.library.synthesis.F2FSynthesisPlugin")) – the synthesis method for [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") gates.
+  *   **apply** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) – see [`F2FSynthesis`](transpiler-passes-f-2-f-synthesis "qiskit_fermions.transpiler.passes.F2FSynthesis").
+  *   **filter** (*Callable\[\[DAGOpNode],* [*bool*](https://docs.python.org/3/builtins/functions.html#bool)*] | None*) – see [`F2FSynthesis`](transpiler-passes-f-2-f-synthesis "qiskit_fermions.transpiler.passes.F2FSynthesis").
 
   ## Attributes
 
-  ### synthesis
+  ### methods
 
-  <Attribute id="qiskit_fermions.transpiler.passes.FermionicTrotterization.synthesis">
-    The fermion-to-fermion synthesis method applied to the selected gates.
+  <Attribute id="qiskit_fermions.transpiler.passes.FermionicTrotterization.methods">
+    Type: [`dict`](https://docs.python.org/3/builtins/stdtypes.html#dict)\[[`str`](https://docs.python.org/3/builtins/stdtypes.html#str), [`F2FSynthesisPlugin`](circuit-library-synthesis-f-2-f-synthesis-plugin "qiskit_fermions.circuit.library.synthesis.F2FSynthesisPlugin")]
+
+    A dictionary of the fermion-to-fermion synthesis methods, by gate.
+
+    The keys of this dictionary correspond to the `__name__` of a [`FermionicGate`](circuit-fermionic-gate "qiskit_fermions.circuit.FermionicGate"), and the values are instances of the [`F2FSynthesisPlugin`](circuit-library-synthesis-f-2-f-synthesis-plugin "qiskit_fermions.circuit.library.synthesis.F2FSynthesisPlugin") protocol. A gate that is not a key is not touched by this pass, so the dictionary is **empty** by default, which makes the pass do nothing. Pre-populate it with plugins provided by the [`F2FSynthesisPluginManager`](circuit-library-synthesis-f-2-f-synthesis-plugin-manager "qiskit_fermions.circuit.library.synthesis.F2FSynthesisPluginManager") through the `config` argument.
   </Attribute>
 
   ### apply
 
   <Attribute id="qiskit_fermions.transpiler.passes.FermionicTrotterization.apply">
-    Whether to expand each selected gate into the factors [`synthesis`](#qiskit_fermions.transpiler.passes.FermionicTrotterization.synthesis "qiskit_fermions.transpiler.passes.FermionicTrotterization.synthesis") produces.
+    Whether to expand each selected gate into the factors its plugin produces.
 
-    When this is `False`, the pass only *selects* the method: it tags each selected gate with [`synthesis`](#qiskit_fermions.transpiler.passes.FermionicTrotterization.synthesis "qiskit_fermions.transpiler.passes.FermionicTrotterization.synthesis") and leaves the expansion to whatever builds the gate’s definition later, such as Qiskit’s [`Decompose`](/docs/api/qiskit/qiskit.transpiler.passes.Decompose) or a [`decompose()`](circuit-fermionic-circuit#decompose "qiskit_fermions.circuit.FermionicCircuit.decompose") call. Note that a gate which is never expanded reaches the fermion-to-qubit stage whole, where it is mapped without [`Evolution.synthesis`](circuit-library-evolution#synthesis "qiskit_fermions.circuit.library.Evolution.synthesis") ever being read, and every synthesis method then produces identical output.
+    When this is `False`, the pass only *selects* the method: it tags each selected gate with its plugin (see [`FermionicGate.with_synthesis()`](circuit-fermionic-gate#with_synthesis "qiskit_fermions.circuit.FermionicGate.with_synthesis")), except an [`atomic`](circuit-fermionic-gate#atomic "qiskit_fermions.circuit.FermionicGate.atomic") gate, which is left as it is, and leaves the expansion to whatever builds the gate’s definition later, such as a [`decompose()`](circuit-fermionic-circuit#decompose "qiskit_fermions.circuit.FermionicCircuit.decompose") call. Note that a gate which is never expanded reaches the fermion-to-qubit stage whole, where it is mapped without its [`synthesis`](circuit-fermionic-gate#synthesis "qiskit_fermions.circuit.FermionicGate.synthesis") ever being read.
   </Attribute>
 
   ### filter
 
   <Attribute id="qiskit_fermions.transpiler.passes.FermionicTrotterization.filter">
-    The predicate selecting which [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") nodes to apply [`synthesis`](#qiskit_fermions.transpiler.passes.FermionicTrotterization.synthesis "qiskit_fermions.transpiler.passes.FermionicTrotterization.synthesis") to.
+    The predicate selecting which nodes to break down.
   </Attribute>
 
-  ## Methods
-
-  ### run
-
-  <Function id="qiskit_fermions.transpiler.passes.FermionicTrotterization.run" signature="run(dag)">
-    Runs this transpilation pass.
-
-    Every [`Evolution`](circuit-library-evolution "qiskit_fermions.circuit.library.Evolution") node accepted by [`filter`](#qiskit_fermions.transpiler.passes.FermionicTrotterization.filter "qiskit_fermions.transpiler.passes.FermionicTrotterization.filter") is replaced by the factors that [`synthesis`](#qiskit_fermions.transpiler.passes.FermionicTrotterization.synthesis "qiskit_fermions.transpiler.passes.FermionicTrotterization.synthesis") produces, or (when [`apply`](#qiskit_fermions.transpiler.passes.FermionicTrotterization.apply "qiskit_fermions.transpiler.passes.FermionicTrotterization.apply") is `False`) by an equivalent gate merely carrying [`synthesis`](#qiskit_fermions.transpiler.passes.FermionicTrotterization.synthesis "qiskit_fermions.transpiler.passes.FermionicTrotterization.synthesis"). All other nodes are left untouched. The input DAG is modified in place.
-
-    **Parameters**
-
-    **dag** ([*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit)) – the input circuit with fermion-based instructions. Only [`DAGOpNode`](/docs/api/qiskit/qiskit.dagcircuit.DAGOpNode) with [`FermionicGate`](circuit-fermionic-gate "qiskit_fermions.circuit.FermionicGate") instances as their [`op`](/docs/api/qiskit/qiskit.dagcircuit.DAGOpNode#op) are supported, plus `Barrier` and [`FermionicMeasure`](circuit-library-fermionic-measure "qiskit_fermions.circuit.library.FermionicMeasure"), which are carried through untouched (a measurement keeps the classical bit it writes into).
-
-    **Returns**
-
-    The output circuit which is still acting on a fermionic register.
-
-    **Return type**
-
-    [*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit)
-  </Function>
-
-  **Inherited Methods**
+  ## Inherited Methods
 
   ### execute
 
@@ -119,6 +83,26 @@ python_api_name: qiskit_fermions.transpiler.passes.FermionicTrotterization
     **Return type**
 
     [str](https://docs.python.org/3/builtins/stdtypes.html#str)
+  </Function>
+
+  ### run
+
+  <Function id="qiskit_fermions.transpiler.passes.FermionicTrotterization.run" signature="run(dag)">
+    Runs this transpilation pass.
+
+    Every node whose gate type is in [`methods`](#qiskit_fermions.transpiler.passes.FermionicTrotterization.methods "qiskit_fermions.transpiler.passes.FermionicTrotterization.methods") and that is accepted by [`filter`](#qiskit_fermions.transpiler.passes.FermionicTrotterization.filter "qiskit_fermions.transpiler.passes.FermionicTrotterization.filter") is replaced by the gates that its plugin produces, or (when [`apply`](#qiskit_fermions.transpiler.passes.FermionicTrotterization.apply "qiskit_fermions.transpiler.passes.FermionicTrotterization.apply") is `False`) by an equivalent gate merely carrying the plugin. All other nodes are left untouched. The input DAG is modified in place.
+
+    **Parameters**
+
+    **dag** ([*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit)) – the input circuit with fermion-based instructions. Only [`DAGOpNode`](/docs/api/qiskit/qiskit.dagcircuit.DAGOpNode) with [`FermionicGate`](circuit-fermionic-gate "qiskit_fermions.circuit.FermionicGate") instances as their [`op`](/docs/api/qiskit/qiskit.dagcircuit.DAGOpNode#op) are supported, plus `Barrier` and [`FermionicMeasure`](circuit-library-fermionic-measure "qiskit_fermions.circuit.library.FermionicMeasure"), which are carried through untouched (a measurement keeps the classical bit it writes into).
+
+    **Returns**
+
+    The output circuit which is still acting on a fermionic register.
+
+    **Return type**
+
+    [*DAGCircuit*](/docs/api/qiskit/qiskit.dagcircuit.DAGCircuit)
   </Function>
 
   ### update\_status

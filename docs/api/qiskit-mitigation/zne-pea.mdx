@@ -8,7 +8,7 @@ python_api_name: qiskit_mitigation.zne.PEA
 
 # PEA
 
-<Class id="qiskit_mitigation.zne.PEA" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-mitigation/tree/stable/0.1/qiskit_mitigation/zne/pea.py#L42-L635" signature="PEA" modifiers="class">
+<Class id="qiskit_mitigation.zne.PEA" isDedicatedPage={true} github="https://github.com/Qiskit/qiskit-mitigation/tree/main/qiskit_mitigation/zne/pea.py#L43-L695" signature="PEA" modifiers="class">
   Bases: [`MitigationTask`](/docs/api/qiskit-mitigation/mitigation-task#qiskit_mitigation.MitigationTask "qiskit_mitigation.mitigation_task.MitigationTask")
 
   Calculates expectation values of observables using Probabilistic Error Amplification (PEA) mitigation method.
@@ -51,14 +51,14 @@ python_api_name: qiskit_mitigation.zne.PEA
   ### VERSION
 
   <Attribute id="qiskit_mitigation.zne.PEA.VERSION">
-    Default value: `'0.1'`
+    Default value: `'0.2'`
   </Attribute>
 
   ## Methods
 
   ### compute\_expectation\_value
 
-  <Function id="qiskit_mitigation.zne.PEA.compute_expectation_value" github="https://github.com/Qiskit/qiskit-mitigation/tree/stable/0.1/qiskit_mitigation/mitigation_task.py#L888-L998" signature="compute_expectation_value(item_result, observables, param_shape=None, param_basis_pairs=None, meas_bases=None, broadcast_obs_and_params=False, measure_noise_data=None)" modifiers="static">
+  <Function id="qiskit_mitigation.zne.PEA.compute_expectation_value" github="https://github.com/Qiskit/qiskit-mitigation/tree/main/qiskit_mitigation/mitigation_task.py#L1058-L1179" signature="compute_expectation_value(item_result, observables, param_shape=None, param_basis_pairs=None, meas_bases=None, broadcast_obs_and_params=False, measure_noise_data=None, meas_qubits=None, circuit_num_qubits=None)" modifiers="static">
     Process expectation values for a single item result.
 
     This function can be used to calculate expectation values for a single unmitigated item result without instantiating a new class instance.
@@ -72,6 +72,8 @@ python_api_name: qiskit_mitigation.zne.PEA
     *   **meas\_bases** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*Pauli*](/docs/api/qiskit/qiskit.quantum_info.Pauli)*] |* [*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*str*](https://docs.python.org/3/builtins/stdtypes.html#str)*] |* [*PauliList*](/docs/api/qiskit/qiskit.quantum_info.PauliList) *| None*) – A list of the measured Pauli bases. The `i` th item is a measurement basis assumed to correspond to the `i` th slice of the data in `item_result`.
     *   **broadcast\_obs\_and\_params** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) – Whether to broadcast observables and parameter values.
     *   **measure\_noise\_data** ([*PauliLindbladMap*](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap)  *|*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray) *| None*) – Measurement noise calibration data for TREX mitigation.
+    *   **meas\_qubits** ([*list*](https://docs.python.org/3/builtins/stdtypes.html#list)*\[*[*int*](https://docs.python.org/3/builtins/functions.html#int)*] | None*) – Sorted list of the circuit qubit indices that were measured, if the task was prepared with `trim_measurements=True` (available as `task.meas_qubits`). Must be given together with `circuit_num_qubits`. If `None`, all the qubits are assumed to be measured, which gives wrong results for trimmed data.
+    *   **circuit\_num\_qubits** ([*int*](https://docs.python.org/3/builtins/functions.html#int) *| None*) – The total number of qubits in the circuit. Used together with `meas_qubits` to expand the data back to the full width. Must be given together with `meas_qubits`.
 
     **Returns**
 
@@ -82,6 +84,7 @@ python_api_name: qiskit_mitigation.zne.PEA
     *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If `item_result` has no `'_meas'` key.
     *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If `item_result['_meas']` has invalid number of axes.
     *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If `param_shape` and `observables.shape` cannot be broadcasted against each other.
+    *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If only one of `meas_qubits` and `circuit_num_qubits` is given.
 
     **Return type**
 
@@ -90,7 +93,7 @@ python_api_name: qiskit_mitigation.zne.PEA
 
   ### compute\_expectation\_value\_pea
 
-  <Function id="qiskit_mitigation.zne.PEA.compute_expectation_value_pea" github="https://github.com/Qiskit/qiskit-mitigation/tree/stable/0.1/qiskit_mitigation/zne/pea.py#L452-L635" signature="compute_expectation_value_pea(item_result, observables, param_shape, param_basis_pairs, noise_factors, extrapolator, extrapolated_noise_factors=None, meas_bases=None, broadcast_obs_and_params=False, measure_noise_data=None, custom_fit=None)" modifiers="static">
+  <Function id="qiskit_mitigation.zne.PEA.compute_expectation_value_pea" github="https://github.com/Qiskit/qiskit-mitigation/tree/main/qiskit_mitigation/zne/pea.py#L500-L695" signature="compute_expectation_value_pea(item_result, observables, param_shape, param_basis_pairs, noise_factors, extrapolator, extrapolated_noise_factors=None, meas_bases=None, broadcast_obs_and_params=False, measure_noise_data=None, custom_fit=None, meas_qubits=None, circuit_num_qubits=None)" modifiers="static">
     Process expectation values for a single item result.
 
     This function can be used to calculate expectation values for a single pea mitigated item result without instantiating a new class instance.
@@ -128,6 +131,10 @@ python_api_name: qiskit_mitigation.zne.PEA
 
     *   **custom\_fit** ([*tuple*](https://docs.python.org/3/builtins/stdtypes.html#tuple)*\[*[*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable)*\[\[...],* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)*],* [*list*](https://docs.python.org/3/builtins/stdtypes.html#list)*\[*[*float*](https://docs.python.org/3/builtins/functions.html#float)*],* [*tuple*](https://docs.python.org/3/builtins/stdtypes.html#tuple)*\[*[*float*](https://docs.python.org/3/builtins/functions.html#float)*, ...] |* [*tuple*](https://docs.python.org/3/builtins/stdtypes.html#tuple)*\[*[*list*](https://docs.python.org/3/builtins/stdtypes.html#list)*\[*[*float*](https://docs.python.org/3/builtins/functions.html#float)*], ...]] | None*) – A custom fitting function that will be used for extrapolation. Should include a tuple in the form of: `(function, p_0, bounds)`. The function should take the independent variable as the first argument and the parameters to fit as separate remaining arguments. p\_0 is an array of the initial guess for the parameters, and bounds are the bounds on the parameters. These parameters will be sent as arguments for `scipy.optimize.curve_fit` function.
 
+    *   **meas\_qubits** ([*list*](https://docs.python.org/3/builtins/stdtypes.html#list)*\[*[*int*](https://docs.python.org/3/builtins/functions.html#int)*] | None*) – Sorted list of the circuit qubit indices that were measured, if the task was prepared with `trim_measurements=True` (available as `task.meas_qubits`). Must be given together with `circuit_num_qubits`. If `None`, all the qubits are assumed to be measured, which gives wrong results for trimmed data.
+
+    *   **circuit\_num\_qubits** ([*int*](https://docs.python.org/3/builtins/functions.html#int) *| None*) – The total number of qubits in the circuit. Used together with `meas_qubits` to expand the data back to the full width. Must be given together with `meas_qubits`.
+
     **Returns**
 
     *   `evs`: expectation values evaluated at the zero noise point.
@@ -162,11 +169,12 @@ python_api_name: qiskit_mitigation.zne.PEA
     *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If `item_result['_meas']` has invalid number of axes.
     *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If `param_shape` and `observables.shape` cannot be broadcasted against each other.
     *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If `noise_factors` is under-specified for any extrapolator.
+    *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If only one of `meas_qubits` and `circuit_num_qubits` is given.
   </Function>
 
   ### create\_instance\_from\_passthrough\_data
 
-  <Function id="qiskit_mitigation.zne.PEA.create_instance_from_passthrough_data" github="https://github.com/Qiskit/qiskit-mitigation/tree/stable/0.1/qiskit_mitigation/zne/pea.py#L405-L450" signature="create_instance_from_passthrough_data(passthrough, trex=None)" modifiers="static">
+  <Function id="qiskit_mitigation.zne.PEA.create_instance_from_passthrough_data" github="https://github.com/Qiskit/qiskit-mitigation/tree/main/qiskit_mitigation/zne/pea.py#L446-L498" signature="create_instance_from_passthrough_data(passthrough, trex=None)" modifiers="static">
     Create a PEA instance from a passthrough dictionary loaded from a quantum program execution result.
 
     **Parameters**
@@ -185,17 +193,36 @@ python_api_name: qiskit_mitigation.zne.PEA
 
   ### find\_unique\_layers
 
-  <Function id="qiskit_mitigation.zne.PEA.find_unique_layers" github="https://github.com/Qiskit/qiskit-mitigation/tree/stable/0.1/qiskit_mitigation/mitigation_task.py#L566-L586" signature="find_unique_layers(circuit, custom_boxing_options=None)">
+  <Function id="qiskit_mitigation.zne.PEA.find_unique_layers" github="https://github.com/Qiskit/qiskit-mitigation/tree/main/qiskit_mitigation/mitigation_task.py#L650-L717" signature="find_unique_layers(circuit, custom_boxing_options=None, box_types='all', observables=None, trex=None)">
     Return the unique boxed layers of the given circuit using the given boxing options.
+
+    If the instance already holds a boxed circuit of the given `circuit` (for example, after calling `prepare`), and `custom_boxing_options` is `None` or equal to the saved boxing options, the saved boxed circuit is used instead of boxing the circuit again.
 
     **Parameters**
 
     *   **circuit** ([*QuantumCircuit*](/docs/api/qiskit/qiskit.circuit.QuantumCircuit)) – The circuit to found its unique layers.
+
     *   **custom\_boxing\_options** ([*dict*](https://docs.python.org/3/builtins/stdtypes.html#dict) *| None*) – The custom boxing options that will be used by `generate_boxing_pass_manager()` function.
+
+    *   **box\_types** ([*Literal*](https://docs.python.org/3/library/typing.html#typing.Literal)*\['gates', 'measurement', 'all']*) – Can be either `"gates"`, `"measurement"` or `"all"`, corresponding to filter boxes with only gate layers, only measurement layers or all layers, respectively.
+
+    *   **observables** ([*ObservablesArray*](/docs/api/qiskit/qiskit.primitives.ObservablesArray)  *|*[*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp)*] | None*) –
+
+        If given, the layers are found for a circuit whose measurements are trimmed to the active and observed qubits, exactly as when `prepare` is called with `trim_measurements=True` and the same observables. If `None` (default), all the qubits are measured.
+
+            <Admonition title="Warning" type="caution">
+              Pass `observables` if and only if `trim_measurements=True` is passed to `prepare`, together with the same observables. The measured qubits change the boxing, so layers learned with a different choice are not found by `prepare`.
+            </Admonition>
+
+    *   **trex** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool) *| None*) – Whether to add the boxing options that `prepare` enforces when a [`TREX`](/docs/api/qiskit-mitigation/trex#qiskit_mitigation.TREX "qiskit_mitigation.TREX") is used (measurement boxes annotated for all qubits). If `True`, these options are always added. If `False`, they are never added. If `None` (default), they are added if and only if this task has a TREX mitigation.
 
     **Returns**
 
     Unique boxed layers of the given circuit.
+
+    **Raises**
+
+    [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If `observables` is given and no qubit is active or observed.
 
     **Return type**
 
@@ -204,7 +231,7 @@ python_api_name: qiskit_mitigation.zne.PEA
 
   ### postprocess
 
-  <Function id="qiskit_mitigation.zne.PEA.postprocess" github="https://github.com/Qiskit/qiskit-mitigation/tree/stable/0.1/qiskit_mitigation/zne/pea.py#L316-L403" signature="postprocess(results, measure_noise_data=None, *, noise_factors=None, extrapolator=None, extrapolated_noise_factors=None, custom_fit=None)">
+  <Function id="qiskit_mitigation.zne.PEA.postprocess" github="https://github.com/Qiskit/qiskit-mitigation/tree/main/qiskit_mitigation/zne/pea.py#L351-L444" signature="postprocess(results, measure_noise_data=None, *, noise_factors=None, extrapolator=None, extrapolated_noise_factors=None, custom_fit=None)">
     Process expectation values for a single item result.
 
     **Parameters**
@@ -267,10 +294,10 @@ python_api_name: qiskit_mitigation.zne.PEA
 
   ### prepare
 
-  <Function id="qiskit_mitigation.zne.PEA.prepare" github="https://github.com/Qiskit/qiskit-mitigation/tree/stable/0.1/qiskit_mitigation/zne/pea.py#L143-L314" signature="prepare(circuit, observables, parameters, custom_boxing_options=None, shots_per_randomization=64, num_randomizations=128, broadcast_obs_and_params=False, trex=None, quantum_program=None, *, noise_maps=None, noise_factors=(1, 3, 5), extrapolator=None, extrapolated_noise_factors=None)">
+  <Function id="qiskit_mitigation.zne.PEA.prepare" github="https://github.com/Qiskit/qiskit-mitigation/tree/main/qiskit_mitigation/zne/pea.py#L147-L349" signature="prepare(circuit, observables, parameters, custom_boxing_options=None, shots_per_randomization=64, num_randomizations=128, broadcast_obs_and_params=False, trex=None, quantum_program=None, trim_measurements=False, *, noise_maps=None, noise_factors=(1, 3, 5), extrapolator=None, extrapolated_noise_factors=None)">
     Creates a `QuantumProgram` with PEA mitigated item for executing via Executor.
 
-    Creates an item for a `QuantumProgram`, that can be executed via Executor and is PEA mitigated (amplifies the noise by scaling the injected Pauli noise and extrapolates to the zero noise point). If a `quantum_program` is provided, the new item will be added to the existing program, otherwise, a new program will be created, containing only the created item. If `broadcast_obs_and_params` is True, the observables and parameters will be broadcasted using the samplomatic broadcasting rules, to allow attaching some of the parameters to some of the observables. Otherwise, every parameter will be executed for each observable (outer product of the parameters and observables). Note that the post-processing of an outer product is usually faster.
+    Creates an item for a `QuantumProgram`, that can be executed via Executor and is PEA mitigated (amplifies the noise by scaling the injected Pauli noise and extrapolates to the zero noise point). If a `quantum_program` is provided, the new item will be added to the existing program, otherwise, a new program will be created, containing only the created item. In the created program item the final measurement layer of the given circuit is removed and a new measurement layer with a dedicated classical register named `_meas` is added. If `broadcast_obs_and_params` is True, the observables and parameters will be broadcasted using the samplomatic broadcasting rules, to allow attaching some of the parameters to some of the observables. Otherwise, every parameter will be executed for each observable (outer product of the parameters and observables). Note that the post-processing of an outer product is usually faster.
 
     **Parameters**
 
@@ -292,7 +319,15 @@ python_api_name: qiskit_mitigation.zne.PEA
 
     *   **quantum\_program** ([*QuantumProgram*](/docs/api/samplomatic/auto/quantum-program-quantum-program#samplomatic.quantum_program.QuantumProgram "(in samplomatic)") *| None*) – The quantum program to add an item for. If None, a new program will be created.
 
-    *   **noise\_maps** ([*dict*](https://docs.python.org/3/builtins/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/builtins/stdtypes.html#str)*,* [*PauliLindbladMap*](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap)*] | None*) – A mapping between layer ref to a noise model to use for noise amplification. The dict might contain layers not present in the given circuit, but must contain all the mitigated layers. Assumes that the unique layers used for noise learning were extracted using the `find_unique_layers` method with the same custom boxing options.
+    *   **trim\_measurements** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) –
+
+        Whether to measure only the qubits that have instructions on them or are in the support of the observables, instead of all the qubits of the circuit. The measured qubits are available in `meas_qubits` after the call.
+
+            <Admonition title="Warning" type="caution">
+              Trimming changes the boxing of the circuit, so `noise_maps` must be learned on the layers of a trimmed circuit: pass `observables` to the layer finder (`find_combined_unique_layers()` or [`find_unique_layers()`](/docs/api/qiskit-mitigation/mitigation-task#qiskit_mitigation.MitigationTask.find_unique_layers "qiskit_mitigation.MitigationTask.find_unique_layers")) if and only if `trim_measurements=True` is passed to `prepare`, and pass the same observables.
+            </Admonition>
+
+    *   **noise\_maps** ([*dict*](https://docs.python.org/3/builtins/stdtypes.html#dict)*\[*[*str*](https://docs.python.org/3/builtins/stdtypes.html#str)*,* [*PauliLindbladMap*](/docs/api/qiskit/qiskit.quantum_info.PauliLindbladMap)*] | None*) – A mapping between layer ref to a noise model to use for noise amplification. The dict might contain layers not present in the given circuit, but must contain all the mitigated layers. Assumes that the unique layers used for noise learning were extracted using the `find_unique_layers` method with the same custom boxing options, and with `observables` passed if and only if `trim_measurements=True`.
 
     *   **noise\_factors** ([*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*float*](https://docs.python.org/3/builtins/functions.html#float)  *|*[*int*](https://docs.python.org/3/builtins/functions.html#int)*]*) – The noise factors to use for amplifying the noise.
 
@@ -311,6 +346,10 @@ python_api_name: qiskit_mitigation.zne.PEA
     **Returns**
 
     A `QuantumProgram` with PEA mitigated item that can be executed via Executor.
+
+    **Raises**
+
+    [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If `trim_measurements` is `True` and no qubit is active or observed.
 
     **Return type**
 

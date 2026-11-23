@@ -1,0 +1,309 @@
+---
+title: Inside a workflow
+description: API reference for the functions your managed workflow's entrypoint calls while it runs, including get_arguments, save_result, update_status, and get_runtime_service
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit_serverless
+---
+
+# Inside a workflow
+
+Your workflow's entrypoint calls these functions while the job runs. They read the job's environment, so they don't work in your own Python session. Import them from `qiskit_serverless`, which is installed with `qiskit-ibm-catalog`.
+
+The sections follow the order of a typical entrypoint:
+
+```python
+from qiskit_serverless import (
+    Job,
+    get_arguments,
+    get_runtime_service,
+    install_uploaded_wheels,
+    save_result,
+    update_status,
+)
+
+install_uploaded_wheels()               # 1. Install your packages
+arguments = get_arguments()             # 2. Read inputs
+service = get_runtime_service()         # 3. Connect to quantum computers
+
+update_status(Job.WAITING_QPU)          # 4. Report progress
+# ... submit Quantum Compute jobs with service ...
+
+save_result({"energy": -1.137})         # 5. Return results
+```
+
+## Install your packages
+
+### install\_uploaded\_wheels
+
+<Function id="qiskit_serverless.install_uploaded_wheels" signature="qiskit_serverless.install_uploaded_wheels(wheelhouse=None, target='/tmp/site')">
+  Installs the wheels you uploaded with [`add_wheels()`](managed-workflow-client#add_wheels) and makes them importable. Call it before you import those packages. It installs offline and without dependencies, so build wheels that rely only on packages the runtime image already ships. It does nothing if there are no wheels. See [Declare dependencies](/docs/managed-workflows/managed-workflow-dependencies).
+
+  ```python
+  from qiskit_serverless import install_uploaded_wheels
+
+  print(install_uploaded_wheels())
+  import mypkg
+  ```
+
+  Output:
+
+  ```text
+  /tmp/site
+  ```
+
+  **Parameters**
+
+  *   **wheelhouse** (*str | None*) – Directory to install from. Defaults to the `QISKIT_FUNCTIONS_WHEELHOUSE` environment variable if set, otherwise `/function_user_data`.
+  *   **target** (*str*) – Directory to install into. It's added to the start of `sys.path`.
+
+  **Return type**
+
+  `str` – The `target` directory.
+</Function>
+
+## Read inputs
+
+### get\_arguments
+
+<Function id="qiskit_serverless.get_arguments" signature="qiskit_serverless.get_arguments()">
+  Returns the keyword arguments that were passed to [`run()`](managed-workflow#run). See [Define inputs and outputs](/docs/managed-workflows/managed-workflow-inputs-and-outputs).
+
+  ```python
+  from qiskit_serverless import get_arguments
+
+  arguments = get_arguments()
+  print(arguments)
+  ```
+
+  Output:
+
+  ```text
+  {'theta': 0.5}
+  ```
+
+  **Return type**
+
+  `dict[str, Any]`
+</Function>
+
+### get\_function\_size
+
+<Function id="qiskit_serverless.get_function_size" signature="qiskit_serverless.get_function_size()">
+  Returns the size label the job runs at: the `function_size` passed to `run()`, or the workflow's `default_size`.
+
+  ```python
+  from qiskit_serverless import get_function_size
+
+  print(get_function_size())
+  ```
+
+  Output:
+
+  ```text
+  M
+  ```
+
+  **Return type**
+
+  `str` – For example, `"M"`.
+</Function>
+
+### get\_compute\_profile
+
+<Function id="qiskit_serverless.get_compute_profile" signature="qiskit_serverless.get_compute_profile()">
+  Returns the compute profile that the job's size maps to. This is the resource allocation the job runs with, not the size of the physical worker node. See [Choose a compute profile](/docs/managed-workflows/managed-workflow-compute-profiles).
+
+  ```python
+  from qiskit_serverless import get_compute_profile
+
+  print(get_compute_profile())
+  ```
+
+  Output:
+
+  ```text
+  16x128
+  ```
+
+  **Return type**
+
+  `str` – For example, `"16x128"`.
+</Function>
+
+## Connect to quantum computers
+
+### get\_runtime\_service
+
+<Function id="qiskit_serverless.get_runtime_service" signature="qiskit_serverless.get_runtime_service(channel=None, token=None, instance=None, url=None)">
+  Returns a `QiskitRuntimeService` for submitting Quantum Compute jobs. It links those jobs to the workflow job, so [`Job.runtime_jobs()`](managed-workflow-job#runtime_jobs) can find them. Call it without arguments; it reads your credentials from the job's environment. See [Run quantum jobs from a workflow](/docs/managed-workflows/manage-quantum-classical-workflows).
+
+  ```python
+  from qiskit_serverless import get_arguments, get_runtime_service
+
+  arguments = get_arguments()
+  service = get_runtime_service()
+  backend = service.backend(arguments["backend_name"])
+  print(backend.name)
+  ```
+
+  Output:
+
+  ```text
+  ibm_fez
+  ```
+
+  To reach Quantum Compute through a private endpoint, set the `QISKIT_IBM_PRIVATE_ENDPOINT` environment variable to `true`. The instance must be a CRN.
+
+  **Parameters**
+
+  *   **channel** (*str | None*) – Override the channel.
+  *   **token** (*str | None*) – Override the API key.
+  *   **instance** (*str | None*) – Override the instance CRN or name.
+  *   **url** (*str | None*) – Override the Quantum Compute URL.
+
+  **Return type**
+
+  `ServerlessRuntimeService`, a subclass of `QiskitRuntimeService`.
+</Function>
+
+## Report progress
+
+### update\_status
+
+<Function id="qiskit_serverless.update_status" signature="qiskit_serverless.update_status(status)">
+  Reports the job's current stage. [`Job.status()`](managed-workflow-job#status) on the caller's side then returns the stage, as shown in the following table.
+
+  ```python
+  print(update_status(Job.WAITING_QPU))
+  ```
+
+  Output:
+
+  ```text
+  True
+  ```
+
+  | Pass | `status()` returns |
+  | --- | --- |
+  | `Job.MAPPING` | `RUNNING: MAPPING` |
+  | `Job.OPTIMIZING_HARDWARE` | `RUNNING: OPTIMIZING_FOR_HARDWARE` |
+  | `Job.WAITING_QPU` | `RUNNING: WAITING_FOR_QPU` |
+  | `Job.EXECUTING_QPU` | `RUNNING: EXECUTING_QPU` |
+  | `Job.POST_PROCESSING` | `RUNNING: POST_PROCESSING` |
+
+  **Parameters**
+
+  *   **status** (*str*) – One of the constants in the table.
+
+  **Return type**
+
+  `bool` – `False` if the stage couldn't be updated.
+</Function>
+
+## Return results
+
+### save\_result
+
+<Function id="qiskit_serverless.save_result" signature="qiskit_serverless.save_result(result)">
+  Saves the job's result. [`Job.result()`](managed-workflow-job#result) returns it to the caller. To return a partial result from a canceled job, call it from a `SIGTERM` handler. See [Write logs and handle errors](/docs/managed-workflows/managed-workflow-logs-and-errors).
+
+  ```python
+  save_result({"circuit": circuit, "energies": energies})
+  ```
+
+  **Parameters**
+
+  *   **result** (*dict\[str, Any]*) – The result. Must be JSON-serializable, or one of the Qiskit types that the Quantum Compute serializer supports, such as `numpy.ndarray`, `QuantumCircuit`, and `Parameter`.
+</Function>
+
+## Report errors
+
+To give the caller a structured error, raise `ServerlessError` where the error happens, and wrap your entrypoint in a `try` block that passes any error to `send_error()`. An exception that you don't send ends the job with the `ERROR` status, but the caller only sees the traceback in the logs. See [Write logs and handle errors](/docs/managed-workflows/managed-workflow-logs-and-errors).
+
+```python
+from qiskit_serverless import ServerlessError, send_error
+
+try:
+    main()
+except Exception as error:
+    send_error(
+        code=getattr(error, "code", "1"),
+        message=getattr(error, "message", repr(error)),
+        exception=type(error).__name__,
+        args=getattr(error, "details", None),
+    )
+    raise
+```
+
+### send\_error
+
+<Function id="qiskit_serverless.send_error" signature="qiskit_serverless.send_error(code, message, exception, args=None)">
+  Reports an error to the caller. [`Job.error_message()`](managed-workflow-job#error_message) and `Job.events(type="ERROR")` return it.
+
+  ```python
+  send_error(
+      code="4500",
+      message="The circuit has more qubits than the backend.",
+      exception="InputError",
+      args={"circuit_qubits": 156, "backend_qubits": 127},
+  )
+  ```
+
+  **Parameters**
+
+  *   **code** (*str | int*) – Error code.
+  *   **message** (*str*) – Readable description of the error.
+  *   **exception** (*str*) – Exception name or text.
+  *   **args** (*Any | None*) – Extra details. Must be JSON-serializable.
+</Function>
+
+### ServerlessError
+
+<Class id="qiskit_serverless.ServerlessError" signature="qiskit_serverless.ServerlessError(code, message, details=None)" modifiers="exception">
+  Exception to raise from workflow code. Its string form is `[code] message`, followed by `details` if set. Raising it doesn't report the error to the caller; pass it to [`send_error()`](#send_error).
+
+  ```python
+  class InputError(ServerlessError):
+      """The arguments are valid, but the workflow cannot use them."""
+
+
+  raise InputError(
+      code="4500",
+      message="The circuit has more qubits than the backend.",
+      details={"circuit_qubits": 156, "backend_qubits": 127},
+  )
+  ```
+
+  **Parameters**
+
+  *   **code** (*str*) – Error code.
+  *   **message** (*str*) – Readable description of the error.
+  *   **details** (*Any | None*) – Extra details.
+</Class>
+
+## Test locally
+
+### is\_running\_in\_serverless
+
+<Function id="qiskit_serverless.is_running_in_serverless" signature="qiskit_serverless.is_running_in_serverless()">
+  Returns `True` inside a managed workflow job and `False` elsewhere. Use it to run the same entrypoint in your own session while you develop it.
+
+  ```python
+  if is_running_in_serverless():
+      arguments = get_arguments()
+  else:
+      arguments = {"shots": 100}
+  print(arguments)
+  ```
+
+  Output:
+
+  ```text
+  {'shots': 100}
+  ```
+
+  **Return type**
+
+  `bool`
+</Function>

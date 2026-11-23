@@ -8,8 +8,8 @@ python_api_name: qiskit_fermions.circuit.library.synthesis.FermionicSuzukiTrotte
 
 # FermionicSuzukiTrotter
 
-<Class id="qiskit_fermions.circuit.library.synthesis.FermionicSuzukiTrotter" isDedicatedPage={true} signature="FermionicSuzukiTrotter(order=2, reps=1)" modifiers="class">
-  Bases: [`FermionicEvolutionSynthesis`](circuit-library-synthesis-fermionic-evolution-synthesis "qiskit_fermions.circuit.library.synthesis.evolution_synthesis.FermionicEvolutionSynthesis")
+<Class id="qiskit_fermions.circuit.library.synthesis.FermionicSuzukiTrotter" isDedicatedPage={true} signature="FermionicSuzukiTrotter(order=2, reps=1, *, merge_adjacent=True)" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
 
   The higher-order Suzuki-Trotter product formula, applied in fermionic space.
 
@@ -24,6 +24,8 @@ $$
 
   The evolved operator is split by its [`groups`](operators-operator-trait#groups "qiskit_fermions.operators.OperatorTrait.groups") when it has them (see [Group operator terms: use the operator structure](/docs/addons/qiskit-fermions/guides/grouping#grouping-explanation)), and term-by-term otherwise. Every order splits it the same way: what a higher order changes is the ordering of the factors and their time scales, not the partition.
 
+  Splitting along the groups is something this stage can do and Qiskit’s qubit-side [`SuzukiTrotter`](/docs/api/qiskit/qiskit.synthesis.SuzukiTrotter) cannot: once the operator has been mapped and handed to a [`PauliEvolutionGate`](/docs/api/qiskit/qiskit.circuit.library.PauliEvolutionGate), the grouping is gone, and the formula can only subdivide the terms within the one operator it is given.
+
   <Admonition title="Note" type="note">
     A higher order buys accuracy with depth: an order-$k$ formula emits roughly $5^{(k-2)/2}$ times as many factors as an order-2 one. Increasing [`reps`](#qiskit_fermions.circuit.library.synthesis.FermionicSuzukiTrotter.reps "qiskit_fermions.circuit.library.synthesis.FermionicSuzukiTrotter.reps") instead divides the evolution time into more, shorter steps, which reduces the error at a different rate for the same kind of cost. Which is the better trade depends on the operator.
   </Admonition>
@@ -37,7 +39,7 @@ $$
   </Admonition>
 
   <Admonition title="Caution" type="note">
-    Each factor must be Hermitian for its exponential to be unitary, which does not follow from their sum being Hermitian: splitting a Hermitian operator can produce non-Hermitian groups (for example, separating $a^\dagger_0 a_1$ from its conjugate partner $a^\dagger_1 a_0$). It is the caller’s responsibility to group accordingly; this is not verified.
+    Each factor must be Hermitian for its exponential to be unitary, which does not follow from their sum being Hermitian: splitting a Hermitian operator can produce non-Hermitian groups (for example, separating $a^\dagger_0 a_1$ from its conjugate partner $a^\dagger_1 a_0$). It is the caller’s responsibility to group accordingly; this is not verified, but [`groups_are_hermitian()`](operators-terms-groups-are-hermitian "qiskit_fermions.operators.terms.groups_are_hermitian") checks it.
 
     An operator with no groups is split term by term, which has the same effect, since an individual term is generally not Hermitian. The resulting factors are valid fermionic operators and the gates are built without complaint, but the fermion-to-qubit stage then rejects them: [`PauliEvolutionGate`](/docs/api/qiskit/qiskit.circuit.library.PauliEvolutionGate) requires real coefficients and raises `ValueError: Operator contains complex coefficients, which are not supported`.
 
@@ -50,6 +52,7 @@ $$
 
   *   **order** ([*int*](https://docs.python.org/3/builtins/functions.html#int)) – the order of the product formula. Must be `1` (which reduces to [`FermionicLieTrotter`](circuit-library-synthesis-fermionic-lie-trotter "qiskit_fermions.circuit.library.synthesis.FermionicLieTrotter")) or a positive even integer, since the Suzuki formulas are symmetric.
   *   **reps** ([*int*](https://docs.python.org/3/builtins/functions.html#int)) – the number of times to repeat the formula, each repetition evolving for `time / reps`.
+  *   **merge\_adjacent** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) – whether to fuse neighboring gates of the same factor into one, summing their evolution times. See [`merge_adjacent`](#qiskit_fermions.circuit.library.synthesis.FermionicSuzukiTrotter.merge_adjacent "qiskit_fermions.circuit.library.synthesis.FermionicSuzukiTrotter.merge_adjacent").
 
   **Raises**
 
@@ -67,6 +70,16 @@ $$
 
   <Attribute id="qiskit_fermions.circuit.library.synthesis.FermionicSuzukiTrotter.reps">
     The number of times the product formula is repeated.
+  </Attribute>
+
+  ### merge\_adjacent
+
+  <Attribute id="qiskit_fermions.circuit.library.synthesis.FermionicSuzukiTrotter.merge_adjacent">
+    Whether neighboring gates of the same factor are fused into one.
+
+    The palindromic structure makes the last factor of one repetition (and of each sub-sweep of a higher order) the first of the next. Their exponentials combine exactly, as $e^{-i a H} e^{-i b H} = e^{-i (a + b) H}$, so fusing them shortens the circuit without changing the product formula. Disable this to obtain the textbook gate sequence.
+
+    This only sees the seams created by a single synthesis. Merging across gate boundaries is the job of [`MergeEvolutions`](transpiler-passes-merge-evolutions "qiskit_fermions.transpiler.passes.MergeEvolutions").
   </Attribute>
 
   ## Methods

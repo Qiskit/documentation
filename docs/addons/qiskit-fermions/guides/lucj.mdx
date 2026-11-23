@@ -112,7 +112,8 @@ For Jordan-Wigner alone you would not need this detour: ffsim ships [`UCJOpSpinB
 For a UCJ ansatz specifically, the synthesis stage has to cover two kinds of gate:
 
 *   **The diagonal Coulomb evolution.** [`Evolution`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution "qiskit_fermions.circuit.library.Evolution") is already encoding-agnostic: [`MapperFnEvolutionSynthesis`](/docs/api/qiskit-fermions/transpiler-passes-synthesis-mapper-fn-evolution-synthesis#qiskit_fermions.transpiler.passes.synthesis.MapperFnEvolutionSynthesis "qiskit_fermions.transpiler.passes.synthesis.MapperFnEvolutionSynthesis") takes a mapper function, so the $e^{i \mathcal{J}_k}$ layers lower through any encoding you can express as one. The [flow-set guides](1-d-fermi-hubbard#d-fermi-hubbard) show how to write one.
-*   **Everything else.** The plugins for [`OrbitalRotation`](/docs/api/qiskit-fermions/circuit-library-orbital-rotation#qiskit_fermions.circuit.library.OrbitalRotation "qiskit_fermions.circuit.library.OrbitalRotation"), [`InitializeModes`](/docs/api/qiskit-fermions/circuit-library-initialize-modes#qiskit_fermions.circuit.library.InitializeModes "qiskit_fermions.circuit.library.InitializeModes") and [`PrepareSlaterDeterminant`](/docs/api/qiskit-fermions/circuit-library-prepare-slater-determinant#qiskit_fermions.circuit.library.PrepareSlaterDeterminant "qiskit_fermions.circuit.library.PrepareSlaterDeterminant") are not parametrized by an encoding; each documents its assumption of an occupation-basis encoding with a 1-to-1 mode-to-qubit mapping, and emits gates directly on that basis. A different encoding needs its own plugin for each of these three, and none ships yet.
+*   **The orbital rotations and the Slater-determinant preparation.** Neither an [`OrbitalRotation`](/docs/api/qiskit-fermions/circuit-library-orbital-rotation#qiskit_fermions.circuit.library.OrbitalRotation "qiskit_fermions.circuit.library.OrbitalRotation") nor the [`PrepareSlaterDeterminant`](/docs/api/qiskit-fermions/circuit-library-prepare-slater-determinant#qiskit_fermions.circuit.library.PrepareSlaterDeterminant "qiskit_fermions.circuit.library.PrepareSlaterDeterminant") that the leading [`InitializeModes`](/docs/api/qiskit-fermions/circuit-library-initialize-modes#qiskit_fermions.circuit.library.InitializeModes "qiskit_fermions.circuit.library.InitializeModes") and rotation fuse into (see below) is mapped to qubits as such. The [`F2FSynthesis`](/docs/api/qiskit-fermions/transpiler-passes-f-2-f-synthesis#qiskit_fermions.transpiler.passes.F2FSynthesis "qiskit_fermions.transpiler.passes.F2FSynthesis") pass first breaks them down, in fermionic space, into [`Evolution`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution "qiskit_fermions.circuit.library.Evolution") gates on one or two modes each (and, for the preparation, an [`InitializeModes`](/docs/api/qiskit-fermions/circuit-library-initialize-modes#qiskit_fermions.circuit.library.InitializeModes "qiskit_fermions.circuit.library.InitializeModes") of the reference), so any encoding that can map an [`Evolution`](/docs/api/qiskit-fermions/circuit-library-evolution#qiskit_fermions.circuit.library.Evolution "qiskit_fermions.circuit.library.Evolution") handles them. Under Jordan-Wigner, the factors between adjacent modes become [`XXPlusYYGate`](/docs/api/qiskit/qiskit.circuit.library.XXPlusYYGate)objects at the qubit stage.
+*   **The initialization.** The plugin for [`InitializeModes`](/docs/api/qiskit-fermions/circuit-library-initialize-modes#qiskit_fermions.circuit.library.InitializeModes "qiskit_fermions.circuit.library.InitializeModes") is not parametrized by an encoding: it documents its assumption of an occupation-basis encoding with a 1-to-1 mode-to-qubit mapping, and emits gates directly on that basis. A different encoding needs its own plugin for it, and none ships yet.
 
 How to transpile UCJ circuits under a non-Jordan-Wigner encoding is an open research question and this package provides the framework within which to develop such a pipeline. The remainder of this guide constructs the transpiler pipeline for the Jordan-Wigner encoding, equivalent to the one produced by [`generate_preset_jw_pass_manager()`](/docs/api/qiskit-fermions/transpiler-presets-generate-preset-jw-pass-manager#qiskit_fermions.transpiler.presets.generate_preset_jw_pass_manager "qiskit_fermions.transpiler.presets.generate_preset_jw_pass_manager"), as an example.
 
@@ -126,8 +127,6 @@ Lowering happens in [`F2QSynthesis`](/docs/api/qiskit-fermions/transpiler-passes
 >>> from qiskit_fermions.mappers.library import jordan_wigner
 >>> from qiskit_fermions.transpiler.passes import F2QSynthesis
 >>> from qiskit_fermions.transpiler.passes.synthesis import (
-...     GivensDecompositionOrbitalRotationSynthesis,
-...     GivensDecompositionSlaterDeterminantSynthesis,
 ...     MapperFnEvolutionSynthesis,
 ...     TrivialOccupationInitializeModesSynthesis,
 ... )
@@ -135,21 +134,18 @@ Lowering happens in [`F2QSynthesis`](/docs/api/qiskit-fermions/transpiler-passes
 >>> synthesis = F2QSynthesis()
 >>> synthesis.methods["Evolution"] = MapperFnEvolutionSynthesis(jordan_wigner)
 >>> synthesis.methods["InitializeModes"] = TrivialOccupationInitializeModesSynthesis()
->>> synthesis.methods["OrbitalRotation"] = GivensDecompositionOrbitalRotationSynthesis()
->>> synthesis.methods["PrepareSlaterDeterminant"] = (
-...     GivensDecompositionSlaterDeterminantSynthesis()
-... )
 ```
 
 Assigning instances like this is also how a plugin you wrote yourself enters the pipeline, without having to register it anywhere first.
 
-This is where the encoding is settled, in the two ways section 3 described: explicitly, by handing [`jordan_wigner()`](/docs/api/qiskit-fermions/mappers-library-jordan-wigner#qiskit_fermions.mappers.library.jordan_wigner "qiskit_fermions.mappers.library.jordan_wigner") to [`MapperFnEvolutionSynthesis`](/docs/api/qiskit-fermions/transpiler-passes-synthesis-mapper-fn-evolution-synthesis#qiskit_fermions.transpiler.passes.synthesis.MapperFnEvolutionSynthesis "qiskit_fermions.transpiler.passes.synthesis.MapperFnEvolutionSynthesis"), and implicitly, by the other three plugins already assuming it.
+This is where the encoding is settled, in the two ways section 3 described: explicitly, by handing [`jordan_wigner()`](/docs/api/qiskit-fermions/mappers-library-jordan-wigner#qiskit_fermions.mappers.library.jordan_wigner "qiskit_fermions.mappers.library.jordan_wigner") to [`MapperFnEvolutionSynthesis`](/docs/api/qiskit-fermions/transpiler-passes-synthesis-mapper-fn-evolution-synthesis#qiskit_fermions.transpiler.passes.synthesis.MapperFnEvolutionSynthesis "qiskit_fermions.transpiler.passes.synthesis.MapperFnEvolutionSynthesis"), and implicitly, by the other plugin already assuming it.
 
 That stage then slots into a [`MultiStagePassManager`](/docs/api/qiskit/qiskit.passmanager.MultiStagePassManager) whose stages run in a fixed order:
 
 ```python
 >>> from qiskit.passmanager import MultiStagePassManager
 >>> from qiskit.transpiler import generate_preset_pass_manager
+>>> from qiskit.transpiler.passes.synthesis.high_level_synthesis import HLSConfig
 >>>
 >>> from qiskit_fermions.transpiler import (
 ...     FermionicCircuitToDAG,
@@ -157,6 +153,8 @@ That stage then slots into a [`MultiStagePassManager`](/docs/api/qiskit/qiskit.p
 ...     QuantumDAGToCircuit,
 ... )
 >>> from qiskit_fermions.transpiler.passes import (
+...     F2FSynthesis,
+...     HopEvolutionSynthesis,
 ...     MergeOrbitalRotations,
 ...     MergeSlaterDeterminantPreparation,
 ...     TrivialF2QLayout,
@@ -165,16 +163,24 @@ That stage then slots into a [`MultiStagePassManager`](/docs/api/qiskit/qiskit.p
 >>> pm = MultiStagePassManager(
 ...     input=FermionicCircuitToDAG(),
 ...     optimization=FermionicPassManager(
-...         [MergeOrbitalRotations(), MergeSlaterDeterminantPreparation()]
+...         [
+...             MergeOrbitalRotations(),
+...             MergeSlaterDeterminantPreparation(),
+...             F2FSynthesis(
+...                 {"OrbitalRotation": "Givens", "PrepareSlaterDeterminant": "Givens"}
+...             ),
+...         ]
 ...     ),
 ...     layout=FermionicPassManager(TrivialF2QLayout()),
 ...     synthesis=synthesis,
-...     qubit=generate_preset_pass_manager(),
+...     qubit=generate_preset_pass_manager(
+...         hls_config=HLSConfig(PauliEvolution=[HopEvolutionSynthesis(), "default"])
+...     ),
 ...     output=QuantumDAGToCircuit(),
 ... )
 ```
 
-The **optimization** stage runs *before* synthesis, on the fermionic circuit, which is what makes it worth having: it rewrites gates while they are still fermionic and encoding-agnostic, so the savings carry to whatever encoding follows. [`MergeOrbitalRotations`](/docs/api/qiskit-fermions/transpiler-passes-merge-orbital-rotations#qiskit_fermions.transpiler.passes.MergeOrbitalRotations "qiskit_fermions.transpiler.passes.MergeOrbitalRotations") collapses each run of consecutive [`OrbitalRotation`](/docs/api/qiskit-fermions/circuit-library-orbital-rotation#qiskit_fermions.circuit.library.OrbitalRotation "qiskit_fermions.circuit.library.OrbitalRotation") gates into one, which matters for a UCJ ansatz because every layer ends with $\mathcal{U}_k$ and the next begins with $\mathcal{U}_{k+1}^\dagger$. [`MergeSlaterDeterminantPreparation`](/docs/api/qiskit-fermions/transpiler-passes-merge-slater-determinant-preparation#qiskit_fermions.transpiler.passes.MergeSlaterDeterminantPreparation "qiskit_fermions.transpiler.passes.MergeSlaterDeterminantPreparation") then fuses the leading [`InitializeModes`](/docs/api/qiskit-fermions/circuit-library-initialize-modes#qiskit_fermions.circuit.library.InitializeModes "qiskit_fermions.circuit.library.InitializeModes") and the rotation that follows it into a single [`PrepareSlaterDeterminant`](/docs/api/qiskit-fermions/circuit-library-prepare-slater-determinant#qiskit_fermions.circuit.library.PrepareSlaterDeterminant "qiskit_fermions.circuit.library.PrepareSlaterDeterminant"), which synthesis lowers through the cheaper reduced Slater decomposition instead of a full square rotation. The order matters: merging the rotations first exposes the single rotation immediately after the initialization, which the Slater fusion then contracts into it.
+The **optimization** stage runs *before* synthesis, on the fermionic circuit, which is what makes it worth having: it rewrites gates while they are still fermionic and encoding-agnostic, so the savings carry to whatever encoding follows. [`MergeOrbitalRotations`](/docs/api/qiskit-fermions/transpiler-passes-merge-orbital-rotations#qiskit_fermions.transpiler.passes.MergeOrbitalRotations "qiskit_fermions.transpiler.passes.MergeOrbitalRotations") collapses each run of consecutive [`OrbitalRotation`](/docs/api/qiskit-fermions/circuit-library-orbital-rotation#qiskit_fermions.circuit.library.OrbitalRotation "qiskit_fermions.circuit.library.OrbitalRotation") gates into one, which matters for a UCJ ansatz because every layer ends with $\mathcal{U}_k$ and the next begins with $\mathcal{U}_{k+1}^\dagger$. [`MergeSlaterDeterminantPreparation`](/docs/api/qiskit-fermions/transpiler-passes-merge-slater-determinant-preparation#qiskit_fermions.transpiler.passes.MergeSlaterDeterminantPreparation "qiskit_fermions.transpiler.passes.MergeSlaterDeterminantPreparation") then fuses the leading [`InitializeModes`](/docs/api/qiskit-fermions/circuit-library-initialize-modes#qiskit_fermions.circuit.library.InitializeModes "qiskit_fermions.circuit.library.InitializeModes") and the rotation that follows it into a single [`PrepareSlaterDeterminant`](/docs/api/qiskit-fermions/circuit-library-prepare-slater-determinant#qiskit_fermions.circuit.library.PrepareSlaterDeterminant "qiskit_fermions.circuit.library.PrepareSlaterDeterminant"), which synthesis lowers through the cheaper reduced Slater decomposition instead of a full square rotation. The order matters: merging the rotations first exposes the single rotation immediately after the initialization, which the Slater fusion then contracts into it. [`F2FSynthesis`](/docs/api/qiskit-fermions/transpiler-passes-f-2-f-synthesis#qiskit_fermions.transpiler.passes.F2FSynthesis "qiskit_fermions.transpiler.passes.F2FSynthesis") comes last, because it breaks up whatever rotation is left, and doing so any earlier would leave the two merging passes with nothing to fuse.
 
 The remaining stages are plumbing. `input` and `output` convert between circuits and DAGs, `layout` assigns fermionic modes to qubits ([`TrivialF2QLayout`](/docs/api/qiskit-fermions/transpiler-passes-trivial-f-2-q-layout#qiskit_fermions.transpiler.passes.TrivialF2QLayout "qiskit_fermions.transpiler.passes.TrivialF2QLayout") maps mode `i` to qubit `i`), and `qubit` is an ordinary Qiskit pass manager that takes over once nothing fermionic is left.
 
@@ -183,7 +189,7 @@ Running it requires one preparatory step: the composite [`UCJ`](/docs/api/qiskit
 ```python
 >>> transpiled = pm.run(circuit.decompose())
 >>> print(dict(sorted(transpiled.count_ops().items())))
-{'p': 14, 'rzz': 12, 'x': 2, 'xx_plus_yy': 28}
+{'rz': 14, 'rzz': 12, 'x': 2, 'xx_plus_yy': 28}
 ```
 
 Without a target device, this maps onto `2 * norb` qubits with all-to-all connectivity assumed; the orbital rotations synthesize into [`XXPlusYYGate`](/docs/api/qiskit/qiskit.circuit.library.XXPlusYYGate)objects and the diagonal Coulomb evolutions into [`RZZGate`](/docs/api/qiskit/qiskit.circuit.library.RZZGate)objects:
@@ -228,8 +234,15 @@ A real device has a restricted qubit coupling map, and the LUCJ ansatz is design
 >>> pairs_aa = [(p, p + 1) for p in range(norb - 1)]
 >>>
 >>> pm = generate_preset_jw_pass_manager()
+>>> hls_config = HLSConfig(PauliEvolution=[HopEvolutionSynthesis(), "default"])
 >>> pm.qubit, allowed_pairs_ab = generate_lucj_pass_manager(
-...     backend, norb, "heavy-hex", (pairs_aa, None), optimization_level=3, seed_transpiler=0
+...     backend,
+...     norb,
+...     "heavy-hex",
+...     (pairs_aa, None),
+...     optimization_level=3,
+...     seed_transpiler=0,
+...     hls_config=hls_config,
 ... )
 >>>
 >>> # the alpha-beta interactions the heavy-hex connectivity can implement
@@ -237,7 +250,7 @@ A real device has a restricted qubit coupling map, and the LUCJ ansatz is design
 [(0, 0)]
 ```
 
-That composition is the point: the `qubit` stage is device-aware, while the fermion-to-qubit synthesis stage ahead of it stays this package’s own, and so stays replaceable.
+That composition is the point: the `qubit` stage is device-aware, while the fermion-to-qubit synthesis stage ahead of it stays this package’s own, and so stays replaceable. Replacing the `qubit` stage does drop what the preset registers there, which is the [`HopEvolutionSynthesis`](/docs/api/qiskit-fermions/transpiler-passes-synthesis-hop-evolution-synthesis#qiskit_fermions.transpiler.passes.synthesis.HopEvolutionSynthesis "qiskit_fermions.transpiler.passes.synthesis.HopEvolutionSynthesis") that turns the Givens factors of an orbital rotation into [`XXPlusYYGate`](/docs/api/qiskit/qiskit.circuit.library.XXPlusYYGate)objects. Pass it on through the `hls_config` as above, or the device’s basis has to be reached without it.
 
 With `pm.qubit` now set to the device-aware pipeline, running the pass manager lays the circuit out on the backend’s qubits and routes it to the coupling map. For the *unrestricted* ansatz from step 1, whose diagonal Coulomb operator still contains alpha-beta terms the hardware cannot reach directly, the router must insert many `SWAP` gates to bridge them:
 
@@ -282,7 +295,7 @@ Drawing only the active qubits (`idle_wires=False`) shows the circuit restricted
 ![The hardware-restricted LUCJ circuit routed onto the heavy-hex device coupling map.](/docs/images/addons/qiskit-fermions/lucj-12.avif)
 
 <Admonition title="Note" type="note">
-  The exact post-layout gate counts and depth depend on the routing/optimization passes and the chosen device, so they are not reproduced here. The key point is the co-design; expressing the ansatz with a nearest-neighbor `pairs_aa` chain and hardware-filtered `pairs_ab` bridges keeps the synthesized circuit close to the device topology, minimizing the routing overhead (inserted `SWAP` gates). See [`GivensDecompositionSlaterDeterminantSynthesis`](/docs/api/qiskit-fermions/transpiler-passes-synthesis-givens-decomposition-slater-determinant-synthesis#qiskit_fermions.transpiler.passes.synthesis.GivensDecompositionSlaterDeterminantSynthesis "qiskit_fermions.transpiler.passes.synthesis.GivensDecompositionSlaterDeterminantSynthesis") for a related synthesis choice (`minimize_2q_gate_count`), trading two-qubit gate count against routed depth.
+  The exact post-layout gate counts and depth depend on the routing/optimization passes and the chosen device, so they are not reproduced here. The key point is the co-design; expressing the ansatz with a nearest-neighbor `pairs_aa` chain and hardware-filtered `pairs_ab` bridges keeps the synthesized circuit close to the device topology, minimizing the routing overhead (inserted `SWAP` gates). See [`FermionicSlaterGivensDecomposition`](/docs/api/qiskit-fermions/circuit-library-synthesis-fermionic-slater-givens-decomposition#qiskit_fermions.circuit.library.synthesis.FermionicSlaterGivensDecomposition "qiskit_fermions.circuit.library.synthesis.FermionicSlaterGivensDecomposition") for a related synthesis choice (`minimize_2q_gate_count`), trading two-qubit gate count against routed depth.
 </Admonition>
 
 ## Next steps

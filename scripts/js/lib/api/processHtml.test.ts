@@ -456,7 +456,13 @@ test("convertRubricsToHeaders()", () => {
     <p class="rubric">Simple examples</p>
     <p class="rubric" id="example-code">Example code</p>
     <p class="rubric">Attributes</p>
-    <p class="rubric">Methods</p>`);
+    <p class="rubric">Methods</p>
+    <p class="rubric">Methods Defined Here</p>
+    <p class="rubric">Inherited Attributes</p>
+    <p class="rubric">Protocol Methods</p>
+    <p class="rubric">Inherited Methods</p>
+    <p class="rubric">Inherited Protocol Methods</p>
+    <p class="rubric">Class Methods</p>`);
   convertRubricsToHeaders(doc.$, doc.$main);
   doc.expectHtml(`<strong>Example</strong>
     <strong>Examples</strong>
@@ -465,7 +471,13 @@ test("convertRubricsToHeaders()", () => {
     <strong>Simple examples</strong>
     <span id="example-code" class="target"></span><strong>Example code</strong>
     <h2>Attributes</h2>
-    <h2>Methods</h2>`);
+    <h2>Methods</h2>
+    <h2>Methods Defined Here</h2>
+    <h2>Inherited Attributes</h2>
+    <h2>Protocol Methods</h2>
+    <h2>Inherited Methods</h2>
+    <h2>Inherited Protocol Methods</h2>
+    <strong>Class Methods</strong>`);
 });
 
 test("handleFootnotes()", () => {

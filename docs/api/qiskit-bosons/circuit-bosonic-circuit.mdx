@@ -1,0 +1,197 @@
+---
+title: BosonicCircuit (latest version)
+description: API reference for qiskit_bosons.circuit.BosonicCircuit in the latest version of qiskit-bosons
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit_bosons.circuit.BosonicCircuit
+---
+
+# BosonicCircuit
+
+<Class id="qiskit_bosons.circuit.BosonicCircuit" isDedicatedPage={true} signature="BosonicCircuit(num_modes)" modifiers="class">
+  Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
+
+  A wrapper around [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit) for expressing bosonic circuits.
+
+  This class maintains a reduced API compared to the full API of the underlying [`QuantumCircuit`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit). This is done to avoid exposing (among other methods) the ability to apply qubit-based gates onto a bosonic circuit, which would not be a well-defined operation in the general case.
+
+  [`barrier()`](#qiskit_bosons.circuit.BosonicCircuit.barrier "qiskit_bosons.circuit.BosonicCircuit.barrier") is re-exposed because it is an exception to that rule: a barrier acts on modes without interpreting them and carries no unitary content, so it is as well-defined on a bosonic register as it is on a qubit one.
+
+  Initializing a circuit instance can be done with the arguments listed below.
+
+  **Parameters**
+
+  **num\_modes** ([*int*](https://docs.python.org/3/builtins/functions.html#int)) – the number of bosonic modes on which this circuit acts.
+
+  ## Attributes
+
+  ### metadata
+
+  <Attribute id="qiskit_bosons.circuit.BosonicCircuit.metadata">
+    Re-exposes [`metadata`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit#metadata).
+  </Attribute>
+
+  ### modes
+
+  <Attribute id="qiskit_bosons.circuit.BosonicCircuit.modes">
+    The bosonic mode `bits` that this circuit acts upon.
+  </Attribute>
+
+  ### register
+
+  <Attribute id="qiskit_bosons.circuit.BosonicCircuit.register">
+    Type: [`BosonicRegister`](circuit-bosonic-register "qiskit_bosons.circuit.BosonicRegister")
+
+    The inner circuit’s [`BosonicRegister`](circuit-bosonic-register "qiskit_bosons.circuit.BosonicRegister").
+  </Attribute>
+
+  ## Methods
+
+  ### append
+
+  <Function id="qiskit_bosons.circuit.BosonicCircuit.append" signature="append(gate, bargs, cargs=None, *, copy=True)">
+    Appends a [`BosonicGate`](circuit-bosonic-gate "qiskit_bosons.circuit.BosonicGate") to this circuit.
+
+    **Parameters**
+
+    *   **gate** ([*BosonicGate*](circuit-bosonic-gate "qiskit_bosons.circuit.bosonic_gate.BosonicGate")) – the bosonic gate to apply.
+
+    *   **bargs** ([*Qubit*](/docs/api/qiskit/circuit#qiskit.circuit.Qubit)  *|*[*QuantumRegister*](/docs/api/qiskit/circuit#qiskit.circuit.QuantumRegister)  *|*[*int*](https://docs.python.org/3/builtins/functions.html#int)  *|*[*slice*](https://docs.python.org/3/builtins/functions.html#slice)  *|*[*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*Qubit*](/docs/api/qiskit/circuit#qiskit.circuit.Qubit)  *|*[*int*](https://docs.python.org/3/builtins/functions.html#int)*]*) – the bosonic modes on which this gate acts.
+
+    *   **cargs** (*None*) –
+
+        the classical bits on which this gate acts.
+
+            <Admonition title="Warning" type="caution">
+              No gates of this kind are currently supported.
+            </Admonition>
+
+    *   **copy** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) – forwarded to [`append()`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit#append).
+
+    **Raises**
+
+    [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – if the provided `gate` is not an instance of [`BosonicGate`](circuit-bosonic-gate "qiskit_bosons.circuit.BosonicGate").
+
+    **Return type**
+
+    None
+  </Function>
+
+  ### barrier
+
+  <Function id="qiskit_bosons.circuit.BosonicCircuit.barrier" signature="barrier(*bargs, label=None)">
+    Re-exposes [`barrier()`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit#barrier).
+
+    A barrier carries no unitary effect. It marks a synchronization point that optimization passes will not fuse gates across.
+
+    The boson-to-qubit synthesis stage maps a barrier onto every qubit of each register it touched, so it constrains the subsequent qubit-level transpilation too. Because a [`B2QLayout`](transpiler-b-2-q-layout "qiskit_bosons.transpiler.B2QLayout") relates whole registers, whose two sides differ in size (an encoding needs several qubits per mode), a barrier is deliberately not narrowed to the qubits encoding the modes it was placed on.
+
+    **Parameters**
+
+    *   **bargs** ([*Qubit*](/docs/api/qiskit/circuit#qiskit.circuit.Qubit)  *|*[*QuantumRegister*](/docs/api/qiskit/circuit#qiskit.circuit.QuantumRegister)  *|*[*int*](https://docs.python.org/3/builtins/functions.html#int)  *|*[*slice*](https://docs.python.org/3/builtins/functions.html#slice)  *|*[*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*Qubit*](/docs/api/qiskit/circuit#qiskit.circuit.Qubit)  *|*[*int*](https://docs.python.org/3/builtins/functions.html#int)*]*) – the bosonic modes on which to place the barrier. When omitted, the barrier spans every mode of this circuit.
+    *   **label** ([*str*](https://docs.python.org/3/builtins/stdtypes.html#str) *| None*) – the string label of the barrier.
+
+    **Return type**
+
+    None
+  </Function>
+
+  ### compose
+
+  <Function id="qiskit_bosons.circuit.BosonicCircuit.compose" signature="compose(other, bargs=None, *, front=False, inplace=False)">
+    Composes another [`BosonicCircuit`](#qiskit_bosons.circuit.BosonicCircuit "qiskit_bosons.circuit.BosonicCircuit") onto this one.
+
+    The instructions of `other` are inlined into this circuit, rather than wrapped into a single gate. This mirrors [`compose()`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit#compose) with its default `wrap=False`. The `wrap=True` counterpart is deliberately not offered: a dedicated encapsulation mechanism is planned instead, so adding a second way to box up a block of instructions here would leave two patterns solving the same problem.
+
+    **Parameters**
+
+    *   **other** ([*BosonicCircuit*](#qiskit_bosons.circuit.BosonicCircuit "qiskit_bosons.circuit.bosonic_circuit.BosonicCircuit")) – the circuit to compose onto this one. It may act on fewer modes than this circuit, in which case `bargs` selects the modes it is placed on.
+    *   **bargs** ([*Qubit*](/docs/api/qiskit/circuit#qiskit.circuit.Qubit)  *|*[*QuantumRegister*](/docs/api/qiskit/circuit#qiskit.circuit.QuantumRegister)  *|*[*int*](https://docs.python.org/3/builtins/functions.html#int)  *|*[*slice*](https://docs.python.org/3/builtins/functions.html#slice)  *|*[*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*Qubit*](/docs/api/qiskit/circuit#qiskit.circuit.Qubit)  *|*[*int*](https://docs.python.org/3/builtins/functions.html#int)*] | None*) – the bosonic modes of this circuit onto which `other` is placed. Defaults to all of this circuit’s modes, in order.
+    *   **front** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) – whether to compose `other` before rather than after this circuit’s instructions.
+    *   **inplace** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) – whether to modify this circuit rather than return a new one.
+
+    **Returns**
+
+    The composed circuit, or `None` if `inplace` is set.
+
+    **Raises**
+
+    *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – if `other` is not an instance of [`BosonicCircuit`](#qiskit_bosons.circuit.BosonicCircuit "qiskit_bosons.circuit.BosonicCircuit"). Only bosonic circuits are accepted because the plain [`compose()`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit#compose) would happily inline qubit-based instructions, bypassing the type guard that [`append()`](#qiskit_bosons.circuit.BosonicCircuit.append "qiskit_bosons.circuit.BosonicCircuit.append") enforces.
+    *   **CircuitError** – if `other` acts on more modes than this circuit, or `bargs` does not match its width.
+
+    **Return type**
+
+    [*BosonicCircuit*](#qiskit_bosons.circuit.BosonicCircuit "qiskit_bosons.circuit.bosonic_circuit.BosonicCircuit") | None
+  </Function>
+
+  ### count\_ops
+
+  <Function id="qiskit_bosons.circuit.BosonicCircuit.count_ops" signature="count_ops()">
+    Re-exposes [`count_ops()`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit#count_ops).
+
+    **Return type**
+
+    [*OrderedDict*](https://docs.python.org/3/library/collections.html#collections.OrderedDict)\[[str](https://docs.python.org/3/builtins/stdtypes.html#str), [int](https://docs.python.org/3/builtins/functions.html#int)]
+  </Function>
+
+  ### decompose
+
+  <Function id="qiskit_bosons.circuit.BosonicCircuit.decompose" signature="decompose(gates_to_decompose=None, reps=1)">
+    Re-exposes [`decompose()`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit#decompose).
+
+    **Parameters**
+
+    *   **gates\_to\_decompose** ([*str*](https://docs.python.org/3/builtins/stdtypes.html#str)  *|*[*type*](https://docs.python.org/3/builtins/functions.html#type)*\[*[*Instruction*](/docs/api/qiskit/qiskit.circuit.Instruction)*] |* [*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence)*\[*[*str*](https://docs.python.org/3/builtins/stdtypes.html#str)  *|*[*type*](https://docs.python.org/3/builtins/functions.html#type)*\[*[*Instruction*](/docs/api/qiskit/qiskit.circuit.Instruction)*]] | None*)
+    *   **reps** ([*int*](https://docs.python.org/3/builtins/functions.html#int))
+
+    **Return type**
+
+    [*BosonicCircuit*](#qiskit_bosons.circuit.BosonicCircuit "qiskit_bosons.circuit.bosonic_circuit.BosonicCircuit")
+  </Function>
+
+  ### draw
+
+  <Function id="qiskit_bosons.circuit.BosonicCircuit.draw" signature="draw(*args, **kwargs)">
+    Directly exposes the inner circuit’s [`draw()`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit#draw) method.
+
+    **Return type**
+
+    [*Any*](https://docs.python.org/3/library/typing.html#typing.Any)
+  </Function>
+
+  ### repeat
+
+  <Function id="qiskit_bosons.circuit.BosonicCircuit.repeat" signature="repeat(reps, *, insert_barriers=False)">
+    Repeats this circuit `reps` times.
+
+    The repetitions are flattened: the returned circuit holds this circuit’s instructions `reps` times in sequence, rather than one gate wrapping the circuit as [`repeat()`](/docs/api/qiskit/qiskit.circuit.QuantumCircuit#repeat) produces. As a consequence [`count_ops()`](#qiskit_bosons.circuit.BosonicCircuit.count_ops "qiskit_bosons.circuit.BosonicCircuit.count_ops") scales with `reps`, and [`decompose()`](#qiskit_bosons.circuit.BosonicCircuit.decompose "qiskit_bosons.circuit.BosonicCircuit.decompose") decomposes the repeated body rather than peeling off a repetition.
+
+    Flattening also leaves the gates that meet at a repetition boundary adjacent, so optimization passes can act across it. Set `insert_barriers` to keep the repetitions apart instead, which places a [`barrier()`](#qiskit_bosons.circuit.BosonicCircuit.barrier "qiskit_bosons.circuit.BosonicCircuit.barrier") that those passes do not fuse across.
+
+    <Admonition title="Note" type="note">
+      This is unrelated to the `reps` argument of [`BosonicSuzukiTrotter`](circuit-library-synthesis-bosonic-suzuki-trotter "qiskit_bosons.circuit.library.synthesis.BosonicSuzukiTrotter"), which subdivides a single [`Evolution`](circuit-library-evolution "qiskit_bosons.circuit.library.Evolution") into more, shorter factors. Repeating a circuit holding one [`Evolution`](circuit-library-evolution "qiskit_bosons.circuit.library.Evolution") merely multiplies its total evolution time. To converge a grouped evolution, give the gate a synthesis with several `reps` and a `time` of `total / steps`, or repeat a *single* step `steps` times.
+    </Admonition>
+
+    <Admonition title="See also" type="note">
+      [Work with bosonic circuits](/docs/addons/qiskit-bosons/guides/circuit#bosonic-circuit-explanation) works through a repeated Trotter step, including the boundary fusion and how to prevent it.
+    </Admonition>
+
+    **Parameters**
+
+    *   **reps** ([*int*](https://docs.python.org/3/builtins/functions.html#int)) – how often this circuit should be repeated. Repeating it zero times yields an empty circuit, which is the identity.
+    *   **insert\_barriers** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) – whether to place a [`barrier()`](#qiskit_bosons.circuit.BosonicCircuit.barrier "qiskit_bosons.circuit.BosonicCircuit.barrier") between consecutive repetitions. No barrier is placed after the final repetition, so the returned circuit ends on the same instruction it would without this argument.
+
+    **Returns**
+
+    A new circuit containing `reps` repetitions of this circuit.
+
+    **Raises**
+
+    [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – if `reps` is negative.
+
+    **Return type**
+
+    [*BosonicCircuit*](#qiskit_bosons.circuit.BosonicCircuit "qiskit_bosons.circuit.bosonic_circuit.BosonicCircuit")
+  </Function>
+</Class>
+

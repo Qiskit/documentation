@@ -18,7 +18,7 @@ Qiskit mitigation utilities.
 
 ### load\_tasks\_from\_result
 
-<Function id="qiskit_mitigation.utils.load_tasks_from_result" github="https://github.com/Qiskit/qiskit-mitigation/tree/stable/0.1/qiskit_mitigation/utils/utils.py#L29-L91" signature="load_tasks_from_result(result, return_trex=False)">
+<Function id="qiskit_mitigation.utils.load_tasks_from_result" github="https://github.com/Qiskit/qiskit-mitigation/tree/main/qiskit_mitigation/utils/utils.py#L35-L99" signature="load_tasks_from_result(result, return_trex=False)">
   Load `MitigationTask` objects from an execution result using the passthrough\_data saved in the result.
 
   **Parameters**
@@ -37,21 +37,47 @@ Qiskit mitigation utilities.
 
 ### find\_combined\_unique\_layers
 
-<Function id="qiskit_mitigation.utils.find_combined_unique_layers" github="https://github.com/Qiskit/qiskit-mitigation/tree/stable/0.1/qiskit_mitigation/utils/utils.py#L94-L147" signature="find_combined_unique_layers(circuits, mitigation_types=None, custom_boxing_options=None, box_types='all')">
+<Function id="qiskit_mitigation.utils.find_combined_unique_layers" github="https://github.com/Qiskit/qiskit-mitigation/tree/main/qiskit_mitigation/utils/utils.py#L102-L248" signature="find_combined_unique_layers(circuits, mitigation_types=None, custom_boxing_options=None, box_types='all', observables=None, trex=False, trex_custom_boxing_options=None)">
   Return the unique boxed layers found across the given circuits using the given boxing options.
 
-  The returned list contains one instance of each distinct boxed layer (represented as a `CircuitInstruction`) appearing in the input circuits. Some mitigation methods enforce relevant boxing options. By supllying the wanted mitigation methods, these options are enforced when boxing the circuits to find unique layers. Supplying the wanted mitigation methods is recommended to ensure that the unique layers used for learning wiil be equal to those used in execution. The returned boxes can be filtered so only boxes containing measurements, only boxes containing solely gates or all types of boxes are returned.
+  The returned list contains one instance of each distinct boxed layer (represented as a `CircuitInstruction`) appearing in the input circuits. Some mitigation methods enforce relevant boxing options. By supplying the wanted mitigation methods, these options are enforced when boxing the circuits to find unique layers. Supplying the wanted mitigation methods is recommended to ensure that the unique layers used for learning will be equal to those used in execution. The returned boxes can be filtered so only boxes containing measurements, only boxes containing solely gates or all types of boxes are returned.
+
+  <Admonition title="Note" type="note">
+    When a [`TREX`](trex#qiskit_mitigation.TREX "qiskit_mitigation.TREX") is used, `prepare` adds boxing options to the measurement boxes of the tasks. These options are added here only if `trex` is `True`. Otherwise, the measurement boxes found do not match the measurement boxes of a task prepared with TREX.
+  </Admonition>
 
   **Parameters**
 
-  *   **circuits** ([*list*](https://docs.python.org/3/builtins/stdtypes.html#list)*\[QuantumCircuit]*) – The circuit to find the unique layers for.
+  *   **circuits** ([*list*](https://docs.python.org/3/builtins/stdtypes.html#list)*\[QuantumCircuit]*) – The circuits to find the unique layers for.
+
   *   **mitigation\_types** ([*list*](https://docs.python.org/3/builtins/stdtypes.html#list)*\[*[*MitigationTask*](mitigation-task#qiskit_mitigation.MitigationTask "qiskit_mitigation.MitigationTask")*] | None*) – List of initiated mitigation classes that the circuits will be mitigated with. Each mitigation method might enforce boxing options that will affect the unique layers. If given, the list must be the same length as `circuits`.
+
   *   **custom\_boxing\_options** ([*dict*](https://docs.python.org/3/builtins/stdtypes.html#dict)  *|*[*list*](https://docs.python.org/3/builtins/stdtypes.html#list)*\[*[*dict*](https://docs.python.org/3/builtins/stdtypes.html#dict)*] | None*) – The custom boxing options that will be used by `generate_boxing_pass_manager()` function to find the unique layers. If a single dict is given, the same custom boxing option will be used for all tasks. If `None` is given, the default boxing option will be used.
-  *   **box\_types** (*Literal\['gates', 'measurement', 'all']*) – Can be either `"gates"`, `"measurements"` or `"all"`, corresponding to filter boxes with only gate layers, only measurement layers or all layers, respectively.
+
+  *   **box\_types** (*Literal\['gates', 'measurement', 'all']*) – Can be either `"gates"`, `"measurement"` or `"all"`, corresponding to filter boxes with only gate layers, only measurement layers or all layers, respectively.
+
+  *   **observables** (*Sequence\[ObservablesArray | Sequence\[SparsePauliOp]] | None*) –
+
+      If given, one entry (an observables array or a sequence of observables) per circuit. The layers are then found for circuits whose measurements are trimmed to the active and observed qubits, exactly as when `prepare` is called with `trim_measurements=True` and the same observables. If `None` (default), all the qubits are measured.
+
+        <Admonition title="Warning" type="caution">
+          Pass `observables` if and only if `trim_measurements=True` is passed to `prepare` of the tasks, together with the same observables. The measured qubits change the boxing, so layers learned with a different choice are not found by `prepare`.
+        </Admonition>
+
+  *   **trex** ([*bool*](https://docs.python.org/3/builtins/functions.html#bool)) – Find the layers as if all the tasks share a [`TREX`](trex#qiskit_mitigation.TREX "qiskit_mitigation.TREX"). If `True`, the boxing options that `prepare` enforces when a TREX is used (measurement boxes annotated for all qubits) are added for all circuits, and the measurement layer of the TREX calibration circuit is returned as well, exactly as `TREX.prepare` creates it for tasks that measure the qubits of the given circuits. The measurement layers of the individual circuits are returned too. Whether the tasks in `mitigation_types` have a TREX is ignored when finding the layers.
+
+  *   **trex\_custom\_boxing\_options** ([*dict*](https://docs.python.org/3/builtins/stdtypes.html#dict) *| None*) – The custom boxing options of the TREX calibration circuit, i.e. the `custom_boxing_options` passed to [`prepare()`](trex#qiskit_mitigation.TREX.prepare "qiskit_mitigation.TREX.prepare"). These are independent of `custom_boxing_options`, which are the options of the individual tasks. Can be given only if `trex` is `True`.
 
   **Returns**
 
   Unique boxed layers found across the given circuits using the given boxing options.
+
+  **Raises**
+
+  *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If the length of `mitigation_types`, `custom_boxing_options` or `observables` does not match the number of circuits.
+  *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If `trex_custom_boxing_options` is given and `trex` is `False`.
+  *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If `observables` is given and, for some circuit, no qubit is active or observed.
+  *   [**ValueError**](https://docs.python.org/3/builtins/exceptions.html#ValueError) – If the boxing options contradict the options required by the mitigation methods or by TREX, or the boxing pass manager fails to run.
 
   **Return type**
 
@@ -60,7 +86,7 @@ Qiskit mitigation utilities.
 
 ### executor\_expectation\_values
 
-<Function id="qiskit_mitigation.utils.executor_expectation_values" github="https://github.com/Qiskit/qiskit-mitigation/tree/stable/0.1/qiskit_mitigation/utils/expectation_values.py#L32-L245" signature="executor_expectation_values(bool_array, basis_mapping, /, meas_basis_axis=None, *, avg_axis=None, measurement_flips=None, pauli_signs=None, postselect_mask=None, gamma_factor=None, rescale_factors=None)">
+<Function id="qiskit_mitigation.utils.executor_expectation_values" github="https://github.com/Qiskit/qiskit-mitigation/tree/main/qiskit_mitigation/utils/expectation_values.py#L32-L245" signature="executor_expectation_values(bool_array, basis_mapping, /, meas_basis_axis=None, *, avg_axis=None, measurement_flips=None, pauli_signs=None, postselect_mask=None, gamma_factor=None, rescale_factors=None)">
   Computes expectation values from shot data from `qiskit_ibm_runtime.Executor` and metadata.
 
   Uses data in `bool_array`, acquired with measurement bases as ordered in keys of `basis_mapping`, to compute observables encoded in values of `basis_mapping`.
@@ -114,7 +140,7 @@ Qiskit mitigation utilities.
 
 ### get\_measurement\_bases
 
-<Function id="qiskit_mitigation.utils.get_measurement_bases" github="https://github.com/Qiskit/qiskit-mitigation/tree/stable/0.1/qiskit_mitigation/utils/measurement_bases.py#L33-L74" signature="get_measurement_bases(observables)">
+<Function id="qiskit_mitigation.utils.get_measurement_bases" github="https://github.com/Qiskit/qiskit-mitigation/tree/main/qiskit_mitigation/utils/measurement_bases.py#L33-L74" signature="get_measurement_bases(observables)">
   Choose bases to sample in order to calculate expectation values for all given observables.
 
   Here a “basis” refers to measurement of a full-weight or high-weight Pauli, from which multiple qubit-wise commuting Paulis may be estimated.
@@ -132,12 +158,12 @@ Qiskit mitigation utilities.
 
   **Return type**
 
-  [tuple](https://docs.python.org/3/builtins/stdtypes.html#tuple)\[[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)\[[tuple](https://docs.python.org/3/builtins/stdtypes.html#tuple)\[[int](https://docs.python.org/3/builtins/functions.html#int), …], [*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype)\[*uint8*]], [dict](https://docs.python.org/3/builtins/stdtypes.html#dict)\[[*Pauli*](/docs/api/qiskit/qiskit.quantum_info.Pauli), [list](https://docs.python.org/3/builtins/stdtypes.html#list)\[[*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp)]]]
+  [tuple](https://docs.python.org/3/builtins/stdtypes.html#tuple)\[[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray)\[[tuple](https://docs.python.org/3/builtins/stdtypes.html#tuple)\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any), …], [*dtype*](https://numpy.org/doc/stable/reference/generated/numpy.dtype.html#numpy.dtype)\[*uint8*]], [dict](https://docs.python.org/3/builtins/stdtypes.html#dict)\[[*Pauli*](/docs/api/qiskit/qiskit.quantum_info.Pauli), [list](https://docs.python.org/3/builtins/stdtypes.html#list)\[[*SparsePauliOp*](/docs/api/qiskit/qiskit.quantum_info.SparsePauliOp)]]]
 </Function>
 
 ### map\_observable\_isa\_to\_canonical
 
-<Function id="qiskit_mitigation.utils.map_observable_isa_to_canonical" github="https://github.com/Qiskit/qiskit-mitigation/tree/stable/0.1/qiskit_mitigation/utils/observable_mappings.py#L45-L62" signature="map_observable_isa_to_canonical(isa_observable, canonical_qubits)">
+<Function id="qiskit_mitigation.utils.map_observable_isa_to_canonical" github="https://github.com/Qiskit/qiskit-mitigation/tree/main/qiskit_mitigation/utils/observable_mappings.py#L45-L62" signature="map_observable_isa_to_canonical(isa_observable, canonical_qubits)">
   Map an observable defined relative to the transpiled circuit to canonical box-order.
 
   In the transpiled (or ISA) ordering, the qubits are indexed based on the “physical” layout of qubits in the device.
@@ -160,7 +186,7 @@ Qiskit mitigation utilities.
 
 ### map\_observable\_virtual\_to\_canonical
 
-<Function id="qiskit_mitigation.utils.map_observable_virtual_to_canonical" github="https://github.com/Qiskit/qiskit-mitigation/tree/stable/0.1/qiskit_mitigation/utils/observable_mappings.py#L65-L83" signature="map_observable_virtual_to_canonical(virt_observable, layout, canonical_qubits)">
+<Function id="qiskit_mitigation.utils.map_observable_virtual_to_canonical" github="https://github.com/Qiskit/qiskit-mitigation/tree/main/qiskit_mitigation/utils/observable_mappings.py#L65-L83" signature="map_observable_virtual_to_canonical(virt_observable, layout, canonical_qubits)">
   Map an observable with virtual qubit ordering to canonical box-order.
 
   For info on canonical qubit ordering conventions see the [Samplomatic docs](/docs/addons/samplomatic/guides/samplex-io#qubit-ordering-convention)).
@@ -182,7 +208,7 @@ Qiskit mitigation utilities.
 
 ### map\_observable\_isa\_to\_virtual
 
-<Function id="qiskit_mitigation.utils.map_observable_isa_to_virtual" github="https://github.com/Qiskit/qiskit-mitigation/tree/stable/0.1/qiskit_mitigation/utils/observable_mappings.py#L86-L101" signature="map_observable_isa_to_virtual(isa_observable, layout)">
+<Function id="qiskit_mitigation.utils.map_observable_isa_to_virtual" github="https://github.com/Qiskit/qiskit-mitigation/tree/main/qiskit_mitigation/utils/observable_mappings.py#L86-L101" signature="map_observable_isa_to_virtual(isa_observable, layout)">
   Map an observable defined relative to the transpiled circuit to virtual order.
 
   In the transpiled (or ISA) ordering, the qubits are indexed based on the “physical” layout of qubits in the device.

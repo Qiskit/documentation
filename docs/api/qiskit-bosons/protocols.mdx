@@ -1,0 +1,26 @@
+---
+title: protocols (latest version)
+description: API reference for qiskit_bosons.protocols in the latest version of qiskit-bosons
+in_page_toc_min_heading_level: 2
+python_api_type: module
+python_api_name: qiskit_bosons.protocols
+---
+
+<span id="module-qiskit_bosons.protocols" />
+
+# Protocols
+
+This module provides the protocols used throughout the package.
+
+A [`typing.Protocol`](https://docs.python.org/3/library/typing.html#typing.Protocol) is an interface that a class can fulfill structurally, without explicitly inheriting from it. For example, any class that implements a `__len__` method satisfies [`Sized`](https://docs.python.org/3/library/typing.html#typing.Sized), whether or not it says so anywhere in its class hierarchy.
+
+The protocols here follow the same idea, each centered on a small set of dunder-style methods. A class implementing them thereby satisfies the protocol and becomes usable wherever it is expected, without any explicit registration.
+
+| Protocol                                                                                                                                                                  | Methods                                                    | Helper functions                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`SupportsCommutators`](/docs/api/qiskit-bosons/protocols-supports-commutators#qiskit_bosons.protocols.SupportsCommutators "qiskit_bosons.protocols.SupportsCommutators") | `_commutator_`, `_anti_commutator_`, `_double_commutator_` | [`commutator()`](/docs/api/qiskit-bosons/operators-library-commutator#qiskit_bosons.operators.library.commutator "qiskit_bosons.operators.library.commutator"), [`anti_commutator()`](/docs/api/qiskit-bosons/operators-library-anti-commutator#qiskit_bosons.operators.library.anti_commutator "qiskit_bosons.operators.library.anti_commutator"), [`double_commutator()`](/docs/api/qiskit-bosons/operators-library-double-commutator#qiskit_bosons.operators.library.double_commutator "qiskit_bosons.operators.library.double_commutator") |
+
+|                                                                                                                                                                                               |                                                                    |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| [`SupportsCommutators`](/docs/api/qiskit-bosons/protocols-supports-commutators#qiskit_bosons.protocols.SupportsCommutators "qiskit_bosons.protocols.SupportsCommutators")(\*args, \*\*kwargs) | A Protocol indicating support for efficient commutator generation. |
+
