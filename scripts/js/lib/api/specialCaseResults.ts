@@ -26,5 +26,9 @@ export function transformSpecialCaseUrl(url: string): string {
 export function specialCaseResults(results: HtmlToMdResultWithUrl[]): void {
   for (let result of results) {
     result.url = transformSpecialCaseUrl(result.url);
+    if (result.url.endsWith("transpiler_builtin_plugins")) {
+      result.meta.hardcodedFrontmatter = `title: Built-in Transpiler Synthesis Plugins
+description: API reference for built-in transpiler synthesis plugins`;
+    }
   }
 }
