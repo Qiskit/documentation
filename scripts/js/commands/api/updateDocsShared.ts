@@ -17,7 +17,7 @@
 import { $ } from "zx";
 
 import { Pkg } from "../../lib/api/Pkg.js";
-import { pathExists, rmFilesInFolder } from "../../lib/fs.js";
+import { pathExists, rmFolderContentsExcept } from "../../lib/fs.js";
 import { downloadSphinxArtifact } from "../../lib/api/sphinxArtifacts.js";
 
 /**
@@ -56,10 +56,24 @@ export interface DeleteOptions {
   /** Image output directory (removed entirely before pipeline runs). */
   imagesDir: string;
   /**
-   * If true, recursively wipe `markdownDir`; otherwise only delete top-level
-   * files (so sibling historical-version subfolders are preserved).
+   * If true, recursively wipe `markdownDir`; otherwise delete everything except
+   * the subfolders matched by `isPreservedSubfolder`.
    */
   recursive: boolean;
+}
+
+/**
+ * Subfolders of an output directory that a regeneration must keep: historical
+ * versions (like `0.2`) and `dev` are written by other runs, and release notes
+ * are built up one version at a time. Every other subfolder, such as Sphinx's
+ * `generated/` or `auto/`, is output of this run, so it's deleted to avoid
+ * leaving behind pages for APIs that were renamed or removed.
+ */
+export function isPreservedSubfolder(name: string): boolean {
+  return (
+    /^\d+\.\d+$/.test(name) ||
+    ["dev", "release-notes", "legacy-release-notes"].includes(name)
+  );
 }
 
 /** Wipe output directories in preparation for a fresh pipeline run. */
@@ -71,14 +85,14 @@ export async function deleteOutputDirs(
     if (recursive) {
       await $`rm -rf ${markdownDir}`;
     } else {
-      await rmFilesInFolder(markdownDir);
+      await rmFolderContentsExcept(markdownDir, isPreservedSubfolder);
     }
   }
   if (await pathExists(imagesDir)) {
     if (recursive) {
       await $`rm -rf ${imagesDir}`;
     } else {
-      await rmFilesInFolder(imagesDir);
+      await rmFolderContentsExcept(imagesDir, isPreservedSubfolder);
     }
   }
   console.log(
