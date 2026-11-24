@@ -1,0 +1,216 @@
+---
+title: Migrate to resource units (RUs) in the IBM Quantum Compute API
+description: Learn which time-based usage fields in the IBM Quantum Compute API to disregard, and which resource unit (RU) fields replace them.
+
+---
+
+# Migrate to resource units (RUs) in the IBM Quantum Compute API
+
+IBM Quantum&reg; Platform now measures usage in resource units (RUs). An RU is the unit that IBM Quantum uses to measure and bill the usage of all workloads. Before this change, the platform measured usage as QPU time in seconds or milliseconds. For more information about RUs, see [Resource units](/docs/ibm-quantum-platform/plans-overview#resource-units).
+
+Today, the API returns two sets of fields: the old time fields and the new RU fields. Your integration continues to work. In a future release, IBM Quantum will remove the time fields. Change your integration to read the RU fields now.
+
+This guide uses these terms:
+
+- **Workload**: A job, a session, a batch, or a function run.
+- **QPU workload**: A job, a session, or a batch. A QPU workload runs only on a QPU.
+- **Function workload**: A function run. A function workload can use classical compute and an execution license, and it can also use a QPU.
+- **Session**: A group of jobs that run together on one QPU.
+- **Instance**: A service instance. It owns workloads and has usage limits.
+- **Plan**: The service plan of an account. It sets the usage limits for all instances in the account.
+
+<Admonition type="note">
+  This guide uses version 0.57.2 of the [OpenAPI spec](https://quantum.cloud.ibm.com/api/openapi.json).
+
+  The `IBM-API-Version` header value must be `2026-04-15` or a later supported API version.
+</Admonition>
+
+## Summary
+
+| Endpoint | Disregard | Read instead |
+| --- | --- | --- |
+| `GET /v1/jobs`, `GET /v1/jobs/{id}/metrics` | `usage.qpu_charge_time_seconds` | `usage.value` |
+| `GET /v1/workloads` | `workloads[].usage.qpu_charge_time_seconds` | `workloads[].usage.value` |
+| `POST /v1/sessions`, `GET /v1/sessions/{id}` | `elapsed_time` | `usage.value` |
+| `GET /v1/instances/usage` | `usage_consumed_seconds`, `usage_limit_seconds`, `usage_allocation_seconds` | `usage_consumed_ru`, `usage_limit_ru`, `usage_allocation_ru` |
+| `GET /v1/accounts/{id}` | `plans[].usage_limit_seconds`, `plans[].usage_allocation_seconds`, `plans[].unallocated_usage_seconds` | `plans[].usage_limit_ru`, `plans[].usage_allocation_ru`, `plans[].unallocated_usage_ru` |
+| Resource Controller API: Create, update, and read service instances | `instance_limit_seconds`, `usage_allocation_seconds` | `instance_limit_ru`, `usage_allocation_ru` |
+| `GET /v1/analytics/usage`, `GET /v1/analytics/usage_grouped`, `GET /v1/analytics/usage_grouped_by_date` | Each usage field in milliseconds | The matching field with the `_ru` suffix |
+
+The sections that follow give the details for each endpoint.
+
+## Jobs
+
+Endpoints: `GET /v1/jobs` and `GET /v1/jobs/{id}/metrics`.
+
+| Disregard | Read instead |
+| --- | --- |
+| `usage.qpu_charge_time_seconds` | `usage.value` |
+
+The `usage` object also has these fields:
+
+- `usage.unit`: The unit of `usage.value`. The value is always `"resource_units"`.
+- `usage.status`: The billing status. The value is `"pending"` or `"complete"`. If the status is `"pending"`, the platform can still change the value. Do not use a pending value as the final usage.
+- `usage.details[]`: The usage for each billing metric. The `value` of each entry is in RUs.
+
+Example:
+
+```json
+"usage": {
+  "qpu_charge_time_seconds": 15,  // old field: disregard
+  "value": 0.250005,              // new field: read this
+  "unit": "resource_units",
+  "status": "complete",
+  "details": [
+    { "value": 0.250005, "unit": "resource_units", "metric": { "id": "…", "value": 15 } }
+  ]
+}
+```
+
+The field `usage.details[].metric.value` is not the usage in RUs. It is the quantity of the metric that the platform used to calculate the RUs. Each metric has its own unit. For example, the unit of a QPU metric is seconds. For the usage, read `usage.details[].value`.
+
+## Workloads
+
+Endpoint: `GET /v1/workloads`.
+
+Each item in `workloads[]` has a `usage` object. This object has the same fields as the `usage` object of a job.
+
+| Disregard | Read instead |
+| --- | --- |
+| `workloads[].usage.qpu_charge_time_seconds` | `workloads[].usage.value` |
+
+If a workload is still running, `usage` is `null`.
+
+## Function workloads
+
+The usage of a function workload is in RUs, the same as for a QPU workload. A function workload can use more than one metric:
+
+- **QPU usage.** This is metered per second of quantum time. See [Execution modes](/docs/ibm-quantum-compute/execution-modes).
+- **Classical compute usage.** This is metered per second of [classical time](/docs/managed-workflows/managed-workflow-compute-profiles).
+- **Execution license cost.** This is metered per workload, based on the [size of the problem passed to a function](/docs/guides/functions#overview-of-available-functions).
+
+The platform converts the quantity of each metric to RUs. Thus, all usage values are in RUs:
+
+- `usage.value` is the usage of the workload, in RUs.
+- `usage.details[].value` is the usage for one metric, in RUs.
+- `usage.details[].metric.value` is the quantity of the metric, in the unit of that metric. It is not in RUs.
+
+If you show or add usage values, use `usage.value` and `usage.details[].value`. Do not use `usage.details[].metric.value`.
+
+## Sessions
+
+Endpoints: `POST /v1/sessions` and `GET /v1/sessions/{id}`.
+
+| Disregard | Read instead |
+| --- | --- |
+| `elapsed_time` (seconds) | `usage.value` |
+
+The session `usage` object has `unit` and `details[]`. These fields work the same as in the job `usage` object, with the exception of the `status` field, which is omitted for sessions.
+
+The fields `interactive_ttl`, `max_ttl`, and `active_ttl` do not change. They are time limits (TTL means "time to live"), not usage. Their unit stays seconds.
+
+## Instance usage
+
+Endpoint: `GET /v1/instances/usage`.
+
+| Disregard | Read instead |
+| --- | --- |
+| `usage_consumed_seconds` | `usage_consumed_ru` |
+| `usage_limit_seconds` | `usage_limit_ru` |
+| `usage_allocation_seconds` | `usage_allocation_ru` |
+
+The fields `usage_limit_reached`, `usage_period`, and `time_available_at` do not change.
+
+## Account plans
+
+Endpoint: `GET /v1/accounts/{id}`.
+
+Each item in `plans[]` has these changes:
+
+| Disregard | Read instead |
+| --- | --- |
+| `plans[].usage_limit_seconds` | `plans[].usage_limit_ru` |
+| `plans[].usage_allocation_seconds` | `plans[].usage_allocation_ru` |
+| `plans[].unallocated_usage_seconds` | `plans[].unallocated_usage_ru` |
+
+## Service instances in the Resource Controller API
+
+The IBM Cloud&reg; Resource Controller API is a separate API. You use it to create and update service instances. If you create or update instances with this API, change the instance parameters too.
+
+When you create or update an instance, send these parameters in the request:
+
+| Don't send | Send instead | Type of the new parameter |
+| --- | --- | --- |
+| `instance_limit_seconds` | `instance_limit_ru` | Number or `null` |
+| `usage_allocation_seconds` | `usage_allocation_ru` | Number or `null` |
+
+The parameters have these meanings:
+
+- **Instance limit**The maximum usage for the instance. If you do not send a limit on the Open Plan, the default is the RU equivalent of 10 minutes.
+- **Usage allocation**: The share of usage for the instance. The fair-share scheduler uses this value to set the priority of the instance in the queue. The allocation does not apply to Pay-As-You-Go instances.
+
+When you read an instance, the `extensions` object in the response contains the old fields and the new fields. Disregard `instance_limit_seconds` and `usage_allocation_seconds`. Read `instance_limit_ru` and `usage_allocation_ru`.
+
+For more information, see the [IBM Quantum Compute Service REST API documentation](/docs/api/qiskit-runtime-rest).
+
+## Usage analytics
+
+Endpoints: `GET /v1/analytics/usage`, `GET /v1/analytics/usage_grouped`, and `GET /v1/analytics/usage_grouped_by_date`.
+
+The three endpoints have the same usage fields. The two grouped endpoints return these fields for each group or each date.
+
+The old analytics usage fields are in milliseconds, not seconds.
+
+| Disregard (milliseconds) | Read instead (RUs) |
+| --- | --- |
+| `usage` | `usage_ru` |
+| `sessions_usage` | `sessions_usage_ru` |
+| `avg_sessions_usage` | `avg_sessions_usage_ru` |
+| `max_sessions_usage` | `max_sessions_usage_ru` |
+| `batch_sessions_usage` | `batch_sessions_usage_ru` |
+| `avg_batch_sessions_usage` | `avg_batch_sessions_usage_ru` |
+| `max_batch_sessions_usage` | `max_batch_sessions_usage_ru` |
+| `dedicated_sessions_usage` | `dedicated_sessions_usage_ru` |
+| `avg_dedicated_sessions_usage` | `avg_dedicated_sessions_usage_ru` |
+| `max_dedicated_sessions_usage` | `max_dedicated_sessions_usage_ru` |
+| `individual_jobs_usage` | `individual_jobs_usage_ru` |
+| `avg_individual_jobs_usage` | `avg_individual_jobs_usage_ru` |
+| `max_individual_jobs_usage` | `max_individual_jobs_usage_ru` |
+| `functions_quantum_usage_ms` | `functions_quantum_usage_ru` |
+
+These function fields are new. They have no old field in milliseconds:
+
+- `functions_usage_ru`
+- `avg_functions_usage_ru`
+- `max_functions_usage_ru`
+- `functions_classical_usage_ru`
+- `functions_license_cost_ru`
+
+The total in `usage_ru` includes more than the total in `usage`:
+
+- `usage` is the sum of QPU time for sessions, individual jobs, and functions.
+- `usage_ru` is the sum of usage for sessions, individual jobs, and functions. For functions, it also includes classical compute and license cost.
+
+Thus, `usage_ru` is not only `usage` in a different unit.
+
+The fields `queue_time`, `avg_queue_time`, and `max_queue_time` do not change. They measure wait time, not usage. Their unit stays milliseconds.
+
+## Fields that do not change
+
+These fields contain time values, but they do not measure usage. IBM Quantum does not plan to replace them:
+
+- `wait_time_seconds` on backends: The estimated wait in the queue.
+- `circuits_execution_time_ns` in `GET /v1/jobs/{id}/metrics`: The time that the job ran on the QPU.
+- `interactive_ttl`, `max_ttl`, and `active_ttl` on sessions.
+- `queue_time`, `avg_queue_time`, and `max_queue_time` in analytics.
+- `rep_times` and `circuit_duration` in backend configuration.
+
+## Migration steps
+
+1. Find each old field in your code. Search for `qpu_charge_time_seconds`, `elapsed_time`, the `_seconds` fields in this guide, and the analytics fields in milliseconds.
+2. Change each old field to the RU field in the tables of this guide.
+3. If you create or update service instances with the Resource Controller API, send `instance_limit_ru` and `usage_allocation_ru`. Do not send the `_seconds` parameters.
+4. Change the labels in your user interface. Show "RU" or "resource units", not "seconds" or "minutes". Do not convert RUs to time. There is no fixed rate between RUs and time.
+5. If you read `usage.details[]`, use `value` for the usage in RUs. Do not use `metric.value`, because its unit is the unit of the metric.
+6. If `usage.status` is `"pending"`, show the value as provisional.
+7. If an RU field is missing or `null`, use the same logic that you use for the old field today.
