@@ -24,6 +24,7 @@ This checklist covers bringing a new IBM Quantum Function's documentation into t
 - [ ] Version-info cell in guide notebooks: the notebook tester fills in a cell tagged `version-info` with the package versions used, and `tox -e lint` fails if a guide notebook has none, or more than one.
   - Put the frontmatter, the `cspell:ignore` comment, and the H1 heading in the first markdown cell. If that cell also contains body content, split the body into its own cell.
   - Insert an empty markdown cell immediately after the heading cell, and add `version-info` to its `tags` metadata.
+  - The cell is filled in when the notebook runs with `tox -- --write <path-to-notebook>`. CI doesn't run Function notebooks, so the cell stays empty, and shows nothing on the page, until someone runs the notebook that way.
 - [ ] Internal links use `/docs/...` with no file extension. Rewrite any links to the partner's private repo or to relative files. Common targets:
   - Guide and API reference: `/docs/functions/<slug>` and `/docs/functions/<slug>/api-reference`.
   - Setup steps: `/docs/ibm-quantum-platform/functions-get-started`, with anchors such as `#install-qiskit-functions-catalog-client`, `#check-job-status`, and `#retrieve-results`.
