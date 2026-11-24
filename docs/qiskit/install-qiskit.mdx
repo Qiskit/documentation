@@ -126,7 +126,7 @@ If you are planning to work locally and use simulators built into Qiskit, then y
 <Accordion>
 <AccordionItem title="`No Module 'qiskit'` error with Jupyter Notebook">
   If you used ``pip install qiskit`` and set up your virtual environment in
-  Anaconda, then you may get the ``No Module 'qiskit'`` error when you run a tutorial
+  Anaconda, then you might get the ``No Module 'qiskit'`` error when you run a tutorial
   in Jupyter Notebook. If you have not installed Qiskit or set up your
   virtual environment, you can follow the [installation](#qiskit-install) steps.
 
@@ -148,7 +148,7 @@ If you are planning to work locally and use simulators built into Qiskit, then y
   your system's platform and Python version, it is possible that a particular
   package does not provide pre-built binaries for your system. You can refer
   to [Operating system support](#operating-system-support) for a list of platforms supported by Qiskit, some
-  of which may need an extra compiler. In cases where there are
+  of which might need an extra compiler. In cases where there are
   no precompiled binaries available, ``pip`` will attempt to compile the package
   from source, which in turn might require some extra dependencies that need to
   be installed manually.
@@ -172,9 +172,12 @@ If you are planning to work locally and use simulators built into Qiskit, then y
 <span id="os-support"></span>
 ## Operating system support
 
-Qiskit strives to support as many operating systems as possible, but due to limitations in available testing resources and operating system availability, not all operating systems can be supported. Operating system support for Qiskit is broken into three tiers with different levels of support for each tier. For platforms outside these, such as FreeBSD or WebAssembly (WASI), Qiskit may still be installable, but it is not tested and you will have to build Qiskit (and likely Qiskit’s dependencies) from source.
+Qiskit strives to support as many operating systems as possible, but due to limitations in available testing resources and operating system availability, not all operating systems can be supported. Operating system support for Qiskit is broken into three tiers with different levels of support for each tier. For platforms outside these, such as FreeBSD or WebAssembly (WASI), Qiskit might still be installable, but it is not tested and you will have to build Qiskit (and likely Qiskit’s dependencies) from source.
 
 Additionally, Qiskit only supports the CPython implementation of the Python language. Running with other Python interpreters such as PyPy is not supported.
+
+The sections below list operating-system support for Qiskit at the various tiers.
+The required operating-system versions or compatibility levels could change over the course of a major version of Qiskit, if the vendor or critical infrastructure withdraws support for an older version.
 
 ### Qiskit v2.x
 
@@ -182,32 +185,47 @@ In the Qiskit v2.x release series, the supported platforms are:
 
 <Accordion>
 <AccordionItem title="Tier 1">
-  Tier 1 operating systems are fully tested as part of the development processes to ensure any proposed change will function correctly. Pre-compiled binaries are built, tested, and published to PyPI as part of the release process. Typically, as long as there is a functioning Python environment installed, Qiskit can be installed on these operating systems without needing to install further dependencies.
+  Tier-1 operating systems are fully tested on each code change to Qiskit.
+  Pre-compiled binary wheels are built, tested and published to PyPI as part of the release process.
+  All critical functionality of Qiskit will only use dependencies that also provide pre-compiled binary wheels on PyPI for supported Python versions for these platforms.
+  Optional functionality might have dependencies that do not have complete support on tier-1 platforms.
 
-  Tier 1 operating systems:
+  The pre-compiled binary wheels will typically have been compiled with profile-guided optimizations, though this is not guaranteed.
 
-  - Linux x86_64 (distributions compatible with the [manylinux 2014](https://www.python.org/dev/peps/pep-0599/) packaging specification).
+  Tier-1 operating systems:
+
+  - Linux x86_64 (see compatibility notes below)
+  - Linux AArch64 (see compatibility notes below)
   - macOS ARM64 (11.0 or newer)
-  - Windows 64-bit (Windows 10 and later supported)
-  - Linux AArch64 (distributions compatible with the [manylinux 2014](https://www.python.org/dev/peps/pep-0599/) packaging specification)
+  - Windows 64-bit (Windows 10 or newer)
 </AccordionItem>
 <AccordionItem title="Tier 2">
-  Tier 2 operating systems are not tested as part of the development process. However, pre-compiled binaries are built, tested, and published to PyPI as part of the release process, and these packages can be expected to be installed with only a functioning Python environment.
-  There might be a delay in releasing packages for these systems, since test failures might not be detected until much later, and failures during publishing will not block the publication of the package for Tier 1 systems.
+  Tier-2 operating systems receive pre-built and tested binary wheels on PyPI as part of the release process, but most code changes do not test compatibility.
+  This can cause delays in releasing packages for these systems.
+  All critical functionality of Qiskit will only use dependencies that also provide pre-compiled binary wheels on PyPI for supported Python versions for these platforms.
+  Optional functionality might have dependencies that do not have complete support on tier-2 platforms.
 
-  Tier 2 operating systems:
+  Tier-2 operating systems:
 
-  - macOS x86_64 (10.12 or later)
+  - macOS x86_64 (10.13 or later)
 </AccordionItem>
 <AccordionItem title="Tier 3">
-  Tier 3 operating systems are not tested as part of the development process. Pre-compiled binaries are built and published to PyPI as part of the release process but are not tested. They may not be installable with only a functioning Python environment and might require a C/C++ compiler or additional programs to build dependencies from source as part of the installation process. Support for these operating systems are best effort only.
+  Tier-3 operating systems receive pre-compiled binary wheels on PyPI as part of the release process, but these are *entirely untested*.
+  You might need to manually compile dependencies of Qiskit from source in order to use these platforms.
+  This can include configuring compilers and build environments for a variety of programming languages in complex projects.
+  Support for these platforms is best-effort only.
 
-  Tier 3 operating systems:
+  Tier-3 operating systems:
 
-  - Linux ppc64le (distributions compatible with the [manylinux 2014](https://www.python.org/dev/peps/pep-0599/)packaging specification)
-  - Linux s390x (distributions compatible with the [manylinux 2014](https://www.python.org/dev/peps/pep-0599/) packaging specification)
+  - Linux ppc64le (see compatibility notes below)
+  - Linux s390x (see compatibility notes below)
 </AccordionItem>
 </Accordion>
+
+All Linux-based targets follow the same platform-compatibility requirements:
+
+* Since Qiskit v2.4, a distribution compatible with the [`manylinux_2_28` platform](https://peps.python.org/pep-0600/).
+* Prior to Qiskit v2.4, a distribution compatible with the [`manylinux2014` platform](https://peps.python.org/pep-0599/).
 
 Starting in Qiskit v2.0.0, only 64-bit platforms are supported and 32-bit platforms are not supported. You will not be able to build from source
 on 32-bit platforms either, as internally the Qiskit Rust code assumes a 64-bit pointer width.
