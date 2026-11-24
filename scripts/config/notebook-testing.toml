@@ -16,6 +16,8 @@ notebooks = [
   "docs/qiskit/circuit-library.ipynb",
   "docs/qiskit/classical-feedforward-and-control-flow.ipynb",
   "docs/qiskit/common-parameters.ipynb",
+  "docs/ibm-quantum-compute/estimator-noise-management.ipynb",
+  "docs/ibm-quantum-compute/sampler-noise-management.ipynb",
   "docs/qiskit/construct-circuits.ipynb",
   "docs/qiskit/create-transpiler-plugin.ipynb",
   "docs/qiskit/custom-backend.ipynb",
@@ -26,6 +28,7 @@ notebooks = [
   "docs/ibm-quantum-compute/qpu-information.ipynb",
   "docs/qiskit/interoperate-qiskit-qasm2.ipynb",
   "docs/qiskit/interoperate-qiskit-qasm3.ipynb",
+  "docs/ibm-quantum-compute/local-testing-mode.ipynb",
   "docs/ibm-quantum-compute/max-execution-time.ipynb",
   "docs/qiskit/measure-qubits.ipynb",
   "docs/qiskit/operator-class.ipynb",
@@ -78,24 +81,6 @@ notebooks = [
   "docs/ibm-quantum-compute/qiskit-runtime-circuit-timing.ipynb",
   "docs/qiskit/visualize-circuit-timing.ipynb",
   "docs/qiskit/circuit-transpilation-settings.ipynb",
-]
-
-# Only run the following notebooks in our fortnightly cron job on real hardware.
-#[groups.cron-job-only]
-#test-strategies.hardware = { patch = "qiskit-ibm-runtime-open" }
-#notebooks = [
-#  "docs/guides/post-selection.ipynb",
-#]
-
-# Don't ever test the following notebooks
-[groups.exclude]
-notebooks = [
-  # Temporarily excluded until the testing environment recognizes the
-  # client-side primitives in qiskit-ibm-runtime 0.50.0 (executor_estimator /
-  # executor_sampler modules).
-  "docs/ibm-quantum-compute/estimator-noise-management.ipynb",
-  "docs/ibm-quantum-compute/sampler-noise-management.ipynb",
-  "docs/ibm-quantum-compute/local-testing-mode.ipynb",
   "docs/ibm-quantum-compute/debug-qiskit-runtime-jobs.ipynb",
   "docs/ibm-quantum-compute/estimator-examples.ipynb",
   "docs/ibm-quantum-compute/estimator-input-output.ipynb",
@@ -107,11 +92,22 @@ notebooks = [
   "docs/ibm-quantum-compute/sampler-examples.ipynb",
   "docs/ibm-quantum-compute/sampler-input-output.ipynb",
   "docs/ibm-quantum-compute/sampler-options.ipynb",
-  "docs/ibm-quantum-compute/hello-world.ipynb",
-  # noise-learning was previously in cron-job-only (timed out under test-eagle);
-  # restore it there once runtime 0.50.0 is recognized.
-  "docs/ibm-quantum-compute/noise-learning.ipynb",
+]
 
+# Only run the following notebooks in our fortnightly cron job on real hardware.
+[groups.cron-job-only]
+test-strategies.hardware = { patch = "qiskit-ibm-runtime-open" }
+notebooks = [
+  "docs/ibm-quantum-compute/hello-world.ipynb",
+
+  # noise-learning timed out under test-eagle even though the job finished,
+  # so it runs here, where there is no time limit.
+  "docs/ibm-quantum-compute/noise-learning.ipynb",
+]
+
+# Don't ever test the following notebooks
+[groups.exclude]
+notebooks = [
   # Addon notebooks require the addon packages and are not run in standard CI
   "docs/addons/**/*.ipynb",
 
@@ -120,17 +116,24 @@ notebooks = [
 
   # These Qiskit Functions are not accessible in the test environment
   "docs/functions/parity-twine-optimizer/index.ipynb",
+  "docs/functions/parity-twine-optimizer/get-started.ipynb",
   "docs/functions/aqarios-constrained-quantum-optimizer/index.ipynb",
+  "docs/functions/aqarios-constrained-quantum-optimizer/get-started.ipynb",
   "docs/functions/algorithmiq-tem/get-started.ipynb",
   "docs/functions/algorithmiq-tem/performance-tuning.ipynb",
   "docs/ibm-quantum-platform/functions-get-started.ipynb",
   "docs/functions/multiverse-computing-singularity/index.ipynb",
+  "docs/functions/multiverse-computing-singularity/get-started.ipynb",
   "docs/functions/qunova-chemistry/index.ipynb",
   "docs/functions/qunova-chemistry/get-started.ipynb",
   "docs/functions/qedma-qesem/index.ipynb",
+  "docs/functions/qedma-qesem/get-started.ipynb",
+  "docs/functions/q-ctrl-optimization-solver/index.ipynb",
   "docs/functions/q-ctrl-optimization-solver/get-started.ipynb",
+  "docs/functions/q-ctrl-performance-management/index.ipynb",
   "docs/functions/q-ctrl-performance-management/get-started.ipynb",
   "docs/functions/kipu-rimay/index.ipynb",
+  "docs/functions/kipu-rimay/get-started.ipynb",
 
   # These notebooks contain undefined variables so can't run at all.
   "docs/managed-workflows/function-template-hamiltonian-simulation.ipynb",
@@ -165,8 +168,11 @@ notebooks = [
 
   # This notebook might work but we didn't have time to test it before merging
   "docs/functions/kipu-optimization/index.ipynb",
+  "docs/functions/kipu-optimization/get-started.ipynb",
   "docs/functions/global-data-quantum-optimizer/index.ipynb",
+  "docs/functions/global-data-quantum-optimizer/get-started.ipynb",
   "docs/functions/colibritd-pde/index.ipynb",
+  "docs/functions/colibritd-pde/get-started.ipynb",
 
   # These notebooks have code snippets which are embedded in cloud/legacy tags
   #  and can't be run until we convert them to testable snippets
@@ -184,13 +190,17 @@ notebooks = [
   "docs/tutorials/manage-qcsc-workflow-with-qcsc-prefect.ipynb",
   "docs/tutorials/quantum-elements-orbit-qft-with-dynamic-circuits.ipynb",
   "docs/functions/quantum-elements-orbit/index.ipynb",
+  "docs/functions/quantum-elements-orbit/get-started.ipynb",
   "docs/tutorials/trotterized-time-evolution-ltm.ipynb",
   "docs/functions/ltm-ai-qem/index.ipynb",
+  "docs/functions/ltm-ai-qem/get-started.ipynb",
   "docs/tutorials/classify-credit-risk-with-rimay-quantum-feature-extraction.ipynb",
   "docs/tutorials/fermi-hubbard-spin-charge-dynamics.ipynb",
+  "docs/functions/q-ctrl-dynamics-simulator/index.ipynb",
   "docs/functions/q-ctrl-dynamics-simulator/get-started.ipynb",
   "docs/tutorials/maximum-independent-set-jij-sqoa.ipynb",
   "docs/functions/jij-sqoa-solver/index.ipynb",
+  "docs/functions/jij-sqoa-solver/get-started.ipynb",
   "docs/tutorials/loop-string-hadron-dynamics.ipynb",
   "docs/tutorials/implicit-solvent-calculations.ipynb",
   "docs/tutorials/simulate-kicked-ising-tem.ipynb",

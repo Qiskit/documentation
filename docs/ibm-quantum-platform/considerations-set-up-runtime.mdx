@@ -90,7 +90,7 @@ By default, each service instance's access is managed independently, for example
 
 The steps in this guide can be automated for consistent and repeatable management of users, service instances, and the access mappings between them. Refer to the [Terraform IBM Cloud Provider documentation](https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs) for templates.
 
-You can use Terraform to set allocation and limits, as well as restrict backend access, for `quantum-computing` service instances. See [Getting started with Terraform on IBM Cloud](https://cloud.ibm.com/docs/ibm-cloud-provider-for-terraform?topic=ibm-cloud-provider-for-terraform-getting-started) for more information.
+You can use Terraform to set allocation and limits, as well as restrict backend access, for `quantum-computing` service instances. See [Getting started with Terraform on IBM Cloud](https://cloud.ibm.com/docs/ibm-cloud-provider-for-terraform?topic=ibm-cloud-provider-for-terraform-getting-started) for more information. Set the allocation and limit in resource units (RUs). The `_seconds` parameters are deprecated. For details, see [Migrate to resource units (RUs) in the IBM Quantum Compute API](/docs/guides/migrate-to-resource-units).
 
 Example:
 
@@ -101,10 +101,10 @@ resource "ibm_resource_instance" "instance1" {
   plan       = "premium"
   location   = "us-east"
   parameters = {
-    usage_allocation_seconds = "10" # Mandatory
-    usage_limit_seconds      = "20" # Optional. If omitted, it can
-            # continue using time after reaching the allocation
-    backends                 = ["ibm_boston"] # Optional
+    usage_allocation_ru = "10" # Mandatory. Allocation in resource units (RUs)
+    instance_limit_ru   = "20" # Optional. If omitted, the instance can
+            # continue to use RUs after reaching the allocation
+    backends            = ["ibm_boston"] # Optional
   }
 }
 ```
