@@ -25,7 +25,7 @@ You can optionally set the time allocation as a limit for the instance. The foll
 
 ## Set different values for the allocation limit and usage limit
 
-When you set the allocation limit for an instance in IBM Quantum&reg; Platform, the same value is set as the instance's usage limit. If you want users to be able to continue submitting and running jobs after the instance's allocation limit is reached, you can set a higher value for the usage limit by using the `usage_allocation_seconds` parameter with the [Resource Controller API](/docs/ibm-quantum-platform/access-instances-platform-apis) API.
+When you set the allocation limit for an instance in IBM Quantum&reg; Platform, the same value is set as the instance's usage limit. If you want users to be able to continue submitting and running jobs after the instance's allocation limit is reached, you can set a higher value for the usage limit by using the `instance_limit_ru` parameter with the [Resource Controller API](/docs/ibm-quantum-platform/access-instances-platform-apis). Set the allocation with the `usage_allocation_ru` parameter. The `_seconds` parameters are deprecated. For details, see [Migrate to resource units (RUs) in the IBM Quantum Compute API](/docs/guides/migrate-to-resource-units).
 
 ## Next steps
 
@@ -34,4 +34,5 @@ When you set the allocation limit for an instance in IBM Quantum&reg; Platform, 
     - Review suggestions to [minimize job usage](/docs/ibm-quantum-compute/minimize-time).
     - Understand the [fair-share scheduler](/docs/ibm-quantum-platform/fair-share-scheduler).
     - Learn about [resource units](/docs/ibm-quantum-platform/plans-overview#resource-units).
+    - [Migrate to resource units (RUs) in the IBM Quantum Compute API](/docs/guides/migrate-to-resource-units) if you use the API.
 </Admonition>

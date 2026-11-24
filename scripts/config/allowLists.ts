@@ -57,8 +57,6 @@ const IGNORE_TITLE_MISMATCHES: string[] = [
   "docs/guides/function-template-hamiltonian-simulation.ipynb", // ok
   "docs/functions/global-data-quantum-optimizer/index.ipynb", // ok
   "docs/functions/multiverse-computing-singularity/index.ipynb", // ok
-  "docs/functions/q-ctrl-optimization-solver/index.ipynb", // ok
-  "docs/guides/q-ctrl-performance-management.ipynb", // ok
   "docs/guides/qedma-qesem.ipynb", // ok
   "docs/guides/changelog-qiskit.mdx",
   "docs/guides/changelog-quantum-compute.mdx",

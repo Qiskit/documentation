@@ -51,7 +51,7 @@ logger.info("Transpiled %d circuits: depth %d -> %d", len(circuits), 1250, 730)
 
 `print()` also reaches the logs, but standard output is buffered, so printed lines might not appear until the job ends. If you use `print()`, pass `flush=True`.
 
-{/* REVIEW: get_logger() from qiskit_serverless adds a [PUBLIC] prefix that Functions uses to split provider and user logs for Catalog Functions; custom workflow logs strip it. Tested with 0.37.0: its lines have no timestamp, and logger.exception() and exc_info=True drop the traceback (PrefixFormatter builds new records with exc_info=None). Confirm whether to recommend the standard logging module for custom workflows, or to fix get_logger(). */}
+{/* REVIEW: get_logger() from qiskit_serverless adds a [PUBLIC] prefix that functions use to split provider and user logs for Catalog Functions; custom workflow logs strip it. Tested with 0.37.0: its lines have no timestamp, and logger.exception() and exc_info=True drop the traceback (PrefixFormatter builds new records with exc_info=None). Confirm whether to recommend the standard logging module for custom workflows, or to fix get_logger(). */}
 
 ### Set the log level for each run
 
