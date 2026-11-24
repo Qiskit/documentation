@@ -12,14 +12,14 @@
 
 import path from "node:path";
 
-import { CheerioAPI, Cheerio, load, Element } from "cheerio";
+import { type CheerioAPI, type Cheerio, load } from "cheerio";
+import type { Element } from "domhandler";
 import { escapeRegExp } from "lodash-es";
 
-import { Image } from "./HtmlToMdResult.js";
-import { Metadata, ApiObjectName, API_OBJECTS } from "./Metadata.js";
+import type { Image } from "./HtmlToMdResult.js";
+import { type Metadata, type ApiObjectName, API_OBJECTS } from "./Metadata.js";
 import { createMdxComponent } from "./generateApiComponents.js";
 import { externalRedirects } from "../../../config/external-redirects.js";
-import { filenameToUri } from "cspell/dist/esm/util/fileHelper.js";
 
 export type ProcessedHtml = {
   html: string;

@@ -15,14 +15,14 @@ import remarkParse from "remark-parse";
 import remarkMath from "remark-math";
 import remarkGfm from "remark-gfm";
 import remarkMdx from "remark-mdx";
-import { Root } from "mdast";
+import type { Root } from "mdast";
 import { visit } from "unist-util-visit";
 import remarkStringify from "remark-stringify";
 import { toText } from "hast-util-to-text";
 import Slugger from "github-slugger";
 
 import { remarkStringifyOptions } from "./commonParserConfig.js";
-import { HtmlToMdResult } from "./HtmlToMdResult.js";
+import type { HtmlToMdResult } from "./HtmlToMdResult.js";
 
 export async function dedupeHtmlIdsFromResults(
   results: HtmlToMdResult[],

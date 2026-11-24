@@ -16,7 +16,7 @@ import {
   kebabCaseAndShortenPage,
   normalizeResultUrls,
 } from "./normalizeResultUrls.js";
-import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
+import type { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
 
 test.describe("kebabCaseAndShortenPage()", () => {
   const cases = [

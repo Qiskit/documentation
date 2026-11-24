@@ -14,7 +14,7 @@ import { expect, test } from "@playwright/test";
 
 import addFrontMatter from "./addFrontMatter.js";
 import { Pkg, ReleaseNotesConfig } from "./Pkg.js";
-import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
+import type { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
 
 test("addFrontMatter()", () => {
   const results: HtmlToMdResultWithUrl[] = [

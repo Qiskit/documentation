@@ -22,7 +22,7 @@ import { load } from "cheerio";
 import { mkdirp } from "mkdirp";
 import { uniqBy } from "lodash-es";
 
-import { Image, HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
+import type { Image, HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
 import { ObjectsInv } from "./objectsInv.js";
 import { Pkg } from "./Pkg.js";
 import addFrontMatter from "./addFrontMatter.js";

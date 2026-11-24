@@ -11,7 +11,7 @@
 // that they have been altered from the originals.
 
 import { getLastPartFromFullIdentifier, removeSuffix } from "../stringUtils.js";
-import { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
+import type { HtmlToMdResultWithUrl } from "./HtmlToMdResult.js";
 import { Pkg } from "./Pkg.js";
 
 function addFrontMatter(results: HtmlToMdResultWithUrl[], pkg: Pkg): void {

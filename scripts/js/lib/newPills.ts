@@ -1,4 +1,4 @@
-import { TocEntry } from "./api/generateToc.js";
+import type { TocEntry } from "./api/generateToc.js";
 export interface NewPillEntry {
   toc: string;
   identifier: string;

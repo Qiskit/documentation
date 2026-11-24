@@ -3,7 +3,7 @@ async function fetchAllFiles(prNumber: number): Promise<string[]> {
   let cursor: string | null = null;
 
   while (true) {
-    const response = await fetch(`https://api.github.com/graphql`, {
+    const response: Response = await fetch(`https://api.github.com/graphql`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -39,9 +39,9 @@ async function fetchAllFiles(prNumber: number): Promise<string[]> {
       throw new Error(`Failed to fetch changed files: ${error}`);
     }
 
-    const { data } = await response.json();
+    const { data } = (await response.json()) as ChangedFilesResponse;
     const files = data.repository.pullRequest.files;
-    results.push(...files.nodes.map((n: { path: string }) => n.path));
+    results.push(...files.nodes.map((n) => n.path));
 
     if (!files.pageInfo.hasNextPage) {
       break;
@@ -66,3 +66,16 @@ main().catch((e) => {
   console.error(e);
   process.exit(1);
 });
+
+type ChangedFilesResponse = {
+  data: {
+    repository: {
+      pullRequest: {
+        files: {
+          nodes: { path: string }[];
+          pageInfo: { endCursor: string | null; hasNextPage: boolean };
+        };
+      };
+    };
+  };
+};

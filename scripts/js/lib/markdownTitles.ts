@@ -11,7 +11,7 @@
 // that they have been altered from the originals.
 
 import { visit, EXIT } from "unist-util-visit";
-import { Root } from "mdast";
+import type { Root } from "mdast";
 
 import { extractHeadingText } from "./markdownUtils.js";
 
