@@ -1,0 +1,142 @@
+name: (Tutorials 📓) Propose a community tutorial
+description: Propose a new tutorial, or an improvement to an existing one, for the Qiskit tutorials
+title: "[Tutorial proposal] "
+labels: ["content 📄", "tutorial 📒", "needs triage 🤔"]
+assignees:
+  - henryzou50
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for proposing a tutorial! Before you start, read [Contribute a tutorial](https://quantum.cloud.ibm.com/docs/tutorials/contribute) for what can be contributed, and the [guide to adding tutorials](https://github.com/Qiskit/documentation/blob/main/adding-tutorials.md) for the detailed requirements and review process.
+
+        Search existing [tutorials](https://quantum.cloud.ibm.com/docs/tutorials) and [open proposals](https://github.com/Qiskit/documentation/issues?q=is%3Aissue+is%3Aopen+%22Tutorial+proposal%22) to avoid duplicates. The IBM Quantum tutorials team reviews each proposal, and a working-group member reviews the technical content. Wait for approval before you open a pull request.
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Tutorial type
+      description: Foundational and Applied apply to optimization, Hamiltonian simulation, and quantum machine learning. Quantum information science tutorials belong to a topic category instead.
+      options:
+        - Foundational
+        - Applied
+        - Quantum information science
+        - Improvement to an existing tutorial
+    validations:
+      required: true
+
+  - type: dropdown
+    id: domain
+    attributes:
+      label: Domain
+      options:
+        - Optimization
+        - Hamiltonian simulation
+        - Quantum machine learning
+        - Quantum information science
+    validations:
+      required: true
+
+  - type: input
+    id: target
+    attributes:
+      label: Problem class or topic category
+      description: Name the foundational problem class or the Applied problem class your tutorial uses. For quantum information science, name the topic category and the technique. To propose a new problem class or topic category, describe the gap it fills.
+    validations:
+      required: true
+
+  - type: input
+    id: existing
+    attributes:
+      label: Existing tutorial
+      description: For an improvement, link to the tutorial you want to improve.
+    validations:
+      required: false
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What does the tutorial show, and what do readers learn?
+    validations:
+      required: true
+
+  - type: input
+    id: paper
+    attributes:
+      label: Source paper
+      description: Link to the paper the tutorial is based on, if any.
+    validations:
+      required: false
+
+  - type: textarea
+    id: bar
+    attributes:
+      label: How it meets the requirements
+      description: |
+        Foundational: where the method leads next, such as an Applied tutorial or problem class, and what it shows on hardware that a course does not.
+        Applied: which state-of-the-art criteria it meets.
+        Quantum information science: the default approach it compares against, and where the technique leads next.
+        Improvement: how it improves the existing tutorial, and anything that gets worse.
+    validations:
+      required: true
+
+  - type: textarea
+    id: circuits
+    attributes:
+      label: Circuit and hardware details
+      description: Number of qubits, two-qubit depth, two-qubit gate count, estimated QPU time, and how you plan to get access to IBM Quantum hardware.
+    validations:
+      required: true
+
+  - type: textarea
+    id: verification
+    attributes:
+      label: Verification plan
+      description: The small instance you plan to run, the known answer you compare against, and the tolerance.
+    validations:
+      required: true
+
+  - type: textarea
+    id: baseline
+    attributes:
+      label: Classical baseline
+      description: The classical method you compare against on the same instance. Required for Applied tutorials.
+    validations:
+      required: false
+
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies
+      description: Packages beyond Qiskit, with pinned versions. Quantum packages must be on the approved list on the Contribute a tutorial page, and classical packages must be published on PyPI. To request a package that is not on the list, name it here and explain why you need it.
+    validations:
+      required: false
+
+  - type: textarea
+    id: authors
+    attributes:
+      label: Authors and affiliations
+    validations:
+      required: true
+
+  - type: input
+    id: timeline
+    attributes:
+      label: Expected timeline
+      description: When you expect to open the pull request.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Confirm
+      options:
+        - label: I read the contribution requirements.
+          required: true
+        - label: I searched existing tutorials and proposals for duplicates.
+          required: true
+        - label: I agree to respond within 30 days if a change breaks the tutorial after it is published.
+          required: true
