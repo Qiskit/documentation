@@ -393,7 +393,7 @@ Each plan in the response includes a functions array and, if configured, a `cust
 
 ### Step 4: Configure functions access
 
-Update the instance to grant access to Catalog Functions and Custom Functions.
+Update the instance to grant access to Catalog Functions and managed workflows.
 
 <Admonition type="note" title="Important notes">
 - The `name`, `provider`, and `business_model` values in functions must exactly match entries configured at the account level (see the [previous step](#step-3)). Permissions must be a non-empty subset of the account's permissions for that function. Similarly, `custom_functions.permissions` must be a non-empty subset of the account's `custom_functions` permissions.
@@ -503,9 +503,9 @@ resp.raise_for_status()
 
 Setting `"functions": []` (an empty array) equivalently clears Catalog Functions. `null` is the canonical form.
 
-#### Custom Functions
+#### Managed workflows
 
-To remove Custom Functions from an instance, send a PATCH with `"custom_functions": null`:
+To remove managed workflows from an instance, send a PATCH with `"custom_functions": null`:
 
 <Tabs>
   <TabItem value="curl" label="cURL">
@@ -528,7 +528,7 @@ resp.raise_for_status()
   </TabItem>
 </Tabs>
 
-Setting `"custom_functions": {"permissions": []}` equivalently clears custom functions. `null` is the canonical form.
+Setting `"custom_functions": {"permissions": []}` equivalently clears managed workflows. `null` is the canonical form.
 
 <span id="verify-result" />
 ### Verify the result
